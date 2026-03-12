@@ -167,7 +167,18 @@ const parseTable = (lines, startIndex) => {
     return null;
   }
 
-  if (!/^\|?[\s:-|]+\|?\s*$/.test(secondLine.trim())) {
+  const delimiterCells = secondLine
+    .trim()
+    .replace(/^\|/, "")
+    .replace(/\|$/, "")
+    .split("|")
+    .map((cell) => cell.trim())
+    .filter(Boolean);
+
+  if (
+    !delimiterCells.length ||
+    !delimiterCells.every((cell) => /^:?-{3,}:?$/.test(cell))
+  ) {
     return null;
   }
 
