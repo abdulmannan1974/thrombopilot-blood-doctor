@@ -37,6 +37,7 @@ function App() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [activeToolId, setActiveToolId] = useState(tools[0]?.id ?? "");
   const [toolValues, setToolValues] = useState(toolStateDefaults);
+  const [isLibraryOpen, setIsLibraryOpen] = useState(false);
 
   const filteredTools = tools.filter((tool) => {
     const matchesCategory =
@@ -62,6 +63,10 @@ function App() {
       setActiveToolId(filteredTools[0]?.id ?? tools[0]?.id ?? "");
     }
   }, [activeToolId, filteredTools]);
+
+  useEffect(() => {
+    setIsLibraryOpen(false);
+  }, [activeToolId]);
 
   const activeTool = filteredTools.length
     ? filteredTools.find((tool) => tool.id === activeToolId) ??
@@ -127,6 +132,22 @@ function App() {
       </header>
 
       <section className="toolbar">
+        <div className="mobile-nav-bar">
+          <button
+            type="button"
+            className="mobile-library-toggle"
+            onClick={() => setIsLibraryOpen(true)}
+          >
+            Browse tools
+          </button>
+          {activeTool ? (
+            <div className="active-tool-pill">
+              <span className="mini-label">Current tool</span>
+              <strong>{activeTool.shortTitle}</strong>
+            </div>
+          ) : null}
+        </div>
+
         <label className="search-field">
           <span>Find a tool</span>
           <input
@@ -152,10 +173,26 @@ function App() {
       </section>
 
       <main className="workspace">
-        <aside className="tool-list-panel">
+        <button
+          type="button"
+          className={isLibraryOpen ? "library-backdrop open" : "library-backdrop"}
+          aria-label="Close tool index"
+          onClick={() => setIsLibraryOpen(false)}
+        />
+
+        <aside className={isLibraryOpen ? "tool-list-panel open" : "tool-list-panel"}>
           <div className="panel-heading">
             <h2>Tool Library</h2>
-            <span>{filteredTools.length} visible</span>
+            <div className="panel-heading-actions">
+              <span>{filteredTools.length} visible</span>
+              <button
+                type="button"
+                className="panel-close"
+                onClick={() => setIsLibraryOpen(false)}
+              >
+                Close
+              </button>
+            </div>
           </div>
 
           <div className="tool-list">
@@ -164,7 +201,10 @@ function App() {
                 key={tool.id}
                 type="button"
                 className={tool.id === activeTool?.id ? "tool-card active" : "tool-card"}
-                onClick={() => setActiveToolId(tool.id)}
+                onClick={() => {
+                  setActiveToolId(tool.id);
+                  setIsLibraryOpen(false);
+                }}
               >
                 <div className="tool-card-top">
                   <span className="tool-badge">{tool.badge}</span>
@@ -297,7 +337,10 @@ function FieldRenderer({ input, value, onChange }) {
         <legend>{input.label}</legend>
         <div className="radio-options">
           {input.options.map((option) => (
-            <label key={option.value} className="radio-option">
+            <label
+              key={option.value}
+              className={value === option.value ? "radio-option selected" : "radio-option"}
+            >
               <input
                 type="radio"
                 name={input.id}
@@ -305,7 +348,7 @@ function FieldRenderer({ input, value, onChange }) {
                 checked={value === option.value}
                 onChange={(event) => onChange(event.target.value)}
               />
-              <span>{option.label}</span>
+              <span className="radio-copy">{option.label}</span>
             </label>
           ))}
         </div>
