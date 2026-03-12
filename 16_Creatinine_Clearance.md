@@ -1,6 +1,5 @@
 # Creatinine Clearance (Cockcroft-Gault Equation)
 
-**Source**: Thrombosis Canada — https://thrombosiscanada.ca/tools/?calc=creatinineClearance
 **Type**: Scoring Calculator
 **Scraped**: 2026-03-12
 
@@ -99,4 +98,3 @@ If FEMALE: multiply result by 0.85
 ## Key References
 
 - Cockcroft DW, Gault MH. Prediction of creatinine clearance from serum creatinine. *Nephron*. 1976;16:31–41.
-- Thrombosis Canada Clinical Guide: Renal Impairment and Anticoagulation.

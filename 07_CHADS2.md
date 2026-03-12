@@ -1,6 +1,5 @@
 # CHADS2 Score for Atrial Fibrillation Stroke Risk
 
-**Source**: Thrombosis Canada — https://thrombosiscanada.ca/tools/?calc=chads2
 **Type**: Scoring Calculator
 **Scraped**: 2026-03-12
 
@@ -55,4 +54,3 @@ Estimates stroke risk in patients with non-valvular atrial fibrillation using th
 ## Key References
 
 - Gage BF, et al. Validation of clinical classification schemes for predicting stroke. *JAMA*. 2001;285(22):2864–2870.
-- Thrombosis Canada Clinical Guide: Atrial Fibrillation.

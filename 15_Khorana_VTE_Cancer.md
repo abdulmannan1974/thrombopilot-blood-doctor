@@ -1,6 +1,5 @@
 # Khorana Risk Score for VTE in Cancer Patients
 
-**Source**: Thrombosis Canada — https://thrombosiscanada.ca/tools/?calc=khoranaRiskScore
 **Type**: Scoring Calculator
 **Scraped**: 2026-03-12
 
@@ -80,4 +79,3 @@ Predicts risk of venous thromboembolism (VTE) in ambulatory cancer patients rece
 - Key NS, et al. VTE in cancer patients: ASCO guideline update. *J Clin Oncol*. 2023.
 - Carrier M, et al. (AVERT trial). *NEJM*. 2019;380:711–719.
 - Khorana AA, et al. (CASSINI trial). *NEJM*. 2019;380:720–728.
-- Thrombosis Canada Clinical Guide: Cancer-Associated Thrombosis.

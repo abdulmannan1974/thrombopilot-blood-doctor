@@ -1,6 +1,5 @@
 # PESI (Pulmonary Embolism Severity Index)
 
-**Source**: Thrombosis Canada — https://thrombosiscanada.ca/tools/?calc=pesi
 **Type**: Scoring Calculator
 **Scraped**: 2026-03-12
 
@@ -66,4 +65,3 @@ Predicts 30-day outcome of patients with pulmonary embolism using 11 clinical cr
 ## Key References
 
 - Aujesky D, et al. Derivation and validation of a prognostic model for pulmonary embolism. *Am J Respir Crit Care Med*. 2005;172(8):1041–1046.
-- Thrombosis Canada Clinical Guide: PE Management.

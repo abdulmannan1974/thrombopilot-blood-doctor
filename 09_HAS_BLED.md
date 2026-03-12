@@ -1,6 +1,5 @@
 # HAS-BLED Score for Major Bleeding Risk
 
-**Source**: Thrombosis Canada — https://thrombosiscanada.ca/tools/?calc=hasBled
 **Type**: Scoring Calculator
 **Scraped**: 2026-03-12
 
@@ -65,4 +64,3 @@ Estimates risk of major bleeding for patients on anticoagulation, to help determ
 ## Key References
 
 - Pisters R, et al. A novel user-friendly score (HAS-BLED) to assess 1-year risk of major bleeding in patients with atrial fibrillation. *Chest*. 2010;138(5):1093–1100.
-- Thrombosis Canada Clinical Guide: Bleeding Risk Assessment.

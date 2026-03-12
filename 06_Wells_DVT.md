@@ -1,6 +1,5 @@
 # Wells' Criteria for Deep Vein Thrombosis (DVT)
 
-**Source**: Thrombosis Canada — https://thrombosiscanada.ca/tools/?calc=wellsDVT
 **Type**: Scoring Calculator
 **Scraped**: 2026-03-12
 
@@ -68,4 +67,3 @@ Calculates Wells' Score reflecting the risk of deep vein thrombosis (DVT). Used 
 
 - Wells PS, et al. Value of assessment of pretest probability of deep-vein thrombosis in clinical management. *Lancet*. 1997;350:1795–1798.
 - Wells PS, et al. Evaluation of D-dimer in the diagnosis of suspected deep-vein thrombosis. *NEJM*. 2003;349:1227–1235.
-- Thrombosis Canada Clinical Guide: DVT Diagnosis.

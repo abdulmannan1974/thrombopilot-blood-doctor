@@ -1,6 +1,5 @@
 # TIMI Risk Score for UA/NSTEMI
 
-**Source**: Thrombosis Canada — https://thrombosiscanada.ca/tools/?calc=timiUA
 **Type**: Scoring Calculator
 **Scraped**: 2026-03-12
 
@@ -64,4 +63,3 @@ Estimates mortality for patients with unstable angina (UA) and non-ST elevation 
 ## Key References
 
 - Antman EM, et al. The TIMI risk score for unstable angina/non-ST elevation MI. *JAMA*. 2000;284:835–842.
-- Thrombosis Canada Clinical Guide.

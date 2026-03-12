@@ -1,6 +1,5 @@
 # TIMI Risk Score for STEMI
 
-**Source**: Thrombosis Canada — https://thrombosiscanada.ca/tools/?calc=timiSTEMI
 **Type**: Scoring Calculator
 **Scraped**: 2026-03-12
 
@@ -80,4 +79,3 @@ Estimates 30-day mortality in patients with ST-elevation myocardial infarction (
 ## Key References
 
 - Morrow DA, et al. TIMI risk score for ST-elevation myocardial infarction. *Circulation*. 2000;102:2031–2037.
-- Thrombosis Canada Clinical Guide.

@@ -1,6 +1,5 @@
 # PERC Rule (Pulmonary Embolism Rule-out Criteria)
 
-**Source**: Thrombosis Canada — https://thrombosiscanada.ca/tools/?calc=perc
 **Type**: Scoring Calculator
 **Scraped**: 2026-03-12
 
@@ -61,4 +60,3 @@ The PERC rule can rule out pulmonary embolism if ALL criteria are present AND pr
 
 - Kline JA, et al. Clinical criteria to prevent unnecessary diagnostic testing in emergency department patients with suspected pulmonary embolism. *J Thromb Haemost*. 2004;2:1247–1255.
 - Kline JA, et al. Prospective multicenter evaluation of the pulmonary embolism rule-out criteria. *J Thromb Haemost*. 2008;6:772–780.
-- Thrombosis Canada Clinical Guide: PE Diagnosis.

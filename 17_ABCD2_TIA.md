@@ -1,6 +1,5 @@
 # ABCD2 Score for TIA
 
-**Source**: Thrombosis Canada — https://thrombosiscanada.ca/tools/?calc=abcd2
 **Type**: Scoring Calculator
 **Scraped**: 2026-03-12
 
@@ -76,4 +75,3 @@ Estimates risk of stroke after a transient ischemic attack (TIA), according to p
 ## Key References
 
 - Johnston SC, et al. Validation and refinement of scores to predict very early stroke risk after transient ischaemic attack. *Lancet*. 2007;369:283–292.
-- Thrombosis Canada Clinical Guide: TIA Management.

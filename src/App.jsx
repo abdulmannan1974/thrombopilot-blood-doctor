@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import { Fragment, useEffect, useState } from "react";
 import { toolCategories, tools } from "./data/tools";
-import { markdownByToolId } from "./data/markdownContent";
+import { clinicalContentByToolId } from "./data/markdownContent";
 
 const getInitialValues = (tool) =>
   tool.inputs.reduce((accumulator, input) => {
@@ -41,6 +39,7 @@ function App() {
   const [activeToolId, setActiveToolId] = useState(tools[0]?.id ?? "");
   const [toolValues, setToolValues] = useState(toolStateDefaults);
   const [isLibraryOpen, setIsLibraryOpen] = useState(false);
+  const [activeClinicalTab, setActiveClinicalTab] = useState("overview");
 
   const filteredTools = tools.filter((tool) => {
     const matchesCategory =
@@ -79,7 +78,14 @@ function App() {
 
   const activeValues = activeTool ? toolValues[activeTool.id] ?? {} : {};
   const result = activeTool ? activeTool.calculate(activeValues) : null;
-  const activeMarkdown = activeTool ? markdownByToolId[activeTool.id] ?? "" : "";
+  const activeClinicalContent = activeTool
+    ? clinicalContentByToolId[activeTool.id] ?? { tabs: [] }
+    : { tabs: [] };
+
+  useEffect(() => {
+    const firstTabId = activeClinicalContent.tabs[0]?.id ?? "overview";
+    setActiveClinicalTab(firstTabId);
+  }, [activeToolId, activeClinicalContent.tabs]);
 
   const stats = {
     total: tools.length,
@@ -315,7 +321,9 @@ function App() {
 
               <ClinicalReference
                 title={activeTool.title}
-                markdown={activeMarkdown}
+                content={activeClinicalContent}
+                activeTab={activeClinicalTab}
+                onTabChange={setActiveClinicalTab}
               />
             </>
           ) : (
@@ -473,36 +481,179 @@ function ResultCard({ result }) {
   );
 }
 
-function ClinicalReference({ title, markdown }) {
+function ClinicalReference({ title, content, activeTab, onTabChange }) {
+  const visibleTab =
+    content.tabs.find((tab) => tab.id === activeTab) ?? content.tabs[0] ?? null;
+
   return (
     <section className="reference-card">
       <div className="panel-heading">
         <div>
           <h3>Full Clinical Detail</h3>
-          <span>Complete transformed source content for {title}</span>
+          <span>Native clinical cards for {title}</span>
         </div>
       </div>
 
-      <details className="reference-disclosure" open>
-        <summary>Open full criteria, thresholds, applications, and references</summary>
-        <div className="markdown-content">
-          <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
-            components={{
-              h1: ({ node, ...props }) => <h4 {...props} />,
-              h2: ({ node, ...props }) => <h5 {...props} />,
-              h3: ({ node, ...props }) => <h6 {...props} />,
-              a: ({ node, ...props }) => (
-                <a {...props} target="_blank" rel="noreferrer" />
-              ),
-            }}
-          >
-            {markdown}
-          </ReactMarkdown>
-        </div>
-      </details>
+      {content.tabs.length ? (
+        <>
+          <div className="reference-tabs" role="tablist" aria-label="Clinical detail sections">
+            {content.tabs.map((tab) => (
+              <button
+                key={tab.id}
+                type="button"
+                role="tab"
+                aria-selected={visibleTab?.id === tab.id}
+                className={visibleTab?.id === tab.id ? "reference-tab active" : "reference-tab"}
+                onClick={() => onTabChange(tab.id)}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
+          {visibleTab ? (
+            <div className="reference-tab-intro">
+              <div>
+                <span className="mini-label">Section focus</span>
+                <p>{visibleTab.descriptor}</p>
+              </div>
+              <strong>{visibleTab.cards.length} cards</strong>
+            </div>
+          ) : null}
+
+          <div className="reference-card-grid">
+            {visibleTab?.cards.map((card) => (
+              <article
+                key={card.title}
+                className={card.wide ? "reference-section-card wide" : "reference-section-card"}
+              >
+                <div className="reference-section-head">
+                  <span className="detail-badge">Section</span>
+                  <div>
+                    <h4>{card.title}</h4>
+                    {card.summary ? <p>{card.summary}</p> : null}
+                  </div>
+                </div>
+                <div className="content-blocks">
+                  {card.blocks.map((block, index) => (
+                    <ContentBlock key={`${card.title}-${block.type}-${index}`} block={block} />
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </>
+      ) : null}
     </section>
   );
+}
+
+function ContentBlock({ block }) {
+  if (block.type === "paragraph") {
+    return <p className="content-paragraph">{renderInlineContent(block.text)}</p>;
+  }
+
+  if (block.type === "subheading") {
+    return <h5 className="content-subheading">{renderInlineContent(block.text)}</h5>;
+  }
+
+  if (block.type === "fact") {
+    return (
+      <div className="fact-row">
+        <span>{renderInlineContent(block.label)}</span>
+        <strong>{renderInlineContent(block.value)}</strong>
+      </div>
+    );
+  }
+
+  if (block.type === "bullet-list" || block.type === "ordered-list") {
+    const ListTag = block.type === "ordered-list" ? "ol" : "ul";
+    return (
+      <ListTag className="content-list">
+        {block.items.map((item) => (
+          <li key={item}>{renderInlineContent(item)}</li>
+        ))}
+      </ListTag>
+    );
+  }
+
+  if (block.type === "table") {
+    return (
+      <div className="content-table-shell">
+        <table className="content-table">
+          <thead>
+            <tr>
+              {block.headers.map((header) => (
+                <th key={header}>{renderInlineContent(header)}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {block.rows.map((row, rowIndex) => (
+              <tr key={`${row.join("-")}-${rowIndex}`}>
+                {row.map((cell, cellIndex) => (
+                  <td key={`${cell}-${cellIndex}`}>{renderInlineContent(cell)}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+
+  if (block.type === "code") {
+    return (
+      <pre className="content-formula">
+        <code>{block.content}</code>
+      </pre>
+    );
+  }
+
+  return null;
+}
+
+function renderInlineContent(text) {
+  const tokens = [];
+  const pattern =
+    /(\[([^\]]+)\]\((https?:\/\/[^)]+)\)|\*\*([^*]+)\*\*|`([^`]+)`|\*([^*]+)\*)/g;
+  let lastIndex = 0;
+  let match = pattern.exec(text);
+
+  while (match) {
+    if (match.index > lastIndex) {
+      tokens.push(text.slice(lastIndex, match.index));
+    }
+
+    if (match[2] && match[3]) {
+      tokens.push(
+        <a key={`${match[2]}-${match.index}`} href={match[3]} target="_blank" rel="noreferrer">
+          {match[2]}
+        </a>
+      );
+    } else if (match[4]) {
+      tokens.push(<strong key={`${match[4]}-${match.index}`}>{match[4]}</strong>);
+    } else if (match[5]) {
+      tokens.push(<code key={`${match[5]}-${match.index}`}>{match[5]}</code>);
+    } else if (match[6]) {
+      tokens.push(<em key={`${match[6]}-${match.index}`}>{match[6]}</em>);
+    }
+
+    lastIndex = pattern.lastIndex;
+    match = pattern.exec(text);
+  }
+
+  if (lastIndex < text.length) {
+    tokens.push(text.slice(lastIndex));
+  }
+
+  return tokens.map((token, index) => {
+    if (typeof token === "string") {
+      return <Fragment key={`${token}-${index}`}>{token}</Fragment>;
+    }
+
+    return token;
+  });
 }
 
 export default App;

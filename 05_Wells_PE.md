@@ -1,6 +1,5 @@
 # Wells' Criteria for Pulmonary Embolism (PE)
 
-**Source**: Thrombosis Canada — https://thrombosiscanada.ca/tools/?calc=wellsPE
 **Type**: Scoring Calculator
 **Scraped**: 2026-03-12
 
@@ -65,4 +64,3 @@ Calculates Wells' Score for risk of pulmonary embolism (PE). Used to determine p
 ## Key References
 
 - Wells PS, et al. Derivation of a simple clinical model to categorize patients' probability of pulmonary embolism. *Thromb Haemost*. 2000;83:416–420.
-- Thrombosis Canada Clinical Guide: Pulmonary Embolism Diagnosis.

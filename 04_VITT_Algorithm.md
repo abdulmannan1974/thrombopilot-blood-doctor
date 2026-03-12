@@ -1,6 +1,5 @@
 # VITT (Vaccine-Induced Immune Thrombotic Thrombocytopenia) Algorithm
 
-**Source**: Thrombosis Canada — https://thrombosiscanada.ca/tools/?calc=VITT
 **Type**: Interactive Algorithm
 **Scraped**: 2026-03-12
 
@@ -102,5 +101,4 @@ Perform additional tests with the patient:
 ## Key References
 
 - Pai M, Grill A, Ivers N, et al. Vaccine-induced prothrombotic immune thrombocytopenia (VIPIT) following AstraZeneca COVID-19 vaccination. Science Briefs of the Ontario COVID-19 Science Advisory Table. 2021;1(17). https://doi.org/10.47326/ocsat.2021.02.17.1.0
-- Thrombosis Canada Clinical Guide: VITT.
 - Pavord S, et al. Clinical features of VITT. *NEJM*. 2021.

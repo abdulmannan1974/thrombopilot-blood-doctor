@@ -1,6 +1,5 @@
 # Perioperative Anticoagulant Management Algorithm
 
-**Source**: Thrombosis Canada — https://thrombosiscanada.ca/tools/?calc=perioperativeAnticoagulantAlgorithm
 **Type**: Interactive Algorithm
 **Scraped**: 2026-03-12
 
@@ -125,5 +124,4 @@ CrCl = [(140 - Age) × Weight (kg)] / [Serum Cr (µmol/L) × 0.815]
 ## Key References
 
 - Douketis JD, et al. Perioperative management of antithrombotic therapy. *Chest*. 2012;141(2 Suppl):e326S-e350S.
-- Thrombosis Canada Clinical Guide: Perioperative Anticoagulant Management.
 - Schulman S, et al. Perioperative management of dabigatran. *J Thromb Haemost*. 2015.

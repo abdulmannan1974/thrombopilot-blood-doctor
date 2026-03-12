@@ -1,8 +1,7 @@
-# Thrombosis Canada Clinical Tools — Complete Index
+# Clinical Tools — Complete Index
 
-**Source**: https://thrombosiscanada.ca/hcp/practice/clinical_tools
 **Scraped**: 2026-03-12
-**Total Tools**: 17 (4 Interactive Algorithms + 12 Scoring Calculators + 1 Bonus)
+**Total Tools**: 17
 
 ---
 
@@ -32,21 +31,3 @@
 | 15 | Khorana Risk Score (VTE in Cancer) | `15_Khorana_VTE_Cancer.md` | `khoranaRiskScore` |
 | 16 | Creatinine Clearance (Cockcroft-Gault) | `16_Creatinine_Clearance.md` | `creatinineClearance` |
 | 17 | ABCD2 Score for TIA | `17_ABCD2_TIA.md` | `abcd2` |
-
----
-
-## Access URLs
-
-Base URL pattern:
-```
-https://thrombosiscanada.ca/hcp/practice/clinical_tools?calc={parameter}
-```
-
-Alternative URL pattern:
-```
-https://thrombosiscanada.ca/tools/?calc={parameter}
-```
-
----
-
-*Note: Thrombosis Canada tools are bilingual (English/French). This archive contains English content only.*

@@ -1,6 +1,5 @@
 # CHA2DS2-VASc Score for Atrial Fibrillation Stroke Risk
 
-**Source**: Thrombosis Canada — https://thrombosiscanada.ca/tools/?calc=chads2v
 **Type**: Scoring Calculator
 **Scraped**: 2026-03-12
 
@@ -65,4 +64,3 @@ Calculates stroke risk for patients with atrial fibrillation, possibly better th
 ## Key References
 
 - Lip GY, et al. Refining clinical risk stratification for predicting stroke and thromboembolism in atrial fibrillation using a novel risk factor-based approach. *Chest*. 2010;137(2):263–272.
-- Thrombosis Canada Clinical Guide: Atrial Fibrillation.

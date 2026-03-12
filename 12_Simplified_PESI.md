@@ -1,6 +1,5 @@
 # Simplified PESI (sPESI)
 
-**Source**: Thrombosis Canada — https://thrombosiscanada.ca/tools/?calc=simplifiedPesi
 **Type**: Scoring Calculator
 **Scraped**: 2026-03-12
 
@@ -66,4 +65,3 @@ Predicts 30-day outcome of patients with pulmonary embolism with fewer criteria 
 ## Key References
 
 - Jiménez D, et al. Simplification of the Pulmonary Embolism Severity Index for prognostication in patients with acute symptomatic pulmonary embolism. *Arch Intern Med*. 2010;170(15):1383–1389.
-- Thrombosis Canada Clinical Guide: PE Management.

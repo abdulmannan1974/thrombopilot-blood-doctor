@@ -1,6 +1,5 @@
 # Anticoagulant Dosing in Atrial Fibrillation
 
-**Source**: Thrombosis Canada — https://thrombosiscanada.ca/tools/?calc=anticoagulantDosingInAF
 **Type**: Interactive Algorithm (powered by Vivomap)
 **Scraped**: 2026-03-12
 
@@ -138,6 +137,5 @@ Interactive decision-support algorithm for selecting and dosing anticoagulants i
 
 ## Key References
 
-- Thrombosis Canada Clinical Guide: Atrial Fibrillation (NOAC/DOAC Dosing).
 - CCS/CHRS AF Guidelines (2020 Update).
 - Product monographs: Eliquis, Pradaxa, Xarelto, Lixiana.

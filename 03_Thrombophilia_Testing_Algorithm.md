@@ -1,6 +1,5 @@
 # Thrombophilia Testing Algorithm
 
-**Source**: Thrombosis Canada — https://thrombosiscanada.ca/tools/?calc=thrombophiliaTestingAlgorithm
 **Type**: Interactive Algorithm
 **Scraped**: 2026-03-12
 
@@ -115,6 +114,5 @@ Testing may be considered in at least ONE of the following situations:
 
 ## Key References
 
-- Thrombosis Canada Clinical Guide: Thrombophilia Testing.
 - Baglin T, et al. Clinical guidelines for testing for heritable thrombophilia. *Br J Haematol*. 2010;149:209–220.
 - ISTH Guidance on thrombophilia testing (2023).
