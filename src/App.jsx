@@ -60,6 +60,14 @@ function App() {
       .includes(query);
   });
 
+  const groupedTools = toolCategories
+    .filter((category) => category.id !== "all")
+    .map((category) => ({
+      ...category,
+      tools: filteredTools.filter((tool) => tool.category === category.id),
+    }))
+    .filter((category) => category.tools.length);
+
   useEffect(() => {
     if (filteredTools.length && !filteredTools.find((tool) => tool.id === activeToolId)) {
       setActiveToolId(filteredTools[0]?.id ?? tools[0]?.id ?? "");
@@ -108,40 +116,31 @@ function App() {
     <div className="app-shell">
       <div className="background-orb orb-a" />
       <div className="background-orb orb-b" />
-      <header className="hero">
-        <div className="hero-copy">
-          <div className="eyebrow">Clinical Decision Support</div>
-          <h1>
-            ThromboPilot by <span className="brand-lockup">Blood🩸Doctor</span>
-          </h1>
-          <p className="hero-subtitle">Dr Abdul Mannan FRCPath FCPS</p>
-          <p className="hero-description">
-            A responsive anticoagulation and thrombosis workspace built for fast
-            bedside use on desktop, tablet, and mobile. Search across every tool,
-            open a pathway instantly, and review a clean interpretation panel
-            without digging through long documents.
-          </p>
-          <div className="hero-stats">
-            <StatCard label="Total tools" value={stats.total} />
-            <StatCard label="Algorithms" value={stats.algorithms} />
-            <StatCard label="Scores" value={stats.scores} />
-            <StatCard label="Renal" value={stats.renal} />
-          </div>
+      <header className="masthead">
+        <div className="brand-ribbon">
+          <span className="eyebrow">ThromboPilot</span>
+          <span className="brand-signature">Blood🩸Doctor | Dr Abdul Mannan FRCPath FCPS</span>
         </div>
-        <div className="hero-panel">
-          <div className="hero-panel-card">
-            <span className="mini-label">Why it works</span>
-            <h2>One workspace, all decision layers</h2>
-            <ul className="feature-list">
-              <li>Structured scores for PE, DVT, AF, cancer-associated VTE, ACS, and TIA</li>
-              <li>Interactive pathways for perioperative planning, AF dosing, thrombophilia testing, and VITT</li>
-              <li>Touch-friendly controls with a focused reading surface for ward rounds and clinic</li>
-            </ul>
+        <div className="masthead-title">
+          <span className="title-line" />
+          <div>
+            <h1>Clinical Tools</h1>
+            <p>
+              Structured bedside pathways, calculators, and full clinical detail in one
+              focused workspace.
+            </p>
           </div>
+          <span className="title-line" />
+        </div>
+        <div className="masthead-stats">
+          <StatCard label="Tools" value={stats.total} />
+          <StatCard label="Algorithms" value={stats.algorithms} />
+          <StatCard label="Scoring" value={stats.scores} />
+          <StatCard label="Renal" value={stats.renal} />
         </div>
       </header>
 
-      <section className="toolbar">
+      <section className="toolbar compact">
         <div className="mobile-nav-bar">
           <button
             type="button"
@@ -157,16 +156,6 @@ function App() {
             </div>
           ) : null}
         </div>
-
-        <label className="search-field toolbar-search">
-          <span>Find a tool</span>
-          <input
-            type="search"
-            placeholder="Search PE, AF, perioperative, renal..."
-            value={searchTerm}
-            onChange={(event) => setSearchTerm(event.target.value)}
-          />
-        </label>
 
         <div className="category-pills toolbar-pills" role="tablist" aria-label="Tool categories">
           {toolCategories.map((category) => (
@@ -191,10 +180,12 @@ function App() {
         />
 
         <aside className={isLibraryOpen ? "tool-list-panel open" : "tool-list-panel"}>
-          <div className="panel-heading">
-            <h2>Tool Library</h2>
-            <div className="panel-heading-actions">
-              <span>{filteredTools.length} visible</span>
+          <div className="sidebar-top">
+            <div className="panel-heading panel-heading-tight">
+              <div>
+                <h2>Tool Index</h2>
+                <span>{filteredTools.length} tools visible</span>
+              </div>
               <button
                 type="button"
                 className="panel-close"
@@ -203,9 +194,7 @@ function App() {
                 Close
               </button>
             </div>
-          </div>
 
-          <div className="drawer-controls">
             <label className="search-field">
               <span>Find a tool</span>
               <input
@@ -219,7 +208,7 @@ function App() {
             <div className="category-pills drawer-pills" role="tablist" aria-label="Tool categories">
               {toolCategories.map((category) => (
                 <button
-                  key={`drawer-${category.id}`}
+                  key={`sidebar-${category.id}`}
                   type="button"
                   className={selectedCategory === category.id ? "pill active" : "pill"}
                   onClick={() => setSelectedCategory(category.id)}
@@ -230,37 +219,48 @@ function App() {
             </div>
           </div>
 
-          <div className="tool-list">
-            {filteredTools.map((tool) => (
-              <button
-                key={tool.id}
-                type="button"
-                className={tool.id === activeTool?.id ? "tool-card active" : "tool-card"}
-                onClick={() => {
-                  setActiveToolId(tool.id);
-                  setIsLibraryOpen(false);
-                }}
-              >
-                <div className="tool-card-top">
-                  <span className="tool-badge">{tool.badge}</span>
-                  <span className="tool-category">
-                    {tool.category === "score"
-                      ? "Score"
-                      : tool.category === "algorithm"
-                        ? "Algorithm"
-                        : "Renal"}
-                  </span>
+          <div className="tool-group-list">
+            {groupedTools.map((group) => (
+              <section key={group.id} className="tool-group">
+                <div className="tool-group-header">
+                  <h3>{group.label}</h3>
+                  <span>{group.tools.length}</span>
                 </div>
-                <h3>{tool.shortTitle}</h3>
-                <p>{tool.blurb}</p>
-                <div className="tag-row">
-                  {tool.tags.slice(0, 3).map((tag) => (
-                    <span key={tag} className="tag">
-                      {tag}
-                    </span>
+
+                <div className="tool-list">
+                  {group.tools.map((tool) => (
+                    <button
+                      key={tool.id}
+                      type="button"
+                      className={tool.id === activeTool?.id ? "tool-card active" : "tool-card"}
+                      onClick={() => {
+                        setActiveToolId(tool.id);
+                        setIsLibraryOpen(false);
+                      }}
+                    >
+                      <div className="tool-card-top">
+                        <span className="tool-badge">{tool.badge}</span>
+                        <span className="tool-category">
+                          {tool.category === "score"
+                            ? "Score"
+                            : tool.category === "algorithm"
+                              ? "Algorithm"
+                              : "Renal"}
+                        </span>
+                      </div>
+                      <h3>{tool.shortTitle}</h3>
+                      <p>{tool.blurb}</p>
+                      <div className="tag-row">
+                        {tool.tags.slice(0, 3).map((tag) => (
+                          <span key={tag} className="tag">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </button>
                   ))}
                 </div>
-              </button>
+              </section>
             ))}
           </div>
         </aside>
@@ -268,55 +268,64 @@ function App() {
         <section className="detail-panel">
           {activeTool ? (
             <>
-              <div className="detail-header">
-                <div>
-                  <span className="detail-badge">{activeTool.badge}</span>
+              <div className="detail-banner">
+                <div className="detail-banner-copy">
+                  <span className="detail-kicker">{activeTool.badge}</span>
                   <h2>{activeTool.title}</h2>
                   <p>{activeTool.blurb}</p>
                 </div>
+                <div className="detail-meta-strip">
+                  <span>{activeTool.category === "algorithm" ? "Algorithm" : activeTool.badge}</span>
+                  <span>{activeClinicalContent.tabs.length} clinical tabs</span>
+                  <span>{activeTool.tags.length} indexed tags</span>
+                </div>
+              </div>
+
+              <div className="detail-overview-grid">
                 <div className="detail-note-card">
-                  <span className="mini-label">Use notes</span>
+                  <span className="mini-label">Clinical use notes</span>
                   <ul className="feature-list compact">
                     {activeTool.notes.map((note) => (
                       <li key={note}>{note}</li>
                     ))}
                   </ul>
                 </div>
-              </div>
-
-              <div className="detail-grid">
-                <div className="input-card">
-                  <div className="panel-heading">
-                    <h3>Inputs</h3>
-                    <button
-                      type="button"
-                      className="secondary-button"
-                      onClick={() =>
-                        setToolValues((current) => ({
-                          ...current,
-                          [activeTool.id]: getInitialValues(activeTool),
-                        }))
-                      }
-                    >
-                      Reset
-                    </button>
-                  </div>
-
-                  <div className="form-grid">
-                    {activeTool.inputs
-                      .filter((input) => input.type !== "hidden")
-                      .map((input) => (
-                        <FieldRenderer
-                          key={input.id}
-                          input={input}
-                          value={activeValues[input.id]}
-                          onChange={(value) => updateValue(activeTool.id, input.id, value)}
-                        />
-                      ))}
-                  </div>
-                </div>
 
                 <ResultCard result={result} />
+              </div>
+
+              <div className="input-card">
+                <div className="panel-heading">
+                  <div>
+                    <h3>Interactive Inputs</h3>
+                    <span>Adjust the variables to update the recommendation in real time.</span>
+                  </div>
+                  <button
+                    type="button"
+                    className="secondary-button"
+                    onClick={() =>
+                      setToolValues((current) => ({
+                        ...current,
+                        [activeTool.id]: getInitialValues(activeTool),
+                      }))
+                    }
+                  >
+                    Reset
+                  </button>
+                </div>
+
+                <div className="form-grid">
+                  {activeTool.inputs
+                    .filter((input) => input.type !== "hidden")
+                    .map((input) => (
+                      <FieldRenderer
+                        key={input.id}
+                        input={input}
+                        value={activeValues[input.id]}
+                        onChange={(value) => updateValue(activeTool.id, input.id, value)}
+                      />
+                    ))}
+                </div>
               </div>
 
               <ClinicalReference
