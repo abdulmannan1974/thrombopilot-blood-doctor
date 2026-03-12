@@ -657,6 +657,146 @@ button {
   margin-top: 0;
 }
 
+.reference-card {
+  border-radius: 22px;
+  padding: 1.1rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.93), rgba(255, 248, 244, 0.88));
+  border: 1px solid rgba(86, 50, 36, 0.1);
+  box-shadow: var(--shadow);
+}
+
+.reference-disclosure {
+  margin-top: 0.3rem;
+}
+
+.reference-disclosure summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.95rem 1rem;
+  border: 1px solid rgba(86, 50, 36, 0.08);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.84);
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.reference-disclosure summary::-webkit-details-marker {
+  display: none;
+}
+
+.reference-disclosure summary::after {
+  content: "+";
+  font-size: 1.2rem;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.reference-disclosure[open] summary::after {
+  content: "−";
+}
+
+.markdown-content {
+  margin-top: 1rem;
+  padding: 0.2rem 0;
+  color: var(--ink);
+}
+
+.markdown-content > :first-child {
+  margin-top: 0;
+}
+
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+  margin: 1.3rem 0 0.7rem;
+  font-family: "Fraunces", serif;
+  line-height: 1.1;
+}
+
+.markdown-content h4 {
+  font-size: clamp(1.45rem, 3vw, 2rem);
+}
+
+.markdown-content h5 {
+  font-size: 1.2rem;
+}
+
+.markdown-content h6 {
+  font-size: 1rem;
+}
+
+.markdown-content p,
+.markdown-content li {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  padding-left: 1.2rem;
+}
+
+.markdown-content hr {
+  border: 0;
+  border-top: 1px solid rgba(86, 50, 36, 0.08);
+  margin: 1.3rem 0;
+}
+
+.markdown-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+  overflow: hidden;
+  border-radius: 16px;
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.markdown-content thead {
+  background: rgba(143, 29, 63, 0.08);
+}
+
+.markdown-content th,
+.markdown-content td {
+  border: 1px solid rgba(86, 50, 36, 0.08);
+  padding: 0.8rem 0.9rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.markdown-content code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  background: rgba(143, 29, 63, 0.08);
+  color: var(--accent-strong);
+  border-radius: 8px;
+  padding: 0.15rem 0.35rem;
+}
+
+.markdown-content pre {
+  margin: 1rem 0;
+  padding: 1rem;
+  background: #20171a;
+  color: #fff7f1;
+  border-radius: 16px;
+  overflow: auto;
+}
+
+.markdown-content pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+.markdown-content a {
+  color: var(--accent);
+  word-break: break-word;
+}
+
 .footer {
   padding: 0 0 2rem;
 }
@@ -852,7 +992,8 @@ button {
   }
 
   .input-card,
-  .result-card {
+  .result-card,
+  .reference-card {
     padding: 1rem;
   }
 
@@ -877,6 +1018,10 @@ button {
   .result-primary h4 {
     font-size: clamp(1.35rem, 6vw, 1.85rem);
     line-height: 1.1;
+  }
+
+  .reference-disclosure summary {
+    align-items: flex-start;
   }
 }
 
@@ -962,7 +1107,12 @@ button {
 
   .action-banner,
   .metric-card,
-  .recommendation-item {
+  .recommendation-item,
+  .reference-disclosure summary {
     border-radius: 14px;
+  }
+
+  .markdown-content table {
+    font-size: 0.88rem;
   }
 }

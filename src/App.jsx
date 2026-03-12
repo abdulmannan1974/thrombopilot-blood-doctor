@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { toolCategories, tools } from "./data/tools";
+import { markdownByToolId } from "./data/markdownContent";
 
 const getInitialValues = (tool) =>
   tool.inputs.reduce((accumulator, input) => {
@@ -76,6 +79,7 @@ function App() {
 
   const activeValues = activeTool ? toolValues[activeTool.id] ?? {} : {};
   const result = activeTool ? activeTool.calculate(activeValues) : null;
+  const activeMarkdown = activeTool ? markdownByToolId[activeTool.id] ?? "" : "";
 
   const stats = {
     total: tools.length,
@@ -308,6 +312,11 @@ function App() {
 
                 <ResultCard result={result} />
               </div>
+
+              <ClinicalReference
+                title={activeTool.title}
+                markdown={activeMarkdown}
+              />
             </>
           ) : (
             <div className="empty-state">
@@ -461,6 +470,38 @@ function ResultCard({ result }) {
         </ul>
       ) : null}
     </div>
+  );
+}
+
+function ClinicalReference({ title, markdown }) {
+  return (
+    <section className="reference-card">
+      <div className="panel-heading">
+        <div>
+          <h3>Full Clinical Detail</h3>
+          <span>Complete transformed source content for {title}</span>
+        </div>
+      </div>
+
+      <details className="reference-disclosure" open>
+        <summary>Open full criteria, thresholds, applications, and references</summary>
+        <div className="markdown-content">
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            components={{
+              h1: ({ node, ...props }) => <h4 {...props} />,
+              h2: ({ node, ...props }) => <h5 {...props} />,
+              h3: ({ node, ...props }) => <h6 {...props} />,
+              a: ({ node, ...props }) => (
+                <a {...props} target="_blank" rel="noreferrer" />
+              ),
+            }}
+          >
+            {markdown}
+          </ReactMarkdown>
+        </div>
+      </details>
+    </section>
   );
 }
 
