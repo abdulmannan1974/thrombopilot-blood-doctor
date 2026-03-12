@@ -245,7 +245,8 @@ button {
 
 .mobile-nav-bar,
 .library-backdrop,
-.panel-close {
+.panel-close,
+.drawer-controls {
   display: none;
 }
 
@@ -488,6 +489,12 @@ button {
 }
 
 .field,
+.field {
+  border: 0;
+  padding: 0;
+  background: transparent;
+}
+
 .checkbox-field,
 .radio-group {
   border: 1px solid rgba(86, 50, 36, 0.1);
@@ -500,6 +507,7 @@ button {
   display: flex;
   align-items: center;
   gap: 0.85rem;
+  padding: 1rem;
 }
 
 .checkbox-field span {
@@ -683,7 +691,7 @@ button {
     display: flex;
     align-items: stretch;
     gap: 0.75rem;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
   }
 
   .mobile-library-toggle,
@@ -750,6 +758,18 @@ button {
     transform: translateX(0);
   }
 
+  .drawer-controls {
+    display: grid;
+    gap: 0.85rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(86, 50, 36, 0.08);
+    margin-bottom: 1rem;
+  }
+
+  .drawer-pills {
+    justify-content: flex-start;
+  }
+
   .panel-close {
     display: inline-flex;
     align-items: center;
@@ -763,7 +783,7 @@ button {
   }
 
   .tool-list {
-    max-height: calc(100vh - 4.8rem);
+    max-height: calc(100vh - 13.5rem);
     grid-template-columns: 1fr;
     overflow: auto;
     padding-right: 0.25rem;
@@ -771,6 +791,92 @@ button {
 
   .form-grid {
     grid-template-columns: 1fr;
+  }
+
+  .toolbar-search,
+  .toolbar-pills {
+    display: none;
+  }
+
+  .hero {
+    gap: 0.9rem;
+    padding-top: 1rem;
+    padding-bottom: 0.6rem;
+  }
+
+  .hero-copy {
+    padding: 1.2rem;
+  }
+
+  .hero-description,
+  .hero-panel,
+  .hero-stats {
+    display: none;
+  }
+
+  .hero h1 {
+    margin-top: 0.55rem;
+    font-size: clamp(2.1rem, 8vw, 3.4rem);
+    max-width: none;
+  }
+
+  .hero-subtitle {
+    margin-top: 0.7rem;
+    font-size: 0.98rem;
+  }
+
+  .detail-panel {
+    padding: 1rem;
+  }
+
+  .detail-header {
+    gap: 0.8rem;
+  }
+
+  .detail-header h2 {
+    margin-top: 0.45rem;
+    font-size: clamp(1.55rem, 6vw, 2.2rem);
+    line-height: 1.05;
+  }
+
+  .detail-header p {
+    margin-bottom: 0;
+  }
+
+  .detail-note-card {
+    padding: 0.95rem 1rem;
+  }
+
+  .detail-grid {
+    gap: 0.85rem;
+  }
+
+  .input-card,
+  .result-card {
+    padding: 1rem;
+  }
+
+  .panel-heading {
+    margin-bottom: 0.85rem;
+  }
+
+  .panel-heading h3 {
+    font-size: 1rem;
+  }
+
+  .secondary-button {
+    padding: 0.7rem 0.9rem;
+  }
+
+  .field input,
+  .field select {
+    min-height: 3.4rem;
+    border-radius: 14px;
+  }
+
+  .result-primary h4 {
+    font-size: clamp(1.35rem, 6vw, 1.85rem);
+    line-height: 1.1;
   }
 }
 
@@ -783,7 +889,7 @@ button {
   }
 
   .hero {
-    padding-top: 1rem;
+    padding-top: 0.8rem;
   }
 
   .hero-copy,
@@ -796,14 +902,9 @@ button {
     border-radius: 22px;
   }
 
-  .hero-stats,
   .tool-list,
   .form-grid {
     grid-template-columns: 1fr;
-  }
-
-  .hero h1 {
-    max-width: none;
   }
 
   .panel-heading {
@@ -832,9 +933,36 @@ button {
     width: min(26rem, 92vw);
   }
 
-  .field,
   .checkbox-field,
   .radio-group {
     padding: 0.85rem;
+  }
+
+  .toolbar {
+    padding-bottom: 0.8rem;
+  }
+
+  .mobile-library-toggle {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .active-tool-pill {
+    width: 100%;
+  }
+
+  .detail-note-card .feature-list {
+    padding-left: 1rem;
+  }
+
+  .metric-grid,
+  .recommendation-list {
+    grid-template-columns: 1fr;
+  }
+
+  .action-banner,
+  .metric-card,
+  .recommendation-item {
+    border-radius: 14px;
   }
 }

@@ -148,7 +148,7 @@ function App() {
           ) : null}
         </div>
 
-        <label className="search-field">
+        <label className="search-field toolbar-search">
           <span>Find a tool</span>
           <input
             type="search"
@@ -158,7 +158,7 @@ function App() {
           />
         </label>
 
-        <div className="category-pills" role="tablist" aria-label="Tool categories">
+        <div className="category-pills toolbar-pills" role="tablist" aria-label="Tool categories">
           {toolCategories.map((category) => (
             <button
               key={category.id}
@@ -192,6 +192,31 @@ function App() {
               >
                 Close
               </button>
+            </div>
+          </div>
+
+          <div className="drawer-controls">
+            <label className="search-field">
+              <span>Find a tool</span>
+              <input
+                type="search"
+                placeholder="Search PE, AF, perioperative..."
+                value={searchTerm}
+                onChange={(event) => setSearchTerm(event.target.value)}
+              />
+            </label>
+
+            <div className="category-pills drawer-pills" role="tablist" aria-label="Tool categories">
+              {toolCategories.map((category) => (
+                <button
+                  key={`drawer-${category.id}`}
+                  type="button"
+                  className={selectedCategory === category.id ? "pill active" : "pill"}
+                  onClick={() => setSelectedCategory(category.id)}
+                >
+                  {category.label}
+                </button>
+              ))}
             </div>
           </div>
 
