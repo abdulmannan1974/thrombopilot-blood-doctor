@@ -45620,11 +45620,23 @@ const getCards = (content, id) => getTab(content, id)?.cards ?? [];
 const getBlocks = (content, id) => getCards(content, id).flatMap((card) => card.blocks ?? []);
 const getFirstBlock = (content, id, type) => getBlocks(content, id).find((block) => block.type === type) ?? null;
 const getFirstParagraphText = (content, id) => getFirstBlock(content, id, "paragraph")?.text ?? "";
-const getFirstList = (content, id) => {
-  const block = getBlocks(content, id).find(
-    (item) => item.type === "bullet-list" || item.type === "ordered-list"
-  );
-  return block?.items ?? [];
+const getPracticePoints = (content) => {
+  if (!content?.tabs) return [];
+  for (const tabId of ["application", "criteria", "overview"]) {
+    const blocks = getBlocks(content, tabId);
+    const list = blocks.find((b) => b.type === "bullet-list" || b.type === "ordered-list");
+    if (list?.items?.length) return list.items;
+    const facts = blocks.filter((b) => b.type === "fact");
+    if (facts.length >= 2) return facts.map((f) => `${f.label}: ${f.value}`);
+  }
+  for (const tab of content.tabs) {
+    const para = tab.cards?.[0]?.blocks?.find((b) => b.type === "paragraph");
+    if (para?.text) {
+      const sentences = para.text.split(new RegExp("(?<=[.!?])\\s+")).filter((s) => s.length > 20).slice(0, 3);
+      if (sentences.length) return sentences;
+    }
+  }
+  return [];
 };
 const getReferenceItems = (content) => getBlocks(content, "references").filter((block) => block.type === "reference-list").flatMap((block) => block.items ?? []);
 const trimSentence = (value, maxLength = 220) => {
@@ -45799,10 +45811,12 @@ function AppLayout() {
   const activeVaultEntry = filteredVaultEntries.find((guide) => guide.pdfId === activePdfId) ?? vaultLibrary.find((guide) => guide.pdfId === activePdfId) ?? filteredVaultEntries[0] ?? null;
   activeVaultEntry ? pdfLibrary.find((pdf) => pdf.id === activeVaultEntry.pdfId) ?? null : null;
   const activeGuideOverview = trimSentence(getFirstParagraphText(activeGuide?.content, "overview") || activeGuide?.objective || activeGuide?.excerpt || "");
-  const activeGuideApplicationList = getFirstList(activeGuide?.content, "application").slice(0, 4);
+  const activeGuideApplicationList = getPracticePoints(activeGuide?.content).slice(0, 4);
   const activeGuideReferenceItems = getReferenceItems(activeGuide?.content).slice(0, 4);
-  const activeVaultOverview = trimSentence(getFirstParagraphText(activeVaultEntry?.content, "overview") || activeVaultEntry?.objective || activeVaultEntry?.excerpt || "");
-  const activeVaultApplicationList = getFirstList(activeVaultEntry?.content, "application").slice(0, 4);
+  const activeVaultOverview = trimSentence(
+    getFirstParagraphText(activeVaultEntry?.content, "overview") || getFirstParagraphText(activeVaultEntry?.content, "application") || activeVaultEntry?.objective || activeVaultEntry?.excerpt || ""
+  );
+  const activeVaultApplicationList = getPracticePoints(activeVaultEntry?.content).slice(0, 4);
   const activeVaultReferenceItems = getReferenceItems(activeVaultEntry?.content).slice(0, 5);
   const activeAcuteItem = filteredAcuteItems.find((item) => item.id === activeAcuteId) ?? acuteManagementItems.find((item) => item.id === activeAcuteId) ?? filteredAcuteItems[0] ?? acuteManagementItems[0] ?? null;
   reactExports.useEffect(() => {
@@ -46292,7 +46306,7 @@ function AppLayout() {
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mini-stat", children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "References" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: activeGuide.content.tabs.find((tab) => tab.id === "references")?.cards.length ?? 0 })
+              /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: getReferenceItems(activeGuide?.content).length })
             ] })
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(GuideNavContext.Provider, { value: (guideId) => {
@@ -46423,11 +46437,11 @@ function AppLayout() {
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mini-stat", children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Guide sections" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: activeVaultEntry.headings.length })
+              /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: activeVaultEntry.headings.filter((h) => h.length > 3 && !/^figure|^table \d|^\s*$/i.test(h)).length })
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mini-stat", children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "References" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: activeVaultEntry.content.tabs.find((tab) => tab.id === "references")?.cards.length ?? 0 })
+              /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: getReferenceItems(activeVaultEntry?.content).length })
             ] })
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "guide-summary-grid", children: [

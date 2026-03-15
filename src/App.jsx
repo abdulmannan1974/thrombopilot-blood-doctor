@@ -1191,6 +1191,24 @@ const getFirstList = (content, id) => {
 
   return block?.items ?? [];
 };
+const getPracticePoints = (content) => {
+  if (!content?.tabs) return [];
+  for (const tabId of ["application", "criteria", "overview"]) {
+    const blocks = getBlocks(content, tabId);
+    const list = blocks.find((b) => b.type === "bullet-list" || b.type === "ordered-list");
+    if (list?.items?.length) return list.items;
+    const facts = blocks.filter((b) => b.type === "fact");
+    if (facts.length >= 2) return facts.map((f) => `${f.label}: ${f.value}`);
+  }
+  for (const tab of content.tabs) {
+    const para = tab.cards?.[0]?.blocks?.find((b) => b.type === "paragraph");
+    if (para?.text) {
+      const sentences = para.text.split(/(?<=[.!?])\s+/).filter(s => s.length > 20).slice(0, 3);
+      if (sentences.length) return sentences;
+    }
+  }
+  return [];
+};
 const getReferenceItems = (content) => getBlocks(content, "references")
   .filter((block) => block.type === "reference-list")
   .flatMap((block) => block.items ?? []);
@@ -1440,10 +1458,16 @@ function AppLayout() {
     ? pdfLibrary.find((pdf) => pdf.id === activeVaultEntry.pdfId) ?? null
     : null;
   const activeGuideOverview = trimSentence(getFirstParagraphText(activeGuide?.content, "overview") || activeGuide?.objective || activeGuide?.excerpt || "");
-  const activeGuideApplicationList = getFirstList(activeGuide?.content, "application").slice(0, 4);
+  const activeGuideApplicationList = getPracticePoints(activeGuide?.content).slice(0, 4);
   const activeGuideReferenceItems = getReferenceItems(activeGuide?.content).slice(0, 4);
-  const activeVaultOverview = trimSentence(getFirstParagraphText(activeVaultEntry?.content, "overview") || activeVaultEntry?.objective || activeVaultEntry?.excerpt || "");
-  const activeVaultApplicationList = getFirstList(activeVaultEntry?.content, "application").slice(0, 4);
+  const activeVaultOverview = trimSentence(
+    getFirstParagraphText(activeVaultEntry?.content, "overview")
+    || getFirstParagraphText(activeVaultEntry?.content, "application")
+    || activeVaultEntry?.objective
+    || activeVaultEntry?.excerpt
+    || ""
+  );
+  const activeVaultApplicationList = getPracticePoints(activeVaultEntry?.content).slice(0, 4);
   const activeVaultReferenceItems = getReferenceItems(activeVaultEntry?.content).slice(0, 5);
   const activeAcuteItem =
     filteredAcuteItems.find((item) => item.id === activeAcuteId) ??
@@ -2050,7 +2074,7 @@ function AppLayout() {
                     <div className="mini-stat">
                       <span>References</span>
                       <strong>
-                        {activeGuide.content.tabs.find((tab) => tab.id === "references")?.cards.length ?? 0}
+                        {getReferenceItems(activeGuide?.content).length}
                       </strong>
                     </div>
                   </div>
@@ -2296,12 +2320,12 @@ function AppLayout() {
                     </div>
                     <div className="mini-stat">
                       <span>Guide sections</span>
-                      <strong>{activeVaultEntry.headings.length}</strong>
+                      <strong>{activeVaultEntry.headings.filter(h => h.length > 3 && !/^figure|^table \d|^\s*$/i.test(h)).length}</strong>
                     </div>
                     <div className="mini-stat">
                       <span>References</span>
                       <strong>
-                        {activeVaultEntry.content.tabs.find((tab) => tab.id === "references")?.cards.length ?? 0}
+                        {getReferenceItems(activeVaultEntry?.content).length}
                       </strong>
                     </div>
                   </div>
