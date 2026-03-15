@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const TABS = ["Overview", "Indications", "Dosing", "Adverse Effects", "Special Considerations", "References"];
 
@@ -95,7 +96,7 @@ export function AsaDrugGuide() {
     <section className="asa-guide-shell">
       <header className="asa-guide-header">
         <h2>Acetylsalicylic Acid (ASA) — Drug Monograph</h2>
-        <p>Thrombosis Canada Clinical Guide</p>
+        <p>Antiplatelet Therapy Clinical Guide</p>
       </header>
 
       <nav className="asa-tab-bar" role="tablist" aria-label="ASA drug guide sections">
@@ -335,6 +336,9 @@ export function AsaDrugGuide() {
                   <li key={ref}>{ref}</li>
                 ))}
               </ol>
+              <div style={{ marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }}>
+                <p>Related: <GuideLink to="pad">Peripheral Arterial Disease</GuideLink> | <GuideLink to="daptDuration">DAPT Duration</GuideLink> | <GuideLink to="anticoagAntiplatelet">Anticoagulation + Antiplatelet</GuideLink> | <GuideLink to="periopAntiplatelet">Perioperative Antiplatelet</GuideLink></p>
+              </div>
             </article>
           </div>
         )}

@@ -574,6 +574,9 @@ export function IschemicStrokeSecondaryPreventionGuide() {
                   <li key={i}>{ref}</li>
                 ))}
               </ol>
+              <div style={{ marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }}>
+                <p>Related: <GuideLink to="strokeAf">Stroke Prevention in AF</GuideLink> | <GuideLink to="strokeThrombolysis">Stroke Thrombolysis</GuideLink> | <GuideLink to="asa">ASA</GuideLink> | <GuideLink to="clopidogrel">Clopidogrel</GuideLink> | <GuideLink to="rivaroxaban">Rivaroxaban</GuideLink></p>
+              </div>
             </div>
           </div>
         )}

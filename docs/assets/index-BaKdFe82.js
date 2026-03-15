@@ -36762,7 +36762,19 @@ function IschemicStrokeSecondaryPreventionGuide() {
       ] }),
       activeTab === "references" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-sections", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "Key References" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$h.map((ref, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: ref }, i)) })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$h.map((ref, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: ref }, i)) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+          "Related: ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "strokeAf", children: "Stroke Prevention in AF" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "strokeThrombolysis", children: "Stroke Thrombolysis" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "asa", children: "ASA" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "clopidogrel", children: "Clopidogrel" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "rivaroxaban", children: "Rivaroxaban" })
+        ] }) })
       ] }) })
     ] })
   ] });
@@ -38275,7 +38287,15 @@ function HmbAnticoagulationGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$7, { tone: "gray" }),
           "References"
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$c.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: item }, item)) })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$c.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: item }, item)) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+          "Related: ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsComparison", children: "DOACs Comparison" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarin", children: "Warfarin" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "vteDuration", children: "VTE Duration of Treatment" })
+        ] }) })
       ] }) }) : null
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-footer", children: [
