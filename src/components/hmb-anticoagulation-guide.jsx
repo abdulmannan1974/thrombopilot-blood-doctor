@@ -376,6 +376,9 @@ export function HmbAnticoagulationGuide() {
                   <li key={item}>{item}</li>
                 ))}
               </ol>
+              <div style={{ marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }}>
+                <p>Related: <GuideLink to="doacsComparison">DOACs Comparison</GuideLink> | <GuideLink to="warfarin">Warfarin</GuideLink> | <GuideLink to="vteDuration">VTE Duration of Treatment</GuideLink></p>
+              </div>
             </article>
           </div>
         ) : null}
