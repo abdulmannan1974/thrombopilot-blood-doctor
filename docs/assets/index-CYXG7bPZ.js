@@ -24977,7 +24977,7 @@ function HeartValvesGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-badge-row", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Clinical Guide" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-green", children: "Valve Antithrombotics" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-teal", children: "Thrombosis Canada" })
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-teal", children: "Antithrombotic Therapy" })
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-guide-title", children: "Bioprosthetic & Mechanical Heart Valves: Antithrombotic Therapy" }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-meta", children: [
@@ -25421,12 +25421,22 @@ function HeartValvesGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$f, { tone: "gray" }),
           "References"
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", style: { paddingLeft: "1.2rem", listStyle: "decimal" }, children: references$Q.map((item, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { style: { padding: "0.35rem 0", color: "#4b5563", lineHeight: 1.6, fontSize: "0.87rem" }, children: item }, i)) })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", style: { paddingLeft: "1.2rem", listStyle: "decimal" }, children: references$Q.map((item, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { style: { padding: "0.35rem 0", color: "#4b5563", lineHeight: 1.6, fontSize: "0.87rem" }, children: item }, i)) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+          "Related: ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarin", children: "Warfarin" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarinPeriop", children: "Warfarin Perioperative" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "strokeAf", children: "Stroke Prevention in AF" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "anticoagAntiplatelet", children: "Anticoagulation + Antiplatelet" })
+        ] }) })
       ] }) })
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-footer", style: { padding: "1rem 1.35rem" }, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { style: { margin: 0, fontWeight: 700, color: "#374151" }, children: "Bioprosthetic and Mechanical Heart Valves: Antithrombotic Therapy" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { style: { margin: "0.3rem 0 0", color: "#6b7280", fontSize: "0.85rem" }, children: "Thrombosis Canada Clinical Guide · Updated 6 February 2026 · Use alongside valve-specific cardiology input and individualised bleeding-risk assessment." })
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { style: { margin: "0.3rem 0 0", color: "#6b7280", fontSize: "0.85rem" }, children: "Updated 6 February 2026. Use alongside valve-specific cardiology input and individualised bleeding-risk assessment." })
     ] })
   ] });
 }
@@ -25654,7 +25664,15 @@ function TravelThrombosisGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$e, { tone: "gray" }),
           "References"
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$P.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: item }, item)) })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$P.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: item }, item)) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+          "Related: ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "prophylaxisMedical", children: "Thromboprophylaxis: Medical Patients" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "dvtDiagnosis", children: "DVT Diagnosis" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "peDiagnosis", children: "PE Diagnosis" })
+        ] }) })
       ] }) }) : null
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-footer", children: [
@@ -36331,7 +36349,16 @@ function PregnancyDvtPeDiagnosisGuide() {
       activeTab === "references" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-sections", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "References" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$i.map((ref, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: ref }, i)) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }, children: "Source: Thrombosis Canada Clinical Guides — thrombosiscanada.ca. Not a substitute for individual clinical judgment." })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+          "Related: ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "pregVte", children: "Pregnancy: VTE Treatment" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "pregProphylaxis", children: "Pregnancy: Thromboprophylaxis" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "peDiagnosis", children: "PE Diagnosis" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "dvtDiagnosis", children: "DVT Diagnosis" })
+        ] }) })
       ] }) })
     ] })
   ] });

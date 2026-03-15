@@ -11,6 +11,7 @@ import {
   Users,
   Waves,
 } from "lucide-react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   ["overview", "Overview"],
@@ -276,6 +277,9 @@ export function TravelThrombosisGuide() {
               <ol className="asa-ref-list">
                 {references.map((item) => <li key={item}>{item}</li>)}
               </ol>
+              <div style={{ marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }}>
+                <p>Related: <GuideLink to="prophylaxisMedical">Thromboprophylaxis: Medical Patients</GuideLink> | <GuideLink to="dvtDiagnosis">DVT Diagnosis</GuideLink> | <GuideLink to="peDiagnosis">PE Diagnosis</GuideLink></p>
+              </div>
             </article>
           </div>
         ) : null}

@@ -19,6 +19,7 @@ import {
   XCircle,
   Zap,
 } from "lucide-react";
+import { GuideLink } from "./guide-link";
 
 // ─── Tab definitions ──────────────────────────────────────────────────────────
 const tabs = [
@@ -371,7 +372,7 @@ export function HeartValvesGuide() {
             <div className="asa-badge-row">
               <span className="asa-badge asa-badge-blue">Clinical Guide</span>
               <span className="asa-badge asa-badge-green">Valve Antithrombotics</span>
-              <span className="asa-badge asa-badge-teal">Thrombosis Canada</span>
+              <span className="asa-badge asa-badge-teal">Antithrombotic Therapy</span>
             </div>
             <h2 className="asa-guide-title">Bioprosthetic &amp; Mechanical Heart Valves: Antithrombotic Therapy</h2>
             <div className="asa-guide-meta">
@@ -868,6 +869,9 @@ export function HeartValvesGuide() {
                   </li>
                 ))}
               </ol>
+              <div style={{ marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }}>
+                <p>Related: <GuideLink to="warfarin">Warfarin</GuideLink> | <GuideLink to="warfarinPeriop">Warfarin Perioperative</GuideLink> | <GuideLink to="strokeAf">Stroke Prevention in AF</GuideLink> | <GuideLink to="anticoagAntiplatelet">Anticoagulation + Antiplatelet</GuideLink></p>
+              </div>
             </article>
           </div>
         )}
@@ -879,7 +883,7 @@ export function HeartValvesGuide() {
           Bioprosthetic and Mechanical Heart Valves: Antithrombotic Therapy
         </p>
         <p style={{ margin: "0.3rem 0 0", color: "#6b7280", fontSize: "0.85rem" }}>
-          Thrombosis Canada Clinical Guide · Updated 6 February 2026 · Use alongside valve-specific cardiology input and individualised bleeding-risk assessment.
+          Updated 6 February 2026. Use alongside valve-specific cardiology input and individualised bleeding-risk assessment.
         </p>
       </div>
     </section>
