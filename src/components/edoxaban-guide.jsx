@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   ["overview", "Overview"],
@@ -109,20 +110,19 @@ const references = [
   "Vranckx P, et al. Edoxaban-based versus vitamin K antagonist-based antithrombotic regimen after successful coronary stenting in patients with atrial fibrillation. Lancet. 2019;394:1335-1343. (ENTRUST-AF PCI)",
   "Hohnloser SH, et al. Uninterrupted edoxaban vs vitamin K antagonists for ablation of atrial fibrillation. Eur Heart J. 2019;40:3010-3021. (ELIMINATE-AF)",
   "Yasuda S, et al. Edoxaban monotherapy versus combination therapy with edoxaban and antiplatelet in atrial fibrillation with stable coronary artery disease. Circulation. 2024. (EPIC-CAD)",
-  "Thrombosis Canada. Edoxaban (Lixiana). Clinical Guide. 2024.",
   "Product Monograph: Lixiana (edoxaban tosylate). Servier Canada Inc.",
 ];
 
-const relatedGuides = [
-  "DOACs: Comparison and Frequently-asked Questions",
-  "DOACs: Management of Bleeding",
-  "DOACs: Perioperative Management",
-  "DOACs: Coagulation Tests",
-  "DOACs in Patients with Obesity",
-  "Stroke Prevention in Atrial Fibrillation",
-  "Deep Vein Thrombosis (DVT): Treatment",
-  "Pulmonary Embolism (PE): Treatment",
-  "Cancer and Thrombosis",
+const relatedGuideLinks = [
+  { key: "doacsComparison", label: "DOACs: Comparison & FAQ" },
+  { key: "doacsBleeding", label: "DOACs: Bleeding Management" },
+  { key: "doacsPeriop", label: "DOACs: Perioperative Management" },
+  { key: "doacsCoagTests", label: "DOACs: Coagulation Tests" },
+  { key: "doacsObesity", label: "DOACs in Obesity" },
+  { key: "strokeAf", label: "Stroke Prevention in AF" },
+  { key: "dvtTreatment", label: "DVT: Treatment" },
+  { key: "peTreatment", label: "PE: Treatment" },
+  { key: "cancer", label: "Cancer & Thrombosis" },
 ];
 
 export function EdoxabanGuide() {
@@ -140,7 +140,7 @@ export function EdoxabanGuide() {
             </div>
             <h2 className="asa-guide-title">Edoxaban (Lixiana&reg;)</h2>
             <div className="asa-guide-meta">
-              <span>Thrombosis Canada</span>
+              <span>Clinical Guide</span>
               <span>Oral direct factor Xa inhibitor</span>
             </div>
           </div>
@@ -189,7 +189,7 @@ export function EdoxabanGuide() {
             </article>
 
             <article className="asa-section-card">
-              <h3 className="asa-section-title">Licensed Indications</h3>
+              <h3 className="asa-section-title">Approved Indications</h3>
               <ul className="asa-sections">
                 <li>
                   <strong>Stroke and systemic embolism prevention</strong> in patients with
@@ -210,8 +210,8 @@ export function EdoxabanGuide() {
               <table className="asa-dose-table">
                 <tbody>
                   <tr><td>Bioavailability</td><td>~62%</td></tr>
-                  <tr><td>Peak plasma level</td><td>1\u20132 hours</td></tr>
-                  <tr><td>Half-life</td><td>10\u201314 hours</td></tr>
+                  <tr><td>Peak plasma level</td><td>1&ndash;2 hours</td></tr>
+                  <tr><td>Half-life</td><td>10&ndash;14 hours</td></tr>
                   <tr><td>Renal elimination</td><td>~50%</td></tr>
                   <tr><td>Protein binding</td><td>~55%</td></tr>
                   <tr><td>Metabolism</td><td>Minimal CYP3A4; P-gp substrate</td></tr>
@@ -253,7 +253,7 @@ export function EdoxabanGuide() {
               <h3 className="asa-section-title">Venous Thromboembolism Treatment</h3>
               <p className="asa-section-copy">
                 Initiate edoxaban <strong>after at least 5 days</strong> of parenteral anticoagulation
-                (e.g. LMWH or unfractionated heparin).
+                (e.g. <GuideLink to="ufhLmwh">LMWH or unfractionated heparin</GuideLink>).
               </p>
               <table className="asa-dose-table">
                 <thead>
@@ -345,7 +345,7 @@ export function EdoxabanGuide() {
                 PT/INR and aPTT may be normal at therapeutic doses and are <strong>not reliable</strong>{" "}
                 for assessing edoxaban activity. Anti-Xa assays calibrated with edoxaban-specific
                 calibrators are available in some specialized laboratories but are not widely validated
-                for clinical decision-making.
+                for clinical decision-making. See the <GuideLink to="doacsCoagTests">DOACs: Coagulation Tests</GuideLink> guide for details.
               </p>
             </article>
 
@@ -375,7 +375,7 @@ export function EdoxabanGuide() {
               <p className="asa-section-copy">
                 Bleeding is the principal adverse effect of edoxaban, as with all anticoagulants.
                 Risk is increased by concomitant antiplatelet agents, NSAIDs, SSRIs, and other
-                drugs that affect haemostasis.
+                drugs that affect haemostasis. See the <GuideLink to="doacsBleeding">DOACs: Bleeding Management</GuideLink> guide for detailed protocols.
               </p>
             </article>
 
@@ -384,7 +384,7 @@ export function EdoxabanGuide() {
               <p className="asa-section-copy">
                 Avoid edoxaban in patients with indwelling epidural catheters. There is a risk of
                 spinal or epidural haematoma that can result in long-term or permanent paralysis.
-                Follow local guidelines for timing of catheter removal relative to dosing.
+                Follow the <GuideLink to="doacsPeriop">DOACs: Perioperative Management</GuideLink> guide for timing of catheter removal relative to dosing.
               </p>
             </article>
 
@@ -448,8 +448,8 @@ export function EdoxabanGuide() {
             <article className="asa-section-card">
               <h3 className="asa-section-title">Related Clinical Guides</h3>
               <ul className="asa-sections">
-                {relatedGuides.map((item) => (
-                  <li key={item}>{item}</li>
+                {relatedGuideLinks.map((item) => (
+                  <li key={item.key}><GuideLink to={item.key}>{item.label}</GuideLink></li>
                 ))}
               </ul>
             </article>
@@ -468,7 +468,7 @@ export function EdoxabanGuide() {
 
       <div className="asa-guide-footer">
         <p>
-          <strong>Edoxaban (Lixiana&reg;)</strong> | Thrombosis Canada Clinical Guide
+          <strong>Edoxaban (Lixiana&reg;)</strong> | Clinical Guide
         </p>
         <p>
           This information is not a substitute for clinical judgement. Always seek appropriate

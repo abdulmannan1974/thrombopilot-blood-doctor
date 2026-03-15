@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 import {
   AlertCircle,
   Calendar,
@@ -120,16 +121,6 @@ const timelineSteps = [
   ["Within 48 hours after procedure", "Restart ASA as soon as haemostasis is secure and there is no significant bleeding.", "green"],
 ];
 
-const relatedGuides = [
-  "Mechanical and Bioprosthetic Heart Valves: Anticoagulant Therapy",
-  "Perioperative Management of Antiplatelet Therapy",
-  "Peripheral Arterial Disease",
-  "Stroke: Secondary Prevention",
-  "Thromboprophylaxis: Orthopedic Surgery",
-  "Venous Thromboembolism: Duration of Treatment",
-  "Duration of Dual Antiplatelet Therapy in Coronary Artery Disease",
-];
-
 const references = [
   "Anderson D, et al. Aspirin or rivaroxaban for VTE prophylaxis after hip or knee arthroplasty. N Engl J Med. 2018;378:699-707.",
   "Bainey KR, et al. 2023 Canadian Cardiovascular Society and Canadian Association of Interventional Cardiology focused update of the guidelines for the use of antiplatelet therapy. Can J Cardiol. 2024;40:160-181.",
@@ -199,7 +190,7 @@ export function AsaGuide() {
         </div>
         <div>
           <h3>Mechanism of Action</h3>
-          <p>ASA irreversibly inhibits platelet aggregation by inhibiting thromboxane A2 synthesis through cyclooxygenase inhibition. The antiplatelet effect lasts for the lifetime of the platelet.</p>
+          <p>ASA irreversibly inhibits platelet aggregation by blocking thromboxane A2 synthesis through cyclooxygenase inhibition. The antiplatelet effect lasts for the lifetime of the platelet.</p>
         </div>
       </div>
 
@@ -280,7 +271,7 @@ export function AsaGuide() {
             <div className="asa-alert asa-alert-warn">
               <AlertCircle size={16} />
               <div>
-                <strong>GI bleeding risk:</strong> For patients with prior or high-risk gastrointestinal bleeding, consider a proton pump inhibitor, an H2 antagonist, or an alternative antiplatelet agent such as clopidogrel.
+                <strong>GI bleeding risk:</strong> For patients with prior or high-risk gastrointestinal bleeding, consider a proton pump inhibitor, an H2 antagonist, or an alternative antiplatelet agent such as <GuideLink to="clopidogrel">clopidogrel</GuideLink>.
               </div>
             </div>
           </div>
@@ -341,7 +332,7 @@ export function AsaGuide() {
 
             <div className="asa-alert asa-alert-teal">
               <CheckCircle2 size={16} />
-              <div>Use the perioperative antiplatelet guide for detailed interruption, dual antiplatelet therapy, and restart decisions.</div>
+              <div>See the <GuideLink to="periopAntiplatelet">Perioperative Antiplatelet Management</GuideLink> guide for detailed interruption, dual antiplatelet therapy, and restart decisions.</div>
             </div>
           </div>
         ) : null}
@@ -359,7 +350,7 @@ export function AsaGuide() {
               </ul>
               <div className="asa-alert asa-alert-danger">
                 <ShieldAlert size={16} />
-                <div>In most other patients, stop ASA once anticoagulation is started. Discuss combined therapy with thrombosis or cardiology specialists first.</div>
+                <div>In most other patients, stop ASA once anticoagulation is started. See the <GuideLink to="anticoagAntiplatelet">Anticoagulation + Antiplatelet Therapy</GuideLink> guide.</div>
               </div>
             </article>
 
@@ -394,9 +385,12 @@ export function AsaGuide() {
             <article className="asa-section-card">
               <h3><Dot tone="gray" />Related Clinical Guides</h3>
               <ul className="asa-related-list">
-                {relatedGuides.map((item) => (
-                  <li key={item}><Link2 size={14} /><span>{item}</span></li>
-                ))}
+                <li><GuideLink to="periopAntiplatelet">Perioperative Antiplatelet Management</GuideLink></li>
+                <li><GuideLink to="pad">Peripheral Arterial Disease</GuideLink></li>
+                <li><GuideLink to="strokeSecondary">Ischemic Stroke: Secondary Prevention</GuideLink></li>
+                <li><GuideLink to="prophylaxisOrtho">Thromboprophylaxis: Orthopedic Surgery</GuideLink></li>
+                <li><GuideLink to="vteDuration">VTE: Duration of Treatment</GuideLink></li>
+                <li><GuideLink to="daptDuration">DAPT Duration in CAD</GuideLink></li>
               </ul>
             </article>
 

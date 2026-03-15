@@ -1,26 +1,27 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = ["Overview", "Testing Recommendations", "Management", "References"];
 
 const homocysteineRanges = [
-  { range: "5–15 µmol/L", category: "Normal", clinical: "No increased risk" },
-  { range: "15–30 µmol/L", category: "Mild-moderate elevation", clinical: "Common (5–12% of population). Causes: enzyme defects, renal insufficiency, hypothyroidism, alcoholism, B12/folate deficiency, drugs (methotrexate, phenytoin, carbamazepine, isoniazid). Weak/inconsistent association with VTE." },
-  { range: "> 100 µmol/L", category: "Homocystinuria", clinical: "Rare genetic disease — diagnosed in childhood. Severe: premature vascular disease + VTE. Not addressed in this guide." },
+  { range: "5\u201315 \u00b5mol/L", category: "Normal", clinical: "No increased risk" },
+  { range: "15\u201330 \u00b5mol/L", category: "Mild-moderate elevation", clinical: "Common (5\u201312% of population). Causes: enzyme defects, renal insufficiency, hypothyroidism, alcoholism, B12/folate deficiency, drugs (methotrexate, phenytoin, carbamazepine, isoniazid). Weak/inconsistent association with VTE." },
+  { range: "> 100 \u00b5mol/L", category: "Homocystinuria", clinical: "Rare genetic disease \u2014 diagnosed in childhood. Severe: premature vascular disease + VTE. Not addressed in this guide." },
 ];
 
 const keyMessages = [
-  { message: "Do NOT test for MTHFR mutations", detail: "Testing is not recommended in any clinical setting — VTE, arterial thrombosis, or pregnancy complications", badge: "Do not test", badgeClass: "asa-badge asa-badge-red" },
+  { message: "Do NOT test for MTHFR mutations", detail: "Testing is not recommended in any clinical setting \u2014 VTE, arterial thrombosis, or pregnancy complications", badge: "Do not test", badgeClass: "asa-badge asa-badge-red" },
   { message: "Do NOT routinely test homocysteine in VTE patients", detail: "Even if elevated, lowering homocysteine does NOT reduce recurrent VTE risk", badge: "No benefit", badgeClass: "asa-badge asa-badge-red" },
   { message: "Lowering homocysteine does NOT reduce cardiovascular death or MI", detail: "Multiple RCTs and meta-analyses confirm B vitamin supplementation fails to reduce MI or total cardiovascular death", badge: "No benefit for MI/CV death", badgeClass: "asa-badge asa-badge-red" },
-  { message: "Possible stroke reduction with B vitamins — limited, context-specific", detail: "Some evidence for stroke risk reduction with folic acid, particularly in patients with hypertension and eGFR > 50 mL/min, in regions without folate-fortified grains (e.g. CSPPT trial in China: 0.7% ARR)", badge: "Possible benefit — stroke only", badgeClass: "asa-badge asa-badge-amber" },
+  { message: "Possible stroke reduction with B vitamins \u2014 limited, context-specific", detail: "Some evidence for stroke risk reduction with folic acid, particularly in patients with hypertension and eGFR > 50 mL/min, in regions without folate-fortified grains (e.g. CSPPT trial in China: 0.7% ARR)", badge: "Possible benefit \u2014 stroke only", badgeClass: "asa-badge asa-badge-amber" },
 ];
 
 const mthfrFacts = [
-  { label: "Mutation", value: "C677T substitution in MTHFR gene → reduced enzyme activity → ↑ homocysteine" },
+  { label: "Mutation", value: "C677T substitution in MTHFR gene \u2192 reduced enzyme activity \u2192 \u2191 homocysteine" },
   { label: "Heterozygous carriers", value: "~40% of general population" },
   { label: "Homozygous carriers", value: "~10% of general population" },
   { label: "Clinical significance", value: "Unclear in the absence of elevated homocysteine" },
-  { label: "Testing recommended?", value: "NO — in any clinical setting" },
+  { label: "Testing recommended?", value: "NO \u2014 in any clinical setting" },
 ];
 
 const references = [
@@ -29,7 +30,7 @@ const references = [
   "Dong H, et al. B vitamins for stroke prevention: network meta-analysis. PLoS One. 2015;10(9):e0137533.",
   "Hensen ADO, et al. Hyperhomocysteinemia and recurrent VTE: MEGA follow-up study. Br J Haem 2019;187(2):219-226.",
   "Huo Y, et al. Folic acid for primary stroke prevention in hypertension (CSPPT). JAMA. 2015;313(13):1325-35.",
-  "Martí-Carvajal AJ, et al. Homocysteine lowering for preventing cardiovascular events. Cochrane Database Syst Rev. 2017(8):CD006612.",
+  "Mart\u00ed-Carvajal AJ, et al. Homocysteine lowering for preventing cardiovascular events. Cochrane Database Syst Rev. 2017(8):CD006612.",
   "Ray JG, et al. Homocysteine-lowering therapy and VTE risk. Ann Intern Med. 2007;146(11):761-767.",
   "Spence JD, et al. B vitamins in stroke prevention: time to reconsider. Lancet Neurol. 2017;16(9):750-760.",
 ];
@@ -40,8 +41,8 @@ export function ThrombophiliaHomocysteineGuide() {
   return (
     <div className="asa-guide-shell">
       <div className="asa-guide-header">
-        <p className="asa-guide-eyebrow">Thrombosis Canada · Clinical Guide</p>
-        <h1 className="asa-guide-title">Thrombophilia: Homocysteinemia & MTHFR</h1>
+        <p className="asa-guide-eyebrow">Clinical Guide</p>
+        <h1 className="asa-guide-title">Thrombophilia: Homocysteinemia &amp; MTHFR</h1>
         <p className="asa-guide-lead">
           Bottom line: Do NOT test for MTHFR mutations. Homocysteine testing in VTE is not useful because lowering it does not reduce recurrent VTE, MI, or cardiovascular death.
         </p>
@@ -111,6 +112,14 @@ export function ThrombophiliaHomocysteineGuide() {
                 <li>MTHFR C677T homozygosity (10% of population)</li>
               </ul>
             </div>
+            <div className="asa-section-card">
+              <h3 className="asa-section-title">Related Guides</h3>
+              <ul className="asa-ind-list">
+                <li><GuideLink to="fvlPgm">Factor V Leiden &amp; Prothrombin Gene Mutation</GuideLink></li>
+                <li><GuideLink to="naturalAnticoag">Natural Anticoagulant Deficiencies (PC, PS, AT)</GuideLink></li>
+                <li><GuideLink to="aps">Antiphospholipid Syndrome</GuideLink></li>
+              </ul>
+            </div>
           </div>
         )}
 
@@ -127,7 +136,7 @@ export function ThrombophiliaHomocysteineGuide() {
               </div>
             ))}
             <div className="asa-alert asa-alert-amber">
-              <strong>Why MTHFR testing is particularly problematic:</strong> ~40% of the population is heterozygous and ~10% is homozygous. Testing identifies a huge number of "positive" results that have no clear clinical significance (especially in the absence of elevated homocysteine) and cause unnecessary anxiety. The ASH 2023 thrombophilia guidelines explicitly recommend against MTHFR testing.
+              <strong>Why MTHFR testing is particularly problematic:</strong> ~40% of the population is heterozygous and ~10% is homozygous. Testing identifies a huge number of &quot;positive&quot; results that have no clear clinical significance (especially in the absence of elevated homocysteine) and cause unnecessary anxiety. The ASH 2023 thrombophilia guidelines explicitly recommend against MTHFR testing.
             </div>
           </div>
         )}
@@ -136,17 +145,17 @@ export function ThrombophiliaHomocysteineGuide() {
         {activeTab === 2 && (
           <div className="asa-sections">
             <div className="asa-section-card">
-              <h3 className="asa-section-title">B Vitamin Supplementation — The Evidence</h3>
+              <h3 className="asa-section-title">B Vitamin Supplementation &mdash; The Evidence</h3>
               <div className="asa-timeline">
                 <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker" style={{ background: "var(--danger)" }}>✗</div>
+                  <div className="asa-timeline-marker" style={{ background: "var(--danger)" }}>{"\u2717"}</div>
                   <div className="asa-timeline-content">
                     <strong>VTE prevention: No benefit</strong>
                     <p>Clinical trials show NO reduction in recurrent VTE with B vitamin supplementation, even in patients with high baseline homocysteine levels.</p>
                   </div>
                 </div>
                 <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker" style={{ background: "var(--danger)" }}>✗</div>
+                  <div className="asa-timeline-marker" style={{ background: "var(--danger)" }}>{"\u2717"}</div>
                   <div className="asa-timeline-content">
                     <strong>MI / cardiovascular death: No benefit</strong>
                     <p>Cochrane meta-analysis confirms no reduction in MI or total cardiovascular death with homocysteine-lowering therapy.</p>
@@ -155,18 +164,18 @@ export function ThrombophiliaHomocysteineGuide() {
                 <div className="asa-timeline-step">
                   <div className="asa-timeline-marker" style={{ background: "#f59e0b" }}>?</div>
                   <div className="asa-timeline-content">
-                    <strong>Stroke: Possible benefit — limited and context-specific</strong>
+                    <strong>Stroke: Possible benefit &mdash; limited and context-specific</strong>
                     <p>Some evidence of stroke reduction with folic acid, particularly in:</p>
                     <ul style={{ marginTop: "0.5rem", paddingLeft: "1.5rem" }}>
                       <li>Patients with hypertension</li>
-                      <li>eGFR &gt; 50 mL/min/1.73m² (no benefit if eGFR &lt; 50)</li>
+                      <li>eGFR &gt; 50 mL/min/1.73m&sup2; (no benefit if eGFR &lt; 50)</li>
                       <li>Regions without folate-fortified grains (e.g., CSPPT trial in China: 0.7% absolute risk reduction)</li>
                     </ul>
                     <p style={{ marginTop: "0.5rem", fontSize: "0.85rem", color: "var(--muted)" }}>In countries with folate fortification of grains (Canada, USA), benefit is unlikely and supplementation for primary CV prevention is not recommended.</p>
                   </div>
                 </div>
                 <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker" style={{ background: "#6b7280" }}>—</div>
+                  <div className="asa-timeline-marker" style={{ background: "#6b7280" }}>&mdash;</div>
                   <div className="asa-timeline-content">
                     <strong>Obstetric complications: Unknown</strong>
                     <p>Hyperhomocysteinemia has been associated with obstetric complications, but optimal management is unknown.</p>
@@ -193,9 +202,6 @@ export function ThrombophiliaHomocysteineGuide() {
                   <li key={r}>{r}</li>
                 ))}
               </ol>
-              <p className="asa-section-copy" style={{ marginTop: "1rem", fontSize: "0.8rem", color: "var(--muted)" }}>
-                Source: Thrombosis Canada Clinical Guides | Version 34 | Updated: 2026-02-06
-              </p>
             </div>
           </div>
         )}

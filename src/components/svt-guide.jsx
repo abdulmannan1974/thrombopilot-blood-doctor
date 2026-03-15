@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 import {
   AlertCircle,
   AlertTriangle,
@@ -121,14 +122,14 @@ const references = [
   "Wiegers HMG, Middeldorp S, Brekelmans MPA, et al. Treatment and long-term outcomes of superficial vein thrombosis: a systematic review and meta-analysis. Blood. 2023;142(10):891-901.",
 ];
 
-const relatedGuides = [
-  "Deep Vein Thrombosis (DVT): Diagnosis",
-  "Deep Vein Thrombosis (DVT): Treatment",
-  "Venous Thromboembolism: Duration of Treatment",
-  "Cancer and Thrombosis",
-  "Pregnancy: Diagnosis of DVT and PE",
-  "Pregnancy: Thromboprophylaxis",
-  "Thrombophilia: Antiphospholipid Syndrome",
+const relatedGuideKeys = [
+  { to: "dvtDiagnosis", label: "DVT Diagnosis" },
+  { to: "dvtTreatment", label: "DVT Treatment" },
+  { to: "vteDuration", label: "VTE Duration of Treatment" },
+  { to: "cancer", label: "Cancer & Thrombosis" },
+  { to: "pregDiagnosis", label: "Pregnancy: DVT & PE Diagnosis" },
+  { to: "pregProphylaxis", label: "Pregnancy Thromboprophylaxis" },
+  { to: "aps", label: "Antiphospholipid Syndrome" },
 ];
 
 const tabs = [
@@ -353,8 +354,8 @@ export function SvtGuide() {
             <article className="asa-section-card">
               <h3><Dot tone="gray" />Related Clinical Guides</h3>
               <ul className="asa-related-list">
-                {relatedGuides.map((item) => (
-                  <li key={item}><Link2 size={14} /><span>{item}</span></li>
+                {relatedGuideKeys.map((item) => (
+                  <li key={item.to}><Link2 size={14} /><GuideLink to={item.to}>{item.label}</GuideLink></li>
                 ))}
               </ul>
             </article>

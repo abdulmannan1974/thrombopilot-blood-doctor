@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   { id: "overview", label: "Overview" },
@@ -73,7 +74,7 @@ export function PerioperativeAntiplateletGuide() {
           <div className="asa-guide-eyebrow">
             <span className="asa-badge asa-badge-orange">Perioperative</span>
             <span className="asa-badge asa-badge-blue">Antiplatelet Therapy</span>
-            <span className="asa-badge">Thrombosis Canada</span>
+            <span className="asa-badge">Clinical Guide</span>
           </div>
           <h1 className="asa-guide-title">Perioperative Management of Antiplatelet Therapy</h1>
           <p className="asa-guide-lead">
@@ -309,9 +310,9 @@ export function PerioperativeAntiplateletGuide() {
                   <li key={i}>{ref}</li>
                 ))}
               </ol>
-              <p className="asa-section-copy" style={{ marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }}>
-                Source: Thrombosis Canada Clinical Guides — thrombosiscanada.ca | Not a substitute for individual clinical judgment.
-              </p>
+              <div style={{ marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }}>
+                <p>Related: <GuideLink to="asa">ASA</GuideLink> | <GuideLink to="daptDuration">DAPT Duration</GuideLink> | <GuideLink to="anticoagAntiplatelet">Anticoagulation + Antiplatelet</GuideLink> | <GuideLink to="doacsPeriop">DOACs Perioperative</GuideLink></p>
+              </div>
             </div>
           </div>
         )}

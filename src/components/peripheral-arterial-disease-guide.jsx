@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   ["overview", "Overview"],
@@ -50,7 +51,6 @@ export function PeripheralArterialDiseaseGuide() {
             </div>
             <h2 className="asa-guide-title">Peripheral Arterial Disease</h2>
             <div className="asa-guide-meta">
-              <span>Thrombosis Canada</span>
               <span>Atherothromboembolism Management</span>
             </div>
           </div>
@@ -269,7 +269,7 @@ export function PeripheralArterialDiseaseGuide() {
 
             <div className="asa-alert asa-alert-info">
               <div>
-                <strong>Health Canada Approval:</strong> Rivaroxaban 2.5 mg BID + ASA is approved for patients with symptomatic PAD at high risk of ischemic events, based on COMPASS and VOYAGER PAD data.
+                <strong>Regulatory approval:</strong> Rivaroxaban 2.5 mg BID + ASA is approved in Canada for patients with symptomatic PAD at high risk of ischemic events, based on COMPASS and VOYAGER PAD data.
               </div>
             </div>
 
@@ -325,6 +325,9 @@ export function PeripheralArterialDiseaseGuide() {
                   <li key={ref}>{ref}</li>
                 ))}
               </ol>
+              <div style={{ marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }}>
+                <p>Related: <GuideLink to="asa">ASA</GuideLink> | <GuideLink to="clopidogrel">Clopidogrel</GuideLink> | <GuideLink to="rivaroxaban">Rivaroxaban</GuideLink> | <GuideLink to="anticoagAntiplatelet">Anticoagulation + Antiplatelet</GuideLink> | <GuideLink to="periopAntiplatelet">Perioperative Antiplatelet</GuideLink></p>
+              </div>
             </article>
           </div>
         ) : null}

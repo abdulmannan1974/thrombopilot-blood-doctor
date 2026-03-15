@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   ["overview", "Overview"],
@@ -29,7 +30,7 @@ export function PregnancyVteTreatmentGuide() {
     <section className="asa-guide-shell">
       {/* ── Header ── */}
       <header className="asa-guide-header">
-        <span className="asa-guide-eyebrow">Thrombosis Canada — Clinical Guide</span>
+        <span className="asa-guide-eyebrow">Clinical Guide</span>
         <h2 className="asa-guide-title">
           Pregnancy: Venous Thromboembolism Treatment
         </h2>
@@ -427,13 +428,13 @@ export function PregnancyVteTreatmentGuide() {
         {tab === "references" && (
           <div className="asa-sections">
             <article className="asa-section-card">
-              <h3 className="asa-section-title">Related Thrombosis Canada Guides</h3>
+              <h3 className="asa-section-title">Related Clinical Guides</h3>
               <ul className="asa-section-copy">
-                <li>Deep Vein Thrombosis: Treatment</li>
-                <li>Pregnancy: Diagnosis of PE and DVT</li>
-                <li>Pregnancy: Thromboprophylaxis</li>
-                <li>Pulmonary Embolism (PE): Treatment</li>
-                <li>Unfractionated Heparin and Low-Molecular-Weight Heparin</li>
+                <li><GuideLink to="dvtTreatment">Deep Vein Thrombosis: Treatment</GuideLink></li>
+                <li><GuideLink to="pregDiagnosis">Pregnancy: Diagnosis of DVT and PE</GuideLink></li>
+                <li><GuideLink to="pregProphylaxis">Pregnancy: Thromboprophylaxis</GuideLink></li>
+                <li><GuideLink to="peTreatment">Pulmonary Embolism: Treatment</GuideLink></li>
+                <li><GuideLink to="ufhLmwh">Unfractionated Heparin and Low-Molecular-Weight Heparin</GuideLink></li>
               </ul>
             </article>
 

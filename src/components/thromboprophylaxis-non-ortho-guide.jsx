@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = ["Overview", "Site-Specific Approach", "Dosing", "Bariatric Surgery", "References"];
 
@@ -38,7 +39,7 @@ export function ThromboprophylaxisNonOrthoGuide() {
   return (
     <div className="asa-guide-shell">
       <div className="asa-guide-header">
-        <p className="asa-guide-eyebrow">Thrombosis Canada · Clinical Guide</p>
+        <p className="asa-guide-eyebrow">Clinical Guide</p>
         <h1 className="asa-guide-title">Thromboprophylaxis: Non-Orthopedic Surgery</h1>
         <p className="asa-guide-lead">
           VTE prevention in general, abdominal, cardiac, thoracic, neuro, and vascular surgery — using LMWH/UFH (not DOACs). Includes weight-based dosing and bariatric surgery protocols.
@@ -199,9 +200,9 @@ export function ThromboprophylaxisNonOrthoGuide() {
               <ol className="asa-ref-list">
                 {references.map((r) => <li key={r}>{r}</li>)}
               </ol>
-              <p className="asa-section-copy" style={{ marginTop: "1rem", fontSize: "0.8rem", color: "var(--muted)" }}>
-                Source: Thrombosis Canada Clinical Guides | Version 48 | Updated: 2026-02-06
-              </p>
+              <div style={{ marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }}>
+                <p>Related: <GuideLink to="prophylaxisMedical">Medical Prophylaxis</GuideLink> | <GuideLink to="prophylaxisOrtho">Ortho Prophylaxis</GuideLink> | <GuideLink to="hit">HIT</GuideLink> | <GuideLink to="cancer">Cancer &amp; Thrombosis</GuideLink></p>
+              </div>
             </div>
           </div>
         )}

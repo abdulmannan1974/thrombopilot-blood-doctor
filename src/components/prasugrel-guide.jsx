@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   ["overview", "Overview"],
@@ -23,7 +24,7 @@ const references = [
   "Motovska Z, et al. Prasugrel versus ticagrelor in patients with acute myocardial infarction treated with primary percutaneous coronary intervention: multicenter randomized PRAGUE-18 study. Circulation. 2016;134:1603-1612.",
   "Roe MT, et al. Prasugrel versus clopidogrel for acute coronary syndromes without revascularization. N Engl J Med. 2012;367:1297-1309.",
   "Sakurai R, et al. Pharmacodynamic effects of a loading dose of prasugrel in Japanese patients with ST-elevation acute myocardial infarction. Thromb Res. 2017;158:95-100.",
-  "Schüpke S, et al. Ticagrelor or prasugrel in patients with acute coronary syndromes. N Engl J Med. 2019;381:1524-1534.",
+  "Sch\u00fcpke S, et al. Ticagrelor or prasugrel in patients with acute coronary syndromes. N Engl J Med. 2019;381:1524-1534.",
   "Wiviott SD, et al. Prasugrel versus clopidogrel in patients with acute coronary syndromes. N Engl J Med. 2007;357:2001-2015.",
 ];
 
@@ -74,7 +75,7 @@ export function PrasugrelGuide() {
             <article className="asa-section-card">
               <h3>Clinical Role</h3>
               <p className="asa-section-copy">
-                Prasugrel is co-administered with ASA for secondary prevention of ischemic cardiac events in patients with acute coronary syndromes (ACS) managed with percutaneous coronary intervention (PCI).
+                Prasugrel is co-administered with <GuideLink to="asa">ASA</GuideLink> for secondary prevention of ischemic cardiac events in patients with acute coronary syndromes (ACS) managed with percutaneous coronary intervention (PCI). See the <GuideLink to="daptDuration">DAPT Duration in CAD</GuideLink> guide for duration considerations.
               </p>
             </article>
 
@@ -82,7 +83,7 @@ export function PrasugrelGuide() {
               <h3>Key Evidence</h3>
               <ul className="asa-ind-list">
                 <li>
-                  In the Phase 3 TRITON-TIMI 38 trial, prasugrel demonstrated a 2.2% absolute risk reduction (NNT = 46) for the composite of cardiovascular death, non-fatal myocardial infarction, and non-fatal stroke compared with clopidogrel.
+                  In the Phase 3 TRITON-TIMI 38 trial, prasugrel demonstrated a 2.2% absolute risk reduction (NNT = 46) for the composite of cardiovascular death, non-fatal myocardial infarction, and non-fatal stroke compared with <GuideLink to="clopidogrel">clopidogrel</GuideLink>.
                 </li>
                 <li>
                   Myocardial infarction and stent thrombosis were also significantly reduced with prasugrel.
@@ -91,7 +92,7 @@ export function PrasugrelGuide() {
                   Benefit was observed only in ACS patients managed with PCI. There was no benefit in medically managed non-ST-elevation MI patients.
                 </li>
                 <li>
-                  Evidence comparing ticagrelor versus prasugrel is mixed. One study of 4018 patients (ISAR-REACT 5) suggested improved outcomes with prasugrel (2.4% absolute risk reduction) with no difference in major bleeding.
+                  Evidence comparing <GuideLink to="ticagrelor">ticagrelor</GuideLink> versus prasugrel is mixed. One study of 4018 patients (ISAR-REACT 5) suggested improved outcomes with prasugrel (2.4% absolute risk reduction) with no difference in major bleeding.
                 </li>
               </ul>
             </article>
@@ -124,7 +125,7 @@ export function PrasugrelGuide() {
 
             <div className="asa-alert asa-alert-red">
               <div>
-                <strong>Not recommended:</strong> Prasugrel is not recommended in patients weighing less than 60 kg or aged over 75 years due to increased bleeding risk. A 5 mg daily dose has been evaluated in post-hoc analyses of patients over 75, but there is no Canadian approval for the 5 mg dose.
+                <strong>Not recommended:</strong> Prasugrel is not recommended in patients weighing less than 60 kg or aged over 75 years due to increased bleeding risk. A 5 mg daily dose has been evaluated in post-hoc analyses of patients over 75, but there is no approval for the 5 mg dose.
               </div>
             </div>
 
@@ -157,7 +158,7 @@ export function PrasugrelGuide() {
 
             <div className="asa-alert asa-alert-red">
               <div>
-                <strong>Net clinical benefit lost:</strong> The net benefit of prasugrel over clopidogrel is lost in patients aged over 75 years or weighing less than 60 kg due to the higher bleeding risk in these populations.
+                <strong>Net clinical benefit lost:</strong> The net benefit of prasugrel over <GuideLink to="clopidogrel">clopidogrel</GuideLink> is lost in patients aged over 75 years or weighing less than 60 kg due to the higher bleeding risk in these populations.
               </div>
             </div>
           </div>
@@ -177,7 +178,7 @@ export function PrasugrelGuide() {
             <article className="asa-section-card">
               <h3>Minor Procedures</h3>
               <p className="asa-section-copy">
-                For minor procedures such as dental work, skin procedures, and cataract surgery, there is generally no need to discontinue prasugrel.
+                For minor procedures such as dental work, skin procedures, and cataract surgery, there is generally no need to discontinue prasugrel. See the <GuideLink to="periopAntiplatelet">Perioperative Antiplatelet Management</GuideLink> guide for details.
               </p>
             </article>
           </div>
@@ -211,6 +212,17 @@ export function PrasugrelGuide() {
         {tab === "references" ? (
           <div className="asa-tab-body">
             <article className="asa-section-card">
+              <h3>Related Clinical Guides</h3>
+              <ul className="asa-related-list">
+                <li><GuideLink to="asa">ASA (Acetylsalicylic Acid)</GuideLink></li>
+                <li><GuideLink to="clopidogrel">Clopidogrel (Plavix)</GuideLink></li>
+                <li><GuideLink to="ticagrelor">Ticagrelor (Brilinta)</GuideLink></li>
+                <li><GuideLink to="periopAntiplatelet">Perioperative Antiplatelet Management</GuideLink></li>
+                <li><GuideLink to="daptDuration">DAPT Duration in CAD</GuideLink></li>
+              </ul>
+            </article>
+
+            <article className="asa-section-card">
               <h3>References</h3>
               <ol className="asa-ref-list">
                 {references.map((item) => (
@@ -223,7 +235,7 @@ export function PrasugrelGuide() {
       </div>
 
       <div className="asa-guide-footer">
-        <p><strong>Prasugrel</strong> | Thrombosis Canada Clinical Guide</p>
+        <p><strong>Prasugrel</strong> | Clinical Guide</p>
         <p>The information here is not a substitute for clinical judgement. Always seek appropriate specialist input when needed.</p>
       </div>
     </section>

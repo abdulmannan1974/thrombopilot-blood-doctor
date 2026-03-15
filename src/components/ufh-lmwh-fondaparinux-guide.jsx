@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   ["overview", "Overview"],
@@ -56,19 +57,6 @@ const references = [
   "Smythe MA, et al. Guidance for the practical management of the heparin anticoagulants in the treatment of venous thromboembolism. J Thromb Thrombolysis. 2016;41:165-186.",
   "Warkentin TE, et al. Heparin-induced thrombocytopenia: recognition, treatment, and prevention. Chest. 2012;141:e495S-e530S.",
   "Yusuf S, et al. Comparison of fondaparinux and enoxaparin in acute coronary syndromes (OASIS-5). N Engl J Med. 2006;354:1464-1476.",
-  "Thrombosis Canada. Unfractionated Heparin, Low Molecular Weight Heparin and Fondaparinux. Clinical Guide, 2024.",
-];
-
-const relatedGuides = [
-  "DOACs: Perioperative Management",
-  "Warfarin: Perioperative Management",
-  "Deep Vein Thrombosis (DVT): Treatment",
-  "Pulmonary Embolism (PE): Treatment",
-  "Heparin-Induced Thrombocytopenia (HIT)",
-  "Cancer and Thrombosis",
-  "Pregnancy: Venous Thromboembolism Treatment",
-  "Thromboprophylaxis: Hospitalized Medical Patients",
-  "Thromboprophylaxis: Orthopedic Surgery",
 ];
 
 function Dot({ tone }) {
@@ -88,14 +76,11 @@ export function UfhLmwhFondaparinuxGuide() {
               <span className="asa-badge asa-badge-teal">Parenteral Anticoagulants</span>
             </div>
             <h2 className="asa-guide-title">Unfractionated Heparin, Low Molecular Weight Heparin and Fondaparinux</h2>
-            <div className="asa-guide-meta">
-              <span>Thrombosis Canada</span>
-            </div>
           </div>
         </div>
 
         <div className="asa-objective-strip">
-          <strong>Objective:</strong> To provide guidance on the use of UFH, LMWH, and fondaparinux for the prevention and treatment of venous and arterial thromboembolic events.
+          <strong>Objective:</strong> Guidance on the use of UFH, LMWH, and fondaparinux for the prevention and treatment of venous and arterial thromboembolic events.
         </div>
       </div>
 
@@ -113,7 +98,7 @@ export function UfhLmwhFondaparinuxGuide() {
           ))}
         </div>
 
-        {/* ── Overview ── */}
+        {/* -- Overview -- */}
         {tab === "overview" ? (
           <div className="asa-tab-body">
             <div className="asa-sections">
@@ -134,12 +119,12 @@ export function UfhLmwhFondaparinuxGuide() {
                   <li>Acute coronary syndromes (ACS)</li>
                   <li>Cardiovascular procedures</li>
                   <li>Hemodialysis circuit anticoagulation</li>
-                  <li>Bridging during warfarin interruption</li>
+                  <li>Bridging during warfarin interruption (see <GuideLink to="warfarinPeriop">Warfarin: Perioperative Management</GuideLink>)</li>
                   <li>Anterior wall MI / LV thrombus prevention</li>
                   <li>Systemic arterial embolism</li>
                   <li>Selected ischemic stroke and cervical artery dissection</li>
                   <li>Purpura fulminans</li>
-                  <li>Pregnancy anticoagulation</li>
+                  <li>Pregnancy anticoagulation (see <GuideLink to="pregVte">Pregnancy: VTE Treatment</GuideLink>)</li>
                 </ul>
               </article>
 
@@ -149,7 +134,7 @@ export function UfhLmwhFondaparinuxGuide() {
                   <li>VTE prevention and treatment</li>
                   <li>Superficial vein thrombosis (SVT)</li>
                   <li>Acute coronary syndromes (without PCI as sole agent due to catheter thrombosis risk)</li>
-                  <li>HIT prevention and treatment</li>
+                  <li><GuideLink to="hit">HIT</GuideLink> prevention and treatment</li>
                 </ul>
               </article>
 
@@ -162,7 +147,7 @@ export function UfhLmwhFondaparinuxGuide() {
           </div>
         ) : null}
 
-        {/* ── UFH Dosing ── */}
+        {/* -- UFH Dosing -- */}
         {tab === "ufh" ? (
           <div className="asa-tab-body">
             <div className="asa-sections">
@@ -197,7 +182,7 @@ export function UfhLmwhFondaparinuxGuide() {
           </div>
         ) : null}
 
-        {/* ── LMWH Dosing ── */}
+        {/* -- LMWH Dosing -- */}
         {tab === "lmwh" ? (
           <div className="asa-tab-body">
             <div className="asa-sections">
@@ -270,7 +255,7 @@ export function UfhLmwhFondaparinuxGuide() {
           </div>
         ) : null}
 
-        {/* ── Fondaparinux ── */}
+        {/* -- Fondaparinux -- */}
         {tab === "fondaparinux" ? (
           <div className="asa-tab-body">
             <div className="asa-sections">
@@ -302,14 +287,14 @@ export function UfhLmwhFondaparinuxGuide() {
 
               <div className="asa-alert asa-alert-warn">
                 <div>
-                  <strong>No reversal agent:</strong> There is no specific reversal agent for fondaparinux available in Canada. Andexanet alfa has been approved but was declined public reimbursement and is not widely available.
+                  <strong>No reversal agent:</strong> There is no specific reversal agent for fondaparinux that is widely available. Andexanet alfa is licensed but has not received broad public reimbursement.
                 </div>
               </div>
             </div>
           </div>
         ) : null}
 
-        {/* ── Monitoring ── */}
+        {/* -- Monitoring -- */}
         {tab === "monitoring" ? (
           <div className="asa-tab-body">
             <div className="asa-sections">
@@ -319,8 +304,8 @@ export function UfhLmwhFondaparinuxGuide() {
                   <li>Baseline: CBC, PT/INR, aPTT before initiation.</li>
                   <li>Check aPTT every 6 hours until two consecutive values are therapeutic, then monitor daily.</li>
                   <li>Use an institutional weight-based nomogram for dose adjustments.</li>
-                  <li>In patients with antiphospholipid syndrome (APS), aPTT may be unreliable; use anti-Xa level monitoring instead.</li>
-                  <li>Monitor platelet count if UFH is administered for 4 or more days (HIT risk).</li>
+                  <li>In patients with <GuideLink to="aps">antiphospholipid syndrome (APS)</GuideLink>, aPTT may be unreliable; use anti-Xa level monitoring instead.</li>
+                  <li>Monitor platelet count if UFH is administered for 4 or more days (<GuideLink to="hit">HIT</GuideLink> risk).</li>
                 </ul>
               </article>
 
@@ -345,7 +330,7 @@ export function UfhLmwhFondaparinuxGuide() {
           </div>
         ) : null}
 
-        {/* ── Adverse Effects ── */}
+        {/* -- Adverse Effects -- */}
         {tab === "adverse" ? (
           <div className="asa-tab-body">
             <div className="asa-sections">
@@ -359,7 +344,7 @@ export function UfhLmwhFondaparinuxGuide() {
                 <ul className="asa-ind-list">
                   <li>Occurs in up to 5% of patients receiving UFH.</li>
                   <li>Less common with LMWH.</li>
-                  <li>If HIT is suspected, stop ALL heparin sources (including flushes and coated catheters).</li>
+                  <li>If HIT is suspected, stop ALL heparin sources (including flushes and coated catheters). See the <GuideLink to="hit">HIT Guide</GuideLink> for full management.</li>
                   <li>Alternative anticoagulants: argatroban, danaparoid, bivalirudin, fondaparinux, or a DOAC.</li>
                 </ul>
               </article>
@@ -382,7 +367,7 @@ export function UfhLmwhFondaparinuxGuide() {
           </div>
         ) : null}
 
-        {/* ── Special Considerations ── */}
+        {/* -- Special Considerations -- */}
         {tab === "special" ? (
           <div className="asa-tab-body">
             <div className="asa-sections">
@@ -402,19 +387,19 @@ export function UfhLmwhFondaparinuxGuide() {
                 <ul className="asa-ind-list">
                   <li><strong>UFH:</strong> Protamine sulfate (1 mg per 100 U of UFH given in the preceding 2 to 3 hours).</li>
                   <li><strong>LMWH:</strong> Protamine is less effective but should be used if needed. It partially reverses anti-IIa activity but has minimal effect on anti-Xa.</li>
-                  <li><strong>Fondaparinux:</strong> No reversal agent available in Canada. Andexanet alfa is approved but has been declined public reimbursement and is not widely available.</li>
+                  <li><strong>Fondaparinux:</strong> No widely available reversal agent. Andexanet alfa is licensed but has not received broad public reimbursement.</li>
                 </ul>
               </article>
 
               <article className="asa-section-card">
                 <h3><Dot tone="blue" />Warfarin Overlap</h3>
-                <p className="asa-section-copy">When transitioning to warfarin, start warfarin on the same day as heparin. Overlap for at least 5 days and until the INR is therapeutic (2.0 to 3.0) on two consecutive days before discontinuing the parenteral agent.</p>
+                <p className="asa-section-copy">When transitioning to <GuideLink to="warfarin">warfarin</GuideLink>, start warfarin on the same day as heparin. Overlap for at least 5 days and until the INR is therapeutic (2.0 to 3.0) on two consecutive days before discontinuing the parenteral agent.</p>
               </article>
 
               <article className="asa-section-card">
                 <h3><Dot tone="teal" />Pregnancy</h3>
                 <ul className="asa-ind-list">
-                  <li>LMWH or UFH are the preferred anticoagulants in pregnancy (DOACs and warfarin are contraindicated in pregnancy).</li>
+                  <li>LMWH or UFH are the preferred anticoagulants in pregnancy (DOACs and warfarin are contraindicated in pregnancy). See <GuideLink to="pregVte">Pregnancy: VTE Treatment</GuideLink> and <GuideLink to="pregProphylaxis">Pregnancy: Thromboprophylaxis</GuideLink>.</li>
                   <li>Peripartum planning is essential, with multidisciplinary coordination for timing of last dose and neuraxial anaesthesia.</li>
                   <li>Breastfeeding is safe with LMWH and warfarin.</li>
                   <li>Fondaparinux data in pregnancy are limited; use only when heparin products are contraindicated.</li>
@@ -445,16 +430,20 @@ export function UfhLmwhFondaparinuxGuide() {
           </div>
         ) : null}
 
-        {/* ── References ── */}
+        {/* -- References -- */}
         {tab === "references" ? (
           <div className="asa-tab-body">
             <div className="asa-sections">
               <article className="asa-section-card">
                 <h3><Dot tone="gray" />Related Clinical Guides</h3>
                 <ul className="asa-related-list">
-                  {relatedGuides.map((item) => (
-                    <li key={item}><span>{item}</span></li>
-                  ))}
+                  <li><GuideLink to="doacsPeriop">DOACs: Perioperative Management</GuideLink></li>
+                  <li><GuideLink to="warfarinPeriop">Warfarin: Perioperative Management</GuideLink></li>
+                  <li><GuideLink to="dvtTreatment">Deep Vein Thrombosis (DVT): Treatment</GuideLink></li>
+                  <li><GuideLink to="peTreatment">Pulmonary Embolism (PE): Treatment</GuideLink></li>
+                  <li><GuideLink to="hit">Heparin-Induced Thrombocytopenia (HIT)</GuideLink></li>
+                  <li><GuideLink to="cancer">Cancer and Thrombosis</GuideLink></li>
+                  <li><GuideLink to="pregVte">Pregnancy: VTE Treatment</GuideLink></li>
                 </ul>
               </article>
 
@@ -470,8 +459,8 @@ export function UfhLmwhFondaparinuxGuide() {
       </div>
 
       <div className="asa-guide-footer">
-        <p><strong>Unfractionated Heparin, Low Molecular Weight Heparin and Fondaparinux</strong> | Thrombosis Canada Clinical Guide</p>
-        <p>The information here is not a substitute for clinical judgement. Always seek appropriate specialist input when needed.</p>
+        <p><strong>UFH, LMWH &amp; Fondaparinux</strong> | Clinical Guide</p>
+        <p>Not a substitute for clinical judgement. Always seek appropriate specialist input when needed.</p>
       </div>
     </section>
   );

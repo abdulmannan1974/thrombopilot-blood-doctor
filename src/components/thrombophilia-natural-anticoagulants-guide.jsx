@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   "Overview",
@@ -12,31 +13,31 @@ const tabs = [
 const proteins = [
   {
     name: "Antithrombin (AT)",
-    mechanism: "Inhibits thrombin, FXa, FIXa, and other serine proteases directly. Heparin, LMWH, and fondaparinux act by potentiating AT — so AT deficiency impairs response to these drugs.",
+    mechanism: "Inhibits thrombin, FXa, FIXa, and other serine proteases directly. Heparin, LMWH, and fondaparinux act by potentiating AT \u2014 so AT deficiency impairs response to these drugs.",
     thrombosisRisk: "Highest lifetime VTE risk of the three deficiencies",
-    heparinEffect: "UFH and LMWH may fail to achieve therapeutic targets due to reduced AT effect — check aPTT/anti-Xa and escalate doses as needed. AT concentrate can restore heparinoid responsiveness.",
-    doacNote: "DOACs act independently of AT — viable alternative, but evidence limited to case reports and small series. Expert oversight required. No dose reduction in chronic phase.",
+    heparinEffect: "UFH and LMWH may fail to achieve therapeutic targets due to reduced AT effect \u2014 check aPTT/anti-Xa and escalate doses as needed. AT concentrate can restore heparinoid responsiveness.",
+    doacNote: "DOACs act independently of AT \u2014 viable alternative, but evidence limited to case reports and small series. Expert oversight required. No dose reduction in chronic phase.",
     warfarinNote: "Standard warfarin use is acceptable",
     badge: "Highest risk",
     badgeClass: "asa-badge asa-badge-red",
   },
   {
     name: "Protein C",
-    mechanism: "Vitamin K-dependent anticoagulant that inactivates FVa and FVIIIa. Warfarin suppresses protein C before other clotting factors, creating a transient hypercoagulable state — risk of warfarin-induced skin necrosis.",
-    thrombosisRisk: "High — recurrent VTE common if anticoagulation stopped",
+    mechanism: "Vitamin K-dependent anticoagulant that inactivates FVa and FVIIIa. Warfarin suppresses protein C before other clotting factors, creating a transient hypercoagulable state \u2014 risk of warfarin-induced skin necrosis.",
+    thrombosisRisk: "High \u2014 recurrent VTE common if anticoagulation stopped",
     heparinEffect: "No impaired heparin response. Standard LMWH/UFH dosing appropriate for acute therapy.",
     doacNote: "DOACs can generally be used safely. No dose reduction in chronic prevention phase.",
-    warfarinNote: "Must bridge with therapeutic LMWH/UFH for ≥5 days AND until INR ≥2.0 for ≥48 hours before starting warfarin — to prevent skin necrosis. Severe deficiency may require protein C concentrate.",
+    warfarinNote: "Must bridge with therapeutic LMWH/UFH for \u22655 days AND until INR \u22652.0 for \u226548 hours before starting warfarin \u2014 to prevent skin necrosis. Severe deficiency may require protein C concentrate.",
     badge: "Warfarin necrosis risk",
     badgeClass: "asa-badge asa-badge-orange",
   },
   {
     name: "Protein S",
     mechanism: "Vitamin K-dependent cofactor that enhances protein C activity. Naturally lower during pregnancy, OCP use, and postpartum. No concentrate available.",
-    thrombosisRisk: "Variable — higher in high-risk families",
+    thrombosisRisk: "Variable \u2014 higher in high-risk families",
     heparinEffect: "No impaired heparin response.",
     doacNote: "DOACs can generally be used safely. No dose reduction in chronic prevention phase.",
-    warfarinNote: "Same bridging precautions as protein C deficiency. No protein S concentrate — management relies entirely on anticoagulants.",
+    warfarinNote: "Same bridging precautions as protein C deficiency. No protein S concentrate \u2014 management relies entirely on anticoagulants.",
     badge: "No concentrate available",
     badgeClass: "asa-badge asa-badge-amber",
   },
@@ -44,7 +45,7 @@ const proteins = [
 
 const testingIndications = [
   {
-    scenario: "Test — only if result will change management",
+    scenario: "Test \u2014 only if result will change management",
     examples: [
       "Known family history of PC/PS/AT deficiency and first-degree relative with VTE, considering pregnancy or surgery",
       "Recurrent unprovoked VTE where high-risk thrombophilia would prompt indefinite anticoagulation",
@@ -54,10 +55,10 @@ const testingIndications = [
     color: "asa-alert asa-alert-blue",
   },
   {
-    scenario: "Do NOT test — testing will not change management",
+    scenario: "Do NOT test \u2014 testing will not change management",
     examples: [
-      "Provoked VTE (e.g. post-surgery) — positive result rarely changes anticoagulation duration",
-      "Arterial thrombosis (ischemic stroke, MI) — these deficiencies are primarily venous",
+      "Provoked VTE (e.g. post-surgery) \u2014 positive result rarely changes anticoagulation duration",
+      "Arterial thrombosis (ischemic stroke, MI) \u2014 these deficiencies are primarily venous",
       "General population screening or pre-natal/newborn screen",
       "Before starting OCP or HRT routinely",
       "Patient already committed to indefinite anticoagulation for other reasons",
@@ -68,13 +69,13 @@ const testingIndications = [
 ];
 
 const testingInterference = [
-  { factor: "Acute VTE / severe illness", effect: "Consumes PC/PS/AT — falsely low results. Retest when stable, weeks after acute event." },
-  { factor: "Warfarin", effect: "Markedly reduces Protein C and S (vitamin K-dependent). Test only ≥3–6 weeks after stopping warfarin." },
+  { factor: "Acute VTE / severe illness", effect: "Consumes PC/PS/AT \u2014 falsely low results. Retest when stable, weeks after acute event." },
+  { factor: "Warfarin", effect: "Markedly reduces Protein C and S (vitamin K-dependent). Test only \u22653\u20136 weeks after stopping warfarin." },
   { factor: "DOACs", effect: "Interfere with functional assays for PC, PS, and AT. Results unreliable on DOACs." },
   { factor: "Heparin / LMWH", effect: "Can cause falsely low AT levels." },
-  { factor: "Pregnancy / postpartum", effect: "PS levels physiologically lower — misleading in obstetric setting." },
-  { factor: "Liver disease, DIC, nephrotic syndrome", effect: "Acquired deficiencies — must rule out before diagnosing inherited deficiency." },
-  { factor: "L-asparaginase chemotherapy", effect: "Reduces AT — acquired deficiency, not inherited." },
+  { factor: "Pregnancy / postpartum", effect: "PS levels physiologically lower \u2014 misleading in obstetric setting." },
+  { factor: "Liver disease, DIC, nephrotic syndrome", effect: "Acquired deficiencies \u2014 must rule out before diagnosing inherited deficiency." },
+  { factor: "L-asparaginase chemotherapy", effect: "Reduces AT \u2014 acquired deficiency, not inherited." },
 ];
 
 const surgeryManagement = [
@@ -92,7 +93,7 @@ const surgeryManagement = [
   },
   {
     protein: "Protein S deficiency",
-    plan: "Mirrors protein C deficiency management. No protein S concentrate available — rely on bridging anticoagulation and mechanical prophylaxis.",
+    plan: "Mirrors protein C deficiency management. No protein S concentrate available \u2014 rely on bridging anticoagulation and mechanical prophylaxis.",
     badge: "No concentrate",
     badgeClass: "asa-badge asa-badge-amber",
   },
@@ -116,10 +117,10 @@ export function ThrombophiliaNaturalAnticoagulantsGuide() {
   return (
     <div className="asa-guide-shell">
       <div className="asa-guide-header">
-        <p className="asa-guide-eyebrow">Thrombosis Canada · Clinical Guide</p>
-        <h1 className="asa-guide-title">Thrombophilia: Protein C, Protein S & Antithrombin Deficiency</h1>
+        <p className="asa-guide-eyebrow">Clinical Guide</p>
+        <h1 className="asa-guide-title">Thrombophilia: Protein C, Protein S &amp; Antithrombin Deficiency</h1>
         <p className="asa-guide-lead">
-          Diagnosis, testing pitfalls, and anticoagulant management in deficiencies of the three natural anticoagulant proteins — including the heparin-resistance of AT deficiency and warfarin skin necrosis risk in protein C deficiency.
+          Diagnosis, testing pitfalls, and anticoagulant management in deficiencies of the three natural anticoagulant proteins &mdash; including heparin resistance in AT deficiency and warfarin skin necrosis risk in protein C deficiency.
         </p>
       </div>
 
@@ -140,7 +141,7 @@ export function ThrombophiliaNaturalAnticoagulantsGuide() {
         {activeTab === 0 && (
           <div className="asa-sections">
             <div className="asa-alert asa-alert-blue">
-              <strong>Core principle:</strong> These deficiencies are rare (&lt;5% of unprovoked VTE). Consult a thrombosis specialist before testing. Treatment duration follows the same 3-month minimum rule as other VTE — but many patients warrant indefinite therapy.
+              <strong>Core principle:</strong> These deficiencies are rare (&lt;5% of unprovoked VTE). Consult a thrombosis specialist before testing. Treatment duration follows the same 3-month minimum rule as other VTE &mdash; but many patients warrant indefinite therapy.
             </div>
             <div className="asa-section-card">
               <h3 className="asa-section-title">Epidemiology</h3>
@@ -159,7 +160,7 @@ export function ThrombophiliaNaturalAnticoagulantsGuide() {
                 </div>
                 <div className="asa-ae-card">
                   <span className="asa-ae-label">Arterial thrombosis link</span>
-                  <span className="asa-ae-value">Not definitively established — primarily venous events</span>
+                  <span className="asa-ae-value">Not definitively established &mdash; primarily venous events</span>
                 </div>
               </div>
             </div>
@@ -176,6 +177,16 @@ export function ThrombophiliaNaturalAnticoagulantsGuide() {
                 <p style={{ fontSize: "0.85rem" }}><strong>Warfarin:</strong> {p.warfarinNote}</p>
               </div>
             ))}
+            <div className="asa-section-card">
+              <h3 className="asa-section-title">Related Guides</h3>
+              <ul className="asa-ind-list">
+                <li><GuideLink to="aps">Antiphospholipid Syndrome</GuideLink></li>
+                <li><GuideLink to="fvlPgm">Factor V Leiden &amp; Prothrombin Gene Mutation</GuideLink></li>
+                <li><GuideLink to="warfarin">Warfarin</GuideLink></li>
+                <li><GuideLink to="ufhLmwh">UFH, LMWH &amp; Fondaparinux</GuideLink></li>
+                <li><GuideLink to="vteDuration">VTE: Duration of Treatment</GuideLink></li>
+              </ul>
+            </div>
           </div>
         )}
 
@@ -193,7 +204,7 @@ export function ThrombophiliaNaturalAnticoagulantsGuide() {
             <div className="asa-section-card">
               <h3 className="asa-section-title">Factors That Interfere with Accurate Testing</h3>
               <p className="asa-section-copy" style={{ marginBottom: "0.75rem" }}>
-                Ideally test ≥3–6 weeks after an acute event and after stopping anticoagulation. Repeat testing is required to confirm an inherited deficiency.
+                Ideally test \u22653-6 weeks after an acute event and after stopping anticoagulation. Repeat testing is required to confirm an inherited deficiency.
               </p>
               <div style={{ overflowX: "auto" }}>
                 <table className="asa-dose-table">
@@ -224,24 +235,24 @@ export function ThrombophiliaNaturalAnticoagulantsGuide() {
         {activeTab === 2 && (
           <div className="asa-sections">
             <div className="asa-alert asa-alert-blue">
-              Initial VTE treatment generally follows standard protocols. Duration: at least 3 months, and often indefinite. Specific caveats apply per protein — see below.
+              Initial VTE treatment generally follows standard protocols. Duration: at least 3 months, and often indefinite. Specific caveats apply per protein &mdash; see below. For full VTE treatment details, see the <GuideLink to="dvtTreatment">DVT Treatment</GuideLink> and <GuideLink to="peTreatment">PE Treatment</GuideLink> guides.
             </div>
             <div className="asa-section-card">
-              <h3 className="asa-section-title">AT Deficiency — Heparin Resistance</h3>
+              <h3 className="asa-section-title">AT Deficiency &mdash; Heparin Resistance</h3>
               <ul className="asa-ind-list">
-                <li>UFH and LMWH act via AT — may need higher doses to achieve therapeutic aPTT or anti-Xa targets</li>
-                <li>If subtherapeutic despite standard dosing: suspect AT deficiency → escalate dose guided by anti-Xa levels</li>
-                <li>AT concentrate can restore AT activity and normalize heparin responsiveness — use in high-risk settings (major surgery, peripartum)</li>
-                <li>DOACs act independently of AT — viable option, but data limited to case series. Use with expert oversight.</li>
-                <li><strong>Do NOT use dose-reduced DOACs</strong> (e.g. 10 mg rivaroxaban or 2.5 mg apixaban BID) in chronic prevention phase of AT deficiency</li>
+                <li>UFH and LMWH act via AT &mdash; may need higher doses to achieve therapeutic aPTT or anti-Xa targets</li>
+                <li>If subtherapeutic despite standard dosing: suspect AT deficiency &rarr; escalate dose guided by anti-Xa levels</li>
+                <li>AT concentrate can restore AT activity and normalize heparin responsiveness &mdash; use in high-risk settings (major surgery, peripartum)</li>
+                <li>DOACs act independently of AT &mdash; viable option, but data limited to case series. Use with expert oversight.</li>
+                <li><strong>Do NOT use dose-reduced DOACs</strong> (e.g. 10 mg rivaroxaban or 2.5 mg apixaban BID) in the chronic prevention phase of AT deficiency</li>
               </ul>
             </div>
             <div className="asa-section-card">
-              <h3 className="asa-section-title">Protein C Deficiency — Warfarin Skin Necrosis Risk</h3>
+              <h3 className="asa-section-title">Protein C Deficiency &mdash; Warfarin Skin Necrosis Risk</h3>
               <ul className="asa-ind-list">
-                <li>Warfarin suppresses protein C rapidly (short half-life), before other clotting factors → transient hypercoagulable state → risk of skin necrosis (limbs, breast, penis)</li>
-                <li><strong>Mandatory bridging protocol:</strong> therapeutic LMWH/UFH for ≥5 days AND until INR ≥2.0 for ≥48 hours before stopping heparin</li>
-                <li>DOACs are the preferred alternative — safer initiation profile; no skin necrosis risk</li>
+                <li>Warfarin suppresses protein C rapidly (short half-life), before other clotting factors &rarr; transient hypercoagulable state &rarr; risk of skin necrosis (limbs, breast, penis)</li>
+                <li><strong>Mandatory bridging protocol:</strong> therapeutic LMWH/UFH for \u22655 days AND until INR \u22652.0 for \u226548 hours before stopping heparin</li>
+                <li>DOACs are the preferred alternative &mdash; safer initiation profile; no skin necrosis risk</li>
                 <li>Severe congenital PC deficiency: protein C concentrate for acute thrombotic events, surgery, or pregnancy</li>
               </ul>
             </div>
@@ -249,9 +260,9 @@ export function ThrombophiliaNaturalAnticoagulantsGuide() {
               <h3 className="asa-section-title">Protein S Deficiency</h3>
               <ul className="asa-ind-list">
                 <li>Acute management mirrors protein C deficiency</li>
-                <li>No protein S concentrate — management relies entirely on anticoagulant therapy</li>
+                <li>No protein S concentrate &mdash; management relies entirely on anticoagulant therapy</li>
                 <li>DOACs can be used safely; no dose reduction in chronic phase</li>
-                <li>Warfarin bridging same precautions as PC deficiency</li>
+                <li>Warfarin bridging: same precautions as PC deficiency</li>
               </ul>
             </div>
             <div className="asa-alert asa-alert-amber">
@@ -264,7 +275,7 @@ export function ThrombophiliaNaturalAnticoagulantsGuide() {
         {activeTab === 3 && (
           <div className="asa-sections">
             <div className="asa-alert asa-alert-blue">
-              All three deficiencies confer increased perioperative VTE risk. Individualized thromboprophylaxis planning with specialist input is essential.
+              All three deficiencies confer increased perioperative VTE risk. Individualized thromboprophylaxis planning with specialist input is essential. See also <GuideLink to="warfarinPeriop">Warfarin: Perioperative Management</GuideLink> and <GuideLink to="doacsPeriop">DOACs: Perioperative Management</GuideLink>.
             </div>
             {surgeryManagement.map((s) => (
               <div key={s.protein} className="asa-section-card">
@@ -279,7 +290,7 @@ export function ThrombophiliaNaturalAnticoagulantsGuide() {
               <h3 className="asa-section-title">AT Deficiency in Pregnancy</h3>
               <ul className="asa-ind-list">
                 <li>AT concentrate recommended peripartum to prevent maternal DVT/PE and improve fetal outcomes</li>
-                <li>Higher LMWH doses often required — monitor anti-Xa levels</li>
+                <li>Higher LMWH doses often required &mdash; monitor anti-Xa levels</li>
                 <li>Specialist (thrombosis + obstetrics) co-management essential</li>
               </ul>
             </div>
@@ -300,23 +311,23 @@ export function ThrombophiliaNaturalAnticoagulantsGuide() {
             <div className="asa-section-card">
               <h3 className="asa-section-title">Pregnancy</h3>
               <ul className="asa-ind-list">
-                <li>Protein S levels naturally lower in pregnancy — test is unreliable during pregnancy</li>
+                <li>Protein S levels naturally lower in pregnancy &mdash; test is unreliable during pregnancy</li>
                 <li>AT deficiency: peripartum AT concentrate + LMWH prophylaxis</li>
                 <li>Protein C deficiency: LMWH thromboprophylaxis; severe cases may need protein C concentrate during delivery</li>
                 <li>Protein S deficiency: LMWH-based thromboprophylaxis; no concentrate available</li>
-                <li>See Thromboprophylaxis in Pregnancy guide for full details</li>
+                <li>See <GuideLink to="pregProphylaxis">Pregnancy: Thromboprophylaxis</GuideLink> and <GuideLink to="pregVte">Pregnancy: VTE Treatment</GuideLink> for full details</li>
               </ul>
             </div>
             <div className="asa-section-card">
               <h3 className="asa-section-title">Pediatrics</h3>
               <ul className="asa-ind-list">
-                <li>Neonates have naturally low levels of all three proteins — misdiagnosis risk is high</li>
+                <li>Neonates have naturally low levels of all three proteins &mdash; misdiagnosis risk is high</li>
                 <li>Genetic testing may be necessary for diagnosis in children</li>
                 <li>Pediatric hematologist with thromboembolism experience should manage where possible</li>
               </ul>
             </div>
             <div className="asa-section-card">
-              <h3 className="asa-section-title">Acquired Deficiencies — When to Suspect</h3>
+              <h3 className="asa-section-title">Acquired Deficiencies &mdash; When to Suspect</h3>
               <div style={{ overflowX: "auto" }}>
                 <table className="asa-dose-table">
                   <thead>
@@ -349,9 +360,6 @@ export function ThrombophiliaNaturalAnticoagulantsGuide() {
                   <li key={r}>{r}</li>
                 ))}
               </ol>
-              <p className="asa-section-copy" style={{ marginTop: "1rem", fontSize: "0.8rem", color: "var(--muted)" }}>
-                Source: Thrombosis Canada Clinical Guides | Version 38 | Updated: 2026-02-06
-              </p>
             </div>
           </div>
         )}

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = ["Overview", "Prophylaxis by Procedure", "Dosing & Duration", "ASA Evidence", "References"];
 
@@ -51,7 +52,7 @@ export function ThromboprophylaxisOrthoGuide() {
   return (
     <div className="asa-guide-shell">
       <div className="asa-guide-header">
-        <p className="asa-guide-eyebrow">Thrombosis Canada · Clinical Guide</p>
+        <p className="asa-guide-eyebrow">Clinical Guide</p>
         <h1 className="asa-guide-title">Thromboprophylaxis: Orthopedic Surgery</h1>
         <p className="asa-guide-lead">
           Extended thromboprophylaxis (14–35 days) for hip/knee arthroplasty and hip fracture surgery. DOACs are well-evaluated in this setting. ASA alone is less effective than LMWH.
@@ -168,7 +169,7 @@ export function ThromboprophylaxisOrthoGuide() {
             <div className="asa-section-card">
               <h3 className="asa-section-title">Patients on Long-Term Anticoagulation</h3>
               <p className="asa-section-copy">
-                Use prophylactic doses post-operatively until safe to restart full-dose anticoagulation (usually 48–72 hours). See DOACs Perioperative Management guide.
+                Use prophylactic doses post-operatively until safe to restart full-dose anticoagulation (usually 48–72 hours). See <GuideLink to="doacsPeriop">DOACs Perioperative Management</GuideLink>.
               </p>
             </div>
           </div>
@@ -215,9 +216,9 @@ export function ThromboprophylaxisOrthoGuide() {
               <ol className="asa-ref-list">
                 {references.map((r) => <li key={r}>{r}</li>)}
               </ol>
-              <p className="asa-section-copy" style={{ marginTop: "1rem", fontSize: "0.8rem", color: "var(--muted)" }}>
-                Source: Thrombosis Canada Clinical Guides | Version 48 | Updated: 2026-02-05
-              </p>
+              <div style={{ marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }}>
+                <p>Related: <GuideLink to="prophylaxisNonOrtho">Non-Ortho Prophylaxis</GuideLink> | <GuideLink to="doacsPeriop">DOACs Perioperative</GuideLink> | <GuideLink to="warfarinPeriop">Warfarin Perioperative</GuideLink> | <GuideLink to="asa">ASA</GuideLink></p>
+              </div>
             </div>
           </div>
         )}

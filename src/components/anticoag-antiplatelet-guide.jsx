@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   ["overview", "Overview"],
@@ -87,13 +88,13 @@ const references = [
   "Kearon C, Akl EA, Ornelas J, et al. Antithrombotic therapy for VTE disease: CHEST guideline. Chest. 2016;149:315\u2013352.",
 ];
 
-const relatedGuides = [
-  "Stroke Prevention in Atrial Fibrillation",
-  "DOACs: Comparison and Frequently Asked Questions",
-  "DVT Treatment",
-  "Perioperative Management of Antiplatelet Therapy",
-  "Warfarin",
-  "Acetylsalicylic Acid (ASA)",
+const relatedGuideKeys = [
+  { to: "strokeAf", label: "Stroke Prevention in AF" },
+  { to: "doacsComparison", label: "DOACs: Comparison & FAQ" },
+  { to: "dvtTreatment", label: "DVT Treatment" },
+  { to: "periopAntiplatelet", label: "Perioperative Antiplatelet" },
+  { to: "warfarin", label: "Warfarin" },
+  { to: "asa", label: "ASA" },
 ];
 
 export function AnticoagAntiplateletGuide() {
@@ -112,7 +113,6 @@ export function AnticoagAntiplateletGuide() {
               Anticoagulation in Patients Requiring Antiplatelet Therapy
             </h2>
             <div className="asa-guide-meta">
-              <span>Thrombosis Canada</span>
               <span>Combined antithrombotic strategies for OAC + antiplatelet overlap</span>
             </div>
           </div>
@@ -321,8 +321,8 @@ export function AnticoagAntiplateletGuide() {
             <article className="asa-section-card">
               <h3><span className="asa-dot gray" />Related Clinical Guides</h3>
               <ul className="asa-related-list">
-                {relatedGuides.map((item) => (
-                  <li key={item}><span>{item}</span></li>
+                {relatedGuideKeys.map((item) => (
+                  <li key={item.to}><GuideLink to={item.to}>{item.label}</GuideLink></li>
                 ))}
               </ul>
             </article>
@@ -341,7 +341,7 @@ export function AnticoagAntiplateletGuide() {
 
       <div className="asa-guide-footer">
         <p>
-          <strong>Anticoagulation in Patients Requiring Antiplatelet Therapy</strong> | Thrombosis Canada
+          <strong>Anticoagulation in Patients Requiring Antiplatelet Therapy</strong>
         </p>
         <p>
           The information here is not a substitute for clinical judgement. Always

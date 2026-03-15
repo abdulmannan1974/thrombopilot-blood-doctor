@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   ["overview", "Overview"],
@@ -35,7 +36,6 @@ export function CovidThromboprophylaxisGuide() {
             </div>
             <h2 className="asa-guide-title">COVID-19: Primary Thromboprophylaxis for Hospitalized Patients</h2>
             <div className="asa-guide-meta">
-              <span>Thrombosis Canada</span>
             </div>
           </div>
         </div>
@@ -319,13 +319,16 @@ export function CovidThromboprophylaxisGuide() {
                   <li key={item}>{item}</li>
                 ))}
               </ol>
+              <div style={{ marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }}>
+                <p>Related: <GuideLink to="prophylaxisMedical">Thromboprophylaxis: Medical Patients</GuideLink> | <GuideLink to="ufhLmwh">UFH &amp; LMWH</GuideLink> | <GuideLink to="dvtTreatment">DVT Treatment</GuideLink> | <GuideLink to="peTreatment">PE Treatment</GuideLink></p>
+              </div>
             </article>
           </div>
         ) : null}
       </div>
 
       <div className="asa-guide-footer">
-        <p><strong>COVID-19: Primary Thromboprophylaxis for Hospitalized Patients</strong> | Thrombosis Canada</p>
+        <p><strong>COVID-19: Primary Thromboprophylaxis for Hospitalized Patients</strong></p>
         <p>The information here is not a substitute for clinical judgement. Always seek appropriate specialist input when needed.</p>
       </div>
     </section>

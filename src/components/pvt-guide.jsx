@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 import {
   Activity,
   AlertCircle,
@@ -171,13 +172,13 @@ const references = [
   "Zhan C, et al. TIPS versus anticoagulation for portal vein thrombosis in cirrhosis: a retrospective cohort study. Hepatology. 2021;73(6):2390-2401.",
 ];
 
-const relatedGuides = [
-  "Cancer and Thrombosis",
-  "Deep Vein Thrombosis (DVT): Treatment",
-  "DOACs: Comparison and Frequently-asked Questions",
-  "Unfractionated Heparin, Low Molecular Weight Heparin, and Fondaparinux",
-  "Venous Thromboembolism: Duration of Treatment",
-  "Warfarin",
+const relatedGuideKeys = [
+  { to: "cancer", label: "Cancer & Thrombosis" },
+  { to: "dvtTreatment", label: "DVT Treatment" },
+  { to: "doacsComparison", label: "DOACs: Comparison & FAQ" },
+  { to: "ufhLmwh", label: "UFH, LMWH & Fondaparinux" },
+  { to: "vteDuration", label: "VTE Duration of Treatment" },
+  { to: "warfarin", label: "Warfarin" },
 ];
 
 const tabs = [
@@ -432,8 +433,8 @@ export function PvtGuide() {
             <article className="asa-section-card">
               <h3><Dot tone="gray" />Related Clinical Guides</h3>
               <ul className="asa-related-list">
-                {relatedGuides.map((item) => (
-                  <li key={item}><Link2 size={14} /><span>{item}</span></li>
+                {relatedGuideKeys.map((item) => (
+                  <li key={item.to}><Link2 size={14} /><GuideLink to={item.to}>{item.label}</GuideLink></li>
                 ))}
               </ul>
             </article>

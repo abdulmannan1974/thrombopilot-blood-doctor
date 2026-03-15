@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   ["overview", "Overview"],
@@ -22,12 +23,12 @@ const references = [
   "Jang Y, et al. One-month dual antiplatelet therapy followed by prasugrel monotherapy at a reduced dose: the 4D-ACS randomised trial. EuroIntervention 2025. DOI: 10.4244/EIJ-D-25-00331.",
 ];
 
-const relatedGuides = [
-  "Acetylsalicylic Acid (ASA)",
-  "Clopidogrel (Plavix)",
-  "Prasugrel (Effient)",
-  "Ticagrelor (Brilinta)",
-  "Rivaroxaban (Xarelto)",
+const relatedGuideKeys = [
+  { to: "asa", label: "ASA" },
+  { to: "clopidogrel", label: "Clopidogrel" },
+  { to: "prasugrel", label: "Prasugrel" },
+  { to: "ticagrelor", label: "Ticagrelor" },
+  { to: "rivaroxaban", label: "Rivaroxaban" },
 ];
 
 function Dot({ tone }) {
@@ -50,7 +51,6 @@ export function DaptDurationGuide() {
             <h2 className="asa-guide-title">Duration of Dual Antiplatelet Therapy in Patients With Coronary Artery Disease</h2>
             <div className="asa-guide-meta">
               <span>Updated 6 February 2026</span>
-              <span>Thrombosis Canada</span>
             </div>
           </div>
         </div>
@@ -308,8 +308,8 @@ export function DaptDurationGuide() {
             <article className="asa-section-card">
               <h3><Dot tone="gray" />Related Clinical Guides</h3>
               <ul className="asa-related-list">
-                {relatedGuides.map((item) => (
-                  <li key={item}><span>{item}</span></li>
+                {relatedGuideKeys.map((item) => (
+                  <li key={item.to}><GuideLink to={item.to}>{item.label}</GuideLink></li>
                 ))}
               </ul>
             </article>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   "Overview",
@@ -12,8 +13,8 @@ const diagnosisCriteria = [
   {
     domain: "Entry Criterion",
     items: [
-      "Positive antiphospholipid antibody test: lupus anticoagulant (LA), anticardiolipin IgG/IgM (aCL), or anti-β2GPI IgG/IgM",
-      "Must be confirmed on ≥2 occasions at least 12 weeks apart",
+      "Positive antiphospholipid antibody test: lupus anticoagulant (LA), anticardiolipin IgG/IgM (aCL), or anti-\u03b22GPI IgG/IgM",
+      "Must be confirmed on \u22652 occasions at least 12 weeks apart",
     ],
     note: "Required before applying the additive weighted criteria",
   },
@@ -21,11 +22,11 @@ const diagnosisCriteria = [
     domain: "Laboratory Domains",
     items: [
       "Lupus anticoagulant (LA) positivity: weighted +1 to +4 depending on test type",
-      "aCL IgG/IgM: moderate (40–79 U) = +1 point; high (≥80 U) = +3 points",
-      "Anti-β2GPI IgG/IgM: moderate = +1 point; high (≥80 U) = +3 points",
-      "Triple positivity (LA + aCL + anti-β2GPI): higher weight",
+      "aCL IgG/IgM: moderate (40\u201379 U) = +1 point; high (\u226580 U) = +3 points",
+      "Anti-\u03b22GPI IgG/IgM: moderate = +1 point; high (\u226580 U) = +3 points",
+      "Triple positivity (LA + aCL + anti-\u03b22GPI): higher weight",
     ],
-    note: "Must achieve ≥3 points from laboratory domains",
+    note: "Must achieve \u22653 points from laboratory domains",
   },
   {
     domain: "Clinical Domains",
@@ -33,28 +34,28 @@ const diagnosisCriteria = [
       "Macrovascular: VTE without a high-risk profile, arterial thrombosis without a high-risk profile, or microvascular thrombosis",
       "VTE with high-risk profile or unprovoked VTE",
       "Arterial thrombosis with high-risk profile",
-      "Obstetric: recurrent miscarriage, unexplained fetal loss ≥10 weeks, preeclampsia/HELLP ≤34 weeks",
+      "Obstetric: recurrent miscarriage, unexplained fetal loss \u226510 weeks, preeclampsia/HELLP \u226434 weeks",
       "Non-criteria: cardiac valvulopathy, livedoid rash, thrombocytopenia, nephropathy, neurological manifestations",
     ],
-    note: "Must achieve ≥3 points from clinical domains",
+    note: "Must achieve \u22653 points from clinical domains",
   },
 ];
 
 const riskProfiles = [
   {
     profile: "High-Risk APS",
-    definition: "Triple positivity (LA + aCL + anti-β2GPI) and/or arterial thrombosis",
-    treatment: "Warfarin (INR 2.0–3.0) — indefinite",
-    doacs: "DOACs inferior — higher stroke and MI rates vs warfarin (RE-CIRCUIT, ASTRO-APS, TRAPS trials)",
+    definition: "Triple positivity (LA + aCL + anti-\u03b22GPI) and/or arterial thrombosis",
+    treatment: "Warfarin (INR 2.0\u20133.0) \u2014 indefinite",
+    doacs: "DOACs inferior \u2014 higher stroke and MI rates vs warfarin (RE-CIRCUIT, ASTRO-APS, TRAPS trials)",
     badge: "Warfarin required",
     badgeClass: "asa-badge asa-badge-red",
   },
   {
     profile: "Low-Risk APS (venous thrombosis only)",
     definition: "Single antibody positivity, venous thrombosis, no high-risk features",
-    treatment: "Warfarin (INR 2.0–3.0) preferred; DOAC safety uncertain",
+    treatment: "Warfarin (INR 2.0\u20133.0) preferred; DOAC safety uncertain",
     doacs: "No robust RCTs; conflicting observational data. Specialist consultation recommended if considering DOAC.",
-    badge: "Uncertain — specialist input",
+    badge: "Uncertain \u2014 specialist input",
     badgeClass: "asa-badge asa-badge-amber",
   },
 ];
@@ -62,25 +63,25 @@ const riskProfiles = [
 const acuteManagement = [
   {
     phase: "Acute venous thrombosis",
-    recommendation: "LMWH preferred over UFH if baseline aPTT is prolonged by lupus anticoagulant (LA interferes with aPTT monitoring of UFH)",
+    recommendation: "LMWH preferred over UFH if baseline aPTT is prolonged by lupus anticoagulant (LA interferes with aPTT monitoring of UFH). See the \u003CGuideLink to=\"ufhLmwh\"\u003EUFH, LMWH & Fondaparinux\u003C/GuideLink\u003E guide for dosing.",
     badge: "LMWH first-line",
     badgeClass: "asa-badge asa-badge-blue",
   },
   {
     phase: "Acute arterial thrombosis",
-    recommendation: "Anticoagulation with warfarin (INR 2.0–3.0) generally preferred. ASA 325 mg is an option if anticoagulation not feasible, particularly in low-titer, single-measurement antibody settings.",
+    recommendation: "Anticoagulation with warfarin (INR 2.0\u20133.0) generally preferred. ASA 325 mg is an option if anticoagulation is not feasible, particularly in low-titer, single-measurement antibody settings.",
     badge: "Warfarin preferred",
     badgeClass: "asa-badge asa-badge-orange",
   },
   {
     phase: "Transition to long-term therapy",
-    recommendation: "High-risk APS: warfarin long-term. INR target 2.0–3.0. Target INR 3.0–4.0 has not been shown to be superior and carries higher bleeding risk.",
-    badge: "INR 2.0–3.0",
+    recommendation: "High-risk APS: warfarin long-term. INR target 2.0\u20133.0. Target INR 3.0\u20134.0 has not been shown to be superior and carries higher bleeding risk.",
+    badge: "INR 2.0\u20133.0",
     badgeClass: "asa-badge asa-badge-blue",
   },
   {
     phase: "Recurrent thrombosis on anticoagulation",
-    recommendation: "Options: switch to warfarin (if on DOAC), escalate warfarin target (INR 3.0–4.0), therapeutic LMWH, or low-dose ASA + warfarin. Specialist consultation mandatory. Confirm recurrence objectively and assess anticoagulation adequacy before labelling as treatment failure.",
+    recommendation: "Options: switch to warfarin (if on DOAC), escalate warfarin target (INR 3.0\u20134.0), therapeutic LMWH, or low-dose ASA + warfarin. Specialist consultation mandatory. Confirm recurrence objectively and assess anticoagulation adequacy before labelling as treatment failure.",
     badge: "Specialist required",
     badgeClass: "asa-badge asa-badge-red",
   },
@@ -97,30 +98,30 @@ const specialSituations = [
   {
     title: "Asymptomatic APS (no thrombosis, positive antibodies)",
     content: "No clear consensus on primary prophylaxis. Consider low-dose ASA in high-risk antibody profiles (especially with SLE or additional risk factors). Aggressive thromboprophylaxis mandatory in high-risk situations (surgery, hospitalization, pregnancy).",
-    badge: "Low-dose ASA — consider",
+    badge: "Low-dose ASA \u2014 consider",
     badgeClass: "asa-badge asa-badge-amber",
   },
   {
     title: "Obstetric APS (pregnancy complications without thrombosis)",
-    content: "Prophylactic-dose LMWH/UFH + low-dose ASA throughout pregnancy. Note: efficacy not validated in well-designed RCTs. Low-dose ASA alone may be used to reduce pre-eclampsia risk in women with persistent aPL and no prior thrombosis. Post-partum thromboprophylaxis commonly used even without prior thrombosis history (not evidence-based but widely practiced).",
+    content: "Prophylactic-dose LMWH/UFH + low-dose ASA throughout pregnancy. Efficacy not fully validated in well-designed RCTs. Low-dose ASA alone may reduce pre-eclampsia risk in women with persistent aPL and no prior thrombosis. Post-partum thromboprophylaxis is commonly used even without prior thrombosis history.",
     badge: "LMWH + ASA",
     badgeClass: "asa-badge asa-badge-blue",
   },
   {
-    title: "CAPS — Catastrophic Antiphospholipid Syndrome",
-    content: "Rare, fulminant multiorgan microvascular thrombosis. Mortality > 30% despite treatment. Management: aggressive anticoagulation (IV UFH), plasmapheresis, high-dose corticosteroids, ± IVIG, ± rituximab. Anti-complement therapy (eculizumab) may benefit selected critically ill patients. Manage in expert centres.",
+    title: "CAPS \u2014 Catastrophic Antiphospholipid Syndrome",
+    content: "Rare, fulminant multiorgan microvascular thrombosis. Mortality > 30% despite treatment. Management: aggressive anticoagulation (IV UFH), plasmapheresis, high-dose corticosteroids, \u00b1 IVIG, \u00b1 rituximab. Anti-complement therapy (eculizumab) may benefit selected critically ill patients. Manage in expert centres.",
     badge: "Expert centre",
     badgeClass: "asa-badge asa-badge-red",
   },
   {
     title: "APS with SLE",
-    content: "Secondary APS. All APS manifestations may occur. Hydroxychloroquine may be of additional benefit (thromboprophylactic and immunomodulatory effects). Specialist consultation strongly advised for combined management.",
+    content: "Secondary APS. All APS manifestations may occur. Hydroxychloroquine may provide additional benefit (thromboprophylactic and immunomodulatory effects). Specialist consultation strongly advised for combined management.",
     badge: "Add hydroxychloroquine",
     badgeClass: "asa-badge asa-badge-blue",
   },
   {
-    title: "Laboratory monitoring — INR in APS",
-    content: "Some APS patients have a prolonged baseline INR before anticoagulation (LA interference). Point-of-care INR devices are particularly prone to error in APS — calibrate with venous sample results periodically. Consider chromogenic factor X assay if standard INR unreliable.",
+    title: "Laboratory monitoring \u2014 INR in APS",
+    content: "Some APS patients have a prolonged baseline INR before anticoagulation (LA interference). Point-of-care INR devices are particularly prone to error in APS \u2014 calibrate with venous sample results periodically. Consider chromogenic factor X assay if standard INR is unreliable.",
     badge: "Monitor carefully",
     badgeClass: "asa-badge asa-badge-amber",
   },
@@ -151,10 +152,10 @@ export function ApsThrombophiliaGuide() {
   return (
     <div className="asa-guide-shell">
       <div className="asa-guide-header">
-        <p className="asa-guide-eyebrow">Thrombosis Canada · Clinical Guide</p>
+        <p className="asa-guide-eyebrow">Clinical Guide</p>
         <h1 className="asa-guide-title">Thrombophilia: Antiphospholipid Syndrome</h1>
         <p className="asa-guide-lead">
-          APS diagnosis, risk stratification, and antithrombotic therapy — including why DOACs are inferior to warfarin in high-risk APS.
+          APS diagnosis, risk stratification, and antithrombotic therapy &mdash; including why DOACs are inferior to warfarin in high-risk APS.
         </p>
       </div>
 
@@ -175,7 +176,7 @@ export function ApsThrombophiliaGuide() {
         {activeTab === 0 && (
           <div className="asa-sections">
             <div className="asa-alert asa-alert-red">
-              <strong>Key point:</strong> In high-risk APS (triple positivity or arterial thrombosis), DOACs are inferior to warfarin — more strokes and MI. Warfarin with INR 2.0–3.0 is the standard of care.
+              <strong>Key point:</strong> In high-risk APS (triple positivity or arterial thrombosis), DOACs are inferior to warfarin &mdash; more strokes and MI. <GuideLink to="warfarin">Warfarin</GuideLink> with INR 2.0-3.0 is the standard of care.
             </div>
             <div className="asa-section-card">
               <h3 className="asa-section-title">What is APS?</h3>
@@ -186,11 +187,11 @@ export function ApsThrombophiliaGuide() {
             <div className="asa-ae-grid">
               <div className="asa-ae-card">
                 <span className="asa-ae-label">Key antibodies</span>
-                <span className="asa-ae-value">LA, aCL (IgG/IgM), anti-β2GPI (IgG/IgM)</span>
+                <span className="asa-ae-value">LA, aCL (IgG/IgM), anti-\u03b22GPI (IgG/IgM)</span>
               </div>
               <div className="asa-ae-card">
                 <span className="asa-ae-label">Confirmation</span>
-                <span className="asa-ae-value">≥2 positive tests, ≥12 weeks apart</span>
+                <span className="asa-ae-value">\u22652 positive tests, \u226512 weeks apart</span>
               </div>
               <div className="asa-ae-card">
                 <span className="asa-ae-label">High-risk profile</span>
@@ -202,7 +203,7 @@ export function ApsThrombophiliaGuide() {
               </div>
               <div className="asa-ae-card">
                 <span className="asa-ae-label">Target INR</span>
-                <span className="asa-ae-value">2.0–3.0 (warfarin)</span>
+                <span className="asa-ae-value">2.0-3.0 (warfarin)</span>
               </div>
               <div className="asa-ae-card">
                 <span className="asa-ae-label">Duration</span>
@@ -211,6 +212,16 @@ export function ApsThrombophiliaGuide() {
             </div>
             <div className="asa-alert asa-alert-amber">
               <strong>Specialist consultation:</strong> Diagnosis and management of APS should be undertaken in consultation with a hematologist or thrombosis specialist given complexity, treatment implications, and laboratory interpretation challenges.
+            </div>
+            <div className="asa-section-card">
+              <h3 className="asa-section-title">Related Guides</h3>
+              <ul className="asa-ind-list">
+                <li><GuideLink to="warfarin">Warfarin</GuideLink></li>
+                <li><GuideLink to="warfarinInr">Warfarin: Out-of-Range INR Management</GuideLink></li>
+                <li><GuideLink to="warfarinPoc">Warfarin: Point-of-Care INR Monitoring</GuideLink></li>
+                <li><GuideLink to="naturalAnticoag">Natural Anticoagulant Deficiencies (PC, PS, AT)</GuideLink></li>
+                <li><GuideLink to="pregProphylaxis">Pregnancy: Thromboprophylaxis</GuideLink></li>
+              </ul>
             </div>
           </div>
         )}
@@ -229,18 +240,18 @@ export function ApsThrombophiliaGuide() {
                   <ul className="asa-ind-list">
                     {d.items.map((item) => <li key={item}>{item}</li>)}
                   </ul>
-                  {d.note && <p style={{ fontSize: "0.8rem", color: "var(--muted)", marginTop: "0.5rem" }}>★ {d.note}</p>}
+                  {d.note && <p style={{ fontSize: "0.8rem", color: "var(--muted)", marginTop: "0.5rem" }}>{d.note}</p>}
                 </div>
               ))}
             </div>
             <div className="asa-section-card">
               <h3 className="asa-section-title">Key Laboratory Notes</h3>
               <ul className="asa-ind-list">
-                <li>ELISA results for aCL/anti-β2GPI are not equivalent to chemiluminescent immunoassay (CLIA) results</li>
-                <li>Moderate positive: 40–79 Units; High positive: ≥80 Units (ELISA)</li>
-                <li>LA may prolong aPTT — do NOT use aPTT to monitor UFH in LA-positive patients (use anti-Xa instead)</li>
-                <li>LA may cause falsely elevated point-of-care INR — calibrate with venous lab INR periodically</li>
-                <li>Single positive result: do not diagnose APS — retest in ≥12 weeks</li>
+                <li>ELISA results for aCL/anti-\u03b22GPI are not equivalent to chemiluminescent immunoassay (CLIA) results</li>
+                <li>Moderate positive: 40-79 Units; High positive: \u226580 Units (ELISA)</li>
+                <li>LA may prolong aPTT &mdash; do NOT use aPTT to monitor UFH in LA-positive patients (use anti-Xa instead)</li>
+                <li>LA may cause falsely elevated point-of-care INR &mdash; calibrate with venous lab INR periodically (see <GuideLink to="warfarinPoc">POC INR Guide</GuideLink>)</li>
+                <li>Single positive result: do not diagnose APS &mdash; retest in \u226512 weeks</li>
               </ul>
             </div>
             <div className="asa-section-card">
@@ -272,11 +283,17 @@ export function ApsThrombophiliaGuide() {
                   <h3 className="asa-section-title" style={{ margin: 0 }}>{a.phase}</h3>
                   <span className={a.badgeClass}>{a.badge}</span>
                 </div>
-                <p className="asa-section-copy">{a.recommendation}</p>
+                <p className="asa-section-copy">
+                  {a.phase === "Acute venous thrombosis" ? (
+                    <>LMWH preferred over UFH if baseline aPTT is prolonged by lupus anticoagulant (LA interferes with aPTT monitoring of UFH). See the <GuideLink to="ufhLmwh">UFH, LMWH &amp; Fondaparinux</GuideLink> guide for dosing.</>
+                  ) : (
+                    a.recommendation
+                  )}
+                </p>
               </div>
             ))}
             <div className="asa-section-card">
-              <h3 className="asa-section-title">DOAC vs. Warfarin — Key Trial Evidence</h3>
+              <h3 className="asa-section-title">DOAC vs. Warfarin &mdash; Key Trial Evidence</h3>
               <div style={{ overflowX: "auto" }}>
                 <table className="asa-dose-table">
                   <thead>
@@ -310,14 +327,14 @@ export function ApsThrombophiliaGuide() {
                 <li>Inform patient about reduced benefit of DOACs relative to warfarin in high-risk APS</li>
                 <li>Refer to hematologist or thrombosis specialist</li>
                 <li>Document informed discussion in the medical record</li>
-                <li>If DOAC used: rivaroxaban or apixaban, with close monitoring</li>
+                <li>If DOAC used: <GuideLink to="rivaroxaban">rivaroxaban</GuideLink> or <GuideLink to="apixaban">apixaban</GuideLink>, with close monitoring</li>
               </ul>
             </div>
             <div className="asa-section-card">
               <h3 className="asa-section-title">Adjunctive Treatments</h3>
               <ul className="asa-ind-list">
                 <li><strong>Hydroxychloroquine:</strong> add in APS + SLE; possible thromboprophylactic effect</li>
-                <li><strong>Low-dose ASA:</strong> may reduce arterial recurrence risk; not well-defined role outside of obstetric APS or concurrent cardiovascular risk reduction</li>
+                <li><strong>Low-dose ASA:</strong> may reduce arterial recurrence risk; role not well defined outside of obstetric APS or concurrent cardiovascular risk reduction</li>
                 <li><strong>Cardiovascular risk factor reduction:</strong> essential for all APS patients (BP control, lipid management, smoking cessation)</li>
                 <li><strong>Statins:</strong> may have immunomodulatory effects; not routinely recommended solely for APS</li>
               </ul>
@@ -350,9 +367,6 @@ export function ApsThrombophiliaGuide() {
                   <li key={r}>{r}</li>
                 ))}
               </ol>
-              <p className="asa-section-copy" style={{ marginTop: "1rem", fontSize: "0.8rem", color: "var(--muted)" }}>
-                Source: Thrombosis Canada Clinical Guides | Version 39 | Updated: 2026-02-06
-              </p>
             </div>
           </div>
         )}

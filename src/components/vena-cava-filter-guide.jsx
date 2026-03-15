@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 import {
   AlertCircle,
   Calendar,
@@ -101,12 +102,12 @@ const postInsertionSteps = [
   ],
 ];
 
-const relatedGuides = [
-  "Deep Vein Thrombosis (DVT): Treatment",
-  "Pulmonary Embolism (PE): Treatment",
-  "Pulmonary Embolism: High- and Intermediate-Risk",
-  "Venous Thromboembolism: Duration of Treatment",
-  "DOACs: Comparison and Frequently-asked Questions",
+const relatedGuideKeys = [
+  { to: "dvtTreatment", label: "DVT Treatment" },
+  { to: "peTreatment", label: "PE Treatment" },
+  { to: "peHighRisk", label: "PE: High- and Intermediate-Risk" },
+  { to: "vteDuration", label: "VTE Duration of Treatment" },
+  { to: "doacsComparison", label: "DOACs: Comparison & FAQ" },
 ];
 
 const references = [
@@ -147,7 +148,7 @@ export function VenaCavaFilterGuide() {
             <h2 className="asa-guide-title">Vena Cava Filter</h2>
             <div className="asa-guide-meta">
               <span><Calendar size={13} /> Updated 6 February 2026</span>
-              <span><FileText size={13} /> Thrombosis Canada Clinical Guide</span>
+              <span><FileText size={13} /> VTE Management Clinical Guide</span>
             </div>
           </div>
           <div className="asa-guide-icon">
@@ -329,8 +330,8 @@ export function VenaCavaFilterGuide() {
             <article className="asa-section-card">
               <h3><Dot tone="gray" />Related Clinical Guides</h3>
               <ul className="asa-related-list">
-                {relatedGuides.map((item) => (
-                  <li key={item}><Link2 size={14} /><span>{item}</span></li>
+                {relatedGuideKeys.map((item) => (
+                  <li key={item.to}><Link2 size={14} /><GuideLink to={item.to}>{item.label}</GuideLink></li>
                 ))}
               </ul>
             </article>

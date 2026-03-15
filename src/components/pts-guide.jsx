@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = ["Overview", "Diagnosis & Risk Factors", "Prevention", "Treatment", "References"];
 
@@ -69,7 +70,7 @@ export function PtsGuide() {
   return (
     <div className="asa-guide-shell">
       <div className="asa-guide-header">
-        <p className="asa-guide-eyebrow">Thrombosis Canada · Clinical Guide</p>
+        <p className="asa-guide-eyebrow">Clinical Guide</p>
         <h1 className="asa-guide-title">Post-Thrombotic Syndrome (PTS)</h1>
         <p className="asa-guide-lead">
           PTS develops in 20–50% of DVT patients. Prevention centers on adequate anticoagulation and preventing recurrent ipsilateral DVT. Routine ECS for 2 years is no longer recommended.
@@ -207,9 +208,9 @@ export function PtsGuide() {
               <ol className="asa-ref-list">
                 {references.map((r) => <li key={r}>{r}</li>)}
               </ol>
-              <p className="asa-section-copy" style={{ marginTop: "1rem", fontSize: "0.8rem", color: "var(--muted)" }}>
-                Source: Thrombosis Canada Clinical Guides | Version 38 | Updated: 2026-02-06
-              </p>
+              <div style={{ marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }}>
+                <p>Related: <GuideLink to="dvtTreatment">DVT Treatment</GuideLink> | <GuideLink to="vteDuration">VTE Duration</GuideLink> | <GuideLink to="dvtDiagnosis">DVT Diagnosis</GuideLink></p>
+              </div>
             </div>
           </div>
         )}

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   ["overview", "Overview"],
@@ -41,7 +42,6 @@ export function HmbAnticoagulationGuide() {
               Management of Heavy Menstrual Bleeding for Patients on Anticoagulation
             </h2>
             <div className="asa-guide-meta">
-              <span>Thrombosis Canada</span>
             </div>
           </div>
         </div>
@@ -383,7 +383,7 @@ export function HmbAnticoagulationGuide() {
 
       <div className="asa-guide-footer">
         <p>
-          <strong>Management of Heavy Menstrual Bleeding for Patients on Anticoagulation</strong> | Thrombosis Canada
+          <strong>Management of Heavy Menstrual Bleeding for Patients on Anticoagulation</strong>
         </p>
         <p>
           The information here is not a substitute for clinical judgement. Always seek

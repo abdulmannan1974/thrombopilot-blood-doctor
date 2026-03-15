@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   "Overview",
@@ -86,7 +87,7 @@ const persistentFactors = [
   {
     factor: "Active cancer",
     recommendation: "Indefinite anticoagulation if bleeding risk acceptable",
-    detail: "Risk highest with metastatic disease and patients on chemotherapy. See Cancer and Thrombosis guide.",
+    detail: "Risk highest with metastatic disease and patients on chemotherapy.",
     badge: "Indefinite",
     badgeClass: "asa-badge asa-badge-red",
   },
@@ -159,7 +160,7 @@ export function VteDurationGuide() {
   return (
     <div className="asa-guide-shell">
       <div className="asa-guide-header">
-        <p className="asa-guide-eyebrow">Thrombosis Canada · Clinical Guide</p>
+        <p className="asa-guide-eyebrow">Clinical Guide</p>
         <h1 className="asa-guide-title">VTE: Duration of Treatment</h1>
         <p className="asa-guide-lead">
           Evidence-based guidance on how long to anticoagulate after DVT or PE — balancing recurrence risk, bleeding risk, and patient preference.
@@ -310,7 +311,7 @@ export function VteDurationGuide() {
               <ul className="asa-ind-list">
                 <li><strong>Two strong provoking factors (e.g. separate surgeries):</strong> 3 months is typically recommended.</li>
                 <li><strong>Two weak provoking factors (e.g. travel + hospitalization):</strong> extended therapy may be more appropriate.</li>
-                <li><strong>CVC-associated VTE:</strong> treat as provoked VTE; see Central Venous Catheter-Related Thrombosis guide.</li>
+                <li><strong>CVC-associated VTE:</strong> treat as provoked VTE; see <GuideLink to="cvad">Catheter-Related DVT</GuideLink>.</li>
                 <li><strong>Isolated distal DVT:</strong> lower recurrence risk than proximal DVT or PE; shorter duration may suffice.</li>
                 <li><strong>Cancer-related VTE:</strong> treat as persistent risk factor — see Persistent Risk Factors tab.</li>
               </ul>
@@ -432,9 +433,9 @@ export function VteDurationGuide() {
                   <li key={r}>{r}</li>
                 ))}
               </ol>
-              <p className="asa-section-copy" style={{ marginTop: "1rem", fontSize: "0.8rem", color: "var(--muted)" }}>
-                Source: Thrombosis Canada Clinical Guides | Version 87 | Updated: 2026-02-05
-              </p>
+              <div style={{ marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }}>
+                <p>Related: <GuideLink to="dvtTreatment">DVT Treatment</GuideLink> | <GuideLink to="peTreatment">PE Treatment</GuideLink> | <GuideLink to="cancer">Cancer &amp; Thrombosis</GuideLink> | <GuideLink to="aps">Antiphospholipid Syndrome</GuideLink> | <GuideLink to="apixaban">Apixaban</GuideLink> | <GuideLink to="rivaroxaban">Rivaroxaban</GuideLink></p>
+              </div>
             </div>
           </div>
         )}

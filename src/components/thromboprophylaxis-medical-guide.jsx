@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = ["Overview", "Risk Assessment", "Dosing", "Special Considerations", "References"];
 
@@ -48,7 +49,7 @@ export function ThromboprophylaxisMedicalGuide() {
   return (
     <div className="asa-guide-shell">
       <div className="asa-guide-header">
-        <p className="asa-guide-eyebrow">Thrombosis Canada · Clinical Guide</p>
+        <p className="asa-guide-eyebrow">Clinical Guide</p>
         <h1 className="asa-guide-title">Thromboprophylaxis: Hospitalized Medical Patients</h1>
         <p className="asa-guide-lead">
           LMWH prophylaxis for acutely ill medical inpatients at increased VTE risk — balanced against bleeding risk. Duration: until discharge only. DOACs NOT recommended in this setting.
@@ -211,9 +212,9 @@ export function ThromboprophylaxisMedicalGuide() {
               <ol className="asa-ref-list">
                 {references.map((r) => <li key={r}>{r}</li>)}
               </ol>
-              <p className="asa-section-copy" style={{ marginTop: "1rem", fontSize: "0.8rem", color: "var(--muted)" }}>
-                Source: Thrombosis Canada Clinical Guides | Version 45 | Updated: 2026-02-05
-              </p>
+              <div style={{ marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }}>
+                <p>Related: <GuideLink to="ufhLmwh">UFH, LMWH &amp; Fondaparinux</GuideLink> | <GuideLink to="hit">HIT</GuideLink> | <GuideLink to="covid">COVID-19 Thromboprophylaxis</GuideLink> | <GuideLink to="prophylaxisNonOrtho">Non-Ortho Surgical Prophylaxis</GuideLink></p>
+              </div>
             </div>
           </div>
         )}

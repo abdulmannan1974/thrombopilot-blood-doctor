@@ -24140,6 +24140,148 @@ function AppSidebar({
     ] }) })
   ] });
 }
+const GuideNavContext = reactExports.createContext(null);
+const GUIDE_IDS = {
+  // Anticoagulant drugs
+  warfarin: "Warfarin",
+  warfarinInr: "Warfarin_Management_of_Out-of-Range_INRs",
+  warfarinPoc: "Warfarin_Point-of-Care_INR_Monitoring",
+  warfarinPeriop: "Warfarin_Perioperative_Management",
+  apixaban: "Apixaban_(Eliquis)",
+  rivaroxaban: "Rivaroxaban_(Xarelto)",
+  dabigatran: "Dabigatran_(Pradaxa)",
+  edoxaban: "Edoxaban_(Lixiana)",
+  ufhLmwh: "Unfractionated_Heparin_Low_Molecular_Weight_Heparin_and_Fondaparinux",
+  // DOAC management
+  doacsComparison: "DOACs_Comparison_And_Frequently-asked_Questions",
+  doacsCoagTests: "DOACs_Coagulation_Tests",
+  doacsBleeding: "DOACs_Management_of_Bleeding",
+  doacsPeriop: "DOACs_Perioperative_Management",
+  doacsObesity: "DOACs_in_Patients_with_Obesity",
+  // Antiplatelet drugs
+  asa: "Acetylsalicylic_Acid_(ASA)",
+  clopidogrel: "Clopidogrel_(Plavix)",
+  prasugrel: "Prasugrel",
+  ticagrelor: "Ticagrelor_(Brilinta)",
+  // Antiplatelet / anticoag combinations
+  anticoagAntiplatelet: "Anticoagulation_in_Patients_Requiring_Antiplatelet_Therapy",
+  daptDuration: "Duration_of_Dual_Antiplatelet_Therapy_in_Patients_With_Coronary_Artery_Disease",
+  periopAntiplatelet: "Perioperative_Management_of_Antiplatelet_Therapy",
+  // VTE
+  dvtDiagnosis: "Deep_Vein_Thrombosis_(DVT)_Diagnosis",
+  dvtTreatment: "Deep_Vein_Thrombosis_(DVT)_Treatment",
+  peDiagnosis: "Pulmonary_Embolism_(PE)_Diagnosis",
+  peTreatment: "Pulmonary_Embolism_(PE)_Treatment",
+  peHighRisk: "Pulmonary_Embolism_High-_and_Intermediate-Risk",
+  vteDuration: "Venous_Thromboembolism_Duration_of_Treatment",
+  svt: "Superficial_Thrombophlebitis_Superficial_Vein_Thrombosis",
+  pvt: "Portal_Vein_Thrombosis_(PVT)",
+  pts: "Post_Thrombotic_Syndrome_(PTS)",
+  vcFilter: "Vena_Cava_Filter",
+  // Thrombophilia
+  aps: "Thrombophilia_Antiphospholipid_Syndrome",
+  naturalAnticoag: "Thrombophilia_Deficiencies_in_Protein_C_Protein_S_and_Antithrombin",
+  fvlPgm: "Thrombophilia_Factor_V_Leiden_and_Prothrombin_Gene_Mutation",
+  homocysteine: "Thrombophilia_Homocysteinemia_and_Methylene_Tetrahydrofolate_Reductase",
+  // Thromboprophylaxis
+  prophylaxisMedical: "Thromboprophylaxis_Hospitalized_Medical_Patients",
+  prophylaxisNonOrtho: "Thromboprophylaxis_Non-Orthopedic_Surgery",
+  prophylaxisOrtho: "Thromboprophylaxis_Orthopedic_Surgery",
+  covid: "COVID-19_Primary_Thromboprophylaxis_for_Hospitalized_Patients",
+  // Pregnancy
+  pregProphylaxis: "Pregnancy_Thromboprophylaxis",
+  pregVte: "Pregnancy_Venous_Thromboembolism_Treatment",
+  pregDiagnosis: "Pregnancy_Diagnosis_of_DVT_and_PE",
+  // Stroke / neuro
+  strokeAf: "Stroke_Prevention_in_Atrial_Fibrillation",
+  strokeSecondary: "Ischemic_Stroke_or_TIA_Secondary_Prevention",
+  strokeThrombolysis: "Stroke_Thrombolysis_and_Endovascular_Therapy",
+  cvt: "Cerebral_Venous_Thrombosis",
+  // Other
+  cancer: "Cancer_and_Thrombosis",
+  cvad: "Central_Venous_Catheter-Related_Deep_Vein_Thrombosis",
+  hit: "Heparin-Induced_Thrombocytopenia_(HIT)",
+  vipitVitt: "Vaccine-Induced_Prothrombotic_Immune_Thrombocytopenia_(VIPITVITT)",
+  pad: "Peripheral_Arterial_Disease",
+  hmb: "Management_of_Heavy_Menstrual_Bleeding_for_Patients_on_Anticoagulation",
+  heartValves: "Bioprosthetic_and_Mechanical_Heart_Valves_Antithrombotic_Therapy",
+  airTravel: "Air_Travel-related_Thrombosis"
+};
+const GUIDE_LABELS = {
+  warfarin: "Warfarin",
+  warfarinInr: "Warfarin: Out-of-Range INR Management",
+  warfarinPoc: "Warfarin: Point-of-Care INR Monitoring",
+  warfarinPeriop: "Warfarin: Perioperative Management",
+  apixaban: "Apixaban (Eliquis)",
+  rivaroxaban: "Rivaroxaban (Xarelto)",
+  dabigatran: "Dabigatran (Pradaxa)",
+  edoxaban: "Edoxaban (Lixiana)",
+  ufhLmwh: "UFH, LMWH & Fondaparinux",
+  doacsComparison: "DOACs: Comparison & FAQ",
+  doacsCoagTests: "DOACs: Coagulation Tests",
+  doacsBleeding: "DOACs: Bleeding Management",
+  doacsPeriop: "DOACs: Perioperative Management",
+  doacsObesity: "DOACs in Obesity",
+  asa: "ASA (Acetylsalicylic Acid)",
+  clopidogrel: "Clopidogrel (Plavix)",
+  prasugrel: "Prasugrel (Effient)",
+  ticagrelor: "Ticagrelor (Brilinta)",
+  anticoagAntiplatelet: "Anticoagulation + Antiplatelet Therapy",
+  daptDuration: "DAPT Duration in CAD",
+  periopAntiplatelet: "Perioperative Antiplatelet Management",
+  dvtDiagnosis: "DVT: Diagnosis",
+  dvtTreatment: "DVT: Treatment",
+  peDiagnosis: "PE: Diagnosis",
+  peTreatment: "PE: Treatment",
+  peHighRisk: "PE: High- & Intermediate-Risk",
+  vteDuration: "VTE: Duration of Treatment",
+  svt: "Superficial Vein Thrombosis",
+  pvt: "Portal Vein Thrombosis",
+  pts: "Post-Thrombotic Syndrome",
+  vcFilter: "Vena Cava Filters",
+  aps: "Antiphospholipid Syndrome",
+  naturalAnticoag: "Thrombophilia: Protein C, S & Antithrombin",
+  fvlPgm: "Factor V Leiden & Prothrombin Gene Mutation",
+  homocysteine: "Homocysteinemia & MTHFR",
+  prophylaxisMedical: "Thromboprophylaxis: Medical Patients",
+  prophylaxisNonOrtho: "Thromboprophylaxis: Non-Orthopedic Surgery",
+  prophylaxisOrtho: "Thromboprophylaxis: Orthopedic Surgery",
+  covid: "COVID-19 Thromboprophylaxis",
+  pregProphylaxis: "Pregnancy: Thromboprophylaxis",
+  pregVte: "Pregnancy: VTE Treatment",
+  pregDiagnosis: "Pregnancy: DVT & PE Diagnosis",
+  strokeAf: "Stroke Prevention in AF",
+  strokeSecondary: "Ischemic Stroke: Secondary Prevention",
+  strokeThrombolysis: "Stroke: Thrombolysis & EVT",
+  cvt: "Cerebral Venous Thrombosis",
+  cancer: "Cancer & Thrombosis",
+  cvad: "Catheter-Related DVT",
+  hit: "Heparin-Induced Thrombocytopenia (HIT)",
+  vipitVitt: "VIPIT / VITT",
+  pad: "Peripheral Arterial Disease",
+  hmb: "Heavy Menstrual Bleeding on Anticoagulation",
+  heartValves: "Heart Valves: Antithrombotic Therapy",
+  airTravel: "Air Travel-Related Thrombosis"
+};
+function GuideLink({ to, children }) {
+  const navigate = reactExports.useContext(GuideNavContext);
+  const guideId = GUIDE_IDS[to] ?? to;
+  const label = children || GUIDE_LABELS[to] || to;
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (navigate) navigate(guideId);
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "a",
+    {
+      href: "#",
+      onClick: handleClick,
+      className: "guide-cross-link",
+      title: `Open: ${typeof label === "string" ? label : GUIDE_LABELS[to] || to}`,
+      children: label
+    }
+  );
+}
 const indicationSections = [
   {
     title: "Cardiac Indications",
@@ -24244,15 +24386,6 @@ const timelineSteps$2 = [
   ["Day of procedure", "Proceed with the procedure and confirm the bleeding control plan.", "gray"],
   ["Within 48 hours after procedure", "Restart ASA as soon as haemostasis is secure and there is no significant bleeding.", "green"]
 ];
-const relatedGuides$d = [
-  "Mechanical and Bioprosthetic Heart Valves: Anticoagulant Therapy",
-  "Perioperative Management of Antiplatelet Therapy",
-  "Peripheral Arterial Disease",
-  "Stroke: Secondary Prevention",
-  "Thromboprophylaxis: Orthopedic Surgery",
-  "Venous Thromboembolism: Duration of Treatment",
-  "Duration of Dual Antiplatelet Therapy in Coronary Artery Disease"
-];
 const references$R = [
   "Anderson D, et al. Aspirin or rivaroxaban for VTE prophylaxis after hip or knee arthroplasty. N Engl J Med. 2018;378:699-707.",
   "Bainey KR, et al. 2023 Canadian Cardiovascular Society and Canadian Association of Interventional Cardiology focused update of the guidelines for the use of antiplatelet therapy. Can J Cardiol. 2024;40:160-181.",
@@ -24318,7 +24451,7 @@ function AsaGuide() {
       /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-mechanism-icon", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Syringe, { size: 18 }) }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Mechanism of Action" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "ASA irreversibly inhibits platelet aggregation by inhibiting thromboxane A2 synthesis through cyclooxygenase inhibition. The antiplatelet effect lasts for the lifetime of the platelet." })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "ASA irreversibly inhibits platelet aggregation by blocking thromboxane A2 synthesis through cyclooxygenase inhibition. The antiplatelet effect lasts for the lifetime of the platelet." })
       ] })
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-tabs", children: [
@@ -24381,7 +24514,9 @@ function AsaGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsx(CircleAlert, { size: 16 }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "GI bleeding risk:" }),
-            " For patients with prior or high-risk gastrointestinal bleeding, consider a proton pump inhibitor, an H2 antagonist, or an alternative antiplatelet agent such as clopidogrel."
+            " For patients with prior or high-risk gastrointestinal bleeding, consider a proton pump inhibitor, an H2 antagonist, or an alternative antiplatelet agent such as ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "clopidogrel", children: "clopidogrel" }),
+            "."
           ] })
         ] })
       ] }) : null,
@@ -24430,7 +24565,11 @@ function AsaGuide() {
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-alert asa-alert-teal", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(CircleCheck, { size: 16 }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: "Use the perioperative antiplatelet guide for detailed interruption, dual antiplatelet therapy, and restart decisions." })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+            "See the ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "periopAntiplatelet", children: "Perioperative Antiplatelet Management" }),
+            " guide for detailed interruption, dual antiplatelet therapy, and restart decisions."
+          ] })
         ] })
       ] }) : null,
       tab === "special" ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-tab-panel", children: [
@@ -24448,7 +24587,11 @@ function AsaGuide() {
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-alert asa-alert-danger", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(ShieldAlert, { size: 16 }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: "In most other patients, stop ASA once anticoagulation is started. Discuss combined therapy with thrombosis or cardiology specialists first." })
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+              "In most other patients, stop ASA once anticoagulation is started. See the ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "anticoagAntiplatelet", children: "Anticoagulation + Antiplatelet Therapy" }),
+              " guide."
+            ] })
           ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
@@ -24482,10 +24625,14 @@ function AsaGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$g, { tone: "gray" }),
             "Related Clinical Guides"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuides$d.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Link2, { size: 14 }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: item })
-          ] }, item)) })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-related-list", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "periopAntiplatelet", children: "Perioperative Antiplatelet Management" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "pad", children: "Peripheral Arterial Disease" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "strokeSecondary", children: "Ischemic Stroke: Secondary Prevention" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "prophylaxisOrtho", children: "Thromboprophylaxis: Orthopedic Surgery" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "vteDuration", children: "VTE: Duration of Treatment" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "daptDuration", children: "DAPT Duration in CAD" }) })
+          ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { children: [
@@ -25677,7 +25824,7 @@ const incidentalRows = [
   [
     "Mesenteric / renal / cerebral vein thrombosis",
     "Full-dose anticoagulation",
-    "See Cerebral Venous Thrombosis guide for CVT-specific management"
+    "CVT-specific management applies"
   ]
 ];
 const catheterRows = [
@@ -25767,8 +25914,7 @@ function CancerThrombosisGuide() {
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-header-copy", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-badge-row", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Clinical Guide" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-green", children: "Cancer-Associated Thrombosis" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-teal", children: "Thrombosis Canada" })
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-green", children: "Cancer-Associated Thrombosis" })
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-guide-title", children: "Cancer and Thrombosis" }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-meta", children: [
@@ -26105,6 +26251,19 @@ function CancerThrombosisGuide() {
             ] }, site)) })
           ] })
         ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-alert asa-alert-info", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Info, { size: 16 }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Related guides:" }),
+            " For catheter-related DVT, see ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "cvad", children: "Catheter-Related DVT" }),
+            ". For cerebral vein thrombosis in cancer patients, see ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "cvt", children: "Cerebral Venous Thrombosis" }),
+            ". For VTE duration decisions, see ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "vteDuration", children: "VTE Duration of Treatment" }),
+            "."
+          ] })
+        ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$d, { tone: "danger" }),
@@ -26195,7 +26354,7 @@ function CancerThrombosisGuide() {
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-footer", style: { padding: "1rem 1.35rem" }, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { style: { margin: 0, fontWeight: 700, color: "#374151" }, children: "Cancer and Thrombosis" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { style: { margin: "0.3rem 0 0", color: "#6b7280", fontSize: "0.85rem" }, children: "Thrombosis Canada Clinical Guide · Updated 10 September 2024 · Individualise anticoagulant choice based on cancer type, bleeding risk, renal function, and patient preference." })
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { style: { margin: "0.3rem 0 0", color: "#6b7280", fontSize: "0.85rem" }, children: "Clinical Guide · Updated 10 September 2024 · Individualise anticoagulant choice based on cancer type, bleeding risk, renal function, and patient preference." })
     ] })
   ] });
 }
@@ -26374,7 +26533,7 @@ function CvadThrombosisGuide() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-shell", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-guide-header", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-header-body", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-eyebrow", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Thrombosis Canada" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Clinical Guide" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge", children: "Updated Feb 2026" })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "asa-guide-title", children: "Central Venous Catheter-Related DVT" }),
@@ -26633,152 +26792,17 @@ function CvadThrombosisGuide() {
       activeTab === "references" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-sections", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "References" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$N.map((ref, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: ref }, i)) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }, children: "Source: Thrombosis Canada Clinical Guides — thrombosiscanada.ca | Version 44, updated 2026-02-06. Not a substitute for individual clinical judgment." })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+          "Related: ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "cancer", children: "Cancer & Thrombosis" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "dvtTreatment", children: "DVT Treatment" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "vteDuration", children: "VTE Duration" })
+        ] }) })
       ] }) })
     ] })
   ] });
-}
-const GuideNavContext = reactExports.createContext(null);
-const GUIDE_IDS = {
-  // Anticoagulant drugs
-  warfarin: "Warfarin",
-  warfarinInr: "Warfarin_Management_of_Out-of-Range_INRs",
-  warfarinPoc: "Warfarin_Point-of-Care_INR_Monitoring",
-  warfarinPeriop: "Warfarin_Perioperative_Management",
-  apixaban: "Apixaban_(Eliquis)",
-  rivaroxaban: "Rivaroxaban_(Xarelto)",
-  dabigatran: "Dabigatran_(Pradaxa)",
-  edoxaban: "Edoxaban_(Lixiana)",
-  ufhLmwh: "Unfractionated_Heparin_Low_Molecular_Weight_Heparin_and_Fondaparinux",
-  // DOAC management
-  doacsComparison: "DOACs_Comparison_And_Frequently-asked_Questions",
-  doacsCoagTests: "DOACs_Coagulation_Tests",
-  doacsBleeding: "DOACs_Management_of_Bleeding",
-  doacsPeriop: "DOACs_Perioperative_Management",
-  doacsObesity: "DOACs_in_Patients_with_Obesity",
-  // Antiplatelet drugs
-  asa: "Acetylsalicylic_Acid_(ASA)",
-  clopidogrel: "Clopidogrel_(Plavix)",
-  prasugrel: "Prasugrel",
-  ticagrelor: "Ticagrelor_(Brilinta)",
-  // Antiplatelet / anticoag combinations
-  anticoagAntiplatelet: "Anticoagulation_in_Patients_Requiring_Antiplatelet_Therapy",
-  daptDuration: "Duration_of_Dual_Antiplatelet_Therapy_in_Patients_With_Coronary_Artery_Disease",
-  periopAntiplatelet: "Perioperative_Management_of_Antiplatelet_Therapy",
-  // VTE
-  dvtDiagnosis: "Deep_Vein_Thrombosis_(DVT)_Diagnosis",
-  dvtTreatment: "Deep_Vein_Thrombosis_(DVT)_Treatment",
-  peDiagnosis: "Pulmonary_Embolism_(PE)_Diagnosis",
-  peTreatment: "Pulmonary_Embolism_(PE)_Treatment",
-  peHighRisk: "Pulmonary_Embolism_High-_and_Intermediate-Risk",
-  vteDuration: "Venous_Thromboembolism_Duration_of_Treatment",
-  svt: "Superficial_Thrombophlebitis_Superficial_Vein_Thrombosis",
-  pvt: "Portal_Vein_Thrombosis_(PVT)",
-  pts: "Post_Thrombotic_Syndrome_(PTS)",
-  vcFilter: "Vena_Cava_Filter",
-  // Thrombophilia
-  aps: "Thrombophilia_Antiphospholipid_Syndrome",
-  naturalAnticoag: "Thrombophilia_Deficiencies_in_Protein_C_Protein_S_and_Antithrombin",
-  fvlPgm: "Thrombophilia_Factor_V_Leiden_and_Prothrombin_Gene_Mutation",
-  homocysteine: "Thrombophilia_Homocysteinemia_and_Methylene_Tetrahydrofolate_Reductase",
-  // Thromboprophylaxis
-  prophylaxisMedical: "Thromboprophylaxis_Hospitalized_Medical_Patients",
-  prophylaxisNonOrtho: "Thromboprophylaxis_Non-Orthopedic_Surgery",
-  prophylaxisOrtho: "Thromboprophylaxis_Orthopedic_Surgery",
-  covid: "COVID-19_Primary_Thromboprophylaxis_for_Hospitalized_Patients",
-  // Pregnancy
-  pregProphylaxis: "Pregnancy_Thromboprophylaxis",
-  pregVte: "Pregnancy_Venous_Thromboembolism_Treatment",
-  pregDiagnosis: "Pregnancy_Diagnosis_of_DVT_and_PE",
-  // Stroke / neuro
-  strokeAf: "Stroke_Prevention_in_Atrial_Fibrillation",
-  strokeSecondary: "Ischemic_Stroke_or_TIA_Secondary_Prevention",
-  strokeThrombolysis: "Stroke_Thrombolysis_and_Endovascular_Therapy",
-  cvt: "Cerebral_Venous_Thrombosis",
-  // Other
-  cancer: "Cancer_and_Thrombosis",
-  cvad: "Central_Venous_Catheter-Related_Deep_Vein_Thrombosis",
-  hit: "Heparin-Induced_Thrombocytopenia_(HIT)",
-  vipitVitt: "Vaccine-Induced_Prothrombotic_Immune_Thrombocytopenia_(VIPITVITT)",
-  pad: "Peripheral_Arterial_Disease",
-  hmb: "Management_of_Heavy_Menstrual_Bleeding_for_Patients_on_Anticoagulation",
-  heartValves: "Bioprosthetic_and_Mechanical_Heart_Valves_Antithrombotic_Therapy",
-  airTravel: "Air_Travel-related_Thrombosis"
-};
-const GUIDE_LABELS = {
-  warfarin: "Warfarin",
-  warfarinInr: "Warfarin: Out-of-Range INR Management",
-  warfarinPoc: "Warfarin: Point-of-Care INR Monitoring",
-  warfarinPeriop: "Warfarin: Perioperative Management",
-  apixaban: "Apixaban (Eliquis)",
-  rivaroxaban: "Rivaroxaban (Xarelto)",
-  dabigatran: "Dabigatran (Pradaxa)",
-  edoxaban: "Edoxaban (Lixiana)",
-  ufhLmwh: "UFH, LMWH & Fondaparinux",
-  doacsComparison: "DOACs: Comparison & FAQ",
-  doacsCoagTests: "DOACs: Coagulation Tests",
-  doacsBleeding: "DOACs: Bleeding Management",
-  doacsPeriop: "DOACs: Perioperative Management",
-  doacsObesity: "DOACs in Obesity",
-  asa: "ASA (Acetylsalicylic Acid)",
-  clopidogrel: "Clopidogrel (Plavix)",
-  prasugrel: "Prasugrel (Effient)",
-  ticagrelor: "Ticagrelor (Brilinta)",
-  anticoagAntiplatelet: "Anticoagulation + Antiplatelet Therapy",
-  daptDuration: "DAPT Duration in CAD",
-  periopAntiplatelet: "Perioperative Antiplatelet Management",
-  dvtDiagnosis: "DVT: Diagnosis",
-  dvtTreatment: "DVT: Treatment",
-  peDiagnosis: "PE: Diagnosis",
-  peTreatment: "PE: Treatment",
-  peHighRisk: "PE: High- & Intermediate-Risk",
-  vteDuration: "VTE: Duration of Treatment",
-  svt: "Superficial Vein Thrombosis",
-  pvt: "Portal Vein Thrombosis",
-  pts: "Post-Thrombotic Syndrome",
-  vcFilter: "Vena Cava Filters",
-  aps: "Antiphospholipid Syndrome",
-  naturalAnticoag: "Thrombophilia: Protein C, S & Antithrombin",
-  fvlPgm: "Factor V Leiden & Prothrombin Gene Mutation",
-  homocysteine: "Homocysteinemia & MTHFR",
-  prophylaxisMedical: "Thromboprophylaxis: Medical Patients",
-  prophylaxisNonOrtho: "Thromboprophylaxis: Non-Orthopedic Surgery",
-  prophylaxisOrtho: "Thromboprophylaxis: Orthopedic Surgery",
-  covid: "COVID-19 Thromboprophylaxis",
-  pregProphylaxis: "Pregnancy: Thromboprophylaxis",
-  pregVte: "Pregnancy: VTE Treatment",
-  pregDiagnosis: "Pregnancy: DVT & PE Diagnosis",
-  strokeAf: "Stroke Prevention in AF",
-  strokeSecondary: "Ischemic Stroke: Secondary Prevention",
-  strokeThrombolysis: "Stroke: Thrombolysis & EVT",
-  cvt: "Cerebral Venous Thrombosis",
-  cancer: "Cancer & Thrombosis",
-  cvad: "Catheter-Related DVT",
-  hit: "Heparin-Induced Thrombocytopenia (HIT)",
-  vipitVitt: "VIPIT / VITT",
-  pad: "Peripheral Arterial Disease",
-  hmb: "Heavy Menstrual Bleeding on Anticoagulation",
-  heartValves: "Heart Valves: Antithrombotic Therapy",
-  airTravel: "Air Travel-Related Thrombosis"
-};
-function GuideLink({ to, children }) {
-  const navigate = reactExports.useContext(GuideNavContext);
-  const guideId = GUIDE_IDS[to] ?? to;
-  const label = children || GUIDE_LABELS[to] || to;
-  const handleClick = (e) => {
-    e.preventDefault();
-    if (navigate) navigate(guideId);
-  };
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    "a",
-    {
-      href: "#",
-      onClick: handleClick,
-      className: "guide-cross-link",
-      title: `Open: ${typeof label === "string" ? label : GUIDE_LABELS[to] || to}`,
-      children: label
-    }
-  );
 }
 const tabs$M = [
   { id: "overview", label: "Overview" },
@@ -27622,7 +27646,7 @@ const lmwhRows = [
   { drug: "Dalteparin (Fragmin®)", dose: "200 U/kg SC OD (preferred) or 100 U/kg SC BID (if >100 kg)", note: "Cap at 18,000 U/day for OD dosing" },
   { drug: "Enoxaparin (Lovenox®)", dose: "1.5 mg/kg SC OD or 1 mg/kg SC BID", note: "Renal adjustment to 1 mg/kg OD if CrCl <30" },
   { drug: "Tinzaparin (Innohep®)", dose: "175 U/kg SC OD", note: "Evidence supports use down to CrCl 20 mL/min without accumulation" },
-  { drug: "Nadroparin (Fraxiparine®)", dose: "171 U/kg SC OD or 86 U/kg SC BID", note: "Less commonly used in Canada" }
+  { drug: "Nadroparin (Fraxiparine®)", dose: "171 U/kg SC OD or 86 U/kg SC BID", note: "Less commonly used" }
 ];
 const specialRows = [
   {
@@ -27735,7 +27759,7 @@ function DvtTreatmentGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "Epidemiology" }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-ae-grid", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-ae-card", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-ae-label", children: "Annual VTE in Canada" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-ae-label", children: "Annual VTE (estimated)" }),
               /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-ae-value", children: "~50,000 patients" })
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-ae-card", children: [
@@ -27780,7 +27804,7 @@ function DvtTreatmentGuide() {
               /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-ae-value", children: "LMWH or anti-Xa DOAC (apixaban preferred)" })
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-ae-card", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-ae-label", children: "APLAS" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-ae-label", children: "APS" }),
               /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-ae-value", children: "Warfarin only — DOACs not recommended" })
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-ae-card", children: [
@@ -27913,7 +27937,7 @@ function DvtTreatmentGuide() {
       activeTab === "references" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-sections", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "References" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$K.map((ref, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: ref }, i)) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }, children: "Source: Thrombosis Canada Clinical Guides — thrombosiscanada.ca | Version 80, updated 2025-11-02. Not a substitute for individual clinical judgment." })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }, children: "Version 80, updated 2025-11-02." })
       ] }) })
     ] })
   ] });
@@ -28068,7 +28092,7 @@ function HitGuide() {
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-guide-header", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-header-body", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-eyebrow", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-red", children: "Urgent Consideration" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge", children: "Thrombosis Canada · Version 39" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge", children: "Version 39" })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "asa-guide-title", children: "Heparin-Induced Thrombocytopenia (HIT)" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-lead", children: "Immune-mediated prothrombotic adverse drug reaction to heparin — diagnosis using 4Ts score and HIT assays, urgent management with non-heparin anticoagulants." })
@@ -28330,7 +28354,16 @@ function HitGuide() {
       activeTab === "references" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-sections", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "References" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$J.map((ref, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: ref }, i)) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }, children: "Source: Thrombosis Canada Clinical Guides — thrombosiscanada.ca | Version 39, updated 2024-09-10. Not a substitute for individual clinical judgment." })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+          "Related: ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "ufhLmwh", children: "UFH, LMWH & Fondaparinux" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsComparison", children: "DOACs Comparison" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "dvtTreatment", children: "DVT Treatment" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarin", children: "Warfarin" })
+        ] }) })
       ] }) })
     ] })
   ] });
@@ -28369,7 +28402,7 @@ const doacRows$1 = [
     standardDose: "150 mg BID",
     reducedDose: "110 mg BID: age ≥80, concomitant verapamil, or high bleed risk",
     dialysis: "Contraindicated",
-    reversal: "Idarucizumab (Praxbind®) — approved Health Canada, widely available",
+    reversal: "Idarucizumab (Praxbind®) — approved, widely available in Canada",
     notes: "Only DOAC with approved antidote readily available in Canada"
   },
   {
@@ -28407,7 +28440,7 @@ function StrokePreventionAfGuide() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-shell", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-guide-header", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-header-body", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-eyebrow", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Thrombosis Canada" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Clinical Guide" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge", children: "Version 68 · Jan 2024" })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "asa-guide-title", children: "Stroke Prevention in Atrial Fibrillation" }),
@@ -28468,7 +28501,7 @@ function StrokePreventionAfGuide() {
                 /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Assess fall risk" })
               ] })
             ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "HAS-BLED score: identifies modifiable bleeding risk factors; available at thrombosiscanada.ca" })
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "HAS-BLED score: identifies modifiable bleeding risk factors — use to guide risk factor modification, not to withhold anticoagulation" })
           ] })
         ] })
       ] }),
@@ -28675,7 +28708,22 @@ function StrokePreventionAfGuide() {
       activeTab === "references" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-sections", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "References" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$I.map((ref, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: ref }, i)) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }, children: "Source: Thrombosis Canada Clinical Guides — thrombosiscanada.ca | Version 68, updated 2024-01-17. Not a substitute for individual clinical judgment." })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+          "Related: ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "apixaban", children: "Apixaban" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "rivaroxaban", children: "Rivaroxaban" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "dabigatran", children: "Dabigatran" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "edoxaban", children: "Edoxaban" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarin", children: "Warfarin" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "anticoagAntiplatelet", children: "OAC + Antiplatelet" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "heartValves", children: "Heart Valves" })
+        ] }) })
       ] }) })
     ] })
   ] });
@@ -28711,7 +28759,7 @@ const percItems = [
 const imagingComparison = [
   {
     modality: "CTPA (Multidetector CT Pulmonary Angiography)",
-    advantages: "Widely available in Canada; highly sensitive and specific; rapid results; may identify alternative diagnoses",
+    advantages: "Widely available; highly sensitive and specific; rapid results; may identify alternative diagnoses",
     disadvantages: "Radiation (breast cancer risk in young women); contrast nephropathy risk; may detect subsegmental PE of uncertain significance (overdiagnosis risk)",
     when: "First-line in most patients"
   },
@@ -28757,7 +28805,7 @@ function PeDiagnosisGuide() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-shell", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-guide-header", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-header-body", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-eyebrow", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Thrombosis Canada" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Clinical Guide" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge", children: "Version 84 · Feb 2026" })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "asa-guide-title", children: "Pulmonary Embolism: Diagnosis" }),
@@ -28937,9 +28985,9 @@ function PeDiagnosisGuide() {
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "Imaging in Pregnancy" }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "asa-section-copy", children: [
-            "Both CTPA and V/Q scan are safe in pregnancy (risks of undiagnosed PE outweigh fetal radiation risk). V/Q scan preferred when normal CXR. See dedicated guide: ",
-            /* @__PURE__ */ jsxRuntimeExports.jsx("em", { children: "Pregnancy: Diagnosis of DVT and PE" }),
-            "."
+            "Both CTPA and V/Q scan are safe in pregnancy (risks of undiagnosed PE outweigh fetal radiation risk). V/Q scan preferred when normal CXR. See the ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "pregDiagnosis", children: "Pregnancy: DVT & PE Diagnosis" }),
+            " guide."
           ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
@@ -29042,7 +29090,7 @@ function PeDiagnosisGuide() {
       activeTab === "references" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-sections", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "References" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$H.map((ref, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: ref }, i)) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }, children: "Source: Thrombosis Canada Clinical Guides — thrombosiscanada.ca | Version 84, updated 2026-02-06. Not a substitute for individual clinical judgment." })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }, children: "Version 84, updated 2026-02-06." })
       ] }) })
     ] })
   ] });
@@ -29132,7 +29180,7 @@ function PeTreatmentGuide() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-shell", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-guide-header", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-header-body", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-eyebrow", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Thrombosis Canada" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Clinical Guide" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge", children: "Version 60 · May 2025" })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "asa-guide-title", children: "Pulmonary Embolism: Treatment" }),
@@ -29322,15 +29370,31 @@ function PeTreatmentGuide() {
       activeTab === "special" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-sections", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "Pregnancy" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", children: "LMWH monotherapy for full treatment duration. DOACs and warfarin contraindicated in pregnancy. See dedicated guide." })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "asa-section-copy", children: [
+            "LMWH monotherapy for full treatment duration. DOACs and ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarin", children: "warfarin" }),
+            " contraindicated in pregnancy. See the ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "pregVte", children: "Pregnancy: VTE Treatment" }),
+            " guide."
+          ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "Cancer-associated PE" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", children: "LMWH or anti-Xa DOAC (apixaban preferred — no lead-in, favourable GI bleeding profile). See Cancer and Thrombosis guide." })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "asa-section-copy", children: [
+            "LMWH or anti-Xa DOAC (",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "apixaban", children: "apixaban" }),
+            " preferred — no lead-in, favourable GI bleeding profile). See the ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "cancer", children: "Cancer & Thrombosis" }),
+            " guide."
+          ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "Anticoagulation Contraindicated" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", children: "Consider retrievable IVC filter as bridge. Consult thrombosis specialist. Reassess anticoagulation candidacy frequently. See Vena Cava Filter guide." })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "asa-section-copy", children: [
+            "Consider retrievable IVC filter as bridge. Consult thrombosis specialist. Reassess anticoagulation candidacy frequently. See the ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "vcFilter", children: "Vena Cava Filters" }),
+            " guide."
+          ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "Pediatric PE" }),
@@ -29342,14 +29406,20 @@ function PeTreatmentGuide() {
           ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "APLAS" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", children: "DOACs not recommended. Warfarin (INR 2–3) is standard therapy for thrombotic APLAS." })
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "Antiphospholipid Syndrome (APS)" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "asa-section-copy", children: [
+            "DOACs should not be used in APS. Use ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarin", children: "warfarin" }),
+            " with a target INR of 2.0–3.0. See ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "aps", children: "Antiphospholipid Syndrome" }),
+            "."
+          ] })
         ] })
       ] }),
       activeTab === "references" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-sections", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "References" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$G.map((ref, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: ref }, i)) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }, children: "Source: Thrombosis Canada Clinical Guides — thrombosiscanada.ca | Version 60, updated 2025-05-01. Not a substitute for individual clinical judgment." })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }, children: "Version 60, updated 2025-05-01." })
       ] }) })
     ] })
   ] });
@@ -29410,7 +29480,7 @@ function WarfarinGuide() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-shell", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-guide-header", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-header-body", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-eyebrow", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Thrombosis Canada" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Clinical Guide" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge", children: "Version 44 · May 2025" })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "asa-guide-title", children: "Warfarin" }),
@@ -29439,7 +29509,7 @@ function WarfarinGuide() {
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card asa-alert asa-alert-amber", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "DOACs are generally preferred over warfarin" }),
-          " for most VTE and AF patients — require less monitoring, equally effective, similar or less bleeding. Warfarin remains indicated in specific circumstances (see Indications below)."
+          " for most VTE and AF patients — they require less monitoring, are equally effective, and carry similar or less bleeding risk. Warfarin remains indicated in specific circumstances (see Indications below)."
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "Indications" }),
@@ -29511,7 +29581,9 @@ function WarfarinGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "Acute VTE Initiation" }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-ind-list", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
-              "Warfarin must be combined with a parenteral anticoagulant (LMWH or UFH) for ",
+              "Warfarin must be combined with a parenteral anticoagulant (",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "ufhLmwh", children: "LMWH or UFH" }),
+              ") for ",
               /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "≥5 days AND until INR ≥2.0 for 2 consecutive days" })
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Warfarin monotherapy is not acceptable as initial VTE treatment" })
@@ -29544,7 +29616,7 @@ function WarfarinGuide() {
               ] })
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-timeline-step", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-timeline-marker", children: "⚠" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-timeline-marker", children: "!" }),
               /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-timeline-content", children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Increase monitoring when:" }),
                 /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "New medication added or stopped, acute illness, diet change, travel, hospitalization, bleeding event" })
@@ -29558,7 +29630,7 @@ function WarfarinGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Overly frequent monitoring with dose changes before INR equilibrates" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Excessively large dose adjustments" }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
-              "Variable vitamin K intake (low intake → labile INR; encourage ",
+              "Variable vitamin K intake (low intake leads to labile INR; encourage ",
               /* @__PURE__ */ jsxRuntimeExports.jsx("em", { children: "consistent" }),
               " diet)"
             ] }),
@@ -29581,7 +29653,9 @@ function WarfarinGuide() {
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Very elevated INR without bleeding:" }),
-              " Oral vitamin K — see Warfarin: Management of Out-of-Range INR guide"
+              " Oral vitamin K — see the ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarinInr", children: "Warfarin: Out-of-Range INR Management" }),
+              " guide"
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "No role for subcutaneous vitamin K" }),
@@ -29646,14 +29720,16 @@ function WarfarinGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "asa-section-copy", children: [
             "Adding an antiplatelet agent to warfarin ",
             /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "doubles bleeding risk" }),
-            " and rarely adds thrombotic protection. Only combine when there is a specific indication (ACS, recent coronary stent, mechanical valve, stroke/TIA despite therapeutic anticoagulation). Re-assess and document the risk-benefit frequently."
+            " and rarely adds thrombotic protection. Only combine when there is a specific indication (ACS, recent coronary stent, mechanical valve, stroke/TIA despite therapeutic anticoagulation). Re-assess and document the risk-benefit frequently. See the ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "anticoagAntiplatelet", children: "Anticoagulation + Antiplatelet Therapy" }),
+            " guide."
           ] })
         ] })
       ] }),
       activeTab === "references" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-sections", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "References" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$F.map((ref, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: ref }, i)) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }, children: "Source: Thrombosis Canada Clinical Guides — thrombosiscanada.ca | Version 44, updated 2025-05-01. Not a substitute for individual clinical judgment." })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }, children: "Version 44, updated 2025-05-01. Not a substitute for individual clinical judgment." })
       ] }) })
     ] })
   ] });
@@ -29739,7 +29815,7 @@ const persistentFactors = [
   {
     factor: "Active cancer",
     recommendation: "Indefinite anticoagulation if bleeding risk acceptable",
-    detail: "Risk highest with metastatic disease and patients on chemotherapy. See Cancer and Thrombosis guide.",
+    detail: "Risk highest with metastatic disease and patients on chemotherapy.",
     badge: "Indefinite",
     badgeClass: "asa-badge asa-badge-red"
   },
@@ -29807,7 +29883,7 @@ function VteDurationGuide() {
   const [activeTab, setActiveTab] = reactExports.useState(0);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-shell", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-header", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-eyebrow", children: "Thrombosis Canada · Clinical Guide" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-eyebrow", children: "Clinical Guide" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "asa-guide-title", children: "VTE: Duration of Treatment" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-lead", children: "Evidence-based guidance on how long to anticoagulate after DVT or PE — balancing recurrence risk, bleeding risk, and patient preference." })
     ] }),
@@ -29934,7 +30010,9 @@ function VteDurationGuide() {
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "CVC-associated VTE:" }),
-              " treat as provoked VTE; see Central Venous Catheter-Related Thrombosis guide."
+              " treat as provoked VTE; see ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "cvad", children: "Catheter-Related DVT" }),
+              "."
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Isolated distal DVT:" }),
@@ -30047,7 +30125,20 @@ function VteDurationGuide() {
       activeTab === 5 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-sections", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "References" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$E.map((r) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: r }, r)) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1rem", fontSize: "0.8rem", color: "var(--muted)" }, children: "Source: Thrombosis Canada Clinical Guides | Version 87 | Updated: 2026-02-05" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+          "Related: ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "dvtTreatment", children: "DVT Treatment" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "peTreatment", children: "PE Treatment" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "cancer", children: "Cancer & Thrombosis" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "aps", children: "Antiphospholipid Syndrome" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "apixaban", children: "Apixaban" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "rivaroxaban", children: "Rivaroxaban" })
+        ] }) })
       ] }) })
     ] })
   ] });
@@ -30111,13 +30202,13 @@ const riskProfiles = [
 const acuteManagement = [
   {
     phase: "Acute venous thrombosis",
-    recommendation: "LMWH preferred over UFH if baseline aPTT is prolonged by lupus anticoagulant (LA interferes with aPTT monitoring of UFH)",
+    recommendation: 'LMWH preferred over UFH if baseline aPTT is prolonged by lupus anticoagulant (LA interferes with aPTT monitoring of UFH). See the <GuideLink to="ufhLmwh">UFH, LMWH & Fondaparinux</GuideLink> guide for dosing.',
     badge: "LMWH first-line",
     badgeClass: "asa-badge asa-badge-blue"
   },
   {
     phase: "Acute arterial thrombosis",
-    recommendation: "Anticoagulation with warfarin (INR 2.0–3.0) generally preferred. ASA 325 mg is an option if anticoagulation not feasible, particularly in low-titer, single-measurement antibody settings.",
+    recommendation: "Anticoagulation with warfarin (INR 2.0–3.0) generally preferred. ASA 325 mg is an option if anticoagulation is not feasible, particularly in low-titer, single-measurement antibody settings.",
     badge: "Warfarin preferred",
     badgeClass: "asa-badge asa-badge-orange"
   },
@@ -30149,7 +30240,7 @@ const specialSituations = [
   },
   {
     title: "Obstetric APS (pregnancy complications without thrombosis)",
-    content: "Prophylactic-dose LMWH/UFH + low-dose ASA throughout pregnancy. Note: efficacy not validated in well-designed RCTs. Low-dose ASA alone may be used to reduce pre-eclampsia risk in women with persistent aPL and no prior thrombosis. Post-partum thromboprophylaxis commonly used even without prior thrombosis history (not evidence-based but widely practiced).",
+    content: "Prophylactic-dose LMWH/UFH + low-dose ASA throughout pregnancy. Efficacy not fully validated in well-designed RCTs. Low-dose ASA alone may reduce pre-eclampsia risk in women with persistent aPL and no prior thrombosis. Post-partum thromboprophylaxis is commonly used even without prior thrombosis history.",
     badge: "LMWH + ASA",
     badgeClass: "asa-badge asa-badge-blue"
   },
@@ -30161,13 +30252,13 @@ const specialSituations = [
   },
   {
     title: "APS with SLE",
-    content: "Secondary APS. All APS manifestations may occur. Hydroxychloroquine may be of additional benefit (thromboprophylactic and immunomodulatory effects). Specialist consultation strongly advised for combined management.",
+    content: "Secondary APS. All APS manifestations may occur. Hydroxychloroquine may provide additional benefit (thromboprophylactic and immunomodulatory effects). Specialist consultation strongly advised for combined management.",
     badge: "Add hydroxychloroquine",
     badgeClass: "asa-badge asa-badge-blue"
   },
   {
     title: "Laboratory monitoring — INR in APS",
-    content: "Some APS patients have a prolonged baseline INR before anticoagulation (LA interference). Point-of-care INR devices are particularly prone to error in APS — calibrate with venous sample results periodically. Consider chromogenic factor X assay if standard INR unreliable.",
+    content: "Some APS patients have a prolonged baseline INR before anticoagulation (LA interference). Point-of-care INR devices are particularly prone to error in APS — calibrate with venous sample results periodically. Consider chromogenic factor X assay if standard INR is unreliable.",
     badge: "Monitor carefully",
     badgeClass: "asa-badge asa-badge-amber"
   },
@@ -30194,7 +30285,7 @@ function ApsThrombophiliaGuide() {
   const [activeTab, setActiveTab] = reactExports.useState(0);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-shell", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-header", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-eyebrow", children: "Thrombosis Canada · Clinical Guide" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-eyebrow", children: "Clinical Guide" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "asa-guide-title", children: "Thrombophilia: Antiphospholipid Syndrome" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-lead", children: "APS diagnosis, risk stratification, and antithrombotic therapy — including why DOACs are inferior to warfarin in high-risk APS." })
     ] }),
@@ -30211,7 +30302,9 @@ function ApsThrombophiliaGuide() {
       activeTab === 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-sections", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-alert asa-alert-red", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Key point:" }),
-          " In high-risk APS (triple positivity or arterial thrombosis), DOACs are inferior to warfarin — more strokes and MI. Warfarin with INR 2.0–3.0 is the standard of care."
+          " In high-risk APS (triple positivity or arterial thrombosis), DOACs are inferior to warfarin — more strokes and MI. ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarin", children: "Warfarin" }),
+          " with INR 2.0-3.0 is the standard of care."
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "What is APS?" }),
@@ -30220,11 +30313,11 @@ function ApsThrombophiliaGuide() {
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-ae-grid", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-ae-card", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-ae-label", children: "Key antibodies" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-ae-value", children: "LA, aCL (IgG/IgM), anti-β2GPI (IgG/IgM)" })
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-ae-value", children: "LA, aCL (IgG/IgM), anti-\\u03b22GPI (IgG/IgM)" })
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-ae-card", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-ae-label", children: "Confirmation" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-ae-value", children: "≥2 positive tests, ≥12 weeks apart" })
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-ae-value", children: "\\u22652 positive tests, \\u226512 weeks apart" })
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-ae-card", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-ae-label", children: "High-risk profile" }),
@@ -30236,7 +30329,7 @@ function ApsThrombophiliaGuide() {
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-ae-card", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-ae-label", children: "Target INR" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-ae-value", children: "2.0–3.0 (warfarin)" })
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-ae-value", children: "2.0-3.0 (warfarin)" })
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-ae-card", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-ae-label", children: "Duration" }),
@@ -30246,6 +30339,16 @@ function ApsThrombophiliaGuide() {
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-alert asa-alert-amber", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Specialist consultation:" }),
           " Diagnosis and management of APS should be undertaken in consultation with a hematologist or thrombosis specialist given complexity, treatment implications, and laboratory interpretation challenges."
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "Related Guides" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-ind-list", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarin", children: "Warfarin" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarinInr", children: "Warfarin: Out-of-Range INR Management" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarinPoc", children: "Warfarin: Point-of-Care INR Monitoring" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "naturalAnticoag", children: "Natural Anticoagulant Deficiencies (PC, PS, AT)" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "pregProphylaxis", children: "Pregnancy: Thromboprophylaxis" }) })
+          ] })
         ] })
       ] }),
       activeTab === 1 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-sections", children: [
@@ -30258,20 +30361,21 @@ function ApsThrombophiliaGuide() {
           diagnosisCriteria.map((d) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { marginBottom: "1.25rem", padding: "0.75rem", background: "var(--surface)", borderRadius: "8px", borderLeft: "3px solid var(--primary)" }, children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { style: { display: "block", marginBottom: "0.5rem" }, children: d.domain }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-ind-list", children: d.items.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: item }, item)) }),
-            d.note && /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { style: { fontSize: "0.8rem", color: "var(--muted)", marginTop: "0.5rem" }, children: [
-              "★ ",
-              d.note
-            ] })
+            d.note && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { style: { fontSize: "0.8rem", color: "var(--muted)", marginTop: "0.5rem" }, children: d.note })
           ] }, d.domain))
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "Key Laboratory Notes" }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-ind-list", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "ELISA results for aCL/anti-β2GPI are not equivalent to chemiluminescent immunoassay (CLIA) results" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Moderate positive: 40–79 Units; High positive: ≥80 Units (ELISA)" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "ELISA results for aCL/anti-\\u03b22GPI are not equivalent to chemiluminescent immunoassay (CLIA) results" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Moderate positive: 40-79 Units; High positive: \\u226580 Units (ELISA)" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "LA may prolong aPTT — do NOT use aPTT to monitor UFH in LA-positive patients (use anti-Xa instead)" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "LA may cause falsely elevated point-of-care INR — calibrate with venous lab INR periodically" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Single positive result: do not diagnose APS — retest in ≥12 weeks" })
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+              "LA may cause falsely elevated point-of-care INR — calibrate with venous lab INR periodically (see ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarinPoc", children: "POC INR Guide" }),
+              ")"
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Single positive result: do not diagnose APS — retest in \\u226512 weeks" })
           ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
@@ -30309,7 +30413,11 @@ function ApsThrombophiliaGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", style: { margin: 0 }, children: a.phase }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: a.badgeClass, children: a.badge })
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", children: a.recommendation })
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", children: a.phase === "Acute venous thrombosis" ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+            "LMWH preferred over UFH if baseline aPTT is prolonged by lupus anticoagulant (LA interferes with aPTT monitoring of UFH). See the ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "ufhLmwh", children: "UFH, LMWH & Fondaparinux" }),
+            " guide for dosing."
+          ] }) : a.recommendation })
         ] }, a.phase)),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "DOAC vs. Warfarin — Key Trial Evidence" }),
@@ -30338,7 +30446,13 @@ function ApsThrombophiliaGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Inform patient about reduced benefit of DOACs relative to warfarin in high-risk APS" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Refer to hematologist or thrombosis specialist" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Document informed discussion in the medical record" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "If DOAC used: rivaroxaban or apixaban, with close monitoring" })
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+              "If DOAC used: ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "rivaroxaban", children: "rivaroxaban" }),
+              " or ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "apixaban", children: "apixaban" }),
+              ", with close monitoring"
+            ] })
           ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
@@ -30350,7 +30464,7 @@ function ApsThrombophiliaGuide() {
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Low-dose ASA:" }),
-              " may reduce arterial recurrence risk; not well-defined role outside of obstetric APS or concurrent cardiovascular risk reduction"
+              " may reduce arterial recurrence risk; role not well defined outside of obstetric APS or concurrent cardiovascular risk reduction"
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Cardiovascular risk factor reduction:" }),
@@ -30372,8 +30486,7 @@ function ApsThrombophiliaGuide() {
       ] }, s.title)) }),
       activeTab === 4 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-sections", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "References" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$D.map((r) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: r }, r)) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1rem", fontSize: "0.8rem", color: "var(--muted)" }, children: "Source: Thrombosis Canada Clinical Guides | Version 39 | Updated: 2026-02-06" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$D.map((r) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: r }, r)) })
       ] }) })
     ] })
   ] });
@@ -30486,9 +30599,9 @@ function ThrombophiliaNaturalAnticoagulantsGuide() {
   const [activeTab, setActiveTab] = reactExports.useState(0);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-shell", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-header", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-eyebrow", children: "Thrombosis Canada · Clinical Guide" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-eyebrow", children: "Clinical Guide" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "asa-guide-title", children: "Thrombophilia: Protein C, Protein S & Antithrombin Deficiency" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-lead", children: "Diagnosis, testing pitfalls, and anticoagulant management in deficiencies of the three natural anticoagulant proteins — including the heparin-resistance of AT deficiency and warfarin skin necrosis risk in protein C deficiency." })
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-lead", children: "Diagnosis, testing pitfalls, and anticoagulant management in deficiencies of the three natural anticoagulant proteins — including heparin resistance in AT deficiency and warfarin skin necrosis risk in protein C deficiency." })
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-tab-bar", children: tabs$C.map((t, i) => /* @__PURE__ */ jsxRuntimeExports.jsx(
       "button",
@@ -30556,7 +30669,17 @@ function ThrombophiliaNaturalAnticoagulantsGuide() {
             " ",
             p.warfarinNote
           ] })
-        ] }, p.name))
+        ] }, p.name)),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "Related Guides" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-ind-list", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "aps", children: "Antiphospholipid Syndrome" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "fvlPgm", children: "Factor V Leiden & Prothrombin Gene Mutation" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarin", children: "Warfarin" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "ufhLmwh", children: "UFH, LMWH & Fondaparinux" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "vteDuration", children: "VTE: Duration of Treatment" }) })
+          ] })
+        ] })
       ] }),
       activeTab === 1 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-sections", children: [
         testingIndications.map((t) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: t.color, style: { marginBottom: "1rem" }, children: [
@@ -30570,7 +30693,7 @@ function ThrombophiliaNaturalAnticoagulantsGuide() {
         ] }, t.scenario)),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "Factors That Interfere with Accurate Testing" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginBottom: "0.75rem" }, children: "Ideally test ≥3–6 weeks after an acute event and after stopping anticoagulation. Repeat testing is required to confirm an inherited deficiency." }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginBottom: "0.75rem" }, children: "Ideally test \\u22653-6 weeks after an acute event and after stopping anticoagulation. Repeat testing is required to confirm an inherited deficiency." }),
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { overflowX: "auto" }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("table", { className: "asa-dose-table", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("thead", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("tr", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("th", { children: "Factor" }),
@@ -30588,7 +30711,13 @@ function ThrombophiliaNaturalAnticoagulantsGuide() {
         ] })
       ] }),
       activeTab === 2 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-sections", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-alert asa-alert-blue", children: "Initial VTE treatment generally follows standard protocols. Duration: at least 3 months, and often indefinite. Specific caveats apply per protein — see below." }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-alert asa-alert-blue", children: [
+          "Initial VTE treatment generally follows standard protocols. Duration: at least 3 months, and often indefinite. Specific caveats apply per protein — see below. For full VTE treatment details, see the ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "dvtTreatment", children: "DVT Treatment" }),
+          " and ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "peTreatment", children: "PE Treatment" }),
+          " guides."
+        ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "AT Deficiency — Heparin Resistance" }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-ind-list", children: [
@@ -30598,7 +30727,7 @@ function ThrombophiliaNaturalAnticoagulantsGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "DOACs act independently of AT — viable option, but data limited to case series. Use with expert oversight." }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Do NOT use dose-reduced DOACs" }),
-              " (e.g. 10 mg rivaroxaban or 2.5 mg apixaban BID) in chronic prevention phase of AT deficiency"
+              " (e.g. 10 mg rivaroxaban or 2.5 mg apixaban BID) in the chronic prevention phase of AT deficiency"
             ] })
           ] })
         ] }),
@@ -30608,7 +30737,7 @@ function ThrombophiliaNaturalAnticoagulantsGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Warfarin suppresses protein C rapidly (short half-life), before other clotting factors → transient hypercoagulable state → risk of skin necrosis (limbs, breast, penis)" }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Mandatory bridging protocol:" }),
-              " therapeutic LMWH/UFH for ≥5 days AND until INR ≥2.0 for ≥48 hours before stopping heparin"
+              " therapeutic LMWH/UFH for \\u22655 days AND until INR \\u22652.0 for \\u226548 hours before stopping heparin"
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "DOACs are the preferred alternative — safer initiation profile; no skin necrosis risk" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Severe congenital PC deficiency: protein C concentrate for acute thrombotic events, surgery, or pregnancy" })
@@ -30620,7 +30749,7 @@ function ThrombophiliaNaturalAnticoagulantsGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Acute management mirrors protein C deficiency" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "No protein S concentrate — management relies entirely on anticoagulant therapy" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "DOACs can be used safely; no dose reduction in chronic phase" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Warfarin bridging same precautions as PC deficiency" })
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Warfarin bridging: same precautions as PC deficiency" })
           ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-alert asa-alert-amber", children: [
@@ -30629,7 +30758,13 @@ function ThrombophiliaNaturalAnticoagulantsGuide() {
         ] })
       ] }),
       activeTab === 3 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-sections", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-alert asa-alert-blue", children: "All three deficiencies confer increased perioperative VTE risk. Individualized thromboprophylaxis planning with specialist input is essential." }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-alert asa-alert-blue", children: [
+          "All three deficiencies confer increased perioperative VTE risk. Individualized thromboprophylaxis planning with specialist input is essential. See also ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarinPeriop", children: "Warfarin: Perioperative Management" }),
+          " and ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsPeriop", children: "DOACs: Perioperative Management" }),
+          "."
+        ] }),
         surgeryManagement.map((s) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }, children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", style: { margin: 0 }, children: s.protein }),
@@ -30662,7 +30797,13 @@ function ThrombophiliaNaturalAnticoagulantsGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "AT deficiency: peripartum AT concentrate + LMWH prophylaxis" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Protein C deficiency: LMWH thromboprophylaxis; severe cases may need protein C concentrate during delivery" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Protein S deficiency: LMWH-based thromboprophylaxis; no concentrate available" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "See Thromboprophylaxis in Pregnancy guide for full details" })
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+              "See ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "pregProphylaxis", children: "Pregnancy: Thromboprophylaxis" }),
+              " and ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "pregVte", children: "Pregnancy: VTE Treatment" }),
+              " for full details"
+            ] })
           ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
@@ -30711,8 +30852,7 @@ function ThrombophiliaNaturalAnticoagulantsGuide() {
       ] }),
       activeTab === 5 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-sections", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "References" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$C.map((r) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: r }, r)) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1rem", fontSize: "0.8rem", color: "var(--muted)" }, children: "Source: Thrombosis Canada Clinical Guides | Version 38 | Updated: 2026-02-06" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$C.map((r) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: r }, r)) })
       ] }) })
     ] })
   ] });
@@ -30834,7 +30974,7 @@ function ThrombophiliaFvlPgmGuide() {
   const [activeTab, setActiveTab] = reactExports.useState(0);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-shell", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-header", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-eyebrow", children: "Thrombosis Canada · Clinical Guide" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-eyebrow", children: "Clinical Guide" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "asa-guide-title", children: "Thrombophilia: Factor V Leiden & Prothrombin Gene Mutation" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-lead", children: "The two most common inherited thrombophilias — modest risk in heterozygotes, but high risk in homozygotes and compound heterozygotes. Testing is only warranted when the result will change management." })
     ] }),
@@ -30874,6 +31014,16 @@ function ThrombophiliaFvlPgmGuide() {
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-alert asa-alert-amber", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Homozygous or compound heterozygous FVL/PGM:" }),
           " Much higher VTE and recurrence risk. These patients may be candidates for indefinite anticoagulation — specialist consultation warranted."
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "Related Guides" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-ind-list", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "naturalAnticoag", children: "Natural Anticoagulant Deficiencies (PC, PS, AT)" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "aps", children: "Antiphospholipid Syndrome" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "homocysteine", children: "Homocysteinemia & MTHFR" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "vteDuration", children: "VTE: Duration of Treatment" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "pregProphylaxis", children: "Pregnancy: Thromboprophylaxis" }) })
+          ] })
         ] })
       ] }),
       activeTab === 1 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-sections", children: [
@@ -30967,7 +31117,9 @@ function ThrombophiliaFvlPgmGuide() {
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-alert asa-alert-blue", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "OCP use in carriers:" }),
-          " In asymptomatic heterozygous FVL/PGM carriers with no other VTE risk factors who cannot tolerate alternative contraception, combined OCP can be considered case-by-case after careful discussion of absolute risks and patient preferences."
+          " In asymptomatic heterozygous FVL/PGM carriers with no other VTE risk factors who cannot tolerate alternative contraception, combined OCP can be considered case-by-case after careful discussion of absolute risks and patient preferences. See ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "pregProphylaxis", children: "Pregnancy: Thromboprophylaxis" }),
+          " for pregnancy-specific guidance."
         ] })
       ] }),
       activeTab === 4 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-sections", children: [
@@ -30998,8 +31150,7 @@ function ThrombophiliaFvlPgmGuide() {
       ] }),
       activeTab === 5 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-sections", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "References" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$B.map((r) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: r }, r)) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1rem", fontSize: "0.8rem", color: "var(--muted)" }, children: "Source: Thrombosis Canada Clinical Guides | Version 32 | Updated: 2026-02-06" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$B.map((r) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: r }, r)) })
       ] }) })
     ] })
   ] });
@@ -31037,7 +31188,7 @@ function ThrombophiliaHomocysteineGuide() {
   const [activeTab, setActiveTab] = reactExports.useState(0);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-shell", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-header", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-eyebrow", children: "Thrombosis Canada · Clinical Guide" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-eyebrow", children: "Clinical Guide" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "asa-guide-title", children: "Thrombophilia: Homocysteinemia & MTHFR" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-lead", children: "Bottom line: Do NOT test for MTHFR mutations. Homocysteine testing in VTE is not useful because lowering it does not reduce recurrent VTE, MI, or cardiovascular death." })
     ] }),
@@ -31089,6 +31240,14 @@ function ThrombophiliaHomocysteineGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Alcoholism" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Drugs: methotrexate, phenytoin, carbamazepine, isoniazid" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "MTHFR C677T homozygosity (10% of population)" })
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "Related Guides" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-ind-list", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "fvlPgm", children: "Factor V Leiden & Prothrombin Gene Mutation" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "naturalAnticoag", children: "Natural Anticoagulant Deficiencies (PC, PS, AT)" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "aps", children: "Antiphospholipid Syndrome" }) })
           ] })
         ] })
       ] }),
@@ -31152,8 +31311,7 @@ function ThrombophiliaHomocysteineGuide() {
       ] }),
       activeTab === 3 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-sections", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "References" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$A.map((r) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: r }, r)) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1rem", fontSize: "0.8rem", color: "var(--muted)" }, children: "Source: Thrombosis Canada Clinical Guides | Version 34 | Updated: 2026-02-06" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$A.map((r) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: r }, r)) })
       ] }) })
     ] })
   ] });
@@ -31199,7 +31357,7 @@ function ThromboprophylaxisMedicalGuide() {
   const [activeTab, setActiveTab] = reactExports.useState(0);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-shell", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-header", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-eyebrow", children: "Thrombosis Canada · Clinical Guide" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-eyebrow", children: "Clinical Guide" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "asa-guide-title", children: "Thromboprophylaxis: Hospitalized Medical Patients" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-lead", children: "LMWH prophylaxis for acutely ill medical inpatients at increased VTE risk — balanced against bleeding risk. Duration: until discharge only. DOACs NOT recommended in this setting." })
     ] }),
@@ -31321,7 +31479,16 @@ function ThromboprophylaxisMedicalGuide() {
       activeTab === 4 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-sections", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "References" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$z.map((r) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: r }, r)) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1rem", fontSize: "0.8rem", color: "var(--muted)" }, children: "Source: Thrombosis Canada Clinical Guides | Version 45 | Updated: 2026-02-05" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+          "Related: ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "ufhLmwh", children: "UFH, LMWH & Fondaparinux" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "hit", children: "HIT" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "covid", children: "COVID-19 Thromboprophylaxis" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "prophylaxisNonOrtho", children: "Non-Ortho Surgical Prophylaxis" })
+        ] }) })
       ] }) })
     ] })
   ] });
@@ -31357,7 +31524,7 @@ function ThromboprophylaxisNonOrthoGuide() {
   const [activeTab, setActiveTab] = reactExports.useState(0);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-shell", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-header", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-eyebrow", children: "Thrombosis Canada · Clinical Guide" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-eyebrow", children: "Clinical Guide" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "asa-guide-title", children: "Thromboprophylaxis: Non-Orthopedic Surgery" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-lead", children: "VTE prevention in general, abdominal, cardiac, thoracic, neuro, and vascular surgery — using LMWH/UFH (not DOACs). Includes weight-based dosing and bariatric surgery protocols." })
     ] }),
@@ -31472,7 +31639,16 @@ function ThromboprophylaxisNonOrthoGuide() {
       activeTab === 4 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-sections", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "References" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$y.map((r) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: r }, r)) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1rem", fontSize: "0.8rem", color: "var(--muted)" }, children: "Source: Thrombosis Canada Clinical Guides | Version 48 | Updated: 2026-02-06" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+          "Related: ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "prophylaxisMedical", children: "Medical Prophylaxis" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "prophylaxisOrtho", children: "Ortho Prophylaxis" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "hit", children: "HIT" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "cancer", children: "Cancer & Thrombosis" })
+        ] }) })
       ] }) })
     ] })
   ] });
@@ -31521,7 +31697,7 @@ function ThromboprophylaxisOrthoGuide() {
   const [activeTab, setActiveTab] = reactExports.useState(0);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-shell", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-header", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-eyebrow", children: "Thrombosis Canada · Clinical Guide" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-eyebrow", children: "Clinical Guide" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "asa-guide-title", children: "Thromboprophylaxis: Orthopedic Surgery" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-lead", children: "Extended thromboprophylaxis (14–35 days) for hip/knee arthroplasty and hip fracture surgery. DOACs are well-evaluated in this setting. ASA alone is less effective than LMWH." })
     ] }),
@@ -31615,7 +31791,11 @@ function ThromboprophylaxisOrthoGuide() {
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "Patients on Long-Term Anticoagulation" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", children: "Use prophylactic doses post-operatively until safe to restart full-dose anticoagulation (usually 48–72 hours). See DOACs Perioperative Management guide." })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "asa-section-copy", children: [
+            "Use prophylactic doses post-operatively until safe to restart full-dose anticoagulation (usually 48–72 hours). See ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsPeriop", children: "DOACs Perioperative Management" }),
+            "."
+          ] })
         ] })
       ] }),
       activeTab === 3 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-sections", children: [
@@ -31652,7 +31832,16 @@ function ThromboprophylaxisOrthoGuide() {
       activeTab === 4 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-sections", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "References" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$x.map((r) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: r }, r)) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1rem", fontSize: "0.8rem", color: "var(--muted)" }, children: "Source: Thrombosis Canada Clinical Guides | Version 48 | Updated: 2026-02-05" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+          "Related: ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "prophylaxisNonOrtho", children: "Non-Ortho Prophylaxis" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsPeriop", children: "DOACs Perioperative" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarinPeriop", children: "Warfarin Perioperative" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "asa", children: "ASA" })
+        ] }) })
       ] }) })
     ] })
   ] });
@@ -31722,7 +31911,7 @@ function PeHighIntermediateRiskGuide() {
   const [activeTab, setActiveTab] = reactExports.useState(0);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-shell", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-header", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-eyebrow", children: "Thrombosis Canada · Clinical Guide" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-eyebrow", children: "Clinical Guide" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "asa-guide-title", children: "Pulmonary Embolism: High- & Intermediate-Risk" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-lead", children: "Risk stratification, systemic thrombolysis, catheter-directed therapies, and ECMO for the most dangerous spectrum of acute PE — from intermediate-high risk to cardiac arrest." })
     ] }),
@@ -31861,7 +32050,11 @@ function PeHighIntermediateRiskGuide() {
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "IVC Filters" }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-ind-list", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Indicated for PE + DVT with contraindication to anticoagulation" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+              "Indicated for PE + DVT with contraindication to anticoagulation. See ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "vcFilter", children: "Vena Cava Filters" }),
+              "."
+            ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "PE without DVT: serial ultrasound may be appropriate instead" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Schedule removal as soon as anticoagulation is possible (within 4 weeks preferred; can remove up to 6–12 months)" })
           ] })
@@ -31869,7 +32062,11 @@ function PeHighIntermediateRiskGuide() {
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "Pregnancy" }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-ind-list", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "LMWH is treatment of choice for all pregnant patients with PE, including intermediate risk" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+              "LMWH is treatment of choice for all pregnant patients with PE, including intermediate risk. See ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "pregVte", children: "Pregnancy: VTE Treatment" }),
+              "."
+            ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "ST is safe in pregnancy but carries increased risk of placental bleeding, peripartum bleeding, and fetal loss" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Catheter-based therapies can be considered — involve obstetrics and anesthesia" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Multidisciplinary team must include obstetrics if decompensation is possible" })
@@ -31879,7 +32076,7 @@ function PeHighIntermediateRiskGuide() {
       activeTab === 5 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-sections", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "References" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$w.map((r) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: r }, r)) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1rem", fontSize: "0.8rem", color: "var(--muted)" }, children: "Source: Thrombosis Canada Clinical Guides | Version 8 | Updated: 2026-02-06" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1rem", fontSize: "0.8rem", color: "var(--muted)" }, children: "Version 8 | Updated: 2026-02-06" })
       ] }) })
     ] })
   ] });
@@ -31944,7 +32141,7 @@ function PtsGuide() {
   const [activeTab, setActiveTab] = reactExports.useState(0);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-shell", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-header", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-eyebrow", children: "Thrombosis Canada · Clinical Guide" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-eyebrow", children: "Clinical Guide" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "asa-guide-title", children: "Post-Thrombotic Syndrome (PTS)" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-lead", children: "PTS develops in 20–50% of DVT patients. Prevention centers on adequate anticoagulation and preventing recurrent ipsilateral DVT. Routine ECS for 2 years is no longer recommended." })
     ] }),
@@ -32065,7 +32262,14 @@ function PtsGuide() {
       activeTab === 4 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-sections", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "References" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$v.map((r) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: r }, r)) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1rem", fontSize: "0.8rem", color: "var(--muted)" }, children: "Source: Thrombosis Canada Clinical Guides | Version 38 | Updated: 2026-02-06" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+          "Related: ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "dvtTreatment", children: "DVT Treatment" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "vteDuration", children: "VTE Duration" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "dvtDiagnosis", children: "DVT Diagnosis" })
+        ] }) })
       ] }) })
     ] })
   ] });
@@ -32217,13 +32421,13 @@ const references$u = [
   "Riva N, et al. Anticoagulation for portal vein thrombosis in liver cirrhosis and non-cirrhotic patients: a systematic review and meta-analysis. Blood. 2016;128(22):3654.",
   "Zhan C, et al. TIPS versus anticoagulation for portal vein thrombosis in cirrhosis: a retrospective cohort study. Hepatology. 2021;73(6):2390-2401."
 ];
-const relatedGuides$c = [
-  "Cancer and Thrombosis",
-  "Deep Vein Thrombosis (DVT): Treatment",
-  "DOACs: Comparison and Frequently-asked Questions",
-  "Unfractionated Heparin, Low Molecular Weight Heparin, and Fondaparinux",
-  "Venous Thromboembolism: Duration of Treatment",
-  "Warfarin"
+const relatedGuideKeys$5 = [
+  { to: "cancer", label: "Cancer & Thrombosis" },
+  { to: "dvtTreatment", label: "DVT Treatment" },
+  { to: "doacsComparison", label: "DOACs: Comparison & FAQ" },
+  { to: "ufhLmwh", label: "UFH, LMWH & Fondaparinux" },
+  { to: "vteDuration", label: "VTE Duration of Treatment" },
+  { to: "warfarin", label: "Warfarin" }
 ];
 const tabs$u = [
   ["overview", "Overview"],
@@ -32445,10 +32649,10 @@ function PvtGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$c, { tone: "gray" }),
             "Related Clinical Guides"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuides$c.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuideKeys$5.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(Link2, { size: 14 }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: item })
-          ] }, item)) })
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: item.to, children: item.label })
+          ] }, item.to)) })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { children: [
@@ -32571,14 +32775,14 @@ const references$t = [
   "Duffett L, Carrier M. Superficial venous thrombosis. In: Defined: Thrombosis Explained. Thrombosis Canada; 2019.",
   "Wiegers HMG, Middeldorp S, Brekelmans MPA, et al. Treatment and long-term outcomes of superficial vein thrombosis: a systematic review and meta-analysis. Blood. 2023;142(10):891-901."
 ];
-const relatedGuides$b = [
-  "Deep Vein Thrombosis (DVT): Diagnosis",
-  "Deep Vein Thrombosis (DVT): Treatment",
-  "Venous Thromboembolism: Duration of Treatment",
-  "Cancer and Thrombosis",
-  "Pregnancy: Diagnosis of DVT and PE",
-  "Pregnancy: Thromboprophylaxis",
-  "Thrombophilia: Antiphospholipid Syndrome"
+const relatedGuideKeys$4 = [
+  { to: "dvtDiagnosis", label: "DVT Diagnosis" },
+  { to: "dvtTreatment", label: "DVT Treatment" },
+  { to: "vteDuration", label: "VTE Duration of Treatment" },
+  { to: "cancer", label: "Cancer & Thrombosis" },
+  { to: "pregDiagnosis", label: "Pregnancy: DVT & PE Diagnosis" },
+  { to: "pregProphylaxis", label: "Pregnancy Thromboprophylaxis" },
+  { to: "aps", label: "Antiphospholipid Syndrome" }
 ];
 const tabs$t = [
   ["overview", "Overview"],
@@ -32779,10 +32983,10 @@ function SvtGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$b, { tone: "gray" }),
             "Related Clinical Guides"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuides$b.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuideKeys$4.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(Link2, { size: 14 }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: item })
-          ] }, item)) })
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: item.to, children: item.label })
+          ] }, item.to)) })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { children: [
@@ -32886,12 +33090,12 @@ const postInsertionSteps = [
     "gray"
   ]
 ];
-const relatedGuides$a = [
-  "Deep Vein Thrombosis (DVT): Treatment",
-  "Pulmonary Embolism (PE): Treatment",
-  "Pulmonary Embolism: High- and Intermediate-Risk",
-  "Venous Thromboembolism: Duration of Treatment",
-  "DOACs: Comparison and Frequently-asked Questions"
+const relatedGuideKeys$3 = [
+  { to: "dvtTreatment", label: "DVT Treatment" },
+  { to: "peTreatment", label: "PE Treatment" },
+  { to: "peHighRisk", label: "PE: High- and Intermediate-Risk" },
+  { to: "vteDuration", label: "VTE Duration of Treatment" },
+  { to: "doacsComparison", label: "DOACs: Comparison & FAQ" }
 ];
 const references$s = [
   "Bikdeli B, et al. Inferior vena cava filters to prevent pulmonary embolism: systematic review and meta-analysis. J Am Coll Cardiol. 2017;70(13):1587-1597.",
@@ -32931,7 +33135,7 @@ function VenaCavaFilterGuide() {
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx(FileText, { size: 13 }),
-              " Thrombosis Canada Clinical Guide"
+              " VTE Management Clinical Guide"
             ] })
           ] })
         ] }),
@@ -33097,10 +33301,10 @@ function VenaCavaFilterGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$a, { tone: "gray" }),
             "Related Clinical Guides"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuides$a.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuideKeys$3.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(Link2, { size: 14 }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: item })
-          ] }, item)) })
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: item.to, children: item.label })
+          ] }, item.to)) })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { children: [
@@ -33148,12 +33352,12 @@ const managementSteps = [
   ["HIT confirmatory testing", "Send PF4 antibody assays (ELISA and/or functional assay such as SRA). Treatment should not be delayed pending results.", "gray"],
   ["AEFI reporting", "Report all suspected adverse events following immunisation (AEFI) to the local Public Health Unit.", "green"]
 ];
-const relatedGuides$9 = [
-  "Heparin-Induced Thrombocytopenia (HIT)",
-  "DOACs: Comparison and Frequently-asked Questions",
-  "Cerebral Venous Thrombosis",
-  "Deep Vein Thrombosis (DVT): Diagnosis",
-  "Pulmonary Embolism (PE): Diagnosis"
+const relatedGuideKeys$2 = [
+  { to: "hit", label: "Heparin-Induced Thrombocytopenia (HIT)" },
+  { to: "doacsComparison", label: "DOACs: Comparison & FAQ" },
+  { to: "cvt", label: "Cerebral Venous Thrombosis" },
+  { to: "dvtDiagnosis", label: "DVT Diagnosis" },
+  { to: "peDiagnosis", label: "PE Diagnosis" }
 ];
 const references$r = [
   "Greinacher A, Thiele T, Warkentin TE, et al. Thrombotic thrombocytopenia after ChAdOx1 nCoV-19 vaccination. N Engl J Med. 2021;384:2092-2101.",
@@ -33416,10 +33620,10 @@ function VipitVittGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$9, { tone: "gray" }),
             "Related Clinical Guides"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuides$9.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuideKeys$2.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(Link2, { size: 14 }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: item })
-          ] }, item)) })
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: item.to, children: item.label })
+          ] }, item.to)) })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { children: [
@@ -34283,7 +34487,7 @@ const references$n = [
   "Siegal DM. What Have We Learned About DOAC Reversal? Hematology Am Soc Hematol Educ Program. 2019;2019(1):198-203.",
   "Tomaselli GF, et al. 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants. J Am Coll Cardiol. 2020;76(5):594-622."
 ];
-const relatedGuideLinks = [
+const relatedGuideLinks$1 = [
   { key: "apixaban", label: "Apixaban (Eliquis)" },
   { key: "dabigatran", label: "Dabigatran (Pradaxa)" },
   { key: "doacsComparison", label: "DOACs: Comparison and FAQ" },
@@ -34528,7 +34732,7 @@ function DoacsBleedingGuide() {
       tab === "references" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-sections", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "Related Clinical Guides" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-section-copy", children: relatedGuideLinks.map((g) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: g.key, children: g.label }) }, g.key)) })
+          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-section-copy", children: relatedGuideLinks$1.map((g) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: g.key, children: g.label }) }, g.key)) })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "References" }),
@@ -35161,7 +35365,7 @@ function PregnancyThromboprophylaxisGuide() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-shell", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-guide-header", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-header-body", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-eyebrow", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Thrombosis Canada" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Clinical Guide" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge", children: "Version 43 · Feb 2026" })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "asa-guide-title", children: "Pregnancy: Thromboprophylaxis" }),
@@ -35431,7 +35635,14 @@ function PregnancyThromboprophylaxisGuide() {
       activeTab === "references" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-sections", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "References" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$k.map((ref, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: ref }, i)) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }, children: "Source: Thrombosis Canada Clinical Guides — thrombosiscanada.ca | Version 43, updated 2026-02-06. Not a substitute for individual clinical judgment." })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+          "Related: ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "pregDiagnosis", children: "Pregnancy: DVT & PE Diagnosis" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "pregVte", children: "Pregnancy: VTE Treatment" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "ufhLmwh", children: "UFH & LMWH" })
+        ] }) })
       ] }) })
     ] })
   ] });
@@ -35460,7 +35671,7 @@ function PregnancyVteTreatmentGuide() {
   const [tab, setTab] = reactExports.useState("overview");
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: "asa-guide-shell", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("header", { className: "asa-guide-header", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-guide-eyebrow", children: "Thrombosis Canada — Clinical Guide" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-guide-eyebrow", children: "Clinical Guide" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-guide-title", children: "Pregnancy: Venous Thromboembolism Treatment" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-lead", children: "Evidence-based approach to treatment of DVT and/or PE during pregnancy and the postpartum period." })
     ] }),
@@ -35821,13 +36032,13 @@ function PregnancyVteTreatmentGuide() {
       ] }),
       tab === "references" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-sections", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "Related Thrombosis Canada Guides" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "Related Clinical Guides" }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-section-copy", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Deep Vein Thrombosis: Treatment" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Pregnancy: Diagnosis of PE and DVT" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Pregnancy: Thromboprophylaxis" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Pulmonary Embolism (PE): Treatment" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Unfractionated Heparin and Low-Molecular-Weight Heparin" })
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "dvtTreatment", children: "Deep Vein Thrombosis: Treatment" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "pregDiagnosis", children: "Pregnancy: Diagnosis of DVT and PE" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "pregProphylaxis", children: "Pregnancy: Thromboprophylaxis" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "peTreatment", children: "Pulmonary Embolism: Treatment" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "ufhLmwh", children: "Unfractionated Heparin and Low-Molecular-Weight Heparin" }) })
           ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
@@ -35865,7 +36076,7 @@ function PregnancyDvtPeDiagnosisGuide() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-shell", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-guide-header", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-header-body", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-eyebrow", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Thrombosis Canada" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Clinical Guide" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge", children: "Clinical Guide" })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "asa-guide-title", children: "Pregnancy: Diagnosis of DVT and PE" }),
@@ -36150,7 +36361,7 @@ function IschemicStrokeSecondaryPreventionGuide() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-shell", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-guide-header", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-header-body", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-eyebrow", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Thrombosis Canada" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Clinical Guide" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge", children: "Version 60 · May 2025" })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "asa-guide-title", children: "Ischemic Stroke or TIA: Secondary Prevention" }),
@@ -36590,10 +36801,7 @@ function StrokeThrombolysisGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-teal", children: "Acute Stroke" })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-guide-title", children: "Stroke: Thrombolysis and Endovascular Therapy" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-meta", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Thrombosis Canada" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Acute ischemic stroke reperfusion strategies" })
-        ] })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-guide-meta", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Acute ischemic stroke reperfusion strategies" }) })
       ] }) }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-objective-strip", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Objective:" }),
@@ -36818,11 +37026,15 @@ function StrokeThrombolysisGuide() {
       ] }) }) : null
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-footer", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Stroke: Thrombolysis and Endovascular Therapy" }) }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Stroke: Thrombolysis and Endovascular Therapy" }),
-        " | Thrombosis Canada"
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "The information here is not a substitute for clinical judgement. Always seek appropriate specialist input when needed." })
+        "Related: ",
+        /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "strokeSecondary", children: "Ischemic Stroke Secondary Prevention" }),
+        " | ",
+        /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "strokeAf", children: "Stroke Prevention in AF" }),
+        " | ",
+        /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsBleeding", children: "DOACs Bleeding Management" })
+      ] })
     ] })
   ] });
 }
@@ -36868,10 +37080,7 @@ function PeripheralArterialDiseaseGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-teal", children: "Antithrombotic Therapy" })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-guide-title", children: "Peripheral Arterial Disease" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-meta", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Thrombosis Canada" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Atherothromboembolism Management" })
-        ] })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-guide-meta", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Atherothromboembolism Management" }) })
       ] }) }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-objective-strip", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Objective:" }),
@@ -37125,8 +37334,8 @@ function PeripheralArterialDiseaseGuide() {
           ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-alert asa-alert-info", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Health Canada Approval:" }),
-          " Rivaroxaban 2.5 mg BID + ASA is approved for patients with symptomatic PAD at high risk of ischemic events, based on COMPASS and VOYAGER PAD data."
+          /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Regulatory approval:" }),
+          " Rivaroxaban 2.5 mg BID + ASA is approved in Canada for patients with symptomatic PAD at high risk of ischemic events, based on COMPASS and VOYAGER PAD data."
         ] }) }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { children: [
@@ -37196,7 +37405,19 @@ function PeripheralArterialDiseaseGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-dot blue" }),
           "Key References"
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ind-list", children: references$f.map((ref) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: ref }, ref)) })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ind-list", children: references$f.map((ref) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: ref }, ref)) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+          "Related: ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "asa", children: "ASA" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "clopidogrel", children: "Clopidogrel" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "rivaroxaban", children: "Rivaroxaban" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "anticoagAntiplatelet", children: "Anticoagulation + Antiplatelet" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "periopAntiplatelet", children: "Perioperative Antiplatelet" })
+        ] }) })
       ] }) }) : null
     ] })
   ] });
@@ -37281,13 +37502,13 @@ const references$e = [
   "Writing Committee Members, Levine GN, McEvoy JW, et al. 2022 AHA/ACC/HFSA guideline for the management of heart failure. Circulation. 2022;145:e895–e1032.",
   "Kearon C, Akl EA, Ornelas J, et al. Antithrombotic therapy for VTE disease: CHEST guideline. Chest. 2016;149:315–352."
 ];
-const relatedGuides$8 = [
-  "Stroke Prevention in Atrial Fibrillation",
-  "DOACs: Comparison and Frequently Asked Questions",
-  "DVT Treatment",
-  "Perioperative Management of Antiplatelet Therapy",
-  "Warfarin",
-  "Acetylsalicylic Acid (ASA)"
+const relatedGuideKeys$1 = [
+  { to: "strokeAf", label: "Stroke Prevention in AF" },
+  { to: "doacsComparison", label: "DOACs: Comparison & FAQ" },
+  { to: "dvtTreatment", label: "DVT Treatment" },
+  { to: "periopAntiplatelet", label: "Perioperative Antiplatelet" },
+  { to: "warfarin", label: "Warfarin" },
+  { to: "asa", label: "ASA" }
 ];
 function AnticoagAntiplateletGuide() {
   const [tab, setTab] = reactExports.useState("overview");
@@ -37299,10 +37520,7 @@ function AnticoagAntiplateletGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-teal", children: "Antithrombotic Therapy" })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-guide-title", children: "Anticoagulation in Patients Requiring Antiplatelet Therapy" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-meta", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Thrombosis Canada" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Combined antithrombotic strategies for OAC + antiplatelet overlap" })
-        ] })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-guide-meta", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Combined antithrombotic strategies for OAC + antiplatelet overlap" }) })
       ] }) }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-objective-strip", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Objective:" }),
@@ -37446,7 +37664,7 @@ function AnticoagAntiplateletGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-dot gray" }),
             "Related Clinical Guides"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuides$8.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: item }) }, item)) })
+          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuideKeys$1.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: item.to, children: item.label }) }, item.to)) })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { children: [
@@ -37458,10 +37676,7 @@ function AnticoagAntiplateletGuide() {
       ] }) : null
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-footer", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Anticoagulation in Patients Requiring Antiplatelet Therapy" }),
-        " | Thrombosis Canada"
-      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Anticoagulation in Patients Requiring Antiplatelet Therapy" }) }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "The information here is not a substitute for clinical judgement. Always seek appropriate specialist input when needed." })
     ] })
   ] });
@@ -37486,12 +37701,12 @@ const references$d = [
   "Wiviott SD, et al. Prasugrel versus clopidogrel in patients with acute coronary syndromes (TRITON-TIMI 38). N Engl J Med 2007;357:2001-2015.",
   "Jang Y, et al. One-month dual antiplatelet therapy followed by prasugrel monotherapy at a reduced dose: the 4D-ACS randomised trial. EuroIntervention 2025. DOI: 10.4244/EIJ-D-25-00331."
 ];
-const relatedGuides$7 = [
-  "Acetylsalicylic Acid (ASA)",
-  "Clopidogrel (Plavix)",
-  "Prasugrel (Effient)",
-  "Ticagrelor (Brilinta)",
-  "Rivaroxaban (Xarelto)"
+const relatedGuideKeys = [
+  { to: "asa", label: "ASA" },
+  { to: "clopidogrel", label: "Clopidogrel" },
+  { to: "prasugrel", label: "Prasugrel" },
+  { to: "ticagrelor", label: "Ticagrelor" },
+  { to: "rivaroxaban", label: "Rivaroxaban" }
 ];
 function Dot$8({ tone: tone2 }) {
   return /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: `asa-dot ${tone2}` });
@@ -37507,10 +37722,7 @@ function DaptDurationGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-gray", children: "v16" })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-guide-title", children: "Duration of Dual Antiplatelet Therapy in Patients With Coronary Artery Disease" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-meta", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Updated 6 February 2026" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Thrombosis Canada" })
-        ] })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-guide-meta", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Updated 6 February 2026" }) })
       ] }) }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-objective-strip", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Objective:" }),
@@ -37796,7 +38008,7 @@ function DaptDurationGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$8, { tone: "gray" }),
             "Related Clinical Guides"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuides$7.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: item }) }, item)) })
+          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuideKeys.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: item.to, children: item.label }) }, item.to)) })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { children: [
@@ -37848,7 +38060,7 @@ function HmbAnticoagulationGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-teal", children: "Anticoagulation Management" })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-guide-title", children: "Management of Heavy Menstrual Bleeding for Patients on Anticoagulation" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-guide-meta", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Thrombosis Canada" }) })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-guide-meta" })
       ] }) }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-objective-strip", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Objective:" }),
@@ -38040,10 +38252,7 @@ function HmbAnticoagulationGuide() {
       ] }) }) : null
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-footer", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Management of Heavy Menstrual Bleeding for Patients on Anticoagulation" }),
-        " | Thrombosis Canada"
-      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Management of Heavy Menstrual Bleeding for Patients on Anticoagulation" }) }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "The information here is not a substitute for clinical judgement. Always seek appropriate specialist input when needed." })
     ] })
   ] });
@@ -38113,7 +38322,7 @@ function PerioperativeAntiplateletGuide() {
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-eyebrow", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-orange", children: "Perioperative" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Antiplatelet Therapy" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge", children: "Thrombosis Canada" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge", children: "Clinical Guide" })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "asa-guide-title", children: "Perioperative Management of Antiplatelet Therapy" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-lead", children: "Balancing the risk of major adverse cardiovascular events (MACE) from interrupting antiplatelet therapy against the risk of perioperative bleeding from continuing therapy." })
@@ -38320,7 +38529,16 @@ function PerioperativeAntiplateletGuide() {
       activeTab === "references" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-sections", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "References" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$b.map((ref, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: ref }, i)) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }, children: "Source: Thrombosis Canada Clinical Guides — thrombosiscanada.ca | Not a substitute for individual clinical judgment." })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+          "Related: ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "asa", children: "ASA" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "daptDuration", children: "DAPT Duration" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "anticoagAntiplatelet", children: "Anticoagulation + Antiplatelet" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsPeriop", children: "DOACs Perioperative" })
+        ] }) })
       ] }) })
     ] })
   ] });
@@ -38744,19 +38962,6 @@ const drugInteractions$2 = [
     effect: "Use combination therapy only when clearly indicated and for shortest duration"
   }
 ];
-const relatedGuides$6 = [
-  "Anticoagulation in Patients Requiring Antiplatelet Therapy",
-  "Cancer and Thrombosis",
-  "Deep Vein Thrombosis (DVT): Treatment",
-  "DOACs: Coagulation Tests",
-  "DOACs: Comparison and Frequently Asked Questions",
-  "DOACs: Management of Bleeding",
-  "DOACs: Perioperative Management",
-  "Peripheral Arterial Disease",
-  "Pulmonary Embolism (PE): Treatment",
-  "Stroke Prevention in Atrial Fibrillation",
-  "Thromboprophylaxis: Orthopedic Surgery"
-];
 const references$9 = [
   "Caroti KS, et al. Rivaroxaban versus low-molecular-weight heparins in a broad cohort of patients with cancer-associated venous thromboembolism: An analysis of the OSCAR-US program. Clin Appl Thromb Hemost. 2023;29:10760296231189282.",
   "Eikelboom JW, et al. Rivaroxaban with or without ASA in stable cardiovascular disease. N Engl J Med. 2017;377(14):1319–1330.",
@@ -38804,7 +39009,7 @@ function RivaroxabanGuide() {
       ] }) }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-objective-strip", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Objective:" }),
-        " To provide an overview of the mechanism of action, licensed indications, dosing regimens, and side effects of rivaroxaban."
+        " To provide an overview of the mechanism of action, approved indications, dosing regimens, and side effects of rivaroxaban."
       ] })
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-mechanism-card", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
@@ -38824,13 +39029,13 @@ function RivaroxabanGuide() {
       )) }),
       tab === "overview" ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-tab-panel", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-alert asa-alert-danger", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Health Canada Advisory (Dec 2018):" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Advisory (Dec 2018):" }),
           " Rivaroxaban is NOT indicated nor recommended for patients post transcatheter aortic valve replacement (TAVR). Increased all-cause mortality, thromboembolic events, and bleeding events have been observed."
         ] }) }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$5, { tone: "blue" }),
-            "Licensed Indications in Canada"
+            "Approved Indications"
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-ind-group", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-ind-group-label", children: "Rivaroxaban 10 mg, 15 mg, 20 mg" }),
@@ -38882,8 +39087,12 @@ function RivaroxabanGuide() {
             "Switching from Warfarin to Rivaroxaban"
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-ind-list", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Stop warfarin and wait until INR falls below 2.5 before starting rivaroxaban (onset of action is rapid, 1\\u20133 hours)." }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "If INR testing is not readily available, wait 2\\u20133 days after the last warfarin dose before starting rivaroxaban." }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+              "Stop ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarin", children: "warfarin" }),
+              " and wait until INR falls below 2.5 before starting rivaroxaban (onset of action is rapid, 1–3 hours)."
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "If INR testing is not readily available, wait 2–3 days after the last warfarin dose before starting rivaroxaban." }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "If INR is supratherapeutic, it will take longer for INR to fall to 2.5 or below." })
           ] })
         ] }),
@@ -38907,7 +39116,11 @@ function RivaroxabanGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-ind-list", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Routine laboratory monitoring is NOT necessary." }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "PT/INR is more responsive to rivaroxaban than aPTT, but neither provides a reliable measure for dosing adjustments." }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Anti-factor Xa assays using rivaroxaban-specific calibrators, where available, can determine plasma rivaroxaban concentration." })
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+              "Anti-factor Xa assays using rivaroxaban-specific calibrators, where available, can determine plasma rivaroxaban concentration. See the ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsCoagTests", children: "DOACs: Coagulation Tests" }),
+              " guide."
+            ] })
           ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
@@ -38934,7 +39147,7 @@ function RivaroxabanGuide() {
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-ae-card moderate", children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-ae-card-label", children: "GI" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-ae-card-text", children: "Dyspepsia in some patients \\u2014 take with food to reduce symptoms and improve absorption" })
+              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-ae-card-text", children: "Dyspepsia in some patients — take with food to reduce symptoms and improve absorption" })
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-ae-card serious", children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-ae-card-label", children: "Neuraxial" }),
@@ -38967,7 +39180,7 @@ function RivaroxabanGuide() {
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-ind-list", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "CrCl < 15 mL/min: rivaroxaban is NOT recommended." }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "CrCl 15\\u201329 mL/min: use with caution across all indications." }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "CrCl 15–29 mL/min: use with caution across all indications." }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Moderate or severe hepatic impairment (Child-Pugh B or C): avoid rivaroxaban." })
           ] })
         ] }),
@@ -38977,7 +39190,7 @@ function RivaroxabanGuide() {
             "Pediatrics"
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-ind-list", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Approved in Canada (January 2021) for VTE treatment and recurrence prevention in patients < 18 years." }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Approved (January 2021) for VTE treatment and recurrence prevention in patients < 18 years." }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Weight-based dosing using oral suspension (1 mg/mL) based on EINSTEIN Jr phase III trial data." }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Requires at least 5 days of initial parenteral anticoagulation (heparinization) before starting." }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "EINSTEIN Jr: symptomatic recurrent VTE in 0.6% of children; no major bleeds on treatment." }),
@@ -38990,11 +39203,15 @@ function RivaroxabanGuide() {
             "Cancer-Associated Thrombosis"
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-ind-list", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "No licensed indication in Canada specifically for cancer-associated VTE." }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "No approved indication specifically for cancer-associated VTE." }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "SELECT-D trial: rivaroxaban may be a reasonable alternative to LMWH when GI bleeding risk is low and in non-GI solid tumours." }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "OSCAR-US observational study: rivaroxaban associated with significant reductions in composite of recurrent VTE or bleeding-related hospitalisation vs LMWH." }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Caution with upper GI and urothelial cancers due to increased GI/GU bleeding risk." }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Review drug interactions and thrombocytopenia risk before prescribing." })
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+              "Review drug interactions and thrombocytopenia risk before prescribing. See the ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "cancer", children: "Cancer & Thrombosis" }),
+              " guide."
+            ] })
           ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
@@ -39004,7 +39221,11 @@ function RivaroxabanGuide() {
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-ind-list", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Observational studies support efficacy and safety of rivaroxaban in obese patients." }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "ISTH guidance supports standard dosing for patients > 120 kg or BMI > 40." })
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+              "ISTH guidance supports standard dosing for patients > 120 kg or BMI > 40. See the ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsObesity", children: "DOACs in Obesity" }),
+              " guide."
+            ] })
           ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
@@ -39017,7 +39238,11 @@ function RivaroxabanGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Prothrombin complex concentrate (PCC): indirect reversal option when andexanet alfa is unavailable." }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Supportive measures: discontinue rivaroxaban, local haemostasis, fluid resuscitation, transfusion as needed." })
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-alert asa-alert-info", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: "See the Clinical Guide: DOACs \\u2014 Management of Bleeding for detailed protocols and the Bleed Management tool." }) })
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-alert asa-alert-info", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+            "See the ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsBleeding", children: "DOACs: Management of Bleeding" }),
+            " guide for detailed protocols."
+          ] }) })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { children: [
@@ -39025,7 +39250,11 @@ function RivaroxabanGuide() {
             "Stable Cardiovascular Disease (COMPASS Trial)"
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-ind-list", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Rivaroxaban 2.5 mg BID + ASA 100 mg OD: improved cardiovascular outcomes and lower mortality vs ASA alone, but more major bleeding. Net clinical benefit favoured combination therapy." }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+              "Rivaroxaban 2.5 mg BID + ASA 100 mg OD: improved cardiovascular outcomes and lower mortality vs ASA alone, but more major bleeding. Net clinical benefit favoured combination therapy. See the ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "pad", children: "Peripheral Arterial Disease" }),
+              " guide."
+            ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Rivaroxaban 5 mg BID alone: did not improve outcomes vs ASA and was associated with more bleeding." })
           ] })
         ] })
@@ -39036,7 +39265,19 @@ function RivaroxabanGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$5, { tone: "gray" }),
             "Related Clinical Guides"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuides$6.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: item }) }, item)) })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-related-list", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "anticoagAntiplatelet", children: "Anticoagulation + Antiplatelet Therapy" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "cancer", children: "Cancer & Thrombosis" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "dvtTreatment", children: "DVT: Treatment" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsCoagTests", children: "DOACs: Coagulation Tests" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsComparison", children: "DOACs: Comparison & FAQ" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsBleeding", children: "DOACs: Bleeding Management" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsPeriop", children: "DOACs: Perioperative Management" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "pad", children: "Peripheral Arterial Disease" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "peTreatment", children: "PE: Treatment" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "strokeAf", children: "Stroke Prevention in AF" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "prophylaxisOrtho", children: "Thromboprophylaxis: Orthopedic Surgery" }) })
+          ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { children: [
@@ -39603,7 +39844,7 @@ const specialConsiderations = [
   {
     title: "Pediatrics",
     items: [
-      "Not Health Canada approved for pediatric use.",
+      "Not approved for pediatric use.",
       "Age- and weight-adjusted dosing has been studied.",
       "Consult a pediatric thrombosis specialist."
     ]
@@ -39623,17 +39864,17 @@ const specialConsiderations = [
     ]
   }
 ];
-const relatedGuides$5 = [
-  "DOACs: Comparison and Frequently Asked Questions",
-  "DOACs: Perioperative Management",
-  "DOACs: Management of Bleeding",
-  "DOACs: Coagulation Tests",
-  "DOACs in Patients with Obesity",
-  "Stroke Prevention in Atrial Fibrillation",
-  "Deep Vein Thrombosis (DVT): Treatment",
-  "Pulmonary Embolism (PE): Treatment",
-  "Venous Thromboembolism: Duration of Treatment",
-  "Cancer and Thrombosis"
+const relatedGuides = [
+  { key: "doacsComparison", label: "DOACs: Comparison & FAQ" },
+  { key: "doacsPeriop", label: "DOACs: Perioperative Management" },
+  { key: "doacsBleeding", label: "DOACs: Bleeding Management" },
+  { key: "doacsCoagTests", label: "DOACs: Coagulation Tests" },
+  { key: "doacsObesity", label: "DOACs in Obesity" },
+  { key: "strokeAf", label: "Stroke Prevention in AF" },
+  { key: "dvtTreatment", label: "DVT: Treatment" },
+  { key: "peTreatment", label: "PE: Treatment" },
+  { key: "vteDuration", label: "VTE: Duration of Treatment" },
+  { key: "cancer", label: "Cancer & Thrombosis" }
 ];
 const references$7 = [
   "Connolly SJ, et al. Dabigatran versus warfarin in patients with atrial fibrillation. N Engl J Med. 2009;361:1139-1151 (RE-LY).",
@@ -39643,7 +39884,6 @@ const references$7 = [
   "Eriksson BI, et al. Oral dabigatran etexilate vs. subcutaneous enoxaparin for the prevention of venous thromboembolism after total knee replacement. J Thromb Haemost. 2007;5:2178-2185 (RE-MODEL).",
   "Eikelboom JW, et al. Dabigatran versus warfarin in patients with mechanical heart valves. N Engl J Med. 2013;369:1206-1214 (RE-ALIGN).",
   "Pollack CV Jr, et al. Idarucizumab for dabigatran reversal — full cohort analysis. N Engl J Med. 2017;377:431-441 (RE-VERSE AD).",
-  "Thrombosis Canada. Dabigatran (Pradaxa®) Clinical Guide, 2024.",
   "Martin K, et al. Use of dabigatran in obese patients. Thromb Res. 2016;147:110-112.",
   "Steffel J, et al. 2021 European Heart Rhythm Association practical guide on the use of non-vitamin K antagonist oral anticoagulants. Europace. 2021;23:1612-1676."
 ];
@@ -39677,7 +39917,7 @@ function DabigatranGuide() {
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx(FileText, { size: 13 }),
-              " Thrombosis Canada Clinical Guide"
+              " Clinical Guide"
             ] })
           ] })
         ] }),
@@ -39710,7 +39950,7 @@ function DabigatranGuide() {
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { className: "asa-section-title", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$4, { tone: "blue" }),
-            "Licensed Indications in Canada"
+            "Approved Indications"
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-ind-list", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
@@ -39731,7 +39971,9 @@ function DabigatranGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsx(ShieldAlert, { size: 16 }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Contraindicated in mechanical heart valves." }),
-            " The RE-ALIGN trial demonstrated increased thromboembolic and bleeding events with dabigatran compared to warfarin in patients with mechanical prosthetic valves."
+            " The RE-ALIGN trial demonstrated increased thromboembolic and bleeding events with dabigatran compared to ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarin", children: "warfarin" }),
+            " in patients with mechanical prosthetic valves."
           ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-alert asa-alert-red", children: [
@@ -39782,7 +40024,11 @@ function DabigatranGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$4, { tone: "teal" }),
             "Laboratory Monitoring"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", children: "Routine coagulation monitoring is not required. However, assessment of drug presence or anticoagulant intensity may be useful in specific clinical situations (bleeding, urgent surgery, suspected non-adherence, renal deterioration)." }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "asa-section-copy", children: [
+            "Routine coagulation monitoring is not required. However, assessment of drug presence or anticoagulant intensity may be useful in specific clinical situations (bleeding, urgent surgery, suspected non-adherence, renal deterioration). See the ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsCoagTests", children: "DOACs: Coagulation Tests" }),
+            " guide for details."
+          ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-ae-grid", children: monitoringPoints.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-ae-card default", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-ae-card-label", children: item.label }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-ae-card-text", children: item.text })
@@ -39828,7 +40074,9 @@ function DabigatranGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsx(CircleAlert, { size: 16 }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Neuraxial anaesthesia:" }),
-            " Risk of epidural or spinal haematoma with indwelling catheters. Follow perioperative DOAC management guidelines for timing of last dose and catheter removal."
+            " Risk of epidural or spinal haematoma with indwelling catheters. Follow ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsPeriop", children: "perioperative DOAC management" }),
+            " guidelines for timing of last dose and catheter removal."
           ] })
         ] })
       ] }) : null,
@@ -39844,14 +40092,18 @@ function DabigatranGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsx(ShieldAlert, { size: 16 }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Mechanical heart valves:" }),
-            " Dabigatran is CONTRAINDICATED. The RE-ALIGN trial was terminated early due to excess thromboembolic and bleeding events."
+            " Dabigatran is CONTRAINDICATED. The RE-ALIGN trial was terminated early due to excess thromboembolic and bleeding events. Use ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarin", children: "warfarin" }),
+            " instead."
           ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-alert asa-alert-red", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(ShieldAlert, { size: 16 }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Pregnancy:" }),
-            " Dabigatran crosses the placenta and must NOT be used during pregnancy. If anticoagulation is required, use LMWH."
+            " Dabigatran crosses the placenta and must NOT be used during pregnancy. If anticoagulation is required, use LMWH. See the ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "ufhLmwh", children: "UFH, LMWH & Fondaparinux" }),
+            " guide."
           ] })
         ] })
       ] }) : null,
@@ -39861,10 +40113,7 @@ function DabigatranGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$4, { tone: "gray" }),
             "Related Clinical Guides"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuides$5.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Link2, { size: 14 }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: item })
-          ] }, item)) })
+          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuides.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: item.key, children: item.label }) }, item.key)) })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { className: "asa-section-title", children: [
@@ -39878,7 +40127,7 @@ function DabigatranGuide() {
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-footer", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Dabigatran (Pradaxa®)" }),
-        " | Thrombosis Canada Clinical Guide | Updated 2024"
+        " | Clinical Guide | Updated 2024"
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "The information here is not a substitute for clinical judgement. Always seek appropriate specialist input when needed." })
     ] })
@@ -39989,19 +40238,18 @@ const references$6 = [
   "Vranckx P, et al. Edoxaban-based versus vitamin K antagonist-based antithrombotic regimen after successful coronary stenting in patients with atrial fibrillation. Lancet. 2019;394:1335-1343. (ENTRUST-AF PCI)",
   "Hohnloser SH, et al. Uninterrupted edoxaban vs vitamin K antagonists for ablation of atrial fibrillation. Eur Heart J. 2019;40:3010-3021. (ELIMINATE-AF)",
   "Yasuda S, et al. Edoxaban monotherapy versus combination therapy with edoxaban and antiplatelet in atrial fibrillation with stable coronary artery disease. Circulation. 2024. (EPIC-CAD)",
-  "Thrombosis Canada. Edoxaban (Lixiana). Clinical Guide. 2024.",
   "Product Monograph: Lixiana (edoxaban tosylate). Servier Canada Inc."
 ];
-const relatedGuides$4 = [
-  "DOACs: Comparison and Frequently-asked Questions",
-  "DOACs: Management of Bleeding",
-  "DOACs: Perioperative Management",
-  "DOACs: Coagulation Tests",
-  "DOACs in Patients with Obesity",
-  "Stroke Prevention in Atrial Fibrillation",
-  "Deep Vein Thrombosis (DVT): Treatment",
-  "Pulmonary Embolism (PE): Treatment",
-  "Cancer and Thrombosis"
+const relatedGuideLinks = [
+  { key: "doacsComparison", label: "DOACs: Comparison & FAQ" },
+  { key: "doacsBleeding", label: "DOACs: Bleeding Management" },
+  { key: "doacsPeriop", label: "DOACs: Perioperative Management" },
+  { key: "doacsCoagTests", label: "DOACs: Coagulation Tests" },
+  { key: "doacsObesity", label: "DOACs in Obesity" },
+  { key: "strokeAf", label: "Stroke Prevention in AF" },
+  { key: "dvtTreatment", label: "DVT: Treatment" },
+  { key: "peTreatment", label: "PE: Treatment" },
+  { key: "cancer", label: "Cancer & Thrombosis" }
 ];
 function EdoxabanGuide() {
   const [tab, setTab] = reactExports.useState("overview");
@@ -40015,7 +40263,7 @@ function EdoxabanGuide() {
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-guide-title", children: "Edoxaban (Lixiana®)" }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-meta", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Thrombosis Canada" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Clinical Guide" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Oral direct factor Xa inhibitor" })
         ] })
       ] }) }),
@@ -40045,7 +40293,7 @@ function EdoxabanGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", children: "Edoxaban is a selective, reversible, direct factor Xa inhibitor that binds to the active site of factor Xa in both free and prothrombinase-bound forms. By inhibiting factor Xa, edoxaban reduces thrombin generation, thereby inhibiting thrombus formation." })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "Licensed Indications" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "Approved Indications" }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-sections", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Stroke and systemic embolism prevention" }),
@@ -40071,11 +40319,11 @@ function EdoxabanGuide() {
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("tr", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("td", { children: "Peak plasma level" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("td", { children: "1\\u20132 hours" })
+              /* @__PURE__ */ jsxRuntimeExports.jsx("td", { children: "1–2 hours" })
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("tr", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("td", { children: "Half-life" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("td", { children: "10\\u201314 hours" })
+              /* @__PURE__ */ jsxRuntimeExports.jsx("td", { children: "10–14 hours" })
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("tr", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("td", { children: "Renal elimination" }),
@@ -40117,7 +40365,9 @@ function EdoxabanGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "asa-section-copy", children: [
             "Initiate edoxaban ",
             /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "after at least 5 days" }),
-            " of parenteral anticoagulation (e.g. LMWH or unfractionated heparin)."
+            " of parenteral anticoagulation (e.g. ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "ufhLmwh", children: "LMWH or unfractionated heparin" }),
+            ")."
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("table", { className: "asa-dose-table", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("thead", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("tr", { children: [
@@ -40200,7 +40450,9 @@ function EdoxabanGuide() {
             "PT/INR and aPTT may be normal at therapeutic doses and are ",
             /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "not reliable" }),
             " ",
-            "for assessing edoxaban activity. Anti-Xa assays calibrated with edoxaban-specific calibrators are available in some specialized laboratories but are not widely validated for clinical decision-making."
+            "for assessing edoxaban activity. Anti-Xa assays calibrated with edoxaban-specific calibrators are available in some specialized laboratories but are not widely validated for clinical decision-making. See the ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsCoagTests", children: "DOACs: Coagulation Tests" }),
+            " guide for details."
           ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
@@ -40221,11 +40473,19 @@ function EdoxabanGuide() {
       tab === "adverse" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-tab-body", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "Bleeding" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", children: "Bleeding is the principal adverse effect of edoxaban, as with all anticoagulants. Risk is increased by concomitant antiplatelet agents, NSAIDs, SSRIs, and other drugs that affect haemostasis." })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "asa-section-copy", children: [
+            "Bleeding is the principal adverse effect of edoxaban, as with all anticoagulants. Risk is increased by concomitant antiplatelet agents, NSAIDs, SSRIs, and other drugs that affect haemostasis. See the ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsBleeding", children: "DOACs: Bleeding Management" }),
+            " guide for detailed protocols."
+          ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "Neuraxial Anaesthesia / Epidural Catheters" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", children: "Avoid edoxaban in patients with indwelling epidural catheters. There is a risk of spinal or epidural haematoma that can result in long-term or permanent paralysis. Follow local guidelines for timing of catheter removal relative to dosing." })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "asa-section-copy", children: [
+            "Avoid edoxaban in patients with indwelling epidural catheters. There is a risk of spinal or epidural haematoma that can result in long-term or permanent paralysis. Follow the ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsPeriop", children: "DOACs: Perioperative Management" }),
+            " guide for timing of catheter removal relative to dosing."
+          ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "Drug-Level Effects" }),
@@ -40263,7 +40523,7 @@ function EdoxabanGuide() {
       tab === "references" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-tab-body", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "Related Clinical Guides" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-sections", children: relatedGuides$4.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: item }, item)) })
+          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-sections", children: relatedGuideLinks.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: item.key, children: item.label }) }, item.key)) })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "References" }),
@@ -40274,7 +40534,7 @@ function EdoxabanGuide() {
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-footer", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Edoxaban (Lixiana®)" }),
-        " | Thrombosis Canada Clinical Guide"
+        " | Clinical Guide"
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "This information is not a substitute for clinical judgement. Always seek appropriate specialist input when needed." })
     ] })
@@ -40334,15 +40594,6 @@ const angiographicRiskFactors = [
   "Left main PCI",
   "Multivessel PCI"
 ];
-const relatedGuides$3 = [
-  "Acetylsalicylic Acid (ASA)",
-  "Perioperative Management of Antiplatelet Therapy",
-  "Peripheral Arterial Disease",
-  "Ischemic Stroke or TIA: Secondary Prevention",
-  "Duration of Dual Antiplatelet Therapy in Coronary Artery Disease",
-  "Prasugrel",
-  "Ticagrelor (Brilinta)"
-];
 const references$5 = [
   "Bainey KR, et al. 2023 Canadian Cardiovascular Society and Canadian Association of Interventional Cardiology focused update of the guidelines for the use of antiplatelet therapy. Can J Cardiol. 2024;40:160-181.",
   "CAPRIE Steering Committee. A randomised, blinded, trial of clopidogrel versus aspirin in patients at risk of ischaemic events (CAPRIE). Lancet. 1996;348:1329-1339.",
@@ -40371,7 +40622,7 @@ function ClopidogrelGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-meta", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx(Calendar, { size: 13 }),
-              " Thrombosis Canada"
+              " Clinical Guide"
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx(FileText, { size: 13 }),
@@ -40410,7 +40661,11 @@ function ClopidogrelGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$3, { tone: "blue" }),
             "Clinical Role"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", children: "Clopidogrel has demonstrated cardiovascular protection both as monotherapy and in combination with ASA. It is used across a spectrum of atherothrombotic conditions including acute coronary syndromes (ACS), peripheral arterial disease (PAD), and cerebrovascular disease." })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "asa-section-copy", children: [
+            "Clopidogrel provides cardiovascular protection both as monotherapy and in combination with ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "asa", children: "ASA" }),
+            ". It is used across a spectrum of atherothrombotic conditions including acute coronary syndromes (ACS), peripheral arterial disease (PAD), and cerebrovascular disease."
+          ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { children: [
@@ -40463,7 +40718,7 @@ function ClopidogrelGuide() {
               "Acute High-Risk TIA / Minor Ischemic Stroke"
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-ind-list", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "DAPT for 21 days: clopidogrel 300\\u2013600 mg load + 75 mg daily, with ASA 160 mg load + 80 mg daily." }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "DAPT for 21 days: clopidogrel 300–600 mg load + 75 mg daily, with ASA 160 mg load + 80 mg daily." }),
               /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "After 21 days, transition to ASA monotherapy." })
             ] })
           ] }),
@@ -40471,7 +40726,9 @@ function ClopidogrelGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(CircleAlert, { size: 16 }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Risk factor assessment for DAPT duration:" }),
-              " Weigh bleeding risk against thrombotic risk when determining duration."
+              " Weigh bleeding risk against thrombotic risk when determining duration. See the ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "daptDuration", children: "DAPT Duration in CAD" }),
+              " guide."
             ] })
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "0.75rem", marginTop: "0.75rem" }, children: [
@@ -40495,8 +40752,18 @@ function ClopidogrelGuide() {
             "Other Indications"
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-ind-list", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Recurrent cerebrovascular events despite ASA therapy." }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Stable symptomatic PAD with high vascular risk, low bleeding risk, and contraindication to low-dose rivaroxaban." })
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+              "Recurrent cerebrovascular events despite ASA therapy. See the ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "strokeSecondary", children: "Ischemic Stroke: Secondary Prevention" }),
+              " guide."
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+              "Stable symptomatic ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "pad", children: "PAD" }),
+              " with high vascular risk, low bleeding risk, and contraindication to low-dose ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "rivaroxaban", children: "rivaroxaban" }),
+              "."
+            ] })
           ] })
         ] })
       ] }) : null,
@@ -40564,7 +40831,11 @@ function ClopidogrelGuide() {
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-alert asa-alert-teal", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(CircleCheck, { size: 16 }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: "Refer to the Perioperative Management of Antiplatelet Therapy guide for detailed interruption and restart decisions." })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+            "See the ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "periopAntiplatelet", children: "Perioperative Antiplatelet Management" }),
+            " guide for detailed interruption and restart decisions."
+          ] })
         ] })
       ] }) : null,
       tab === "special" ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-tab-panel", children: [
@@ -40599,7 +40870,12 @@ function ClopidogrelGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$3, { tone: "teal" }),
             "Comparison with Prasugrel and Ticagrelor"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", children: "Prasugrel and ticagrelor provide faster onset and greater degree of platelet inhibition with less inter-patient variability compared to clopidogrel. They have demonstrated superior efficacy in ACS but are more costly. Consider these agents when enhanced platelet inhibition is clinically warranted." })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "asa-section-copy", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "prasugrel", children: "Prasugrel" }),
+            " and ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "ticagrelor", children: "ticagrelor" }),
+            " provide faster onset and greater degree of platelet inhibition with less inter-patient variability compared to clopidogrel. They have demonstrated superior efficacy in ACS but are more costly. Consider these agents when enhanced platelet inhibition is clinically warranted."
+          ] })
         ] })
       ] }) : null,
       tab === "references" ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-tab-panel", children: [
@@ -40608,10 +40884,15 @@ function ClopidogrelGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$3, { tone: "gray" }),
             "Related Clinical Guides"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuides$3.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Link2, { size: 14 }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: item })
-          ] }, item)) })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-related-list", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "asa", children: "ASA (Acetylsalicylic Acid)" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "periopAntiplatelet", children: "Perioperative Antiplatelet Management" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "pad", children: "Peripheral Arterial Disease" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "strokeSecondary", children: "Ischemic Stroke: Secondary Prevention" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "daptDuration", children: "DAPT Duration in CAD" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "prasugrel", children: "Prasugrel" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "ticagrelor", children: "Ticagrelor (Brilinta)" }) })
+          ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { children: [
@@ -40625,7 +40906,7 @@ function ClopidogrelGuide() {
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-footer", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Clopidogrel (Plavix®)" }),
-        " | Thrombosis Canada Clinical Guide"
+        " | Clinical Guide"
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "The information here is not a substitute for clinical judgement. Always seek appropriate specialist input when needed." })
     ] })
@@ -40689,15 +40970,29 @@ function PrasugrelGuide() {
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Clinical Role" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", children: "Prasugrel is co-administered with ASA for secondary prevention of ischemic cardiac events in patients with acute coronary syndromes (ACS) managed with percutaneous coronary intervention (PCI)." })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "asa-section-copy", children: [
+            "Prasugrel is co-administered with ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "asa", children: "ASA" }),
+            " for secondary prevention of ischemic cardiac events in patients with acute coronary syndromes (ACS) managed with percutaneous coronary intervention (PCI). See the ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "daptDuration", children: "DAPT Duration in CAD" }),
+            " guide for duration considerations."
+          ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Key Evidence" }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-ind-list", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "In the Phase 3 TRITON-TIMI 38 trial, prasugrel demonstrated a 2.2% absolute risk reduction (NNT = 46) for the composite of cardiovascular death, non-fatal myocardial infarction, and non-fatal stroke compared with clopidogrel." }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+              "In the Phase 3 TRITON-TIMI 38 trial, prasugrel demonstrated a 2.2% absolute risk reduction (NNT = 46) for the composite of cardiovascular death, non-fatal myocardial infarction, and non-fatal stroke compared with ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "clopidogrel", children: "clopidogrel" }),
+              "."
+            ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Myocardial infarction and stent thrombosis were also significantly reduced with prasugrel." }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Benefit was observed only in ACS patients managed with PCI. There was no benefit in medically managed non-ST-elevation MI patients." }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Evidence comparing ticagrelor versus prasugrel is mixed. One study of 4018 patients (ISAR-REACT 5) suggested improved outcomes with prasugrel (2.4% absolute risk reduction) with no difference in major bleeding." })
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+              "Evidence comparing ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "ticagrelor", children: "ticagrelor" }),
+              " versus prasugrel is mixed. One study of 4018 patients (ISAR-REACT 5) suggested improved outcomes with prasugrel (2.4% absolute risk reduction) with no difference in major bleeding."
+            ] })
           ] })
         ] })
       ] }) : null,
@@ -40719,7 +41014,7 @@ function PrasugrelGuide() {
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-alert asa-alert-red", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Not recommended:" }),
-          " Prasugrel is not recommended in patients weighing less than 60 kg or aged over 75 years due to increased bleeding risk. A 5 mg daily dose has been evaluated in post-hoc analyses of patients over 75, but there is no Canadian approval for the 5 mg dose."
+          " Prasugrel is not recommended in patients weighing less than 60 kg or aged over 75 years due to increased bleeding risk. A 5 mg daily dose has been evaluated in post-hoc analyses of patients over 75, but there is no approval for the 5 mg dose."
         ] }) }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Pharmacokinetic Notes" }),
@@ -40742,7 +41037,9 @@ function PrasugrelGuide() {
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-alert asa-alert-red", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Net clinical benefit lost:" }),
-          " The net benefit of prasugrel over clopidogrel is lost in patients aged over 75 years or weighing less than 60 kg due to the higher bleeding risk in these populations."
+          " The net benefit of prasugrel over ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "clopidogrel", children: "clopidogrel" }),
+          " is lost in patients aged over 75 years or weighing less than 60 kg due to the higher bleeding risk in these populations."
         ] }) })
       ] }) : null,
       tab === "periprocedural" ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-tab-body", children: [
@@ -40756,7 +41053,11 @@ function PrasugrelGuide() {
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Minor Procedures" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", children: "For minor procedures such as dental work, skin procedures, and cataract surgery, there is generally no need to discontinue prasugrel." })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "asa-section-copy", children: [
+            "For minor procedures such as dental work, skin procedures, and cataract surgery, there is generally no need to discontinue prasugrel. See the ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "periopAntiplatelet", children: "Perioperative Antiplatelet Management" }),
+            " guide for details."
+          ] })
         ] })
       ] }) : null,
       tab === "special" ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-tab-body", children: [
@@ -40776,15 +41077,27 @@ function PrasugrelGuide() {
           ] })
         ] })
       ] }) : null,
-      tab === "references" ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-tab-body", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "References" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$4.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: item }, item)) })
-      ] }) }) : null
+      tab === "references" ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-tab-body", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Related Clinical Guides" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-related-list", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "asa", children: "ASA (Acetylsalicylic Acid)" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "clopidogrel", children: "Clopidogrel (Plavix)" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "ticagrelor", children: "Ticagrelor (Brilinta)" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "periopAntiplatelet", children: "Perioperative Antiplatelet Management" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "daptDuration", children: "DAPT Duration in CAD" }) })
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "References" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$4.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: item }, item)) })
+        ] })
+      ] }) : null
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-footer", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Prasugrel" }),
-        " | Thrombosis Canada Clinical Guide"
+        " | Clinical Guide"
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "The information here is not a substitute for clinical judgement. Always seek appropriate specialist input when needed." })
     ] })
@@ -40881,14 +41194,6 @@ const references$3 = [
   "Mehta SR, et al. 2018 Canadian Cardiovascular Society and Canadian Association of Interventional Cardiology focused update of the guidelines for the use of antiplatelet therapy. Can J Cardiol. 2018;34:214-233.",
   "Douketis JD, et al. Perioperative management of antithrombotic therapy. CHEST. 2022;126:e207-e243."
 ];
-const relatedGuides$2 = [
-  "Acetylsalicylic Acid (ASA)",
-  "Clopidogrel (Plavix)",
-  "Prasugrel",
-  "Perioperative Management of Antiplatelet Therapy",
-  "Duration of Dual Antiplatelet Therapy in Coronary Artery Disease",
-  "DOACs: Comparison and Frequently Asked Questions"
-];
 function Dot$2({ tone: tone2 }) {
   return /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: `asa-dot ${tone2}` });
 }
@@ -40906,7 +41211,7 @@ function TicagrelorGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-meta", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx(Calendar, { size: 13 }),
-              " Thrombosis Canada"
+              " Clinical Guide"
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx(FileText, { size: 13 }),
@@ -40950,7 +41255,11 @@ function TicagrelorGuide() {
             "Approved Indications"
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-ind-list", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Acute coronary syndromes (ACS) — medically managed, PCI, or CABG — in combination with ASA, for up to 1 year." }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+              "Acute coronary syndromes (ACS) — medically managed, PCI, or CABG — in combination with ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "asa", children: "ASA" }),
+              ", for up to 1 year."
+            ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Prior MI ≥1 year in patients at high risk, in combination with ASA, for up to 3 years (60 mg BID)." })
           ] })
         ] }),
@@ -41065,7 +41374,9 @@ function TicagrelorGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsx(CircleAlert, { size: 16 }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Elderly patients (age ≥70):" }),
-            " The POPular AGE trial showed clopidogrel had less bleeding (18% vs 24%) with similar net clinical benefit. Clopidogrel may be preferred in this population."
+            " The POPular AGE trial showed ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "clopidogrel", children: "clopidogrel" }),
+            " had less bleeding (18% vs 24%) with similar net clinical benefit. Clopidogrel may be preferred in this population."
           ] })
         ] })
       ] }) : null,
@@ -41110,7 +41421,11 @@ function TicagrelorGuide() {
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-alert asa-alert-teal", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(CircleCheck, { size: 16 }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: "Use the perioperative antiplatelet guide for detailed interruption, DAPT management, and restart decisions." })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+            "See the ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "periopAntiplatelet", children: "Perioperative Antiplatelet Management" }),
+            " guide for detailed interruption, DAPT management, and restart decisions."
+          ] })
         ] })
       ] }) : null,
       tab === "special" ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-tab-panel", children: [
@@ -41120,7 +41435,11 @@ function TicagrelorGuide() {
             "Pharmacogenomic Advantage"
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "asa-section-copy", children: [
-            "Unlike clopidogrel and prasugrel, ticagrelor does ",
+            "Unlike ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "clopidogrel", children: "clopidogrel" }),
+            " and ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "prasugrel", children: "prasugrel" }),
+            ", ticagrelor does ",
             /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "not" }),
             " require conversion to an active metabolite. Its efficacy is therefore:"
           ] }),
@@ -41143,7 +41462,11 @@ function TicagrelorGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsx(Info, { size: 16 }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Reversible inhibition:" }),
-            " Because ticagrelor binds reversibly, platelet function recovers faster after discontinuation compared with the irreversible thienopyridines (clopidogrel, prasugrel). This is relevant when planning urgent procedures."
+            " Because ticagrelor binds reversibly, platelet function recovers faster after discontinuation compared with the irreversible thienopyridines (",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "clopidogrel", children: "clopidogrel" }),
+            ", ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "prasugrel", children: "prasugrel" }),
+            "). This is relevant when planning urgent procedures."
           ] })
         ] })
       ] }) : null,
@@ -41153,10 +41476,14 @@ function TicagrelorGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$2, { tone: "gray" }),
             "Related Clinical Guides"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuides$2.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Link2, { size: 14 }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: item })
-          ] }, item)) })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-related-list", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "asa", children: "ASA (Acetylsalicylic Acid)" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "clopidogrel", children: "Clopidogrel (Plavix)" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "prasugrel", children: "Prasugrel" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "periopAntiplatelet", children: "Perioperative Antiplatelet Management" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "daptDuration", children: "DAPT Duration in CAD" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsComparison", children: "DOACs: Comparison & FAQ" }) })
+          ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { children: [
@@ -41170,7 +41497,7 @@ function TicagrelorGuide() {
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-footer", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Ticagrelor (Brilinta®)" }),
-        " | Thrombosis Canada Clinical Guide"
+        " | Clinical Guide"
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "The information here is not a substitute for clinical judgement. Always seek appropriate specialist input when needed." })
     ] })
@@ -41205,7 +41532,7 @@ function CovidThromboprophylaxisGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-teal", children: "Thromboprophylaxis" })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-guide-title", children: "COVID-19: Primary Thromboprophylaxis for Hospitalized Patients" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-guide-meta", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Thrombosis Canada" }) })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-guide-meta" })
       ] }) }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-objective-strip", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Objective:" }),
@@ -41411,14 +41738,21 @@ function CovidThromboprophylaxisGuide() {
       ] }) : null,
       tab === "references" ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-tab-body", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "References" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$2.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: item }, item)) })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$2.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: item }, item)) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+          "Related: ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "prophylaxisMedical", children: "Thromboprophylaxis: Medical Patients" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "ufhLmwh", children: "UFH & LMWH" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "dvtTreatment", children: "DVT Treatment" }),
+          " | ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "peTreatment", children: "PE Treatment" })
+        ] }) })
       ] }) }) : null
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-footer", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "COVID-19: Primary Thromboprophylaxis for Hospitalized Patients" }),
-        " | Thrombosis Canada"
-      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "COVID-19: Primary Thromboprophylaxis for Hospitalized Patients" }) }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "The information here is not a substitute for clinical judgement. Always seek appropriate specialist input when needed." })
     ] })
   ] });
@@ -41472,19 +41806,7 @@ const references$1 = [
   "Nutescu EA, et al. Low-molecular-weight heparins in renal impairment and obesity: available evidence and clinical practice recommendations across medical and surgical settings. Ann Pharmacother. 2009;43:1064-1083.",
   "Smythe MA, et al. Guidance for the practical management of the heparin anticoagulants in the treatment of venous thromboembolism. J Thromb Thrombolysis. 2016;41:165-186.",
   "Warkentin TE, et al. Heparin-induced thrombocytopenia: recognition, treatment, and prevention. Chest. 2012;141:e495S-e530S.",
-  "Yusuf S, et al. Comparison of fondaparinux and enoxaparin in acute coronary syndromes (OASIS-5). N Engl J Med. 2006;354:1464-1476.",
-  "Thrombosis Canada. Unfractionated Heparin, Low Molecular Weight Heparin and Fondaparinux. Clinical Guide, 2024."
-];
-const relatedGuides$1 = [
-  "DOACs: Perioperative Management",
-  "Warfarin: Perioperative Management",
-  "Deep Vein Thrombosis (DVT): Treatment",
-  "Pulmonary Embolism (PE): Treatment",
-  "Heparin-Induced Thrombocytopenia (HIT)",
-  "Cancer and Thrombosis",
-  "Pregnancy: Venous Thromboembolism Treatment",
-  "Thromboprophylaxis: Hospitalized Medical Patients",
-  "Thromboprophylaxis: Orthopedic Surgery"
+  "Yusuf S, et al. Comparison of fondaparinux and enoxaparin in acute coronary syndromes (OASIS-5). N Engl J Med. 2006;354:1464-1476."
 ];
 function Dot$1({ tone: tone2 }) {
   return /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: `asa-dot ${tone2}` });
@@ -41498,12 +41820,11 @@ function UfhLmwhFondaparinuxGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Clinical Guide" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-teal", children: "Parenteral Anticoagulants" })
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-guide-title", children: "Unfractionated Heparin, Low Molecular Weight Heparin and Fondaparinux" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-guide-meta", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Thrombosis Canada" }) })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-guide-title", children: "Unfractionated Heparin, Low Molecular Weight Heparin and Fondaparinux" })
       ] }) }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-objective-strip", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Objective:" }),
-        " To provide guidance on the use of UFH, LMWH, and fondaparinux for the prevention and treatment of venous and arterial thromboembolic events."
+        " Guidance on the use of UFH, LMWH, and fondaparinux for the prevention and treatment of venous and arterial thromboembolic events."
       ] })
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-tabs", children: [
@@ -41549,12 +41870,20 @@ function UfhLmwhFondaparinuxGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Acute coronary syndromes (ACS)" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Cardiovascular procedures" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Hemodialysis circuit anticoagulation" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Bridging during warfarin interruption" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+              "Bridging during warfarin interruption (see ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarinPeriop", children: "Warfarin: Perioperative Management" }),
+              ")"
+            ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Anterior wall MI / LV thrombus prevention" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Systemic arterial embolism" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Selected ischemic stroke and cervical artery dissection" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Purpura fulminans" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Pregnancy anticoagulation" })
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+              "Pregnancy anticoagulation (see ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "pregVte", children: "Pregnancy: VTE Treatment" }),
+              ")"
+            ] })
           ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
@@ -41566,7 +41895,10 @@ function UfhLmwhFondaparinuxGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "VTE prevention and treatment" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Superficial vein thrombosis (SVT)" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Acute coronary syndromes (without PCI as sole agent due to catheter thrombosis risk)" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "HIT prevention and treatment" })
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "hit", children: "HIT" }),
+              " prevention and treatment"
+            ] })
           ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-alert asa-alert-warn", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
@@ -41675,7 +42007,7 @@ function UfhLmwhFondaparinuxGuide() {
         ] }) }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-alert asa-alert-warn", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "No reversal agent:" }),
-          " There is no specific reversal agent for fondaparinux available in Canada. Andexanet alfa has been approved but was declined public reimbursement and is not widely available."
+          " There is no specific reversal agent for fondaparinux that is widely available. Andexanet alfa is licensed but has not received broad public reimbursement."
         ] }) })
       ] }) }) : null,
       tab === "monitoring" ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-tab-body", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-sections", children: [
@@ -41688,8 +42020,16 @@ function UfhLmwhFondaparinuxGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Baseline: CBC, PT/INR, aPTT before initiation." }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Check aPTT every 6 hours until two consecutive values are therapeutic, then monitor daily." }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Use an institutional weight-based nomogram for dose adjustments." }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "In patients with antiphospholipid syndrome (APS), aPTT may be unreliable; use anti-Xa level monitoring instead." }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Monitor platelet count if UFH is administered for 4 or more days (HIT risk)." })
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+              "In patients with ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "aps", children: "antiphospholipid syndrome (APS)" }),
+              ", aPTT may be unreliable; use anti-Xa level monitoring instead."
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+              "Monitor platelet count if UFH is administered for 4 or more days (",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "hit", children: "HIT" }),
+              " risk)."
+            ] })
           ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
@@ -41731,7 +42071,11 @@ function UfhLmwhFondaparinuxGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-ind-list", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Occurs in up to 5% of patients receiving UFH." }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Less common with LMWH." }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "If HIT is suspected, stop ALL heparin sources (including flushes and coated catheters)." }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+              "If HIT is suspected, stop ALL heparin sources (including flushes and coated catheters). See the ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "hit", children: "HIT Guide" }),
+              " for full management."
+            ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Alternative anticoagulants: argatroban, danaparoid, bivalirudin, fondaparinux, or a DOAC." })
           ] })
         ] }),
@@ -41805,7 +42149,7 @@ function UfhLmwhFondaparinuxGuide() {
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Fondaparinux:" }),
-              " No reversal agent available in Canada. Andexanet alfa is approved but has been declined public reimbursement and is not widely available."
+              " No widely available reversal agent. Andexanet alfa is licensed but has not received broad public reimbursement."
             ] })
           ] })
         ] }),
@@ -41814,7 +42158,11 @@ function UfhLmwhFondaparinuxGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$1, { tone: "blue" }),
             "Warfarin Overlap"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", children: "When transitioning to warfarin, start warfarin on the same day as heparin. Overlap for at least 5 days and until the INR is therapeutic (2.0 to 3.0) on two consecutive days before discontinuing the parenteral agent." })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "asa-section-copy", children: [
+            "When transitioning to ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarin", children: "warfarin" }),
+            ", start warfarin on the same day as heparin. Overlap for at least 5 days and until the INR is therapeutic (2.0 to 3.0) on two consecutive days before discontinuing the parenteral agent."
+          ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { children: [
@@ -41822,7 +42170,13 @@ function UfhLmwhFondaparinuxGuide() {
             "Pregnancy"
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-ind-list", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "LMWH or UFH are the preferred anticoagulants in pregnancy (DOACs and warfarin are contraindicated in pregnancy)." }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+              "LMWH or UFH are the preferred anticoagulants in pregnancy (DOACs and warfarin are contraindicated in pregnancy). See ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "pregVte", children: "Pregnancy: VTE Treatment" }),
+              " and ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "pregProphylaxis", children: "Pregnancy: Thromboprophylaxis" }),
+              "."
+            ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Peripartum planning is essential, with multidisciplinary coordination for timing of last dose and neuraxial anaesthesia." }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Breastfeeding is safe with LMWH and warfarin." }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Fondaparinux data in pregnancy are limited; use only when heparin products are contraindicated." })
@@ -41860,7 +42214,15 @@ function UfhLmwhFondaparinuxGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$1, { tone: "gray" }),
             "Related Clinical Guides"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuides$1.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: item }) }, item)) })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-related-list", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsPeriop", children: "DOACs: Perioperative Management" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarinPeriop", children: "Warfarin: Perioperative Management" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "dvtTreatment", children: "Deep Vein Thrombosis (DVT): Treatment" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "peTreatment", children: "Pulmonary Embolism (PE): Treatment" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "hit", children: "Heparin-Induced Thrombocytopenia (HIT)" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "cancer", children: "Cancer and Thrombosis" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "pregVte", children: "Pregnancy: VTE Treatment" }) })
+          ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { children: [
@@ -41873,10 +42235,10 @@ function UfhLmwhFondaparinuxGuide() {
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-footer", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Unfractionated Heparin, Low Molecular Weight Heparin and Fondaparinux" }),
-        " | Thrombosis Canada Clinical Guide"
+        /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "UFH, LMWH & Fondaparinux" }),
+        " | Clinical Guide"
       ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "The information here is not a substitute for clinical judgement. Always seek appropriate specialist input when needed." })
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Not a substitute for clinical judgement. Always seek appropriate specialist input when needed." })
     ] })
   ] });
 }
@@ -42017,14 +42379,6 @@ const references = [
   "Keeling D, et al. Peri-operative management of anticoagulation and antiplatelet therapy. Br J Haematol. 2016;175:602-613.",
   "Monagle P, et al. Antithrombotic therapy in neonates and children: ACCP Evidence-Based Clinical Practice Guidelines, 9th ed. Chest. 2012;141:e737S-e801S."
 ];
-const relatedGuides = [
-  "Warfarin: General Guide",
-  "Warfarin: Management of Out-of-Range INRs",
-  "Warfarin: Point-of-Care INR Monitoring",
-  "DOACs: Perioperative Management",
-  "Perioperative Management of Antiplatelet Therapy",
-  "Unfractionated Heparin, LMWH, and Fondaparinux"
-];
 function Dot({ tone: tone2 }) {
   return /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: `asa-dot ${tone2}` });
 }
@@ -42039,14 +42393,11 @@ function WarfarinPeriopGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-gray", children: "Warfarin" })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-guide-title", children: "Warfarin: Perioperative Management" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-meta", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Thrombosis Canada" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Elective and urgent surgical settings" })
-        ] })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-guide-meta", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Elective and urgent surgical settings" }) })
       ] }) }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-objective-strip", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Objective:" }),
-        " To provide a practical approach to the perioperative management of patients receiving warfarin who require elective or urgent surgery, including guidance on bridging anticoagulation."
+        " Practical approach to the perioperative management of patients receiving warfarin who require elective or urgent surgery, including guidance on bridging anticoagulation."
       ] })
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-tabs", children: [
@@ -42105,7 +42456,7 @@ function WarfarinPeriopGuide() {
               "Bridging is associated with an approximately ",
               /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "2% increase in major bleeding" }),
               " and ",
-              /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "10–15% risk of minor bleeding" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "10-15% risk of minor bleeding" }),
               "."
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Minimal bleed-risk procedures (dental extractions, cataract surgery, minor skin procedures) generally do not require warfarin interruption." })
@@ -42176,7 +42527,11 @@ function WarfarinPeriopGuide() {
               /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "dose-highlight", children: row[2] })
             ] }, row[0])) })
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "0.5rem", fontSize: "0.85rem", opacity: 0.8 }, children: "IV unfractionated heparin (UFH) is rarely used and requires aPTT monitoring." })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "asa-section-copy", style: { marginTop: "0.5rem", fontSize: "0.85rem", opacity: 0.8 }, children: [
+            "IV unfractionated heparin (UFH) is rarely used and requires aPTT monitoring. See ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "ufhLmwh", children: "UFH, LMWH & Fondaparinux Guide" }),
+            " for full dosing details."
+          ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { children: [
@@ -42227,7 +42582,7 @@ function WarfarinPeriopGuide() {
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Minor bleeding:" }),
-              " 10–15% risk (injection-site haematomas, wound oozing, epistaxis)."
+              " 10-15% risk (injection-site haematomas, wound oozing, epistaxis)."
             ] })
           ] })
         ] })
@@ -42268,7 +42623,7 @@ function WarfarinPeriopGuide() {
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot, { tone: "blue" }),
-            "Figure 1: Perioperative Warfarin Management Timeline"
+            "Perioperative Warfarin Management Timeline"
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", children: "The following step-by-step timeline outlines the perioperative management approach for patients on warfarin requiring surgery with an indication for warfarin interruption." }),
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-timeline", children: timelineSteps.map((step) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-timeline-step", children: [
@@ -42301,7 +42656,7 @@ function WarfarinPeriopGuide() {
               /* @__PURE__ */ jsxRuntimeExports.jsxs("tr", { children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx("td", { children: "High bleed risk" }),
                 /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "dose-highlight", children: "Prophylactic dose initially" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("td", { children: "48–72 hours post-procedure" })
+                /* @__PURE__ */ jsxRuntimeExports.jsx("td", { children: "48-72 hours post-procedure" })
               ] }),
               /* @__PURE__ */ jsxRuntimeExports.jsxs("tr", { children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx("td", { children: "Very high bleed risk (cardiac, spinal, intracranial)" }),
@@ -42314,12 +42669,12 @@ function WarfarinPeriopGuide() {
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-alert asa-alert-warn", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Vitamin K rescue:" }),
           " If INR is >1.5 on Day −1, administer ",
-          /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "vitamin K 1–2 mg PO" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "vitamin K 1-2 mg PO" }),
           " to normalise the INR by the morning of surgery. Recheck INR on Day 0."
         ] }) }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-alert asa-alert-info", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Warfarin restart:" }),
-          " Resume warfarin at the patient's usual maintenance dose on the evening of surgery or the next morning. Therapeutic INR typically takes 4–5 days to re-establish. Continue LMWH bridging until INR is ≥2.0 for at least 24 hours."
+          " Resume warfarin at the patient's usual maintenance dose on the evening of surgery or the next morning. Therapeutic INR typically takes 4-5 days to re-establish. Continue LMWH bridging until INR is ≥2.0 for at least 24 hours."
         ] }) })
       ] }) : null,
       tab === "special" ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-tab-panel", children: [
@@ -42330,13 +42685,13 @@ function WarfarinPeriopGuide() {
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-ind-list", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "1–2 tooth extractions or root canal:" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "1-2 tooth extractions or root canal:" }),
               " Continue warfarin without interruption."
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
               "Use ",
               /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "tranexamic acid mouthwash" }),
-              ": 5 mL rinse pre-procedure, then 2–3 times daily for 3–5 days after."
+              ": 5 mL rinse pre-procedure, then 2-3 times daily for 3-5 days after."
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "For extensive dental surgery (multiple extractions, implants), consider warfarin interruption on an individual basis." })
           ] })
@@ -42363,7 +42718,7 @@ function WarfarinPeriopGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Usually interrupt warfarin due to the potential for polypectomy." }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
               "Caution: bleeding may occur ",
-              /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "2–7 days" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "2-7 days" }),
               " after large polyp removal."
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Endoscopic clips may reduce post-polypectomy bleeding risk." })
@@ -42391,15 +42746,23 @@ function WarfarinPeriopGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-ind-list", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "ASA:" }),
-              " Continue perioperatively if patient is not at high bleeding risk, especially in the setting of recent ACS or coronary stent."
+              " Continue perioperatively if patient is not at high bleeding risk, especially in the setting of recent ACS or coronary stent. See ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "asa", children: "ASA Guide" }),
+              "."
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "P2Y12 inhibitors" }),
-              " (clopidogrel, ticagrelor, prasugrel): Stop ",
-              /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "5–7 days" }),
+              " (",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "clopidogrel", children: "clopidogrel" }),
+              ", ticagrelor, prasugrel): Stop ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "5-7 days" }),
               " before surgery."
             ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Coordinate with cardiology if patient requires both anticoagulation and antiplatelet therapy perioperatively." })
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+              "Coordinate with cardiology if patient requires both anticoagulation and antiplatelet therapy perioperatively. See ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "anticoagAntiplatelet", children: "Anticoagulation in Patients Requiring Antiplatelet Therapy" }),
+              "."
+            ] })
           ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
@@ -42429,7 +42792,13 @@ function WarfarinPeriopGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot, { tone: "gray" }),
             "Related Clinical Guides"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuides.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: item }) }, item)) })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-related-list", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarin", children: "Warfarin: General Guide" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarinInr", children: "Warfarin: Management of Out-of-Range INRs" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarinPoc", children: "Warfarin: Point-of-Care INR Monitoring" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsPeriop", children: "DOACs: Perioperative Management" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "ufhLmwh", children: "Unfractionated Heparin, LMWH & Fondaparinux" }) })
+          ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { children: [
@@ -42443,9 +42812,9 @@ function WarfarinPeriopGuide() {
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-footer", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Warfarin: Perioperative Management" }),
-        " | Thrombosis Canada Clinical Guide"
+        " | Clinical Guide"
       ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "The information here is not a substitute for clinical judgement. Always seek appropriate specialist input when needed." })
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Not a substitute for clinical judgement. Always seek appropriate specialist input when needed." })
     ] })
   ] });
 }

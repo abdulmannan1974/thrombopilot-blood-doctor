@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 import {
   AlertCircle,
   Calendar,
@@ -28,7 +29,7 @@ const dosingRows = [
     "Continue up to 1 year. Take with ASA 81 mg daily.",
   ],
   [
-    "Prior MI ≥1 year, high risk",
+    "Prior MI \u22651 year, high risk",
     "60 mg BID",
     "Continue up to 3 years. Take with ASA 81 mg daily.",
   ],
@@ -44,7 +45,7 @@ const trialSummary = [
   },
   {
     name: "PEGASUS-TIMI 54",
-    population: "MI 1–3 years prior",
+    population: "MI 1\u20133 years prior",
     comparator: "Ticagrelor 60 mg BID + ASA vs ASA alone",
     result: "1.3% ARR for CV death / MI / stroke (NNT = 79).",
   },
@@ -70,13 +71,13 @@ const adverseItems = [
   },
   {
     tone: "serious",
-    label: "Elderly bleeding (POPular AGE, age ≥70)",
-    text: "Clopidogrel had less bleeding (18% vs 24%) with similar net clinical benefit — clopidogrel may be preferred for elderly.",
+    label: "Elderly bleeding (POPular AGE, age \u226570)",
+    text: "Clopidogrel had less bleeding (18% vs 24%) with similar net clinical benefit \u2014 clopidogrel may be preferred for elderly.",
   },
   {
     tone: "moderate",
     label: "Dyspnea",
-    text: "14–16%. Usually mild, often resolves. Mechanism: adenosine-mediated vagal C-fiber stimulation.",
+    text: "14\u201316%. Usually mild, often resolves. Mechanism: adenosine-mediated vagal C-fiber stimulation.",
   },
   {
     tone: "default",
@@ -111,15 +112,6 @@ const references = [
   "Douketis JD, et al. Perioperative management of antithrombotic therapy. CHEST. 2022;126:e207-e243.",
 ];
 
-const relatedGuides = [
-  "Acetylsalicylic Acid (ASA)",
-  "Clopidogrel (Plavix)",
-  "Prasugrel",
-  "Perioperative Management of Antiplatelet Therapy",
-  "Duration of Dual Antiplatelet Therapy in Coronary Artery Disease",
-  "DOACs: Comparison and Frequently Asked Questions",
-];
-
 function Dot({ tone }) {
   return <span className={`asa-dot ${tone}`} />;
 }
@@ -138,7 +130,7 @@ export function TicagrelorGuide() {
             </div>
             <h2 className="asa-guide-title">Ticagrelor (Brilinta&reg;)</h2>
             <div className="asa-guide-meta">
-              <span><Calendar size={13} /> Thrombosis Canada</span>
+              <span><Calendar size={13} /> Clinical Guide</span>
               <span><FileText size={13} /> P2Y12 receptor antagonist</span>
             </div>
           </div>
@@ -183,7 +175,7 @@ export function TicagrelorGuide() {
             <article className="asa-section-card">
               <h3><Dot tone="cardiac" />Approved Indications</h3>
               <ul className="asa-ind-list">
-                <li>Acute coronary syndromes (ACS) — medically managed, PCI, or CABG — in combination with ASA, for up to 1 year.</li>
+                <li>Acute coronary syndromes (ACS) &mdash; medically managed, PCI, or CABG &mdash; in combination with <GuideLink to="asa">ASA</GuideLink>, for up to 1 year.</li>
                 <li>Prior MI &ge;1 year in patients at high risk, in combination with ASA, for up to 3 years (60 mg BID).</li>
               </ul>
             </article>
@@ -307,14 +299,14 @@ export function TicagrelorGuide() {
             <div className="asa-alert asa-alert-info">
               <Wind size={16} />
               <div>
-                <strong>Dyspnea (14–16%):</strong> Usually mild and often resolves spontaneously. The mechanism involves adenosine-mediated stimulation of vagal C fibers. It does not reflect heart failure or bronchospasm in most cases.
+                <strong>Dyspnea (14&ndash;16%):</strong> Usually mild and often resolves spontaneously. The mechanism involves adenosine-mediated stimulation of vagal C fibers. It does not reflect heart failure or bronchospasm in most cases.
               </div>
             </div>
 
             <div className="asa-alert asa-alert-warn">
               <AlertCircle size={16} />
               <div>
-                <strong>Elderly patients (age &ge;70):</strong> The POPular AGE trial showed clopidogrel had less bleeding (18% vs 24%) with similar net clinical benefit. Clopidogrel may be preferred in this population.
+                <strong>Elderly patients (age &ge;70):</strong> The POPular AGE trial showed <GuideLink to="clopidogrel">clopidogrel</GuideLink> had less bleeding (18% vs 24%) with similar net clinical benefit. Clopidogrel may be preferred in this population.
               </div>
             </div>
           </div>
@@ -365,7 +357,7 @@ export function TicagrelorGuide() {
 
             <div className="asa-alert asa-alert-teal">
               <CheckCircle2 size={16} />
-              <div>Use the perioperative antiplatelet guide for detailed interruption, DAPT management, and restart decisions.</div>
+              <div>See the <GuideLink to="periopAntiplatelet">Perioperative Antiplatelet Management</GuideLink> guide for detailed interruption, DAPT management, and restart decisions.</div>
             </div>
           </div>
         ) : null}
@@ -375,7 +367,7 @@ export function TicagrelorGuide() {
             <article className="asa-section-card">
               <h3><Dot tone="orange" />Pharmacogenomic Advantage</h3>
               <p className="asa-section-copy">
-                Unlike clopidogrel and prasugrel, ticagrelor does <strong>not</strong> require conversion to an active metabolite. Its efficacy is therefore:
+                Unlike <GuideLink to="clopidogrel">clopidogrel</GuideLink> and <GuideLink to="prasugrel">prasugrel</GuideLink>, ticagrelor does <strong>not</strong> require conversion to an active metabolite. Its efficacy is therefore:
               </p>
               <ul className="asa-ind-list">
                 <li>Not affected by CYP2C19 loss-of-function alleles.</li>
@@ -394,7 +386,7 @@ export function TicagrelorGuide() {
             <div className="asa-alert asa-alert-info">
               <Info size={16} />
               <div>
-                <strong>Reversible inhibition:</strong> Because ticagrelor binds reversibly, platelet function recovers faster after discontinuation compared with the irreversible thienopyridines (clopidogrel, prasugrel). This is relevant when planning urgent procedures.
+                <strong>Reversible inhibition:</strong> Because ticagrelor binds reversibly, platelet function recovers faster after discontinuation compared with the irreversible thienopyridines (<GuideLink to="clopidogrel">clopidogrel</GuideLink>, <GuideLink to="prasugrel">prasugrel</GuideLink>). This is relevant when planning urgent procedures.
               </div>
             </div>
           </div>
@@ -405,9 +397,12 @@ export function TicagrelorGuide() {
             <article className="asa-section-card">
               <h3><Dot tone="gray" />Related Clinical Guides</h3>
               <ul className="asa-related-list">
-                {relatedGuides.map((item) => (
-                  <li key={item}><Link2 size={14} /><span>{item}</span></li>
-                ))}
+                <li><GuideLink to="asa">ASA (Acetylsalicylic Acid)</GuideLink></li>
+                <li><GuideLink to="clopidogrel">Clopidogrel (Plavix)</GuideLink></li>
+                <li><GuideLink to="prasugrel">Prasugrel</GuideLink></li>
+                <li><GuideLink to="periopAntiplatelet">Perioperative Antiplatelet Management</GuideLink></li>
+                <li><GuideLink to="daptDuration">DAPT Duration in CAD</GuideLink></li>
+                <li><GuideLink to="doacsComparison">DOACs: Comparison &amp; FAQ</GuideLink></li>
               </ul>
             </article>
 
@@ -422,7 +417,7 @@ export function TicagrelorGuide() {
       </div>
 
       <div className="asa-guide-footer">
-        <p><strong>Ticagrelor (Brilinta&reg;)</strong> | Thrombosis Canada Clinical Guide</p>
+        <p><strong>Ticagrelor (Brilinta&reg;)</strong> | Clinical Guide</p>
         <p>The information here is not a substitute for clinical judgement. Always seek appropriate specialist input when needed.</p>
       </div>
     </section>

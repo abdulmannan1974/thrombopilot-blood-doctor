@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   { id: "overview", label: "Overview" },
@@ -94,7 +95,7 @@ export function PregnancyThromboprophylaxisGuide() {
       <div className="asa-guide-header">
         <div className="asa-guide-header-body">
           <div className="asa-guide-eyebrow">
-            <span className="asa-badge asa-badge-blue">Thrombosis Canada</span>
+            <span className="asa-badge asa-badge-blue">Clinical Guide</span>
             <span className="asa-badge">Version 43 · Feb 2026</span>
           </div>
           <h1 className="asa-guide-title">Pregnancy: Thromboprophylaxis</h1>
@@ -393,9 +394,9 @@ export function PregnancyThromboprophylaxisGuide() {
               <ol className="asa-ref-list">
                 {references.map((ref, i) => <li key={i}>{ref}</li>)}
               </ol>
-              <p className="asa-section-copy" style={{ marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }}>
-                Source: Thrombosis Canada Clinical Guides — thrombosiscanada.ca | Version 43, updated 2026-02-06. Not a substitute for individual clinical judgment.
-              </p>
+              <div style={{ marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }}>
+                <p>Related: <GuideLink to="pregDiagnosis">Pregnancy: DVT &amp; PE Diagnosis</GuideLink> | <GuideLink to="pregVte">Pregnancy: VTE Treatment</GuideLink> | <GuideLink to="ufhLmwh">UFH &amp; LMWH</GuideLink></p>
+              </div>
             </div>
           </div>
         )}

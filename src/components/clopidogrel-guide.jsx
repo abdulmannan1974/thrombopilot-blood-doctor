@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 import {
   AlertCircle,
   Calendar,
@@ -72,16 +73,6 @@ const angiographicRiskFactors = [
   "Multivessel PCI",
 ];
 
-const relatedGuides = [
-  "Acetylsalicylic Acid (ASA)",
-  "Perioperative Management of Antiplatelet Therapy",
-  "Peripheral Arterial Disease",
-  "Ischemic Stroke or TIA: Secondary Prevention",
-  "Duration of Dual Antiplatelet Therapy in Coronary Artery Disease",
-  "Prasugrel",
-  "Ticagrelor (Brilinta)",
-];
-
 const references = [
   "Bainey KR, et al. 2023 Canadian Cardiovascular Society and Canadian Association of Interventional Cardiology focused update of the guidelines for the use of antiplatelet therapy. Can J Cardiol. 2024;40:160-181.",
   "CAPRIE Steering Committee. A randomised, blinded, trial of clopidogrel versus aspirin in patients at risk of ischaemic events (CAPRIE). Lancet. 1996;348:1329-1339.",
@@ -112,7 +103,7 @@ export function ClopidogrelGuide() {
             </div>
             <h2 className="asa-guide-title">Clopidogrel (Plavix&reg;)</h2>
             <div className="asa-guide-meta">
-              <span><Calendar size={13} /> Thrombosis Canada</span>
+              <span><Calendar size={13} /> Clinical Guide</span>
               <span><FileText size={13} /> Thienopyridine P2Y12 Inhibitor</span>
             </div>
           </div>
@@ -156,7 +147,7 @@ export function ClopidogrelGuide() {
             <article className="asa-section-card">
               <h3><Dot tone="blue" />Clinical Role</h3>
               <p className="asa-section-copy">
-                Clopidogrel has demonstrated cardiovascular protection both as monotherapy and in combination with ASA. It is used across a spectrum of atherothrombotic conditions including acute coronary syndromes (ACS), peripheral arterial disease (PAD), and cerebrovascular disease.
+                Clopidogrel provides cardiovascular protection both as monotherapy and in combination with <GuideLink to="asa">ASA</GuideLink>. It is used across a spectrum of atherothrombotic conditions including acute coronary syndromes (ACS), peripheral arterial disease (PAD), and cerebrovascular disease.
               </p>
             </article>
 
@@ -211,7 +202,7 @@ export function ClopidogrelGuide() {
                   Acute High-Risk TIA / Minor Ischemic Stroke
                 </div>
                 <ul className="asa-ind-list">
-                  <li>DAPT for 21 days: clopidogrel 300\u2013600 mg load + 75 mg daily, with ASA 160 mg load + 80 mg daily.</li>
+                  <li>DAPT for 21 days: clopidogrel 300&ndash;600 mg load + 75 mg daily, with ASA 160 mg load + 80 mg daily.</li>
                   <li>After 21 days, transition to ASA monotherapy.</li>
                 </ul>
               </div>
@@ -219,7 +210,7 @@ export function ClopidogrelGuide() {
               <div className="asa-alert asa-alert-warn">
                 <AlertCircle size={16} />
                 <div>
-                  <strong>Risk factor assessment for DAPT duration:</strong> Weigh bleeding risk against thrombotic risk when determining duration.
+                  <strong>Risk factor assessment for DAPT duration:</strong> Weigh bleeding risk against thrombotic risk when determining duration. See the <GuideLink to="daptDuration">DAPT Duration in CAD</GuideLink> guide.
                 </div>
               </div>
 
@@ -248,8 +239,8 @@ export function ClopidogrelGuide() {
             <article className="asa-section-card">
               <h3><Dot tone="stroke" />Other Indications</h3>
               <ul className="asa-ind-list">
-                <li>Recurrent cerebrovascular events despite ASA therapy.</li>
-                <li>Stable symptomatic PAD with high vascular risk, low bleeding risk, and contraindication to low-dose rivaroxaban.</li>
+                <li>Recurrent cerebrovascular events despite ASA therapy. See the <GuideLink to="strokeSecondary">Ischemic Stroke: Secondary Prevention</GuideLink> guide.</li>
+                <li>Stable symptomatic <GuideLink to="pad">PAD</GuideLink> with high vascular risk, low bleeding risk, and contraindication to low-dose <GuideLink to="rivaroxaban">rivaroxaban</GuideLink>.</li>
               </ul>
             </article>
           </div>
@@ -336,7 +327,7 @@ export function ClopidogrelGuide() {
 
             <div className="asa-alert asa-alert-teal">
               <CheckCircle2 size={16} />
-              <div>Refer to the Perioperative Management of Antiplatelet Therapy guide for detailed interruption and restart decisions.</div>
+              <div>See the <GuideLink to="periopAntiplatelet">Perioperative Antiplatelet Management</GuideLink> guide for detailed interruption and restart decisions.</div>
             </div>
           </div>
         ) : null}
@@ -367,7 +358,7 @@ export function ClopidogrelGuide() {
             <article className="asa-section-card">
               <h3><Dot tone="teal" />Comparison with Prasugrel and Ticagrelor</h3>
               <p className="asa-section-copy">
-                Prasugrel and ticagrelor provide faster onset and greater degree of platelet inhibition with less inter-patient variability compared to clopidogrel. They have demonstrated superior efficacy in ACS but are more costly. Consider these agents when enhanced platelet inhibition is clinically warranted.
+                <GuideLink to="prasugrel">Prasugrel</GuideLink> and <GuideLink to="ticagrelor">ticagrelor</GuideLink> provide faster onset and greater degree of platelet inhibition with less inter-patient variability compared to clopidogrel. They have demonstrated superior efficacy in ACS but are more costly. Consider these agents when enhanced platelet inhibition is clinically warranted.
               </p>
             </article>
           </div>
@@ -379,9 +370,13 @@ export function ClopidogrelGuide() {
             <article className="asa-section-card">
               <h3><Dot tone="gray" />Related Clinical Guides</h3>
               <ul className="asa-related-list">
-                {relatedGuides.map((item) => (
-                  <li key={item}><Link2 size={14} /><span>{item}</span></li>
-                ))}
+                <li><GuideLink to="asa">ASA (Acetylsalicylic Acid)</GuideLink></li>
+                <li><GuideLink to="periopAntiplatelet">Perioperative Antiplatelet Management</GuideLink></li>
+                <li><GuideLink to="pad">Peripheral Arterial Disease</GuideLink></li>
+                <li><GuideLink to="strokeSecondary">Ischemic Stroke: Secondary Prevention</GuideLink></li>
+                <li><GuideLink to="daptDuration">DAPT Duration in CAD</GuideLink></li>
+                <li><GuideLink to="prasugrel">Prasugrel</GuideLink></li>
+                <li><GuideLink to="ticagrelor">Ticagrelor (Brilinta)</GuideLink></li>
               </ul>
             </article>
 
@@ -396,7 +391,7 @@ export function ClopidogrelGuide() {
       </div>
 
       <div className="asa-guide-footer">
-        <p><strong>Clopidogrel (Plavix&reg;)</strong> | Thrombosis Canada Clinical Guide</p>
+        <p><strong>Clopidogrel (Plavix&reg;)</strong> | Clinical Guide</p>
         <p>The information here is not a substitute for clinical judgement. Always seek appropriate specialist input when needed.</p>
       </div>
     </section>

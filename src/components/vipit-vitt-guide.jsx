@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 import {
   AlertCircle,
   AlertTriangle,
@@ -44,12 +45,12 @@ const managementSteps = [
   ["AEFI reporting", "Report all suspected adverse events following immunisation (AEFI) to the local Public Health Unit.", "green"],
 ];
 
-const relatedGuides = [
-  "Heparin-Induced Thrombocytopenia (HIT)",
-  "DOACs: Comparison and Frequently-asked Questions",
-  "Cerebral Venous Thrombosis",
-  "Deep Vein Thrombosis (DVT): Diagnosis",
-  "Pulmonary Embolism (PE): Diagnosis",
+const relatedGuideKeys = [
+  { to: "hit", label: "Heparin-Induced Thrombocytopenia (HIT)" },
+  { to: "doacsComparison", label: "DOACs: Comparison & FAQ" },
+  { to: "cvt", label: "Cerebral Venous Thrombosis" },
+  { to: "dvtDiagnosis", label: "DVT Diagnosis" },
+  { to: "peDiagnosis", label: "PE Diagnosis" },
 ];
 
 const references = [
@@ -314,8 +315,8 @@ export function VipitVittGuide() {
             <article className="asa-section-card">
               <h3><Dot tone="gray" />Related Clinical Guides</h3>
               <ul className="asa-related-list">
-                {relatedGuides.map((item) => (
-                  <li key={item}><Link2 size={14} /><span>{item}</span></li>
+                {relatedGuideKeys.map((item) => (
+                  <li key={item.to}><Link2 size={14} /><GuideLink to={item.to}>{item.label}</GuideLink></li>
                 ))}
               </ul>
             </article>
