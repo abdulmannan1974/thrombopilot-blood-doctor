@@ -81,6 +81,7 @@ import { TicagrelorGuide } from "@/components/ticagrelor-guide";
 import { CovidThromboprophylaxisGuide } from "@/components/covid-thromboprophylaxis-guide";
 import { UfhLmwhFondaparinuxGuide } from "@/components/ufh-lmwh-fondaparinux-guide";
 import { WarfarinPeriopGuide } from "@/components/warfarin-periop-guide";
+import { GuideNavContext } from "@/components/guide-link";
 import acuteGuidanceHtmlRaw from "../Thrombosis_Canada_Acute_Management_App (2).html?raw";
 
 const siteName = "Blood Doctor CoagVision";
@@ -2046,6 +2047,7 @@ function AppLayout() {
                     </div>
                   </div>
 
+                  <GuideNavContext.Provider value={(guideId) => { setActiveGuideId(guideId); navigateToPage("guides"); }}>
                   {activeGuide.id === "Acetylsalicylic_Acid_(ASA)" || activeGuide.title === "Acetylsalicylic Acid (ASA)" ? (
                     <AsaGuide />
                   ) : activeGuide.id === "Bioprosthetic_and_Mechanical_Heart_Valves_Antithrombotic_Therapy" || activeGuide.title === "Bioprosthetic and Mechanical Heart Valves: Antithrombotic Therapy" ? (
@@ -2192,6 +2194,7 @@ function AppLayout() {
                       />
                     </>
                   )}
+                  </GuideNavContext.Provider>
 
                   {activeGuide.linkedGuideIds.length || activeGuide.linkedToolIds.length ? (
                     <div className="related-panel">

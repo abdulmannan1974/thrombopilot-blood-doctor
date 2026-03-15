@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   ["overview", "Overview"],
@@ -73,7 +74,6 @@ export function StrokeThrombolysisGuide() {
             </div>
             <h2 className="asa-guide-title">Stroke: Thrombolysis and Endovascular Therapy</h2>
             <div className="asa-guide-meta">
-              <span>Thrombosis Canada</span>
               <span>Acute ischemic stroke reperfusion strategies</span>
             </div>
           </div>
@@ -333,8 +333,8 @@ export function StrokeThrombolysisGuide() {
       </div>
 
       <div className="asa-guide-footer">
-        <p><strong>Stroke: Thrombolysis and Endovascular Therapy</strong> | Thrombosis Canada</p>
-        <p>The information here is not a substitute for clinical judgement. Always seek appropriate specialist input when needed.</p>
+        <p><strong>Stroke: Thrombolysis and Endovascular Therapy</strong></p>
+        <p>Related: <GuideLink to="strokeSecondary">Ischemic Stroke Secondary Prevention</GuideLink> | <GuideLink to="strokeAf">Stroke Prevention in AF</GuideLink> | <GuideLink to="doacsBleeding">DOACs Bleeding Management</GuideLink></p>
       </div>
     </section>
   );

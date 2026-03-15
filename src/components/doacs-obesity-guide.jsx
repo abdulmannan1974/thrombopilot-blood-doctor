@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   ["overview", "Overview"],
@@ -27,7 +28,7 @@ export function DoacsObesityGuide() {
   return (
     <section className="asa-guide-shell">
       <div className="asa-guide-header">
-        <span className="asa-guide-eyebrow">Thrombosis Canada Clinical Guide</span>
+        <span className="asa-guide-eyebrow">Clinical Guide</span>
         <h2 className="asa-guide-title">DOACs in Patients with Obesity</h2>
         <p className="asa-guide-lead">
           Guidance on the management of direct oral anticoagulants (DOACs) in patients with obesity, including Class III obesity (BMI &gt;40 kg/m&#178; or weight &gt;120 kg).
@@ -109,10 +110,13 @@ export function DoacsObesityGuide() {
             <article className="asa-section-card">
               <h3 className="asa-section-title">Orthopedic Surgery Thromboprophylaxis</h3>
               <ul className="asa-section-copy">
-                <li><strong>Dabigatran vs enoxaparin:</strong> No significant difference in patients with BMI &gt;30.</li>
-                <li><strong>Rivaroxaban vs enoxaparin:</strong> No difference in patients &gt;90 kg compared with lower weights.</li>
-                <li><strong>Apixaban vs enoxaparin:</strong> Pooled data showed no differences in VTE or bleeding events when BMI &lt;30 was compared with BMI &gt;30.</li>
+                <li><strong><GuideLink to="dabigatran">Dabigatran</GuideLink> vs enoxaparin:</strong> No significant difference in patients with BMI &gt;30.</li>
+                <li><strong><GuideLink to="rivaroxaban">Rivaroxaban</GuideLink> vs enoxaparin:</strong> No difference in patients &gt;90 kg compared with lower weights.</li>
+                <li><strong><GuideLink to="apixaban">Apixaban</GuideLink> vs enoxaparin:</strong> Pooled data showed no differences in VTE or bleeding events when BMI &lt;30 was compared with BMI &gt;30.</li>
               </ul>
+              <p className="asa-section-copy" style={{ marginTop: "0.5rem" }}>
+                For detailed guidance, see the <GuideLink to="prophylaxisOrtho">Thromboprophylaxis: Orthopedic Surgery</GuideLink> guide.
+              </p>
             </article>
           </div>
         ) : null}
@@ -159,7 +163,7 @@ export function DoacsObesityGuide() {
               <div style={{ marginBottom: "1rem" }}>
                 <span className="asa-badge asa-badge-amber">Over 120 kg / BMI &gt;40</span>
                 <p className="asa-section-copy" style={{ marginTop: "0.5rem" }}>
-                  The ISTH recommends standard-dose <strong>rivaroxaban</strong> or <strong>apixaban</strong> as appropriate options for treatment of VTE (less data supporting apixaban than rivaroxaban).
+                  The ISTH recommends standard-dose <strong><GuideLink to="rivaroxaban">rivaroxaban</GuideLink></strong> or <strong><GuideLink to="apixaban">apixaban</GuideLink></strong> as appropriate options for treatment of VTE (less data supporting apixaban than rivaroxaban).
                 </p>
                 <ul className="asa-section-copy">
                   <li><strong>Dabigatran:</strong> NOT recommended (unconvincing data).</li>

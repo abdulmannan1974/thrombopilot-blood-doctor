@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   ["overview", "Overview"],
@@ -28,14 +29,14 @@ const references = [
   "Tomaselli GF, et al. 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants. J Am Coll Cardiol. 2020;76(5):594-622.",
 ];
 
-const relatedGuides = [
-  "Apixaban (Eliquis)",
-  "Dabigatran (Pradaxa)",
-  "DOACs: Comparison and Frequently Asked Questions",
-  "DOACs: Coagulation Tests",
-  "DOACs: Peri-operative Management",
-  "Edoxaban (Lixiana)",
-  "Rivaroxaban (Xarelto)",
+const relatedGuideLinks = [
+  { key: "apixaban", label: "Apixaban (Eliquis)" },
+  { key: "dabigatran", label: "Dabigatran (Pradaxa)" },
+  { key: "doacsComparison", label: "DOACs: Comparison and FAQ" },
+  { key: "doacsCoagTests", label: "DOACs: Coagulation Tests" },
+  { key: "doacsPeriop", label: "DOACs: Perioperative Management" },
+  { key: "edoxaban", label: "Edoxaban (Lixiana)" },
+  { key: "rivaroxaban", label: "Rivaroxaban (Xarelto)" },
 ];
 
 export function DoacsBleedingGuide() {
@@ -44,7 +45,7 @@ export function DoacsBleedingGuide() {
   return (
     <section className="asa-guide-shell">
       <div className="asa-guide-header">
-        <p className="asa-guide-eyebrow">Thrombosis Canada &middot; Clinical Guide</p>
+        <p className="asa-guide-eyebrow">Clinical Guide</p>
         <h2 className="asa-guide-title">DOACs: Management of Bleeding</h2>
         <p className="asa-guide-lead">
           Guidance for clinicians on the management of bleeding in patients receiving a direct oral anticoagulant (DOAC).
@@ -269,10 +270,10 @@ export function DoacsBleedingGuide() {
         {tab === "references" && (
           <div className="asa-sections">
             <article className="asa-section-card">
-              <h3 className="asa-section-title">Related Thrombosis Canada Clinical Guides</h3>
+              <h3 className="asa-section-title">Related Clinical Guides</h3>
               <ul className="asa-section-copy">
-                {relatedGuides.map((g) => (
-                  <li key={g}>{g}</li>
+                {relatedGuideLinks.map((g) => (
+                  <li key={g.key}><GuideLink to={g.key}>{g.label}</GuideLink></li>
                 ))}
               </ul>
             </article>
@@ -294,7 +295,7 @@ export function DoacsBleedingGuide() {
             </article>
 
             <p className="asa-section-copy" style={{ opacity: 0.7, fontSize: "0.82rem", marginTop: "1rem" }}>
-              Date of version: 16 October 2025 &middot; Source: Thrombosis Canada Clinical Guides &middot; Updated 6 February 2026
+              Date of version: 16 October 2025 &middot; Updated 6 February 2026
             </p>
           </div>
         )}

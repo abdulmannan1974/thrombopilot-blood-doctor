@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   ["overview", "Overview"],
@@ -53,7 +54,7 @@ export function DoacsCoagulationTestsGuide() {
     <section className="asa-guide-shell">
       {/* ── Header ── */}
       <div className="asa-guide-header">
-        <p className="asa-guide-eyebrow">Thrombosis Canada Clinical Guide</p>
+        <p className="asa-guide-eyebrow">Clinical Guide</p>
         <h2 className="asa-guide-title">DOACs: Coagulation Tests</h2>
         <p className="asa-guide-lead">
           Laboratory assessment of coagulation in patients receiving direct oral

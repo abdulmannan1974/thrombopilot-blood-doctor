@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   { id: "overview", label: "Overview" },
@@ -94,7 +95,7 @@ export function PeTreatmentGuide() {
       <div className="asa-guide-header">
         <div className="asa-guide-header-body">
           <div className="asa-guide-eyebrow">
-            <span className="asa-badge asa-badge-blue">Thrombosis Canada</span>
+            <span className="asa-badge asa-badge-blue">Clinical Guide</span>
             <span className="asa-badge">Version 60 · May 2025</span>
           </div>
           <h1 className="asa-guide-title">Pulmonary Embolism: Treatment</h1>
@@ -301,17 +302,17 @@ export function PeTreatmentGuide() {
           <div className="asa-sections">
             <div className="asa-section-card">
               <h2 className="asa-section-title">Pregnancy</h2>
-              <p className="asa-section-copy">LMWH monotherapy for full treatment duration. DOACs and warfarin contraindicated in pregnancy. See dedicated guide.</p>
+              <p className="asa-section-copy">LMWH monotherapy for full treatment duration. DOACs and <GuideLink to="warfarin">warfarin</GuideLink> contraindicated in pregnancy. See the <GuideLink to="pregVte">Pregnancy: VTE Treatment</GuideLink> guide.</p>
             </div>
 
             <div className="asa-section-card">
               <h2 className="asa-section-title">Cancer-associated PE</h2>
-              <p className="asa-section-copy">LMWH or anti-Xa DOAC (apixaban preferred — no lead-in, favourable GI bleeding profile). See Cancer and Thrombosis guide.</p>
+              <p className="asa-section-copy">LMWH or anti-Xa DOAC (<GuideLink to="apixaban">apixaban</GuideLink> preferred — no lead-in, favourable GI bleeding profile). See the <GuideLink to="cancer">Cancer &amp; Thrombosis</GuideLink> guide.</p>
             </div>
 
             <div className="asa-section-card">
               <h2 className="asa-section-title">Anticoagulation Contraindicated</h2>
-              <p className="asa-section-copy">Consider retrievable IVC filter as bridge. Consult thrombosis specialist. Reassess anticoagulation candidacy frequently. See Vena Cava Filter guide.</p>
+              <p className="asa-section-copy">Consider retrievable IVC filter as bridge. Consult thrombosis specialist. Reassess anticoagulation candidacy frequently. See the <GuideLink to="vcFilter">Vena Cava Filters</GuideLink> guide.</p>
             </div>
 
             <div className="asa-section-card">
@@ -325,8 +326,8 @@ export function PeTreatmentGuide() {
             </div>
 
             <div className="asa-section-card">
-              <h2 className="asa-section-title">APLAS</h2>
-              <p className="asa-section-copy">DOACs not recommended. Warfarin (INR 2–3) is standard therapy for thrombotic APLAS.</p>
+              <h2 className="asa-section-title">Antiphospholipid Syndrome (APS)</h2>
+              <p className="asa-section-copy">DOACs should not be used in APS. Use <GuideLink to="warfarin">warfarin</GuideLink> with a target INR of 2.0–3.0. See <GuideLink to="aps">Antiphospholipid Syndrome</GuideLink>.</p>
             </div>
           </div>
         )}
@@ -340,7 +341,7 @@ export function PeTreatmentGuide() {
                 {references.map((ref, i) => <li key={i}>{ref}</li>)}
               </ol>
               <p className="asa-section-copy" style={{ marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }}>
-                Source: Thrombosis Canada Clinical Guides — thrombosiscanada.ca | Version 60, updated 2025-05-01. Not a substitute for individual clinical judgment.
+                Version 60, updated 2025-05-01.
               </p>
             </div>
           </div>

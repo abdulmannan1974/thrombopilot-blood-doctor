@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   { id: "overview", label: "Overview" },
@@ -34,7 +35,7 @@ const percItems = [
 const imagingComparison = [
   {
     modality: "CTPA (Multidetector CT Pulmonary Angiography)",
-    advantages: "Widely available in Canada; highly sensitive and specific; rapid results; may identify alternative diagnoses",
+    advantages: "Widely available; highly sensitive and specific; rapid results; may identify alternative diagnoses",
     disadvantages: "Radiation (breast cancer risk in young women); contrast nephropathy risk; may detect subsegmental PE of uncertain significance (overdiagnosis risk)",
     when: "First-line in most patients",
   },
@@ -86,7 +87,7 @@ export function PeDiagnosisGuide() {
       <div className="asa-guide-header">
         <div className="asa-guide-header-body">
           <div className="asa-guide-eyebrow">
-            <span className="asa-badge asa-badge-blue">Thrombosis Canada</span>
+            <span className="asa-badge asa-badge-blue">Clinical Guide</span>
             <span className="asa-badge">Version 84 · Feb 2026</span>
           </div>
           <h1 className="asa-guide-title">Pulmonary Embolism: Diagnosis</h1>
@@ -286,7 +287,7 @@ export function PeDiagnosisGuide() {
             <div className="asa-section-card">
               <h2 className="asa-section-title">Imaging in Pregnancy</h2>
               <p className="asa-section-copy">
-                Both CTPA and V/Q scan are safe in pregnancy (risks of undiagnosed PE outweigh fetal radiation risk). V/Q scan preferred when normal CXR. See dedicated guide: <em>Pregnancy: Diagnosis of DVT and PE</em>.
+                Both CTPA and V/Q scan are safe in pregnancy (risks of undiagnosed PE outweigh fetal radiation risk). V/Q scan preferred when normal CXR. See the <GuideLink to="pregDiagnosis">Pregnancy: DVT &amp; PE Diagnosis</GuideLink> guide.
               </p>
             </div>
 
@@ -403,7 +404,7 @@ export function PeDiagnosisGuide() {
                 {references.map((ref, i) => <li key={i}>{ref}</li>)}
               </ol>
               <p className="asa-section-copy" style={{ marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }}>
-                Source: Thrombosis Canada Clinical Guides — thrombosiscanada.ca | Version 84, updated 2026-02-06. Not a substitute for individual clinical judgment.
+                Version 84, updated 2026-02-06.
               </p>
             </div>
           </div>

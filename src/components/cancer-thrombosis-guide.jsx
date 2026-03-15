@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 import {
   Activity,
   AlertCircle,
@@ -191,7 +192,7 @@ const incidentalRows = [
   [
     "Mesenteric / renal / cerebral vein thrombosis",
     "Full-dose anticoagulation",
-    "See Cerebral Venous Thrombosis guide for CVT-specific management",
+    "CVT-specific management applies",
   ],
 ];
 
@@ -301,7 +302,6 @@ export function CancerThrombosisGuide() {
             <div className="asa-badge-row">
               <span className="asa-badge asa-badge-blue">Clinical Guide</span>
               <span className="asa-badge asa-badge-green">Cancer-Associated Thrombosis</span>
-              <span className="asa-badge asa-badge-teal">Thrombosis Canada</span>
             </div>
             <h2 className="asa-guide-title">Cancer and Thrombosis</h2>
             <div className="asa-guide-meta">
@@ -685,6 +685,13 @@ export function CancerThrombosisGuide() {
               </table>
             </article>
 
+            <div className="asa-alert asa-alert-info">
+              <Info size={16} />
+              <div>
+                <strong>Related guides:</strong> For catheter-related DVT, see <GuideLink to="cvad">Catheter-Related DVT</GuideLink>. For cerebral vein thrombosis in cancer patients, see <GuideLink to="cvt">Cerebral Venous Thrombosis</GuideLink>. For VTE duration decisions, see <GuideLink to="vteDuration">VTE Duration of Treatment</GuideLink>.
+              </div>
+            </div>
+
             <article className="asa-section-card">
               <h3><Dot tone="danger" />Recurrent Thrombosis Despite Anticoagulation</h3>
               <table className="asa-dose-table">
@@ -790,7 +797,7 @@ export function CancerThrombosisGuide() {
       <div className="asa-guide-footer" style={{ padding: "1rem 1.35rem" }}>
         <p style={{ margin: 0, fontWeight: 700, color: "#374151" }}>Cancer and Thrombosis</p>
         <p style={{ margin: "0.3rem 0 0", color: "#6b7280", fontSize: "0.85rem" }}>
-          Thrombosis Canada Clinical Guide · Updated 10 September 2024 · Individualise anticoagulant choice based on cancer type, bleeding risk, renal function, and patient preference.
+          Clinical Guide · Updated 10 September 2024 · Individualise anticoagulant choice based on cancer type, bleeding risk, renal function, and patient preference.
         </p>
       </div>
     </section>

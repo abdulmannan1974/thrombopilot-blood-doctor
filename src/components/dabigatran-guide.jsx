@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 import {
   AlertCircle,
   Calendar,
@@ -14,9 +15,9 @@ import {
 
 const dosingRows = [
   ["Stroke prevention in non-valvular AF", "150 mg BID", "Standard dose for most patients."],
-  ["AF — age \u226580 or higher bleed risk", "110 mg BID", "Age \u226575 with \u22651 bleeding risk factor also qualifies for reduced dose."],
+  ["AF \u2014 age \u226580 or higher bleed risk", "110 mg BID", "Age \u226575 with \u22651 bleeding risk factor also qualifies for reduced dose."],
   ["VTE treatment (DVT/PE)", "150 mg BID", "After 5\u201310 days of parenteral anticoagulant. Dose reduction to 110 mg BID per AF criteria (not studied in VTE trials)."],
-  ["VTE prophylaxis — hip/knee replacement", "110 mg 1\u20134 hrs post-op, then 220 mg OD", "Continue 10\u201335 days depending on procedure."],
+  ["VTE prophylaxis \u2014 hip/knee replacement", "110 mg 1\u20134 hrs post-op, then 220 mg OD", "Continue 10\u201335 days depending on procedure."],
 ];
 
 const monitoringPoints = [
@@ -82,7 +83,7 @@ const specialConsiderations = [
   {
     title: "Pediatrics",
     items: [
-      "Not Health Canada approved for pediatric use.",
+      "Not approved for pediatric use.",
       "Age- and weight-adjusted dosing has been studied.",
       "Consult a pediatric thrombosis specialist.",
     ],
@@ -104,16 +105,16 @@ const specialConsiderations = [
 ];
 
 const relatedGuides = [
-  "DOACs: Comparison and Frequently Asked Questions",
-  "DOACs: Perioperative Management",
-  "DOACs: Management of Bleeding",
-  "DOACs: Coagulation Tests",
-  "DOACs in Patients with Obesity",
-  "Stroke Prevention in Atrial Fibrillation",
-  "Deep Vein Thrombosis (DVT): Treatment",
-  "Pulmonary Embolism (PE): Treatment",
-  "Venous Thromboembolism: Duration of Treatment",
-  "Cancer and Thrombosis",
+  { key: "doacsComparison", label: "DOACs: Comparison & FAQ" },
+  { key: "doacsPeriop", label: "DOACs: Perioperative Management" },
+  { key: "doacsBleeding", label: "DOACs: Bleeding Management" },
+  { key: "doacsCoagTests", label: "DOACs: Coagulation Tests" },
+  { key: "doacsObesity", label: "DOACs in Obesity" },
+  { key: "strokeAf", label: "Stroke Prevention in AF" },
+  { key: "dvtTreatment", label: "DVT: Treatment" },
+  { key: "peTreatment", label: "PE: Treatment" },
+  { key: "vteDuration", label: "VTE: Duration of Treatment" },
+  { key: "cancer", label: "Cancer & Thrombosis" },
 ];
 
 const references = [
@@ -124,7 +125,6 @@ const references = [
   "Eriksson BI, et al. Oral dabigatran etexilate vs. subcutaneous enoxaparin for the prevention of venous thromboembolism after total knee replacement. J Thromb Haemost. 2007;5:2178-2185 (RE-MODEL).",
   "Eikelboom JW, et al. Dabigatran versus warfarin in patients with mechanical heart valves. N Engl J Med. 2013;369:1206-1214 (RE-ALIGN).",
   "Pollack CV Jr, et al. Idarucizumab for dabigatran reversal \u2014 full cohort analysis. N Engl J Med. 2017;377:431-441 (RE-VERSE AD).",
-  "Thrombosis Canada. Dabigatran (Pradaxa\u00ae) Clinical Guide, 2024.",
   "Martin K, et al. Use of dabigatran in obese patients. Thromb Res. 2016;147:110-112.",
   "Steffel J, et al. 2021 European Heart Rhythm Association practical guide on the use of non-vitamin K antagonist oral anticoagulants. Europace. 2021;23:1612-1676.",
 ];
@@ -158,7 +158,7 @@ export function DabigatranGuide() {
             <h2 className="asa-guide-title">Dabigatran (Pradaxa&reg;)</h2>
             <div className="asa-guide-meta">
               <span><Calendar size={13} /> Updated 2024</span>
-              <span><FileText size={13} /> Thrombosis Canada Clinical Guide</span>
+              <span><FileText size={13} /> Clinical Guide</span>
             </div>
           </div>
           <div className="asa-guide-icon">
@@ -198,7 +198,7 @@ export function DabigatranGuide() {
         {tab === "overview" ? (
           <div className="asa-tab-panel">
             <article className="asa-section-card">
-              <h3 className="asa-section-title"><Dot tone="blue" />Licensed Indications in Canada</h3>
+              <h3 className="asa-section-title"><Dot tone="blue" />Approved Indications</h3>
               <ul className="asa-ind-list">
                 <li><strong>Stroke prevention in non-valvular atrial fibrillation</strong> — reduction of risk of stroke and systemic embolism in patients with AF.</li>
                 <li><strong>VTE treatment</strong> — treatment of deep vein thrombosis (DVT) and pulmonary embolism (PE), and prevention of recurrent DVT and PE.</li>
@@ -209,7 +209,7 @@ export function DabigatranGuide() {
             <div className="asa-alert asa-alert-red">
               <ShieldAlert size={16} />
               <div>
-                <strong>Contraindicated in mechanical heart valves.</strong> The RE-ALIGN trial demonstrated increased thromboembolic and bleeding events with dabigatran compared to warfarin in patients with mechanical prosthetic valves.
+                <strong>Contraindicated in mechanical heart valves.</strong> The RE-ALIGN trial demonstrated increased thromboembolic and bleeding events with dabigatran compared to <GuideLink to="warfarin">warfarin</GuideLink> in patients with mechanical prosthetic valves.
               </div>
             </div>
 
@@ -266,7 +266,7 @@ export function DabigatranGuide() {
           <div className="asa-tab-panel">
             <article className="asa-section-card">
               <h3 className="asa-section-title"><Dot tone="teal" />Laboratory Monitoring</h3>
-              <p className="asa-section-copy">Routine coagulation monitoring is not required. However, assessment of drug presence or anticoagulant intensity may be useful in specific clinical situations (bleeding, urgent surgery, suspected non-adherence, renal deterioration).</p>
+              <p className="asa-section-copy">Routine coagulation monitoring is not required. However, assessment of drug presence or anticoagulant intensity may be useful in specific clinical situations (bleeding, urgent surgery, suspected non-adherence, renal deterioration). See the <GuideLink to="doacsCoagTests">DOACs: Coagulation Tests</GuideLink> guide for details.</p>
               <div className="asa-ae-grid">
                 {monitoringPoints.map((item) => (
                   <div key={item.label} className="asa-ae-card default">
@@ -321,7 +321,7 @@ export function DabigatranGuide() {
             <div className="asa-alert asa-alert-amber">
               <AlertCircle size={16} />
               <div>
-                <strong>Neuraxial anaesthesia:</strong> Risk of epidural or spinal haematoma with indwelling catheters. Follow perioperative DOAC management guidelines for timing of last dose and catheter removal.
+                <strong>Neuraxial anaesthesia:</strong> Risk of epidural or spinal haematoma with indwelling catheters. Follow <GuideLink to="doacsPeriop">perioperative DOAC management</GuideLink> guidelines for timing of last dose and catheter removal.
               </div>
             </div>
           </div>
@@ -341,14 +341,14 @@ export function DabigatranGuide() {
             <div className="asa-alert asa-alert-red">
               <ShieldAlert size={16} />
               <div>
-                <strong>Mechanical heart valves:</strong> Dabigatran is CONTRAINDICATED. The RE-ALIGN trial was terminated early due to excess thromboembolic and bleeding events.
+                <strong>Mechanical heart valves:</strong> Dabigatran is CONTRAINDICATED. The RE-ALIGN trial was terminated early due to excess thromboembolic and bleeding events. Use <GuideLink to="warfarin">warfarin</GuideLink> instead.
               </div>
             </div>
 
             <div className="asa-alert asa-alert-red">
               <ShieldAlert size={16} />
               <div>
-                <strong>Pregnancy:</strong> Dabigatran crosses the placenta and must NOT be used during pregnancy. If anticoagulation is required, use LMWH.
+                <strong>Pregnancy:</strong> Dabigatran crosses the placenta and must NOT be used during pregnancy. If anticoagulation is required, use LMWH. See the <GuideLink to="ufhLmwh">UFH, LMWH &amp; Fondaparinux</GuideLink> guide.
               </div>
             </div>
           </div>
@@ -360,7 +360,7 @@ export function DabigatranGuide() {
               <h3 className="asa-section-title"><Dot tone="gray" />Related Clinical Guides</h3>
               <ul className="asa-related-list">
                 {relatedGuides.map((item) => (
-                  <li key={item}><Link2 size={14} /><span>{item}</span></li>
+                  <li key={item.key}><GuideLink to={item.key}>{item.label}</GuideLink></li>
                 ))}
               </ul>
             </article>
@@ -376,7 +376,7 @@ export function DabigatranGuide() {
       </div>
 
       <div className="asa-guide-footer">
-        <p><strong>Dabigatran (Pradaxa&reg;)</strong> | Thrombosis Canada Clinical Guide | Updated 2024</p>
+        <p><strong>Dabigatran (Pradaxa&reg;)</strong> | Clinical Guide | Updated 2024</p>
         <p>The information here is not a substitute for clinical judgement. Always seek appropriate specialist input when needed.</p>
       </div>
     </section>

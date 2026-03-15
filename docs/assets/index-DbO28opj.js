@@ -24244,7 +24244,7 @@ const timelineSteps$2 = [
   ["Day of procedure", "Proceed with the procedure and confirm the bleeding control plan.", "gray"],
   ["Within 48 hours after procedure", "Restart ASA as soon as haemostasis is secure and there is no significant bleeding.", "green"]
 ];
-const relatedGuides$f = [
+const relatedGuides$d = [
   "Mechanical and Bioprosthetic Heart Valves: Anticoagulant Therapy",
   "Perioperative Management of Antiplatelet Therapy",
   "Peripheral Arterial Disease",
@@ -24482,7 +24482,7 @@ function AsaGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$g, { tone: "gray" }),
             "Related Clinical Guides"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuides$f.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuides$d.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(Link2, { size: 14 }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: item })
           ] }, item)) })
@@ -26638,6 +26638,148 @@ function CvadThrombosisGuide() {
     ] })
   ] });
 }
+const GuideNavContext = reactExports.createContext(null);
+const GUIDE_IDS = {
+  // Anticoagulant drugs
+  warfarin: "Warfarin",
+  warfarinInr: "Warfarin_Management_of_Out-of-Range_INRs",
+  warfarinPoc: "Warfarin_Point-of-Care_INR_Monitoring",
+  warfarinPeriop: "Warfarin_Perioperative_Management",
+  apixaban: "Apixaban_(Eliquis)",
+  rivaroxaban: "Rivaroxaban_(Xarelto)",
+  dabigatran: "Dabigatran_(Pradaxa)",
+  edoxaban: "Edoxaban_(Lixiana)",
+  ufhLmwh: "Unfractionated_Heparin_Low_Molecular_Weight_Heparin_and_Fondaparinux",
+  // DOAC management
+  doacsComparison: "DOACs_Comparison_And_Frequently-asked_Questions",
+  doacsCoagTests: "DOACs_Coagulation_Tests",
+  doacsBleeding: "DOACs_Management_of_Bleeding",
+  doacsPeriop: "DOACs_Perioperative_Management",
+  doacsObesity: "DOACs_in_Patients_with_Obesity",
+  // Antiplatelet drugs
+  asa: "Acetylsalicylic_Acid_(ASA)",
+  clopidogrel: "Clopidogrel_(Plavix)",
+  prasugrel: "Prasugrel",
+  ticagrelor: "Ticagrelor_(Brilinta)",
+  // Antiplatelet / anticoag combinations
+  anticoagAntiplatelet: "Anticoagulation_in_Patients_Requiring_Antiplatelet_Therapy",
+  daptDuration: "Duration_of_Dual_Antiplatelet_Therapy_in_Patients_With_Coronary_Artery_Disease",
+  periopAntiplatelet: "Perioperative_Management_of_Antiplatelet_Therapy",
+  // VTE
+  dvtDiagnosis: "Deep_Vein_Thrombosis_(DVT)_Diagnosis",
+  dvtTreatment: "Deep_Vein_Thrombosis_(DVT)_Treatment",
+  peDiagnosis: "Pulmonary_Embolism_(PE)_Diagnosis",
+  peTreatment: "Pulmonary_Embolism_(PE)_Treatment",
+  peHighRisk: "Pulmonary_Embolism_High-_and_Intermediate-Risk",
+  vteDuration: "Venous_Thromboembolism_Duration_of_Treatment",
+  svt: "Superficial_Thrombophlebitis_Superficial_Vein_Thrombosis",
+  pvt: "Portal_Vein_Thrombosis_(PVT)",
+  pts: "Post_Thrombotic_Syndrome_(PTS)",
+  vcFilter: "Vena_Cava_Filter",
+  // Thrombophilia
+  aps: "Thrombophilia_Antiphospholipid_Syndrome",
+  naturalAnticoag: "Thrombophilia_Deficiencies_in_Protein_C_Protein_S_and_Antithrombin",
+  fvlPgm: "Thrombophilia_Factor_V_Leiden_and_Prothrombin_Gene_Mutation",
+  homocysteine: "Thrombophilia_Homocysteinemia_and_Methylene_Tetrahydrofolate_Reductase",
+  // Thromboprophylaxis
+  prophylaxisMedical: "Thromboprophylaxis_Hospitalized_Medical_Patients",
+  prophylaxisNonOrtho: "Thromboprophylaxis_Non-Orthopedic_Surgery",
+  prophylaxisOrtho: "Thromboprophylaxis_Orthopedic_Surgery",
+  covid: "COVID-19_Primary_Thromboprophylaxis_for_Hospitalized_Patients",
+  // Pregnancy
+  pregProphylaxis: "Pregnancy_Thromboprophylaxis",
+  pregVte: "Pregnancy_Venous_Thromboembolism_Treatment",
+  pregDiagnosis: "Pregnancy_Diagnosis_of_DVT_and_PE",
+  // Stroke / neuro
+  strokeAf: "Stroke_Prevention_in_Atrial_Fibrillation",
+  strokeSecondary: "Ischemic_Stroke_or_TIA_Secondary_Prevention",
+  strokeThrombolysis: "Stroke_Thrombolysis_and_Endovascular_Therapy",
+  cvt: "Cerebral_Venous_Thrombosis",
+  // Other
+  cancer: "Cancer_and_Thrombosis",
+  cvad: "Central_Venous_Catheter-Related_Deep_Vein_Thrombosis",
+  hit: "Heparin-Induced_Thrombocytopenia_(HIT)",
+  vipitVitt: "Vaccine-Induced_Prothrombotic_Immune_Thrombocytopenia_(VIPITVITT)",
+  pad: "Peripheral_Arterial_Disease",
+  hmb: "Management_of_Heavy_Menstrual_Bleeding_for_Patients_on_Anticoagulation",
+  heartValves: "Bioprosthetic_and_Mechanical_Heart_Valves_Antithrombotic_Therapy",
+  airTravel: "Air_Travel-related_Thrombosis"
+};
+const GUIDE_LABELS = {
+  warfarin: "Warfarin",
+  warfarinInr: "Warfarin: Out-of-Range INR Management",
+  warfarinPoc: "Warfarin: Point-of-Care INR Monitoring",
+  warfarinPeriop: "Warfarin: Perioperative Management",
+  apixaban: "Apixaban (Eliquis)",
+  rivaroxaban: "Rivaroxaban (Xarelto)",
+  dabigatran: "Dabigatran (Pradaxa)",
+  edoxaban: "Edoxaban (Lixiana)",
+  ufhLmwh: "UFH, LMWH & Fondaparinux",
+  doacsComparison: "DOACs: Comparison & FAQ",
+  doacsCoagTests: "DOACs: Coagulation Tests",
+  doacsBleeding: "DOACs: Bleeding Management",
+  doacsPeriop: "DOACs: Perioperative Management",
+  doacsObesity: "DOACs in Obesity",
+  asa: "ASA (Acetylsalicylic Acid)",
+  clopidogrel: "Clopidogrel (Plavix)",
+  prasugrel: "Prasugrel (Effient)",
+  ticagrelor: "Ticagrelor (Brilinta)",
+  anticoagAntiplatelet: "Anticoagulation + Antiplatelet Therapy",
+  daptDuration: "DAPT Duration in CAD",
+  periopAntiplatelet: "Perioperative Antiplatelet Management",
+  dvtDiagnosis: "DVT: Diagnosis",
+  dvtTreatment: "DVT: Treatment",
+  peDiagnosis: "PE: Diagnosis",
+  peTreatment: "PE: Treatment",
+  peHighRisk: "PE: High- & Intermediate-Risk",
+  vteDuration: "VTE: Duration of Treatment",
+  svt: "Superficial Vein Thrombosis",
+  pvt: "Portal Vein Thrombosis",
+  pts: "Post-Thrombotic Syndrome",
+  vcFilter: "Vena Cava Filters",
+  aps: "Antiphospholipid Syndrome",
+  naturalAnticoag: "Thrombophilia: Protein C, S & Antithrombin",
+  fvlPgm: "Factor V Leiden & Prothrombin Gene Mutation",
+  homocysteine: "Homocysteinemia & MTHFR",
+  prophylaxisMedical: "Thromboprophylaxis: Medical Patients",
+  prophylaxisNonOrtho: "Thromboprophylaxis: Non-Orthopedic Surgery",
+  prophylaxisOrtho: "Thromboprophylaxis: Orthopedic Surgery",
+  covid: "COVID-19 Thromboprophylaxis",
+  pregProphylaxis: "Pregnancy: Thromboprophylaxis",
+  pregVte: "Pregnancy: VTE Treatment",
+  pregDiagnosis: "Pregnancy: DVT & PE Diagnosis",
+  strokeAf: "Stroke Prevention in AF",
+  strokeSecondary: "Ischemic Stroke: Secondary Prevention",
+  strokeThrombolysis: "Stroke: Thrombolysis & EVT",
+  cvt: "Cerebral Venous Thrombosis",
+  cancer: "Cancer & Thrombosis",
+  cvad: "Catheter-Related DVT",
+  hit: "Heparin-Induced Thrombocytopenia (HIT)",
+  vipitVitt: "VIPIT / VITT",
+  pad: "Peripheral Arterial Disease",
+  hmb: "Heavy Menstrual Bleeding on Anticoagulation",
+  heartValves: "Heart Valves: Antithrombotic Therapy",
+  airTravel: "Air Travel-Related Thrombosis"
+};
+function GuideLink({ to, children }) {
+  const navigate = reactExports.useContext(GuideNavContext);
+  const guideId = GUIDE_IDS[to] ?? to;
+  const label = children || GUIDE_LABELS[to] || to;
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (navigate) navigate(guideId);
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "a",
+    {
+      href: "#",
+      onClick: handleClick,
+      className: "guide-cross-link",
+      title: `Open: ${typeof label === "string" ? label : GUIDE_LABELS[to] || to}`,
+      children: label
+    }
+  );
+}
 const tabs$M = [
   { id: "overview", label: "Overview" },
   { id: "diagnosis", label: "Diagnosis" },
@@ -26737,7 +26879,7 @@ function CerebralVenousThrombosisGuide() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-shell", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-guide-header", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-header-body", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-eyebrow", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Thrombosis Canada" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Clinical Guide" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge", children: "Version 33 · Feb 2026" })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "asa-guide-title", children: "Cerebral Venous Thrombosis" }),
@@ -26855,8 +26997,8 @@ function CerebralVenousThrombosisGuide() {
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "VITT-associated CVT" }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "asa-section-copy", children: [
-            "For CVT in the context of Vaccine-induced Immune Thrombocytopenia and Thrombosis (VITT), see the dedicated clinical guide: ",
-            /* @__PURE__ */ jsxRuntimeExports.jsx("em", { children: "HIT, VITT, and VITT-like Disorders" }),
+            "For CVT in the context of Vaccine-induced Immune Thrombocytopenia and Thrombosis (VITT), see the ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "vipitVitt", children: "VIPIT / VITT guide" }),
             ". Management differs significantly from non-VITT CVT (avoid heparin, use IVIG and non-heparin anticoagulants)."
           ] })
         ] })
@@ -26906,10 +27048,12 @@ function CerebralVenousThrombosisGuide() {
           ] }, i)) })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card asa-alert asa-alert-red", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "APLAS patients:" }),
-          " DOACs are ",
-          /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "not recommended" }),
-          " in patients with known antiphospholipid antibody syndrome — use warfarin (INR 2–3)."
+          /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Antiphospholipid syndrome (APS):" }),
+          " DOACs should not be used in APS. Use ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarin", children: "warfarin" }),
+          " with a target INR of 2.0–3.0 instead. See ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "aps", children: "Antiphospholipid Syndrome" }),
+          "."
         ] })
       ] }),
       activeTab === "management" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-sections", children: [
@@ -26963,7 +27107,13 @@ function CerebralVenousThrombosisGuide() {
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Smoking cessation and lifestyle modification" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Thrombophilia testing: not routinely recommended — implications for anticoagulation duration are uncertain in most cases" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "APLAS: confirmed diagnosis warrants warfarin over DOACs" })
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+              "APS: confirmed diagnosis warrants ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarin", children: "warfarin" }),
+              " over DOACs (see ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "aps", children: "Antiphospholipid Syndrome" }),
+              ")"
+            ] })
           ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
@@ -26987,7 +27137,7 @@ function CerebralVenousThrombosisGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "Duration of Anticoagulation" }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-ae-grid", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-ae-card", style: { gridColumn: "1 / -1" }, children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-ae-label", children: "No ongoing structural/provoking risk factors; no APLAS" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-ae-label", children: "No ongoing structural/provoking risk factors; no APS" }),
               /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "asa-ae-value", children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "3–6 months" }),
                 " — equally effective vs 12 months (ESCOA-CVT: 460 patients, no difference in recurrent VTE, bleeding, or death at 12 months)"
@@ -27035,7 +27185,7 @@ function CerebralVenousThrombosisGuide() {
       activeTab === "references" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-sections", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "References" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$M.map((ref, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: ref }, i)) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }, children: "Source: Thrombosis Canada Clinical Guides — thrombosiscanada.ca | Version 33, updated 2026-02-06. Not a substitute for individual clinical judgment." })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }, children: "Version 33, updated 2026-02-06." })
       ] }) })
     ] })
   ] });
@@ -27064,7 +27214,7 @@ const wellsItems = [
 const ddimmerRows = [
   {
     threshold: "Standard (fixed)",
-    cutoff: "500 µg/L (FEU) — most Canadian labs",
+    cutoff: "500 µg/L (FEU) — most labs",
     use: "DVT unlikely PTP: negative D-dimer excludes DVT",
     notes: "Sensitivity >90% with validated high-sensitivity assay"
   },
@@ -27121,7 +27271,7 @@ function DvtDiagnosisGuide() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-shell", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-guide-header", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-header-body", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-eyebrow", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Thrombosis Canada" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Clinical Guide" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge", children: "Version 60 · May 2025" })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "asa-guide-title", children: "DVT: Diagnosis" }),
@@ -27142,7 +27292,7 @@ function DvtDiagnosisGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "Epidemiology" }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-ae-grid", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-ae-card", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-ae-label", children: "Annual Canadian DVT cases" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-ae-label", children: "Annual DVT cases (estimated)" }),
               /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-ae-value", children: "~45,000" })
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-ae-card", children: [
@@ -27404,16 +27554,16 @@ function DvtDiagnosisGuide() {
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "DVT in Pregnancy" }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "asa-section-copy", children: [
-            "See dedicated Clinical Guide: ",
-            /* @__PURE__ */ jsxRuntimeExports.jsx("em", { children: "Pregnancy: Diagnosis of DVT and PE" }),
-            " — special algorithms apply due to altered physiology and D-dimer thresholds during pregnancy."
+            "See the ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "pregDiagnosis", children: "Pregnancy: DVT & PE Diagnosis" }),
+            " guide — special algorithms apply due to altered physiology and D-dimer thresholds during pregnancy."
           ] })
         ] })
       ] }),
       activeTab === "references" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-sections", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "References" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$L.map((ref, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: ref }, i)) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }, children: "Source: Thrombosis Canada Clinical Guides — thrombosiscanada.ca | Version 60, updated 2025-05-07. Not a substitute for individual clinical judgment." })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }, children: "Version 60, updated 2025-05-07." })
       ] }) })
     ] })
   ] });
@@ -27483,7 +27633,7 @@ const specialRows = [
   {
     situation: "Upper extremity DVT (UEDVT)",
     management: "5–10% of all VTE. Treat like lower extremity DVT. CDT/thrombectomy may be considered case-by-case for extensive, severely symptomatic UEDVT. Consider effort thrombosis (Paget-Schroetter) and thoracic outlet syndrome.",
-    key: "See also: CVAD-related DVT guide"
+    key: "cvad"
   },
   {
     situation: "Isolated distal DVT",
@@ -27493,12 +27643,12 @@ const specialRows = [
   {
     situation: "Cancer-associated DVT",
     management: "LMWH or anti-Xa DOACs (apixaban, rivaroxaban, edoxaban). Apixaban preferred in most — no lead-in needed, GI bleeding risk similar to LMWH.",
-    key: "See: Cancer and Thrombosis guide"
+    key: "cancer"
   },
   {
     situation: "Pregnancy",
     management: "LMWH monotherapy for full duration. DOACs contraindicated. VKA contraindicated (except select circumstances).",
-    key: "See: Pregnancy VTE Treatment guide"
+    key: "pregVte"
   },
   {
     situation: "Severe renal insufficiency (CrCl <15–20)",
@@ -27508,12 +27658,12 @@ const specialRows = [
   {
     situation: "Cannot anticoagulate (active bleeding / very high bleed risk)",
     management: "Consult thrombosis specialist. Consider retrievable IVC filter as bridge. Reassess anticoagulation candidacy frequently.",
-    key: "Refer to Vena Cava Filter guide"
+    key: "vcFilter"
   },
   {
-    situation: "Antiphospholipid syndrome (APLAS)",
-    management: "Warfarin (INR 2–3) preferred. DOACs not recommended.",
-    key: "APLAS requires VKA, not DOACs"
+    situation: "Antiphospholipid syndrome (APS)",
+    management: "Warfarin (INR 2.0–3.0) preferred. DOACs should not be used in APS.",
+    key: "aps"
   }
 ];
 const references$K = [
@@ -27538,7 +27688,7 @@ function DvtTreatmentGuide() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-shell", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-guide-header", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-header-body", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-eyebrow", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Thrombosis Canada" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Clinical Guide" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge", children: "Version 80 · Nov 2025" })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "asa-guide-title", children: "DVT: Treatment" }),
@@ -27557,7 +27707,11 @@ function DvtTreatmentGuide() {
       activeTab === "overview" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-sections", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card asa-alert asa-alert-blue", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "First-line preference:" }),
-          " DOACs (apixaban or rivaroxaban) preferred over VKA except for APLAS, drug interactions (CYP3A4/P-gp), impaired oral absorption, or mechanical heart valve."
+          " DOACs (",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "apixaban", children: "apixaban" }),
+          " or ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "rivaroxaban", children: "rivaroxaban" }),
+          ") preferred over VKA except for APS, drug interactions (CYP3A4/P-gp), impaired oral absorption, or mechanical heart valve."
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "General Principles" }),
@@ -27751,7 +27905,10 @@ function DvtTreatmentGuide() {
       activeTab === "special" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-sections", children: specialRows.map((s, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", style: { borderLeft: "3px solid var(--primary)" }, children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { style: { margin: "0 0 0.4rem", color: "var(--foreground)", fontSize: "1em" }, children: s.situation }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { margin: "0 0 0.3rem" }, children: s.management }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { style: { margin: 0, fontSize: "0.84em", color: "#1d4ed8", fontWeight: 500 }, children: s.key })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { style: { margin: 0, fontSize: "0.84em", color: "#1d4ed8", fontWeight: 500 }, children: ["cvad", "cancer", "pregVte", "vcFilter", "aps"].includes(s.key) ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+          "See ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: s.key })
+        ] }) : s.key })
       ] }, i)) }),
       activeTab === "references" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-sections", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "References" }),
@@ -29834,7 +29991,7 @@ function VteDurationGuide() {
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-alert asa-alert-amber", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Limitations of prognostic models:" }),
-          " HERDOO2 requires VIDAS D-dimer assay (not interchangeable with other assays); limited data in women ≥ 50 years. DASH shows > 5% recurrence in patients > 65 years even at the lowest score. Vienna model lacks a clinical impact study. Use in conjunction with clinical judgment and patient preference."
+          " HERDOO2 requires VIDAS D-dimer assay (not interchangeable with other assays); limited data in women ≥ 50 years. DASH shows >5% recurrence in patients >65 years even at the lowest score. Vienna model lacks a clinical impact study. Use in conjunction with clinical judgment and patient preference."
         ] })
       ] }),
       activeTab === 3 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-sections", children: [
@@ -32060,7 +32217,7 @@ const references$u = [
   "Riva N, et al. Anticoagulation for portal vein thrombosis in liver cirrhosis and non-cirrhotic patients: a systematic review and meta-analysis. Blood. 2016;128(22):3654.",
   "Zhan C, et al. TIPS versus anticoagulation for portal vein thrombosis in cirrhosis: a retrospective cohort study. Hepatology. 2021;73(6):2390-2401."
 ];
-const relatedGuides$e = [
+const relatedGuides$c = [
   "Cancer and Thrombosis",
   "Deep Vein Thrombosis (DVT): Treatment",
   "DOACs: Comparison and Frequently-asked Questions",
@@ -32288,7 +32445,7 @@ function PvtGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$c, { tone: "gray" }),
             "Related Clinical Guides"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuides$e.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuides$c.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(Link2, { size: 14 }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: item })
           ] }, item)) })
@@ -32414,7 +32571,7 @@ const references$t = [
   "Duffett L, Carrier M. Superficial venous thrombosis. In: Defined: Thrombosis Explained. Thrombosis Canada; 2019.",
   "Wiegers HMG, Middeldorp S, Brekelmans MPA, et al. Treatment and long-term outcomes of superficial vein thrombosis: a systematic review and meta-analysis. Blood. 2023;142(10):891-901."
 ];
-const relatedGuides$d = [
+const relatedGuides$b = [
   "Deep Vein Thrombosis (DVT): Diagnosis",
   "Deep Vein Thrombosis (DVT): Treatment",
   "Venous Thromboembolism: Duration of Treatment",
@@ -32622,7 +32779,7 @@ function SvtGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$b, { tone: "gray" }),
             "Related Clinical Guides"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuides$d.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuides$b.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(Link2, { size: 14 }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: item })
           ] }, item)) })
@@ -32729,7 +32886,7 @@ const postInsertionSteps = [
     "gray"
   ]
 ];
-const relatedGuides$c = [
+const relatedGuides$a = [
   "Deep Vein Thrombosis (DVT): Treatment",
   "Pulmonary Embolism (PE): Treatment",
   "Pulmonary Embolism: High- and Intermediate-Risk",
@@ -32940,7 +33097,7 @@ function VenaCavaFilterGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$a, { tone: "gray" }),
             "Related Clinical Guides"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuides$c.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuides$a.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(Link2, { size: 14 }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: item })
           ] }, item)) })
@@ -32991,7 +33148,7 @@ const managementSteps = [
   ["HIT confirmatory testing", "Send PF4 antibody assays (ELISA and/or functional assay such as SRA). Treatment should not be delayed pending results.", "gray"],
   ["AEFI reporting", "Report all suspected adverse events following immunisation (AEFI) to the local Public Health Unit.", "green"]
 ];
-const relatedGuides$b = [
+const relatedGuides$9 = [
   "Heparin-Induced Thrombocytopenia (HIT)",
   "DOACs: Comparison and Frequently-asked Questions",
   "Cerebral Venous Thrombosis",
@@ -33259,7 +33416,7 @@ function VipitVittGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$9, { tone: "gray" }),
             "Related Clinical Guides"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuides$b.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuides$9.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(Link2, { size: 14 }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: item })
           ] }, item)) })
@@ -33322,7 +33479,7 @@ function WarfarinInrManagementGuide() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-shell", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-guide-header", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-header-body", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-eyebrow", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Thrombosis Canada" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Anticoagulation" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge", children: "Clinical Guide" })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "asa-guide-title", children: "Warfarin: Management of Out-of-Range INRs" }),
@@ -33385,6 +33542,14 @@ function WarfarinInrManagementGuide() {
               /* @__PURE__ */ jsxRuntimeExports.jsx("em", { children: "cause" }),
               " of each out-of-range INR before adjusting the dose"
             ] })
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "Related Guides" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-ind-list", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarin", children: "Warfarin: General Guide" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarinPoc", children: "Warfarin: Point-of-Care INR Monitoring" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarinPeriop", children: "Warfarin: Perioperative Management" }) })
           ] })
         ] })
       ] }),
@@ -33497,7 +33662,9 @@ function WarfarinInrManagementGuide() {
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card asa-alert asa-alert-red", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Active bleeding at any INR level:" }),
-          " This is a medical emergency. Do not use this guide — refer to the Warfarin Reversal / Bleeding Management protocols. Major bleeding requires IV vitamin K + prothrombin complex concentrate (PCC)."
+          " This is a medical emergency. Refer to bleeding management protocols. Major bleeding requires IV vitamin K + prothrombin complex concentrate (PCC). See also the ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsBleeding", children: "DOAC Bleeding Management" }),
+          " guide for comparison."
         ] })
       ] }),
       activeTab === "low-inr" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-sections", children: [
@@ -33602,8 +33769,7 @@ function WarfarinInrManagementGuide() {
       ] }),
       activeTab === "references" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-sections", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "References" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$q.map((ref, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: ref }, i)) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }, children: "Source: Thrombosis Canada Clinical Guides — thrombosiscanada.ca. Not a substitute for individual clinical judgment." })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$q.map((ref, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: ref }, i)) })
       ] }) })
     ] })
   ] });
@@ -33621,7 +33787,7 @@ const suitabilityCriteria = [
   "Patient has been trained and is able to perform the test reliably.",
   "Patient is willing and able to self-adjust warfarin dose using predetermined instructions and keeps accurate records.",
   "Patient has back-up support from a knowledgeable health professional.",
-  "Patient is reviewed every 6–12 months in an anticoagulant clinic for quality check of technique and results.",
+  "Patient is reviewed every 6-12 months in an anticoagulant clinic for quality check of technique and results.",
   "Patient can afford the POC device and ongoing test strip costs."
 ];
 const references$p = [
@@ -33637,7 +33803,7 @@ function WarfarinPocInrGuide() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-shell", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-guide-header", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-header-body", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-eyebrow", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Thrombosis Canada" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Anticoagulation" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge", children: "Clinical Guide" })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "asa-guide-title", children: "Warfarin: Point-of-Care INR Monitoring" }),
@@ -33698,7 +33864,17 @@ function WarfarinPocInrGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "inaccurate" }),
           " in patients with severe anaemia or polycythaemia (haematocrit <15% or >55%), co-administration of other anticoagulants (e.g., heparin, DOACs), or the presence of ",
           /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "antiphospholipid antibodies" }),
-          ". In these situations, laboratory INR testing should be used."
+          " (see ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "aps", children: "APS Guide" }),
+          "). In these situations, laboratory INR testing should be used."
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "Related Guides" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-ind-list", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarin", children: "Warfarin: General Guide" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarinInr", children: "Warfarin: Management of Out-of-Range INRs" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarinPeriop", children: "Warfarin: Perioperative Management" }) })
+          ] })
         ] })
       ] }),
       activeTab === "approaches" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-sections", children: [
@@ -33816,7 +33992,7 @@ function DoacsCoagulationTestsGuide() {
   const [tab, setTab] = reactExports.useState("overview");
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: "asa-guide-shell", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-header", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-eyebrow", children: "Thrombosis Canada Clinical Guide" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-eyebrow", children: "Clinical Guide" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-guide-title", children: "DOACs: Coagulation Tests" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-lead", children: "Laboratory assessment of coagulation in patients receiving direct oral anticoagulants (DOACs), including routine and specific assays." })
     ] }),
@@ -34107,20 +34283,20 @@ const references$n = [
   "Siegal DM. What Have We Learned About DOAC Reversal? Hematology Am Soc Hematol Educ Program. 2019;2019(1):198-203.",
   "Tomaselli GF, et al. 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants. J Am Coll Cardiol. 2020;76(5):594-622."
 ];
-const relatedGuides$a = [
-  "Apixaban (Eliquis)",
-  "Dabigatran (Pradaxa)",
-  "DOACs: Comparison and Frequently Asked Questions",
-  "DOACs: Coagulation Tests",
-  "DOACs: Peri-operative Management",
-  "Edoxaban (Lixiana)",
-  "Rivaroxaban (Xarelto)"
+const relatedGuideLinks = [
+  { key: "apixaban", label: "Apixaban (Eliquis)" },
+  { key: "dabigatran", label: "Dabigatran (Pradaxa)" },
+  { key: "doacsComparison", label: "DOACs: Comparison and FAQ" },
+  { key: "doacsCoagTests", label: "DOACs: Coagulation Tests" },
+  { key: "doacsPeriop", label: "DOACs: Perioperative Management" },
+  { key: "edoxaban", label: "Edoxaban (Lixiana)" },
+  { key: "rivaroxaban", label: "Rivaroxaban (Xarelto)" }
 ];
 function DoacsBleedingGuide() {
   const [tab, setTab] = reactExports.useState("overview");
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: "asa-guide-shell", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-header", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-eyebrow", children: "Thrombosis Canada · Clinical Guide" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-eyebrow", children: "Clinical Guide" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-guide-title", children: "DOACs: Management of Bleeding" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-lead", children: "Guidance for clinicians on the management of bleeding in patients receiving a direct oral anticoagulant (DOAC)." })
     ] }),
@@ -34351,8 +34527,8 @@ function DoacsBleedingGuide() {
       ] }),
       tab === "references" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-sections", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "Related Thrombosis Canada Clinical Guides" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-section-copy", children: relatedGuides$a.map((g) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: g }, g)) })
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "Related Clinical Guides" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-section-copy", children: relatedGuideLinks.map((g) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: g.key, children: g.label }) }, g.key)) })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "References" }),
@@ -34365,7 +34541,7 @@ function DoacsBleedingGuide() {
             " There are no studies evaluating the management of bleeding in children receiving DOACs."
           ] })
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { opacity: 0.7, fontSize: "0.82rem", marginTop: "1rem" }, children: "Date of version: 16 October 2025 · Source: Thrombosis Canada Clinical Guides · Updated 6 February 2026" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { opacity: 0.7, fontSize: "0.82rem", marginTop: "1rem" }, children: "Date of version: 16 October 2025 · Updated 6 February 2026" })
       ] })
     ] })
   ] });
@@ -34465,7 +34641,7 @@ function DoacsPerioperativeGuide() {
   const [tab, setTab] = reactExports.useState("overview");
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: "asa-guide-shell", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-header", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-eyebrow", children: "Thrombosis Canada \\u2014 Clinical Guide" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-eyebrow", children: "Clinical Guide" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-guide-title", children: "DOACs: Perioperative Management" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-lead", children: "Guidance for perioperative management of patients receiving a direct oral anticoagulant (DOAC) who require an elective surgery or procedure." })
     ] }),
@@ -34515,7 +34691,9 @@ function DoacsPerioperativeGuide() {
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-alert asa-alert-blue", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "No heparin bridging needed for DOACs." }),
-          " The rapid offset and onset of action of DOACs obviates the need for heparin bridging as is done in selected warfarin-treated patients."
+          " The rapid offset and onset of action of DOACs obviates the need for heparin bridging as is done in selected ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarin", children: "warfarin" }),
+          "-treated patients."
         ] })
       ] }),
       tab === "bleed-risk" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-sections", children: [
@@ -34637,11 +34815,19 @@ function DoacsPerioperativeGuide() {
           " Resuming a DOAC post-operatively means giving a",
           " ",
           /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "therapeutic dose" }),
-          ", which is higher than the dose used for routine post-operative VTE prophylaxis. Exercise particular caution after major surgery or in patients at increased bleeding risk."
+          ", which is higher than the dose used for routine post-operative VTE prophylaxis. Exercise particular caution after major surgery or in patients at increased bleeding risk. For management of post-operative bleeding on a DOAC, see the ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsBleeding", children: "DOACs: Management of Bleeding" }),
+          " guide."
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "High VTE Risk Patients \\u2014 LMWH Bridging" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", children: "In patients considered at high risk for venous thromboembolism, low-dose LMWH can be administered during the initial 48\\u201372 hour post-operative period before the DOAC is resumed:" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "asa-section-copy", children: [
+            "In patients considered at high risk for venous thromboembolism, low-dose",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "ufhLmwh", children: "LMWH" }),
+            " can be administered during the initial 48",
+            "–",
+            "72 hour post-operative period before the DOAC is resumed:"
+          ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("table", { className: "asa-dose-table", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("thead", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("tr", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("th", { children: "LMWH Agent" }),
@@ -34698,7 +34884,7 @@ function DoacsObesityGuide() {
   const [tab, setTab] = reactExports.useState("overview");
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: "asa-guide-shell", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-header", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-guide-eyebrow", children: "Thrombosis Canada Clinical Guide" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-guide-eyebrow", children: "Clinical Guide" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-guide-title", children: "DOACs in Patients with Obesity" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-lead", children: "Guidance on the management of direct oral anticoagulants (DOACs) in patients with obesity, including Class III obesity (BMI >40 kg/m² or weight >120 kg)." })
     ] }),
@@ -34770,17 +34956,31 @@ function DoacsObesityGuide() {
           /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "asa-section-title", children: "Orthopedic Surgery Thromboprophylaxis" }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-section-copy", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Dabigatran vs enoxaparin:" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("strong", { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "dabigatran", children: "Dabigatran" }),
+                " vs enoxaparin:"
+              ] }),
               " No significant difference in patients with BMI >30."
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Rivaroxaban vs enoxaparin:" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("strong", { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "rivaroxaban", children: "Rivaroxaban" }),
+                " vs enoxaparin:"
+              ] }),
               " No difference in patients >90 kg compared with lower weights."
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Apixaban vs enoxaparin:" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("strong", { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "apixaban", children: "Apixaban" }),
+                " vs enoxaparin:"
+              ] }),
               " Pooled data showed no differences in VTE or bleeding events when BMI <30 was compared with BMI >30."
             ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "asa-section-copy", style: { marginTop: "0.5rem" }, children: [
+            "For detailed guidance, see the ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "prophylaxisOrtho", children: "Thromboprophylaxis: Orthopedic Surgery" }),
+            " guide."
           ] })
         ] })
       ] }) : null,
@@ -34828,9 +35028,9 @@ function DoacsObesityGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-amber", children: "Over 120 kg / BMI >40" }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "asa-section-copy", style: { marginTop: "0.5rem" }, children: [
               "The ISTH recommends standard-dose ",
-              /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "rivaroxaban" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "rivaroxaban", children: "rivaroxaban" }) }),
               " or ",
-              /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "apixaban" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "apixaban", children: "apixaban" }) }),
               " as appropriate options for treatment of VTE (less data supporting apixaban than rivaroxaban)."
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-section-copy", children: [
@@ -37081,7 +37281,7 @@ const references$e = [
   "Writing Committee Members, Levine GN, McEvoy JW, et al. 2022 AHA/ACC/HFSA guideline for the management of heart failure. Circulation. 2022;145:e895–e1032.",
   "Kearon C, Akl EA, Ornelas J, et al. Antithrombotic therapy for VTE disease: CHEST guideline. Chest. 2016;149:315–352."
 ];
-const relatedGuides$9 = [
+const relatedGuides$8 = [
   "Stroke Prevention in Atrial Fibrillation",
   "DOACs: Comparison and Frequently Asked Questions",
   "DVT Treatment",
@@ -37246,7 +37446,7 @@ function AnticoagAntiplateletGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-dot gray" }),
             "Related Clinical Guides"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuides$9.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: item }) }, item)) })
+          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuides$8.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: item }) }, item)) })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { children: [
@@ -37286,7 +37486,7 @@ const references$d = [
   "Wiviott SD, et al. Prasugrel versus clopidogrel in patients with acute coronary syndromes (TRITON-TIMI 38). N Engl J Med 2007;357:2001-2015.",
   "Jang Y, et al. One-month dual antiplatelet therapy followed by prasugrel monotherapy at a reduced dose: the 4D-ACS randomised trial. EuroIntervention 2025. DOI: 10.4244/EIJ-D-25-00331."
 ];
-const relatedGuides$8 = [
+const relatedGuides$7 = [
   "Acetylsalicylic Acid (ASA)",
   "Clopidogrel (Plavix)",
   "Prasugrel (Effient)",
@@ -37596,7 +37796,7 @@ function DaptDurationGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$8, { tone: "gray" }),
             "Related Clinical Guides"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuides$8.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: item }) }, item)) })
+          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuides$7.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: item }) }, item)) })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { children: [
@@ -38177,17 +38377,6 @@ const drugInteractions$3 = [
     examples: "Rifampin, carbamazepine, phenytoin, St. John's Wort"
   }
 ];
-const relatedGuides$7 = [
-  "Cancer and Thrombosis",
-  "DOACs: Coagulation Tests",
-  "DOACs: Comparison and Frequently Asked Questions",
-  "DOACs in Patients with Obesity",
-  "DOACs: Management of Bleeding",
-  "DOACs: Perioperative Management",
-  "Stroke Prevention in Atrial Fibrillation",
-  "Thromboprophylaxis: Orthopedic Surgery",
-  "Anticoagulation in Patients Requiring Antiplatelet Therapy"
-];
 const references$a = [
   "Agnelli G, et al. AMPLIFY Investigators. Oral apixaban for the treatment of acute venous thromboembolism. N Engl J Med 2013;369(9):799-808.",
   "Agnelli G, et al. AMPLIFY-EXT Investigators. Apixaban for extended treatment of venous thromboembolism. N Engl J Med. 2013;368(8):699-708.",
@@ -38231,7 +38420,7 @@ function ApixabanGuide() {
       ] }) }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-objective-strip", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Objective:" }),
-        " To provide an overview of the mechanism of action, licensed indications, dosing regimens, and side-effect profile of apixaban."
+        " To provide an overview of the mechanism of action, approved indications, dosing regimens, and side-effect profile of apixaban."
       ] })
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-mechanism-card", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
@@ -38253,7 +38442,7 @@ function ApixabanGuide() {
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$6, { tone: "blue" }),
-            "Licensed Indications in Canada"
+            "Approved Indications"
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-ind-list", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: "Prevention of stroke and systemic embolism in patients with non-valvular atrial fibrillation (NVAF)." }),
@@ -38338,11 +38527,11 @@ function ApixabanGuide() {
           ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-alert asa-alert-info", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-          "See ",
-          /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "DOACs: Coagulation Tests" }),
-          " clinical guide for details on specific anti-Xa testing. See",
+          "See the ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsCoagTests", children: "DOACs: Coagulation Tests" }),
+          " guide for details on specific anti-Xa testing. See",
           " ",
-          /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "DOACs: Management of Bleeding" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsBleeding", children: "DOACs: Management of Bleeding" }),
           " for approach to bleeding complications."
         ] }) })
       ] }) : null,
@@ -38382,10 +38571,10 @@ function ApixabanGuide() {
             "Obesity"
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "asa-section-copy", children: [
-            "No RCTs exist, but a multitude of observational data demonstrates that efficacy and safety are maintained in obese patients. See ",
-            /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "DOACs in Patients with Obesity" }),
+            "No RCTs exist, but extensive observational data show that efficacy and safety are maintained in obese patients. See the",
             " ",
-            "clinical guide."
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsObesity", children: "DOACs in Obesity" }),
+            " guide."
           ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
@@ -38416,7 +38605,12 @@ function ApixabanGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$6, { tone: "blue" }),
             "Cancer-Associated Thrombosis Treatment"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", children: "RCT (Caravaggio) comparing apixaban (10 mg BID x 7 days then 5 mg BID) vs. subcutaneous dalteparin for 6 months showed apixaban was non-inferior for both recurrent VTE and major bleeding." }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "asa-section-copy", children: [
+            "The Caravaggio RCT compared apixaban (10 mg BID for 7 days, then 5 mg BID) with subcutaneous dalteparin for 6 months. Apixaban was non-inferior for both recurrent VTE and major bleeding. See the",
+            " ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "cancer", children: "Cancer & Thrombosis" }),
+            " guide."
+          ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "asa-section-copy", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "2025 RCT (API-CAT):" }),
             " After at least 6 months of anticoagulation, extended therapy with 2.5 mg BID was non-inferior to 5 mg BID for prevention of recurrent VTE, with significantly less clinically relevant bleeding."
@@ -38427,28 +38621,42 @@ function ApixabanGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$6, { tone: "orange" }),
             "Cancer Primary Prophylaxis"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", children: "In ambulatory cancer patients at Khorana intermediate/high risk (AVERT trial): apixaban 2.5 mg BID reduced overall VTE from 10.2% to 4.2% (HR 0.41), but major bleeding increased from 1.8% to 3.5% (HR 2.95). Decisions must be individualized considering VTE risk, cancer site, patient values, and drug cost. Not licensed for this indication in Canada." })
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", children: "In ambulatory cancer patients at Khorana intermediate/high risk (AVERT trial): apixaban 2.5 mg BID reduced overall VTE from 10.2% to 4.2% (HR 0.41), but major bleeding increased from 1.8% to 3.5% (HR 2.95). Decisions must be individualized considering VTE risk, cancer site, patient values, and drug cost. Not approved for this indication." })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$6, { tone: "teal" }),
             "AF + ACS/PCI (AUGUSTUS Trial)"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", children: "In AF patients with recent ACS or PCI taking a P2Y12 inhibitor, apixaban (at stroke prevention doses) without ASA resulted in less bleeding and fewer hospitalizations compared to regimens including a VKA, ASA, or both — without significant differences in ischemic events." })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "asa-section-copy", children: [
+            "In AF patients with recent ACS or PCI taking a P2Y12 inhibitor, apixaban (at stroke prevention doses) without ASA resulted in less bleeding and fewer hospitalizations compared to regimens including a VKA, ASA, or both — without significant differences in ischemic events. See the",
+            " ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "anticoagAntiplatelet", children: "Anticoagulation + Antiplatelet Therapy" }),
+            " guide."
+          ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$6, { tone: "purple" }),
             "Subclinical AF (ARTESIA Trial)"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", children: "In patients with subclinical AF (6 minutes to 24 hours) detected via implantable devices and CHA2DS2-VASc score of 3 or greater: apixaban lowered stroke/SE risk vs. ASA (HR 0.63; 95% CI 0.45–0.88) but increased major bleeding (HR 1.80; 95% CI 1.26–2.57). Shared decision-making is essential based on individual risk profiles." })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "asa-section-copy", children: [
+            "In patients with subclinical AF (6 minutes to 24 hours) detected via implantable devices and CHA2DS2-VASc score of 3 or greater: apixaban lowered stroke/SE risk vs. ASA (HR 0.63; 95% CI 0.45–0.88) but increased major bleeding (HR 1.80; 95% CI 1.26–2.57). Shared decision-making is essential based on individual risk profiles. See the",
+            " ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "strokeAf", children: "Stroke Prevention in AF" }),
+            " guide."
+          ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$6, { tone: "blue" }),
             "LV Thrombus"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", children: "Small RCTs and growing observational data suggest apixaban (at AF doses) is non-inferior to warfarin for LV thrombus treatment with similar or lower bleeding risk. AHA scientific statement considers DOACs a reasonable alternative to warfarin, especially when time in therapeutic range is predicted to be low or frequent INR checks are not feasible." })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "asa-section-copy", children: [
+            "Small RCTs and growing observational data suggest apixaban (at AF doses) is non-inferior to ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "warfarin", children: "warfarin" }),
+            " for LV thrombus treatment with similar or lower bleeding risk. The AHA scientific statement considers DOACs a reasonable alternative to warfarin, especially when time in therapeutic range is predicted to be low or frequent INR checks are not feasible."
+          ] })
         ] })
       ] }) : null,
       tab === "references" ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-tab-panel", children: [
@@ -38457,7 +38665,17 @@ function ApixabanGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(Dot$6, { tone: "gray" }),
             "Related Clinical Guides"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "asa-related-list", children: relatedGuides$7.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: item }) }, item)) })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "asa-related-list", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "cancer", children: "Cancer & Thrombosis" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsCoagTests", children: "DOACs: Coagulation Tests" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsComparison", children: "DOACs: Comparison & FAQ" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsObesity", children: "DOACs in Obesity" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsBleeding", children: "DOACs: Bleeding Management" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsPeriop", children: "DOACs: Perioperative Management" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "strokeAf", children: "Stroke Prevention in AF" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "prophylaxisOrtho", children: "Thromboprophylaxis: Orthopedic Surgery" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "anticoagAntiplatelet", children: "Anticoagulation + Antiplatelet Therapy" }) })
+          ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("article", { className: "asa-section-card", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { children: [
@@ -38985,17 +39203,13 @@ const references$8 = [
   "EINSTEIN Investigators. Oral rivaroxaban for symptomatic venous thromboembolism. N Engl J Med. 2010;363:2499-2510.",
   "Hokusai-VTE Investigators. Edoxaban versus warfarin for the treatment of symptomatic venous thromboembolism. N Engl J Med. 2013;369:1406-1415.",
   "Lip GYH, et al. Effectiveness and safety of oral anticoagulants among nonvalvular atrial fibrillation patients. Stroke. 2018;49:2933-2944.",
-  "Steffel J, et al. 2021 European Heart Rhythm Association practical guide on the use of NOACs in patients with atrial fibrillation. Eur Heart J. 2021;42:3227-3335.",
-  "Thrombosis Canada. DOACs: Comparison and Frequently-asked Questions. thrombosiscanada.ca. Accessed 2024."
+  "Steffel J, et al. 2021 European Heart Rhythm Association practical guide on the use of NOACs in patients with atrial fibrillation. Eur Heart J. 2021;42:3227-3335."
 ];
 function DoacsComparisonGuide() {
   const [activeTab, setActiveTab] = reactExports.useState("overview");
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-shell", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-guide-header", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-header-body", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-guide-eyebrow", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Clinical Guide" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge", children: "Thrombosis Canada" })
-      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-guide-eyebrow", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "asa-badge asa-badge-blue", children: "Clinical Guide" }) }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "asa-guide-title", children: "DOACs: Comparison and Frequently-Asked Questions" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-guide-lead", children: "Practical comparison of apixaban, dabigatran, edoxaban, and rivaroxaban — dosing, drug interactions, monitoring, renal adjustments, and emergency management." })
     ] }) }),
@@ -39142,7 +39356,9 @@ function DoacsComparisonGuide() {
             /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "minor dental work" }),
             ", it is probably safe to continue the DOAC. Consider prescribing ",
             /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "tranexamic acid mouthwash" }),
-            " for local haemostasis. For major dental surgery or high bleeding-risk procedures, consult the perioperative DOAC management guide."
+            " for local haemostasis. For major dental surgery or high bleeding-risk procedures, see the ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx(GuideLink, { to: "doacsPeriop", children: "DOACs: Perioperative Management" }),
+            " guide."
           ] })
         ] })
       ] }),
@@ -39316,7 +39532,7 @@ function DoacsComparisonGuide() {
       activeTab === "references" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "asa-sections", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "asa-section-card", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "asa-section-title", children: "References" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "asa-ref-list", children: references$8.map((ref, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: ref }, i)) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }, children: "Source: Thrombosis Canada Clinical Guides — thrombosiscanada.ca. Not a substitute for individual clinical judgment." })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "asa-section-copy", style: { marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }, children: "Not a substitute for individual clinical judgment." })
       ] }) })
     ] })
   ] });
@@ -45397,7 +45613,10 @@ function AppLayout() {
               /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: activeGuide.content.tabs.find((tab) => tab.id === "references")?.cards.length ?? 0 })
             ] })
           ] }),
-          activeGuide.id === "Acetylsalicylic_Acid_(ASA)" || activeGuide.title === "Acetylsalicylic Acid (ASA)" ? /* @__PURE__ */ jsxRuntimeExports.jsx(AsaGuide, {}) : activeGuide.id === "Bioprosthetic_and_Mechanical_Heart_Valves_Antithrombotic_Therapy" || activeGuide.title === "Bioprosthetic and Mechanical Heart Valves: Antithrombotic Therapy" ? /* @__PURE__ */ jsxRuntimeExports.jsx(HeartValvesGuide, {}) : activeGuide.id === "Air_Travel-related_Thrombosis" || activeGuide.title === "Air Travel-related Thrombosis" ? /* @__PURE__ */ jsxRuntimeExports.jsx(TravelThrombosisGuide, {}) : activeGuide.id === "Cancer_and_Thrombosis" || activeGuide.title === "Cancer and Thrombosis" ? /* @__PURE__ */ jsxRuntimeExports.jsx(CancerThrombosisGuide, {}) : activeGuide.id === "Central_Venous_Catheter-Related_Deep_Vein_Thrombosis" || activeGuide.title === "Central Venous Catheter-Related Deep Vein Thrombosis" ? /* @__PURE__ */ jsxRuntimeExports.jsx(CvadThrombosisGuide, {}) : activeGuide.id === "Cerebral_Venous_Thrombosis" || activeGuide.title === "Cerebral Venous Thrombosis" ? /* @__PURE__ */ jsxRuntimeExports.jsx(CerebralVenousThrombosisGuide, {}) : activeGuide.id === "Deep_Vein_Thrombosis_(DVT)_Diagnosis" || activeGuide.title?.includes("Deep Vein Thrombosis") && activeGuide.title?.includes("Diagnosis") ? /* @__PURE__ */ jsxRuntimeExports.jsx(DvtDiagnosisGuide, {}) : activeGuide.id === "Deep_Vein_Thrombosis_(DVT)_Treatment" || activeGuide.title?.includes("Deep Vein Thrombosis") && activeGuide.title?.includes("Treatment") ? /* @__PURE__ */ jsxRuntimeExports.jsx(DvtTreatmentGuide, {}) : activeGuide.id === "Heparin-Induced_Thrombocytopenia_(HIT)" || activeGuide.title?.includes("Heparin-Induced Thrombocytopenia") ? /* @__PURE__ */ jsxRuntimeExports.jsx(HitGuide, {}) : activeGuide.id === "Stroke_Prevention_in_Atrial_Fibrillation" || activeGuide.title?.includes("Stroke Prevention in Atrial Fibrillation") ? /* @__PURE__ */ jsxRuntimeExports.jsx(StrokePreventionAfGuide, {}) : activeGuide.id === "Pulmonary_Embolism_(PE)_Diagnosis" || activeGuide.title?.includes("Pulmonary Embolism") && activeGuide.title?.includes("Diagnosis") ? /* @__PURE__ */ jsxRuntimeExports.jsx(PeDiagnosisGuide, {}) : activeGuide.id === "Pulmonary_Embolism_(PE)_Treatment" || activeGuide.title?.includes("Pulmonary Embolism") && activeGuide.title?.includes("Treatment") ? /* @__PURE__ */ jsxRuntimeExports.jsx(PeTreatmentGuide, {}) : activeGuide.id === "Warfarin" || activeGuide.title === "Warfarin" ? /* @__PURE__ */ jsxRuntimeExports.jsx(WarfarinGuide, {}) : activeGuide.id === "Venous_Thromboembolism_Duration_of_Treatment" || activeGuide.title?.includes("Duration of Treatment") ? /* @__PURE__ */ jsxRuntimeExports.jsx(VteDurationGuide, {}) : activeGuide.id === "Thrombophilia_Antiphospholipid_Syndrome" || activeGuide.title?.includes("Antiphospholipid") ? /* @__PURE__ */ jsxRuntimeExports.jsx(ApsThrombophiliaGuide, {}) : activeGuide.id === "Thrombophilia_Deficiencies_in_Protein_C_Protein_S_and_Antithrombin" || (activeGuide.title?.includes("Protein C") || activeGuide.title?.includes("Antithrombin")) ? /* @__PURE__ */ jsxRuntimeExports.jsx(ThrombophiliaNaturalAnticoagulantsGuide, {}) : activeGuide.id === "Thrombophilia_Factor_V_Leiden_and_Prothrombin_Gene_Mutation" || activeGuide.title?.includes("Factor V Leiden") ? /* @__PURE__ */ jsxRuntimeExports.jsx(ThrombophiliaFvlPgmGuide, {}) : activeGuide.id === "Thrombophilia_Homocysteinemia_and_Methylene_Tetrahydrofolate_Reductase" || activeGuide.title?.includes("Homocysteinemia") || activeGuide.title?.includes("MTHFR") ? /* @__PURE__ */ jsxRuntimeExports.jsx(ThrombophiliaHomocysteineGuide, {}) : activeGuide.id === "Thromboprophylaxis_Hospitalized_Medical_Patients" || activeGuide.title?.includes("Thromboprophylaxis") && activeGuide.title?.includes("Medical") ? /* @__PURE__ */ jsxRuntimeExports.jsx(ThromboprophylaxisMedicalGuide, {}) : activeGuide.id === "Thromboprophylaxis_Non-Orthopedic_Surgery" || activeGuide.title?.includes("Thromboprophylaxis") && activeGuide.title?.includes("Non-Orthopedic") ? /* @__PURE__ */ jsxRuntimeExports.jsx(ThromboprophylaxisNonOrthoGuide, {}) : activeGuide.id === "Thromboprophylaxis_Orthopedic_Surgery" || activeGuide.title?.includes("Thromboprophylaxis") && activeGuide.title?.includes("Orthopedic") && !activeGuide.title?.includes("Non") ? /* @__PURE__ */ jsxRuntimeExports.jsx(ThromboprophylaxisOrthoGuide, {}) : activeGuide.id === "Pulmonary_Embolism_High-_and_Intermediate-Risk" || activeGuide.title?.includes("Pulmonary Embolism") && (activeGuide.title?.includes("High") || activeGuide.title?.includes("Intermediate")) ? /* @__PURE__ */ jsxRuntimeExports.jsx(PeHighIntermediateRiskGuide, {}) : activeGuide.id === "Post_Thrombotic_Syndrome_(PTS)" || activeGuide.title?.includes("Post Thrombotic Syndrome") || activeGuide.title?.includes("Post-Thrombotic") ? /* @__PURE__ */ jsxRuntimeExports.jsx(PtsGuide, {}) : activeGuide.id === "Portal_Vein_Thrombosis_(PVT)" || activeGuide.title?.includes("Portal Vein Thrombosis") ? /* @__PURE__ */ jsxRuntimeExports.jsx(PvtGuide, {}) : activeGuide.id === "Superficial_Thrombophlebitis_Superficial_Vein_Thrombosis" || activeGuide.title?.includes("Superficial Thrombophlebitis") || activeGuide.title?.includes("Superficial Vein Thrombosis") ? /* @__PURE__ */ jsxRuntimeExports.jsx(SvtGuide, {}) : activeGuide.id === "Vena_Cava_Filter" || activeGuide.title?.includes("Vena Cava Filter") ? /* @__PURE__ */ jsxRuntimeExports.jsx(VenaCavaFilterGuide, {}) : activeGuide.id === "Vaccine-Induced_Prothrombotic_Immune_Thrombocytopenia_(VIPITVITT)" || activeGuide.title?.includes("VIPIT") || activeGuide.title?.includes("VITT") ? /* @__PURE__ */ jsxRuntimeExports.jsx(VipitVittGuide, {}) : activeGuide.id === "Warfarin_Management_of_Out-of-Range_INRs" || activeGuide.title?.includes("Out-of-Range INR") ? /* @__PURE__ */ jsxRuntimeExports.jsx(WarfarinInrManagementGuide, {}) : activeGuide.id === "Warfarin_Point-of-Care_INR_Monitoring" || activeGuide.title?.includes("Point-of-Care INR") ? /* @__PURE__ */ jsxRuntimeExports.jsx(WarfarinPocInrGuide, {}) : activeGuide.id === "DOACs_Coagulation_Tests" || activeGuide.title?.includes("DOACs") && activeGuide.title?.includes("Coagulation Tests") ? /* @__PURE__ */ jsxRuntimeExports.jsx(DoacsCoagulationTestsGuide, {}) : activeGuide.id === "DOACs_Management_of_Bleeding" || activeGuide.title?.includes("DOACs") && activeGuide.title?.includes("Bleeding") ? /* @__PURE__ */ jsxRuntimeExports.jsx(DoacsBleedingGuide, {}) : activeGuide.id === "DOACs_Perioperative_Management" || activeGuide.title?.includes("DOACs") && activeGuide.title?.includes("Perioperative") ? /* @__PURE__ */ jsxRuntimeExports.jsx(DoacsPerioperativeGuide, {}) : activeGuide.id === "DOACs_in_Patients_with_Obesity" || activeGuide.title?.includes("DOACs") && activeGuide.title?.includes("Obesity") ? /* @__PURE__ */ jsxRuntimeExports.jsx(DoacsObesityGuide, {}) : activeGuide.id === "Pregnancy_Thromboprophylaxis" || activeGuide.title?.includes("Pregnancy") && activeGuide.title?.includes("Thromboprophylaxis") ? /* @__PURE__ */ jsxRuntimeExports.jsx(PregnancyThromboprophylaxisGuide, {}) : activeGuide.id === "Pregnancy_Venous_Thromboembolism_Treatment" || activeGuide.title?.includes("Pregnancy") && activeGuide.title?.includes("VTE Treatment") ? /* @__PURE__ */ jsxRuntimeExports.jsx(PregnancyVteTreatmentGuide, {}) : activeGuide.id === "Pregnancy_Diagnosis_of_DVT_and_PE" || activeGuide.title?.includes("Pregnancy") && activeGuide.title?.includes("Diagnosis") ? /* @__PURE__ */ jsxRuntimeExports.jsx(PregnancyDvtPeDiagnosisGuide, {}) : activeGuide.id === "Ischemic_Stroke_or_TIA_Secondary_Prevention" || activeGuide.title?.includes("Ischemic Stroke") && activeGuide.title?.includes("Secondary Prevention") ? /* @__PURE__ */ jsxRuntimeExports.jsx(IschemicStrokeSecondaryPreventionGuide, {}) : activeGuide.id === "Stroke_Thrombolysis_and_Endovascular_Therapy" || activeGuide.title?.includes("Thrombolysis") && activeGuide.title?.includes("Endovascular") ? /* @__PURE__ */ jsxRuntimeExports.jsx(StrokeThrombolysisGuide, {}) : activeGuide.id === "Peripheral_Arterial_Disease" || activeGuide.title?.includes("Peripheral Arterial Disease") ? /* @__PURE__ */ jsxRuntimeExports.jsx(PeripheralArterialDiseaseGuide, {}) : activeGuide.id === "Anticoagulation_in_Patients_Requiring_Antiplatelet_Therapy" || activeGuide.title?.includes("Requiring Antiplatelet") ? /* @__PURE__ */ jsxRuntimeExports.jsx(AnticoagAntiplateletGuide, {}) : activeGuide.id === "Duration_of_Dual_Antiplatelet_Therapy_in_Patients_With_Coronary_Artery_Disease" || activeGuide.title?.includes("Dual Antiplatelet Therapy") ? /* @__PURE__ */ jsxRuntimeExports.jsx(DaptDurationGuide, {}) : activeGuide.id === "Management_of_Heavy_Menstrual_Bleeding_for_Patients_on_Anticoagulation" || activeGuide.title?.includes("Heavy Menstrual Bleeding") ? /* @__PURE__ */ jsxRuntimeExports.jsx(HmbAnticoagulationGuide, {}) : activeGuide.id === "Perioperative_Management_of_Antiplatelet_Therapy" || activeGuide.title?.includes("Perioperative") && activeGuide.title?.includes("Antiplatelet") ? /* @__PURE__ */ jsxRuntimeExports.jsx(PerioperativeAntiplateletGuide, {}) : activeGuide.id === "Apixaban_(Eliquis)" || activeGuide.title?.includes("Apixaban") || activeGuide.title?.includes("Eliquis") ? /* @__PURE__ */ jsxRuntimeExports.jsx(ApixabanGuide, {}) : activeGuide.id === "Rivaroxaban_(Xarelto)" || activeGuide.title?.includes("Rivaroxaban") || activeGuide.title?.includes("Xarelto") ? /* @__PURE__ */ jsxRuntimeExports.jsx(RivaroxabanGuide, {}) : activeGuide.id === "DOACs_Comparison_And_Frequently-asked_Questions" || activeGuide.title?.includes("DOACs") && activeGuide.title?.includes("Comparison") ? /* @__PURE__ */ jsxRuntimeExports.jsx(DoacsComparisonGuide, {}) : activeGuide.id === "Dabigatran_(Pradaxa)" || activeGuide.title?.includes("Dabigatran") || activeGuide.title?.includes("Pradaxa") ? /* @__PURE__ */ jsxRuntimeExports.jsx(DabigatranGuide, {}) : activeGuide.id === "Edoxaban_(Lixiana)" || activeGuide.title?.includes("Edoxaban") || activeGuide.title?.includes("Lixiana") ? /* @__PURE__ */ jsxRuntimeExports.jsx(EdoxabanGuide, {}) : activeGuide.id === "Clopidogrel_(Plavix)" || activeGuide.title?.includes("Clopidogrel") || activeGuide.title?.includes("Plavix") ? /* @__PURE__ */ jsxRuntimeExports.jsx(ClopidogrelGuide, {}) : activeGuide.id === "Prasugrel" || activeGuide.title?.includes("Prasugrel") ? /* @__PURE__ */ jsxRuntimeExports.jsx(PrasugrelGuide, {}) : activeGuide.id === "Ticagrelor_(Brilinta)" || activeGuide.title?.includes("Ticagrelor") || activeGuide.title?.includes("Brilinta") ? /* @__PURE__ */ jsxRuntimeExports.jsx(TicagrelorGuide, {}) : activeGuide.id === "COVID-19_Primary_Thromboprophylaxis_for_Hospitalized_Patients" || activeGuide.title?.includes("COVID-19") && activeGuide.title?.includes("Thromboprophylaxis") ? /* @__PURE__ */ jsxRuntimeExports.jsx(CovidThromboprophylaxisGuide, {}) : activeGuide.id === "Unfractionated_Heparin_Low_Molecular_Weight_Heparin_and_Fondaparinux" || activeGuide.title?.includes("Unfractionated Heparin") || activeGuide.title?.includes("Fondaparinux") ? /* @__PURE__ */ jsxRuntimeExports.jsx(UfhLmwhFondaparinuxGuide, {}) : activeGuide.id === "Warfarin_Perioperative_Management" || activeGuide.title?.includes("Warfarin") && activeGuide.title?.includes("Perioperative") ? /* @__PURE__ */ jsxRuntimeExports.jsx(WarfarinPeriopGuide, {}) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(GuideNavContext.Provider, { value: (guideId) => {
+            setActiveGuideId(guideId);
+            navigateToPage("guides");
+          }, children: activeGuide.id === "Acetylsalicylic_Acid_(ASA)" || activeGuide.title === "Acetylsalicylic Acid (ASA)" ? /* @__PURE__ */ jsxRuntimeExports.jsx(AsaGuide, {}) : activeGuide.id === "Bioprosthetic_and_Mechanical_Heart_Valves_Antithrombotic_Therapy" || activeGuide.title === "Bioprosthetic and Mechanical Heart Valves: Antithrombotic Therapy" ? /* @__PURE__ */ jsxRuntimeExports.jsx(HeartValvesGuide, {}) : activeGuide.id === "Air_Travel-related_Thrombosis" || activeGuide.title === "Air Travel-related Thrombosis" ? /* @__PURE__ */ jsxRuntimeExports.jsx(TravelThrombosisGuide, {}) : activeGuide.id === "Cancer_and_Thrombosis" || activeGuide.title === "Cancer and Thrombosis" ? /* @__PURE__ */ jsxRuntimeExports.jsx(CancerThrombosisGuide, {}) : activeGuide.id === "Central_Venous_Catheter-Related_Deep_Vein_Thrombosis" || activeGuide.title === "Central Venous Catheter-Related Deep Vein Thrombosis" ? /* @__PURE__ */ jsxRuntimeExports.jsx(CvadThrombosisGuide, {}) : activeGuide.id === "Cerebral_Venous_Thrombosis" || activeGuide.title === "Cerebral Venous Thrombosis" ? /* @__PURE__ */ jsxRuntimeExports.jsx(CerebralVenousThrombosisGuide, {}) : activeGuide.id === "Deep_Vein_Thrombosis_(DVT)_Diagnosis" || activeGuide.title?.includes("Deep Vein Thrombosis") && activeGuide.title?.includes("Diagnosis") ? /* @__PURE__ */ jsxRuntimeExports.jsx(DvtDiagnosisGuide, {}) : activeGuide.id === "Deep_Vein_Thrombosis_(DVT)_Treatment" || activeGuide.title?.includes("Deep Vein Thrombosis") && activeGuide.title?.includes("Treatment") ? /* @__PURE__ */ jsxRuntimeExports.jsx(DvtTreatmentGuide, {}) : activeGuide.id === "Heparin-Induced_Thrombocytopenia_(HIT)" || activeGuide.title?.includes("Heparin-Induced Thrombocytopenia") ? /* @__PURE__ */ jsxRuntimeExports.jsx(HitGuide, {}) : activeGuide.id === "Stroke_Prevention_in_Atrial_Fibrillation" || activeGuide.title?.includes("Stroke Prevention in Atrial Fibrillation") ? /* @__PURE__ */ jsxRuntimeExports.jsx(StrokePreventionAfGuide, {}) : activeGuide.id === "Pulmonary_Embolism_(PE)_Diagnosis" || activeGuide.title?.includes("Pulmonary Embolism") && activeGuide.title?.includes("Diagnosis") ? /* @__PURE__ */ jsxRuntimeExports.jsx(PeDiagnosisGuide, {}) : activeGuide.id === "Pulmonary_Embolism_(PE)_Treatment" || activeGuide.title?.includes("Pulmonary Embolism") && activeGuide.title?.includes("Treatment") ? /* @__PURE__ */ jsxRuntimeExports.jsx(PeTreatmentGuide, {}) : activeGuide.id === "Warfarin" || activeGuide.title === "Warfarin" ? /* @__PURE__ */ jsxRuntimeExports.jsx(WarfarinGuide, {}) : activeGuide.id === "Venous_Thromboembolism_Duration_of_Treatment" || activeGuide.title?.includes("Duration of Treatment") ? /* @__PURE__ */ jsxRuntimeExports.jsx(VteDurationGuide, {}) : activeGuide.id === "Thrombophilia_Antiphospholipid_Syndrome" || activeGuide.title?.includes("Antiphospholipid") ? /* @__PURE__ */ jsxRuntimeExports.jsx(ApsThrombophiliaGuide, {}) : activeGuide.id === "Thrombophilia_Deficiencies_in_Protein_C_Protein_S_and_Antithrombin" || (activeGuide.title?.includes("Protein C") || activeGuide.title?.includes("Antithrombin")) ? /* @__PURE__ */ jsxRuntimeExports.jsx(ThrombophiliaNaturalAnticoagulantsGuide, {}) : activeGuide.id === "Thrombophilia_Factor_V_Leiden_and_Prothrombin_Gene_Mutation" || activeGuide.title?.includes("Factor V Leiden") ? /* @__PURE__ */ jsxRuntimeExports.jsx(ThrombophiliaFvlPgmGuide, {}) : activeGuide.id === "Thrombophilia_Homocysteinemia_and_Methylene_Tetrahydrofolate_Reductase" || activeGuide.title?.includes("Homocysteinemia") || activeGuide.title?.includes("MTHFR") ? /* @__PURE__ */ jsxRuntimeExports.jsx(ThrombophiliaHomocysteineGuide, {}) : activeGuide.id === "Thromboprophylaxis_Hospitalized_Medical_Patients" || activeGuide.title?.includes("Thromboprophylaxis") && activeGuide.title?.includes("Medical") ? /* @__PURE__ */ jsxRuntimeExports.jsx(ThromboprophylaxisMedicalGuide, {}) : activeGuide.id === "Thromboprophylaxis_Non-Orthopedic_Surgery" || activeGuide.title?.includes("Thromboprophylaxis") && activeGuide.title?.includes("Non-Orthopedic") ? /* @__PURE__ */ jsxRuntimeExports.jsx(ThromboprophylaxisNonOrthoGuide, {}) : activeGuide.id === "Thromboprophylaxis_Orthopedic_Surgery" || activeGuide.title?.includes("Thromboprophylaxis") && activeGuide.title?.includes("Orthopedic") && !activeGuide.title?.includes("Non") ? /* @__PURE__ */ jsxRuntimeExports.jsx(ThromboprophylaxisOrthoGuide, {}) : activeGuide.id === "Pulmonary_Embolism_High-_and_Intermediate-Risk" || activeGuide.title?.includes("Pulmonary Embolism") && (activeGuide.title?.includes("High") || activeGuide.title?.includes("Intermediate")) ? /* @__PURE__ */ jsxRuntimeExports.jsx(PeHighIntermediateRiskGuide, {}) : activeGuide.id === "Post_Thrombotic_Syndrome_(PTS)" || activeGuide.title?.includes("Post Thrombotic Syndrome") || activeGuide.title?.includes("Post-Thrombotic") ? /* @__PURE__ */ jsxRuntimeExports.jsx(PtsGuide, {}) : activeGuide.id === "Portal_Vein_Thrombosis_(PVT)" || activeGuide.title?.includes("Portal Vein Thrombosis") ? /* @__PURE__ */ jsxRuntimeExports.jsx(PvtGuide, {}) : activeGuide.id === "Superficial_Thrombophlebitis_Superficial_Vein_Thrombosis" || activeGuide.title?.includes("Superficial Thrombophlebitis") || activeGuide.title?.includes("Superficial Vein Thrombosis") ? /* @__PURE__ */ jsxRuntimeExports.jsx(SvtGuide, {}) : activeGuide.id === "Vena_Cava_Filter" || activeGuide.title?.includes("Vena Cava Filter") ? /* @__PURE__ */ jsxRuntimeExports.jsx(VenaCavaFilterGuide, {}) : activeGuide.id === "Vaccine-Induced_Prothrombotic_Immune_Thrombocytopenia_(VIPITVITT)" || activeGuide.title?.includes("VIPIT") || activeGuide.title?.includes("VITT") ? /* @__PURE__ */ jsxRuntimeExports.jsx(VipitVittGuide, {}) : activeGuide.id === "Warfarin_Management_of_Out-of-Range_INRs" || activeGuide.title?.includes("Out-of-Range INR") ? /* @__PURE__ */ jsxRuntimeExports.jsx(WarfarinInrManagementGuide, {}) : activeGuide.id === "Warfarin_Point-of-Care_INR_Monitoring" || activeGuide.title?.includes("Point-of-Care INR") ? /* @__PURE__ */ jsxRuntimeExports.jsx(WarfarinPocInrGuide, {}) : activeGuide.id === "DOACs_Coagulation_Tests" || activeGuide.title?.includes("DOACs") && activeGuide.title?.includes("Coagulation Tests") ? /* @__PURE__ */ jsxRuntimeExports.jsx(DoacsCoagulationTestsGuide, {}) : activeGuide.id === "DOACs_Management_of_Bleeding" || activeGuide.title?.includes("DOACs") && activeGuide.title?.includes("Bleeding") ? /* @__PURE__ */ jsxRuntimeExports.jsx(DoacsBleedingGuide, {}) : activeGuide.id === "DOACs_Perioperative_Management" || activeGuide.title?.includes("DOACs") && activeGuide.title?.includes("Perioperative") ? /* @__PURE__ */ jsxRuntimeExports.jsx(DoacsPerioperativeGuide, {}) : activeGuide.id === "DOACs_in_Patients_with_Obesity" || activeGuide.title?.includes("DOACs") && activeGuide.title?.includes("Obesity") ? /* @__PURE__ */ jsxRuntimeExports.jsx(DoacsObesityGuide, {}) : activeGuide.id === "Pregnancy_Thromboprophylaxis" || activeGuide.title?.includes("Pregnancy") && activeGuide.title?.includes("Thromboprophylaxis") ? /* @__PURE__ */ jsxRuntimeExports.jsx(PregnancyThromboprophylaxisGuide, {}) : activeGuide.id === "Pregnancy_Venous_Thromboembolism_Treatment" || activeGuide.title?.includes("Pregnancy") && activeGuide.title?.includes("VTE Treatment") ? /* @__PURE__ */ jsxRuntimeExports.jsx(PregnancyVteTreatmentGuide, {}) : activeGuide.id === "Pregnancy_Diagnosis_of_DVT_and_PE" || activeGuide.title?.includes("Pregnancy") && activeGuide.title?.includes("Diagnosis") ? /* @__PURE__ */ jsxRuntimeExports.jsx(PregnancyDvtPeDiagnosisGuide, {}) : activeGuide.id === "Ischemic_Stroke_or_TIA_Secondary_Prevention" || activeGuide.title?.includes("Ischemic Stroke") && activeGuide.title?.includes("Secondary Prevention") ? /* @__PURE__ */ jsxRuntimeExports.jsx(IschemicStrokeSecondaryPreventionGuide, {}) : activeGuide.id === "Stroke_Thrombolysis_and_Endovascular_Therapy" || activeGuide.title?.includes("Thrombolysis") && activeGuide.title?.includes("Endovascular") ? /* @__PURE__ */ jsxRuntimeExports.jsx(StrokeThrombolysisGuide, {}) : activeGuide.id === "Peripheral_Arterial_Disease" || activeGuide.title?.includes("Peripheral Arterial Disease") ? /* @__PURE__ */ jsxRuntimeExports.jsx(PeripheralArterialDiseaseGuide, {}) : activeGuide.id === "Anticoagulation_in_Patients_Requiring_Antiplatelet_Therapy" || activeGuide.title?.includes("Requiring Antiplatelet") ? /* @__PURE__ */ jsxRuntimeExports.jsx(AnticoagAntiplateletGuide, {}) : activeGuide.id === "Duration_of_Dual_Antiplatelet_Therapy_in_Patients_With_Coronary_Artery_Disease" || activeGuide.title?.includes("Dual Antiplatelet Therapy") ? /* @__PURE__ */ jsxRuntimeExports.jsx(DaptDurationGuide, {}) : activeGuide.id === "Management_of_Heavy_Menstrual_Bleeding_for_Patients_on_Anticoagulation" || activeGuide.title?.includes("Heavy Menstrual Bleeding") ? /* @__PURE__ */ jsxRuntimeExports.jsx(HmbAnticoagulationGuide, {}) : activeGuide.id === "Perioperative_Management_of_Antiplatelet_Therapy" || activeGuide.title?.includes("Perioperative") && activeGuide.title?.includes("Antiplatelet") ? /* @__PURE__ */ jsxRuntimeExports.jsx(PerioperativeAntiplateletGuide, {}) : activeGuide.id === "Apixaban_(Eliquis)" || activeGuide.title?.includes("Apixaban") || activeGuide.title?.includes("Eliquis") ? /* @__PURE__ */ jsxRuntimeExports.jsx(ApixabanGuide, {}) : activeGuide.id === "Rivaroxaban_(Xarelto)" || activeGuide.title?.includes("Rivaroxaban") || activeGuide.title?.includes("Xarelto") ? /* @__PURE__ */ jsxRuntimeExports.jsx(RivaroxabanGuide, {}) : activeGuide.id === "DOACs_Comparison_And_Frequently-asked_Questions" || activeGuide.title?.includes("DOACs") && activeGuide.title?.includes("Comparison") ? /* @__PURE__ */ jsxRuntimeExports.jsx(DoacsComparisonGuide, {}) : activeGuide.id === "Dabigatran_(Pradaxa)" || activeGuide.title?.includes("Dabigatran") || activeGuide.title?.includes("Pradaxa") ? /* @__PURE__ */ jsxRuntimeExports.jsx(DabigatranGuide, {}) : activeGuide.id === "Edoxaban_(Lixiana)" || activeGuide.title?.includes("Edoxaban") || activeGuide.title?.includes("Lixiana") ? /* @__PURE__ */ jsxRuntimeExports.jsx(EdoxabanGuide, {}) : activeGuide.id === "Clopidogrel_(Plavix)" || activeGuide.title?.includes("Clopidogrel") || activeGuide.title?.includes("Plavix") ? /* @__PURE__ */ jsxRuntimeExports.jsx(ClopidogrelGuide, {}) : activeGuide.id === "Prasugrel" || activeGuide.title?.includes("Prasugrel") ? /* @__PURE__ */ jsxRuntimeExports.jsx(PrasugrelGuide, {}) : activeGuide.id === "Ticagrelor_(Brilinta)" || activeGuide.title?.includes("Ticagrelor") || activeGuide.title?.includes("Brilinta") ? /* @__PURE__ */ jsxRuntimeExports.jsx(TicagrelorGuide, {}) : activeGuide.id === "COVID-19_Primary_Thromboprophylaxis_for_Hospitalized_Patients" || activeGuide.title?.includes("COVID-19") && activeGuide.title?.includes("Thromboprophylaxis") ? /* @__PURE__ */ jsxRuntimeExports.jsx(CovidThromboprophylaxisGuide, {}) : activeGuide.id === "Unfractionated_Heparin_Low_Molecular_Weight_Heparin_and_Fondaparinux" || activeGuide.title?.includes("Unfractionated Heparin") || activeGuide.title?.includes("Fondaparinux") ? /* @__PURE__ */ jsxRuntimeExports.jsx(UfhLmwhFondaparinuxGuide, {}) : activeGuide.id === "Warfarin_Perioperative_Management" || activeGuide.title?.includes("Warfarin") && activeGuide.title?.includes("Perioperative") ? /* @__PURE__ */ jsxRuntimeExports.jsx(WarfarinPeriopGuide, {}) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "guide-summary-grid", children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx(
                 ContentSummaryCard,
@@ -45446,7 +45665,7 @@ function AppLayout() {
                 emptyMessage: "No guide sections are available for this entry yet."
               }
             )
-          ] }),
+          ] }) }),
           activeGuide.linkedGuideIds.length || activeGuide.linkedToolIds.length ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "related-panel", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "section-card-header slim", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "eyebrow", children: "Connected navigation" }),

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const dosingRows = [
   ["AF stroke prevention", "20 mg OD with food (CrCl > 50)", "15 mg OD with food if CrCl 15\u201349. Not recommended CrCl < 15."],
@@ -49,20 +50,6 @@ const drugInteractions = [
     ],
     effect: "Use combination therapy only when clearly indicated and for shortest duration",
   },
-];
-
-const relatedGuides = [
-  "Anticoagulation in Patients Requiring Antiplatelet Therapy",
-  "Cancer and Thrombosis",
-  "Deep Vein Thrombosis (DVT): Treatment",
-  "DOACs: Coagulation Tests",
-  "DOACs: Comparison and Frequently Asked Questions",
-  "DOACs: Management of Bleeding",
-  "DOACs: Perioperative Management",
-  "Peripheral Arterial Disease",
-  "Pulmonary Embolism (PE): Treatment",
-  "Stroke Prevention in Atrial Fibrillation",
-  "Thromboprophylaxis: Orthopedic Surgery",
 ];
 
 const references = [
@@ -119,7 +106,7 @@ export function RivaroxabanGuide() {
         </div>
 
         <div className="asa-objective-strip">
-          <strong>Objective:</strong> To provide an overview of the mechanism of action, licensed indications, dosing regimens, and side effects of rivaroxaban.
+          <strong>Objective:</strong> To provide an overview of the mechanism of action, approved indications, dosing regimens, and side effects of rivaroxaban.
         </div>
       </div>
 
@@ -151,12 +138,12 @@ export function RivaroxabanGuide() {
           <div className="asa-tab-panel">
             <div className="asa-alert asa-alert-danger">
               <div>
-                <strong>Health Canada Advisory (Dec 2018):</strong> Rivaroxaban is NOT indicated nor recommended for patients post transcatheter aortic valve replacement (TAVR). Increased all-cause mortality, thromboembolic events, and bleeding events have been observed.
+                <strong>Advisory (Dec 2018):</strong> Rivaroxaban is NOT indicated nor recommended for patients post transcatheter aortic valve replacement (TAVR). Increased all-cause mortality, thromboembolic events, and bleeding events have been observed.
               </div>
             </div>
 
             <article className="asa-section-card">
-              <h3><Dot tone="blue" />Licensed Indications in Canada</h3>
+              <h3><Dot tone="blue" />Approved Indications</h3>
               <div className="asa-ind-group">
                 <div className="asa-ind-group-label">Rivaroxaban 10 mg, 15 mg, 20 mg</div>
                 <ul className="asa-ind-list">
@@ -216,8 +203,8 @@ export function RivaroxabanGuide() {
             <article className="asa-section-card">
               <h3><Dot tone="purple" />Switching from Warfarin to Rivaroxaban</h3>
               <ul className="asa-ind-list">
-                <li>Stop warfarin and wait until INR falls below 2.5 before starting rivaroxaban (onset of action is rapid, 1\u20133 hours).</li>
-                <li>If INR testing is not readily available, wait 2\u20133 days after the last warfarin dose before starting rivaroxaban.</li>
+                <li>Stop <GuideLink to="warfarin">warfarin</GuideLink> and wait until INR falls below 2.5 before starting rivaroxaban (onset of action is rapid, 1&ndash;3 hours).</li>
+                <li>If INR testing is not readily available, wait 2&ndash;3 days after the last warfarin dose before starting rivaroxaban.</li>
                 <li>If INR is supratherapeutic, it will take longer for INR to fall to 2.5 or below.</li>
               </ul>
             </article>
@@ -240,7 +227,7 @@ export function RivaroxabanGuide() {
               <ul className="asa-ind-list">
                 <li>Routine laboratory monitoring is NOT necessary.</li>
                 <li>PT/INR is more responsive to rivaroxaban than aPTT, but neither provides a reliable measure for dosing adjustments.</li>
-                <li>Anti-factor Xa assays using rivaroxaban-specific calibrators, where available, can determine plasma rivaroxaban concentration.</li>
+                <li>Anti-factor Xa assays using rivaroxaban-specific calibrators, where available, can determine plasma rivaroxaban concentration. See the <GuideLink to="doacsCoagTests">DOACs: Coagulation Tests</GuideLink> guide.</li>
               </ul>
             </article>
 
@@ -263,7 +250,7 @@ export function RivaroxabanGuide() {
                 </div>
                 <div className="asa-ae-card moderate">
                   <div className="asa-ae-card-label">GI</div>
-                  <div className="asa-ae-card-text">Dyspepsia in some patients \u2014 take with food to reduce symptoms and improve absorption</div>
+                  <div className="asa-ae-card-text">Dyspepsia in some patients &mdash; take with food to reduce symptoms and improve absorption</div>
                 </div>
                 <div className="asa-ae-card serious">
                   <div className="asa-ae-card-label">Neuraxial</div>
@@ -306,7 +293,7 @@ export function RivaroxabanGuide() {
               <h3><Dot tone="orange" />Renal and Hepatic Impairment</h3>
               <ul className="asa-ind-list">
                 <li>CrCl &lt; 15 mL/min: rivaroxaban is NOT recommended.</li>
-                <li>CrCl 15\u201329 mL/min: use with caution across all indications.</li>
+                <li>CrCl 15&ndash;29 mL/min: use with caution across all indications.</li>
                 <li>Moderate or severe hepatic impairment (Child-Pugh B or C): avoid rivaroxaban.</li>
               </ul>
             </article>
@@ -314,7 +301,7 @@ export function RivaroxabanGuide() {
             <article className="asa-section-card">
               <h3><Dot tone="teal" />Pediatrics</h3>
               <ul className="asa-ind-list">
-                <li>Approved in Canada (January 2021) for VTE treatment and recurrence prevention in patients &lt; 18 years.</li>
+                <li>Approved (January 2021) for VTE treatment and recurrence prevention in patients &lt; 18 years.</li>
                 <li>Weight-based dosing using oral suspension (1 mg/mL) based on EINSTEIN Jr phase III trial data.</li>
                 <li>Requires at least 5 days of initial parenteral anticoagulation (heparinization) before starting.</li>
                 <li>EINSTEIN Jr: symptomatic recurrent VTE in 0.6% of children; no major bleeds on treatment.</li>
@@ -325,11 +312,11 @@ export function RivaroxabanGuide() {
             <article className="asa-section-card">
               <h3><Dot tone="purple" />Cancer-Associated Thrombosis</h3>
               <ul className="asa-ind-list">
-                <li>No licensed indication in Canada specifically for cancer-associated VTE.</li>
+                <li>No approved indication specifically for cancer-associated VTE.</li>
                 <li>SELECT-D trial: rivaroxaban may be a reasonable alternative to LMWH when GI bleeding risk is low and in non-GI solid tumours.</li>
                 <li>OSCAR-US observational study: rivaroxaban associated with significant reductions in composite of recurrent VTE or bleeding-related hospitalisation vs LMWH.</li>
                 <li>Caution with upper GI and urothelial cancers due to increased GI/GU bleeding risk.</li>
-                <li>Review drug interactions and thrombocytopenia risk before prescribing.</li>
+                <li>Review drug interactions and thrombocytopenia risk before prescribing. See the <GuideLink to="cancer">Cancer &amp; Thrombosis</GuideLink> guide.</li>
               </ul>
             </article>
 
@@ -337,7 +324,7 @@ export function RivaroxabanGuide() {
               <h3><Dot tone="blue" />Obesity</h3>
               <ul className="asa-ind-list">
                 <li>Observational studies support efficacy and safety of rivaroxaban in obese patients.</li>
-                <li>ISTH guidance supports standard dosing for patients &gt; 120 kg or BMI &gt; 40.</li>
+                <li>ISTH guidance supports standard dosing for patients &gt; 120 kg or BMI &gt; 40. See the <GuideLink to="doacsObesity">DOACs in Obesity</GuideLink> guide.</li>
               </ul>
             </article>
 
@@ -349,14 +336,14 @@ export function RivaroxabanGuide() {
                 <li>Supportive measures: discontinue rivaroxaban, local haemostasis, fluid resuscitation, transfusion as needed.</li>
               </ul>
               <div className="asa-alert asa-alert-info">
-                <div>See the Clinical Guide: DOACs \u2014 Management of Bleeding for detailed protocols and the Bleed Management tool.</div>
+                <div>See the <GuideLink to="doacsBleeding">DOACs: Management of Bleeding</GuideLink> guide for detailed protocols.</div>
               </div>
             </article>
 
             <article className="asa-section-card">
               <h3><Dot tone="blue" />Stable Cardiovascular Disease (COMPASS Trial)</h3>
               <ul className="asa-ind-list">
-                <li>Rivaroxaban 2.5 mg BID + ASA 100 mg OD: improved cardiovascular outcomes and lower mortality vs ASA alone, but more major bleeding. Net clinical benefit favoured combination therapy.</li>
+                <li>Rivaroxaban 2.5 mg BID + ASA 100 mg OD: improved cardiovascular outcomes and lower mortality vs ASA alone, but more major bleeding. Net clinical benefit favoured combination therapy. See the <GuideLink to="pad">Peripheral Arterial Disease</GuideLink> guide.</li>
                 <li>Rivaroxaban 5 mg BID alone: did not improve outcomes vs ASA and was associated with more bleeding.</li>
               </ul>
             </article>
@@ -369,9 +356,17 @@ export function RivaroxabanGuide() {
             <article className="asa-section-card">
               <h3><Dot tone="gray" />Related Clinical Guides</h3>
               <ul className="asa-related-list">
-                {relatedGuides.map((item) => (
-                  <li key={item}><span>{item}</span></li>
-                ))}
+                <li><GuideLink to="anticoagAntiplatelet">Anticoagulation + Antiplatelet Therapy</GuideLink></li>
+                <li><GuideLink to="cancer">Cancer &amp; Thrombosis</GuideLink></li>
+                <li><GuideLink to="dvtTreatment">DVT: Treatment</GuideLink></li>
+                <li><GuideLink to="doacsCoagTests">DOACs: Coagulation Tests</GuideLink></li>
+                <li><GuideLink to="doacsComparison">DOACs: Comparison &amp; FAQ</GuideLink></li>
+                <li><GuideLink to="doacsBleeding">DOACs: Bleeding Management</GuideLink></li>
+                <li><GuideLink to="doacsPeriop">DOACs: Perioperative Management</GuideLink></li>
+                <li><GuideLink to="pad">Peripheral Arterial Disease</GuideLink></li>
+                <li><GuideLink to="peTreatment">PE: Treatment</GuideLink></li>
+                <li><GuideLink to="strokeAf">Stroke Prevention in AF</GuideLink></li>
+                <li><GuideLink to="prophylaxisOrtho">Thromboprophylaxis: Orthopedic Surgery</GuideLink></li>
               </ul>
             </article>
 

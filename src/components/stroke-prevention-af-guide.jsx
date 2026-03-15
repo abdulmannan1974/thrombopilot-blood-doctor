@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   { id: "overview", label: "Overview" },
@@ -37,7 +38,7 @@ const doacRows = [
     standardDose: "150 mg BID",
     reducedDose: "110 mg BID: age ≥80, concomitant verapamil, or high bleed risk",
     dialysis: "Contraindicated",
-    reversal: "Idarucizumab (Praxbind®) — approved Health Canada, widely available",
+    reversal: "Idarucizumab (Praxbind®) — approved, widely available in Canada",
     notes: "Only DOAC with approved antidote readily available in Canada",
   },
   {
@@ -80,7 +81,7 @@ export function StrokePreventionAfGuide() {
       <div className="asa-guide-header">
         <div className="asa-guide-header-body">
           <div className="asa-guide-eyebrow">
-            <span className="asa-badge asa-badge-blue">Thrombosis Canada</span>
+            <span className="asa-badge asa-badge-blue">Clinical Guide</span>
             <span className="asa-badge">Version 68 · Jan 2024</span>
           </div>
           <h1 className="asa-guide-title">Stroke Prevention in Atrial Fibrillation</h1>
@@ -146,7 +147,7 @@ export function StrokePreventionAfGuide() {
                     <li>Assess fall risk</li>
                   </ul>
                 </li>
-                <li>HAS-BLED score: identifies modifiable bleeding risk factors; available at thrombosiscanada.ca</li>
+                <li>HAS-BLED score: identifies modifiable bleeding risk factors — use to guide risk factor modification, not to withhold anticoagulation</li>
               </ul>
             </div>
           </div>
@@ -372,9 +373,9 @@ export function StrokePreventionAfGuide() {
               <ol className="asa-ref-list">
                 {references.map((ref, i) => <li key={i}>{ref}</li>)}
               </ol>
-              <p className="asa-section-copy" style={{ marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }}>
-                Source: Thrombosis Canada Clinical Guides — thrombosiscanada.ca | Version 68, updated 2024-01-17. Not a substitute for individual clinical judgment.
-              </p>
+              <div style={{ marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }}>
+                <p>Related: <GuideLink to="apixaban">Apixaban</GuideLink> | <GuideLink to="rivaroxaban">Rivaroxaban</GuideLink> | <GuideLink to="dabigatran">Dabigatran</GuideLink> | <GuideLink to="edoxaban">Edoxaban</GuideLink> | <GuideLink to="warfarin">Warfarin</GuideLink> | <GuideLink to="anticoagAntiplatelet">OAC + Antiplatelet</GuideLink> | <GuideLink to="heartValves">Heart Valves</GuideLink></p>
+              </div>
             </div>
           </div>
         )}

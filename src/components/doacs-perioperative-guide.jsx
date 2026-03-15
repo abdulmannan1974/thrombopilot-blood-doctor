@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   { id: "overview", label: "Overview" },
@@ -102,7 +103,7 @@ export function DoacsPerioperativeGuide() {
   return (
     <section className="asa-guide-shell">
       <div className="asa-guide-header">
-        <p className="asa-guide-eyebrow">Thrombosis Canada \u2014 Clinical Guide</p>
+        <p className="asa-guide-eyebrow">Clinical Guide</p>
         <h2 className="asa-guide-title">DOACs: Perioperative Management</h2>
         <p className="asa-guide-lead">
           Guidance for perioperative management of patients receiving a direct oral
@@ -177,7 +178,7 @@ export function DoacsPerioperativeGuide() {
             <div className="asa-alert asa-alert-blue">
               <strong>No heparin bridging needed for DOACs.</strong> The rapid offset and
               onset of action of DOACs obviates the need for heparin bridging as is done
-              in selected warfarin-treated patients.
+              in selected <GuideLink to="warfarin">warfarin</GuideLink>-treated patients.
             </div>
           </div>
         )}
@@ -375,7 +376,7 @@ export function DoacsPerioperativeGuide() {
               <strong>Caution:</strong> Resuming a DOAC post-operatively means giving a{" "}
               <strong>therapeutic dose</strong>, which is higher than the dose used for
               routine post-operative VTE prophylaxis. Exercise particular caution after
-              major surgery or in patients at increased bleeding risk.
+              major surgery or in patients at increased bleeding risk. For management of post-operative bleeding on a DOAC, see the <GuideLink to="doacsBleeding">DOACs: Management of Bleeding</GuideLink> guide.
             </div>
 
             <article className="asa-section-card">
@@ -384,7 +385,7 @@ export function DoacsPerioperativeGuide() {
               </h3>
               <p className="asa-section-copy">
                 In patients considered at high risk for venous thromboembolism, low-dose
-                LMWH can be administered during the initial 48\u201372 hour post-operative
+                <GuideLink to="ufhLmwh">LMWH</GuideLink> can be administered during the initial 48{"\u2013"}72 hour post-operative
                 period before the DOAC is resumed:
               </p>
               <table className="asa-dose-table">

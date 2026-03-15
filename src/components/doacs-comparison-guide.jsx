@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   { id: "overview", label: "Overview" },
@@ -153,7 +154,6 @@ const references = [
   "Hokusai-VTE Investigators. Edoxaban versus warfarin for the treatment of symptomatic venous thromboembolism. N Engl J Med. 2013;369:1406-1415.",
   "Lip GYH, et al. Effectiveness and safety of oral anticoagulants among nonvalvular atrial fibrillation patients. Stroke. 2018;49:2933-2944.",
   "Steffel J, et al. 2021 European Heart Rhythm Association practical guide on the use of NOACs in patients with atrial fibrillation. Eur Heart J. 2021;42:3227-3335.",
-  "Thrombosis Canada. DOACs: Comparison and Frequently-asked Questions. thrombosiscanada.ca. Accessed 2024.",
 ];
 
 export function DoacsComparisonGuide() {
@@ -165,7 +165,6 @@ export function DoacsComparisonGuide() {
         <div className="asa-guide-header-body">
           <div className="asa-guide-eyebrow">
             <span className="asa-badge asa-badge-blue">Clinical Guide</span>
-            <span className="asa-badge">Thrombosis Canada</span>
           </div>
           <h1 className="asa-guide-title">DOACs: Comparison and Frequently-Asked Questions</h1>
           <p className="asa-guide-lead">
@@ -304,7 +303,7 @@ export function DoacsComparisonGuide() {
             <div className="asa-section-card">
               <h2 className="asa-section-title">Dental Procedures</h2>
               <p className="asa-section-copy">
-                For <strong>minor dental work</strong>, it is probably safe to continue the DOAC. Consider prescribing <strong>tranexamic acid mouthwash</strong> for local haemostasis. For major dental surgery or high bleeding-risk procedures, consult the perioperative DOAC management guide.
+                For <strong>minor dental work</strong>, it is probably safe to continue the DOAC. Consider prescribing <strong>tranexamic acid mouthwash</strong> for local haemostasis. For major dental surgery or high bleeding-risk procedures, see the <GuideLink to="doacsPeriop">DOACs: Perioperative Management</GuideLink> guide.
               </p>
             </div>
           </div>
@@ -513,7 +512,7 @@ export function DoacsComparisonGuide() {
                 {references.map((ref, i) => <li key={i}>{ref}</li>)}
               </ol>
               <p className="asa-section-copy" style={{ marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }}>
-                Source: Thrombosis Canada Clinical Guides — thrombosiscanada.ca. Not a substitute for individual clinical judgment.
+                Not a substitute for individual clinical judgment.
               </p>
             </div>
           </div>

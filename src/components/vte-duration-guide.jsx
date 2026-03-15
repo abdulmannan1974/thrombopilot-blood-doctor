@@ -352,7 +352,7 @@ export function VteDurationGuide() {
               ))}
             </div>
             <div className="asa-alert asa-alert-amber">
-              <strong>Limitations of prognostic models:</strong> HERDOO2 requires VIDAS D-dimer assay (not interchangeable with other assays); limited data in women ≥ 50 years. DASH shows > 5% recurrence in patients > 65 years even at the lowest score. Vienna model lacks a clinical impact study. Use in conjunction with clinical judgment and patient preference.
+              <strong>Limitations of prognostic models:</strong> HERDOO2 requires VIDAS D-dimer assay (not interchangeable with other assays); limited data in women ≥ 50 years. DASH shows &gt;5% recurrence in patients &gt;65 years even at the lowest score. Vienna model lacks a clinical impact study. Use in conjunction with clinical judgment and patient preference.
             </div>
           </div>
         )}

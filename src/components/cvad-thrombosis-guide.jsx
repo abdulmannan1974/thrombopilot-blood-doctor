@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   { id: "overview", label: "Overview" },
@@ -189,7 +190,7 @@ export function CvadThrombosisGuide() {
       <div className="asa-guide-header">
         <div className="asa-guide-header-body">
           <div className="asa-guide-eyebrow">
-            <span className="asa-badge asa-badge-blue">Thrombosis Canada</span>
+            <span className="asa-badge asa-badge-blue">Clinical Guide</span>
             <span className="asa-badge">Updated Feb 2026</span>
           </div>
           <h1 className="asa-guide-title">Central Venous Catheter-Related DVT</h1>
@@ -494,9 +495,9 @@ export function CvadThrombosisGuide() {
                   <li key={i}>{ref}</li>
                 ))}
               </ol>
-              <p className="asa-section-copy" style={{ marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }}>
-                Source: Thrombosis Canada Clinical Guides — thrombosiscanada.ca | Version 44, updated 2026-02-06. Not a substitute for individual clinical judgment.
-              </p>
+              <div style={{ marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }}>
+                <p>Related: <GuideLink to="cancer">Cancer &amp; Thrombosis</GuideLink> | <GuideLink to="dvtTreatment">DVT Treatment</GuideLink> | <GuideLink to="vteDuration">VTE Duration</GuideLink></p>
+              </div>
             </div>
           </div>
         )}

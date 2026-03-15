@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   ["overview", "Overview"],
@@ -13,29 +14,29 @@ const dosingRows = [
   [
     "AF stroke prevention",
     "5 mg PO BID",
-    "Reduce to 2.5 mg BID if ≥2 of: age ≥80, weight ≤60 kg, Cr ≥133 µmol/L",
+    "Reduce to 2.5 mg BID if \u22652 of: age \u226580, weight \u226460 kg, Cr \u2265133 \u00b5mol/L",
   ],
   [
     "Acute VTE treatment",
-    "10 mg BID × 7 days → 5 mg BID",
-    "No renal adjustment for CrCl ≥30 mL/min",
+    "10 mg BID \u00d7 7 days \u2192 5 mg BID",
+    "No renal adjustment for CrCl \u226530 mL/min",
   ],
   [
     "VTE secondary prevention",
-    "2.5 mg BID (after ≥6 months)",
+    "2.5 mg BID (after \u22656 months)",
     "Extended prevention of recurrent DVT/PE",
   ],
   [
     "Post-arthroplasty prophylaxis",
     "2.5 mg BID",
-    "Start 12–24 h post-op. 14 days (knee) / 35 days (hip)",
+    "Start 12\u201324 h post-op. 14 days (knee) / 35 days (hip)",
   ],
 ];
 
 const renalRows = [
   ["CrCl >30 mL/min", "No adjustment needed for VTE indications", "default"],
-  ["CrCl 25–30 mL/min", "Limited AF data — use standard AF dose-reduction criteria", "moderate"],
-  ["CrCl 15–24 mL/min", "Limited data — use with caution due to higher bleeding risk", "moderate"],
+  ["CrCl 25\u201330 mL/min", "Limited AF data \u2014 use standard AF dose-reduction criteria", "moderate"],
+  ["CrCl 15\u201324 mL/min", "Limited data \u2014 use with caution due to higher bleeding risk", "moderate"],
   [
     "CrCl <15 / dialysis",
     "Not generally recommended. Observational data + 2 RCTs (Renal-AF, AXADIA-AFNET 8) support use in AF",
@@ -46,28 +47,16 @@ const renalRows = [
 const drugInteractions = [
   {
     type: "inhibitors",
-    label: "Strong dual CYP3A4 + P-gp inhibitors (AVOID — increased bleeding)",
+    label: "Strong dual CYP3A4 + P-gp inhibitors (AVOID \u2014 increased bleeding)",
     examples:
       "Azole antifungals (itraconazole, ketoconazole, posaconazole), macrolides (clarithromycin, erythromycin), HIV protease inhibitors (ritonavir)",
   },
   {
     type: "inducers",
-    label: "Strong inducers (AVOID — reduced apixaban levels)",
+    label: "Strong inducers (AVOID \u2014 reduced apixaban levels)",
     examples:
       "Rifampin, carbamazepine, phenytoin, St. John's Wort",
   },
-];
-
-const relatedGuides = [
-  "Cancer and Thrombosis",
-  "DOACs: Coagulation Tests",
-  "DOACs: Comparison and Frequently Asked Questions",
-  "DOACs in Patients with Obesity",
-  "DOACs: Management of Bleeding",
-  "DOACs: Perioperative Management",
-  "Stroke Prevention in Atrial Fibrillation",
-  "Thromboprophylaxis: Orthopedic Surgery",
-  "Anticoagulation in Patients Requiring Antiplatelet Therapy",
 ];
 
 const references = [
@@ -120,7 +109,7 @@ export function ApixabanGuide() {
 
         <div className="asa-objective-strip">
           <strong>Objective:</strong> To provide an overview of the mechanism of
-          action, licensed indications, dosing regimens, and side-effect profile
+          action, approved indications, dosing regimens, and side-effect profile
           of apixaban.
         </div>
       </div>
@@ -154,7 +143,7 @@ export function ApixabanGuide() {
         {tab === "overview" ? (
           <div className="asa-tab-panel">
             <article className="asa-section-card">
-              <h3><Dot tone="blue" />Licensed Indications in Canada</h3>
+              <h3><Dot tone="blue" />Approved Indications</h3>
               <ul className="asa-ind-list">
                 <li>
                   Prevention of stroke and systemic embolism in patients with
@@ -275,9 +264,9 @@ export function ApixabanGuide() {
 
             <div className="asa-alert asa-alert-info">
               <div>
-                See <strong>DOACs: Coagulation Tests</strong> clinical guide for
+                See the <GuideLink to="doacsCoagTests">DOACs: Coagulation Tests</GuideLink> guide for
                 details on specific anti-Xa testing. See{" "}
-                <strong>DOACs: Management of Bleeding</strong> for approach to
+                <GuideLink to="doacsBleeding">DOACs: Management of Bleeding</GuideLink> for approach to
                 bleeding complications.
               </div>
             </div>
@@ -326,10 +315,9 @@ export function ApixabanGuide() {
             <article className="asa-section-card">
               <h3><Dot tone="blue" />Obesity</h3>
               <p className="asa-section-copy">
-                No RCTs exist, but a multitude of observational data
-                demonstrates that efficacy and safety are maintained in obese
-                patients. See <strong>DOACs in Patients with Obesity</strong>{" "}
-                clinical guide.
+                No RCTs exist, but extensive observational data show that
+                efficacy and safety are maintained in obese patients. See the{" "}
+                <GuideLink to="doacsObesity">DOACs in Obesity</GuideLink> guide.
               </p>
             </article>
 
@@ -367,10 +355,10 @@ export function ApixabanGuide() {
             <article className="asa-section-card">
               <h3><Dot tone="blue" />Cancer-Associated Thrombosis Treatment</h3>
               <p className="asa-section-copy">
-                RCT (Caravaggio) comparing apixaban (10 mg BID x 7 days then
-                5 mg BID) vs. subcutaneous dalteparin for 6 months showed
-                apixaban was non-inferior for both recurrent VTE and major
-                bleeding.
+                The Caravaggio RCT compared apixaban (10 mg BID for 7 days, then
+                5 mg BID) with subcutaneous dalteparin for 6 months. Apixaban was
+                non-inferior for both recurrent VTE and major bleeding. See the{" "}
+                <GuideLink to="cancer">Cancer &amp; Thrombosis</GuideLink> guide.
               </p>
               <p className="asa-section-copy">
                 <strong>2025 RCT (API-CAT):</strong> After at least 6 months of
@@ -388,7 +376,7 @@ export function ApixabanGuide() {
                 10.2% to 4.2% (HR 0.41), but major bleeding increased from 1.8%
                 to 3.5% (HR 2.95). Decisions must be individualized considering
                 VTE risk, cancer site, patient values, and drug cost. Not
-                licensed for this indication in Canada.
+                approved for this indication.
               </p>
             </article>
 
@@ -399,7 +387,8 @@ export function ApixabanGuide() {
                 apixaban (at stroke prevention doses) without ASA resulted in
                 less bleeding and fewer hospitalizations compared to regimens
                 including a VKA, ASA, or both — without significant differences
-                in ischemic events.
+                in ischemic events. See the{" "}
+                <GuideLink to="anticoagAntiplatelet">Anticoagulation + Antiplatelet Therapy</GuideLink> guide.
               </p>
             </article>
 
@@ -409,9 +398,10 @@ export function ApixabanGuide() {
                 In patients with subclinical AF (6 minutes to 24 hours) detected
                 via implantable devices and CHA2DS2-VASc score of 3 or greater:
                 apixaban lowered stroke/SE risk vs. ASA (HR 0.63; 95% CI
-                0.45–0.88) but increased major bleeding (HR 1.80; 95% CI
-                1.26–2.57). Shared decision-making is essential based on
-                individual risk profiles.
+                0.45&ndash;0.88) but increased major bleeding (HR 1.80; 95% CI
+                1.26&ndash;2.57). Shared decision-making is essential based on
+                individual risk profiles. See the{" "}
+                <GuideLink to="strokeAf">Stroke Prevention in AF</GuideLink> guide.
               </p>
             </article>
 
@@ -419,8 +409,8 @@ export function ApixabanGuide() {
               <h3><Dot tone="blue" />LV Thrombus</h3>
               <p className="asa-section-copy">
                 Small RCTs and growing observational data suggest apixaban (at AF
-                doses) is non-inferior to warfarin for LV thrombus treatment with
-                similar or lower bleeding risk. AHA scientific statement
+                doses) is non-inferior to <GuideLink to="warfarin">warfarin</GuideLink> for LV thrombus treatment with
+                similar or lower bleeding risk. The AHA scientific statement
                 considers DOACs a reasonable alternative to warfarin, especially
                 when time in therapeutic range is predicted to be low or frequent
                 INR checks are not feasible.
@@ -435,9 +425,15 @@ export function ApixabanGuide() {
             <article className="asa-section-card">
               <h3><Dot tone="gray" />Related Clinical Guides</h3>
               <ul className="asa-related-list">
-                {relatedGuides.map((item) => (
-                  <li key={item}><span>{item}</span></li>
-                ))}
+                <li><GuideLink to="cancer">Cancer &amp; Thrombosis</GuideLink></li>
+                <li><GuideLink to="doacsCoagTests">DOACs: Coagulation Tests</GuideLink></li>
+                <li><GuideLink to="doacsComparison">DOACs: Comparison &amp; FAQ</GuideLink></li>
+                <li><GuideLink to="doacsObesity">DOACs in Obesity</GuideLink></li>
+                <li><GuideLink to="doacsBleeding">DOACs: Bleeding Management</GuideLink></li>
+                <li><GuideLink to="doacsPeriop">DOACs: Perioperative Management</GuideLink></li>
+                <li><GuideLink to="strokeAf">Stroke Prevention in AF</GuideLink></li>
+                <li><GuideLink to="prophylaxisOrtho">Thromboprophylaxis: Orthopedic Surgery</GuideLink></li>
+                <li><GuideLink to="anticoagAntiplatelet">Anticoagulation + Antiplatelet Therapy</GuideLink></li>
               </ul>
             </article>
 

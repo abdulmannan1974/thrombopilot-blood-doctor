@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   { id: "overview", label: "Overview" },
@@ -108,7 +109,7 @@ export function CerebralVenousThrombosisGuide() {
       <div className="asa-guide-header">
         <div className="asa-guide-header-body">
           <div className="asa-guide-eyebrow">
-            <span className="asa-badge asa-badge-blue">Thrombosis Canada</span>
+            <span className="asa-badge asa-badge-blue">Clinical Guide</span>
             <span className="asa-badge">Version 33 · Feb 2026</span>
           </div>
           <h1 className="asa-guide-title">Cerebral Venous Thrombosis</h1>
@@ -151,7 +152,7 @@ export function CerebralVenousThrombosisGuide() {
                 </div>
                 <div className="asa-ae-card">
                   <span className="asa-ae-label">Sex</span>
-                  <span className="asa-ae-value">75% female; OCP/puerperium in >50%</span>
+                  <span className="asa-ae-value">75% female; OCP/puerperium in &gt;50%</span>
                 </div>
                 <div className="asa-ae-card">
                   <span className="asa-ae-label">Functional independence</span>
@@ -256,7 +257,7 @@ export function CerebralVenousThrombosisGuide() {
             <div className="asa-section-card">
               <h2 className="asa-section-title">VITT-associated CVT</h2>
               <p className="asa-section-copy">
-                For CVT in the context of Vaccine-induced Immune Thrombocytopenia and Thrombosis (VITT), see the dedicated clinical guide: <em>HIT, VITT, and VITT-like Disorders</em>. Management differs significantly from non-VITT CVT (avoid heparin, use IVIG and non-heparin anticoagulants).
+                For CVT in the context of Vaccine-induced Immune Thrombocytopenia and Thrombosis (VITT), see the <GuideLink to="vipitVitt">VIPIT / VITT guide</GuideLink>. Management differs significantly from non-VITT CVT (avoid heparin, use IVIG and non-heparin anticoagulants).
               </p>
             </div>
           </div>
@@ -300,7 +301,7 @@ export function CerebralVenousThrombosisGuide() {
             </div>
 
             <div className="asa-section-card asa-alert asa-alert-red">
-              <strong>APLAS patients:</strong> DOACs are <strong>not recommended</strong> in patients with known antiphospholipid antibody syndrome — use warfarin (INR 2–3).
+              <strong>Antiphospholipid syndrome (APS):</strong> DOACs should not be used in APS. Use <GuideLink to="warfarin">warfarin</GuideLink> with a target INR of 2.0–3.0 instead. See <GuideLink to="aps">Antiphospholipid Syndrome</GuideLink>.
             </div>
           </div>
         )}
@@ -324,7 +325,7 @@ export function CerebralVenousThrombosisGuide() {
             <div className="asa-section-card">
               <h2 className="asa-section-title">Seizure Management</h2>
               <ul className="asa-ind-list">
-                <li>30–40% of CVT patients experience seizures; >10% have late post-acute seizures</li>
+                <li>30–40% of CVT patients experience seizures; &gt;10% have late post-acute seizures</li>
                 <li><strong>Referral to neurology</strong> is indicated for all patients with seizures</li>
                 <li>No evidence for prophylactic antiseizure therapy in patients <em>without</em> seizures</li>
                 <li><strong>Drug-drug interactions</strong> between common antiseizure medications and both VKAs and DOACs — review carefully</li>
@@ -348,7 +349,7 @@ export function CerebralVenousThrombosisGuide() {
                 <li><strong>Discontinue provoking factors:</strong> hormonal therapies (OCPs), etc.</li>
                 <li>Smoking cessation and lifestyle modification</li>
                 <li>Thrombophilia testing: not routinely recommended — implications for anticoagulation duration are uncertain in most cases</li>
-                <li>APLAS: confirmed diagnosis warrants warfarin over DOACs</li>
+                <li>APS: confirmed diagnosis warrants <GuideLink to="warfarin">warfarin</GuideLink> over DOACs (see <GuideLink to="aps">Antiphospholipid Syndrome</GuideLink>)</li>
               </ul>
             </div>
 
@@ -369,7 +370,7 @@ export function CerebralVenousThrombosisGuide() {
               <h2 className="asa-section-title">Duration of Anticoagulation</h2>
               <div className="asa-ae-grid">
                 <div className="asa-ae-card" style={{ gridColumn: "1 / -1" }}>
-                  <span className="asa-ae-label">No ongoing structural/provoking risk factors; no APLAS</span>
+                  <span className="asa-ae-label">No ongoing structural/provoking risk factors; no APS</span>
                   <span className="asa-ae-value"><strong>3–6 months</strong> — equally effective vs 12 months (ESCOA-CVT: 460 patients, no difference in recurrent VTE, bleeding, or death at 12 months)</span>
                 </div>
                 <div className="asa-ae-card" style={{ gridColumn: "1 / -1" }}>
@@ -413,7 +414,7 @@ export function CerebralVenousThrombosisGuide() {
                 ))}
               </ol>
               <p className="asa-section-copy" style={{ marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }}>
-                Source: Thrombosis Canada Clinical Guides — thrombosiscanada.ca | Version 33, updated 2026-02-06. Not a substitute for individual clinical judgment.
+                Version 33, updated 2026-02-06.
               </p>
             </div>
           </div>

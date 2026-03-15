@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   { id: "overview", label: "Overview" },
@@ -56,7 +57,7 @@ const lmwhRows = [
   { drug: "Dalteparin (Fragmin®)", dose: "200 U/kg SC OD (preferred) or 100 U/kg SC BID (if >100 kg)", note: "Cap at 18,000 U/day for OD dosing" },
   { drug: "Enoxaparin (Lovenox®)", dose: "1.5 mg/kg SC OD or 1 mg/kg SC BID", note: "Renal adjustment to 1 mg/kg OD if CrCl <30" },
   { drug: "Tinzaparin (Innohep®)", dose: "175 U/kg SC OD", note: "Evidence supports use down to CrCl 20 mL/min without accumulation" },
-  { drug: "Nadroparin (Fraxiparine®)", dose: "171 U/kg SC OD or 86 U/kg SC BID", note: "Less commonly used in Canada" },
+  { drug: "Nadroparin (Fraxiparine®)", dose: "171 U/kg SC OD or 86 U/kg SC BID", note: "Less commonly used" },
 ];
 
 const specialRows = [
@@ -68,7 +69,7 @@ const specialRows = [
   {
     situation: "Upper extremity DVT (UEDVT)",
     management: "5–10% of all VTE. Treat like lower extremity DVT. CDT/thrombectomy may be considered case-by-case for extensive, severely symptomatic UEDVT. Consider effort thrombosis (Paget-Schroetter) and thoracic outlet syndrome.",
-    key: "See also: CVAD-related DVT guide",
+    key: "cvad",
   },
   {
     situation: "Isolated distal DVT",
@@ -78,12 +79,12 @@ const specialRows = [
   {
     situation: "Cancer-associated DVT",
     management: "LMWH or anti-Xa DOACs (apixaban, rivaroxaban, edoxaban). Apixaban preferred in most — no lead-in needed, GI bleeding risk similar to LMWH.",
-    key: "See: Cancer and Thrombosis guide",
+    key: "cancer",
   },
   {
     situation: "Pregnancy",
     management: "LMWH monotherapy for full duration. DOACs contraindicated. VKA contraindicated (except select circumstances).",
-    key: "See: Pregnancy VTE Treatment guide",
+    key: "pregVte",
   },
   {
     situation: "Severe renal insufficiency (CrCl <15–20)",
@@ -93,12 +94,12 @@ const specialRows = [
   {
     situation: "Cannot anticoagulate (active bleeding / very high bleed risk)",
     management: "Consult thrombosis specialist. Consider retrievable IVC filter as bridge. Reassess anticoagulation candidacy frequently.",
-    key: "Refer to Vena Cava Filter guide",
+    key: "vcFilter",
   },
   {
-    situation: "Antiphospholipid syndrome (APLAS)",
-    management: "Warfarin (INR 2–3) preferred. DOACs not recommended.",
-    key: "APLAS requires VKA, not DOACs",
+    situation: "Antiphospholipid syndrome (APS)",
+    management: "Warfarin (INR 2.0–3.0) preferred. DOACs should not be used in APS.",
+    key: "aps",
   },
 ];
 
@@ -129,7 +130,7 @@ export function DvtTreatmentGuide() {
       <div className="asa-guide-header">
         <div className="asa-guide-header-body">
           <div className="asa-guide-eyebrow">
-            <span className="asa-badge asa-badge-blue">Thrombosis Canada</span>
+            <span className="asa-badge asa-badge-blue">Clinical Guide</span>
             <span className="asa-badge">Version 80 · Nov 2025</span>
           </div>
           <h1 className="asa-guide-title">DVT: Treatment</h1>
@@ -156,7 +157,7 @@ export function DvtTreatmentGuide() {
         {activeTab === "overview" && (
           <div className="asa-sections">
             <div className="asa-section-card asa-alert asa-alert-blue">
-              <strong>First-line preference:</strong> DOACs (apixaban or rivaroxaban) preferred over VKA except for APLAS, drug interactions (CYP3A4/P-gp), impaired oral absorption, or mechanical heart valve.
+              <strong>First-line preference:</strong> DOACs (<GuideLink to="apixaban">apixaban</GuideLink> or <GuideLink to="rivaroxaban">rivaroxaban</GuideLink>) preferred over VKA except for APS, drug interactions (CYP3A4/P-gp), impaired oral absorption, or mechanical heart valve.
             </div>
 
             <div className="asa-section-card">
@@ -173,7 +174,7 @@ export function DvtTreatmentGuide() {
               <h2 className="asa-section-title">Epidemiology</h2>
               <div className="asa-ae-grid">
                 <div className="asa-ae-card">
-                  <span className="asa-ae-label">Annual VTE in Canada</span>
+                  <span className="asa-ae-label">Annual VTE (estimated)</span>
                   <span className="asa-ae-value">~50,000 patients</span>
                 </div>
                 <div className="asa-ae-card">
@@ -219,7 +220,7 @@ export function DvtTreatmentGuide() {
                   <span className="asa-ae-value">LMWH or anti-Xa DOAC (apixaban preferred)</span>
                 </div>
                 <div className="asa-ae-card">
-                  <span className="asa-ae-label">APLAS</span>
+                  <span className="asa-ae-label">APS</span>
                   <span className="asa-ae-value">Warfarin only — DOACs not recommended</span>
                 </div>
                 <div className="asa-ae-card">
@@ -347,7 +348,9 @@ export function DvtTreatmentGuide() {
               <div key={i} className="asa-section-card" style={{ borderLeft: "3px solid var(--primary)" }}>
                 <h3 style={{ margin: "0 0 0.4rem", color: "var(--foreground)", fontSize: "1em" }}>{s.situation}</h3>
                 <p className="asa-section-copy" style={{ margin: "0 0 0.3rem" }}>{s.management}</p>
-                <p style={{ margin: 0, fontSize: "0.84em", color: "#1d4ed8", fontWeight: 500 }}>{s.key}</p>
+                <p style={{ margin: 0, fontSize: "0.84em", color: "#1d4ed8", fontWeight: 500 }}>
+                  {["cvad","cancer","pregVte","vcFilter","aps"].includes(s.key) ? <>See <GuideLink to={s.key} /></> : s.key}
+                </p>
               </div>
             ))}
           </div>
@@ -362,7 +365,7 @@ export function DvtTreatmentGuide() {
                 {references.map((ref, i) => <li key={i}>{ref}</li>)}
               </ol>
               <p className="asa-section-copy" style={{ marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }}>
-                Source: Thrombosis Canada Clinical Guides — thrombosiscanada.ca | Version 80, updated 2025-11-02. Not a substitute for individual clinical judgment.
+                Version 80, updated 2025-11-02.
               </p>
             </div>
           </div>

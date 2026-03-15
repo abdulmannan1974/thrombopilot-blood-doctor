@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   { id: "overview", label: "Overview" },
@@ -48,7 +49,7 @@ export function WarfarinInrManagementGuide() {
       <div className="asa-guide-header">
         <div className="asa-guide-header-body">
           <div className="asa-guide-eyebrow">
-            <span className="asa-badge asa-badge-blue">Thrombosis Canada</span>
+            <span className="asa-badge asa-badge-blue">Anticoagulation</span>
             <span className="asa-badge">Clinical Guide</span>
           </div>
           <h1 className="asa-guide-title">Warfarin: Management of Out-of-Range INRs</h1>
@@ -109,6 +110,15 @@ export function WarfarinInrManagementGuide() {
                 <li>Investigate the <em>cause</em> of each out-of-range INR before adjusting the dose</li>
               </ul>
             </div>
+
+            <div className="asa-section-card">
+              <h2 className="asa-section-title">Related Guides</h2>
+              <ul className="asa-ind-list">
+                <li><GuideLink to="warfarin">Warfarin: General Guide</GuideLink></li>
+                <li><GuideLink to="warfarinPoc">Warfarin: Point-of-Care INR Monitoring</GuideLink></li>
+                <li><GuideLink to="warfarinPeriop">Warfarin: Perioperative Management</GuideLink></li>
+              </ul>
+            </div>
           </div>
         )}
 
@@ -149,7 +159,7 @@ export function WarfarinInrManagementGuide() {
                     <td>One-time dose change only (hold dose or give extra dose); resume usual maintenance</td>
                   </tr>
                   <tr>
-                    <td><strong>≥2 consecutive out-of-range INRs in the same direction</strong> with no temporary cause</td>
+                    <td><strong>&ge;2 consecutive out-of-range INRs in the same direction</strong> with no temporary cause</td>
                     <td>Change the maintenance dose</td>
                   </tr>
                   <tr>
@@ -187,7 +197,7 @@ export function WarfarinInrManagementGuide() {
             </div>
 
             <div className="asa-section-card asa-alert asa-alert-red">
-              <strong>Active bleeding at any INR level:</strong> This is a medical emergency. Do not use this guide — refer to the Warfarin Reversal / Bleeding Management protocols. Major bleeding requires IV vitamin K + prothrombin complex concentrate (PCC).
+              <strong>Active bleeding at any INR level:</strong> This is a medical emergency. Refer to bleeding management protocols. Major bleeding requires IV vitamin K + prothrombin complex concentrate (PCC). See also the <GuideLink to="doacsBleeding">DOAC Bleeding Management</GuideLink> guide for comparison.
             </div>
           </div>
         )}
@@ -224,7 +234,7 @@ export function WarfarinInrManagementGuide() {
               <ul className="asa-ind-list">
                 <li><strong>Step 1:</strong> Investigate the cause using the structured questions (see Approach tab)</li>
                 <li><strong>Step 2:</strong> If a transient cause is identified (e.g., missed doses, short course of an interacting drug), give a one-time dose increase and resume usual maintenance</li>
-                <li><strong>Step 3:</strong> If no transient cause and ≥2 consecutive low INRs, increase the maintenance dose by 5-20% of the total weekly dose</li>
+                <li><strong>Step 3:</strong> If no transient cause and &ge;2 consecutive low INRs, increase the maintenance dose by 5-20% of the total weekly dose</li>
                 <li><strong>Step 4:</strong> Recheck INR in 1-2 weeks to confirm response</li>
               </ul>
             </div>
@@ -313,9 +323,6 @@ export function WarfarinInrManagementGuide() {
                   <li key={i}>{ref}</li>
                 ))}
               </ol>
-              <p className="asa-section-copy" style={{ marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }}>
-                Source: Thrombosis Canada Clinical Guides — thrombosiscanada.ca. Not a substitute for individual clinical judgment.
-              </p>
             </div>
           </div>
         )}

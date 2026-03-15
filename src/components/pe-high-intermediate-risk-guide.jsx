@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = ["Overview", "Risk Stratification", "Anticoagulation", "Reperfusion Therapies", "Special Situations", "References"];
 
@@ -74,7 +75,7 @@ export function PeHighIntermediateRiskGuide() {
   return (
     <div className="asa-guide-shell">
       <div className="asa-guide-header">
-        <p className="asa-guide-eyebrow">Thrombosis Canada · Clinical Guide</p>
+        <p className="asa-guide-eyebrow">Clinical Guide</p>
         <h1 className="asa-guide-title">Pulmonary Embolism: High- & Intermediate-Risk</h1>
         <p className="asa-guide-lead">
           Risk stratification, systemic thrombolysis, catheter-directed therapies, and ECMO for the most dangerous spectrum of acute PE — from intermediate-high risk to cardiac arrest.
@@ -244,7 +245,7 @@ export function PeHighIntermediateRiskGuide() {
             <div className="asa-section-card">
               <h3 className="asa-section-title">IVC Filters</h3>
               <ul className="asa-ind-list">
-                <li>Indicated for PE + DVT with contraindication to anticoagulation</li>
+                <li>Indicated for PE + DVT with contraindication to anticoagulation. See <GuideLink to="vcFilter">Vena Cava Filters</GuideLink>.</li>
                 <li>PE without DVT: serial ultrasound may be appropriate instead</li>
                 <li>Schedule removal as soon as anticoagulation is possible (within 4 weeks preferred; can remove up to 6–12 months)</li>
               </ul>
@@ -252,7 +253,7 @@ export function PeHighIntermediateRiskGuide() {
             <div className="asa-section-card">
               <h3 className="asa-section-title">Pregnancy</h3>
               <ul className="asa-ind-list">
-                <li>LMWH is treatment of choice for all pregnant patients with PE, including intermediate risk</li>
+                <li>LMWH is treatment of choice for all pregnant patients with PE, including intermediate risk. See <GuideLink to="pregVte">Pregnancy: VTE Treatment</GuideLink>.</li>
                 <li>ST is safe in pregnancy but carries increased risk of placental bleeding, peripartum bleeding, and fetal loss</li>
                 <li>Catheter-based therapies can be considered — involve obstetrics and anesthesia</li>
                 <li>Multidisciplinary team must include obstetrics if decompensation is possible</li>
@@ -269,7 +270,7 @@ export function PeHighIntermediateRiskGuide() {
                 {references.map((r) => <li key={r}>{r}</li>)}
               </ol>
               <p className="asa-section-copy" style={{ marginTop: "1rem", fontSize: "0.8rem", color: "var(--muted)" }}>
-                Source: Thrombosis Canada Clinical Guides | Version 8 | Updated: 2026-02-06
+                Version 8 | Updated: 2026-02-06
               </p>
             </div>
           </div>

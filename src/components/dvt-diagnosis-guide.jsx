@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   { id: "overview", label: "Overview" },
@@ -26,7 +27,7 @@ const wellsItems = [
 const ddimmerRows = [
   {
     threshold: "Standard (fixed)",
-    cutoff: "500 µg/L (FEU) — most Canadian labs",
+    cutoff: "500 µg/L (FEU) — most labs",
     use: "DVT unlikely PTP: negative D-dimer excludes DVT",
     notes: "Sensitivity >90% with validated high-sensitivity assay",
   },
@@ -90,7 +91,7 @@ export function DvtDiagnosisGuide() {
       <div className="asa-guide-header">
         <div className="asa-guide-header-body">
           <div className="asa-guide-eyebrow">
-            <span className="asa-badge asa-badge-blue">Thrombosis Canada</span>
+            <span className="asa-badge asa-badge-blue">Clinical Guide</span>
             <span className="asa-badge">Version 60 · May 2025</span>
           </div>
           <h1 className="asa-guide-title">DVT: Diagnosis</h1>
@@ -120,7 +121,7 @@ export function DvtDiagnosisGuide() {
               <h2 className="asa-section-title">Epidemiology</h2>
               <div className="asa-ae-grid">
                 <div className="asa-ae-card">
-                  <span className="asa-ae-label">Annual Canadian DVT cases</span>
+                  <span className="asa-ae-label">Annual DVT cases (estimated)</span>
                   <span className="asa-ae-value">~45,000</span>
                 </div>
                 <div className="asa-ae-card">
@@ -345,7 +346,7 @@ export function DvtDiagnosisGuide() {
             </div>
 
             <div className="asa-section-card asa-alert asa-alert-amber">
-              <strong>Timing:</strong> If diagnostic testing will be delayed >4 hours in patients with moderate/high or likely PTP, initiate a rapidly-acting anticoagulant (LMWH or DOAC) unless bleeding contraindication exists — while awaiting confirmatory testing.
+              <strong>Timing:</strong> If diagnostic testing will be delayed &gt;4 hours in patients with moderate/high or likely PTP, initiate a rapidly-acting anticoagulant (LMWH or DOAC) unless bleeding contraindication exists — while awaiting confirmatory testing.
             </div>
           </div>
         )}
@@ -395,7 +396,7 @@ export function DvtDiagnosisGuide() {
             <div className="asa-section-card">
               <h2 className="asa-section-title">DVT in Pregnancy</h2>
               <p className="asa-section-copy">
-                See dedicated Clinical Guide: <em>Pregnancy: Diagnosis of DVT and PE</em> — special algorithms apply due to altered physiology and D-dimer thresholds during pregnancy.
+                See the <GuideLink to="pregDiagnosis">Pregnancy: DVT &amp; PE Diagnosis</GuideLink> guide — special algorithms apply due to altered physiology and D-dimer thresholds during pregnancy.
               </p>
             </div>
           </div>
@@ -412,7 +413,7 @@ export function DvtDiagnosisGuide() {
                 ))}
               </ol>
               <p className="asa-section-copy" style={{ marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }}>
-                Source: Thrombosis Canada Clinical Guides — thrombosiscanada.ca | Version 60, updated 2025-05-07. Not a substitute for individual clinical judgment.
+                Version 60, updated 2025-05-07.
               </p>
             </div>
           </div>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   { id: "overview", label: "Overview" },
@@ -14,7 +15,7 @@ const suitabilityCriteria = [
   "Patient has been trained and is able to perform the test reliably.",
   "Patient is willing and able to self-adjust warfarin dose using predetermined instructions and keeps accurate records.",
   "Patient has back-up support from a knowledgeable health professional.",
-  "Patient is reviewed every 6–12 months in an anticoagulant clinic for quality check of technique and results.",
+  "Patient is reviewed every 6-12 months in an anticoagulant clinic for quality check of technique and results.",
   "Patient can afford the POC device and ongoing test strip costs.",
 ];
 
@@ -35,7 +36,7 @@ export function WarfarinPocInrGuide() {
       <div className="asa-guide-header">
         <div className="asa-guide-header-body">
           <div className="asa-guide-eyebrow">
-            <span className="asa-badge asa-badge-blue">Thrombosis Canada</span>
+            <span className="asa-badge asa-badge-blue">Anticoagulation</span>
             <span className="asa-badge">Clinical Guide</span>
           </div>
           <h1 className="asa-guide-title">Warfarin: Point-of-Care INR Monitoring</h1>
@@ -83,7 +84,16 @@ export function WarfarinPocInrGuide() {
             </div>
 
             <div className="asa-section-card asa-alert asa-alert-amber">
-              <strong>Accuracy limitations:</strong> POC devices are <strong>less accurate when INR &gt;3.5</strong>. Results may be <strong>inaccurate</strong> in patients with severe anaemia or polycythaemia (haematocrit &lt;15% or &gt;55%), co-administration of other anticoagulants (e.g., heparin, DOACs), or the presence of <strong>antiphospholipid antibodies</strong>. In these situations, laboratory INR testing should be used.
+              <strong>Accuracy limitations:</strong> POC devices are <strong>less accurate when INR &gt;3.5</strong>. Results may be <strong>inaccurate</strong> in patients with severe anaemia or polycythaemia (haematocrit &lt;15% or &gt;55%), co-administration of other anticoagulants (e.g., heparin, DOACs), or the presence of <strong>antiphospholipid antibodies</strong> (see <GuideLink to="aps">APS Guide</GuideLink>). In these situations, laboratory INR testing should be used.
+            </div>
+
+            <div className="asa-section-card">
+              <h2 className="asa-section-title">Related Guides</h2>
+              <ul className="asa-ind-list">
+                <li><GuideLink to="warfarin">Warfarin: General Guide</GuideLink></li>
+                <li><GuideLink to="warfarinInr">Warfarin: Management of Out-of-Range INRs</GuideLink></li>
+                <li><GuideLink to="warfarinPeriop">Warfarin: Perioperative Management</GuideLink></li>
+              </ul>
             </div>
           </div>
         )}

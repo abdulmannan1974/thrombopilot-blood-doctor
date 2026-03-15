@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GuideLink } from "./guide-link";
 
 const tabs = [
   { id: "overview", label: "Overview" },
@@ -159,7 +160,7 @@ export function HitGuide() {
         <div className="asa-guide-header-body">
           <div className="asa-guide-eyebrow">
             <span className="asa-badge asa-badge-red">Urgent Consideration</span>
-            <span className="asa-badge">Thrombosis Canada · Version 39</span>
+            <span className="asa-badge">Version 39</span>
           </div>
           <h1 className="asa-guide-title">Heparin-Induced Thrombocytopenia (HIT)</h1>
           <p className="asa-guide-lead">
@@ -430,9 +431,9 @@ export function HitGuide() {
               <ol className="asa-ref-list">
                 {references.map((ref, i) => <li key={i}>{ref}</li>)}
               </ol>
-              <p className="asa-section-copy" style={{ marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }}>
-                Source: Thrombosis Canada Clinical Guides — thrombosiscanada.ca | Version 39, updated 2024-09-10. Not a substitute for individual clinical judgment.
-              </p>
+              <div style={{ marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }}>
+                <p>Related: <GuideLink to="ufhLmwh">UFH, LMWH &amp; Fondaparinux</GuideLink> | <GuideLink to="doacsComparison">DOACs Comparison</GuideLink> | <GuideLink to="dvtTreatment">DVT Treatment</GuideLink> | <GuideLink to="warfarin">Warfarin</GuideLink></p>
+              </div>
             </div>
           </div>
         )}
