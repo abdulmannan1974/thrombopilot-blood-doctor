@@ -31,6 +31,56 @@ import { AsaGuide } from "@/components/asa-guide";
 import { HeartValvesGuide } from "@/components/heart-valves-guide";
 import { TravelThrombosisGuide } from "@/components/travel-thrombosis-guide";
 import { CancerThrombosisGuide } from "@/components/cancer-thrombosis-guide";
+import { CvadThrombosisGuide } from "@/components/cvad-thrombosis-guide";
+import { CerebralVenousThrombosisGuide } from "@/components/cerebral-venous-thrombosis-guide";
+import { DvtDiagnosisGuide } from "@/components/dvt-diagnosis-guide";
+import { DvtTreatmentGuide } from "@/components/dvt-treatment-guide";
+import { HitGuide } from "@/components/hit-guide";
+import { StrokePreventionAfGuide } from "@/components/stroke-prevention-af-guide";
+import { PeDiagnosisGuide } from "@/components/pe-diagnosis-guide";
+import { PeTreatmentGuide } from "@/components/pe-treatment-guide";
+import { WarfarinGuide } from "@/components/warfarin-guide";
+import { VteDurationGuide } from "@/components/vte-duration-guide";
+import { ApsThrombophiliaGuide } from "@/components/aps-thrombophilia-guide";
+import { ThrombophiliaNaturalAnticoagulantsGuide } from "@/components/thrombophilia-natural-anticoagulants-guide";
+import { ThrombophiliaFvlPgmGuide } from "@/components/thrombophilia-fvl-pgm-guide";
+import { ThrombophiliaHomocysteineGuide } from "@/components/thrombophilia-homocysteine-guide";
+import { ThromboprophylaxisMedicalGuide } from "@/components/thromboprophylaxis-medical-guide";
+import { ThromboprophylaxisNonOrthoGuide } from "@/components/thromboprophylaxis-non-ortho-guide";
+import { ThromboprophylaxisOrthoGuide } from "@/components/thromboprophylaxis-ortho-guide";
+import { PeHighIntermediateRiskGuide } from "@/components/pe-high-intermediate-risk-guide";
+import { PtsGuide } from "@/components/pts-guide";
+import { PvtGuide } from "@/components/pvt-guide";
+import { SvtGuide } from "@/components/svt-guide";
+import { VenaCavaFilterGuide } from "@/components/vena-cava-filter-guide";
+import { VipitVittGuide } from "@/components/vipit-vitt-guide";
+import { WarfarinInrManagementGuide } from "@/components/warfarin-inr-management-guide";
+import { WarfarinPocInrGuide } from "@/components/warfarin-poc-inr-guide";
+import { DoacsCoagulationTestsGuide } from "@/components/doacs-coagulation-tests-guide";
+import { DoacsBleedingGuide } from "@/components/doacs-bleeding-guide";
+import { DoacsPerioperativeGuide } from "@/components/doacs-perioperative-guide";
+import { DoacsObesityGuide } from "@/components/doacs-obesity-guide";
+import { PregnancyThromboprophylaxisGuide } from "@/components/pregnancy-thromboprophylaxis-guide";
+import { PregnancyVteTreatmentGuide } from "@/components/pregnancy-vte-treatment-guide";
+import { PregnancyDvtPeDiagnosisGuide } from "@/components/pregnancy-dvt-pe-diagnosis-guide";
+import { IschemicStrokeSecondaryPreventionGuide } from "@/components/ischemic-stroke-secondary-prevention-guide";
+import { StrokeThrombolysisGuide } from "@/components/stroke-thrombolysis-guide";
+import { PeripheralArterialDiseaseGuide } from "@/components/peripheral-arterial-disease-guide";
+import { AnticoagAntiplateletGuide } from "@/components/anticoag-antiplatelet-guide";
+import { DaptDurationGuide } from "@/components/dapt-duration-guide";
+import { HmbAnticoagulationGuide } from "@/components/hmb-anticoagulation-guide";
+import { PerioperativeAntiplateletGuide } from "@/components/perioperative-antiplatelet-guide";
+import { ApixabanGuide } from "@/components/apixaban-guide";
+import { RivaroxabanGuide } from "@/components/rivaroxaban-guide";
+import { DoacsComparisonGuide } from "@/components/doacs-comparison-guide";
+import { DabigatranGuide } from "@/components/dabigatran-guide";
+import { EdoxabanGuide } from "@/components/edoxaban-guide";
+import { ClopidogrelGuide } from "@/components/clopidogrel-guide";
+import { PrasugrelGuide } from "@/components/prasugrel-guide";
+import { TicagrelorGuide } from "@/components/ticagrelor-guide";
+import { CovidThromboprophylaxisGuide } from "@/components/covid-thromboprophylaxis-guide";
+import { UfhLmwhFondaparinuxGuide } from "@/components/ufh-lmwh-fondaparinux-guide";
+import { WarfarinPeriopGuide } from "@/components/warfarin-periop-guide";
 import acuteGuidanceHtmlRaw from "../Thrombosis_Canada_Acute_Management_App (2).html?raw";
 
 const siteName = "Blood Doctor CoagVision";
@@ -2004,6 +2054,106 @@ function AppLayout() {
                     <TravelThrombosisGuide />
                   ) : activeGuide.id === "Cancer_and_Thrombosis" || activeGuide.title === "Cancer and Thrombosis" ? (
                     <CancerThrombosisGuide />
+                  ) : activeGuide.id === "Central_Venous_Catheter-Related_Deep_Vein_Thrombosis" || activeGuide.title === "Central Venous Catheter-Related Deep Vein Thrombosis" ? (
+                    <CvadThrombosisGuide />
+                  ) : activeGuide.id === "Cerebral_Venous_Thrombosis" || activeGuide.title === "Cerebral Venous Thrombosis" ? (
+                    <CerebralVenousThrombosisGuide />
+                  ) : activeGuide.id === "Deep_Vein_Thrombosis_(DVT)_Diagnosis" || (activeGuide.title?.includes("Deep Vein Thrombosis") && activeGuide.title?.includes("Diagnosis")) ? (
+                    <DvtDiagnosisGuide />
+                  ) : activeGuide.id === "Deep_Vein_Thrombosis_(DVT)_Treatment" || (activeGuide.title?.includes("Deep Vein Thrombosis") && activeGuide.title?.includes("Treatment")) ? (
+                    <DvtTreatmentGuide />
+                  ) : activeGuide.id === "Heparin-Induced_Thrombocytopenia_(HIT)" || activeGuide.title?.includes("Heparin-Induced Thrombocytopenia") ? (
+                    <HitGuide />
+                  ) : activeGuide.id === "Stroke_Prevention_in_Atrial_Fibrillation" || activeGuide.title?.includes("Stroke Prevention in Atrial Fibrillation") ? (
+                    <StrokePreventionAfGuide />
+                  ) : activeGuide.id === "Pulmonary_Embolism_(PE)_Diagnosis" || (activeGuide.title?.includes("Pulmonary Embolism") && activeGuide.title?.includes("Diagnosis")) ? (
+                    <PeDiagnosisGuide />
+                  ) : activeGuide.id === "Pulmonary_Embolism_(PE)_Treatment" || (activeGuide.title?.includes("Pulmonary Embolism") && activeGuide.title?.includes("Treatment")) ? (
+                    <PeTreatmentGuide />
+                  ) : activeGuide.id === "Warfarin" || activeGuide.title === "Warfarin" ? (
+                    <WarfarinGuide />
+                  ) : activeGuide.id === "Venous_Thromboembolism_Duration_of_Treatment" || activeGuide.title?.includes("Duration of Treatment") ? (
+                    <VteDurationGuide />
+                  ) : activeGuide.id === "Thrombophilia_Antiphospholipid_Syndrome" || activeGuide.title?.includes("Antiphospholipid") ? (
+                    <ApsThrombophiliaGuide />
+                  ) : activeGuide.id === "Thrombophilia_Deficiencies_in_Protein_C_Protein_S_and_Antithrombin" || (activeGuide.title?.includes("Protein C") || activeGuide.title?.includes("Antithrombin")) ? (
+                    <ThrombophiliaNaturalAnticoagulantsGuide />
+                  ) : activeGuide.id === "Thrombophilia_Factor_V_Leiden_and_Prothrombin_Gene_Mutation" || activeGuide.title?.includes("Factor V Leiden") ? (
+                    <ThrombophiliaFvlPgmGuide />
+                  ) : activeGuide.id === "Thrombophilia_Homocysteinemia_and_Methylene_Tetrahydrofolate_Reductase" || activeGuide.title?.includes("Homocysteinemia") || activeGuide.title?.includes("MTHFR") ? (
+                    <ThrombophiliaHomocysteineGuide />
+                  ) : activeGuide.id === "Thromboprophylaxis_Hospitalized_Medical_Patients" || (activeGuide.title?.includes("Thromboprophylaxis") && activeGuide.title?.includes("Medical")) ? (
+                    <ThromboprophylaxisMedicalGuide />
+                  ) : activeGuide.id === "Thromboprophylaxis_Non-Orthopedic_Surgery" || (activeGuide.title?.includes("Thromboprophylaxis") && activeGuide.title?.includes("Non-Orthopedic")) ? (
+                    <ThromboprophylaxisNonOrthoGuide />
+                  ) : activeGuide.id === "Thromboprophylaxis_Orthopedic_Surgery" || (activeGuide.title?.includes("Thromboprophylaxis") && activeGuide.title?.includes("Orthopedic") && !activeGuide.title?.includes("Non")) ? (
+                    <ThromboprophylaxisOrthoGuide />
+                  ) : activeGuide.id === "Pulmonary_Embolism_High-_and_Intermediate-Risk" || (activeGuide.title?.includes("Pulmonary Embolism") && (activeGuide.title?.includes("High") || activeGuide.title?.includes("Intermediate"))) ? (
+                    <PeHighIntermediateRiskGuide />
+                  ) : activeGuide.id === "Post_Thrombotic_Syndrome_(PTS)" || activeGuide.title?.includes("Post Thrombotic Syndrome") || activeGuide.title?.includes("Post-Thrombotic") ? (
+                    <PtsGuide />
+                  ) : activeGuide.id === "Portal_Vein_Thrombosis_(PVT)" || activeGuide.title?.includes("Portal Vein Thrombosis") ? (
+                    <PvtGuide />
+                  ) : activeGuide.id === "Superficial_Thrombophlebitis_Superficial_Vein_Thrombosis" || activeGuide.title?.includes("Superficial Thrombophlebitis") || activeGuide.title?.includes("Superficial Vein Thrombosis") ? (
+                    <SvtGuide />
+                  ) : activeGuide.id === "Vena_Cava_Filter" || activeGuide.title?.includes("Vena Cava Filter") ? (
+                    <VenaCavaFilterGuide />
+                  ) : activeGuide.id === "Vaccine-Induced_Prothrombotic_Immune_Thrombocytopenia_(VIPITVITT)" || activeGuide.title?.includes("VIPIT") || activeGuide.title?.includes("VITT") ? (
+                    <VipitVittGuide />
+                  ) : activeGuide.id === "Warfarin_Management_of_Out-of-Range_INRs" || activeGuide.title?.includes("Out-of-Range INR") ? (
+                    <WarfarinInrManagementGuide />
+                  ) : activeGuide.id === "Warfarin_Point-of-Care_INR_Monitoring" || activeGuide.title?.includes("Point-of-Care INR") ? (
+                    <WarfarinPocInrGuide />
+                  ) : activeGuide.id === "DOACs_Coagulation_Tests" || activeGuide.title?.includes("DOACs") && activeGuide.title?.includes("Coagulation Tests") ? (
+                    <DoacsCoagulationTestsGuide />
+                  ) : activeGuide.id === "DOACs_Management_of_Bleeding" || activeGuide.title?.includes("DOACs") && activeGuide.title?.includes("Bleeding") ? (
+                    <DoacsBleedingGuide />
+                  ) : activeGuide.id === "DOACs_Perioperative_Management" || activeGuide.title?.includes("DOACs") && activeGuide.title?.includes("Perioperative") ? (
+                    <DoacsPerioperativeGuide />
+                  ) : activeGuide.id === "DOACs_in_Patients_with_Obesity" || activeGuide.title?.includes("DOACs") && activeGuide.title?.includes("Obesity") ? (
+                    <DoacsObesityGuide />
+                  ) : activeGuide.id === "Pregnancy_Thromboprophylaxis" || activeGuide.title?.includes("Pregnancy") && activeGuide.title?.includes("Thromboprophylaxis") ? (
+                    <PregnancyThromboprophylaxisGuide />
+                  ) : activeGuide.id === "Pregnancy_Venous_Thromboembolism_Treatment" || activeGuide.title?.includes("Pregnancy") && activeGuide.title?.includes("VTE Treatment") ? (
+                    <PregnancyVteTreatmentGuide />
+                  ) : activeGuide.id === "Pregnancy_Diagnosis_of_DVT_and_PE" || activeGuide.title?.includes("Pregnancy") && activeGuide.title?.includes("Diagnosis") ? (
+                    <PregnancyDvtPeDiagnosisGuide />
+                  ) : activeGuide.id === "Ischemic_Stroke_or_TIA_Secondary_Prevention" || activeGuide.title?.includes("Ischemic Stroke") && activeGuide.title?.includes("Secondary Prevention") ? (
+                    <IschemicStrokeSecondaryPreventionGuide />
+                  ) : activeGuide.id === "Stroke_Thrombolysis_and_Endovascular_Therapy" || activeGuide.title?.includes("Thrombolysis") && activeGuide.title?.includes("Endovascular") ? (
+                    <StrokeThrombolysisGuide />
+                  ) : activeGuide.id === "Peripheral_Arterial_Disease" || activeGuide.title?.includes("Peripheral Arterial Disease") ? (
+                    <PeripheralArterialDiseaseGuide />
+                  ) : activeGuide.id === "Anticoagulation_in_Patients_Requiring_Antiplatelet_Therapy" || activeGuide.title?.includes("Requiring Antiplatelet") ? (
+                    <AnticoagAntiplateletGuide />
+                  ) : activeGuide.id === "Duration_of_Dual_Antiplatelet_Therapy_in_Patients_With_Coronary_Artery_Disease" || activeGuide.title?.includes("Dual Antiplatelet Therapy") ? (
+                    <DaptDurationGuide />
+                  ) : activeGuide.id === "Management_of_Heavy_Menstrual_Bleeding_for_Patients_on_Anticoagulation" || activeGuide.title?.includes("Heavy Menstrual Bleeding") ? (
+                    <HmbAnticoagulationGuide />
+                  ) : activeGuide.id === "Perioperative_Management_of_Antiplatelet_Therapy" || activeGuide.title?.includes("Perioperative") && activeGuide.title?.includes("Antiplatelet") ? (
+                    <PerioperativeAntiplateletGuide />
+                  ) : activeGuide.id === "Apixaban_(Eliquis)" || activeGuide.title?.includes("Apixaban") || activeGuide.title?.includes("Eliquis") ? (
+                    <ApixabanGuide />
+                  ) : activeGuide.id === "Rivaroxaban_(Xarelto)" || activeGuide.title?.includes("Rivaroxaban") || activeGuide.title?.includes("Xarelto") ? (
+                    <RivaroxabanGuide />
+                  ) : activeGuide.id === "DOACs_Comparison_And_Frequently-asked_Questions" || activeGuide.title?.includes("DOACs") && activeGuide.title?.includes("Comparison") ? (
+                    <DoacsComparisonGuide />
+                  ) : activeGuide.id === "Dabigatran_(Pradaxa)" || activeGuide.title?.includes("Dabigatran") || activeGuide.title?.includes("Pradaxa") ? (
+                    <DabigatranGuide />
+                  ) : activeGuide.id === "Edoxaban_(Lixiana)" || activeGuide.title?.includes("Edoxaban") || activeGuide.title?.includes("Lixiana") ? (
+                    <EdoxabanGuide />
+                  ) : activeGuide.id === "Clopidogrel_(Plavix)" || activeGuide.title?.includes("Clopidogrel") || activeGuide.title?.includes("Plavix") ? (
+                    <ClopidogrelGuide />
+                  ) : activeGuide.id === "Prasugrel" || activeGuide.title?.includes("Prasugrel") ? (
+                    <PrasugrelGuide />
+                  ) : activeGuide.id === "Ticagrelor_(Brilinta)" || activeGuide.title?.includes("Ticagrelor") || activeGuide.title?.includes("Brilinta") ? (
+                    <TicagrelorGuide />
+                  ) : activeGuide.id === "COVID-19_Primary_Thromboprophylaxis_for_Hospitalized_Patients" || activeGuide.title?.includes("COVID-19") && activeGuide.title?.includes("Thromboprophylaxis") ? (
+                    <CovidThromboprophylaxisGuide />
+                  ) : activeGuide.id === "Unfractionated_Heparin_Low_Molecular_Weight_Heparin_and_Fondaparinux" || activeGuide.title?.includes("Unfractionated Heparin") || activeGuide.title?.includes("Fondaparinux") ? (
+                    <UfhLmwhFondaparinuxGuide />
+                  ) : activeGuide.id === "Warfarin_Perioperative_Management" || activeGuide.title?.includes("Warfarin") && activeGuide.title?.includes("Perioperative") ? (
+                    <WarfarinPeriopGuide />
                   ) : (
                     <>
                       <div className="guide-summary-grid">

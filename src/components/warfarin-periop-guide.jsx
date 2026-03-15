@@ -1,0 +1,540 @@
+import { useState } from "react";
+
+const tabs = [
+  ["overview", "Overview"],
+  ["bridging", "Bridging Options"],
+  ["risk", "Risk Stratification"],
+  ["algorithm", "Management Algorithm"],
+  ["special", "Special Considerations"],
+  ["references", "References"],
+];
+
+const bridgingTherapeuticDoses = [
+  ["Enoxaparin", "1 mg/kg SC BID", "1.5 mg/kg SC OD"],
+  ["Dalteparin", "100 IU/kg SC BID", "200 IU/kg SC OD"],
+  ["Tinzaparin", "175 IU/kg SC OD", "—"],
+];
+
+const bridgingProphylacticDoses = [
+  ["Enoxaparin", "40 mg SC OD"],
+  ["Dalteparin", "5000 IU SC OD"],
+  ["Tinzaparin", "4500 IU SC OD"],
+];
+
+const bleedRiskProcedures = [
+  {
+    risk: "Minimal",
+    tone: "green",
+    procedures: [
+      "Dental extractions (1–2 teeth), dental cleaning",
+      "Cataract surgery (especially with topical anaesthesia)",
+      "Minor dermatological procedures (skin biopsy, excision of small lesions)",
+    ],
+    note: "Generally do NOT need warfarin interruption unless patient-specific factors dictate otherwise.",
+  },
+  {
+    risk: "Low / Moderate",
+    tone: "blue",
+    procedures: [
+      "Endoscopy with biopsy",
+      "Arthrocentesis",
+      "Coronary angiography",
+      "Most general surgical procedures",
+    ],
+    note: "Warfarin interruption typically required. Bridging based on thromboembolism risk.",
+  },
+  {
+    risk: "High",
+    tone: "red",
+    procedures: [
+      "Cardiac surgery",
+      "Spinal / epidural procedures",
+      "Intracranial surgery",
+      "Kidney, liver, or prostate biopsy",
+      "Major cancer surgery",
+      "ERCP with sphincterotomy",
+      "Pacemaker / ICD placement",
+    ],
+    note: "AVOID post-operative therapeutic bridging. Use prophylactic-dose LMWH, delay anticoagulation, or resume warfarin alone.",
+  },
+];
+
+const thromboembolismRisk = [
+  {
+    level: "HIGH",
+    tone: "red",
+    recommendation: "Bridge with therapeutic-dose LMWH",
+    criteria: [
+      "Mechanical mitral valve",
+      "Recent stroke or TIA within 3 months",
+      "CHADS\u2082 score \u22655",
+      "Recent VTE (<3 months)",
+      "Severe thrombophilia (e.g., protein C/S deficiency, antiphospholipid syndrome)",
+    ],
+  },
+  {
+    level: "INTERMEDIATE",
+    tone: "amber",
+    recommendation: "Bridging is optional — individualize decision",
+    criteria: [
+      "Bileaflet aortic mechanical valve with additional risk factors (AF, prior stroke, hypertension, diabetes, heart failure, age >75)",
+      "CHADS\u2082 score 3–4",
+      "VTE within 3–12 months ago",
+    ],
+  },
+  {
+    level: "LOW",
+    tone: "green",
+    recommendation: "Do NOT bridge",
+    criteria: [
+      "Bileaflet aortic mechanical valve without additional risk factors",
+      "CHADS\u2082 score \u22642",
+      "VTE >12 months ago with no other risk factors",
+    ],
+  },
+];
+
+const timelineSteps = [
+  {
+    day: "Day \u22125",
+    action: "Stop warfarin",
+    detail: "Discontinue warfarin 5 days before the scheduled procedure.",
+    tone: "red",
+  },
+  {
+    day: "Day \u22123",
+    action: "Start bridging LMWH (if indicated)",
+    detail: "Begin therapeutic-dose LMWH approximately 3 days before surgery, based on thromboembolism risk stratification.",
+    tone: "amber",
+  },
+  {
+    day: "Day \u22121",
+    action: "Last pre-op LMWH dose",
+    detail: "Give last dose of LMWH at least 24 hours before surgery. Check INR if warranted; if INR >1.5, give vitamin K 1–2 mg PO.",
+    tone: "amber",
+  },
+  {
+    day: "Day 0",
+    action: "Surgery",
+    detail: "Proceed with procedure. Check INR if not done on Day \u22121. Confirm haemostasis plan.",
+    tone: "blue",
+  },
+  {
+    day: "Post-op",
+    action: "Resume warfarin",
+    detail: "Resume warfarin on the evening of surgery or the next day (when oral intake tolerated).",
+    tone: "green",
+  },
+  {
+    day: "Post-op bridging",
+    action: "Resume LMWH based on bleed risk",
+    detail: "Low bleed risk: therapeutic dose at 24 hrs. High bleed risk: prophylactic dose at 48–72 hrs, or delay therapeutic LMWH/UFH until 48–72 hrs post-op.",
+    tone: "green",
+  },
+];
+
+const references = [
+  "Douketis JD, et al. Perioperative management of antithrombotic therapy: Antithrombotic Therapy and Prevention of Thrombosis, 9th ed: ACCP Evidence-Based Clinical Practice Guidelines. Chest. 2012;141(2 Suppl):e326S–e350S.",
+  "Douketis JD, et al. Perioperative bridging anticoagulation in patients with atrial fibrillation (BRIDGE trial). N Engl J Med. 2015;373:823-833.",
+  "Siegal D, et al. Periprocedural heparin bridging in patients receiving vitamin K antagonists: systematic review and meta-analysis of bleeding and thromboembolic rates. Circulation. 2012;126:1630-1639.",
+  "Spyropoulos AC, et al. Periprocedural bridging therapy with unfractionated heparin or low-molecular-weight heparin: a systematic review and meta-analysis. Arch Intern Med. 2012;172:1407-1416.",
+  "Nishimura RA, et al. 2017 AHA/ACC focused update of the 2014 AHA/ACC guideline for the management of patients with valvular heart disease. Circulation. 2017;135:e1159-e1195.",
+  "Lip GYH, et al. Refining clinical risk stratification for predicting stroke and thromboembolism in atrial fibrillation using a novel risk factor-based approach: the Euro Heart Survey on Atrial Fibrillation. Chest. 2010;137:263-272.",
+  "Keeling D, et al. Peri-operative management of anticoagulation and antiplatelet therapy. Br J Haematol. 2016;175:602-613.",
+  "Monagle P, et al. Antithrombotic therapy in neonates and children: ACCP Evidence-Based Clinical Practice Guidelines, 9th ed. Chest. 2012;141:e737S-e801S.",
+];
+
+const relatedGuides = [
+  "Warfarin: General Guide",
+  "Warfarin: Management of Out-of-Range INRs",
+  "Warfarin: Point-of-Care INR Monitoring",
+  "DOACs: Perioperative Management",
+  "Perioperative Management of Antiplatelet Therapy",
+  "Unfractionated Heparin, LMWH, and Fondaparinux",
+];
+
+function Dot({ tone }) {
+  return <span className={`asa-dot ${tone}`} />;
+}
+
+export function WarfarinPeriopGuide() {
+  const [tab, setTab] = useState("overview");
+
+  return (
+    <section className="asa-guide-shell">
+      <div className="asa-guide-header">
+        <div className="asa-guide-header-top">
+          <div className="asa-guide-header-copy">
+            <div className="asa-badge-row">
+              <span className="asa-badge asa-badge-blue">Clinical Guide</span>
+              <span className="asa-badge asa-badge-teal">Perioperative Management</span>
+              <span className="asa-badge asa-badge-gray">Warfarin</span>
+            </div>
+            <h2 className="asa-guide-title">Warfarin: Perioperative Management</h2>
+            <div className="asa-guide-meta">
+              <span>Thrombosis Canada</span>
+              <span>Elective and urgent surgical settings</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="asa-objective-strip">
+          <strong>Objective:</strong> To provide a practical approach to the perioperative management of patients receiving warfarin who require elective or urgent surgery, including guidance on bridging anticoagulation.
+        </div>
+      </div>
+
+      <div className="asa-tabs">
+        <div className="asa-tabs-list" role="tablist" aria-label="Warfarin perioperative guide sections">
+          {tabs.map(([id, label]) => (
+            <button
+              key={id}
+              type="button"
+              className={tab === id ? "asa-tab-btn active" : "asa-tab-btn"}
+              onClick={() => setTab(id)}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+
+        {/* ── Overview ── */}
+        {tab === "overview" ? (
+          <div className="asa-tab-panel">
+            <article className="asa-section-card">
+              <h3><Dot tone="blue" />Perioperative Management of Warfarin</h3>
+              <p className="asa-section-copy">
+                Patients on long-term warfarin who require elective or urgent surgery need careful perioperative planning. The key decision involves whether to provide <strong>bridging anticoagulation</strong> &mdash; using a short-acting parenteral anticoagulant (typically low-molecular-weight heparin) during the period when warfarin is interrupted.
+              </p>
+            </article>
+
+            <article className="asa-section-card">
+              <h3><Dot tone="amber" />What Is Bridging?</h3>
+              <p className="asa-section-copy">
+                Bridging refers to the administration of a short-acting anticoagulant (subcutaneous LMWH or, rarely, intravenous unfractionated heparin) before and/or after surgery to minimise the time the patient spends without therapeutic anticoagulation.
+              </p>
+              <div className="asa-alert asa-alert-warn">
+                <div>
+                  <strong>Important distinction:</strong> Bridging anticoagulation is different from routine thromboprophylaxis. Bridging uses therapeutic or near-therapeutic doses and targets patients whose underlying condition (e.g., mechanical valve, high-risk AF) warrants continued anticoagulation.
+                </div>
+              </div>
+            </article>
+
+            <article className="asa-section-card">
+              <h3><Dot tone="purple" />Key Principles</h3>
+              <ul className="asa-ind-list">
+                <li>Assess both <strong>bleeding risk</strong> (procedure-related) and <strong>thromboembolism risk</strong> (patient-related).</li>
+                <li>There is <strong>no strong evidence-based indication</strong> for bridging in most patients; it should be reserved for those at highest thrombotic risk.</li>
+                <li>Bridging is associated with an approximately <strong>2% increase in major bleeding</strong> and <strong>10–15% risk of minor bleeding</strong>.</li>
+                <li>Minimal bleed-risk procedures (dental extractions, cataract surgery, minor skin procedures) generally do not require warfarin interruption.</li>
+              </ul>
+            </article>
+
+            <article className="asa-section-card">
+              <h3><Dot tone="default" />Monitoring</h3>
+              <ul className="asa-ind-list">
+                <li><strong>SC LMWH bridging:</strong> No routine laboratory monitoring required.</li>
+                <li><strong>IV UFH bridging:</strong> Requires aPTT monitoring to maintain therapeutic range.</li>
+                <li><strong>INR:</strong> Check on Day &minus;1 or Day 0 to ensure INR is adequate for safe surgery (target &le;1.5).</li>
+              </ul>
+            </article>
+          </div>
+        ) : null}
+
+        {/* ── Bridging Options ── */}
+        {tab === "bridging" ? (
+          <div className="asa-tab-panel">
+            <article className="asa-section-card">
+              <h3><Dot tone="blue" />Bridging Recommendation Summary</h3>
+              <div className="asa-alert asa-alert-info">
+                <div>
+                  There are <strong>no strong evidence-based indications</strong> for bridging. The decision is based on estimated thromboembolism risk.
+                </div>
+              </div>
+              <ul className="asa-ind-list">
+                <li><strong>HIGH thromboembolism risk:</strong> Bridging is suggested.</li>
+                <li><strong>LOW thromboembolism risk:</strong> Bridging is NOT suggested.</li>
+                <li><strong>INTERMEDIATE risk:</strong> Bridging is optional &mdash; individualize the decision based on patient and procedure factors.</li>
+              </ul>
+            </article>
+
+            <article className="asa-section-card">
+              <h3><Dot tone="teal" />Therapeutic-Dose LMWH for Bridging</h3>
+              <p className="asa-section-copy">Pre-operative and post-operative (when therapeutic bridging is selected):</p>
+              <table className="asa-dose-table">
+                <thead>
+                  <tr>
+                    <th>Agent</th>
+                    <th>Twice-daily dosing</th>
+                    <th>Once-daily dosing</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {bridgingTherapeuticDoses.map((row) => (
+                    <tr key={row[0]}>
+                      <td>{row[0]}</td>
+                      <td className="dose-highlight">{row[1]}</td>
+                      <td className="dose-highlight">{row[2]}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <p className="asa-section-copy" style={{ marginTop: "0.5rem", fontSize: "0.85rem", opacity: 0.8 }}>
+                IV unfractionated heparin (UFH) is rarely used and requires aPTT monitoring.
+              </p>
+            </article>
+
+            <article className="asa-section-card">
+              <h3><Dot tone="amber" />Prophylactic-Dose LMWH (High Bleed-Risk Surgery)</h3>
+              <p className="asa-section-copy">
+                For high bleed-risk procedures, use <strong>prophylactic-dose</strong> LMWH post-operatively instead of therapeutic dose. All given at half dose the day before surgery.
+              </p>
+              <table className="asa-dose-table">
+                <thead>
+                  <tr>
+                    <th>Agent</th>
+                    <th>Prophylactic dose</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {bridgingProphylacticDoses.map((row) => (
+                    <tr key={row[0]}>
+                      <td>{row[0]}</td>
+                      <td className="dose-highlight">{row[1]}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </article>
+
+            <article className="asa-section-card">
+              <h3><Dot tone="red" />Cardiac, Spinal, and Intracranial Surgery</h3>
+              <div className="asa-alert asa-alert-danger">
+                <div>
+                  <strong>AVOID post-operative therapeutic bridging</strong> for cardiac surgery, spinal/epidural procedures, and intracranial surgery.
+                </div>
+              </div>
+              <p className="asa-section-copy">Options for these high-risk procedures include:</p>
+              <ul className="asa-ind-list">
+                <li>Low-dose prophylactic LMWH only.</li>
+                <li>Delay resumption of anticoagulation entirely.</li>
+                <li>Resume warfarin alone without bridging.</li>
+              </ul>
+            </article>
+
+            <article className="asa-section-card">
+              <h3><Dot tone="danger" />Adverse Effects of Bridging</h3>
+              <ul className="asa-ind-list">
+                <li><strong>Major bleeding:</strong> approximately 2% increased risk compared to no bridging.</li>
+                <li><strong>Minor bleeding:</strong> 10–15% risk (injection-site haematomas, wound oozing, epistaxis).</li>
+              </ul>
+            </article>
+          </div>
+        ) : null}
+
+        {/* ── Risk Stratification ── */}
+        {tab === "risk" ? (
+          <div className="asa-tab-panel">
+            <article className="asa-section-card">
+              <h3><Dot tone="blue" />Table 1: Procedure Bleeding Risk</h3>
+              <div className="asa-sections">
+                {bleedRiskProcedures.map((cat) => (
+                  <div key={cat.risk} className="asa-section-card" style={{ borderLeft: `3px solid var(--asa-${cat.tone}, #888)` }}>
+                    <h4 style={{ marginBottom: "0.5rem" }}>
+                      <Dot tone={cat.tone} />
+                      {cat.risk} Bleed Risk
+                    </h4>
+                    <ul className="asa-ind-list">
+                      {cat.procedures.map((p) => (
+                        <li key={p}>{p}</li>
+                      ))}
+                    </ul>
+                    <div className="asa-alert asa-alert-info" style={{ marginTop: "0.5rem" }}>
+                      <div>{cat.note}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </article>
+
+            <article className="asa-section-card">
+              <h3><Dot tone="purple" />Table 2: Thromboembolism Risk and Bridging Decision</h3>
+              <div className="asa-sections">
+                {thromboembolismRisk.map((tier) => (
+                  <div key={tier.level} className="asa-section-card" style={{ borderLeft: `3px solid var(--asa-${tier.tone}, #888)` }}>
+                    <h4 style={{ marginBottom: "0.25rem" }}>
+                      <Dot tone={tier.tone} />
+                      {tier.level} Risk
+                    </h4>
+                    <p className="asa-section-copy" style={{ fontWeight: 600, marginBottom: "0.5rem" }}>
+                      {tier.recommendation}
+                    </p>
+                    <ul className="asa-ind-list">
+                      {tier.criteria.map((c) => (
+                        <li key={c}>{c}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </article>
+          </div>
+        ) : null}
+
+        {/* ── Management Algorithm ── */}
+        {tab === "algorithm" ? (
+          <div className="asa-tab-panel">
+            <article className="asa-section-card">
+              <h3><Dot tone="blue" />Figure 1: Perioperative Warfarin Management Timeline</h3>
+              <p className="asa-section-copy">
+                The following step-by-step timeline outlines the perioperative management approach for patients on warfarin requiring surgery with an indication for warfarin interruption.
+              </p>
+
+              <div className="asa-timeline">
+                {timelineSteps.map((step) => (
+                  <div key={step.day} className="asa-timeline-step">
+                    <div className={`asa-timeline-dot ${step.tone}`} />
+                    <div className="asa-timeline-label">{step.day}: {step.action}</div>
+                    <div className="asa-timeline-desc">{step.detail}</div>
+                  </div>
+                ))}
+              </div>
+            </article>
+
+            <article className="asa-section-card">
+              <h3><Dot tone="green" />Post-operative Bridging Resumption Summary</h3>
+              <table className="asa-dose-table">
+                <thead>
+                  <tr>
+                    <th>Surgical bleed risk</th>
+                    <th>Post-op LMWH dose</th>
+                    <th>Timing of resumption</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Low bleed risk</td>
+                    <td className="dose-highlight">Therapeutic dose</td>
+                    <td>24 hours post-procedure</td>
+                  </tr>
+                  <tr>
+                    <td>High bleed risk</td>
+                    <td className="dose-highlight">Prophylactic dose initially</td>
+                    <td>48–72 hours post-procedure</td>
+                  </tr>
+                  <tr>
+                    <td>Very high bleed risk (cardiac, spinal, intracranial)</td>
+                    <td className="dose-highlight">Prophylactic dose or none</td>
+                    <td>Delay; resume warfarin alone</td>
+                  </tr>
+                </tbody>
+              </table>
+            </article>
+
+            <div className="asa-alert asa-alert-warn">
+              <div>
+                <strong>Vitamin K rescue:</strong> If INR is &gt;1.5 on Day &minus;1, administer <strong>vitamin K 1–2 mg PO</strong> to normalise the INR by the morning of surgery. Recheck INR on Day 0.
+              </div>
+            </div>
+
+            <div className="asa-alert asa-alert-info">
+              <div>
+                <strong>Warfarin restart:</strong> Resume warfarin at the patient's usual maintenance dose on the evening of surgery or the next morning. Therapeutic INR typically takes 4–5 days to re-establish. Continue LMWH bridging until INR is &ge;2.0 for at least 24 hours.
+              </div>
+            </div>
+          </div>
+        ) : null}
+
+        {/* ── Special Considerations ── */}
+        {tab === "special" ? (
+          <div className="asa-tab-panel">
+            <article className="asa-section-card">
+              <h3><Dot tone="blue" />Dental Procedures</h3>
+              <ul className="asa-ind-list">
+                <li><strong>1–2 tooth extractions or root canal:</strong> Continue warfarin without interruption.</li>
+                <li>Use <strong>tranexamic acid mouthwash</strong>: 5 mL rinse pre-procedure, then 2–3 times daily for 3–5 days after.</li>
+                <li>For extensive dental surgery (multiple extractions, implants), consider warfarin interruption on an individual basis.</li>
+              </ul>
+            </article>
+
+            <article className="asa-section-card">
+              <h3><Dot tone="teal" />Eye Surgery</h3>
+              <ul className="asa-ind-list">
+                <li><strong>Cataract surgery</strong> (especially with topical anaesthesia): Continue warfarin.</li>
+                <li>Other eye procedures (vitreoretinal surgery, glaucoma surgery): Generally interrupt warfarin. Consult ophthalmology for procedure-specific guidance.</li>
+              </ul>
+            </article>
+
+            <article className="asa-section-card">
+              <h3><Dot tone="purple" />Colonoscopy and Gastroscopy</h3>
+              <ul className="asa-ind-list">
+                <li>Usually interrupt warfarin due to the potential for polypectomy.</li>
+                <li>Caution: bleeding may occur <strong>2–7 days</strong> after large polyp removal.</li>
+                <li>Endoscopic clips may reduce post-polypectomy bleeding risk.</li>
+              </ul>
+            </article>
+
+            <article className="asa-section-card">
+              <h3><Dot tone="amber" />Diagnostic Procedures Requiring Caution</h3>
+              <ul className="asa-ind-list">
+                <li>Kidney biopsy</li>
+                <li>Liver biopsy</li>
+                <li>Prostate biopsy</li>
+                <li>ERCP with sphincterotomy</li>
+                <li>Pacemaker or ICD placement</li>
+              </ul>
+              <div className="asa-alert asa-alert-warn">
+                <div>These procedures carry higher bleeding risk. Warfarin interruption is generally required, with bridging guided by thromboembolism risk.</div>
+              </div>
+            </article>
+
+            <article className="asa-section-card">
+              <h3><Dot tone="orange" />Perioperative Antiplatelet Therapy</h3>
+              <ul className="asa-ind-list">
+                <li><strong>ASA:</strong> Continue perioperatively if patient is not at high bleeding risk, especially in the setting of recent ACS or coronary stent.</li>
+                <li><strong>P2Y12 inhibitors</strong> (clopidogrel, ticagrelor, prasugrel): Stop <strong>5–7 days</strong> before surgery.</li>
+                <li>Coordinate with cardiology if patient requires both anticoagulation and antiplatelet therapy perioperatively.</li>
+              </ul>
+            </article>
+
+            <article className="asa-section-card">
+              <h3><Dot tone="green" />Pediatric Considerations</h3>
+              <ul className="asa-ind-list">
+                <li>Adult perioperative guidelines are generally appropriate for children on warfarin.</li>
+                <li><strong>Key difference:</strong> Hold warfarin for <strong>3 days</strong> (not 5 days as in adults) before surgery, due to shorter warfarin half-life in children.</li>
+                <li>Consult <strong>pediatric hematology and/or pediatric cardiology</strong> for bridging decisions.</li>
+              </ul>
+            </article>
+          </div>
+        ) : null}
+
+        {/* ── References ── */}
+        {tab === "references" ? (
+          <div className="asa-tab-panel">
+            <article className="asa-section-card">
+              <h3><Dot tone="gray" />Related Clinical Guides</h3>
+              <ul className="asa-related-list">
+                {relatedGuides.map((item) => (
+                  <li key={item}><span>{item}</span></li>
+                ))}
+              </ul>
+            </article>
+
+            <article className="asa-section-card">
+              <h3><Dot tone="gray" />References</h3>
+              <ol className="asa-ref-list">
+                {references.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ol>
+            </article>
+          </div>
+        ) : null}
+      </div>
+
+      <div className="asa-guide-footer">
+        <p><strong>Warfarin: Perioperative Management</strong> | Thrombosis Canada Clinical Guide</p>
+        <p>The information here is not a substitute for clinical judgement. Always seek appropriate specialist input when needed.</p>
+      </div>
+    </section>
+  );
+}

@@ -1,13 +1,13 @@
 :root {
   color-scheme: light;
   --background: #f8f9fa;
-  --foreground: #111827;
+  --foreground: #0f172a;
   --card: #ffffff;
   --card-muted: #f9fafb;
   --border: #e2e5ea;
   --border-strong: #cbd1d9;
-  --muted: #6b7280;
-  --muted-foreground: #4b5563;
+  --muted: #374151;
+  --muted-foreground: #1e293b;
   --accent: #eff6ff;
   --accent-strong: #bfdbfe;
   --primary: #1d4ed8;
@@ -2421,7 +2421,7 @@ fieldset.field-card {
   display: flex;
   gap: 0.6rem;
   padding: 0.4rem 0;
-  color: #4b5563;
+  color: #1e293b;
   line-height: 1.6;
 }
 
@@ -2488,7 +2488,7 @@ fieldset.field-card {
 .asa-dose-table td {
   padding: 0.75rem 0.8rem;
   border-bottom: 1px solid #f3f4f6;
-  color: #4b5563;
+  color: #1e293b;
   vertical-align: top;
 }
 
@@ -2533,7 +2533,7 @@ fieldset.field-card {
 
 .asa-section-copy {
   margin: 0 0 1rem;
-  color: #4b5563;
+  color: #1e293b;
   line-height: 1.65;
 }
 
