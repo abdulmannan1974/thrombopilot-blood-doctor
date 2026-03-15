@@ -1152,7 +1152,11 @@ const toolStateDefaults = tools.reduce((accumulator, tool) => {
 }, {});
 
 const getCompletion = (tool, values) => {
-  const visibleInputs = tool.inputs.filter((input) => input.type !== "hidden");
+  const visibleInputs = tool.inputs.filter((input) => {
+    if (input.type === "hidden") return false;
+    if (input.visibleWhen && !input.visibleWhen(values ?? {})) return false;
+    return true;
+  });
 
   const completed = visibleInputs.filter((input) => {
     const value = values?.[input.id];
@@ -1963,7 +1967,11 @@ function AppLayout() {
 
                     <div className="form-grid">
                       {activeTool.inputs
-                        .filter((input) => input.type !== "hidden")
+                        .filter((input) => {
+                          if (input.type === "hidden") return false;
+                          if (input.visibleWhen && !input.visibleWhen(activeValues)) return false;
+                          return true;
+                        })
                         .map((input) => (
                           <FieldRenderer
                             key={input.id}

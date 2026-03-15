@@ -13274,6 +13274,53 @@ const getChads2Score = (values) => {
     values.priorStroke ? 2 : 0
   ]);
 };
+const getPccDose = (inr, weight) => {
+  const w = asNumber(weight);
+  const i = asNumber(inr);
+  if (!Number.isFinite(w) || !Number.isFinite(i)) return null;
+  let unitsPerKg;
+  if (i >= 6) {
+    unitsPerKg = 50;
+  } else if (i >= 4) {
+    unitsPerKg = 35;
+  } else if (i >= 2) {
+    unitsPerKg = 25;
+  } else {
+    return {
+      dose: 0,
+      unitsPerKg: 0,
+      targetInr: "Already near target",
+      maxDose: 0,
+      approxVolumeMl: 0,
+      infusionRate: "N/A",
+      note: "INR is below 2.0; PCC is generally not needed. Vitamin K alone may suffice.",
+      vialsNeeded: 0
+    };
+  }
+  const rawDose = Math.round(unitsPerKg * w);
+  const maxDose = 3e3;
+  const dose = Math.min(rawDose, maxDose);
+  const approxVolumeMl = Math.round(dose / 25);
+  const vialsNeeded1000 = Math.floor(dose / 1e3);
+  const remainder = dose - vialsNeeded1000 * 1e3;
+  const vialsNeeded500 = remainder > 0 ? Math.ceil(remainder / 500) : 0;
+  const vialText = vialsNeeded1000 > 0 ? `${vialsNeeded1000}×1000 U${vialsNeeded500 > 0 ? ` + ${vialsNeeded500}×500 U` : ""}` : `${vialsNeeded500}×500 U`;
+  return {
+    dose,
+    unitsPerKg,
+    targetInr: "≤1.3",
+    maxDose,
+    weight: w,
+    inr: i,
+    approxVolumeMl,
+    vialText,
+    // Kcentra infusion rate: 0.12 mL/kg/min (~3 units/kg/min), max 8.4 mL/min
+    infusionRate: `${Math.min(Math.round(0.12 * w * 10) / 10, 8.4)} mL/min (0.12 mL/kg/min)`,
+    infusionTimeMins: Math.ceil(approxVolumeMl / Math.min(0.12 * w, 8.4)),
+    note: dose === maxDose ? `Calculated ${rawDose} units → capped at maximum ${maxDose} units. Approx ${vialText} vials, ${approxVolumeMl} mL reconstituted.` : `${dose} units (${unitsPerKg} units/kg × ${w} kg). Approx ${vialText} vials, ${approxVolumeMl} mL reconstituted.`,
+    redoseNote: "Do not repeat dose. If INR remains elevated after 15 min recheck, consider additional vitamin K, FFP, or specialist input."
+  };
+};
 const toolCategories = [
   { id: "all", label: "All tools" },
   { id: "algorithm", label: "Algorithms" },
@@ -13331,7 +13378,7 @@ const tools = [
         ],
         defaultValue: "apixaban"
       },
-      { id: "inr", label: "INR value", type: "number", min: 0.8, step: 0.1 },
+      { id: "inr", label: "INR value", type: "number", min: 0.8, step: 0.1, visibleWhen: (v) => v.anticoagulant === "warfarin" },
       {
         id: "drugLevelStatus",
         label: "Drug level availability",
@@ -13340,10 +13387,11 @@ const tools = [
           { value: "available", label: "Drug level available" },
           { value: "not_available", label: "Drug level not available" }
         ],
-        defaultValue: "not_available"
+        defaultValue: "not_available",
+        visibleWhen: (v) => v.anticoagulant !== "warfarin"
       },
-      { id: "drugLevel", label: "Drug level (ng/mL)", type: "number", min: 0, step: 1 },
-      { id: "hoursSinceLastDose", label: "Hours since last dose", type: "number", min: 0, step: 1 },
+      { id: "drugLevel", label: "Drug level (ng/mL)", type: "number", min: 0, step: 1, visibleWhen: (v) => v.anticoagulant !== "warfarin" && v.drugLevelStatus === "available" },
+      { id: "hoursSinceLastDose", label: "Hours since last dose", type: "number", min: 0, step: 1, visibleWhen: (v) => v.surgeryType !== "elective" },
       { id: "age", label: "Age", type: "number", min: 18, step: 1 },
       { id: "weight", label: "Weight (kg)", type: "number", min: 20, step: 0.1 },
       {
@@ -13384,9 +13432,9 @@ const tools = [
         ],
         defaultValue: "atrial_fibrillation"
       },
-      { id: "chads2", label: "CHADS2 score", type: "number", min: 0, max: 6, step: 1 },
-      { id: "strokeTiaWithin3Months", label: "Stroke or TIA within 3 months", type: "checkbox" },
-      { id: "rheumaticMitralStenosis", label: "Rheumatic mitral stenosis", type: "checkbox" },
+      { id: "chads2", label: "CHADS2 score", type: "number", min: 0, max: 6, step: 1, visibleWhen: (v) => v.indication === "atrial_fibrillation" },
+      { id: "strokeTiaWithin3Months", label: "Stroke or TIA within 3 months", type: "checkbox", visibleWhen: (v) => v.indication === "atrial_fibrillation" },
+      { id: "rheumaticMitralStenosis", label: "Rheumatic mitral stenosis", type: "checkbox", visibleWhen: (v) => v.indication === "atrial_fibrillation" },
       {
         id: "vteTiming",
         label: "Most recent DVT or PE timing",
@@ -13396,11 +13444,12 @@ const tools = [
           { value: "between_3_and_12_months", label: "Between 3 and 12 months" },
           { value: "over_12_months", label: "Single VTE more than 12 months ago" }
         ],
-        defaultValue: "over_12_months"
+        defaultValue: "over_12_months",
+        visibleWhen: (v) => v.indication === "dvt_pe"
       },
-      { id: "recurrentVte", label: "Recurrent VTE", type: "checkbox" },
-      { id: "activeCancer", label: "Active cancer", type: "checkbox" },
-      { id: "severeThrombophilia", label: "Known severe thrombophilia", type: "checkbox" },
+      { id: "recurrentVte", label: "Recurrent VTE", type: "checkbox", visibleWhen: (v) => v.indication === "dvt_pe" },
+      { id: "activeCancer", label: "Active cancer", type: "checkbox", visibleWhen: (v) => v.indication === "dvt_pe" },
+      { id: "severeThrombophilia", label: "Known severe thrombophilia", type: "checkbox", visibleWhen: (v) => v.indication === "dvt_pe" },
       {
         id: "valvePosition",
         label: "Mechanical valve position",
@@ -13409,7 +13458,8 @@ const tools = [
           { value: "aortic", label: "Aortic" },
           { value: "mitral", label: "Mitral" }
         ],
-        defaultValue: "aortic"
+        defaultValue: "aortic",
+        visibleWhen: (v) => v.indication === "mechanical_valve"
       },
       {
         id: "valveType",
@@ -13420,15 +13470,17 @@ const tools = [
           { value: "caged_ball", label: "Caged ball" },
           { value: "tilting_disc", label: "Tilting disc" }
         ],
-        defaultValue: "bileaflet"
+        defaultValue: "bileaflet",
+        visibleWhen: (v) => v.indication === "mechanical_valve"
       },
-      { id: "valveAtrialFibrillation", label: "Mechanical valve plus atrial fibrillation", type: "checkbox" },
-      { id: "valveChadsAtLeastOne", label: "Mechanical valve plus CHADS at least 1", type: "checkbox" },
-      { id: "strokeTiaWithin6Months", label: "Stroke or TIA within 6 months", type: "checkbox" },
+      { id: "valveAtrialFibrillation", label: "Mechanical valve plus atrial fibrillation", type: "checkbox", visibleWhen: (v) => v.indication === "mechanical_valve" },
+      { id: "valveChadsAtLeastOne", label: "Mechanical valve plus CHADS at least 1", type: "checkbox", visibleWhen: (v) => v.indication === "mechanical_valve" },
+      { id: "strokeTiaWithin6Months", label: "Stroke or TIA within 6 months", type: "checkbox", visibleWhen: (v) => v.indication === "mechanical_valve" },
       {
         id: "immediateReversal",
         label: "Immediate reversal is needed now",
-        type: "checkbox"
+        type: "checkbox",
+        visibleWhen: (v) => v.surgeryType !== "elective"
       }
     ],
     calculate: (values) => {
@@ -13458,6 +13510,7 @@ const tools = [
         ];
         if (drug === "warfarin") {
           const needsPcc = values.immediateReversal || Number.isFinite(inr) && inr > 1.5;
+          const pccResult = getPccDose(inr, values.weight);
           return {
             tone: tone.danger,
             headline: "Urgent or emergency warfarin reversal",
@@ -13467,33 +13520,68 @@ const tools = [
               { label: "Surgery type", value: sentenceCase(surgeryType) },
               { label: "Anticoagulant", value: "Warfarin" },
               { label: "INR", value: Number.isFinite(inr) ? formatScore(inr) : "Enter INR" },
-              { label: "Creatinine clearance", value: formatMetricValue(crcl, " mL/min") }
+              { label: "Creatinine clearance", value: formatMetricValue(crcl, " mL/min") },
+              { label: "PCC dose", value: pccResult ? `${pccResult.dose} units` : "Enter INR and weight" },
+              { label: "Infusion rate", value: pccResult && pccResult.dose > 0 ? pccResult.infusionRate : "Calculate dose first" }
             ]),
             recommendations: [
               { label: "Immediate hold", value: "Stop warfarin now." },
-              { label: "Vitamin K", value: "10 mg IV; repeat INR before surgery." },
+              { label: "Vitamin K", value: "10 mg IV slow push. Onset 6–8 hours for partial effect; full effect at 24 hours. Always co-administer with PCC for sustained reversal." },
+              {
+                label: "PCC dose (Kcentra/Beriplex/Octaplex)",
+                value: pccResult && pccResult.dose > 0 ? `${pccResult.note} Infuse at ${pccResult.infusionRate} (estimated ${pccResult.infusionTimeMins} min infusion). Target INR: ${pccResult.targetInr}.` : "Enter INR and weight to calculate the PCC dose. If unavailable and reversal cannot be delayed, give fixed-dose PCC 2000 units IV."
+              },
               {
                 label: "PCC strategy",
-                value: needsPcc ? "Use 4-factor PCC based on INR and weight. If INR or weight is unknown and PCC cannot be delayed, give PCC 2000 units IV." : "No PCC is needed if INR is already 1.5 or lower."
+                value: needsPcc ? "Use 4-factor PCC (Kcentra/Beriplex) based on INR and weight. Single dose only — do not repeat PCC." : "No PCC is needed if INR is already 1.5 or lower."
               },
               {
-                label: "Fallback",
-                value: "If PCC is unavailable or contraindicated, use FFP 10 to 15 mL/kg, about 3 to 4 units."
+                label: "Vials needed",
+                value: pccResult && pccResult.dose > 0 ? `${pccResult.vialText}. Available as 500 U (20 mL) and 1000 U (40 mL) vials. Reconstitute with provided diluent. Use within 4 hours.` : "Calculate dose first."
               },
-              { label: "Target", value: "Repeat INR 15 minutes after PCC infusion and aim for INR 1.5 or lower." }
+              {
+                label: "Fallback if PCC unavailable",
+                value: "FFP 10–15 mL/kg (approximately 3–4 units). Slower onset, risk of volume overload. Consider cryoprecipitate if fibrinogen is also low."
+              },
+              { label: "INR recheck", value: "Recheck INR 15–30 minutes after PCC infusion, then again at 6–8 hours. Target INR ≤1.5 before proceeding to surgery." },
+              { label: "Re-dosing", value: pccResult?.redoseNote ?? "Do not repeat PCC. If INR remains elevated, consider additional vitamin K, FFP, or specialist input." }
             ],
             tables: [
               buildTable("Summary", ["Item", "Value"], summaryRows2),
               buildTable("Immediate management", ["Step", "Recommendation"], immediateActions.map((item, index) => [`${index + 1}`, item])),
-              buildTable("Warfarin reversal", ["Decision point", "Recommendation"], [
-                ["INR 1.5 or lower after vitamin K", "No further reversal is required; proceed to surgery."],
-                ["INR remains above 1.5", "Consider PCC and repeat INR 15 minutes after infusion; target INR is 1.5 or lower."],
-                ["PCC administration", "OCTAPLEX: 1 mL/min then maximum 2 to 3 mL/min. BERIPLEX: 1 mL/min then maximum 8 mL/min."]
+              buildTable("Kcentra/Beriplex PCC Dosing Calculator", ["INR range", "Dose (units/kg)", "Approx volume/kg", "Maximum single dose"], [
+                ["INR 2.0–3.9", "25 units/kg", "~1.0 mL/kg", "3000 units"],
+                ["INR 4.0–5.9", "35 units/kg", "~1.4 mL/kg", "3000 units"],
+                ["INR ≥ 6.0", "50 units/kg", "~2.0 mL/kg", "3000 units"]
+              ]),
+              ...pccResult && pccResult.dose > 0 ? [buildTable("Calculated dose for this patient", ["Parameter", "Value"], [
+                ["Patient weight", `${pccResult.weight} kg`],
+                ["Pre-treatment INR", `${pccResult.inr}`],
+                ["Dosing tier", `${pccResult.unitsPerKg} units/kg`],
+                ["Calculated dose", `${pccResult.dose} units${pccResult.dose === pccResult.maxDose ? " (capped at maximum)" : ""}`],
+                ["Approximate volume", `${pccResult.approxVolumeMl} mL reconstituted`],
+                ["Vials required", pccResult.vialText],
+                ["Infusion rate", pccResult.infusionRate],
+                ["Estimated infusion time", `${pccResult.infusionTimeMins} minutes`],
+                ["Target INR", pccResult.targetInr]
+              ])] : [],
+              buildTable("Warfarin reversal pathway", ["Decision point", "Recommendation"], [
+                ["Step 1: Vitamin K", "Give 10 mg IV slow push immediately."],
+                ["Step 2: INR assessment", "If INR > 1.5 or immediate reversal needed, proceed to PCC."],
+                ["Step 3: PCC infusion", "Kcentra: 0.12 mL/kg/min (max 8.4 mL/min). Beriplex: 1 mL/min then max 8 mL/min. Octaplex: 1 mL/min then max 2–3 mL/min."],
+                ["Step 4: INR recheck", "15–30 min post-PCC infusion. If INR ≤ 1.5, proceed to surgery."],
+                ["Step 5: If INR still elevated", "Consider additional vitamin K. Do NOT repeat PCC. FFP 10–15 mL/kg as fallback."],
+                ["Step 6: Post-procedure", "Recheck INR at 6–8 hours. Plan anticoagulation restart timing."]
               ])
             ],
             supporting: [
-              "PCC is contraindicated in heparin-induced thrombocytopenia.",
-              "Explain the small but real thrombotic risk of PCC, generally below 2 percent.",
+              "Kcentra (US) = Beriplex P/N (EU/Canada) = Octaplex (Canada). All are 4-factor PCC containing Factors II, VII, IX, X, and Proteins C and S.",
+              "Dosing is per the Kcentra prescribing information (CSL Behring). Single dose only — do not repeat.",
+              "PCC provides immediate INR correction (within 10–15 minutes). Vitamin K ensures sustained reversal beyond the 12–24 hour PCC effect window.",
+              "PCC is contraindicated in: known anaphylaxis to PCC components, DIC, HIT (contains heparin traces in some formulations).",
+              "Thrombotic risk: VTE, DIC, and MI have been reported. Risk is approximately 1–2%. Use lowest effective dose.",
+              "Maximum single dose is 3000 units (approximately 120 mL) regardless of calculated dose.",
+              "Reconstitute each vial with provided diluent using the Mix2Vial transfer set. Do not shake. Use within 4 hours of reconstitution.",
               thromboembolicRisk.rationale
             ]
           };
@@ -13685,7 +13773,7 @@ const tools = [
       { id: "priorStroke", label: "Previous stroke or TIA", type: "checkbox" },
       { id: "vascularDisease", label: "Macrovascular disease: coronary, aortic, or peripheral", type: "checkbox" },
       { id: "warfarinOnlyIndication", label: "Patient has another indication for warfarin therapy", type: "checkbox" },
-      { id: "pGpInhibitor", label: "Concomitant use of P-gp inhibitors except amiodarone and verapamil", type: "checkbox" }
+      { id: "pGpInhibitor", label: "Concomitant use of P-gp inhibitors except amiodarone and verapamil", type: "checkbox", visibleWhen: (v) => !v.warfarinOnlyIndication }
     ],
     calculate: (values) => {
       const mergedValues = { ...values, femaleSex: values.sex === "female" };
@@ -13859,17 +13947,18 @@ const tools = [
           { value: "doac", label: "DOAC" },
           { value: "ufh_lmwh", label: "UFH or LMWH" }
         ],
-        defaultValue: "none"
+        defaultValue: "none",
+        visibleWhen: (v) => v.onAnticoagulation
       },
-      { id: "recurrentUnprovokedVte", label: "Recurrent unprovoked VTE", type: "checkbox" },
-      { id: "recurrentDespiteAnticoagulation", label: "Recurrent VTE despite adequate anticoagulation", type: "checkbox" },
-      { id: "recurrentPregnancyLoss", label: "Recurrent pregnancy loss", type: "checkbox" },
-      { id: "hemolysis", label: "Evidence of hemolysis", type: "checkbox" },
-      { id: "leucopenia", label: "Leucopenia", type: "checkbox" },
-      { id: "recentHeparinExposure", label: "Recent heparin exposure within 5 to 10 days", type: "checkbox" },
-      { id: "plateletFallFiftyPercent", label: "Platelet count has fallen by more than 50 percent", type: "checkbox" },
-      { id: "confirmedThrombosis", label: "Confirmed thrombosis or high thrombosis risk", type: "checkbox" },
-      { id: "noAlternativeCause", label: "No alternative cause for thrombocytopenia", type: "checkbox" },
+      { id: "recurrentUnprovokedVte", label: "Recurrent unprovoked VTE", type: "checkbox", visibleWhen: (v) => v.managementWouldChange },
+      { id: "recurrentDespiteAnticoagulation", label: "Recurrent VTE despite adequate anticoagulation", type: "checkbox", visibleWhen: (v) => v.managementWouldChange },
+      { id: "recurrentPregnancyLoss", label: "Recurrent pregnancy loss", type: "checkbox", visibleWhen: (v) => v.managementWouldChange },
+      { id: "hemolysis", label: "Evidence of hemolysis", type: "checkbox", visibleWhen: (v) => v.cbcAbnormalities || v.vteSite === "unusual" },
+      { id: "leucopenia", label: "Leucopenia", type: "checkbox", visibleWhen: (v) => v.cbcAbnormalities || v.vteSite === "unusual" },
+      { id: "recentHeparinExposure", label: "Recent heparin exposure within 5 to 10 days", type: "checkbox", visibleWhen: (v) => v.managementWouldChange },
+      { id: "plateletFallFiftyPercent", label: "Platelet count has fallen by more than 50 percent", type: "checkbox", visibleWhen: (v) => v.managementWouldChange },
+      { id: "confirmedThrombosis", label: "Confirmed thrombosis or high thrombosis risk", type: "checkbox", visibleWhen: (v) => v.managementWouldChange },
+      { id: "noAlternativeCause", label: "No alternative cause for thrombocytopenia", type: "checkbox", visibleWhen: (v) => v.managementWouldChange },
       { id: "managementWouldChange", label: "Testing would change management", type: "checkbox" }
     ],
     calculate: (values) => {
@@ -13988,7 +14077,7 @@ const tools = [
       { id: "plateletCount", label: "Platelet count (x10^9/L)", type: "number", min: 1, step: 1 },
       { id: "dDimerMarked", label: "D-dimer markedly elevated", type: "checkbox" },
       { id: "fibrinogenLow", label: "Fibrinogen low or falling", type: "checkbox" },
-      { id: "thrombosisConfirmed", label: "Imaging-confirmed arterial or venous thrombosis", type: "checkbox" },
+      { id: "thrombosisConfirmed", label: "Imaging-confirmed arterial or venous thrombosis", type: "checkbox", visibleWhen: (v) => v.severeHeadache || v.focalNeurology || v.chestPainDyspnea || v.abdominalPain || v.legPainSwelling || v.limbIschemia },
       {
         id: "pf4Elisa",
         label: "Anti-PF4 ELISA result",
@@ -13998,7 +14087,8 @@ const tools = [
           { value: "positive", label: "Positive" },
           { value: "negative", label: "Negative" }
         ],
-        defaultValue: "pending"
+        defaultValue: "pending",
+        visibleWhen: (v) => (v.severeHeadache || v.focalNeurology || v.chestPainDyspnea || v.abdominalPain || v.legPainSwelling || v.limbIschemia) && (asNumber(v.plateletCount) !== null && asNumber(v.plateletCount) < 150)
       }
     ],
     calculate: (values) => {
@@ -14140,7 +14230,21 @@ const tools = [
           { label: "Score", value: formatScore(score) },
           { label: "Two-tier result", value: likely ? "> 4" : "<= 4" },
           { label: "Three-tier risk", value: tier }
-        ])
+        ]),
+        recommendations: likely ? [
+          { label: "Imaging", value: "Proceed to CTPA. Consider empiric anticoagulation while awaiting imaging if high clinical suspicion." },
+          { label: "If CTPA contraindicated", value: "Use V/Q scan or bilateral lower-extremity compression ultrasonography as an alternative." },
+          { label: "Anticoagulation", value: "If PE is confirmed, initiate therapeutic anticoagulation promptly unless contraindicated." }
+        ] : [
+          { label: "D-dimer", value: "Use age-adjusted D-dimer (age × 10 µg/L for patients ≥50). If negative, PE can be safely excluded." },
+          { label: "If D-dimer positive", value: "Proceed to CTPA even though clinical probability is low." },
+          { label: "PERC rule", value: "If pre-test probability is very low (≤15%), consider applying the PERC rule before ordering D-dimer." }
+        ],
+        supporting: [
+          "Wells PS, Anderson DR, Rodger M, et al. Excluding pulmonary embolism at the bedside without diagnostic imaging. Ann Intern Med. 2001;135(2):98-107.",
+          "Age-adjusted D-dimer cutoff improves specificity in older patients without reducing sensitivity.",
+          "The two-tier model (score >4 = PE likely) is recommended by current Thrombosis Canada guidelines."
+        ]
       };
     }
   },
@@ -14190,7 +14294,21 @@ const tools = [
           { label: "Score", value: `${score}` },
           { label: "Two-tier result", value: likely ? "Likely" : "Unlikely" },
           { label: "Three-tier risk", value: tier }
-        ])
+        ]),
+        recommendations: likely ? [
+          { label: "Ultrasound", value: "Proceed to compression ultrasonography. If negative and suspicion remains, repeat in 5–7 days." },
+          { label: "D-dimer", value: "A negative D-dimer combined with a negative initial ultrasound can safely exclude DVT." },
+          { label: "Treatment", value: "If DVT is confirmed, initiate therapeutic anticoagulation. DOAC is preferred for most patients without cancer." }
+        ] : [
+          { label: "D-dimer", value: "Check D-dimer. If negative, DVT can be safely excluded without ultrasound." },
+          { label: "If D-dimer positive", value: "Proceed to compression ultrasonography." },
+          { label: "Alternative diagnosis", value: "Actively consider and investigate other causes of leg swelling." }
+        ],
+        supporting: [
+          "Wells PS, Anderson DR, Bormanis J, et al. Value of assessment of pretest probability of deep-vein thrombosis in clinical management. Lancet. 1997;350(9094):1795-8.",
+          "A score of 2 or more defines DVT as likely in the two-tier model endorsed by current guidelines.",
+          "Age-adjusted D-dimer (age × 10 µg/L for patients ≥50) may improve specificity in older patients."
+        ]
       };
     }
   },
@@ -14236,13 +14354,19 @@ const tools = [
           { label: "Score", value: `${score}` },
           { label: "Annual thromboembolic risk", value: scoreTextMap[score]?.match(/([0-9.]+%)/)?.[1] ?? "Not available" }
         ]),
-        recommendations: [
-          {
-            label: "Footnote",
-            value: "The adjusted stroke rate was the expected stroke rate per 100 person-years derived from the multivariable model assuming that aspirin was not taken."
-          }
+        recommendations: score >= 2 ? [
+          { label: "Anticoagulation", value: "Oral anticoagulation is recommended. A DOAC is generally preferred over warfarin unless a warfarin-only indication exists." },
+          { label: "Aspirin", value: "Aspirin alone is insufficient for stroke prevention in AF when the CHADS2 score is 2 or higher." },
+          { label: "Footnote", value: "The adjusted stroke rate was the expected stroke rate per 100 person-years derived from the multivariable model assuming that aspirin was not taken." }
+        ] : score === 1 ? [
+          { label: "Anticoagulation", value: "Consider oral anticoagulation. A shared decision should account for bleeding risk, patient preference, and modifiable risk factors." },
+          { label: "Footnote", value: "The adjusted stroke rate was the expected stroke rate per 100 person-years derived from the multivariable model assuming that aspirin was not taken." }
+        ] : [
+          { label: "Anticoagulation", value: "Anticoagulation is generally not needed at this score. Reassess annually or if new risk factors develop." },
+          { label: "Footnote", value: "The adjusted stroke rate was the expected stroke rate per 100 person-years derived from the multivariable model assuming that aspirin was not taken." }
         ],
         supporting: [
+          "Gage BF, Waterman AD, Shannon W, et al. Validation of clinical classification schemes for predicting stroke. JAMA. 2001;285(22):2864-2870.",
           "CHA2DS2-VASc score may be relatively insensitive or unspecific to predict risk of stroke.",
           "If age is the only risk factor, there is a graded increase in stroke risk from age 65 to 75.",
           "Females may not have a higher risk of stroke, independent of risk factors.",
@@ -14303,13 +14427,21 @@ const tools = [
             value: values.chads2vascAge === "75_plus" ? "≥ 75" : values.chads2vascAge === "65_74" ? "65-74" : "< 65"
           }
         ]),
-        recommendations: [
-          {
-            label: "Limitations",
-            value: "Use this score with caution because it may be relatively insensitive or unspecific to predict stroke risk."
-          }
+        recommendations: score >= 2 ? [
+          { label: "Anticoagulation", value: "Oral anticoagulation is recommended. DOAC is preferred over warfarin in non-valvular AF." },
+          { label: "DOAC preference", value: "Apixaban, dabigatran, edoxaban, or rivaroxaban are all reasonable first-line choices. Selection depends on renal function, drug interactions, and patient preference." },
+          { label: "Bleeding risk", value: "Assess HAS-BLED to identify and correct modifiable bleeding risk factors. A high HAS-BLED score does not contraindicate anticoagulation." },
+          { label: "Limitations", value: "Use this score with caution because it may be relatively insensitive or unspecific to predict stroke risk." }
+        ] : score === 1 ? [
+          { label: "Anticoagulation", value: "Consider anticoagulation via shared decision-making. Balance stroke prevention benefit against bleeding risk and patient values." },
+          { label: "DOAC preference", value: "If anticoagulation is chosen, a DOAC is generally preferred over warfarin." },
+          { label: "Limitations", value: "Use this score with caution because it may be relatively insensitive or unspecific to predict stroke risk." }
+        ] : [
+          { label: "Anticoagulation", value: "No anticoagulation is routinely recommended. Reassess annually or when new risk factors develop." },
+          { label: "Limitations", value: "Use this score with caution because it may be relatively insensitive or unspecific to predict stroke risk." }
         ],
         supporting: [
+          "Lip GY, Nieuwlaat R, Pisters R, et al. Refining clinical risk stratification for predicting stroke and thromboembolism in atrial fibrillation. Chest. 2010;137(2):263-272.",
           "If age is the only risk factor, there is a graded increase in stroke risk from age 65 to 75.",
           "Females may not have a higher risk of stroke, independent of risk factors.",
           "The risk stratification does not incorporate the severity of the risk factors, such as poorly controlled versus well controlled hypertension."
@@ -14359,7 +14491,23 @@ const tools = [
         metrics: buildMetrics([
           { label: "Score", value: `${score}` },
           { label: "Risk tier", value: risk }
-        ])
+        ]),
+        recommendations: score >= 3 ? [
+          { label: "Key message", value: "HAS-BLED ≥3 indicates high bleeding risk — does NOT contraindicate anticoagulation but flags need for modifiable risk factor correction." },
+          { label: "Blood pressure", value: "Target systolic BP below 160 mmHg with optimized antihypertensive therapy." },
+          { label: "Medications", value: "Discontinue unnecessary antiplatelet agents and NSAIDs where possible." },
+          { label: "Alcohol", value: "Address excess alcohol intake with counseling or referral." },
+          { label: "INR control", value: "If on warfarin, target TTR above 65–70%. Consider switching to a DOAC if INR is persistently labile." },
+          { label: "Review interval", value: "Reassess bleeding risk factors at each clinic visit." }
+        ] : [
+          { label: "Key message", value: "Bleeding risk is acceptable. Continue anticoagulation with standard monitoring." },
+          { label: "Review", value: "Reassess HAS-BLED periodically as risk factors may change over time." }
+        ],
+        supporting: [
+          "Pisters R, Lane DA, Nieuwlaat R, et al. A novel user-friendly score (HAS-BLED) to assess 1-year risk of major bleeding in patients with atrial fibrillation. Chest. 2010;138(5):1093-1100.",
+          "Modifiable risk factors: uncontrolled hypertension, labile INR, concomitant antiplatelet or NSAID use, and excess alcohol.",
+          "A high HAS-BLED score should trigger risk factor correction, not automatic withholding of anticoagulation."
+        ]
       };
     }
   },
@@ -14404,7 +14552,20 @@ const tools = [
         metrics: buildMetrics([
           { label: "Criteria met", value: `${criteriaMet}/8` },
           { label: "Low pre-test", value: values.lowPretest ? "Yes" : "No" }
-        ])
+        ]),
+        recommendations: allMet && values.lowPretest ? [
+          { label: "Conclusion", value: "PE can be safely excluded without further testing in low pre-test probability patients." },
+          { label: "Follow-up", value: "No D-dimer or imaging is needed. Reassess if symptoms change or worsen." }
+        ] : [
+          { label: "Conclusion", value: "PERC rule cannot exclude PE. Proceed with D-dimer or clinical probability assessment." },
+          { label: "Next step", value: "Use the Wells PE score to determine whether D-dimer or CTPA is the appropriate next investigation." },
+          { label: "Caution", value: "PERC should only be applied when gestalt pre-test probability is truly low (≤15%)." }
+        ],
+        supporting: [
+          "Kline JA, Mitchell AM, Kabrhel C, et al. Clinical criteria to prevent unnecessary diagnostic testing in emergency department patients with suspected pulmonary embolism. J Thromb Haemost. 2004;2(8):1247-1255.",
+          "PERC is a rule-out tool only; it should never be used to rule in PE.",
+          "The miss rate when all 8 PERC criteria are met in a low pre-test probability population is below 2%."
+        ]
       };
     }
   },
@@ -14474,7 +14635,25 @@ const tools = [
           { label: "Score", value: `${score}` },
           { label: "Class", value: riskClass },
           { label: "30-day mortality", value: mortality }
-        ])
+        ]),
+        recommendations: riskClass === "I" || riskClass === "II" ? [
+          { label: "Disposition", value: "Consider early discharge or outpatient management if social circumstances, follow-up access, and clinical trajectory are favorable." },
+          { label: "Treatment", value: "Initiate DOAC therapy. Apixaban or rivaroxaban single-drug regimens are preferred for most patients." },
+          { label: "Follow-up", value: "Arrange clinical review within 1 to 2 weeks to reassess symptoms and anticoagulation plan." }
+        ] : riskClass === "III" ? [
+          { label: "Admission", value: "Admit for observation and hemodynamic monitoring." },
+          { label: "RV assessment", value: "Obtain echocardiography or CT-derived RV/LV ratio and troponin to further stratify risk." },
+          { label: "Treatment", value: "Initiate anticoagulation. Monitor for hemodynamic deterioration that may warrant escalation." }
+        ] : [
+          { label: "Admission", value: "Admit to a monitored or intensive care setting." },
+          { label: "Reperfusion", value: "Consider systemic thrombolysis or catheter-directed therapy if hemodynamically unstable or deteriorating." },
+          { label: "Hemodynamic support", value: "Use vasopressors and IV fluids cautiously. Avoid excessive volume loading in RV failure." }
+        ],
+        supporting: [
+          "Aujesky D, Obrosky DS, Stone RA, et al. Derivation and validation of a prognostic model for pulmonary embolism. Am J Respir Crit Care Med. 2005;172(8):1041-1046.",
+          "PESI class I–II patients have a 30-day mortality below 3.5% and may be candidates for outpatient management.",
+          "Intermediate-risk patients (class III) benefit from further risk stratification with troponin and RV imaging."
+        ]
       };
     }
   },
@@ -14513,7 +14692,18 @@ const tools = [
         metrics: buildMetrics([
           { label: "Score", value: `${score}` },
           { label: "Risk", value: score === 0 ? "Low" : "High" }
-        ])
+        ]),
+        recommendations: score === 0 ? [
+          { label: "Disposition", value: "Consider outpatient management or early discharge if adequate follow-up and social support are available." },
+          { label: "Anticoagulation", value: "Start DOAC therapy. Single-drug approach with apixaban or rivaroxaban is preferred." }
+        ] : [
+          { label: "Admission", value: "Inpatient monitoring is recommended. Further stratify with troponin, BNP, and echocardiography." },
+          { label: "Escalation", value: "If hemodynamically unstable, consider reperfusion therapy and ICU transfer." }
+        ],
+        supporting: [
+          "Jimenez D, Aujesky D, Moores L, et al. Simplification of the pulmonary embolism severity index for prognostication in patients with acute symptomatic pulmonary embolism. Arch Intern Med. 2010;170(15):1383-1389.",
+          "sPESI score of 0 identifies patients with 30-day mortality of approximately 1%."
+        ]
       };
     }
   },
@@ -14564,7 +14754,21 @@ const tools = [
         metrics: buildMetrics([
           { label: "Score", value: `${score}` },
           { label: "14-day risk", value: riskMap[score] }
-        ])
+        ]),
+        recommendations: score >= 5 ? [
+          { label: "Strategy", value: "Early invasive strategy with coronary angiography is recommended, ideally within 24 hours." },
+          { label: "Antithrombotic", value: "Dual antiplatelet therapy plus anticoagulation per local ACS protocol." }
+        ] : score >= 3 ? [
+          { label: "Strategy", value: "Consider invasive strategy within 24 to 72 hours based on clinical trajectory." },
+          { label: "Monitoring", value: "Telemetry monitoring with serial troponin and ECG assessment." }
+        ] : [
+          { label: "Strategy", value: "Conservative management with stress testing may be appropriate if stable." },
+          { label: "Disposition", value: "If stress test is negative and patient is low risk, early discharge may be considered." }
+        ],
+        supporting: [
+          "Antman EM, Cohen M, Bernink PJ, et al. The TIMI risk score for unstable angina/non-ST elevation MI. JAMA. 2000;284(7):835-842.",
+          "Higher scores predict greater benefit from early invasive strategy and intensive antithrombotic therapy."
+        ]
       };
     }
   },
@@ -14630,7 +14834,22 @@ const tools = [
         metrics: buildMetrics([
           { label: "Score", value: `${score}` },
           { label: "30-day mortality", value: mortality }
-        ])
+        ]),
+        recommendations: score >= 6 ? [
+          { label: "Level of care", value: "ICU admission with continuous hemodynamic monitoring." },
+          { label: "Mechanical support", value: "Consider intra-aortic balloon pump or percutaneous ventricular assist device if cardiogenic shock develops." },
+          { label: "Reperfusion", value: "Ensure primary PCI has been performed or is being urgently arranged." }
+        ] : score >= 4 ? [
+          { label: "Monitoring", value: "Continuous telemetry and close hemodynamic surveillance." },
+          { label: "Reperfusion", value: "Confirm timely reperfusion has been achieved." }
+        ] : [
+          { label: "Monitoring", value: "Standard post-reperfusion care with telemetry." },
+          { label: "Recovery", value: "Early mobilization and secondary prevention planning are appropriate." }
+        ],
+        supporting: [
+          "Morrow DA, Antman EM, Charlesworth A, et al. TIMI risk score for ST-elevation myocardial infarction. Circulation. 2000;102(17):2031-2037.",
+          "The score was originally validated in patients receiving fibrinolytic therapy."
+        ]
       };
     }
   },
@@ -14684,7 +14903,23 @@ const tools = [
         metrics: buildMetrics([
           { label: "Score", value: `${score}` },
           { label: "Risk tier", value: risk }
-        ])
+        ]),
+        recommendations: score >= 3 ? [
+          { label: "Thromboprophylaxis", value: "Consider primary thromboprophylaxis with LMWH or a DOAC (rivaroxaban 10 mg daily or apixaban 2.5 mg twice daily) if bleeding risk is acceptable." },
+          { label: "Duration", value: "Continue for the duration of chemotherapy or up to 6 months. Reassess periodically." },
+          { label: "Bleeding assessment", value: "Weigh tumour-related bleeding risk (GI or GU primary) and thrombocytopenia before starting prophylaxis." }
+        ] : score >= 1 ? [
+          { label: "Thromboprophylaxis", value: "Individualize decision. Prophylaxis may be considered for selected intermediate-risk patients, especially with additional risk factors." },
+          { label: "Patient education", value: "Counsel on VTE symptoms and when to seek urgent medical attention." }
+        ] : [
+          { label: "Thromboprophylaxis", value: "Routine ambulatory thromboprophylaxis is generally not recommended at this risk level." },
+          { label: "Reassessment", value: "Reassess if cancer stage, treatment, or clinical status changes." }
+        ],
+        supporting: [
+          "Khorana AA, Kuderer NM, Culakova E, et al. Development and validation of a predictive model for chemotherapy-associated thrombosis. Blood. 2008;111(10):4902-4907.",
+          "The CASSINI and AVERT trials support DOAC thromboprophylaxis in high-risk ambulatory cancer patients (Khorana ≥2).",
+          "Rivaroxaban 10 mg daily and apixaban 2.5 mg twice daily have the strongest evidence for cancer-associated VTE prophylaxis."
+        ]
       };
     }
   },
@@ -14749,10 +14984,16 @@ const tools = [
           { label: "Renal band", value: crcl < 15 ? "< 15" : crcl < 30 ? "15 to 29" : crcl < 50 ? "30 to 49" : ">= 50" }
         ]),
         recommendations: [
-          { label: "Apixaban", value: crcl < 15 ? "Avoid" : "Dose reduction depends on age, weight, and creatinine criteria" },
-          { label: "Dabigatran", value: crcl < 30 ? "Avoid" : crcl < 50 ? "Reduced AF dosing usually needed" : "Standard AF dosing usually possible" },
-          { label: "Rivaroxaban", value: crcl < 15 ? "Avoid" : crcl < 50 ? "Reduced AF dosing usually needed" : "Standard AF dosing usually possible" },
-          { label: "Edoxaban", value: crcl < 15 ? "Avoid" : crcl > 95 ? "Reduced efficacy concern above 95" : crcl <= 50 ? "Reduced dosing usually needed" : "Standard dosing usually possible" }
+          { label: "Apixaban", value: crcl < 15 ? "Avoid; insufficient data below CrCl 15 mL/min" : crcl < 25 ? "No dosing recommendation; limited data in CrCl 15–24 mL/min" : "Dose reduction (2.5 mg twice daily) if ≥2 of: age ≥80, weight ≤60 kg, creatinine ≥133 µmol/L. Otherwise 5 mg twice daily." },
+          { label: "Dabigatran", value: crcl < 30 ? "Contraindicated below CrCl 30 mL/min" : crcl < 50 ? "110 mg twice daily preferred; 150 mg twice daily with caution. Recheck CrCl every 3–6 months." : "150 mg twice daily standard; 110 mg twice daily if age ≥80 or high bleeding risk." },
+          { label: "Rivaroxaban", value: crcl < 15 ? "Avoid; insufficient data below CrCl 15 mL/min" : crcl < 50 ? "15 mg once daily (renal-adjusted dose). Recheck CrCl every 3–6 months." : "20 mg once daily with food." },
+          { label: "Edoxaban", value: crcl < 15 ? "Avoid; insufficient data below CrCl 15 mL/min" : crcl > 95 ? "Reduced efficacy observed above CrCl 95 mL/min; consider alternative agent." : crcl <= 50 ? "30 mg once daily (renal-adjusted dose)." : "60 mg once daily." },
+          { label: "Monitoring interval", value: crcl < 30 ? "Recheck CrCl every 3 months and after intercurrent illness." : crcl < 50 ? "Recheck CrCl every 6 months." : "Recheck CrCl annually and after intercurrent illness." }
+        ],
+        supporting: [
+          "Cockcroft-Gault is the standard renal estimate used in DOAC pivotal trials; do not substitute eGFR.",
+          "Use actual body weight unless a local protocol specifies otherwise.",
+          "Renal function can change rapidly during acute illness, dehydration, or nephrotoxic drug exposure; reassess CrCl accordingly."
         ]
       };
     }
@@ -14813,7 +15054,28 @@ const tools = [
         metrics: buildMetrics([
           { label: "Score", value: `${score}` },
           { label: "Risk tier", value: risk.label }
-        ])
+        ]),
+        recommendations: score >= 6 ? [
+          { label: "Urgency", value: "Emergency admission with immediate brain and vascular imaging (CT/CTA or MRI/MRA)." },
+          { label: "Antiplatelet", value: "Start dual antiplatelet therapy (ASA plus clopidogrel) for 21 days, then single agent, unless anticoagulation is indicated." },
+          { label: "Imaging", value: "CT head, CTA head and neck, or MRI with diffusion-weighted imaging. Echocardiography and Holter if AF suspected." },
+          { label: "Secondary prevention", value: "Initiate statin, optimize blood pressure, and address all modifiable risk factors urgently." }
+        ] : score >= 4 ? [
+          { label: "Urgency", value: "Same-day or next-day urgent TIA clinic assessment with neurovascular imaging." },
+          { label: "Antiplatelet", value: "Start ASA immediately. Consider short-course dual antiplatelet therapy (ASA plus clopidogrel for 21 days)." },
+          { label: "Imaging", value: "Urgent carotid imaging (CTA or ultrasound) and brain imaging within 24 hours." },
+          { label: "Secondary prevention", value: "Start statin and blood pressure optimization without delay." }
+        ] : [
+          { label: "Urgency", value: "Rapid outpatient TIA evaluation within 24 to 48 hours. Do not dismiss based on low score alone." },
+          { label: "Antiplatelet", value: "Start ASA promptly while awaiting assessment." },
+          { label: "Imaging", value: "Brain and vascular imaging should be completed within 7 days, ideally sooner." },
+          { label: "Caution", value: "Even low ABCD2 scores do not rule out significant stroke risk. Clinical judgement should prevail." }
+        ],
+        supporting: [
+          "Johnston SC, Rothwell PM, Nguyen-Huynh MN, et al. Validation and refinement of scores to predict very early stroke risk after transient ischaemic attack. Lancet. 2007;369(9558):283-292.",
+          "The ABCD2 score should not be used in isolation to discharge patients without investigation.",
+          "Current guidelines recommend urgent assessment for all TIA patients regardless of score, with higher scores prompting faster workup."
+        ]
       };
     }
   }
@@ -45973,7 +46235,11 @@ function AppLayout() {
               /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "note-chip-icon", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Pill, { size: 14 }) }),
               /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: note })
             ] }, note)) }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "form-grid", children: activeTool.inputs.filter((input) => input.type !== "hidden").map((input) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "form-grid", children: activeTool.inputs.filter((input) => {
+              if (input.type === "hidden") return false;
+              if (input.visibleWhen && !input.visibleWhen(activeValues)) return false;
+              return true;
+            }).map((input) => /* @__PURE__ */ jsxRuntimeExports.jsx(
               FieldRenderer,
               {
                 input,
