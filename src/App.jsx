@@ -1719,11 +1719,11 @@ function AppLayout() {
       />
 
       <div className="relative px-3 sm:px-4 md:px-6 py-3 sm:py-4 pb-8 w-full max-w-[1440px] mx-auto overflow-x-hidden">
-        <header className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 mb-4">
-          <div className="flex items-center gap-3 min-w-0">
+        <header className="flex flex-col gap-2 mb-4">
+          <div className="flex items-center gap-3">
             <SidebarTrigger className="lg:hidden" />
 
-            <div className="min-w-0">
+            <div className="min-w-0 flex-1">
               <div className="flex flex-wrap gap-1.5 text-muted-foreground text-xs">
                 <span>Blood🩸Doctor</span>
                 <span>/</span>
@@ -1732,10 +1732,10 @@ function AppLayout() {
               <h2 className="text-base font-semibold truncate m-0">{siteName}</h2>
             </div>
 
-            <span className="md:hidden ml-auto"><ThemeToggle theme={theme} setTheme={setTheme} /></span>
+            <span className="flex-shrink-0"><ThemeToggle theme={theme} setTheme={setTheme} /></span>
           </div>
 
-          <div className="relative flex-1 min-w-0 max-w-md">
+          <div className="relative max-w-md">
             <div className="relative flex items-center">
               <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
               <Input
@@ -1777,8 +1777,6 @@ function AppLayout() {
               </div>
             ) : null}
           </div>
-
-          <span className="hidden md:flex flex-shrink-0"><ThemeToggle theme={theme} setTheme={setTheme} /></span>
         </header>
 
         <main className="grid gap-4">
