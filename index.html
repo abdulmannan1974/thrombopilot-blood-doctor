@@ -20,6 +20,12 @@
       if (window.location.protocol === "file:") {
         window.location.replace("./docs/index.html");
       }
+      // Prevent dark mode flash
+      (function(){
+        var t = localStorage.getItem("coagvision-theme") || "system";
+        var d = t === "dark" || (t === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+        if (d) document.documentElement.classList.add("dark");
+      })();
     </script>
   </head>
   <body>

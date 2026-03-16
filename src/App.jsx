@@ -20,6 +20,9 @@ import {
   Printer,
   Search,
   ShieldAlert,
+  Sun,
+  Moon,
+  Monitor,
 } from "lucide-react";
 import { toolCategories, tools } from "./data/tools";
 import { clinicalContentByToolId } from "./data/markdownContent";
@@ -1252,6 +1255,60 @@ const getRelatedGuides = (tool) => {
     .slice(0, 6);
 };
 
+function useTheme() {
+  const [theme, setThemeState] = useState(() => {
+    if (typeof window === "undefined") return "light";
+    return localStorage.getItem("coagvision-theme") || "system";
+  });
+
+  useEffect(() => {
+    const root = document.documentElement;
+    const applyTheme = (t) => {
+      if (t === "system") {
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        root.classList.toggle("dark", prefersDark);
+      } else {
+        root.classList.toggle("dark", t === "dark");
+      }
+    };
+    applyTheme(theme);
+    localStorage.setItem("coagvision-theme", theme);
+
+    if (theme === "system") {
+      const mq = window.matchMedia("(prefers-color-scheme: dark)");
+      const handler = () => applyTheme("system");
+      mq.addEventListener("change", handler);
+      return () => mq.removeEventListener("change", handler);
+    }
+  }, [theme]);
+
+  const setTheme = (t) => setThemeState(t);
+  return { theme, setTheme };
+}
+
+function ThemeToggle({ theme, setTheme }) {
+  const next = theme === "light" ? "dark" : theme === "dark" ? "system" : "light";
+  const Icon = theme === "light" ? Sun : theme === "dark" ? Moon : Monitor;
+  const label = theme === "light" ? "Light" : theme === "dark" ? "Dark" : "System";
+  return (
+    <button
+      type="button"
+      onClick={() => setTheme(next)}
+      className={cn(
+        "inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium",
+        "border border-border bg-card text-muted-foreground",
+        "hover:bg-accent hover:text-foreground transition-colors",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      )}
+      aria-label={`Theme: ${label}. Click to switch.`}
+      title={`Theme: ${label}`}
+    >
+      <Icon size={14} />
+      <span className="hidden sm:inline">{label}</span>
+    </button>
+  );
+}
+
 function App() {
   return (
     <SidebarProvider>
@@ -1271,6 +1328,7 @@ function AppLayout() {
   const [activeGuideId, setActiveGuideId] = useState(guideLibrary[0]?.id ?? "");
   const [activeGuideTab, setActiveGuideTab] = useState("overview");
   const { open: sidebarOpen, setOpen: setSidebarOpen } = useSidebar();
+  const { theme, setTheme } = useTheme();
 
   const toolSearch = searchTerm.trim().toLowerCase();
   const currentPageMeta = pageDefinitions.find((page) => page.id === currentPage) ?? pageDefinitions[0];
@@ -1660,7 +1718,7 @@ function AppLayout() {
         siteName={siteName}
       />
 
-      <div className="relative px-4 py-4 pb-8 w-full max-w-[1440px] mx-auto">
+      <div className="relative px-3 sm:px-4 md:px-6 py-3 sm:py-4 pb-8 w-full max-w-[1440px] mx-auto">
         <header className="flex items-center gap-4 mb-4">
           <div className="flex items-center gap-3 min-w-0 flex-shrink-0">
             <SidebarTrigger className="lg:hidden" />
@@ -1718,6 +1776,7 @@ function AppLayout() {
             ) : null}
           </div>
 
+          <ThemeToggle theme={theme} setTheme={setTheme} />
         </header>
 
         <main className="grid gap-4">

@@ -34,7 +34,8 @@ export function Sidebar({ className, children }) {
   return (
     <aside
       className={cn(
-        "fixed left-0 inset-y-0 z-40 w-[384px] border-r border-border bg-white/95 backdrop-blur",
+        "fixed left-0 inset-y-0 z-40 w-[85vw] max-w-[384px] border-r border-border backdrop-blur",
+        "bg-[var(--sidebar-bg)]",
         "flex flex-col overflow-hidden",
         "transition-transform duration-300 ease-in-out",
         "lg:translate-x-0 lg:relative lg:z-auto",

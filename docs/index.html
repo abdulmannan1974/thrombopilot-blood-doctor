@@ -20,9 +20,15 @@
       if (window.location.protocol === "file:") {
         window.location.replace("./docs/index.html");
       }
+      // Prevent dark mode flash
+      (function(){
+        var t = localStorage.getItem("coagvision-theme") || "system";
+        var d = t === "dark" || (t === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+        if (d) document.documentElement.classList.add("dark");
+      })();
     </script>
-    <script type="module" crossorigin src="./assets/index-BSA8OWKy.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-CjyUwS10.css">
+    <script type="module" crossorigin src="./assets/index-7Yl-Z18o.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-C7wbFJyL.css">
   </head>
   <body>
     <div id="root"></div>

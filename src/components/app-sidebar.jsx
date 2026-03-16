@@ -329,7 +329,7 @@ export function AppSidebar({
   return (
     <Sidebar>
       <SidebarHeader>
-        <div className="flex items-start gap-3 rounded-xl border border-border bg-gradient-to-br from-blue-50/80 to-white p-4">
+        <div className="flex items-start gap-3 rounded-xl border border-border bg-gradient-to-br from-accent to-card p-4">
           <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-blue-600 text-white">
             <Droplets />
           </div>
