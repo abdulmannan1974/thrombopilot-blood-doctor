@@ -12559,7 +12559,7 @@ const createLucideIcon = (iconName, iconNode) => {
   Component.displayName = toPascalCase(iconName);
   return Component;
 };
-const __iconNode$H = [
+const __iconNode$G = [
   [
     "path",
     {
@@ -12568,13 +12568,13 @@ const __iconNode$H = [
     }
   ]
 ];
-const Activity = createLucideIcon("activity", __iconNode$H);
-const __iconNode$G = [
+const Activity = createLucideIcon("activity", __iconNode$G);
+const __iconNode$F = [
   ["path", { d: "M7 7h10v10", key: "1tivn9" }],
   ["path", { d: "M7 17 17 7", key: "1vkiza" }]
 ];
-const ArrowUpRight = createLucideIcon("arrow-up-right", __iconNode$G);
-const __iconNode$F = [
+const ArrowUpRight = createLucideIcon("arrow-up-right", __iconNode$F);
+const __iconNode$E = [
   ["path", { d: "M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5", key: "1u7htd" }],
   ["path", { d: "M15 12h.01", key: "1k8ypt" }],
   [
@@ -12586,8 +12586,8 @@ const __iconNode$F = [
   ],
   ["path", { d: "M9 12h.01", key: "157uk2" }]
 ];
-const Baby = createLucideIcon("baby", __iconNode$F);
-const __iconNode$E = [
+const Baby = createLucideIcon("baby", __iconNode$E);
+const __iconNode$D = [
   [
     "path",
     {
@@ -12597,8 +12597,8 @@ const __iconNode$E = [
   ],
   ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
 ];
-const BadgeCheck = createLucideIcon("badge-check", __iconNode$E);
-const __iconNode$D = [
+const BadgeCheck = createLucideIcon("badge-check", __iconNode$D);
+const __iconNode$C = [
   ["path", { d: "M12 7v14", key: "1akyts" }],
   ["path", { d: "M16 12h2", key: "7q9ll5" }],
   ["path", { d: "M16 8h2", key: "msurwy" }],
@@ -12612,8 +12612,8 @@ const __iconNode$D = [
   ["path", { d: "M6 12h2", key: "32wvfc" }],
   ["path", { d: "M6 8h2", key: "30oboj" }]
 ];
-const BookOpenText = createLucideIcon("book-open-text", __iconNode$D);
-const __iconNode$C = [
+const BookOpenText = createLucideIcon("book-open-text", __iconNode$C);
+const __iconNode$B = [
   [
     "path",
     {
@@ -12634,8 +12634,8 @@ const __iconNode$C = [
   ["circle", { cx: "20", cy: "21", r: ".5", key: "yhc1fs" }],
   ["circle", { cx: "20", cy: "8", r: ".5", key: "1e43v0" }]
 ];
-const BrainCircuit = createLucideIcon("brain-circuit", __iconNode$C);
-const __iconNode$B = [
+const BrainCircuit = createLucideIcon("brain-circuit", __iconNode$B);
+const __iconNode$A = [
   ["rect", { width: "16", height: "20", x: "4", y: "2", rx: "2", key: "1nb95v" }],
   ["line", { x1: "8", x2: "16", y1: "6", y2: "6", key: "x4nwl0" }],
   ["line", { x1: "16", x2: "16", y1: "14", y2: "18", key: "wjye3r" }],
@@ -12647,41 +12647,41 @@ const __iconNode$B = [
   ["path", { d: "M12 18h.01", key: "mhygvu" }],
   ["path", { d: "M8 18h.01", key: "lrp35t" }]
 ];
-const Calculator = createLucideIcon("calculator", __iconNode$B);
-const __iconNode$A = [
+const Calculator = createLucideIcon("calculator", __iconNode$A);
+const __iconNode$z = [
   ["path", { d: "M8 2v4", key: "1cmpym" }],
   ["path", { d: "M16 2v4", key: "4m81vk" }],
   ["rect", { width: "18", height: "18", x: "3", y: "4", rx: "2", key: "1hopcy" }],
   ["path", { d: "M3 10h18", key: "8toen8" }]
 ];
-const Calendar = createLucideIcon("calendar", __iconNode$A);
-const __iconNode$z = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
-const ChevronDown = createLucideIcon("chevron-down", __iconNode$z);
-const __iconNode$y = [["path", { d: "m9 18 6-6-6-6", key: "mthhwq" }]];
-const ChevronRight = createLucideIcon("chevron-right", __iconNode$y);
-const __iconNode$x = [
+const Calendar = createLucideIcon("calendar", __iconNode$z);
+const __iconNode$y = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
+const ChevronDown = createLucideIcon("chevron-down", __iconNode$y);
+const __iconNode$x = [["path", { d: "m9 18 6-6-6-6", key: "mthhwq" }]];
+const ChevronRight = createLucideIcon("chevron-right", __iconNode$x);
+const __iconNode$w = [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
   ["line", { x1: "12", x2: "12", y1: "8", y2: "12", key: "1pkeuh" }],
   ["line", { x1: "12", x2: "12.01", y1: "16", y2: "16", key: "4dfq90" }]
 ];
-const CircleAlert = createLucideIcon("circle-alert", __iconNode$x);
-const __iconNode$w = [
+const CircleAlert = createLucideIcon("circle-alert", __iconNode$w);
+const __iconNode$v = [
   ["path", { d: "M21.801 10A10 10 0 1 1 17 3.335", key: "yps3ct" }],
   ["path", { d: "m9 11 3 3L22 4", key: "1pflzl" }]
 ];
-const CircleCheckBig = createLucideIcon("circle-check-big", __iconNode$w);
-const __iconNode$v = [
+const CircleCheckBig = createLucideIcon("circle-check-big", __iconNode$v);
+const __iconNode$u = [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
   ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
 ];
-const CircleCheck = createLucideIcon("circle-check", __iconNode$v);
-const __iconNode$u = [
+const CircleCheck = createLucideIcon("circle-check", __iconNode$u);
+const __iconNode$t = [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
   ["path", { d: "m15 9-6 6", key: "1uzhvr" }],
   ["path", { d: "m9 9 6 6", key: "z0biqf" }]
 ];
-const CircleX = createLucideIcon("circle-x", __iconNode$u);
-const __iconNode$t = [
+const CircleX = createLucideIcon("circle-x", __iconNode$t);
+const __iconNode$s = [
   ["rect", { width: "8", height: "4", x: "8", y: "2", rx: "1", ry: "1", key: "tgr4d6" }],
   [
     "path",
@@ -12695,8 +12695,8 @@ const __iconNode$t = [
   ["path", { d: "M8 11h.01", key: "1dfujw" }],
   ["path", { d: "M8 16h.01", key: "18s6g9" }]
 ];
-const ClipboardList = createLucideIcon("clipboard-list", __iconNode$t);
-const __iconNode$s = [
+const ClipboardList = createLucideIcon("clipboard-list", __iconNode$s);
+const __iconNode$r = [
   [
     "path",
     {
@@ -12712,8 +12712,8 @@ const __iconNode$s = [
     }
   ]
 ];
-const Droplets = createLucideIcon("droplets", __iconNode$s);
-const __iconNode$r = [
+const Droplets = createLucideIcon("droplets", __iconNode$r);
+const __iconNode$q = [
   [
     "path",
     {
@@ -12725,8 +12725,8 @@ const __iconNode$r = [
   ["circle", { cx: "11.5", cy: "14.5", r: "2.5", key: "1bq0ko" }],
   ["path", { d: "M13.3 16.3 15 18", key: "2quom7" }]
 ];
-const FileSearch = createLucideIcon("file-search", __iconNode$r);
-const __iconNode$q = [
+const FileSearch = createLucideIcon("file-search", __iconNode$q);
+const __iconNode$p = [
   [
     "path",
     {
@@ -12739,8 +12739,8 @@ const __iconNode$q = [
   ["path", { d: "M16 13H8", key: "t4e002" }],
   ["path", { d: "M16 17H8", key: "z1uh3a" }]
 ];
-const FileText = createLucideIcon("file-text", __iconNode$q);
-const __iconNode$p = [
+const FileText = createLucideIcon("file-text", __iconNode$p);
+const __iconNode$o = [
   [
     "path",
     {
@@ -12751,17 +12751,7 @@ const __iconNode$p = [
   ["path", { d: "M6.453 15h11.094", key: "3shlmq" }],
   ["path", { d: "M8.5 2h7", key: "csnxdl" }]
 ];
-const FlaskConical = createLucideIcon("flask-conical", __iconNode$p);
-const __iconNode$o = [
-  [
-    "path",
-    {
-      d: "m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2",
-      key: "usdka0"
-    }
-  ]
-];
-const FolderOpen = createLucideIcon("folder-open", __iconNode$o);
+const FlaskConical = createLucideIcon("flask-conical", __iconNode$o);
 const __iconNode$n = [
   [
     "path",
@@ -23955,8 +23945,7 @@ const guideLibrary = guideLibraryBase.map((guide) => ({
     guide.linkedToolAliases.map((alias) => legacyToolIdMap[alias] ?? legacyToolIdMap[alias?.trim?.() ?? ""]).filter(Boolean)
   )
 }));
-const pdfLibrary = pdfLibraryBase;
-const vaultLibrary = guideLibrary.filter((guide) => guide.pdfId);
+guideLibrary.filter((guide) => guide.pdfId);
 const resolveMarkdownTarget = (target) => {
   const guideAlias = extractGuideAlias(target);
   if (guideAlias) {
@@ -24102,8 +24091,7 @@ const pageIconById = {
   acute: HeartPulse,
   followup: FileText,
   scores: Calculator,
-  guides: BookOpenText,
-  pdfs: FolderOpen
+  guides: BookOpenText
 };
 const pageMetaById = {
   dashboard: {
@@ -24123,9 +24111,6 @@ const pageMetaById = {
   },
   guides: {
     subtitle: "Structured clinical guide library"
-  },
-  pdfs: {
-    subtitle: "Linked vault records and companion views"
   }
 };
 const pageToneById = {
@@ -24134,8 +24119,7 @@ const pageToneById = {
   acute: "tone-red",
   followup: "tone-teal",
   scores: "tone-green",
-  guides: "tone-blue",
-  pdfs: "tone-orange"
+  guides: "tone-blue"
 };
 const countLeaves = (nodes) => nodes.reduce((total, node) => {
   if (node.children?.length) {
@@ -24148,18 +24132,15 @@ function AppSidebar({
   onNavigate,
   onSelectTool,
   onSelectGuide,
-  onSelectVault,
   onSelectAcute,
   onSelectFollowup,
   activeToolId,
   activeAcuteId,
   activeGuideId,
-  activePdfId,
   algorithmItems,
   acuteItems,
   scoreItems,
   guideItems,
-  vaultItems,
   siteName: siteName2
 }) {
   const { setOpen } = useSidebar();
@@ -24179,7 +24160,6 @@ function AppSidebar({
         "Renal tools": scoreItems.filter((tool) => tool.category === "renal")
       };
       const guideBuckets = groupByLabel(guideItems, (guide) => guide.category);
-      const vaultBuckets = groupByLabel(vaultItems, (entry) => entry.category);
       const acuteBuckets = groupByLabel(acuteItems, (item) => item.category);
       return {
         dashboard: [
@@ -24254,26 +24234,12 @@ function AppSidebar({
             },
             active: activeGuideId === guide.id
           }))
-        })),
-        pdfs: Object.entries(vaultBuckets).map(([label, vaultInBucket]) => ({
-          id: toNodeId("pdfs", label),
-          label,
-          children: vaultInBucket.map((guide) => ({
-            id: guide.pdfId,
-            label: guide.title,
-            action: () => {
-              onSelectVault(guide.pdfId, guide.id);
-              setOpen(false);
-            },
-            active: activePdfId === guide.pdfId
-          }))
         }))
       };
     },
     [
       activeGuideId,
       activeAcuteId,
-      activePdfId,
       activeToolId,
       acuteItems,
       algorithmItems,
@@ -24283,10 +24249,8 @@ function AppSidebar({
       onSelectFollowup,
       onSelectGuide,
       onSelectTool,
-      onSelectVault,
       scoreItems,
-      setOpen,
-      vaultItems
+      setOpen
     ]
   );
   reactExports.useEffect(() => {
@@ -24352,7 +24316,7 @@ function AppSidebar({
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "eyebrow", children: "Blood Doctor" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { children: siteName2 }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Clear clinical navigation with actionable calculators, guide folders, and linked vault records." })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Clear clinical navigation with actionable calculators and evidence-based guide library." })
       ] })
     ] }) }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(SidebarContent, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(SidebarGroup, { children: [
@@ -24366,8 +24330,7 @@ function AppSidebar({
         { id: "acute", label: "Acute Management" },
         { id: "followup", label: "DOAC Follow-up" },
         { id: "scores", label: "Scoring Calculators" },
-        { id: "guides", label: "Clinical Guides" },
-        { id: "pdfs", label: "Clinical Vault" }
+        { id: "guides", label: "Clinical Guides" }
       ].map((page) => {
         const Icon2 = pageIconById[page.id];
         const meta = pageMetaById[page.id];
@@ -45260,8 +45223,7 @@ const pageDefinitions = [
   { id: "acute", label: "Acute Management", shortLabel: "Acute", icon: HeartPulse },
   { id: "followup", label: "DOAC Follow-up", shortLabel: "DOAC Follow-up", icon: ClipboardList },
   { id: "scores", label: "Scoring Calculators", shortLabel: "Scores", icon: Calculator },
-  { id: "guides", label: "Clinical Guides", shortLabel: "Guides", icon: BookOpenText },
-  { id: "pdfs", label: "Clinical Vault", shortLabel: "Vault", icon: FolderOpen }
+  { id: "guides", label: "Clinical Guides", shortLabel: "Guides", icon: BookOpenText }
 ];
 const pageIds = new Set(pageDefinitions.map((page) => page.id));
 const getPageFromHash = () => {
@@ -45673,7 +45635,6 @@ function AppLayout() {
   const [toolValues, setToolValues] = reactExports.useState(toolStateDefaults);
   const [activeGuideId, setActiveGuideId] = reactExports.useState(guideLibrary[0]?.id ?? "");
   const [activeGuideTab, setActiveGuideTab] = reactExports.useState("overview");
-  const [activePdfId, setActivePdfId] = reactExports.useState(pdfLibrary[0]?.id ?? "");
   const { open: sidebarOpen, setOpen: setSidebarOpen } = useSidebar();
   const toolSearch = searchTerm.trim().toLowerCase();
   const currentPageMeta = pageDefinitions.find((page) => page.id === currentPage) ?? pageDefinitions[0];
@@ -45688,7 +45649,6 @@ function AppLayout() {
   reactExports.useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const toolParam = params.get("tool");
-    const pdfParam = params.get("pdf");
     const guideParam = params.get("guide");
     const searchParam = params.get("search");
     const checklistParam = params.get("checklist");
@@ -45703,21 +45663,7 @@ function AppLayout() {
       const matchedGuide = guideLibrary.find((guide) => guide.id === guideParam);
       if (matchedGuide) {
         setActiveGuideId(matchedGuide.id);
-        if (matchedGuide.pdfId) {
-          setActivePdfId(matchedGuide.pdfId);
-        }
         setCurrentPage("guides");
-      }
-    }
-    if (pdfParam) {
-      const matchedPdf = pdfLibrary.find((pdf) => pdf.id === pdfParam || pdf.stem === pdfParam);
-      if (matchedPdf) {
-        setActivePdfId(matchedPdf.id);
-        const matchedGuide = guideLibrary.find((guide) => guide.pdfId === matchedPdf.id);
-        if (matchedGuide) {
-          setActiveGuideId(matchedGuide.id);
-        }
-        setCurrentPage("pdfs");
       }
     }
     if (checklistParam === "doac-followup") {
@@ -45764,15 +45710,6 @@ function AppLayout() {
     }),
     [toolSearch]
   );
-  const filteredVaultEntries = reactExports.useMemo(
-    () => vaultLibrary.filter((guide) => {
-      if (!toolSearch) {
-        return true;
-      }
-      return guide.searchableText.includes(toolSearch);
-    }),
-    [toolSearch]
-  );
   const filteredAcuteItems = reactExports.useMemo(
     () => acuteManagementItems.filter((item) => {
       if (!toolSearch) {
@@ -45794,11 +45731,6 @@ function AppLayout() {
     }
   }, [activeGuideId, filteredGuides]);
   reactExports.useEffect(() => {
-    if (filteredVaultEntries.length && !filteredVaultEntries.some((guide) => guide.pdfId === activePdfId)) {
-      setActivePdfId(filteredVaultEntries[0].pdfId);
-    }
-  }, [activePdfId, filteredVaultEntries]);
-  reactExports.useEffect(() => {
     if (filteredAcuteItems.length && !filteredAcuteItems.some((item) => item.id === activeAcuteId)) {
       setActiveAcuteId(filteredAcuteItems[0].id);
     }
@@ -45808,16 +45740,9 @@ function AppLayout() {
   const result = activeTool ? activeTool.calculate(activeValues) : null;
   const relatedGuides2 = activeTool ? getRelatedGuides(activeTool) : [];
   const activeGuide = filteredGuides.find((guide) => guide.id === activeGuideId) ?? guideLibrary.find((guide) => guide.id === activeGuideId) ?? filteredGuides[0] ?? null;
-  const activeVaultEntry = filteredVaultEntries.find((guide) => guide.pdfId === activePdfId) ?? vaultLibrary.find((guide) => guide.pdfId === activePdfId) ?? filteredVaultEntries[0] ?? null;
-  activeVaultEntry ? pdfLibrary.find((pdf) => pdf.id === activeVaultEntry.pdfId) ?? null : null;
   const activeGuideOverview = trimSentence(getFirstParagraphText(activeGuide?.content, "overview") || activeGuide?.objective || activeGuide?.excerpt || "");
   const activeGuideApplicationList = getPracticePoints(activeGuide?.content).slice(0, 4);
   const activeGuideReferenceItems = getReferenceItems(activeGuide?.content).slice(0, 4);
-  const activeVaultOverview = trimSentence(
-    getFirstParagraphText(activeVaultEntry?.content, "overview") || getFirstParagraphText(activeVaultEntry?.content, "application") || activeVaultEntry?.objective || activeVaultEntry?.excerpt || ""
-  );
-  const activeVaultApplicationList = getPracticePoints(activeVaultEntry?.content).slice(0, 4);
-  const activeVaultReferenceItems = getReferenceItems(activeVaultEntry?.content).slice(0, 5);
   const activeAcuteItem = filteredAcuteItems.find((item) => item.id === activeAcuteId) ?? acuteManagementItems.find((item) => item.id === activeAcuteId) ?? filteredAcuteItems[0] ?? acuteManagementItems[0] ?? null;
   reactExports.useEffect(() => {
     const firstTabId = activeGuide?.content?.tabs?.[0]?.id ?? "overview";
@@ -45826,7 +45751,6 @@ function AppLayout() {
   const stats = {
     tools: tools.length,
     guides: guideLibrary.length,
-    pdfs: vaultLibrary.length,
     categories: toolCategories.filter((category) => category.id !== "all").length
   };
   const workspaceRows = reactExports.useMemo(
@@ -45864,16 +45788,6 @@ function AppLayout() {
       payloadId: guide.id,
       label: "Guide"
     }));
-    const pdfResults = filteredVaultEntries.slice(0, 4).map((guide) => ({
-      id: `pdf-${guide.id}`,
-      kind: "pdf",
-      title: guide.title,
-      subtitle: guide.category,
-      pageId: "pdfs",
-      pageLabel: "Clinical Vault",
-      payloadId: guide.pdfId,
-      label: "Vault"
-    }));
     const acuteResults = filteredAcuteItems.slice(0, 4).map((item) => ({
       id: `acute-${item.id}`,
       kind: "acute",
@@ -45896,25 +45810,14 @@ function AppLayout() {
         label: "Checklist"
       }
     ] : [];
-    return [...toolResults, ...acuteResults, ...followupResults, ...guideResults, ...pdfResults].slice(0, 10);
-  }, [filteredAcuteItems, filteredGuides, filteredVaultEntries, searchableTools, toolSearch]);
+    return [...toolResults, ...acuteResults, ...followupResults, ...guideResults].slice(0, 10);
+  }, [filteredAcuteItems, filteredGuides, searchableTools, toolSearch]);
   const handleSearchSelection = (resultItem) => {
     if (resultItem.kind === "tool") {
       setActiveToolId(resultItem.payloadId);
     }
     if (resultItem.kind === "guide") {
       setActiveGuideId(resultItem.payloadId);
-      const guide = guideLibrary.find((entry) => entry.id === resultItem.payloadId);
-      if (guide?.pdfId) {
-        setActivePdfId(guide.pdfId);
-      }
-    }
-    if (resultItem.kind === "pdf") {
-      setActivePdfId(resultItem.payloadId);
-      const matchedGuide = vaultLibrary.find((guide) => guide.pdfId === resultItem.payloadId);
-      if (matchedGuide) {
-        setActiveGuideId(matchedGuide.id);
-      }
     }
     if (resultItem.kind === "acute") {
       setActiveAcuteId(resultItem.payloadId);
@@ -46024,18 +45927,7 @@ function AppLayout() {
         },
         onSelectGuide: (guideId) => {
           setActiveGuideId(guideId);
-          const guide = guideLibrary.find((entry) => entry.id === guideId);
-          if (guide?.pdfId) {
-            setActivePdfId(guide.pdfId);
-          }
           navigateToPage("guides");
-        },
-        onSelectVault: (pdfId, guideId) => {
-          setActivePdfId(pdfId);
-          if (guideId) {
-            setActiveGuideId(guideId);
-          }
-          navigateToPage("pdfs");
         },
         onSelectAcute: (acuteId) => {
           setActiveAcuteId(acuteId);
@@ -46047,12 +45939,10 @@ function AppLayout() {
         activeToolId,
         activeAcuteId,
         activeGuideId,
-        activePdfId,
         algorithmItems: algorithmTools,
         acuteItems: filteredAcuteItems,
         scoreItems: scoreTools,
         guideItems: filteredGuides,
-        vaultItems: filteredVaultEntries,
         siteName
       }
     ),
@@ -46126,10 +46016,6 @@ function AppLayout() {
                 /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "status-chip", children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx(Microscope, { size: 14 }),
                   "Markdown guide library"
-                ] }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "status-chip", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(FileSearch, { size: 14 }),
-                  "Connected clinical vault"
                 ] })
               ] })
             ] }),
@@ -46150,15 +46036,6 @@ function AppLayout() {
                   label: "Guides in library",
                   value: stats.guides,
                   meta: "Local markdown corpus surfaced as a searchable knowledge layer"
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                MetricCard,
-                {
-                  icon: FolderOpen,
-                  label: "Clinical vault",
-                  value: stats.pdfs,
-                  meta: "Companion archive entries linked back into the markdown guide library"
                 }
               ),
               /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -46410,92 +46287,7 @@ function AppLayout() {
         ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "empty-state left-aligned", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(CircleAlert, { size: 24 }),
           /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { children: "No guides matched the current search." })
-        ] }) }, `guide-panel-${activeGuide?.id ?? "empty"}`) }) }) : null,
-        currentPage === "pdfs" ? /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: /* @__PURE__ */ jsxRuntimeExports.jsx("section", { className: "focus-layout", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "panel pdf-viewer-panel spotlight-panel", children: activeVaultEntry ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "section-card-header", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "eyebrow", children: "Vault record" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: activeVaultEntry.title })
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "button",
-              {
-                type: "button",
-                className: "ghost-button",
-                onClick: () => {
-                  setActiveGuideId(activeVaultEntry.id);
-                  navigateToPage("guides");
-                },
-                children: "Open guide page"
-              }
-            )
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "pdf-meta-strip", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mini-stat", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Topic" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: activeVaultEntry.category })
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mini-stat", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Guide sections" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: activeVaultEntry.headings.filter((h) => h.length > 3 && !/^figure|^table \d|^\s*$/i.test(h)).length })
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mini-stat", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "References" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: getReferenceItems(activeVaultEntry?.content).length })
-            ] })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "guide-summary-grid", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              ContentSummaryCard,
-              {
-                eyebrow: "Vault synopsis",
-                title: "Overview",
-                description: activeVaultOverview
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              ContentListPreview,
-              {
-                eyebrow: "Clinical application",
-                title: "Practice points",
-                items: activeVaultApplicationList,
-                emptyLabel: "Structured clinical points will appear here when listed in the vault summary."
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              ContentOutlinePreview,
-              {
-                eyebrow: "Vault structure",
-                title: "Key sections",
-                items: activeVaultEntry.headings.slice(0, 8)
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              ContentListPreview,
-              {
-                eyebrow: "Reference preview",
-                title: "Bibliography",
-                items: activeVaultReferenceItems,
-                ordered: true,
-                emptyLabel: "Reference entries will appear here when available."
-              }
-            )
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            ClinicalReference,
-            {
-              eyebrow: "Vault summary",
-              title: activeVaultEntry.title,
-              content: activeVaultEntry.content,
-              activeTab: activeGuideTab,
-              onTabChange: setActiveGuideTab,
-              emptyMessage: "No structured vault summary is available for this entry yet."
-            }
-          )
-        ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "empty-state", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(FolderOpen, { size: 28 }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "No vault entries matched the current search" })
-        ] }) }, `vault-panel-${activeVaultEntry?.id ?? "empty"}`) }) }) : null
+        ] }) }, `guide-panel-${activeGuide?.id ?? "empty"}`) }) }) : null
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("footer", { className: "footer", children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Dr Abdul Mannan FRCPath FCPS | Blood Doctor | blooddoctor.co@gmail.com" }) })
     ] })

@@ -13,7 +13,6 @@ import {
   CircleCheckBig,
   FileSearch,
   FileText,
-  FolderOpen,
   HeartPulse,
   LayoutDashboard,
   Microscope,
@@ -24,7 +23,7 @@ import {
 } from "lucide-react";
 import { toolCategories, tools } from "./data/tools";
 import { clinicalContentByToolId } from "./data/markdownContent";
-import { guideLibrary, pdfLibrary, resolveMarkdownTarget, vaultLibrary } from "./data/library";
+import { guideLibrary, resolveMarkdownTarget } from "./data/library";
 import { AppSidebar } from "@/components/app-sidebar";
 import { SidebarProvider, SidebarTrigger, useSidebar } from "@/components/ui/sidebar";
 import { AsaGuide } from "@/components/asa-guide";
@@ -692,7 +691,6 @@ const pageDefinitions = [
   { id: "followup", label: "DOAC Follow-up", shortLabel: "DOAC Follow-up", icon: ClipboardList },
   { id: "scores", label: "Scoring Calculators", shortLabel: "Scores", icon: Calculator },
   { id: "guides", label: "Clinical Guides", shortLabel: "Guides", icon: BookOpenText },
-  { id: "pdfs", label: "Clinical Vault", shortLabel: "Vault", icon: FolderOpen },
 ];
 const pageIds = new Set(pageDefinitions.map((page) => page.id));
 const getPageFromHash = () => {
@@ -728,13 +726,7 @@ const pageCopy = {
     eyebrow: "Clinical guides index",
     title: "Guide library",
     description:
-      "A reading-focused guide browser built from the local markdown corpus, with authentic references preserved and a companion clinical vault for linked archive records.",
-  },
-  pdfs: {
-    eyebrow: "Clinical vault",
-    title: "Companion vault",
-    description:
-      "A cleaner index of companion records linked back to the guide library, so the main reading experience stays markdown-first and connected across the whole website.",
+      "A reading-focused guide browser built from the local markdown corpus, with authentic references preserved and searchable clinical content.",
   },
 };
 
@@ -1264,7 +1256,6 @@ function AppLayout() {
   const [toolValues, setToolValues] = useState(toolStateDefaults);
   const [activeGuideId, setActiveGuideId] = useState(guideLibrary[0]?.id ?? "");
   const [activeGuideTab, setActiveGuideTab] = useState("overview");
-  const [activePdfId, setActivePdfId] = useState(pdfLibrary[0]?.id ?? "");
   const { open: sidebarOpen, setOpen: setSidebarOpen } = useSidebar();
 
   const toolSearch = searchTerm.trim().toLowerCase();
@@ -1284,7 +1275,6 @@ function AppLayout() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const toolParam = params.get("tool");
-    const pdfParam = params.get("pdf");
     const guideParam = params.get("guide");
     const searchParam = params.get("search");
     const checklistParam = params.get("checklist");
@@ -1301,22 +1291,7 @@ function AppLayout() {
       const matchedGuide = guideLibrary.find((guide) => guide.id === guideParam);
       if (matchedGuide) {
         setActiveGuideId(matchedGuide.id);
-        if (matchedGuide.pdfId) {
-          setActivePdfId(matchedGuide.pdfId);
-        }
         setCurrentPage("guides");
-      }
-    }
-
-    if (pdfParam) {
-      const matchedPdf = pdfLibrary.find((pdf) => pdf.id === pdfParam || pdf.stem === pdfParam);
-      if (matchedPdf) {
-        setActivePdfId(matchedPdf.id);
-        const matchedGuide = guideLibrary.find((guide) => guide.pdfId === matchedPdf.id);
-        if (matchedGuide) {
-          setActiveGuideId(matchedGuide.id);
-        }
-        setCurrentPage("pdfs");
       }
     }
 
@@ -1380,18 +1355,6 @@ function AppLayout() {
     [toolSearch]
   );
 
-  const filteredVaultEntries = useMemo(
-    () =>
-      vaultLibrary.filter((guide) => {
-        if (!toolSearch) {
-          return true;
-        }
-
-        return guide.searchableText.includes(toolSearch);
-      }),
-    [toolSearch]
-  );
-
   const filteredAcuteItems = useMemo(
     () =>
       acuteManagementItems.filter((item) => {
@@ -1424,12 +1387,6 @@ function AppLayout() {
   }, [activeGuideId, filteredGuides]);
 
   useEffect(() => {
-    if (filteredVaultEntries.length && !filteredVaultEntries.some((guide) => guide.pdfId === activePdfId)) {
-      setActivePdfId(filteredVaultEntries[0].pdfId);
-    }
-  }, [activePdfId, filteredVaultEntries]);
-
-  useEffect(() => {
     if (filteredAcuteItems.length && !filteredAcuteItems.some((item) => item.id === activeAcuteId)) {
       setActiveAcuteId(filteredAcuteItems[0].id);
     }
@@ -1449,26 +1406,9 @@ function AppLayout() {
     guideLibrary.find((guide) => guide.id === activeGuideId) ??
     filteredGuides[0] ??
     null;
-  const activeVaultEntry =
-    filteredVaultEntries.find((guide) => guide.pdfId === activePdfId) ??
-    vaultLibrary.find((guide) => guide.pdfId === activePdfId) ??
-    filteredVaultEntries[0] ??
-    null;
-  const activePdf = activeVaultEntry
-    ? pdfLibrary.find((pdf) => pdf.id === activeVaultEntry.pdfId) ?? null
-    : null;
   const activeGuideOverview = trimSentence(getFirstParagraphText(activeGuide?.content, "overview") || activeGuide?.objective || activeGuide?.excerpt || "");
   const activeGuideApplicationList = getPracticePoints(activeGuide?.content).slice(0, 4);
   const activeGuideReferenceItems = getReferenceItems(activeGuide?.content).slice(0, 4);
-  const activeVaultOverview = trimSentence(
-    getFirstParagraphText(activeVaultEntry?.content, "overview")
-    || getFirstParagraphText(activeVaultEntry?.content, "application")
-    || activeVaultEntry?.objective
-    || activeVaultEntry?.excerpt
-    || ""
-  );
-  const activeVaultApplicationList = getPracticePoints(activeVaultEntry?.content).slice(0, 4);
-  const activeVaultReferenceItems = getReferenceItems(activeVaultEntry?.content).slice(0, 5);
   const activeAcuteItem =
     filteredAcuteItems.find((item) => item.id === activeAcuteId) ??
     acuteManagementItems.find((item) => item.id === activeAcuteId) ??
@@ -1484,7 +1424,6 @@ function AppLayout() {
   const stats = {
     tools: tools.length,
     guides: guideLibrary.length,
-    pdfs: vaultLibrary.length,
     categories: toolCategories.filter((category) => category.id !== "all").length,
   };
 
@@ -1533,17 +1472,6 @@ function AppLayout() {
       label: "Guide",
     }));
 
-    const pdfResults = filteredVaultEntries.slice(0, 4).map((guide) => ({
-      id: `pdf-${guide.id}`,
-      kind: "pdf",
-      title: guide.title,
-      subtitle: guide.category,
-      pageId: "pdfs",
-      pageLabel: "Clinical Vault",
-      payloadId: guide.pdfId,
-      label: "Vault",
-    }));
-
     const acuteResults = filteredAcuteItems.slice(0, 4).map((item) => ({
       id: `acute-${item.id}`,
       kind: "acute",
@@ -1570,8 +1498,8 @@ function AppLayout() {
         ]
       : [];
 
-    return [...toolResults, ...acuteResults, ...followupResults, ...guideResults, ...pdfResults].slice(0, 10);
-  }, [filteredAcuteItems, filteredGuides, filteredVaultEntries, searchableTools, toolSearch]);
+    return [...toolResults, ...acuteResults, ...followupResults, ...guideResults].slice(0, 10);
+  }, [filteredAcuteItems, filteredGuides, searchableTools, toolSearch]);
 
   const handleSearchSelection = (resultItem) => {
     if (resultItem.kind === "tool") {
@@ -1580,18 +1508,6 @@ function AppLayout() {
 
     if (resultItem.kind === "guide") {
       setActiveGuideId(resultItem.payloadId);
-      const guide = guideLibrary.find((entry) => entry.id === resultItem.payloadId);
-      if (guide?.pdfId) {
-        setActivePdfId(guide.pdfId);
-      }
-    }
-
-    if (resultItem.kind === "pdf") {
-      setActivePdfId(resultItem.payloadId);
-      const matchedGuide = vaultLibrary.find((guide) => guide.pdfId === resultItem.payloadId);
-      if (matchedGuide) {
-        setActiveGuideId(matchedGuide.id);
-      }
     }
 
     if (resultItem.kind === "acute") {
@@ -1714,18 +1630,7 @@ function AppLayout() {
         }}
         onSelectGuide={(guideId) => {
           setActiveGuideId(guideId);
-          const guide = guideLibrary.find((entry) => entry.id === guideId);
-          if (guide?.pdfId) {
-            setActivePdfId(guide.pdfId);
-          }
           navigateToPage("guides");
-        }}
-        onSelectVault={(pdfId, guideId) => {
-          setActivePdfId(pdfId);
-          if (guideId) {
-            setActiveGuideId(guideId);
-          }
-          navigateToPage("pdfs");
         }}
         onSelectAcute={(acuteId) => {
           setActiveAcuteId(acuteId);
@@ -1737,12 +1642,10 @@ function AppLayout() {
         activeToolId={activeToolId}
         activeAcuteId={activeAcuteId}
         activeGuideId={activeGuideId}
-        activePdfId={activePdfId}
         algorithmItems={algorithmTools}
         acuteItems={filteredAcuteItems}
         scoreItems={scoreTools}
         guideItems={filteredGuides}
-        vaultItems={filteredVaultEntries}
         siteName={siteName}
       />
 
@@ -1835,10 +1738,6 @@ function AppLayout() {
                   <Microscope size={14} />
                   Markdown guide library
                 </span>
-                <span className="status-chip">
-                  <FileSearch size={14} />
-                  Connected clinical vault
-                </span>
               </div>
             </div>
 
@@ -1854,12 +1753,6 @@ function AppLayout() {
                 label="Guides in library"
                 value={stats.guides}
                 meta="Local markdown corpus surfaced as a searchable knowledge layer"
-              />
-              <MetricCard
-                icon={FolderOpen}
-                label="Clinical vault"
-                value={stats.pdfs}
-                meta="Companion archive entries linked back into the markdown guide library"
               />
               <MetricCard
                 icon={BrainCircuit}
@@ -2290,91 +2183,6 @@ function AppLayout() {
           </>
           ) : null}
 
-          {currentPage === "pdfs" ? (
-          <>
-          <section className="focus-layout">
-            <div key={`vault-panel-${activeVaultEntry?.id ?? "empty"}`} className="panel pdf-viewer-panel spotlight-panel">
-              {activeVaultEntry ? (
-                <>
-                  <div className="section-card-header">
-                    <div>
-                      <span className="eyebrow">Vault record</span>
-                      <h3>{activeVaultEntry.title}</h3>
-                    </div>
-                    <button
-                      type="button"
-                      className="ghost-button"
-                      onClick={() => {
-                        setActiveGuideId(activeVaultEntry.id);
-                        navigateToPage("guides");
-                      }}
-                    >
-                      Open guide page
-                    </button>
-                  </div>
-
-                  <div className="pdf-meta-strip">
-                    <div className="mini-stat">
-                      <span>Topic</span>
-                      <strong>{activeVaultEntry.category}</strong>
-                    </div>
-                    <div className="mini-stat">
-                      <span>Guide sections</span>
-                      <strong>{activeVaultEntry.headings.filter(h => h.length > 3 && !/^figure|^table \d|^\s*$/i.test(h)).length}</strong>
-                    </div>
-                    <div className="mini-stat">
-                      <span>References</span>
-                      <strong>
-                        {getReferenceItems(activeVaultEntry?.content).length}
-                      </strong>
-                    </div>
-                  </div>
-
-                  <div className="guide-summary-grid">
-                    <ContentSummaryCard
-                      eyebrow="Vault synopsis"
-                      title="Overview"
-                      description={activeVaultOverview}
-                    />
-                    <ContentListPreview
-                      eyebrow="Clinical application"
-                      title="Practice points"
-                      items={activeVaultApplicationList}
-                      emptyLabel="Structured clinical points will appear here when listed in the vault summary."
-                    />
-                    <ContentOutlinePreview
-                      eyebrow="Vault structure"
-                      title="Key sections"
-                      items={activeVaultEntry.headings.slice(0, 8)}
-                    />
-                    <ContentListPreview
-                      eyebrow="Reference preview"
-                      title="Bibliography"
-                      items={activeVaultReferenceItems}
-                      ordered
-                      emptyLabel="Reference entries will appear here when available."
-                    />
-                  </div>
-
-                  <ClinicalReference
-                    eyebrow="Vault summary"
-                    title={activeVaultEntry.title}
-                    content={activeVaultEntry.content}
-                    activeTab={activeGuideTab}
-                    onTabChange={setActiveGuideTab}
-                    emptyMessage="No structured vault summary is available for this entry yet."
-                  />
-                </>
-              ) : (
-                <div className="empty-state">
-                  <FolderOpen size={28} />
-                  <h3>No vault entries matched the current search</h3>
-                </div>
-              )}
-            </div>
-          </section>
-          </>
-          ) : null}
         </main>
 
         <footer className="footer">

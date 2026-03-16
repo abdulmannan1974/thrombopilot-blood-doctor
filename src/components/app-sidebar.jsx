@@ -7,7 +7,6 @@ import {
   ChevronRight,
   Droplets,
   FileText,
-  FolderOpen,
   HeartPulse,
   LayoutDashboard,
   Sparkles,
@@ -53,7 +52,6 @@ const pageIconById = {
   followup: FileText,
   scores: Calculator,
   guides: BookOpenText,
-  pdfs: FolderOpen,
 };
 
 const pageMetaById = {
@@ -75,9 +73,6 @@ const pageMetaById = {
   guides: {
     subtitle: "Structured clinical guide library",
   },
-  pdfs: {
-    subtitle: "Linked vault records and companion views",
-  },
 };
 
 const pageToneById = {
@@ -87,7 +82,6 @@ const pageToneById = {
   followup: "tone-teal",
   scores: "tone-green",
   guides: "tone-blue",
-  pdfs: "tone-orange",
 };
 
 const countLeaves = (nodes) =>
@@ -104,18 +98,15 @@ export function AppSidebar({
   onNavigate,
   onSelectTool,
   onSelectGuide,
-  onSelectVault,
   onSelectAcute,
   onSelectFollowup,
   activeToolId,
   activeAcuteId,
   activeGuideId,
-  activePdfId,
   algorithmItems,
   acuteItems,
   scoreItems,
   guideItems,
-  vaultItems,
   siteName,
 }) {
   const { setOpen } = useSidebar();
@@ -138,7 +129,6 @@ export function AppSidebar({
         "Renal tools": scoreItems.filter((tool) => tool.category === "renal"),
       };
       const guideBuckets = groupByLabel(guideItems, (guide) => guide.category);
-      const vaultBuckets = groupByLabel(vaultItems, (entry) => entry.category);
       const acuteBuckets = groupByLabel(acuteItems, (item) => item.category);
 
       return {
@@ -217,25 +207,11 @@ export function AppSidebar({
           active: activeGuideId === guide.id,
         })),
       })),
-      pdfs: Object.entries(vaultBuckets).map(([label, vaultInBucket]) => ({
-        id: toNodeId("pdfs", label),
-        label,
-        children: vaultInBucket.map((guide) => ({
-          id: guide.pdfId,
-          label: guide.title,
-          action: () => {
-            onSelectVault(guide.pdfId, guide.id);
-            setOpen(false);
-          },
-          active: activePdfId === guide.pdfId,
-        })),
-      })),
     };
     },
     [
       activeGuideId,
       activeAcuteId,
-      activePdfId,
       activeToolId,
       acuteItems,
       algorithmItems,
@@ -245,10 +221,8 @@ export function AppSidebar({
       onSelectFollowup,
       onSelectGuide,
       onSelectTool,
-      onSelectVault,
       scoreItems,
       setOpen,
-      vaultItems,
     ]
   );
 
@@ -328,7 +302,7 @@ export function AppSidebar({
           <div>
             <span className="eyebrow">Blood Doctor</span>
             <h1>{siteName}</h1>
-            <p>Clear clinical navigation with actionable calculators, guide folders, and linked vault records.</p>
+            <p>Clear clinical navigation with actionable calculators and evidence-based guide library.</p>
           </div>
         </div>
       </SidebarHeader>
@@ -348,7 +322,6 @@ export function AppSidebar({
                   { id: "followup", label: "DOAC Follow-up" },
                   { id: "scores", label: "Scoring Calculators" },
                   { id: "guides", label: "Clinical Guides" },
-                  { id: "pdfs", label: "Clinical Vault" },
                 ].map((page) => {
                   const Icon = pageIconById[page.id];
                   const meta = pageMetaById[page.id];
