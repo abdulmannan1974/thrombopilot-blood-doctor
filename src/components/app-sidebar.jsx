@@ -252,7 +252,7 @@ export function AppSidebar({
   }, [currentPage]);
 
   const handlePagePress = (pageId) => {
-    setExpandedSection(pageId);
+    setExpandedSection((prev) => (prev === pageId ? null : pageId));
     onNavigate(pageId);
   };
 
