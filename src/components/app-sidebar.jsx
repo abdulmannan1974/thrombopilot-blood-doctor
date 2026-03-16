@@ -291,9 +291,6 @@ export function AppSidebar({
             >
               <span className="flex items-center gap-2 min-w-0">
                 <span className="truncate">{node.label}</span>
-                <span className="inline-flex items-center justify-center min-w-7 px-2 py-0.5 rounded-full border border-border text-xs font-bold bg-accent text-primary">
-                  {countLeaves(node.children)}
-                </span>
               </span>
               {isExpanded ? (
                 <ChevronDown size={14} className="flex-shrink-0 text-muted-foreground" />
