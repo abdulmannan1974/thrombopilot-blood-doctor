@@ -93,32 +93,32 @@ export function ClopidogrelGuide() {
   const [tab, setTab] = useState("overview");
 
   return (
-    <section className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <div className="asa-guide-header-top">
-          <div className="asa-guide-header-copy">
-            <div className="asa-badge-row">
-              <span className="asa-badge asa-badge-blue">Clinical Guide</span>
-              <span className="asa-badge asa-badge-teal">Antiplatelet Therapy</span>
+    <section className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex-1 min-w-0">
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Clinical Guide</span>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-teal-100 text-teal-700">Antiplatelet Therapy</span>
             </div>
-            <h2 className="asa-guide-title">Clopidogrel (Plavix&reg;)</h2>
-            <div className="asa-guide-meta">
+            <h2 className="text-2xl font-bold leading-tight mt-1">Clopidogrel (Plavix&reg;)</h2>
+            <div className="flex flex-wrap gap-3 mt-3 text-xs text-muted-foreground">
               <span><Calendar size={13} /> Clinical Guide</span>
               <span><FileText size={13} /> Thienopyridine P2Y12 Inhibitor</span>
             </div>
           </div>
-          <div className="asa-guide-icon">
+          <div className="flex items-center justify-center w-12 h-12 rounded-xl border border-blue-200 bg-blue-50 text-blue-600 flex-shrink-0">
             <Heart size={24} />
           </div>
         </div>
 
-        <div className="asa-objective-strip">
+        <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-muted/60 text-sm text-muted-foreground border border-border/50">
           <strong>Objective:</strong> To provide guidance on the use of clopidogrel for prevention of atherothrombotic events, including indications, dosing, adverse effects, and periprocedural management.
         </div>
       </div>
 
-      <div className="asa-tabs">
-        <div className="asa-tabs-list" role="tablist" aria-label="Clopidogrel guide sections">
+      <div className="grid gap-4">
+        <div className="flex gap-1 p-1 rounded-xl bg-muted" role="tablist" aria-label="Clopidogrel guide sections">
           {tabs.map(([id, label]) => (
             <button
               key={id}
@@ -133,9 +133,9 @@ export function ClopidogrelGuide() {
 
         {/* ── Overview ── */}
         {tab === "overview" ? (
-          <div className="asa-tab-panel">
-            <div className="asa-mechanism-card">
-              <div className="asa-mechanism-icon">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <div className="flex items-center justify-center w-10 h-10 rounded-lg border border-blue-200 bg-blue-50 text-blue-600 mb-2">
                 <Syringe size={18} />
               </div>
               <div>
@@ -144,16 +144,16 @@ export function ClopidogrelGuide() {
               </div>
             </div>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Clinical Role</h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Clopidogrel provides cardiovascular protection both as monotherapy and in combination with <GuideLink to="asa">ASA</GuideLink>. It is used across a spectrum of atherothrombotic conditions including acute coronary syndromes (ACS), peripheral arterial disease (PAD), and cerebrovascular disease.
               </p>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="teal" />Monitoring</h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Obtain a baseline CBC before initiating therapy. No ongoing platelet function testing or coagulation monitoring is required.
               </p>
             </article>
@@ -162,52 +162,52 @@ export function ClopidogrelGuide() {
 
         {/* ── Indications ── */}
         {tab === "indications" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="cardiac" />Monotherapy</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>Secondary prevention of atherothrombotic events in patients with stable atherosclerosis.</li>
                 <li>Alternative to ASA in patients with ASA allergy or high gastrointestinal bleeding risk.</li>
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="cardiac" />Dual Antiplatelet Therapy (DAPT) with ASA</h3>
-              <div className="asa-ind-group">
-                <div className="asa-ind-group-label">
-                  <span className="asa-ind-icon cardiac"><Heart size={14} /></span>
+              <div className="mb-3">
+                <div className="flex items-center gap-2 text-sm font-semibold mb-1.5">
+                  <span className="w-2 h-2 rounded-full bg-red-500 flex-shrink-0 mt-2"><Heart size={14} /></span>
                   ACS with PCI
                 </div>
-                <ul className="asa-ind-list">
+                <ul className="list-none p-0 space-y-1">
                   <li>DAPT duration 3 to 12 months depending on individual risk assessment.</li>
                   <li>May extend beyond 1 year if the patient has low bleeding risk and high thrombotic risk.</li>
                 </ul>
               </div>
 
-              <div className="asa-ind-group">
-                <div className="asa-ind-group-label">
-                  <span className="asa-ind-icon cardiac"><Heart size={14} /></span>
+              <div className="mb-3">
+                <div className="flex items-center gap-2 text-sm font-semibold mb-1.5">
+                  <span className="w-2 h-2 rounded-full bg-red-500 flex-shrink-0 mt-2"><Heart size={14} /></span>
                   Elective PCI
                 </div>
-                <ul className="asa-ind-list">
+                <ul className="list-none p-0 space-y-1">
                   <li>DAPT for 6 to 12 months.</li>
                   <li>High thrombotic risk + low bleeding risk: consider extending to 3 years.</li>
                   <li>High bleeding risk: shorten to 1 month (BMS) or 3 months (DES).</li>
                 </ul>
               </div>
 
-              <div className="asa-ind-group">
-                <div className="asa-ind-group-label">
-                  <span className="asa-ind-icon stroke"><ShieldAlert size={14} /></span>
+              <div className="mb-3">
+                <div className="flex items-center gap-2 text-sm font-semibold mb-1.5">
+                  <span className="w-2 h-2 rounded-full bg-amber-500 flex-shrink-0 mt-2"><ShieldAlert size={14} /></span>
                   Acute High-Risk TIA / Minor Ischemic Stroke
                 </div>
-                <ul className="asa-ind-list">
+                <ul className="list-none p-0 space-y-1">
                   <li>DAPT for 21 days: clopidogrel 300&ndash;600 mg load + 75 mg daily, with ASA 160 mg load + 80 mg daily.</li>
                   <li>After 21 days, transition to ASA monotherapy.</li>
                 </ul>
               </div>
 
-              <div className="asa-alert asa-alert-warn">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
                 <AlertCircle size={16} />
                 <div>
                   <strong>Risk factor assessment for DAPT duration:</strong> Weigh bleeding risk against thrombotic risk when determining duration. See the <GuideLink to="daptDuration">DAPT Duration in CAD</GuideLink> guide.
@@ -217,28 +217,28 @@ export function ClopidogrelGuide() {
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "0.75rem", marginTop: "0.75rem" }}>
                 <div>
                   <h4 style={{ fontSize: "0.8rem", marginBottom: "0.4rem", opacity: 0.85 }}>Bleeding Risk Factors</h4>
-                  <ul className="asa-ind-list" style={{ fontSize: "0.78rem" }}>
+                  <ul className="list-none p-0 space-y-1" style={{ fontSize: "0.78rem" }}>
                     {bleedingRiskFactors.map((f) => <li key={f}>{f}</li>)}
                   </ul>
                 </div>
                 <div>
                   <h4 style={{ fontSize: "0.8rem", marginBottom: "0.4rem", opacity: 0.85 }}>Thrombotic Risk Factors</h4>
-                  <ul className="asa-ind-list" style={{ fontSize: "0.78rem" }}>
+                  <ul className="list-none p-0 space-y-1" style={{ fontSize: "0.78rem" }}>
                     {thromboticRiskFactors.map((f) => <li key={f}>{f}</li>)}
                   </ul>
                 </div>
                 <div>
                   <h4 style={{ fontSize: "0.8rem", marginBottom: "0.4rem", opacity: 0.85 }}>Angiographic Risk Factors</h4>
-                  <ul className="asa-ind-list" style={{ fontSize: "0.78rem" }}>
+                  <ul className="list-none p-0 space-y-1" style={{ fontSize: "0.78rem" }}>
                     {angiographicRiskFactors.map((f) => <li key={f}>{f}</li>)}
                   </ul>
                 </div>
               </div>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="stroke" />Other Indications</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>Recurrent cerebrovascular events despite ASA therapy. See the <GuideLink to="strokeSecondary">Ischemic Stroke: Secondary Prevention</GuideLink> guide.</li>
                 <li>Stable symptomatic <GuideLink to="pad">PAD</GuideLink> with high vascular risk, low bleeding risk, and contraindication to low-dose <GuideLink to="rivaroxaban">rivaroxaban</GuideLink>.</li>
               </ul>
@@ -248,10 +248,10 @@ export function ClopidogrelGuide() {
 
         {/* ── Dosing ── */}
         {tab === "dosing" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Dosing Summary</h3>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Indication or situation</th>
@@ -263,7 +263,7 @@ export function ClopidogrelGuide() {
                   {dosingRows.map((row) => (
                     <tr key={row[0]}>
                       <td>{row[0]}</td>
-                      <td className="dose-highlight">{row[1]}</td>
+                      <td className="font-bold text-foreground">{row[1]}</td>
                       <td>{row[2]}</td>
                     </tr>
                   ))}
@@ -271,7 +271,7 @@ export function ClopidogrelGuide() {
               </table>
             </article>
 
-            <div className="asa-alert asa-alert-info">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <Info size={16} />
               <div>
                 <strong>Loading dose rationale:</strong> Without a loading dose, peak antiplatelet effect is delayed by approximately 4 days.
@@ -282,20 +282,20 @@ export function ClopidogrelGuide() {
 
         {/* ── Adverse Effects ── */}
         {tab === "adverse" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="danger" />Adverse Effects Profile</h3>
-              <div className="asa-ae-grid">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {adverseEffects.map((item) => (
                   <div key={`${item.label}-${item.text}`} className={`asa-ae-card ${item.tone}`}>
-                    <div className="asa-ae-card-label">{item.label}</div>
-                    <div className="asa-ae-card-text">{item.text}</div>
+                    <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">{item.label}</div>
+                    <div className="text-sm leading-relaxed">{item.text}</div>
                   </div>
                 ))}
               </div>
             </article>
 
-            <div className="asa-alert asa-alert-danger">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <ShieldAlert size={16} />
               <div>
                 <strong>Bleeding risk increases</strong> when clopidogrel is combined with ASA or anticoagulants. Assess bleeding risk carefully before initiating combination therapy.
@@ -306,26 +306,26 @@ export function ClopidogrelGuide() {
 
         {/* ── Periprocedural ── */}
         {tab === "periprocedural" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="purple" />Periprocedural Management</h3>
-              <div className="asa-alert asa-alert-info">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
                 <Info size={16} />
                 <div>Balance thrombotic risk and bleeding risk for every procedure. Exercise particular caution in patients with recent coronary stents.</div>
               </div>
 
-              <div className="asa-timeline">
+              <div className="relative pl-6 space-y-4 border-l-2 border-border">
                 {timelineSteps.map((step) => (
-                  <div key={step[0]} className="asa-timeline-step">
+                  <div key={step[0]} className="relative">
                     <div className={`asa-timeline-dot ${step[2]}`} />
-                    <div className="asa-timeline-label">{step[0]}</div>
-                    <div className="asa-timeline-desc">{step[1]}</div>
+                    <div className="text-sm font-semibold">{step[0]}</div>
+                    <div className="text-sm text-muted-foreground">{step[1]}</div>
                   </div>
                 ))}
               </div>
             </article>
 
-            <div className="asa-alert asa-alert-teal">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-teal-200 bg-teal-50 text-teal-900">
               <CheckCircle2 size={16} />
               <div>See the <GuideLink to="periopAntiplatelet">Perioperative Antiplatelet Management</GuideLink> guide for detailed interruption and restart decisions.</div>
             </div>
@@ -334,20 +334,20 @@ export function ClopidogrelGuide() {
 
         {/* ── Special Considerations ── */}
         {tab === "special" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="orange" />CYP2C19 Polymorphisms</h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Genetic polymorphisms in CYP2C19 may reduce conversion of clopidogrel to its active metabolite, potentially diminishing its antiplatelet effect. However, routine CYP2C19 genotype testing is <strong>not recommended</strong> in clinical practice.
               </p>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="orange" />Proton Pump Inhibitor (PPI) Interaction</h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Strong CYP2C19 inhibitors (e.g. omeprazole, esomeprazole) may reduce the antiplatelet effect of clopidogrel. When gastroprotection is needed, use <strong>pantoprazole</strong>, which is not a strong CYP2C19 inhibitor.
               </p>
-              <div className="asa-alert asa-alert-warn">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
                 <AlertCircle size={16} />
                 <div>
                   Avoid omeprazole and esomeprazole in patients taking clopidogrel. Pantoprazole is the preferred PPI.
@@ -355,9 +355,9 @@ export function ClopidogrelGuide() {
               </div>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="teal" />Comparison with Prasugrel and Ticagrelor</h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 <GuideLink to="prasugrel">Prasugrel</GuideLink> and <GuideLink to="ticagrelor">ticagrelor</GuideLink> provide faster onset and greater degree of platelet inhibition with less inter-patient variability compared to clopidogrel. They have demonstrated superior efficacy in ACS but are more costly. Consider these agents when enhanced platelet inhibition is clinically warranted.
               </p>
             </article>
@@ -366,10 +366,10 @@ export function ClopidogrelGuide() {
 
         {/* ── References ── */}
         {tab === "references" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="gray" />Related Clinical Guides</h3>
-              <ul className="asa-related-list">
+              <ul className="list-none p-0 divide-y divide-border">
                 <li><GuideLink to="asa">ASA (Acetylsalicylic Acid)</GuideLink></li>
                 <li><GuideLink to="periopAntiplatelet">Perioperative Antiplatelet Management</GuideLink></li>
                 <li><GuideLink to="pad">Peripheral Arterial Disease</GuideLink></li>
@@ -380,9 +380,9 @@ export function ClopidogrelGuide() {
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="gray" />References</h3>
-              <ol className="asa-ref-list">
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((item) => <li key={item}>{item}</li>)}
               </ol>
             </article>
@@ -390,7 +390,7 @@ export function ClopidogrelGuide() {
         ) : null}
       </div>
 
-      <div className="asa-guide-footer">
+      <div className="rounded-xl border bg-muted/50 p-4 text-xs text-muted-foreground">
         <p><strong>Clopidogrel (Plavix&reg;)</strong> | Clinical Guide</p>
         <p>The information here is not a substitute for clinical judgement. Always seek appropriate specialist input when needed.</p>
       </div>

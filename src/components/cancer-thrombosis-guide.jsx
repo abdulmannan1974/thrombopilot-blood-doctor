@@ -293,34 +293,34 @@ export function CancerThrombosisGuide() {
   const [tab, setTab] = useState("overview");
 
   return (
-    <section className="asa-guide-shell">
+    <section className="grid gap-4">
 
       {/* Header */}
-      <div className="asa-guide-header">
-        <div className="asa-guide-header-top">
-          <div className="asa-guide-header-copy">
-            <div className="asa-badge-row">
-              <span className="asa-badge asa-badge-blue">Clinical Guide</span>
-              <span className="asa-badge asa-badge-green">Cancer-Associated Thrombosis</span>
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex-1 min-w-0">
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Clinical Guide</span>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700">Cancer-Associated Thrombosis</span>
             </div>
-            <h2 className="asa-guide-title">Cancer and Thrombosis</h2>
-            <div className="asa-guide-meta">
+            <h2 className="text-2xl font-bold leading-tight mt-1">Cancer and Thrombosis</h2>
+            <div className="flex flex-wrap gap-3 mt-3 text-xs text-muted-foreground">
               <span><Calendar size={13} /> Updated 10 September 2024</span>
               <span><FileText size={13} /> DVT · PE · LMWH · DOACs · Cancer-Associated Thrombosis</span>
             </div>
           </div>
-          <div className="asa-guide-icon" style={{ background: "#fef2f2", borderColor: "#fecaca", color: "#b91c1c" }}>
+          <div className="flex items-center justify-center w-12 h-12 rounded-xl border border-blue-200 bg-blue-50 text-blue-600 flex-shrink-0" style={{ background: "#fef2f2", borderColor: "#fecaca", color: "#b91c1c" }}>
             <Activity size={24} />
           </div>
         </div>
-        <div className="asa-objective-strip">
+        <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-muted/60 text-sm text-muted-foreground border border-border/50">
           <strong>Objective:</strong> To assist healthcare professionals in the management of cancer-associated thrombosis (CAT), including selection of anticoagulant, dosing, duration, monitoring, and management of special situations.
         </div>
       </div>
 
       {/* Background strip */}
-      <div className="asa-mechanism-card">
-        <div className="asa-mechanism-icon" style={{ background: "#fef2f2", color: "#b91c1c" }}>
+      <div className="rounded-xl border bg-card shadow-sm p-5">
+        <div className="flex items-center justify-center w-10 h-10 rounded-lg border border-blue-200 bg-blue-50 text-blue-600 mb-2" style={{ background: "#fef2f2", color: "#b91c1c" }}>
           <FlaskConical size={18} />
         </div>
         <div>
@@ -333,8 +333,8 @@ export function CancerThrombosisGuide() {
       </div>
 
       {/* Tabs */}
-      <div className="asa-tabs">
-        <div className="asa-tabs-list" role="tablist" aria-label="Cancer and Thrombosis guide sections">
+      <div className="grid gap-4">
+        <div className="flex gap-1 p-1 rounded-xl bg-muted" role="tablist" aria-label="Cancer and Thrombosis guide sections">
           {tabs.map(([id, label]) => (
             <button
               key={id}
@@ -349,10 +349,10 @@ export function CancerThrombosisGuide() {
 
         {/* OVERVIEW */}
         {tab === "overview" && (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="danger" />When to Prefer LMWH Over a DOAC</h3>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Clinical scenario</th>
@@ -362,7 +362,7 @@ export function CancerThrombosisGuide() {
                 <tbody>
                   {lmwhPreferRows.map(([scenario, reason]) => (
                     <tr key={scenario}>
-                      <td className="dose-highlight">{scenario}</td>
+                      <td className="font-bold text-foreground">{scenario}</td>
                       <td>{reason}</td>
                     </tr>
                   ))}
@@ -370,9 +370,9 @@ export function CancerThrombosisGuide() {
               </table>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Key Principles of CAT Management</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>Anticoagulation should start promptly; initial LMWH bridging is required for edoxaban but NOT for apixaban or rivaroxaban.</li>
                 <li>LMWH doses should be based on actual body weight — do not cap in obese patients.</li>
                 <li>Both LMWH and DOACs are superior to warfarin; warfarin is a fallback for rare contraindicated situations.</li>
@@ -381,14 +381,14 @@ export function CancerThrombosisGuide() {
               </ul>
             </article>
 
-            <div className="asa-alert asa-alert-info">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <Info size={16} />
               <div>
                 <strong>Apixaban is the preferred DOAC in most CAT patients</strong> based on comparable VTE recurrence, similar GI bleeding rates to LMWH, and the absence of a mandatory LMWH lead-in.
               </div>
             </div>
 
-            <div className="asa-alert asa-alert-warn">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <AlertTriangle size={16} />
               <div>
                 Anticoagulation decisions near end of life must account for quality of life and patient preferences. Bleeding risk approaches 10% in this population. Discontinuation may be appropriate.
@@ -399,8 +399,8 @@ export function CancerThrombosisGuide() {
 
         {/* LMWH */}
         {tab === "lmwh" && (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />LMWH Dosing in Cancer-Associated Thrombosis</h3>
               <div style={{ display: "grid", gap: "0.75rem" }}>
                 {lmwhDoses.map((lmwh) => {
@@ -442,7 +442,7 @@ export function CancerThrombosisGuide() {
               </div>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="orange" />Renal Impairment (CrCl &lt;30 mL/min) — LMWH Options</h3>
               <div style={{ display: "grid", gap: "0.65rem" }}>
                 {renalOptions.map((opt) => {
@@ -459,14 +459,14 @@ export function CancerThrombosisGuide() {
               </div>
             </article>
 
-            <div className="asa-alert asa-alert-teal">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-teal-200 bg-teal-50 text-teal-900">
               <CheckCircle2 size={16} />
               <div>
                 <strong>Tinzaparin is the LMWH of choice in significant renal impairment.</strong> No dose adjustment is required and no bioaccumulation has been demonstrated down to CrCl 20 mL/min.
               </div>
             </div>
 
-            <div className="asa-alert asa-alert-info">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <Info size={16} />
               <div>
                 <strong>Obesity:</strong> Do not cap LMWH dose by body weight. Base dose on actual body weight. Above the single syringe weight limit, use twice-daily dosing or multi-dose vials (available for all three LMWHs).
@@ -477,11 +477,11 @@ export function CancerThrombosisGuide() {
 
         {/* DOACs */}
         {tab === "doacs" && (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="green" />Head-to-Head DOAC vs LMWH Randomised Trial Summary</h3>
               <div style={{ overflowX: "auto" }}>
-                <table className="asa-dose-table" style={{ minWidth: "600px" }}>
+                <table className="w-full border-collapse text-sm" style={{ minWidth: "600px" }}>
                   <thead>
                     <tr>
                       <th>Drug</th>
@@ -495,7 +495,7 @@ export function CancerThrombosisGuide() {
                   <tbody>
                     {doacTrials.map((row) => (
                       <tr key={row.drug} style={{ background: row.highlight ? "#f0fdf4" : undefined }}>
-                        <td className="dose-highlight" style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                        <td className="font-bold text-foreground" style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
                           {row.highlight && <ToneChip label="Preferred" tone="green" />}
                           {row.drug}
                         </td>
@@ -511,7 +511,7 @@ export function CancerThrombosisGuide() {
               </div>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />DOAC Dosing in CAT</h3>
               <div style={{ display: "grid", gap: "0.75rem" }}>
                 {doacDosingRows.map((d) => {
@@ -540,21 +540,21 @@ export function CancerThrombosisGuide() {
               </div>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="teal" />DOACs vs Warfarin</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 {doacVsWarfarinPoints.map((item) => <li key={item}>{item}</li>)}
               </ul>
             </article>
 
-            <div className="asa-alert asa-alert-danger">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <XCircle size={16} />
               <div>
                 <strong>Dabigatran is not recommended in CAT.</strong> No randomised trial data exist for dabigatran in cancer-associated VTE. Use only proven agents: LMWH, apixaban, edoxaban, or rivaroxaban.
               </div>
             </div>
 
-            <div className="asa-alert asa-alert-warn">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <AlertCircle size={16} />
               <div>
                 <strong>GI malignancy caution:</strong> Edoxaban and rivaroxaban are associated with higher GI bleeding rates in upper GI cancers. Apixaban had similar GI bleeding rates to LMWH. Prefer apixaban or LMWH in upper GI tract malignancies.
@@ -565,10 +565,10 @@ export function CancerThrombosisGuide() {
 
         {/* DURATION & MONITORING */}
         {tab === "duration" && (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Duration of Anticoagulation</h3>
-              <p className="asa-section-copy" style={{ fontSize: "0.9rem" }}>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ fontSize: "0.9rem" }}>
                 Minimum duration is <strong>3–6 months</strong>. Continued anticoagulation is recommended when <em>any</em> of the following apply and bleeding risk remains low:
               </p>
               <div style={{ display: "grid", gap: "0.55rem" }}>
@@ -589,9 +589,9 @@ export function CancerThrombosisGuide() {
               </div>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="teal" />Monitoring Parameters</h3>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Parameter</th>
@@ -601,7 +601,7 @@ export function CancerThrombosisGuide() {
                 <tbody>
                   {monitoringRows.map(([param, detail]) => (
                     <tr key={param}>
-                      <td className="dose-highlight">{param}</td>
+                      <td className="font-bold text-foreground">{param}</td>
                       <td>{detail}</td>
                     </tr>
                   ))}
@@ -609,7 +609,7 @@ export function CancerThrombosisGuide() {
               </table>
             </article>
 
-            <div className="asa-alert asa-alert-info">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <Timer size={16} />
               <div>
                 Reassess every <strong>3–6 months</strong>: review ongoing cancer activity, bleeding risk, patient preference, and quality of life — particularly near end of life where anticoagulation burden may outweigh benefit.
@@ -620,10 +620,10 @@ export function CancerThrombosisGuide() {
 
         {/* SPECIAL SITUATIONS */}
         {tab === "special" && (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="danger" />Thrombocytopenia — Dose Adjustment Guide</h3>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Platelet count</th>
@@ -634,7 +634,7 @@ export function CancerThrombosisGuide() {
                 <tbody>
                   {thrombocytopeniaRows.map(([count, approach, note]) => (
                     <tr key={count}>
-                      <td className="dose-highlight">{count}</td>
+                      <td className="font-bold text-foreground">{count}</td>
                       <td>{approach}</td>
                       <td style={{ color: "#6b7280", fontSize: "0.88rem" }}>{note}</td>
                     </tr>
@@ -643,9 +643,9 @@ export function CancerThrombosisGuide() {
               </table>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="orange" />Catheter-Related Thrombosis</h3>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Issue</th>
@@ -655,7 +655,7 @@ export function CancerThrombosisGuide() {
                 <tbody>
                   {catheterRows.map(([issue, rec]) => (
                     <tr key={issue}>
-                      <td className="dose-highlight">{issue}</td>
+                      <td className="font-bold text-foreground">{issue}</td>
                       <td>{rec}</td>
                     </tr>
                   ))}
@@ -663,9 +663,9 @@ export function CancerThrombosisGuide() {
               </table>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="teal" />Incidental Thrombosis (Found on Imaging)</h3>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Site / type</th>
@@ -676,7 +676,7 @@ export function CancerThrombosisGuide() {
                 <tbody>
                   {incidentalRows.map(([site, mgmt, evidence]) => (
                     <tr key={site}>
-                      <td className="dose-highlight">{site}</td>
+                      <td className="font-bold text-foreground">{site}</td>
                       <td>{mgmt}</td>
                       <td style={{ color: "#6b7280", fontSize: "0.88rem" }}>{evidence}</td>
                     </tr>
@@ -685,16 +685,16 @@ export function CancerThrombosisGuide() {
               </table>
             </article>
 
-            <div className="asa-alert asa-alert-info">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <Info size={16} />
               <div>
                 <strong>Related guides:</strong> For catheter-related DVT, see <GuideLink to="cvad">Catheter-Related DVT</GuideLink>. For cerebral vein thrombosis in cancer patients, see <GuideLink to="cvt">Cerebral Venous Thrombosis</GuideLink>. For VTE duration decisions, see <GuideLink to="vteDuration">VTE Duration of Treatment</GuideLink>.
               </div>
             </div>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="danger" />Recurrent Thrombosis Despite Anticoagulation</h3>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Scenario</th>
@@ -705,7 +705,7 @@ export function CancerThrombosisGuide() {
                 <tbody>
                   {recurrenceRows.map(([scenario, action, qualifier]) => (
                     <tr key={scenario}>
-                      <td className="dose-highlight">{scenario}</td>
+                      <td className="font-bold text-foreground">{scenario}</td>
                       <td>{action}</td>
                       <td style={{ color: "#b91c1c", fontSize: "0.88rem" }}>{qualifier}</td>
                     </tr>
@@ -714,14 +714,14 @@ export function CancerThrombosisGuide() {
               </table>
             </article>
 
-            <div className="asa-alert asa-alert-danger">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <ShieldAlert size={16} />
               <div>
                 <strong>Vena cava filter is NOT recommended</strong> for recurrent thrombosis in patients already receiving therapeutic anticoagulation. IVC filters increase DVT risk with no reduction in PE or survival benefit.
               </div>
             </div>
 
-            <div className="asa-alert asa-alert-teal">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-teal-200 bg-teal-50 text-teal-900">
               <Microscope size={16} />
               <div>
                 <strong>Medication absorption:</strong> LMWH is preferred in patients with significant nausea/vomiting, or those with an altered upper GI tract (e.g. bowel surgery for abdominal cancer) where DOAC absorption is unpredictable.
@@ -732,15 +732,15 @@ export function CancerThrombosisGuide() {
 
         {/* PRIMARY PREVENTION */}
         {tab === "prevention" && (
-          <div className="asa-tab-panel">
+          <div className="grid gap-3.5">
             {primaryPrevention.map((group) => {
               const bg = { blue: "#eff6ff", teal: "#f0fdfa", gray: "#f9fafb" };
               const bc = { blue: "#bfdbfe", teal: "#99f6e4", gray: "#e5e7eb" };
               const col = { blue: "#1e40af", teal: "#0f766e", gray: "#374151" };
               return (
-                <article key={group.setting} className="asa-section-card">
+                <article key={group.setting} className="rounded-xl border bg-card shadow-sm p-5">
                   <h3><Dot tone={group.tone === "gray" ? "gray" : group.tone} />{group.setting}</h3>
-                  <ul className="asa-ind-list">
+                  <ul className="list-none p-0 space-y-1">
                     {group.options.map((opt) => <li key={opt}>{opt}</li>)}
                   </ul>
                   <div
@@ -760,14 +760,14 @@ export function CancerThrombosisGuide() {
               );
             })}
 
-            <div className="asa-alert asa-alert-info">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <Users size={16} />
               <div>
                 The decision to start prophylactic anticoagulation in ambulatory cancer patients should be based on <strong>VTE risk (Khorana score)</strong>, <strong>bleeding risk</strong>, <strong>cancer type</strong>, and <strong>patient values and preferences</strong>.
               </div>
             </div>
 
-            <div className="asa-alert asa-alert-warn">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <AlertCircle size={16} />
               <div>
                 DOACs for thromboprophylaxis after cancer surgery: insufficient evidence to recommend. LMWH remains the standard of care in the surgical prophylaxis setting for cancer patients.
@@ -778,8 +778,8 @@ export function CancerThrombosisGuide() {
 
         {/* REFERENCES */}
         {tab === "references" && (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="gray" />References</h3>
               <ol style={{ paddingLeft: "1.2rem", listStyle: "decimal" }}>
                 {references.map((item, i) => (
@@ -794,7 +794,7 @@ export function CancerThrombosisGuide() {
       </div>
 
       {/* Footer */}
-      <div className="asa-guide-footer" style={{ padding: "1rem 1.35rem" }}>
+      <div className="rounded-xl border bg-muted/50 p-4 text-xs text-muted-foreground" style={{ padding: "1rem 1.35rem" }}>
         <p style={{ margin: 0, fontWeight: 700, color: "#374151" }}>Cancer and Thrombosis</p>
         <p style={{ margin: "0.3rem 0 0", color: "#6b7280", fontSize: "0.85rem" }}>
           Clinical Guide · Updated 10 September 2024 · Individualise anticoagulant choice based on cancer type, bleeding risk, renal function, and patient preference.

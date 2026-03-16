@@ -11,6 +11,7 @@ import {
   LayoutDashboard,
   Sparkles,
 } from "lucide-react";
+import { cn } from "@/lib/utils";
 import {
   Sidebar,
   SidebarContent,
@@ -73,6 +74,15 @@ const pageMetaById = {
   guides: {
     subtitle: "Structured clinical guide library",
   },
+};
+
+const iconShellTone = {
+  "tone-blue": "bg-blue-100 border-blue-200 text-blue-600",
+  "tone-violet": "bg-violet-100 border-violet-200 text-violet-600",
+  "tone-red": "bg-red-100 border-red-200 text-red-600",
+  "tone-teal": "bg-teal-100 border-teal-200 text-teal-600",
+  "tone-green": "bg-green-100 border-green-200 text-green-600",
+  "tone-orange": "bg-amber-100 border-amber-200 text-amber-600",
 };
 
 const pageToneById = {
@@ -261,19 +271,33 @@ export function AppSidebar({
 
       if (isFolder) {
         return (
-          <div key={`${pageId}-${node.id}`} className="sidebar-tree-node">
+          <div key={`${pageId}-${node.id}`}>
             <SidebarSubmenuButton
-              className={`sidebar-folder-button depth-${depth}`}
+              className={cn(
+                "flex items-center justify-between w-full font-medium text-muted-foreground",
+                depth > 0 && "pl-6"
+              )}
               active={node.children.some((child) => child.active)}
               onClick={() => toggleFolder(node.id)}
             >
-              <span className="sidebar-folder-content">
-                <span className="sidebar-label-text">{node.label}</span>
-                <span className="sidebar-folder-meta">{countLeaves(node.children)}</span>
+              <span className="flex items-center gap-2 min-w-0">
+                <span className="truncate">{node.label}</span>
+                <span className="inline-flex items-center justify-center min-w-7 px-2 py-0.5 rounded-full border border-border text-xs font-bold bg-accent text-primary">
+                  {countLeaves(node.children)}
+                </span>
               </span>
-              {isExpanded ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+              {isExpanded ? (
+                <ChevronDown size={14} className="flex-shrink-0 text-muted-foreground" />
+              ) : (
+                <ChevronRight size={14} className="flex-shrink-0 text-muted-foreground" />
+              )}
             </SidebarSubmenuButton>
-            <SidebarSubmenu className={`nested ${isExpanded ? "open" : "closed"}`}>
+            <SidebarSubmenu
+              className={cn(
+                "overflow-hidden transition-all duration-200",
+                isExpanded ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
+              )}
+            >
               {renderSidebarNodes(pageId, node.children, depth + 1)}
             </SidebarSubmenu>
           </div>
@@ -283,11 +307,14 @@ export function AppSidebar({
       return (
         <SidebarSubmenuButton
           key={`${pageId}-${node.id}`}
-          className={`sidebar-leaf-button depth-${depth}`}
+          className={cn(
+            "text-sm text-muted-foreground",
+            depth > 0 && "pl-6"
+          )}
           active={node.active ?? false}
           onClick={node.action ?? (() => handleNavigate(pageId))}
         >
-          <span className="sidebar-label-text">{node.label}</span>
+          <span className="truncate">{node.label}</span>
         </SidebarSubmenuButton>
       );
     });
@@ -295,14 +322,18 @@ export function AppSidebar({
   return (
     <Sidebar>
       <SidebarHeader>
-        <div className="sidebar-brand sidebar-brand-card">
-          <div className="sidebar-logo">
+        <div className="flex items-start gap-3 rounded-xl border border-border bg-gradient-to-br from-blue-50/80 to-white p-4">
+          <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-blue-600 text-white">
             <Droplets />
           </div>
-          <div>
-            <span className="eyebrow">Blood Doctor</span>
-            <h1>{siteName}</h1>
-            <p>Clear clinical navigation with actionable calculators and evidence-based guide library.</p>
+          <div className="min-w-0">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-blue-600">
+              Blood Doctor
+            </span>
+            <h1 className="text-sm font-semibold leading-tight text-foreground">{siteName}</h1>
+            <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+              Clear clinical navigation with actionable calculators and evidence-based guide library.
+            </p>
           </div>
         </div>
       </SidebarHeader>
@@ -328,31 +359,52 @@ export function AppSidebar({
                   const children = sidebarSections[page.id] ?? [];
                   const isExpanded = expandedSection === page.id;
                   const itemCount = countLeaves(children);
+                  const tone = pageToneById[page.id] ?? "tone-blue";
 
                   return (
                     <SidebarMenuItem key={page.id}>
                       <SidebarMenuButton
-                        className={isExpanded ? "section-open" : ""}
+                        className={cn(isExpanded && "bg-accent border-blue-200")}
                         active={currentPage === page.id}
                         onClick={() => handlePagePress(page.id)}
                       >
-                          <span className="sidebar-menu-leading">
-                          <span className={`sidebar-menu-icon-shell ${pageToneById[page.id] ?? "tone-blue"}`}>
+                          <span className="flex items-center gap-3 min-w-0 flex-1">
+                          <span
+                            className={cn(
+                              "flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg border",
+                              iconShellTone[tone]
+                            )}
+                          >
                             <Icon size={16} />
                           </span>
-                          <span className="sidebar-section-copy">
-                            <span className="sidebar-section-title">{page.label}</span>
-                            <span className="sidebar-section-subtitle">{meta.subtitle}</span>
+                          <span className="flex flex-col min-w-0">
+                            <span className="text-sm font-medium leading-tight text-foreground truncate">
+                              {page.label}
+                            </span>
+                            <span className="text-xs text-muted-foreground leading-snug truncate">
+                              {meta.subtitle}
+                            </span>
                           </span>
                         </span>
                         <SidebarMenuMeta>
-                          <span className="sidebar-menu-trailing">
-                            <span className="sidebar-count-badge">{itemCount}</span>
-                            {isExpanded ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+                          <span className="flex items-center gap-1.5">
+                            <span className="inline-flex items-center justify-center min-w-7 px-2 py-0.5 rounded-full border border-border text-xs font-bold bg-accent text-primary">
+                              {itemCount}
+                            </span>
+                            {isExpanded ? (
+                              <ChevronDown size={14} className="text-muted-foreground" />
+                            ) : (
+                              <ChevronRight size={14} className="text-muted-foreground" />
+                            )}
                           </span>
                         </SidebarMenuMeta>
                       </SidebarMenuButton>
-                      <SidebarSubmenu className={isExpanded ? "open" : "closed"}>
+                      <SidebarSubmenu
+                        className={cn(
+                          "overflow-hidden transition-all duration-200",
+                          isExpanded ? "max-h-[5000px] opacity-100" : "max-h-0 opacity-0"
+                        )}
+                      >
                         {renderSidebarNodes(page.id, children)}
                       </SidebarSubmenu>
                     </SidebarMenuItem>

@@ -67,25 +67,25 @@ export function UfhLmwhFondaparinuxGuide() {
   const [tab, setTab] = useState("overview");
 
   return (
-    <section className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <div className="asa-guide-header-top">
-          <div className="asa-guide-header-copy">
-            <div className="asa-badge-row">
-              <span className="asa-badge asa-badge-blue">Clinical Guide</span>
-              <span className="asa-badge asa-badge-teal">Parenteral Anticoagulants</span>
+    <section className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex-1 min-w-0">
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Clinical Guide</span>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-teal-100 text-teal-700">Parenteral Anticoagulants</span>
             </div>
-            <h2 className="asa-guide-title">Unfractionated Heparin, Low Molecular Weight Heparin and Fondaparinux</h2>
+            <h2 className="text-2xl font-bold leading-tight mt-1">Unfractionated Heparin, Low Molecular Weight Heparin and Fondaparinux</h2>
           </div>
         </div>
 
-        <div className="asa-objective-strip">
+        <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-muted/60 text-sm text-muted-foreground border border-border/50">
           <strong>Objective:</strong> Guidance on the use of UFH, LMWH, and fondaparinux for the prevention and treatment of venous and arterial thromboembolic events.
         </div>
       </div>
 
-      <div className="asa-tabs">
-        <div className="asa-tab-bar" role="tablist" aria-label="UFH LMWH Fondaparinux guide sections">
+      <div className="grid gap-4">
+        <div className="flex gap-1 p-1 rounded-xl bg-muted overflow-x-auto" role="tablist" aria-label="UFH LMWH Fondaparinux guide sections">
           {tabs.map(([id, label]) => (
             <button
               key={id}
@@ -100,20 +100,20 @@ export function UfhLmwhFondaparinuxGuide() {
 
         {/* -- Overview -- */}
         {tab === "overview" ? (
-          <div className="asa-tab-body">
-            <div className="asa-sections">
-              <article className="asa-section-card">
+          <div className="grid gap-4">
+            <div className="grid gap-3.5">
+              <article className="rounded-xl border bg-card shadow-sm p-5">
                 <h3><Dot tone="blue" />Mechanism of Action</h3>
-                <ul className="asa-ind-list">
+                <ul className="list-none p-0 space-y-1">
                   <li><strong>UFH and LMWH:</strong> Form complexes with antithrombin (AT), inhibiting thrombin (IIa), factor Xa, IXa, XIa, and XIIa, thereby reducing fibrin formation.</li>
                   <li><strong>LMWH:</strong> Derived from UFH by depolymerization. Retains anti-Xa activity with reduced anti-IIa activity. More predictable pharmacokinetics allow fixed weight-based dosing without routine monitoring.</li>
                   <li><strong>Fondaparinux:</strong> Synthetic pentasaccharide that specifically inhibits factor Xa via antithrombin. Does NOT inactivate thrombin.</li>
                 </ul>
               </article>
 
-              <article className="asa-section-card">
+              <article className="rounded-xl border bg-card shadow-sm p-5">
                 <h3><Dot tone="teal" />Indications for UFH and LMWH</h3>
-                <ul className="asa-ind-list">
+                <ul className="list-none p-0 space-y-1">
                   <li>VTE prevention and treatment</li>
                   <li>Superficial vein thrombosis (SVT)</li>
                   <li>Acute coronary syndromes (ACS)</li>
@@ -128,9 +128,9 @@ export function UfhLmwhFondaparinuxGuide() {
                 </ul>
               </article>
 
-              <article className="asa-section-card">
+              <article className="rounded-xl border bg-card shadow-sm p-5">
                 <h3><Dot tone="purple" />Indications for Fondaparinux</h3>
-                <ul className="asa-ind-list">
+                <ul className="list-none p-0 space-y-1">
                   <li>VTE prevention and treatment</li>
                   <li>Superficial vein thrombosis (SVT)</li>
                   <li>Acute coronary syndromes (without PCI as sole agent due to catheter thrombosis risk)</li>
@@ -138,7 +138,7 @@ export function UfhLmwhFondaparinuxGuide() {
                 </ul>
               </article>
 
-              <div className="asa-alert asa-alert-warn">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
                 <div>
                   <strong>Fondaparinux and PCI:</strong> Fondaparinux should not be used as the sole anticoagulant during PCI due to increased risk of catheter thrombosis. Supplemental UFH or bivalirudin is required.
                 </div>
@@ -149,11 +149,11 @@ export function UfhLmwhFondaparinuxGuide() {
 
         {/* -- UFH Dosing -- */}
         {tab === "ufh" ? (
-          <div className="asa-tab-body">
-            <div className="asa-sections">
-              <article className="asa-section-card">
+          <div className="grid gap-4">
+            <div className="grid gap-3.5">
+              <article className="rounded-xl border bg-card shadow-sm p-5">
                 <h3><Dot tone="blue" />UFH Dosing by Indication</h3>
-                <table className="asa-dose-table">
+                <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr>
                       <th>Indication</th>
@@ -165,7 +165,7 @@ export function UfhLmwhFondaparinuxGuide() {
                     {ufhDosingRows.map((row) => (
                       <tr key={row[0]}>
                         <td>{row[0]}</td>
-                        <td className="dose-highlight">{row[1]}</td>
+                        <td className="font-bold text-foreground">{row[1]}</td>
                         <td>{row[2]}</td>
                       </tr>
                     ))}
@@ -173,7 +173,7 @@ export function UfhLmwhFondaparinuxGuide() {
                 </table>
               </article>
 
-              <div className="asa-alert asa-alert-info">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
                 <div>
                   <strong>aPTT Nomogram:</strong> Therapeutic IV UFH should be titrated using an institutional weight-based nomogram. Check aPTT every 6 hours until two consecutive therapeutic values, then monitor daily.
                 </div>
@@ -184,11 +184,11 @@ export function UfhLmwhFondaparinuxGuide() {
 
         {/* -- LMWH Dosing -- */}
         {tab === "lmwh" ? (
-          <div className="asa-tab-body">
-            <div className="asa-sections">
-              <article className="asa-section-card">
+          <div className="grid gap-4">
+            <div className="grid gap-3.5">
+              <article className="rounded-xl border bg-card shadow-sm p-5">
                 <h3><Dot tone="teal" />VTE Prophylaxis</h3>
-                <table className="asa-dose-table">
+                <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr>
                       <th>Agent</th>
@@ -199,16 +199,16 @@ export function UfhLmwhFondaparinuxGuide() {
                     {lmwhProphylaxisRows.map((row) => (
                       <tr key={row[0]}>
                         <td>{row[0]}</td>
-                        <td className="dose-highlight">{row[1]}</td>
+                        <td className="font-bold text-foreground">{row[1]}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </article>
 
-              <article className="asa-section-card">
+              <article className="rounded-xl border bg-card shadow-sm p-5">
                 <h3><Dot tone="blue" />VTE Treatment</h3>
-                <table className="asa-dose-table">
+                <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr>
                       <th>Agent</th>
@@ -219,16 +219,16 @@ export function UfhLmwhFondaparinuxGuide() {
                     {lmwhTreatmentRows.map((row) => (
                       <tr key={row[0]}>
                         <td>{row[0]}</td>
-                        <td className="dose-highlight">{row[1]}</td>
+                        <td className="font-bold text-foreground">{row[1]}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </article>
 
-              <article className="asa-section-card">
+              <article className="rounded-xl border bg-card shadow-sm p-5">
                 <h3><Dot tone="orange" />ACS Dosing</h3>
-                <table className="asa-dose-table">
+                <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr>
                       <th>Scenario</th>
@@ -239,14 +239,14 @@ export function UfhLmwhFondaparinuxGuide() {
                     {lmwhAcsRows.map((row) => (
                       <tr key={row[0]}>
                         <td>{row[0]}</td>
-                        <td className="dose-highlight">{row[1]}</td>
+                        <td className="font-bold text-foreground">{row[1]}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </article>
 
-              <div className="asa-alert asa-alert-info">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
                 <div>
                   <strong>Dosing weight:</strong> Therapeutic LMWH dosing is based on actual body weight. There is no established maximum dose cap.
                 </div>
@@ -257,11 +257,11 @@ export function UfhLmwhFondaparinuxGuide() {
 
         {/* -- Fondaparinux -- */}
         {tab === "fondaparinux" ? (
-          <div className="asa-tab-body">
-            <div className="asa-sections">
-              <article className="asa-section-card">
+          <div className="grid gap-4">
+            <div className="grid gap-3.5">
+              <article className="rounded-xl border bg-card shadow-sm p-5">
                 <h3><Dot tone="purple" />Fondaparinux Dosing</h3>
-                <table className="asa-dose-table">
+                <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr>
                       <th>Indication</th>
@@ -272,20 +272,20 @@ export function UfhLmwhFondaparinuxGuide() {
                     {fondaparinuxDosingRows.map((row) => (
                       <tr key={row[0]}>
                         <td>{row[0]}</td>
-                        <td className="dose-highlight">{row[1]}</td>
+                        <td className="font-bold text-foreground">{row[1]}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </article>
 
-              <div className="asa-alert asa-alert-danger">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
                 <div>
                   <strong>Renal contraindication:</strong> Fondaparinux is CONTRAINDICATED when CrCl is less than 30 mL/min (Cockcroft-Gault).
                 </div>
               </div>
 
-              <div className="asa-alert asa-alert-warn">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
                 <div>
                   <strong>No reversal agent:</strong> There is no specific reversal agent for fondaparinux that is widely available. Andexanet alfa is licensed but has not received broad public reimbursement.
                 </div>
@@ -296,11 +296,11 @@ export function UfhLmwhFondaparinuxGuide() {
 
         {/* -- Monitoring -- */}
         {tab === "monitoring" ? (
-          <div className="asa-tab-body">
-            <div className="asa-sections">
-              <article className="asa-section-card">
+          <div className="grid gap-4">
+            <div className="grid gap-3.5">
+              <article className="rounded-xl border bg-card shadow-sm p-5">
                 <h3><Dot tone="blue" />IV UFH Monitoring</h3>
-                <ul className="asa-ind-list">
+                <ul className="list-none p-0 space-y-1">
                   <li>Baseline: CBC, PT/INR, aPTT before initiation.</li>
                   <li>Check aPTT every 6 hours until two consecutive values are therapeutic, then monitor daily.</li>
                   <li>Use an institutional weight-based nomogram for dose adjustments.</li>
@@ -309,9 +309,9 @@ export function UfhLmwhFondaparinuxGuide() {
                 </ul>
               </article>
 
-              <article className="asa-section-card">
+              <article className="rounded-xl border bg-card shadow-sm p-5">
                 <h3><Dot tone="teal" />LMWH Monitoring</h3>
-                <ul className="asa-ind-list">
+                <ul className="list-none p-0 space-y-1">
                   <li>Baseline: CBC and serum creatinine.</li>
                   <li>Routine anti-Xa monitoring is NOT required for most patients.</li>
                   <li>Consider anti-Xa monitoring in renal impairment or pregnancy, though therapeutic targets remain uncertain.</li>
@@ -319,9 +319,9 @@ export function UfhLmwhFondaparinuxGuide() {
                 </ul>
               </article>
 
-              <article className="asa-section-card">
+              <article className="rounded-xl border bg-card shadow-sm p-5">
                 <h3><Dot tone="purple" />Fondaparinux Monitoring</h3>
-                <ul className="asa-ind-list">
+                <ul className="list-none p-0 space-y-1">
                   <li>Specialist consultation is recommended for monitoring decisions.</li>
                   <li>If anti-Xa monitoring is needed, specific fondaparinux-calibrated assays are required (standard LMWH calibrators are not appropriate).</li>
                 </ul>
@@ -332,16 +332,16 @@ export function UfhLmwhFondaparinuxGuide() {
 
         {/* -- Adverse Effects -- */}
         {tab === "adverse" ? (
-          <div className="asa-tab-body">
-            <div className="asa-sections">
-              <article className="asa-section-card">
+          <div className="grid gap-4">
+            <div className="grid gap-3.5">
+              <article className="rounded-xl border bg-card shadow-sm p-5">
                 <h3><Dot tone="danger" />Bleeding</h3>
-                <p className="asa-section-copy">Bleeding is the most common adverse effect of all three agents. Risk increases with higher doses, concomitant antiplatelet therapy, renal impairment, and advanced age.</p>
+                <p className="text-sm text-foreground leading-relaxed mb-4">Bleeding is the most common adverse effect of all three agents. Risk increases with higher doses, concomitant antiplatelet therapy, renal impairment, and advanced age.</p>
               </article>
 
-              <article className="asa-section-card">
+              <article className="rounded-xl border bg-card shadow-sm p-5">
                 <h3><Dot tone="danger" />Heparin-Induced Thrombocytopenia (HIT)</h3>
-                <ul className="asa-ind-list">
+                <ul className="list-none p-0 space-y-1">
                   <li>Occurs in up to 5% of patients receiving UFH.</li>
                   <li>Less common with LMWH.</li>
                   <li>If HIT is suspected, stop ALL heparin sources (including flushes and coated catheters). See the <GuideLink to="hit">HIT Guide</GuideLink> for full management.</li>
@@ -349,16 +349,16 @@ export function UfhLmwhFondaparinuxGuide() {
                 </ul>
               </article>
 
-              <article className="asa-section-card">
+              <article className="rounded-xl border bg-card shadow-sm p-5">
                 <h3><Dot tone="orange" />Other Adverse Effects</h3>
-                <ul className="asa-ind-list">
+                <ul className="list-none p-0 space-y-1">
                   <li><strong>Osteoporosis:</strong> Uncommon; associated with prolonged high-dose UFH therapy.</li>
                   <li><strong>Hyperkalemia:</strong> Rare; caused by aldosterone suppression.</li>
                   <li><strong>Elevated AST/ALT:</strong> Mild, clinically insignificant transaminase elevations that typically resolve within 15 to 30 days.</li>
                 </ul>
               </article>
 
-              <div className="asa-alert asa-alert-danger">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
                 <div>
                   <strong>HIT alert:</strong> Monitor platelet count in any patient receiving UFH for 4 or more days. A 50% drop from baseline or new thrombosis should prompt immediate investigation for HIT.
                 </div>
@@ -369,11 +369,11 @@ export function UfhLmwhFondaparinuxGuide() {
 
         {/* -- Special Considerations -- */}
         {tab === "special" ? (
-          <div className="asa-tab-body">
-            <div className="asa-sections">
-              <article className="asa-section-card">
+          <div className="grid gap-4">
+            <div className="grid gap-3.5">
+              <article className="rounded-xl border bg-card shadow-sm p-5">
                 <h3><Dot tone="purple" />Periprocedural Management</h3>
-                <ul className="asa-ind-list">
+                <ul className="list-none p-0 space-y-1">
                   <li><strong>IV UFH:</strong> Stop 4 to 6 hours before the procedure.</li>
                   <li><strong>Prophylactic LMWH/UFH:</strong> Generally no need to stop for most minor procedures.</li>
                   <li><strong>Therapeutic OD LMWH:</strong> Give last dose 2 days before the procedure.</li>
@@ -382,23 +382,23 @@ export function UfhLmwhFondaparinuxGuide() {
                 </ul>
               </article>
 
-              <article className="asa-section-card">
+              <article className="rounded-xl border bg-card shadow-sm p-5">
                 <h3><Dot tone="danger" />Bleeding Reversal</h3>
-                <ul className="asa-ind-list">
+                <ul className="list-none p-0 space-y-1">
                   <li><strong>UFH:</strong> Protamine sulfate (1 mg per 100 U of UFH given in the preceding 2 to 3 hours).</li>
                   <li><strong>LMWH:</strong> Protamine is less effective but should be used if needed. It partially reverses anti-IIa activity but has minimal effect on anti-Xa.</li>
                   <li><strong>Fondaparinux:</strong> No widely available reversal agent. Andexanet alfa is licensed but has not received broad public reimbursement.</li>
                 </ul>
               </article>
 
-              <article className="asa-section-card">
+              <article className="rounded-xl border bg-card shadow-sm p-5">
                 <h3><Dot tone="blue" />Warfarin Overlap</h3>
-                <p className="asa-section-copy">When transitioning to <GuideLink to="warfarin">warfarin</GuideLink>, start warfarin on the same day as heparin. Overlap for at least 5 days and until the INR is therapeutic (2.0 to 3.0) on two consecutive days before discontinuing the parenteral agent.</p>
+                <p className="text-sm text-foreground leading-relaxed mb-4">When transitioning to <GuideLink to="warfarin">warfarin</GuideLink>, start warfarin on the same day as heparin. Overlap for at least 5 days and until the INR is therapeutic (2.0 to 3.0) on two consecutive days before discontinuing the parenteral agent.</p>
               </article>
 
-              <article className="asa-section-card">
+              <article className="rounded-xl border bg-card shadow-sm p-5">
                 <h3><Dot tone="teal" />Pregnancy</h3>
-                <ul className="asa-ind-list">
+                <ul className="list-none p-0 space-y-1">
                   <li>LMWH or UFH are the preferred anticoagulants in pregnancy (DOACs and warfarin are contraindicated in pregnancy). See <GuideLink to="pregVte">Pregnancy: VTE Treatment</GuideLink> and <GuideLink to="pregProphylaxis">Pregnancy: Thromboprophylaxis</GuideLink>.</li>
                   <li>Peripartum planning is essential, with multidisciplinary coordination for timing of last dose and neuraxial anaesthesia.</li>
                   <li>Breastfeeding is safe with LMWH and warfarin.</li>
@@ -406,9 +406,9 @@ export function UfhLmwhFondaparinuxGuide() {
                 </ul>
               </article>
 
-              <article className="asa-section-card">
+              <article className="rounded-xl border bg-card shadow-sm p-5">
                 <h3><Dot tone="orange" />Renal Impairment</h3>
-                <ul className="asa-ind-list">
+                <ul className="list-none p-0 space-y-1">
                   <li>LMWH is renally excreted; use Cockcroft-Gault to estimate CrCl.</li>
                   <li>CrCl less than 30 mL/min: specialist consultation recommended before using LMWH.</li>
                   <li>Tinzaparin has demonstrated no significant accumulation down to CrCl 20 mL/min.</li>
@@ -417,9 +417,9 @@ export function UfhLmwhFondaparinuxGuide() {
                 </ul>
               </article>
 
-              <article className="asa-section-card">
+              <article className="rounded-xl border bg-card shadow-sm p-5">
                 <h3><Dot tone="gray" />Pediatrics</h3>
-                <ul className="asa-ind-list">
+                <ul className="list-none p-0 space-y-1">
                   <li>Dosing is age-dependent; neonates and infants require higher weight-based doses than older children.</li>
                   <li>UFH target anti-Xa: 0.35 to 0.7 U/mL.</li>
                   <li>Maximum UFH bolus: 75 to 100 U/kg.</li>
@@ -432,11 +432,11 @@ export function UfhLmwhFondaparinuxGuide() {
 
         {/* -- References -- */}
         {tab === "references" ? (
-          <div className="asa-tab-body">
-            <div className="asa-sections">
-              <article className="asa-section-card">
+          <div className="grid gap-4">
+            <div className="grid gap-3.5">
+              <article className="rounded-xl border bg-card shadow-sm p-5">
                 <h3><Dot tone="gray" />Related Clinical Guides</h3>
-                <ul className="asa-related-list">
+                <ul className="list-none p-0 divide-y divide-border">
                   <li><GuideLink to="doacsPeriop">DOACs: Perioperative Management</GuideLink></li>
                   <li><GuideLink to="warfarinPeriop">Warfarin: Perioperative Management</GuideLink></li>
                   <li><GuideLink to="dvtTreatment">Deep Vein Thrombosis (DVT): Treatment</GuideLink></li>
@@ -447,9 +447,9 @@ export function UfhLmwhFondaparinuxGuide() {
                 </ul>
               </article>
 
-              <article className="asa-section-card">
+              <article className="rounded-xl border bg-card shadow-sm p-5">
                 <h3><Dot tone="gray" />References</h3>
-                <ol className="asa-ref-list">
+                <ol className="list-none p-0 divide-y divide-border text-sm">
                   {references.map((item) => <li key={item}>{item}</li>)}
                 </ol>
               </article>
@@ -458,7 +458,7 @@ export function UfhLmwhFondaparinuxGuide() {
         ) : null}
       </div>
 
-      <div className="asa-guide-footer">
+      <div className="rounded-xl border bg-muted/50 p-4 text-xs text-muted-foreground">
         <p><strong>UFH, LMWH &amp; Fondaparinux</strong> | Clinical Guide</p>
         <p>Not a substitute for clinical judgement. Always seek appropriate specialist input when needed.</p>
       </div>

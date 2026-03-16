@@ -363,35 +363,35 @@ export function HeartValvesGuide() {
   const [tab, setTab] = useState("overview");
 
   return (
-    <section className="asa-guide-shell valves-guide-shell">
+    <section className="grid gap-4">
 
       {/* ── Header ── */}
-      <div className="asa-guide-header">
-        <div className="asa-guide-header-top">
-          <div className="asa-guide-header-copy">
-            <div className="asa-badge-row">
-              <span className="asa-badge asa-badge-blue">Clinical Guide</span>
-              <span className="asa-badge asa-badge-green">Valve Antithrombotics</span>
-              <span className="asa-badge asa-badge-teal">Antithrombotic Therapy</span>
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex-1 min-w-0">
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Clinical Guide</span>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700">Valve Antithrombotics</span>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-teal-100 text-teal-700">Antithrombotic Therapy</span>
             </div>
-            <h2 className="asa-guide-title">Bioprosthetic &amp; Mechanical Heart Valves: Antithrombotic Therapy</h2>
-            <div className="asa-guide-meta">
+            <h2 className="text-2xl font-bold leading-tight mt-1">Bioprosthetic &amp; Mechanical Heart Valves: Antithrombotic Therapy</h2>
+            <div className="flex flex-wrap gap-3 mt-3 text-xs text-muted-foreground">
               <span><Calendar size={13} /> Updated 6 February 2026</span>
               <span><FileText size={13} /> Surgical · Repaired · Transcatheter · Mechanical</span>
             </div>
           </div>
-          <div className="asa-guide-icon valves-guide-icon">
+          <div className="flex items-center justify-center w-12 h-12 rounded-xl border border-rose-200 bg-rose-50 text-rose-600 flex-shrink-0">
             <HeartPulse size={24} />
           </div>
         </div>
-        <div className="asa-objective-strip">
+        <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-muted/60 text-sm text-muted-foreground border border-border/50">
           <strong>Objective:</strong> To summarise evidence-based recommendations for antithrombotic drug management in patients with surgical or transcatheter valve replacement or repair, including mechanical prostheses.
         </div>
       </div>
 
       {/* ── Clinical background strip ── */}
-      <div className="asa-mechanism-card valves-mechanism-card">
-        <div className="asa-mechanism-icon valves-mechanism-icon">
+      <div className="rounded-xl border bg-card shadow-sm p-5">
+        <div className="flex items-center justify-center w-10 h-10 rounded-lg border border-rose-200 bg-rose-50 text-rose-600 mb-2">
           <Orbit size={18} />
         </div>
         <div>
@@ -403,8 +403,8 @@ export function HeartValvesGuide() {
       </div>
 
       {/* ── Tabs ── */}
-      <div className="asa-tabs">
-        <div className="asa-tabs-list" role="tablist" aria-label="Heart valve guide sections">
+      <div className="grid gap-4">
+        <div className="flex gap-1 p-1 rounded-xl bg-muted" role="tablist" aria-label="Heart valve guide sections">
           {tabs.map(([id, label]) => (
             <button
               key={id}
@@ -419,10 +419,10 @@ export function HeartValvesGuide() {
 
         {/* ── OVERVIEW ── */}
         {tab === "overview" && (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />High-Yield Clinical Orientation</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>Bioprosthetic valve recommendations are derived from older, lower-quality observational data; guideline bodies differ in emphasis between warfarin and antiplatelet therapy early post-implantation.</li>
                 <li>Transcatheter valve antithrombotic decisions are increasingly patient-driven — bleeding and thrombotic risk often reflect comorbidity burden more than the device itself.</li>
                 <li>Mechanical valves require lifelong warfarin; DOACs are <strong>contraindicated</strong> in this population based on randomised trial evidence.</li>
@@ -432,26 +432,26 @@ export function HeartValvesGuide() {
             </article>
 
             {/* Decision framework grid */}
-            <div className="asa-ae-grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))" }}>
-              <div className="asa-ae-card" style={{ borderColor: "#bfdbfe", background: "#eff6ff" }}>
-                <div className="asa-ae-card-label" style={{ color: "#1d4ed8" }}>Step 1 — Valve type</div>
-                <div className="asa-ae-card-text" style={{ color: "#1e40af", fontSize: "0.88rem", marginTop: "0.3rem", fontWeight: 500 }}>Bioprosthetic · Mechanical · Repaired · Transcatheter</div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))" }}>
+              <div className="rounded-lg border p-3" style={{ borderColor: "#bfdbfe", background: "#eff6ff" }}>
+                <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1" style={{ color: "#1d4ed8" }}>Step 1 — Valve type</div>
+                <div className="text-sm leading-relaxed" style={{ color: "#1e40af", fontSize: "0.88rem", marginTop: "0.3rem", fontWeight: 500 }}>Bioprosthetic · Mechanical · Repaired · Transcatheter</div>
               </div>
-              <div className="asa-ae-card" style={{ borderColor: "#bbf7d0", background: "#f0fdf4" }}>
-                <div className="asa-ae-card-label" style={{ color: "#166534" }}>Step 2 — Valve position</div>
-                <div className="asa-ae-card-text" style={{ color: "#15803d", fontSize: "0.88rem", marginTop: "0.3rem", fontWeight: 500 }}>Aortic (lower risk) · Mitral (higher risk) · Tricuspid / Pulmonic</div>
+              <div className="rounded-lg border p-3" style={{ borderColor: "#bbf7d0", background: "#f0fdf4" }}>
+                <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1" style={{ color: "#166534" }}>Step 2 — Valve position</div>
+                <div className="text-sm leading-relaxed" style={{ color: "#15803d", fontSize: "0.88rem", marginTop: "0.3rem", fontWeight: 500 }}>Aortic (lower risk) · Mitral (higher risk) · Tricuspid / Pulmonic</div>
               </div>
-              <div className="asa-ae-card" style={{ borderColor: "#fde68a", background: "#fffbeb" }}>
-                <div className="asa-ae-card-label" style={{ color: "#92400e" }}>Step 3 — Additional indication?</div>
-                <div className="asa-ae-card-text" style={{ color: "#b45309", fontSize: "0.88rem", marginTop: "0.3rem", fontWeight: 500 }}>AF · Prior stroke/TE · Hypercoagulable state</div>
+              <div className="rounded-lg border p-3" style={{ borderColor: "#fde68a", background: "#fffbeb" }}>
+                <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1" style={{ color: "#92400e" }}>Step 3 — Additional indication?</div>
+                <div className="text-sm leading-relaxed" style={{ color: "#b45309", fontSize: "0.88rem", marginTop: "0.3rem", fontWeight: 500 }}>AF · Prior stroke/TE · Hypercoagulable state</div>
               </div>
-              <div className="asa-ae-card" style={{ borderColor: "#fecaca", background: "#fef2f2" }}>
-                <div className="asa-ae-card-label" style={{ color: "#b91c1c" }}>Step 4 — Bleeding risk</div>
-                <div className="asa-ae-card-text" style={{ color: "#991b1b", fontSize: "0.88rem", marginTop: "0.3rem", fontWeight: 500 }}>GI bleed history · High-fall risk · Renal/hepatic impairment</div>
+              <div className="rounded-lg border p-3" style={{ borderColor: "#fecaca", background: "#fef2f2" }}>
+                <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1" style={{ color: "#b91c1c" }}>Step 4 — Bleeding risk</div>
+                <div className="text-sm leading-relaxed" style={{ color: "#991b1b", fontSize: "0.88rem", marginTop: "0.3rem", fontWeight: 500 }}>GI bleed history · High-fall risk · Renal/hepatic impairment</div>
               </div>
             </div>
 
-            <div className="asa-alert asa-alert-info">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <Info size={16} />
               <div>All antithrombotic decisions in valve disease require individualised assessment of thrombotic versus haemorrhagic risk. These recommendations should be applied alongside valve-specific cardiology input.</div>
             </div>
@@ -460,13 +460,13 @@ export function HeartValvesGuide() {
 
         {/* ── BIOPROSTHETIC ── */}
         {tab === "bioprosthetic" && (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="green" />Surgical Bioprosthetic Valves and Valve Repair</h3>
-              <p className="asa-section-copy" style={{ fontSize: "0.9rem", color: "#6b7280" }}>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ fontSize: "0.9rem", color: "#6b7280" }}>
                 Without a separate indication for anticoagulation. Guidelines from ACC/AHA, ESC, and ACCP differ in emphasis; choices below reflect consensus where alignment exists.
               </p>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Valve situation</th>
@@ -477,7 +477,7 @@ export function HeartValvesGuide() {
                 <tbody>
                   {bioprostheticRows.map((row) => (
                     <tr key={row[0]}>
-                      <td className="dose-highlight" style={{ display: "flex", alignItems: "center", gap: 0 }}>
+                      <td className="font-bold text-foreground" style={{ display: "flex", alignItems: "center", gap: 0 }}>
                         <ToneStripe tone={row[3]} />{row[0]}
                       </td>
                       <td>{row[1]}</td>
@@ -488,24 +488,24 @@ export function HeartValvesGuide() {
               </table>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />With Atrial Fibrillation or Another Anticoagulation Indication</h3>
-              <p className="asa-section-copy" style={{ fontSize: "0.9rem" }}>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ fontSize: "0.9rem" }}>
                 Use long-term anticoagulation as per the Stroke Prevention in Atrial Fibrillation pathway. Trial evidence supports DOACs long-term, but warfarin remains preferred in the first 3 months post-surgery.
               </p>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 {bioprostheticAFNote.map((item) => <li key={item}>{item}</li>)}
               </ul>
             </article>
 
-            <div className="asa-alert asa-alert-teal">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-teal-200 bg-teal-50 text-teal-900">
               <CheckCircle2 size={16} />
               <div>
                 When AF is present, DOACs (rivaroxaban, edoxaban) are acceptable for <strong>long-term</strong> anticoagulation in patients with surgical bioprosthetic valves. Warfarin remains preferred in the <strong>first 3 months</strong> post-operatively.
               </div>
             </div>
 
-            <div className="asa-alert asa-alert-danger">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <XCircle size={16} />
               <div>
                 <strong>Dabigatran:</strong> Increased pericardial bleeding observed in RE-ALIGN trial in early post-cardiac surgery. Avoid in the first 3 months after any cardiac valve surgery.
@@ -516,13 +516,13 @@ export function HeartValvesGuide() {
 
         {/* ── TRANSCATHETER ── */}
         {tab === "transcatheter" && (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="teal" />Transcatheter Valve Antithrombotic Strategies</h3>
-              <p className="asa-section-copy" style={{ fontSize: "0.9rem", color: "#6b7280" }}>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ fontSize: "0.9rem", color: "#6b7280" }}>
                 Randomised data are limited except for TAVR. For non-aortic transcatheter devices, antithrombotic decisions should be individualised by comorbidity burden as much as by device type.
               </p>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Intervention</th>
@@ -533,7 +533,7 @@ export function HeartValvesGuide() {
                 <tbody>
                   {transcatheterRows.map((row) => (
                     <tr key={row[0]}>
-                      <td className="dose-highlight">
+                      <td className="font-bold text-foreground">
                         <ToneStripe tone={row[3]} />{row[0]}
                       </td>
                       <td>{row[1]}</td>
@@ -544,14 +544,14 @@ export function HeartValvesGuide() {
               </table>
             </article>
 
-            <div className="asa-alert asa-alert-warn">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <AlertCircle size={16} />
               <div>
                 <strong>TAVR evolution:</strong> Earlier trials used empiric DAPT (embolic debris observed in ~75% of cases). Meta-analysis of 4 RCTs now shows DAPT increases bleeding without reducing clinical thrombosis. Single antiplatelet therapy is the current standard.
               </div>
             </div>
 
-            <div className="asa-alert asa-alert-info">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <Info size={16} />
               <div>
                 <strong>ENVISAGE-TAVI:</strong> Edoxaban was non-inferior to warfarin in TAVR patients with AF, but was associated with higher major bleeding (primarily gastrointestinal). DOACs are acceptable but require careful patient selection.
@@ -562,12 +562,12 @@ export function HeartValvesGuide() {
 
         {/* ── MECHANICAL ── */}
         {tab === "mechanical" && (
-          <div className="asa-tab-panel">
+          <div className="grid gap-3.5">
 
             {/* Valve types */}
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Mechanical Valve Types</h3>
-              <div className="asa-ae-grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(170px, 1fr))" }}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(170px, 1fr))" }}>
                 {valveTypes.map((v) => {
                   const bg = { blue: "#eff6ff", orange: "#fffbeb", danger: "#fef2f2" };
                   const bc = { blue: "#bfdbfe", orange: "#fde68a", danger: "#fecaca" };
@@ -575,11 +575,11 @@ export function HeartValvesGuide() {
                   return (
                     <div
                       key={v.name}
-                      className="asa-ae-card"
+                      className="rounded-lg border p-3"
                       style={{ borderColor: bc[v.tone], background: bg[v.tone] }}
                     >
-                      <div className="asa-ae-card-label" style={{ color: col[v.tone] }}>{v.name}</div>
-                      <div className="asa-ae-card-text" style={{ color: col[v.tone] }}>{v.examples}</div>
+                      <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1" style={{ color: col[v.tone] }}>{v.name}</div>
+                      <div className="text-sm leading-relaxed" style={{ color: col[v.tone] }}>{v.examples}</div>
                       <div style={{ marginTop: "0.25rem", fontSize: "0.78rem", color: col[v.tone], opacity: 0.8 }}>{v.note}</div>
                     </div>
                   );
@@ -588,9 +588,9 @@ export function HeartValvesGuide() {
             </article>
 
             {/* Annual stroke risk */}
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="danger" />Annual Stroke / Valve Thrombosis Risk Despite Anticoagulation</h3>
-              <div className="asa-ae-grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))" }}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))" }}>
                 {mechanicalRiskFacts.map((f) => {
                   const bg = { green: "#f0fdf4", orange: "#fffbeb", danger: "#fef2f2" };
                   const bc = { green: "#bbf7d0", orange: "#fde68a", danger: "#fecaca" };
@@ -598,7 +598,7 @@ export function HeartValvesGuide() {
                   return (
                     <div
                       key={f.label}
-                      className="asa-ae-card"
+                      className="rounded-lg border p-3"
                       style={{ borderColor: bc[f.tone], background: bg[f.tone], textAlign: "center" }}
                     >
                       <div style={{ fontSize: "1.6rem", fontWeight: 800, color: col[f.tone], letterSpacing: "-0.02em" }}>{f.risk}</div>
@@ -613,9 +613,9 @@ export function HeartValvesGuide() {
             </article>
 
             {/* DOAC contraindication */}
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="danger" />DOACs — Contraindicated in All Mechanical Valves</h3>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Drug</th>
@@ -626,7 +626,7 @@ export function HeartValvesGuide() {
                 <tbody>
                   {doaCContraindications.map((row) => (
                     <tr key={row.drug}>
-                      <td className="dose-highlight">{row.drug}</td>
+                      <td className="font-bold text-foreground">{row.drug}</td>
                       <td>{row.trial}</td>
                       <td style={{ color: "#b91c1c", fontSize: "0.88rem" }}>{row.finding}</td>
                     </tr>
@@ -635,14 +635,14 @@ export function HeartValvesGuide() {
               </table>
             </article>
 
-            <div className="asa-alert asa-alert-danger">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <ShieldAlert size={16} />
               <div>
                 <strong>All DOACs are contraindicated in mechanical heart valves.</strong> Warfarin with an intensity based on valve type and location remains the only evidence-based anticoagulant for this population. See the INR Targets tab for specific ranges.
               </div>
             </div>
 
-            <div className="asa-alert asa-alert-info">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <Syringe size={16} />
               <div>
                 <strong>Aspirin:</strong> ASA 81 mg daily should be added to warfarin in patients with a mechanical aortic or mitral valve who are at <em>low</em> risk of bleeding. Use caution with a history of gastrointestinal bleeding.
@@ -653,10 +653,10 @@ export function HeartValvesGuide() {
 
         {/* ── INR TARGETS ── */}
         {tab === "inr-targets" && (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Warfarin INR Target Ranges by Valve Type and Position</h3>
-              <p className="asa-section-copy" style={{ fontSize: "0.9rem", color: "#6b7280" }}>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ fontSize: "0.9rem", color: "#6b7280" }}>
                 Target INR depends on valve design, manufacturer, position, and patient stroke risk factors. All patients receive warfarin for the first 3 months post-implantation at standard intensity regardless of valve design.
               </p>
               <div style={{ display: "grid", gap: "0.65rem" }}>
@@ -693,18 +693,18 @@ export function HeartValvesGuide() {
             </article>
 
             {/* On-X timeline */}
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="teal" />On-X Aortic Valve — Treatment Phase Summary</h3>
-              <p className="asa-section-copy" style={{ fontSize: "0.9rem", color: "#6b7280" }}>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ fontSize: "0.9rem", color: "#6b7280" }}>
                 PROACT trial demonstrated non-inferiority of lower INR (1.5–2.0) vs standard (2.0–3.0) for composite of bleeding and thromboembolism, driven by reduced bleeding. However, numerically higher stroke and TIA rates were observed in the lower-target group.
               </p>
-              <div className="asa-timeline">
+              <div className="relative pl-6 space-y-4 border-l-2 border-border">
                 {onXSummary.map((step) => (
-                  <div key={step.phase} className="asa-timeline-step">
+                  <div key={step.phase} className="relative">
                     <div className={`asa-timeline-dot ${step.tone}`} />
                     <div>
-                      <div className="asa-timeline-label" style={{ fontWeight: 700, fontSize: "0.85rem", color: "#111827" }}>{step.phase}</div>
-                      <div className="asa-timeline-desc" style={{ fontSize: "0.84rem", color: "#6b7280", marginTop: "0.2rem", lineHeight: 1.55 }}>
+                      <div className="text-sm font-semibold" style={{ fontWeight: 700, fontSize: "0.85rem", color: "#111827" }}>{step.phase}</div>
+                      <div className="text-sm text-muted-foreground" style={{ fontSize: "0.84rem", color: "#6b7280", marginTop: "0.2rem", lineHeight: 1.55 }}>
                         <INRBadge value={step.inr} tone={step.tone} />
                         <span style={{ marginLeft: "0.5rem" }}>{step.note}</span>
                       </div>
@@ -714,14 +714,14 @@ export function HeartValvesGuide() {
               </div>
             </article>
 
-            <div className="asa-alert asa-alert-warn">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <AlertTriangle size={16} />
               <div>
                 <strong>PROACT Mitral:</strong> The trial of lower INR targets in On-X mitral valve patients (target 2.0–2.5 vs standard 2.5–3.5) was stopped early due to failure to meet non-inferiority. Lower INR targets should NOT be used for mechanical mitral valves regardless of design.
               </div>
             </div>
 
-            <div className="asa-alert asa-alert-info">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <Info size={16} />
               <div>
                 † Higher intensity (INR target 3.0) should be considered in patients with ball-cage valves, additional stroke risk factors, or prior thromboembolic events. ‡ Co-administration of ASA 81 mg daily is recommended in patients at low bleeding risk.
@@ -732,31 +732,31 @@ export function HeartValvesGuide() {
 
         {/* ── SUBCLINICAL THROMBOSIS ── */}
         {tab === "subclinical" && (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="orange" />Subclinical Valve Thrombosis</h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Subclinical valve leaflet thrombosis is defined by <strong>hypoattenuated leaflet thickening</strong> on CT with reduced leaflet motion in the absence of clinical symptoms. Initially identified in TAVR patients, it has also been recognised in surgical aortic valve replacement patients. It is associated with an <strong>increased risk of clinical stroke</strong>.
               </p>
-              <div className="asa-ae-grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))" }}>
-                <div className="asa-ae-card" style={{ borderColor: "#fde68a", background: "#fffbeb" }}>
-                  <div className="asa-ae-card-label" style={{ color: "#92400e" }}>CT feature</div>
-                  <div className="asa-ae-card-text" style={{ color: "#78350f", fontSize: "0.85rem", marginTop: "0.25rem", fontWeight: 500 }}>Hypoattenuated leaflet thickening (HALT) with reduced leaflet motion on 4D CT</div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))" }}>
+                <div className="rounded-lg border p-3" style={{ borderColor: "#fde68a", background: "#fffbeb" }}>
+                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1" style={{ color: "#92400e" }}>CT feature</div>
+                  <div className="text-sm leading-relaxed" style={{ color: "#78350f", fontSize: "0.85rem", marginTop: "0.25rem", fontWeight: 500 }}>Hypoattenuated leaflet thickening (HALT) with reduced leaflet motion on 4D CT</div>
                 </div>
-                <div className="asa-ae-card" style={{ borderColor: "#bfdbfe", background: "#eff6ff" }}>
-                  <div className="asa-ae-card-label" style={{ color: "#1d4ed8" }}>Clinical impact</div>
-                  <div className="asa-ae-card-text" style={{ color: "#1e40af", fontSize: "0.85rem", marginTop: "0.25rem", fontWeight: 500 }}>Associated with increased clinical stroke risk; also seen after surgical AVR</div>
+                <div className="rounded-lg border p-3" style={{ borderColor: "#bfdbfe", background: "#eff6ff" }}>
+                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1" style={{ color: "#1d4ed8" }}>Clinical impact</div>
+                  <div className="text-sm leading-relaxed" style={{ color: "#1e40af", fontSize: "0.85rem", marginTop: "0.25rem", fontWeight: 500 }}>Associated with increased clinical stroke risk; also seen after surgical AVR</div>
                 </div>
-                <div className="asa-ae-card" style={{ borderColor: "#99f6e4", background: "#f0fdfa" }}>
-                  <div className="asa-ae-card-label" style={{ color: "#0f766e" }}>Effect of anticoagulation</div>
-                  <div className="asa-ae-card-text" style={{ color: "#0f766e", fontSize: "0.85rem", marginTop: "0.25rem", fontWeight: 500 }}>Anticoagulation reduces subclinical leaflet thrombosis compared to DAPT</div>
+                <div className="rounded-lg border p-3" style={{ borderColor: "#99f6e4", background: "#f0fdfa" }}>
+                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1" style={{ color: "#0f766e" }}>Effect of anticoagulation</div>
+                  <div className="text-sm leading-relaxed" style={{ color: "#0f766e", fontSize: "0.85rem", marginTop: "0.25rem", fontWeight: 500 }}>Anticoagulation reduces subclinical leaflet thrombosis compared to DAPT</div>
                 </div>
               </div>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="teal" />Key Trials Examining DOAC Use for Subclinical Thrombosis in TAVR</h3>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Trial</th>
@@ -769,7 +769,7 @@ export function HeartValvesGuide() {
                     const col = { danger: "#b91c1c", orange: "#92400e", teal: "#0f766e" };
                     return (
                       <tr key={row.name}>
-                        <td className="dose-highlight">{row.name}</td>
+                        <td className="font-bold text-foreground">{row.name}</td>
                         <td>{row.drug}</td>
                         <td style={{ color: col[row.tone] || "#4b5563", fontSize: "0.88rem" }}>{row.result}</td>
                       </tr>
@@ -779,14 +779,14 @@ export function HeartValvesGuide() {
               </table>
             </article>
 
-            <div className="asa-alert asa-alert-warn">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <Microscope size={16} />
               <div>
                 <strong>Current guidance:</strong> Routine CT screening for subclinical valve thrombosis and routine preventive anticoagulation are <strong>not recommended</strong>. However, patients found to have increased gradients on echocardiogram or thrombosis on CT should likely receive anticoagulation with warfarin. GALILEO and ATLANTIS both showed concerning mortality signals with DOACs in unselected TAVR patients.
               </div>
             </div>
 
-            <div className="asa-alert asa-alert-teal">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-teal-200 bg-teal-50 text-teal-900">
               <Zap size={16} />
               <div>
                 <strong>Bottom line:</strong> Anticoagulation reduces subclinical leaflet thrombosis but has not demonstrated net clinical benefit when used routinely in TAVR patients without a separate indication. Evidence is evolving.
@@ -797,10 +797,10 @@ export function HeartValvesGuide() {
 
         {/* ── SPECIAL SITUATIONS ── */}
         {tab === "special" && (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Special Clinical Situations</h3>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Scenario</th>
@@ -811,7 +811,7 @@ export function HeartValvesGuide() {
                 <tbody>
                   {specialRows.map((row) => (
                     <tr key={row[0]}>
-                      <td className="dose-highlight"><ToneStripe tone={row[3]} />{row[0]}</td>
+                      <td className="font-bold text-foreground"><ToneStripe tone={row[3]} />{row[0]}</td>
                       <td>{row[1]}</td>
                       <td style={{ color: "#6b7280", fontSize: "0.88rem" }}>{row[2]}</td>
                     </tr>
@@ -821,18 +821,18 @@ export function HeartValvesGuide() {
             </article>
 
             {/* Pregnancy timeline */}
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="purple" />Pregnancy — Anticoagulation Pathway</h3>
-              <p className="asa-section-copy" style={{ fontSize: "0.9rem", color: "#6b7280" }}>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ fontSize: "0.9rem", color: "#6b7280" }}>
                 Pregnant women with mechanical valves are at especially high risk of thrombotic complications. Management requires a <strong>multidisciplinary team</strong> with expertise in maternal cardiac care and thrombosis.
               </p>
-              <div className="asa-timeline">
+              <div className="relative pl-6 space-y-4 border-l-2 border-border">
                 {pregnancyTimeline.map((step) => (
-                  <div key={step.phase} className="asa-timeline-step">
+                  <div key={step.phase} className="relative">
                     <div className={`asa-timeline-dot ${step.tone}`} />
                     <div>
-                      <div className="asa-timeline-label" style={{ fontWeight: 700, fontSize: "0.85rem", color: "#111827" }}>{step.phase}</div>
-                      <div className="asa-timeline-desc" style={{ fontSize: "0.84rem", color: "#6b7280", marginTop: "0.2rem", lineHeight: 1.55 }}>
+                      <div className="text-sm font-semibold" style={{ fontWeight: 700, fontSize: "0.85rem", color: "#111827" }}>{step.phase}</div>
+                      <div className="text-sm text-muted-foreground" style={{ fontSize: "0.84rem", color: "#6b7280", marginTop: "0.2rem", lineHeight: 1.55 }}>
                         {step.action}
                       </div>
                     </div>
@@ -841,14 +841,14 @@ export function HeartValvesGuide() {
               </div>
             </article>
 
-            <div className="asa-alert asa-alert-info">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <Stethoscope size={16} />
               <div>
                 Periprocedural management: Bridging with UFH or LMWH is indicated before elective surgery. Warfarin does NOT need to be interrupted for minor procedures (cataract surgery, dental procedures, skin biopsies). Refer to the Warfarin Perioperative Management clinical guide.
               </div>
             </div>
 
-            <div className="asa-alert asa-alert-teal">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-teal-200 bg-teal-50 text-teal-900">
               <Baby size={16} />
               <div>
                 Paediatric patients should be co-managed with paediatric cardiology and haematology input. No randomised trials are available in children; adult recommendations serve as a guide.
@@ -859,10 +859,10 @@ export function HeartValvesGuide() {
 
         {/* ── REFERENCES ── */}
         {tab === "references" && (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="gray" />References</h3>
-              <ol className="asa-ref-list" style={{ paddingLeft: "1.2rem", listStyle: "decimal" }}>
+              <ol className="list-none p-0 divide-y divide-border text-sm" style={{ paddingLeft: "1.2rem", listStyle: "decimal" }}>
                 {references.map((item, i) => (
                   <li key={i} style={{ padding: "0.35rem 0", color: "#4b5563", lineHeight: 1.6, fontSize: "0.87rem" }}>
                     {item}
@@ -878,7 +878,7 @@ export function HeartValvesGuide() {
       </div>
 
       {/* ── Footer ── */}
-      <div className="asa-guide-footer" style={{ padding: "1rem 1.35rem" }}>
+      <div className="rounded-xl border bg-muted/50 p-4 text-xs text-muted-foreground" style={{ padding: "1rem 1.35rem" }}>
         <p style={{ margin: 0, fontWeight: 700, color: "#374151" }}>
           Bioprosthetic and Mechanical Heart Valves: Antithrombotic Therapy
         </p>

@@ -153,29 +153,29 @@ export function WarfarinPeriopGuide() {
   const [tab, setTab] = useState("overview");
 
   return (
-    <section className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <div className="asa-guide-header-top">
-          <div className="asa-guide-header-copy">
-            <div className="asa-badge-row">
-              <span className="asa-badge asa-badge-blue">Clinical Guide</span>
-              <span className="asa-badge asa-badge-teal">Perioperative Management</span>
-              <span className="asa-badge asa-badge-gray">Warfarin</span>
+    <section className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex-1 min-w-0">
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Clinical Guide</span>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-teal-100 text-teal-700">Perioperative Management</span>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600">Warfarin</span>
             </div>
-            <h2 className="asa-guide-title">Warfarin: Perioperative Management</h2>
-            <div className="asa-guide-meta">
+            <h2 className="text-2xl font-bold leading-tight mt-1">Warfarin: Perioperative Management</h2>
+            <div className="flex flex-wrap gap-3 mt-3 text-xs text-muted-foreground">
               <span>Elective and urgent surgical settings</span>
             </div>
           </div>
         </div>
 
-        <div className="asa-objective-strip">
+        <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-muted/60 text-sm text-muted-foreground border border-border/50">
           <strong>Objective:</strong> Practical approach to the perioperative management of patients receiving warfarin who require elective or urgent surgery, including guidance on bridging anticoagulation.
         </div>
       </div>
 
-      <div className="asa-tabs">
-        <div className="asa-tabs-list" role="tablist" aria-label="Warfarin perioperative guide sections">
+      <div className="grid gap-4">
+        <div className="flex gap-1 p-1 rounded-xl bg-muted" role="tablist" aria-label="Warfarin perioperative guide sections">
           {tabs.map(([id, label]) => (
             <button
               key={id}
@@ -190,29 +190,29 @@ export function WarfarinPeriopGuide() {
 
         {/* -- Overview -- */}
         {tab === "overview" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Perioperative Management of Warfarin</h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Patients on long-term warfarin who require elective or urgent surgery need careful perioperative planning. The key decision involves whether to provide <strong>bridging anticoagulation</strong> &mdash; using a short-acting parenteral anticoagulant (typically low-molecular-weight heparin) during the period when warfarin is interrupted.
               </p>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="amber" />What Is Bridging?</h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Bridging refers to the administration of a short-acting anticoagulant (subcutaneous LMWH or, rarely, intravenous unfractionated heparin) before and/or after surgery to minimise the time the patient spends without therapeutic anticoagulation.
               </p>
-              <div className="asa-alert asa-alert-warn">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
                 <div>
                   <strong>Important distinction:</strong> Bridging anticoagulation is different from routine thromboprophylaxis. Bridging uses therapeutic or near-therapeutic doses and targets patients whose underlying condition (e.g., mechanical valve, high-risk AF) warrants continued anticoagulation.
                 </div>
               </div>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="purple" />Key Principles</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>Assess both <strong>bleeding risk</strong> (procedure-related) and <strong>thromboembolism risk</strong> (patient-related).</li>
                 <li>There is <strong>no strong evidence-based indication</strong> for bridging in most patients; it should be reserved for those at highest thrombotic risk.</li>
                 <li>Bridging is associated with an approximately <strong>2% increase in major bleeding</strong> and <strong>10-15% risk of minor bleeding</strong>.</li>
@@ -220,9 +220,9 @@ export function WarfarinPeriopGuide() {
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="default" />Monitoring</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li><strong>SC LMWH bridging:</strong> No routine laboratory monitoring required.</li>
                 <li><strong>IV UFH bridging:</strong> Requires aPTT monitoring to maintain therapeutic range.</li>
                 <li><strong>INR:</strong> Check on Day &minus;1 or Day 0 to ensure INR is adequate for safe surgery (target &le;1.5).</li>
@@ -233,25 +233,25 @@ export function WarfarinPeriopGuide() {
 
         {/* -- Bridging Options -- */}
         {tab === "bridging" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Bridging Recommendation Summary</h3>
-              <div className="asa-alert asa-alert-info">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
                 <div>
                   There are <strong>no strong evidence-based indications</strong> for bridging. The decision is based on estimated thromboembolism risk.
                 </div>
               </div>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li><strong>HIGH thromboembolism risk:</strong> Bridging is suggested.</li>
                 <li><strong>LOW thromboembolism risk:</strong> Bridging is NOT suggested.</li>
                 <li><strong>INTERMEDIATE risk:</strong> Bridging is optional &mdash; individualize the decision based on patient and procedure factors.</li>
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="teal" />Therapeutic-Dose LMWH for Bridging</h3>
-              <p className="asa-section-copy">Pre-operative and post-operative (when therapeutic bridging is selected):</p>
-              <table className="asa-dose-table">
+              <p className="text-sm text-foreground leading-relaxed mb-4">Pre-operative and post-operative (when therapeutic bridging is selected):</p>
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Agent</th>
@@ -263,23 +263,23 @@ export function WarfarinPeriopGuide() {
                   {bridgingTherapeuticDoses.map((row) => (
                     <tr key={row[0]}>
                       <td>{row[0]}</td>
-                      <td className="dose-highlight">{row[1]}</td>
-                      <td className="dose-highlight">{row[2]}</td>
+                      <td className="font-bold text-foreground">{row[1]}</td>
+                      <td className="font-bold text-foreground">{row[2]}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
-              <p className="asa-section-copy" style={{ marginTop: "0.5rem", fontSize: "0.85rem", opacity: 0.8 }}>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ marginTop: "0.5rem", fontSize: "0.85rem", opacity: 0.8 }}>
                 IV unfractionated heparin (UFH) is rarely used and requires aPTT monitoring. See <GuideLink to="ufhLmwh">UFH, LMWH & Fondaparinux Guide</GuideLink> for full dosing details.
               </p>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="amber" />Prophylactic-Dose LMWH (High Bleed-Risk Surgery)</h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 For high bleed-risk procedures, use <strong>prophylactic-dose</strong> LMWH post-operatively instead of therapeutic dose. All given at half dose the day before surgery.
               </p>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Agent</th>
@@ -290,31 +290,31 @@ export function WarfarinPeriopGuide() {
                   {bridgingProphylacticDoses.map((row) => (
                     <tr key={row[0]}>
                       <td>{row[0]}</td>
-                      <td className="dose-highlight">{row[1]}</td>
+                      <td className="font-bold text-foreground">{row[1]}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="red" />Cardiac, Spinal, and Intracranial Surgery</h3>
-              <div className="asa-alert asa-alert-danger">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
                 <div>
                   <strong>AVOID post-operative therapeutic bridging</strong> for cardiac surgery, spinal/epidural procedures, and intracranial surgery.
                 </div>
               </div>
-              <p className="asa-section-copy">Options for these high-risk procedures include:</p>
-              <ul className="asa-ind-list">
+              <p className="text-sm text-foreground leading-relaxed mb-4">Options for these high-risk procedures include:</p>
+              <ul className="list-none p-0 space-y-1">
                 <li>Low-dose prophylactic LMWH only.</li>
                 <li>Delay resumption of anticoagulation entirely.</li>
                 <li>Resume warfarin alone without bridging.</li>
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="danger" />Adverse Effects of Bridging</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li><strong>Major bleeding:</strong> approximately 2% increased risk compared to no bridging.</li>
                 <li><strong>Minor bleeding:</strong> 10-15% risk (injection-site haematomas, wound oozing, epistaxis).</li>
               </ul>
@@ -324,22 +324,22 @@ export function WarfarinPeriopGuide() {
 
         {/* -- Risk Stratification -- */}
         {tab === "risk" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Table 1: Procedure Bleeding Risk</h3>
-              <div className="asa-sections">
+              <div className="grid gap-3.5">
                 {bleedRiskProcedures.map((cat) => (
-                  <div key={cat.risk} className="asa-section-card" style={{ borderLeft: `3px solid var(--asa-${cat.tone}, #888)` }}>
+                  <div key={cat.risk} className="rounded-xl border bg-card shadow-sm p-5" style={{ borderLeft: `3px solid var(--asa-${cat.tone}, #888)` }}>
                     <h4 style={{ marginBottom: "0.5rem" }}>
                       <Dot tone={cat.tone} />
                       {cat.risk} Bleed Risk
                     </h4>
-                    <ul className="asa-ind-list">
+                    <ul className="list-none p-0 space-y-1">
                       {cat.procedures.map((p) => (
                         <li key={p}>{p}</li>
                       ))}
                     </ul>
-                    <div className="asa-alert asa-alert-info" style={{ marginTop: "0.5rem" }}>
+                    <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900" style={{ marginTop: "0.5rem" }}>
                       <div>{cat.note}</div>
                     </div>
                   </div>
@@ -347,19 +347,19 @@ export function WarfarinPeriopGuide() {
               </div>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="purple" />Table 2: Thromboembolism Risk and Bridging Decision</h3>
-              <div className="asa-sections">
+              <div className="grid gap-3.5">
                 {thromboembolismRisk.map((tier) => (
-                  <div key={tier.level} className="asa-section-card" style={{ borderLeft: `3px solid var(--asa-${tier.tone}, #888)` }}>
+                  <div key={tier.level} className="rounded-xl border bg-card shadow-sm p-5" style={{ borderLeft: `3px solid var(--asa-${tier.tone}, #888)` }}>
                     <h4 style={{ marginBottom: "0.25rem" }}>
                       <Dot tone={tier.tone} />
                       {tier.level} Risk
                     </h4>
-                    <p className="asa-section-copy" style={{ fontWeight: 600, marginBottom: "0.5rem" }}>
+                    <p className="text-sm text-foreground leading-relaxed mb-4" style={{ fontWeight: 600, marginBottom: "0.5rem" }}>
                       {tier.recommendation}
                     </p>
-                    <ul className="asa-ind-list">
+                    <ul className="list-none p-0 space-y-1">
                       {tier.criteria.map((c) => (
                         <li key={c}>{c}</li>
                       ))}
@@ -373,27 +373,27 @@ export function WarfarinPeriopGuide() {
 
         {/* -- Management Algorithm -- */}
         {tab === "algorithm" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Perioperative Warfarin Management Timeline</h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 The following step-by-step timeline outlines the perioperative management approach for patients on warfarin requiring surgery with an indication for warfarin interruption.
               </p>
 
-              <div className="asa-timeline">
+              <div className="relative pl-6 space-y-4 border-l-2 border-border">
                 {timelineSteps.map((step) => (
-                  <div key={step.day} className="asa-timeline-step">
+                  <div key={step.day} className="relative">
                     <div className={`asa-timeline-dot ${step.tone}`} />
-                    <div className="asa-timeline-label">{step.day}: {step.action}</div>
-                    <div className="asa-timeline-desc">{step.detail}</div>
+                    <div className="text-sm font-semibold">{step.day}: {step.action}</div>
+                    <div className="text-sm text-muted-foreground">{step.detail}</div>
                   </div>
                 ))}
               </div>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="green" />Post-operative Bridging Resumption Summary</h3>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Surgical bleed risk</th>
@@ -404,30 +404,30 @@ export function WarfarinPeriopGuide() {
                 <tbody>
                   <tr>
                     <td>Low bleed risk</td>
-                    <td className="dose-highlight">Therapeutic dose</td>
+                    <td className="font-bold text-foreground">Therapeutic dose</td>
                     <td>24 hours post-procedure</td>
                   </tr>
                   <tr>
                     <td>High bleed risk</td>
-                    <td className="dose-highlight">Prophylactic dose initially</td>
+                    <td className="font-bold text-foreground">Prophylactic dose initially</td>
                     <td>48-72 hours post-procedure</td>
                   </tr>
                   <tr>
                     <td>Very high bleed risk (cardiac, spinal, intracranial)</td>
-                    <td className="dose-highlight">Prophylactic dose or none</td>
+                    <td className="font-bold text-foreground">Prophylactic dose or none</td>
                     <td>Delay; resume warfarin alone</td>
                   </tr>
                 </tbody>
               </table>
             </article>
 
-            <div className="asa-alert asa-alert-warn">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <div>
                 <strong>Vitamin K rescue:</strong> If INR is &gt;1.5 on Day &minus;1, administer <strong>vitamin K 1-2 mg PO</strong> to normalise the INR by the morning of surgery. Recheck INR on Day 0.
               </div>
             </div>
 
-            <div className="asa-alert asa-alert-info">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <div>
                 <strong>Warfarin restart:</strong> Resume warfarin at the patient's usual maintenance dose on the evening of surgery or the next morning. Therapeutic INR typically takes 4-5 days to re-establish. Continue LMWH bridging until INR is &ge;2.0 for at least 24 hours.
               </div>
@@ -437,59 +437,59 @@ export function WarfarinPeriopGuide() {
 
         {/* -- Special Considerations -- */}
         {tab === "special" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Dental Procedures</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li><strong>1-2 tooth extractions or root canal:</strong> Continue warfarin without interruption.</li>
                 <li>Use <strong>tranexamic acid mouthwash</strong>: 5 mL rinse pre-procedure, then 2-3 times daily for 3-5 days after.</li>
                 <li>For extensive dental surgery (multiple extractions, implants), consider warfarin interruption on an individual basis.</li>
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="teal" />Eye Surgery</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li><strong>Cataract surgery</strong> (especially with topical anaesthesia): Continue warfarin.</li>
                 <li>Other eye procedures (vitreoretinal surgery, glaucoma surgery): Generally interrupt warfarin. Consult ophthalmology for procedure-specific guidance.</li>
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="purple" />Colonoscopy and Gastroscopy</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>Usually interrupt warfarin due to the potential for polypectomy.</li>
                 <li>Caution: bleeding may occur <strong>2-7 days</strong> after large polyp removal.</li>
                 <li>Endoscopic clips may reduce post-polypectomy bleeding risk.</li>
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="amber" />Diagnostic Procedures Requiring Caution</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>Kidney biopsy</li>
                 <li>Liver biopsy</li>
                 <li>Prostate biopsy</li>
                 <li>ERCP with sphincterotomy</li>
                 <li>Pacemaker or ICD placement</li>
               </ul>
-              <div className="asa-alert asa-alert-warn">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
                 <div>These procedures carry higher bleeding risk. Warfarin interruption is generally required, with bridging guided by thromboembolism risk.</div>
               </div>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="orange" />Perioperative Antiplatelet Therapy</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li><strong>ASA:</strong> Continue perioperatively if patient is not at high bleeding risk, especially in the setting of recent ACS or coronary stent. See <GuideLink to="asa">ASA Guide</GuideLink>.</li>
                 <li><strong>P2Y12 inhibitors</strong> (<GuideLink to="clopidogrel">clopidogrel</GuideLink>, ticagrelor, prasugrel): Stop <strong>5-7 days</strong> before surgery.</li>
                 <li>Coordinate with cardiology if patient requires both anticoagulation and antiplatelet therapy perioperatively. See <GuideLink to="anticoagAntiplatelet">Anticoagulation in Patients Requiring Antiplatelet Therapy</GuideLink>.</li>
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="green" />Pediatric Considerations</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>Adult perioperative guidelines are generally appropriate for children on warfarin.</li>
                 <li><strong>Key difference:</strong> Hold warfarin for <strong>3 days</strong> (not 5 days as in adults) before surgery, due to shorter warfarin half-life in children.</li>
                 <li>Consult <strong>pediatric hematology and/or pediatric cardiology</strong> for bridging decisions.</li>
@@ -500,10 +500,10 @@ export function WarfarinPeriopGuide() {
 
         {/* -- References -- */}
         {tab === "references" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="gray" />Related Clinical Guides</h3>
-              <ul className="asa-related-list">
+              <ul className="list-none p-0 divide-y divide-border">
                 <li><GuideLink to="warfarin">Warfarin: General Guide</GuideLink></li>
                 <li><GuideLink to="warfarinInr">Warfarin: Management of Out-of-Range INRs</GuideLink></li>
                 <li><GuideLink to="warfarinPoc">Warfarin: Point-of-Care INR Monitoring</GuideLink></li>
@@ -512,9 +512,9 @@ export function WarfarinPeriopGuide() {
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="gray" />References</h3>
-              <ol className="asa-ref-list">
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
@@ -524,7 +524,7 @@ export function WarfarinPeriopGuide() {
         ) : null}
       </div>
 
-      <div className="asa-guide-footer">
+      <div className="rounded-xl border bg-muted/50 p-4 text-xs text-muted-foreground">
         <p><strong>Warfarin: Perioperative Management</strong> | Clinical Guide</p>
         <p>Not a substitute for clinical judgement. Always seek appropriate specialist input when needed.</p>
       </div>

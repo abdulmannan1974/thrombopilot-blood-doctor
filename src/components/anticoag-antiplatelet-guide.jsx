@@ -101,32 +101,32 @@ export function AnticoagAntiplateletGuide() {
   const [tab, setTab] = useState("overview");
 
   return (
-    <section className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <div className="asa-guide-header-top">
-          <div className="asa-guide-header-copy">
-            <div className="asa-badge-row">
-              <span className="asa-badge asa-badge-blue">Clinical Guide</span>
-              <span className="asa-badge asa-badge-teal">Antithrombotic Therapy</span>
+    <section className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex-1 min-w-0">
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Clinical Guide</span>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-teal-100 text-teal-700">Antithrombotic Therapy</span>
             </div>
-            <h2 className="asa-guide-title">
+            <h2 className="text-2xl font-bold leading-tight mt-1">
               Anticoagulation in Patients Requiring Antiplatelet Therapy
             </h2>
-            <div className="asa-guide-meta">
+            <div className="flex flex-wrap gap-3 mt-3 text-xs text-muted-foreground">
               <span>Combined antithrombotic strategies for OAC + antiplatelet overlap</span>
             </div>
           </div>
         </div>
 
-        <div className="asa-objective-strip">
+        <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-muted/60 text-sm text-muted-foreground border border-border/50">
           <strong>Objective:</strong> To guide the management of patients who require
           both oral anticoagulation and antiplatelet therapy, balancing thrombotic
           protection against bleeding risk.
         </div>
       </div>
 
-      <div className="asa-tabs">
-        <div className="asa-tabs-list" role="tablist" aria-label="Anticoagulation-antiplatelet guide sections">
+      <div className="grid gap-4">
+        <div className="flex gap-1 p-1 rounded-xl bg-muted" role="tablist" aria-label="Anticoagulation-antiplatelet guide sections">
           {tabs.map(([id, label]) => (
             <button
               key={id}
@@ -141,10 +141,10 @@ export function AnticoagAntiplateletGuide() {
 
         {/* ── Overview ── */}
         {tab === "overview" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
-              <h3><span className="asa-dot blue" />Clinical Context</h3>
-              <ul className="asa-ind-list">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3><span className="w-2 h-2 rounded-full bg-blue-500 flex-shrink-0" />Clinical Context</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>
                   Approximately 20% of patients with atrial fibrillation present
                   with concomitant acute coronary syndrome.
@@ -165,16 +165,16 @@ export function AnticoagAntiplateletGuide() {
               </ul>
             </article>
 
-            <div className="asa-alert asa-alert-danger">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <strong>P2Y12 inhibitor restriction:</strong> Only clopidogrel should
               be used as the P2Y12 inhibitor in combination with OAC. Ticagrelor
               and prasugrel are NOT recommended when combined with oral
               anticoagulation.
             </div>
 
-            <article className="asa-section-card">
-              <h3><span className="asa-dot teal" />DOAC and Warfarin Dosing in Combination Therapy</h3>
-              <table className="asa-dose-table">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3><span className="w-2 h-2 rounded-full bg-teal-500 flex-shrink-0" />DOAC and Warfarin Dosing in Combination Therapy</h3>
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Anticoagulant</th>
@@ -185,7 +185,7 @@ export function AnticoagAntiplateletGuide() {
                 <tbody>
                   {doacDoses.map((row) => (
                     <tr key={row[0]}>
-                      <td className="dose-highlight">{row[0]}</td>
+                      <td className="font-bold text-foreground">{row[0]}</td>
                       <td>{row[1]}</td>
                       <td>{row[2]}</td>
                     </tr>
@@ -198,21 +198,21 @@ export function AnticoagAntiplateletGuide() {
 
         {/* ── AF + ACS/PCI ── */}
         {tab === "af-acs" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
-              <h3><span className="asa-dot purple" />CCS/CAIC 2023 Algorithm: AF + ACS/PCI</h3>
-              <div className="asa-timeline">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3><span className="w-2 h-2 rounded-full bg-purple-500 flex-shrink-0" />CCS/CAIC 2023 Algorithm: AF + ACS/PCI</h3>
+              <div className="relative pl-6 space-y-4 border-l-2 border-border">
                 {algorithmSteps.map((s) => (
-                  <div key={s.step} className="asa-timeline-step">
+                  <div key={s.step} className="relative">
                     <div className={`asa-timeline-dot ${s.tone}`} />
-                    <div className="asa-timeline-label">Step {s.step}</div>
-                    <div className="asa-timeline-desc">{s.text}</div>
+                    <div className="text-sm font-semibold">Step {s.step}</div>
+                    <div className="text-sm text-muted-foreground">{s.text}</div>
                   </div>
                 ))}
               </div>
             </article>
 
-            <div className="asa-alert asa-alert-info">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <strong>Key principle:</strong> The duration of triple therapy
               should be as short as possible. In most patients, ASA should be
               discontinued within 30 days and replaced by dual pathway therapy
@@ -223,10 +223,10 @@ export function AnticoagAntiplateletGuide() {
 
         {/* ── VTE + ACS/PCI ── */}
         {tab === "vte-acs" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
-              <h3><span className="asa-dot orange" />VTE with Concurrent ACS or PCI</h3>
-              <ul className="asa-ind-list">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3><span className="w-2 h-2 rounded-full bg-orange-500 flex-shrink-0" />VTE with Concurrent ACS or PCI</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>
                   <strong>Active VTE (within last 3 months):</strong> maintain
                   full therapeutic OAC doses even when concurrent antiplatelet
@@ -254,7 +254,7 @@ export function AnticoagAntiplateletGuide() {
               </ul>
             </article>
 
-            <div className="asa-alert asa-alert-warn">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <strong>Timing note:</strong> Therapeutic-dose OAC takes priority
               over antiplatelet de-escalation during the first 3 months of acute
               VTE treatment. Balance stent thrombosis risk carefully when
@@ -265,17 +265,17 @@ export function AnticoagAntiplateletGuide() {
 
         {/* ── LV Thrombus ── */}
         {tab === "lv-thrombus" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
-              <h3><span className="asa-dot blue" />LV Thrombus Management</h3>
-              <ul className="asa-ind-list">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3><span className="w-2 h-2 rounded-full bg-blue-500 flex-shrink-0" />LV Thrombus Management</h3>
+              <ul className="list-none p-0 space-y-1">
                 {lvPoints.map((pt) => (
                   <li key={pt}>{pt}</li>
                 ))}
               </ul>
             </article>
 
-            <div className="asa-alert asa-alert-warn">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <strong>Important:</strong> OAC is NOT recommended for patients who
               are merely at risk of LV thrombus without confirmed thrombus on
               imaging (e.g., anterior STEMI alone without documented LV
@@ -286,27 +286,27 @@ export function AnticoagAntiplateletGuide() {
 
         {/* ── Long-term Combination ── */}
         {tab === "longterm" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
-              <h3><span className="asa-dot green" />Long-term OAC + Antiplatelet Therapy</h3>
-              <ul className="asa-ind-list">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3><span className="w-2 h-2 rounded-full bg-green-500 flex-shrink-0" />Long-term OAC + Antiplatelet Therapy</h3>
+              <ul className="list-none p-0 space-y-1">
                 {longtermPoints.map((pt) => (
                   <li key={pt}>{pt}</li>
                 ))}
               </ul>
             </article>
 
-            <article className="asa-section-card">
-              <h3><span className="asa-dot orange" />Potential Exceptions</h3>
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3><span className="w-2 h-2 rounded-full bg-orange-500 flex-shrink-0" />Potential Exceptions</h3>
               {exceptions.map((ex) => (
-                <div key={ex.title} className="asa-ind-group">
-                  <div className="asa-ind-group-label">{ex.title}</div>
-                  <p className="asa-section-copy">{ex.text}</p>
+                <div key={ex.title} className="mb-3">
+                  <div className="flex items-center gap-2 text-sm font-semibold mb-1.5">{ex.title}</div>
+                  <p className="text-sm text-foreground leading-relaxed mb-4">{ex.text}</p>
                 </div>
               ))}
             </article>
 
-            <div className="asa-alert asa-alert-info">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <strong>Bottom line:</strong> For most patients beyond 1 year from
               ACS or PCI, the addition of single antiplatelet therapy to OAC does
               not reduce ischaemic events but does increase major bleeding. OAC
@@ -317,19 +317,19 @@ export function AnticoagAntiplateletGuide() {
 
         {/* ── References ── */}
         {tab === "references" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
-              <h3><span className="asa-dot gray" />Related Clinical Guides</h3>
-              <ul className="asa-related-list">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3><span className="w-2 h-2 rounded-full bg-gray-400 flex-shrink-0" />Related Clinical Guides</h3>
+              <ul className="list-none p-0 divide-y divide-border">
                 {relatedGuideKeys.map((item) => (
                   <li key={item.to}><GuideLink to={item.to}>{item.label}</GuideLink></li>
                 ))}
               </ul>
             </article>
 
-            <article className="asa-section-card">
-              <h3><span className="asa-dot gray" />References</h3>
-              <ol className="asa-ref-list">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3><span className="w-2 h-2 rounded-full bg-gray-400 flex-shrink-0" />References</h3>
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
@@ -339,7 +339,7 @@ export function AnticoagAntiplateletGuide() {
         ) : null}
       </div>
 
-      <div className="asa-guide-footer">
+      <div className="rounded-xl border bg-muted/50 p-4 text-xs text-muted-foreground">
         <p>
           <strong>Anticoagulation in Patients Requiring Antiplatelet Therapy</strong>
         </p>

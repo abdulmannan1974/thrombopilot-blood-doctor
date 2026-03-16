@@ -146,33 +146,33 @@ export function DabigatranGuide() {
   const [tab, setTab] = useState("overview");
 
   return (
-    <section className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <div className="asa-guide-header-top">
-          <div className="asa-guide-header-copy">
-            <div className="asa-badge-row">
-              <span className="asa-badge asa-badge-blue">Clinical Guide</span>
-              <span className="asa-badge asa-badge-teal">Direct Oral Anticoagulant</span>
-              <span className="asa-badge asa-badge-gray">DOAC</span>
+    <section className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex-1 min-w-0">
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Clinical Guide</span>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-teal-100 text-teal-700">Direct Oral Anticoagulant</span>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600">DOAC</span>
             </div>
-            <h2 className="asa-guide-title">Dabigatran (Pradaxa&reg;)</h2>
-            <div className="asa-guide-meta">
+            <h2 className="text-2xl font-bold leading-tight mt-1">Dabigatran (Pradaxa&reg;)</h2>
+            <div className="flex flex-wrap gap-3 mt-3 text-xs text-muted-foreground">
               <span><Calendar size={13} /> Updated 2024</span>
               <span><FileText size={13} /> Clinical Guide</span>
             </div>
           </div>
-          <div className="asa-guide-icon">
+          <div className="flex items-center justify-center w-12 h-12 rounded-xl border border-blue-200 bg-blue-50 text-blue-600 flex-shrink-0">
             <Pill size={24} />
           </div>
         </div>
 
-        <div className="asa-objective-strip">
+        <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-muted/60 text-sm text-muted-foreground border border-border/50">
           <strong>Objective:</strong> To provide guidance on the use of dabigatran etexilate (Pradaxa&reg;) for stroke prevention in atrial fibrillation, VTE treatment and prevention, and thromboprophylaxis after joint replacement surgery.
         </div>
       </div>
 
-      <div className="asa-mechanism-card">
-        <div className="asa-mechanism-icon">
+      <div className="rounded-xl border bg-card shadow-sm p-5">
+        <div className="flex items-center justify-center w-10 h-10 rounded-lg border border-blue-200 bg-blue-50 text-blue-600 mb-2">
           <Syringe size={18} />
         </div>
         <div>
@@ -181,8 +181,8 @@ export function DabigatranGuide() {
         </div>
       </div>
 
-      <div className="asa-tabs">
-        <div className="asa-tabs-list" role="tablist" aria-label="Dabigatran guide sections">
+      <div className="grid gap-4">
+        <div className="flex gap-1 p-1 rounded-xl bg-muted" role="tablist" aria-label="Dabigatran guide sections">
           {tabs.map(([id, label]) => (
             <button
               key={id}
@@ -196,24 +196,24 @@ export function DabigatranGuide() {
         </div>
 
         {tab === "overview" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
-              <h3 className="asa-section-title"><Dot tone="blue" />Approved Indications</h3>
-              <ul className="asa-ind-list">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2"><Dot tone="blue" />Approved Indications</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li><strong>Stroke prevention in non-valvular atrial fibrillation</strong> — reduction of risk of stroke and systemic embolism in patients with AF.</li>
                 <li><strong>VTE treatment</strong> — treatment of deep vein thrombosis (DVT) and pulmonary embolism (PE), and prevention of recurrent DVT and PE.</li>
                 <li><strong>VTE prophylaxis</strong> — prevention of venous thromboembolism after elective total hip or total knee replacement surgery.</li>
               </ul>
             </article>
 
-            <div className="asa-alert asa-alert-red">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <ShieldAlert size={16} />
               <div>
                 <strong>Contraindicated in mechanical heart valves.</strong> The RE-ALIGN trial demonstrated increased thromboembolic and bleeding events with dabigatran compared to <GuideLink to="warfarin">warfarin</GuideLink> in patients with mechanical prosthetic valves.
               </div>
             </div>
 
-            <div className="asa-alert asa-alert-red">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <ShieldAlert size={16} />
               <div>
                 <strong>Contraindicated if CrCl &lt;30 mL/min.</strong> Dabigatran is predominantly renally cleared (~80%). Accumulation occurs with significant renal impairment, substantially increasing bleeding risk.
@@ -223,10 +223,10 @@ export function DabigatranGuide() {
         ) : null}
 
         {tab === "dosing" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
-              <h3 className="asa-section-title"><Dot tone="blue" />Dosing Summary</h3>
-              <table className="asa-dose-table">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2"><Dot tone="blue" />Dosing Summary</h3>
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Indication</th>
@@ -238,7 +238,7 @@ export function DabigatranGuide() {
                   {dosingRows.map((row) => (
                     <tr key={row[0]}>
                       <td>{row[0]}</td>
-                      <td className="dose-highlight">{row[1]}</td>
+                      <td className="font-bold text-foreground">{row[1]}</td>
                       <td>{row[2]}</td>
                     </tr>
                   ))}
@@ -246,14 +246,14 @@ export function DabigatranGuide() {
               </table>
             </article>
 
-            <div className="asa-alert asa-alert-amber">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <AlertCircle size={16} />
               <div>
                 <strong>Dose reduction criteria (110 mg BID):</strong> Age &ge;80 years, or age &ge;75 with at least one additional bleeding risk factor (e.g., moderate renal impairment, concomitant antiplatelet therapy, prior GI bleeding, low body weight).
               </div>
             </div>
 
-            <div className="asa-alert asa-alert-red">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <ShieldAlert size={16} />
               <div>
                 <strong>Renal contraindication:</strong> Do NOT prescribe dabigatran if CrCl &lt;30 mL/min. Monitor renal function at least annually and more frequently in patients with CrCl 30&ndash;50 mL/min.
@@ -263,21 +263,21 @@ export function DabigatranGuide() {
         ) : null}
 
         {tab === "monitoring" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
-              <h3 className="asa-section-title"><Dot tone="teal" />Laboratory Monitoring</h3>
-              <p className="asa-section-copy">Routine coagulation monitoring is not required. However, assessment of drug presence or anticoagulant intensity may be useful in specific clinical situations (bleeding, urgent surgery, suspected non-adherence, renal deterioration). See the <GuideLink to="doacsCoagTests">DOACs: Coagulation Tests</GuideLink> guide for details.</p>
-              <div className="asa-ae-grid">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2"><Dot tone="teal" />Laboratory Monitoring</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">Routine coagulation monitoring is not required. However, assessment of drug presence or anticoagulant intensity may be useful in specific clinical situations (bleeding, urgent surgery, suspected non-adherence, renal deterioration). See the <GuideLink to="doacsCoagTests">DOACs: Coagulation Tests</GuideLink> guide for details.</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {monitoringPoints.map((item) => (
-                  <div key={item.label} className="asa-ae-card default">
-                    <div className="asa-ae-card-label">{item.label}</div>
-                    <div className="asa-ae-card-text">{item.text}</div>
+                  <div key={item.label} className="rounded-lg border border-gray-200 bg-gray-50 p-3">
+                    <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">{item.label}</div>
+                    <div className="text-sm leading-relaxed">{item.text}</div>
                   </div>
                 ))}
               </div>
             </article>
 
-            <div className="asa-alert asa-alert-amber">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <AlertCircle size={16} />
               <div>
                 <strong>Clinical tip:</strong> A normal TCT effectively excludes clinically significant dabigatran levels. aPTT provides qualitative information only and should not be used for dose adjustment.
@@ -287,29 +287,29 @@ export function DabigatranGuide() {
         ) : null}
 
         {tab === "adverse" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
-              <h3 className="asa-section-title"><Dot tone="danger" />Adverse Effects Profile</h3>
-              <div className="asa-ae-grid">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2"><Dot tone="danger" />Adverse Effects Profile</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {adverseEffects.map((item) => (
                   <div key={`${item.label}-${item.text}`} className={`asa-ae-card ${item.tone}`}>
-                    <div className="asa-ae-card-label">{item.label}</div>
-                    <div className="asa-ae-card-text">{item.text}</div>
+                    <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">{item.label}</div>
+                    <div className="text-sm leading-relaxed">{item.text}</div>
                   </div>
                 ))}
               </div>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title"><Dot tone="orange" />Drug Interactions (P-glycoprotein Pathway)</h3>
-              <p className="asa-section-copy">Dabigatran is a P-glycoprotein (P-gp) substrate. Co-administration with P-gp modulators significantly affects drug levels.</p>
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2"><Dot tone="orange" />Drug Interactions (P-glycoprotein Pathway)</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">Dabigatran is a P-glycoprotein (P-gp) substrate. Co-administration with P-gp modulators significantly affects drug levels.</p>
               {drugInteractions.map((group) => (
                 <div key={group.category}>
                   <div className={`asa-alert asa-alert-${group.tone}`} style={{ marginBottom: "0.5rem" }}>
                     <ShieldAlert size={16} />
                     <div>
                       <strong>{group.category}:</strong>
-                      <ul className="asa-ind-list" style={{ marginTop: "0.25rem" }}>
+                      <ul className="list-none p-0 space-y-1" style={{ marginTop: "0.25rem" }}>
                         {group.items.map((item) => <li key={item}>{item}</li>)}
                       </ul>
                     </div>
@@ -318,7 +318,7 @@ export function DabigatranGuide() {
               ))}
             </article>
 
-            <div className="asa-alert asa-alert-amber">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <AlertCircle size={16} />
               <div>
                 <strong>Neuraxial anaesthesia:</strong> Risk of epidural or spinal haematoma with indwelling catheters. Follow <GuideLink to="doacsPeriop">perioperative DOAC management</GuideLink> guidelines for timing of last dose and catheter removal.
@@ -328,24 +328,24 @@ export function DabigatranGuide() {
         ) : null}
 
         {tab === "special" ? (
-          <div className="asa-tab-panel">
+          <div className="grid gap-3.5">
             {specialConsiderations.map((section) => (
-              <article key={section.title} className="asa-section-card">
-                <h3 className="asa-section-title"><Dot tone="orange" />{section.title}</h3>
-                <ul className="asa-ind-list">
+              <article key={section.title} className="rounded-xl border bg-card shadow-sm p-5">
+                <h3 className="text-base font-semibold mb-2"><Dot tone="orange" />{section.title}</h3>
+                <ul className="list-none p-0 space-y-1">
                   {section.items.map((item) => <li key={item}>{item}</li>)}
                 </ul>
               </article>
             ))}
 
-            <div className="asa-alert asa-alert-red">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <ShieldAlert size={16} />
               <div>
                 <strong>Mechanical heart valves:</strong> Dabigatran is CONTRAINDICATED. The RE-ALIGN trial was terminated early due to excess thromboembolic and bleeding events. Use <GuideLink to="warfarin">warfarin</GuideLink> instead.
               </div>
             </div>
 
-            <div className="asa-alert asa-alert-red">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <ShieldAlert size={16} />
               <div>
                 <strong>Pregnancy:</strong> Dabigatran crosses the placenta and must NOT be used during pregnancy. If anticoagulation is required, use LMWH. See the <GuideLink to="ufhLmwh">UFH, LMWH &amp; Fondaparinux</GuideLink> guide.
@@ -355,19 +355,19 @@ export function DabigatranGuide() {
         ) : null}
 
         {tab === "references" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
-              <h3 className="asa-section-title"><Dot tone="gray" />Related Clinical Guides</h3>
-              <ul className="asa-related-list">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2"><Dot tone="gray" />Related Clinical Guides</h3>
+              <ul className="list-none p-0 divide-y divide-border">
                 {relatedGuides.map((item) => (
                   <li key={item.key}><GuideLink to={item.key}>{item.label}</GuideLink></li>
                 ))}
               </ul>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title"><Dot tone="gray" />References</h3>
-              <ol className="asa-ref-list">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2"><Dot tone="gray" />References</h3>
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((item) => <li key={item}>{item}</li>)}
               </ol>
             </article>
@@ -375,7 +375,7 @@ export function DabigatranGuide() {
         ) : null}
       </div>
 
-      <div className="asa-guide-footer">
+      <div className="rounded-xl border bg-muted/50 p-4 text-xs text-muted-foreground">
         <p><strong>Dabigatran (Pradaxa&reg;)</strong> | Clinical Guide | Updated 2024</p>
         <p>The information here is not a substitute for clinical judgement. Always seek appropriate specialist input when needed.</p>
       </div>

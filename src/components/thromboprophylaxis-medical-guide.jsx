@@ -47,81 +47,81 @@ export function ThromboprophylaxisMedicalGuide() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <p className="asa-guide-eyebrow">Clinical Guide</p>
-        <h1 className="asa-guide-title">Thromboprophylaxis: Hospitalized Medical Patients</h1>
-        <p className="asa-guide-lead">
+    <div className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <p className="flex flex-wrap gap-2 mb-2">Clinical Guide</p>
+        <h1 className="text-2xl font-bold leading-tight mt-1">Thromboprophylaxis: Hospitalized Medical Patients</h1>
+        <p className="text-sm text-muted-foreground leading-relaxed mt-2">
           LMWH prophylaxis for acutely ill medical inpatients at increased VTE risk — balanced against bleeding risk. Duration: until discharge only. DOACs NOT recommended in this setting.
         </p>
       </div>
 
-      <div className="asa-tab-bar">
+      <div className="flex gap-1 p-1 rounded-xl bg-muted overflow-x-auto">
         {tabs.map((t, i) => (
           <button key={t} className={`asa-tab-btn${activeTab === i ? " active" : ""}`} onClick={() => setActiveTab(i)}>{t}</button>
         ))}
       </div>
 
-      <div className="asa-tab-body">
+      <div className="grid gap-4">
         {activeTab === 0 && (
-          <div className="asa-sections">
-            <div className="asa-alert asa-alert-blue">
+          <div className="grid gap-3.5">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <strong>Core principle:</strong> Pharmacologic thromboprophylaxis with LMWH for hospitalized medical patients at increased VTE risk who are not bleeding. Duration: until discharge only (not extended). DOACs are NOT recommended in medical inpatients (higher bleeding risk vs LMWH).
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Key Decision Framework</h3>
-              <div className="asa-timeline">
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker">1</div>
-                  <div className="asa-timeline-content">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Key Decision Framework</h3>
+              <div className="relative pl-6 space-y-4 border-l-2 border-border">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary">1</div>
+                  <div className="ml-2">
                     <strong>Assess VTE risk</strong>
                     <p>Use IMPROVE-DD, Padua, or GENEVA scoring systems. Higher risk: stroke, ICU, active cancer, prior VTE.</p>
                   </div>
                 </div>
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker">2</div>
-                  <div className="asa-timeline-content">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary">2</div>
+                  <div className="ml-2">
                     <strong>Assess bleeding risk</strong>
                     <p>Active GI ulcer, recent major bleed, platelets &lt;50 → use mechanical prophylaxis (IPC) instead.</p>
                   </div>
                 </div>
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker">3</div>
-                  <div className="asa-timeline-content">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary">3</div>
+                  <div className="ml-2">
                     <strong>Choose prophylaxis</strong>
                     <p>High VTE risk + acceptable bleeding risk → LMWH. High bleeding risk → IPC, then start LMWH when safe.</p>
                   </div>
                 </div>
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker">4</div>
-                  <div className="asa-timeline-content">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary">4</div>
+                  <div className="ml-2">
                     <strong>Duration: until discharge</strong>
                     <p>Do NOT extend beyond hospitalization. A 2023 NEJM study found no benefit of LMWH beyond 30 days in medical elderly.</p>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="asa-alert asa-alert-red">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <strong>DOACs (apixaban, rivaroxaban, etc.):</strong> Should NOT be used for prophylaxis in medically ill hospitalized patients — RCTs show higher bleeding risk compared to LMWH with no clear net benefit.
             </div>
           </div>
         )}
 
         {activeTab === 1 && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">VTE Risk Factors in Medical Inpatients</h3>
-              <ul className="asa-ind-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">VTE Risk Factors in Medical Inpatients</h3>
+              <ul className="list-none p-0 space-y-1">
                 {vteRiskFactors.map((f) => <li key={f}>{f}</li>)}
               </ul>
-              <p className="asa-section-copy" style={{ marginTop: "0.75rem", fontSize: "0.85rem", color: "var(--muted)" }}>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ marginTop: "0.75rem", fontSize: "0.85rem", color: "var(--muted)" }}>
                 Scoring systems: IMPROVE-DD, Padua Prediction Score, GENEVA risk score. Computerized risk-assessment tools should be implemented where feasible.
               </p>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Bleeding Risk Factors</h3>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Bleeding Risk Factors</h3>
               <div style={{ overflowX: "auto" }}>
-                <table className="asa-dose-table">
+                <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr><th>Factor</th><th>Risk Level</th><th>Action</th></tr>
                   </thead>
@@ -141,11 +141,11 @@ export function ThromboprophylaxisMedicalGuide() {
         )}
 
         {activeTab === 2 && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Pharmacologic Thromboprophylaxis Dosing</h3>
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Pharmacologic Thromboprophylaxis Dosing</h3>
               <div style={{ overflowX: "auto" }}>
-                <table className="asa-dose-table">
+                <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr>
                       <th>Drug</th>
@@ -170,7 +170,7 @@ export function ThromboprophylaxisMedicalGuide() {
                   </tbody>
                 </table>
               </div>
-              <p className="asa-section-copy" style={{ marginTop: "0.75rem", fontSize: "0.85rem", color: "var(--muted)" }}>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ marginTop: "0.75rem", fontSize: "0.85rem", color: "var(--muted)" }}>
                 LMWH is preferred over UFH (less frequent dosing, lower HIT risk). UFH 5,000 U SC BID is an alternative.
               </p>
             </div>
@@ -178,27 +178,27 @@ export function ThromboprophylaxisMedicalGuide() {
         )}
 
         {activeTab === 3 && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Ischemic Stroke</h3>
-              <p className="asa-section-copy">LMWH prophylaxis as for other medical patients. If contraindicated, use IPC (more effective than elastic compression stockings in immobile stroke patients).</p>
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Ischemic Stroke</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">LMWH prophylaxis as for other medical patients. If contraindicated, use IPC (more effective than elastic compression stockings in immobile stroke patients).</p>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">HIT History</h3>
-              <p className="asa-section-copy">Use fondaparinux 2.5 mg SC daily as alternative to UFH/LMWH.</p>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">HIT History</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">Use fondaparinux 2.5 mg SC daily as alternative to UFH/LMWH.</p>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Renal Impairment (CrCl &lt;30 mL/min)</h3>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Renal Impairment (CrCl &lt;30 mL/min)</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>Enoxaparin: reduce to 30 mg SC daily</li>
                 <li>Dalteparin / Tinzaparin: no dose adjustment needed</li>
                 <li>Fondaparinux: contraindicated</li>
                 <li>UFH: no dose adjustment</li>
               </ul>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Duration — Key Evidence</h3>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Duration — Key Evidence</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Mottier et al. (NEJM Evidence 2023): Enoxaparin vs placebo in medically ill older adults — no benefit of LMWH in preventing symptomatic VTE beyond 30 days, and no difference in major or clinically relevant bleeding. <strong>Continue prophylaxis until discharge only.</strong>
               </p>
             </div>
@@ -206,10 +206,10 @@ export function ThromboprophylaxisMedicalGuide() {
         )}
 
         {activeTab === 4 && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">References</h3>
-              <ol className="asa-ref-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">References</h3>
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((r) => <li key={r}>{r}</li>)}
               </ol>
               <div style={{ marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }}>

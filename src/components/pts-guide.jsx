@@ -68,38 +68,38 @@ export function PtsGuide() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <p className="asa-guide-eyebrow">Clinical Guide</p>
-        <h1 className="asa-guide-title">Post-Thrombotic Syndrome (PTS)</h1>
-        <p className="asa-guide-lead">
+    <div className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <p className="flex flex-wrap gap-2 mb-2">Clinical Guide</p>
+        <h1 className="text-2xl font-bold leading-tight mt-1">Post-Thrombotic Syndrome (PTS)</h1>
+        <p className="text-sm text-muted-foreground leading-relaxed mt-2">
           PTS develops in 20–50% of DVT patients. Prevention centers on adequate anticoagulation and preventing recurrent ipsilateral DVT. Routine ECS for 2 years is no longer recommended.
         </p>
       </div>
 
-      <div className="asa-tab-bar">
+      <div className="flex gap-1 p-1 rounded-xl bg-muted overflow-x-auto">
         {tabs.map((t, i) => (
           <button key={t} className={`asa-tab-btn${activeTab === i ? " active" : ""}`} onClick={() => setActiveTab(i)}>{t}</button>
         ))}
       </div>
 
-      <div className="asa-tab-body">
+      <div className="grid gap-4">
         {activeTab === 0 && (
-          <div className="asa-sections">
-            <div className="asa-alert asa-alert-blue">
+          <div className="grid gap-3.5">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               PTS is a chronic condition: leg pain, swelling, heaviness, skin changes, and in severe cases venous ulcers. Develops 3–6 months to 2 years post-DVT. ~60% recover fully; ~30% develop some PTS; ~5–10% develop severe PTS.
             </div>
-            <div className="asa-ae-grid">
-              <div className="asa-ae-card"><span className="asa-ae-label">Incidence post-DVT</span><span className="asa-ae-value">20–50%</span></div>
-              <div className="asa-ae-card"><span className="asa-ae-label">Severe PTS</span><span className="asa-ae-value">5–10%</span></div>
-              <div className="asa-ae-card"><span className="asa-ae-label">Upper extremity PTS</span><span className="asa-ae-value">Up to 15%</span></div>
-              <div className="asa-ae-card"><span className="asa-ae-label">Strongest modifiable risk factor</span><span className="asa-ae-value">Ipsilateral DVT recurrence (6× ↑)</span></div>
-              <div className="asa-ae-card"><span className="asa-ae-label">Diagnosis</span><span className="asa-ae-value">Clinical (Villalta scale) — no gold standard lab/imaging test</span></div>
-              <div className="asa-ae-card"><span className="asa-ae-label">Defer diagnosis until</span><span className="asa-ae-value">3–6 months after acute DVT (acute symptoms need to resolve)</span></div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="rounded-lg border p-3"><span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Incidence post-DVT</span><span className="text-sm">20–50%</span></div>
+              <div className="rounded-lg border p-3"><span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Severe PTS</span><span className="text-sm">5–10%</span></div>
+              <div className="rounded-lg border p-3"><span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Upper extremity PTS</span><span className="text-sm">Up to 15%</span></div>
+              <div className="rounded-lg border p-3"><span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Strongest modifiable risk factor</span><span className="text-sm">Ipsilateral DVT recurrence (6× ↑)</span></div>
+              <div className="rounded-lg border p-3"><span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Diagnosis</span><span className="text-sm">Clinical (Villalta scale) — no gold standard lab/imaging test</span></div>
+              <div className="rounded-lg border p-3"><span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Defer diagnosis until</span><span className="text-sm">3–6 months after acute DVT (acute symptoms need to resolve)</span></div>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Pathophysiology</h3>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Pathophysiology</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 DVT → residual venous obstruction + valvular reflux → venous hypertension + inflammation → leg swelling, reduced calf muscle/skin perfusion, increased vascular permeability → PTS symptoms and skin changes.
               </p>
             </div>
@@ -107,11 +107,11 @@ export function PtsGuide() {
         )}
 
         {activeTab === 1 && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Villalta PTS Scale (ISTH Standard)</h3>
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Villalta PTS Scale (ISTH Standard)</h3>
               <div style={{ overflowX: "auto" }}>
-                <table className="asa-dose-table">
+                <table className="w-full border-collapse text-sm">
                   <thead><tr><th>Item</th><th>Scoring</th></tr></thead>
                   <tbody>
                     {villaltaScale.map((v) => (
@@ -120,14 +120,14 @@ export function PtsGuide() {
                   </tbody>
                 </table>
               </div>
-              <p className="asa-section-copy" style={{ marginTop: "0.5rem" }}>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ marginTop: "0.5rem" }}>
                 Total 0–4 = no PTS; 5–9 = mild; 10–14 = moderate; ≥15 or venous ulcer = severe PTS.
               </p>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Risk Factors for Developing PTS</h3>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Risk Factors for Developing PTS</h3>
               <div style={{ overflowX: "auto" }}>
-                <table className="asa-dose-table">
+                <table className="w-full border-collapse text-sm">
                   <thead><tr><th>Risk Factor</th><th>Impact</th><th>Modifiable?</th></tr></thead>
                   <tbody>
                     {riskFactors.map((r) => (
@@ -141,10 +141,10 @@ export function PtsGuide() {
                 </table>
               </div>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">SOX-PTS Prediction Score</h3>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">SOX-PTS Prediction Score</h3>
               <div style={{ overflowX: "auto" }}>
-                <table className="asa-dose-table">
+                <table className="w-full border-collapse text-sm">
                   <thead><tr><th>Predictor</th><th>Points</th></tr></thead>
                   <tbody>
                     {soxPtsItems.map((s) => (
@@ -153,45 +153,45 @@ export function PtsGuide() {
                   </tbody>
                 </table>
               </div>
-              <p className="asa-section-copy" style={{ marginTop: "0.5rem", fontSize: "0.85rem" }}>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ marginTop: "0.5rem", fontSize: "0.85rem" }}>
                 Score ≥4: OR 5.9 for developing PTS vs score 0.
               </p>
             </div>
-            <div className="asa-alert asa-alert-amber">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <strong>NOT risk factors for PTS:</strong> Age, sex, inherited thrombophilia, provoked vs unprovoked DVT, duration or intensity of long-term anticoagulation.
             </div>
           </div>
         )}
 
         {activeTab === 2 && (
-          <div className="asa-sections">
+          <div className="grid gap-3.5">
             {preventionStrategies.map((p) => (
-              <div key={p.strategy} className="asa-section-card">
+              <div key={p.strategy} className="rounded-xl border bg-card shadow-sm p-5">
                 <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
-                  <h3 className="asa-section-title" style={{ margin: 0 }}>{p.strategy}</h3>
+                  <h3 className="text-base font-semibold mb-2" style={{ margin: 0 }}>{p.strategy}</h3>
                   <span className={p.badgeClass}>{p.badge}</span>
                 </div>
-                <p className="asa-section-copy">{p.detail}</p>
+                <p className="text-sm text-foreground leading-relaxed mb-4">{p.detail}</p>
               </div>
             ))}
           </div>
         )}
 
         {activeTab === 3 && (
-          <div className="asa-sections">
-            <div className="asa-alert asa-alert-amber">
+          <div className="grid gap-3.5">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <strong>Limited evidence-based treatments exist for established PTS.</strong> Management is primarily symptomatic. No diuretics or venoactive drugs are currently recommended outside of trials.
             </div>
             {treatmentOptions.map((t) => (
-              <div key={t.treatment} className="asa-section-card">
-                <h3 className="asa-section-title">{t.treatment}</h3>
-                <p className="asa-section-copy">{t.detail}</p>
-                <p className="asa-section-copy" style={{ fontSize: "0.8rem", color: "var(--muted)", marginTop: "0.25rem" }}>Evidence: {t.evidence}</p>
+              <div key={t.treatment} className="rounded-xl border bg-card shadow-sm p-5">
+                <h3 className="text-base font-semibold mb-2">{t.treatment}</h3>
+                <p className="text-sm text-foreground leading-relaxed mb-4">{t.detail}</p>
+                <p className="text-sm text-foreground leading-relaxed mb-4" style={{ fontSize: "0.8rem", color: "var(--muted)", marginTop: "0.25rem" }}>Evidence: {t.evidence}</p>
               </div>
             ))}
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Pediatrics</h3>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Pediatrics</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>PTS incidence: up to 15% in children with DVT (some studies report higher)</li>
                 <li>No pediatric RCTs for PTS therapy exist</li>
                 <li>Symptomatic management may follow adult guidelines; start with lower strength ECS (15–20 mmHg)</li>
@@ -202,10 +202,10 @@ export function PtsGuide() {
         )}
 
         {activeTab === 4 && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">References</h3>
-              <ol className="asa-ref-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">References</h3>
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((r) => <li key={r}>{r}</li>)}
               </ol>
               <div style={{ marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }}>

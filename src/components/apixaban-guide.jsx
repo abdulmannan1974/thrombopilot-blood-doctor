@@ -90,31 +90,31 @@ export function ApixabanGuide() {
   const [tab, setTab] = useState("overview");
 
   return (
-    <section className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <div className="asa-guide-header-top">
-          <div className="asa-guide-header-copy">
-            <div className="asa-badge-row">
-              <span className="asa-badge asa-badge-blue">Clinical Guide</span>
-              <span className="asa-badge asa-badge-teal">Factor Xa Inhibitor</span>
-              <span className="asa-badge asa-badge-gray">v78</span>
+    <section className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex-1 min-w-0">
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Clinical Guide</span>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-teal-100 text-teal-700">Factor Xa Inhibitor</span>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600">v78</span>
             </div>
-            <h2 className="asa-guide-title">Apixaban (Eliquis)</h2>
-            <div className="asa-guide-meta">
+            <h2 className="text-2xl font-bold leading-tight mt-1">Apixaban (Eliquis)</h2>
+            <div className="flex flex-wrap gap-3 mt-3 text-xs text-muted-foreground">
               <span>Updated 5 February 2026</span>
               <span>Oral direct factor Xa inhibitor</span>
             </div>
           </div>
         </div>
 
-        <div className="asa-objective-strip">
+        <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-muted/60 text-sm text-muted-foreground border border-border/50">
           <strong>Objective:</strong> To provide an overview of the mechanism of
           action, approved indications, dosing regimens, and side-effect profile
           of apixaban.
         </div>
       </div>
 
-      <div className="asa-mechanism-card">
+      <div className="rounded-xl border bg-card shadow-sm p-5">
         <div>
           <h3>Mechanism of Action</h3>
           <p>
@@ -125,8 +125,8 @@ export function ApixabanGuide() {
         </div>
       </div>
 
-      <div className="asa-tabs">
-        <div className="asa-tabs-list" role="tablist" aria-label="Apixaban guide sections">
+      <div className="grid gap-4">
+        <div className="flex gap-1 p-1 rounded-xl bg-muted" role="tablist" aria-label="Apixaban guide sections">
           {tabs.map(([id, label]) => (
             <button
               key={id}
@@ -141,10 +141,10 @@ export function ApixabanGuide() {
 
         {/* ── Overview ── */}
         {tab === "overview" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Approved Indications</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>
                   Prevention of stroke and systemic embolism in patients with
                   non-valvular atrial fibrillation (NVAF).
@@ -160,9 +160,9 @@ export function ApixabanGuide() {
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="teal" />Administration</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>May be taken with or without food.</li>
                 <li>
                   For patients unable to swallow whole pills: crush into fine
@@ -176,10 +176,10 @@ export function ApixabanGuide() {
 
         {/* ── Dosing ── */}
         {tab === "dosing" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Dosing by Indication</h3>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Indication</th>
@@ -191,7 +191,7 @@ export function ApixabanGuide() {
                   {dosingRows.map((row) => (
                     <tr key={row[0]}>
                       <td>{row[0]}</td>
-                      <td className="dose-highlight">{row[1]}</td>
+                      <td className="font-bold text-foreground">{row[1]}</td>
                       <td>{row[2]}</td>
                     </tr>
                   ))}
@@ -199,13 +199,13 @@ export function ApixabanGuide() {
               </table>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="orange" />Renal Dosing Considerations</h3>
-              <div className="asa-ae-grid">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {renalRows.map((row) => (
                   <div key={row[0]} className={`asa-ae-card ${row[2]}`}>
-                    <div className="asa-ae-card-label">{row[0]}</div>
-                    <div className="asa-ae-card-text">{row[1]}</div>
+                    <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">{row[0]}</div>
+                    <div className="text-sm leading-relaxed">{row[1]}</div>
                   </div>
                 ))}
               </div>
@@ -215,10 +215,10 @@ export function ApixabanGuide() {
 
         {/* ── Monitoring & Safety ── */}
         {tab === "monitoring" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="teal" />Laboratory Monitoring</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>
                   <strong>No routine lab monitoring needed.</strong>
                 </li>
@@ -233,9 +233,9 @@ export function ApixabanGuide() {
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Periodic Clinical Assessment</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>
                   Review compliance, comorbidities, medication changes
                   (especially interacting agents), and provide patient education.
@@ -247,9 +247,9 @@ export function ApixabanGuide() {
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="danger" />Safety Concerns</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>
                   <strong>Major adverse effect: bleeding.</strong> Risk is
                   increased with concomitant antiplatelet drugs or other
@@ -262,7 +262,7 @@ export function ApixabanGuide() {
               </ul>
             </article>
 
-            <div className="asa-alert asa-alert-info">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <div>
                 See the <GuideLink to="doacsCoagTests">DOACs: Coagulation Tests</GuideLink> guide for
                 details on specific anti-Xa testing. See{" "}
@@ -275,8 +275,8 @@ export function ApixabanGuide() {
 
         {/* ── Special Populations ── */}
         {tab === "special" ? (
-          <div className="asa-tab-panel">
-            <div className="asa-alert asa-alert-danger">
+          <div className="grid gap-3.5">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <div>
                 <strong>Pregnancy:</strong> Apixaban crosses the placenta — do
                 NOT use in pregnancy. Avoid in breastfeeding as excretion into
@@ -284,46 +284,46 @@ export function ApixabanGuide() {
               </div>
             </div>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="teal" />Pediatrics</h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Not recommended for use in children until ongoing studies
                 establish the pharmacokinetics, pharmacodynamics, safety, and
                 efficacy in pediatric patients.
               </p>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="orange" />Drug Interactions</h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Avoid concomitant drugs or herbal products that inhibit or induce
                 both P-glycoprotein (P-gp) and CYP3A4.
               </p>
-              <div className="asa-ae-grid">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {drugInteractions.map((item) => (
                   <div
                     key={item.type}
                     className={`asa-ae-card ${item.type === "inhibitors" ? "serious" : "moderate"}`}
                   >
-                    <div className="asa-ae-card-label">{item.label}</div>
-                    <div className="asa-ae-card-text">{item.examples}</div>
+                    <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">{item.label}</div>
+                    <div className="text-sm leading-relaxed">{item.examples}</div>
                   </div>
                 ))}
               </div>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Obesity</h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 No RCTs exist, but extensive observational data show that
                 efficacy and safety are maintained in obese patients. See the{" "}
                 <GuideLink to="doacsObesity">DOACs in Obesity</GuideLink> guide.
               </p>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="purple" />Reversal</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>
                   <strong>Andexanet alfa (Ondexxya):</strong> Recombinant
                   modified factor Xa decoy protein for life-threatening or
@@ -351,16 +351,16 @@ export function ApixabanGuide() {
 
         {/* ── Cancer & Other Uses ── */}
         {tab === "cancer" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Cancer-Associated Thrombosis Treatment</h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 The Caravaggio RCT compared apixaban (10 mg BID for 7 days, then
                 5 mg BID) with subcutaneous dalteparin for 6 months. Apixaban was
                 non-inferior for both recurrent VTE and major bleeding. See the{" "}
                 <GuideLink to="cancer">Cancer &amp; Thrombosis</GuideLink> guide.
               </p>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 <strong>2025 RCT (API-CAT):</strong> After at least 6 months of
                 anticoagulation, extended therapy with 2.5 mg BID was
                 non-inferior to 5 mg BID for prevention of recurrent VTE, with
@@ -368,9 +368,9 @@ export function ApixabanGuide() {
               </p>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="orange" />Cancer Primary Prophylaxis</h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 In ambulatory cancer patients at Khorana intermediate/high risk
                 (AVERT trial): apixaban 2.5 mg BID reduced overall VTE from
                 10.2% to 4.2% (HR 0.41), but major bleeding increased from 1.8%
@@ -380,9 +380,9 @@ export function ApixabanGuide() {
               </p>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="teal" />AF + ACS/PCI (AUGUSTUS Trial)</h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 In AF patients with recent ACS or PCI taking a P2Y12 inhibitor,
                 apixaban (at stroke prevention doses) without ASA resulted in
                 less bleeding and fewer hospitalizations compared to regimens
@@ -392,9 +392,9 @@ export function ApixabanGuide() {
               </p>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="purple" />Subclinical AF (ARTESIA Trial)</h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 In patients with subclinical AF (6 minutes to 24 hours) detected
                 via implantable devices and CHA2DS2-VASc score of 3 or greater:
                 apixaban lowered stroke/SE risk vs. ASA (HR 0.63; 95% CI
@@ -405,9 +405,9 @@ export function ApixabanGuide() {
               </p>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />LV Thrombus</h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Small RCTs and growing observational data suggest apixaban (at AF
                 doses) is non-inferior to <GuideLink to="warfarin">warfarin</GuideLink> for LV thrombus treatment with
                 similar or lower bleeding risk. The AHA scientific statement
@@ -421,10 +421,10 @@ export function ApixabanGuide() {
 
         {/* ── References ── */}
         {tab === "references" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="gray" />Related Clinical Guides</h3>
-              <ul className="asa-related-list">
+              <ul className="list-none p-0 divide-y divide-border">
                 <li><GuideLink to="cancer">Cancer &amp; Thrombosis</GuideLink></li>
                 <li><GuideLink to="doacsCoagTests">DOACs: Coagulation Tests</GuideLink></li>
                 <li><GuideLink to="doacsComparison">DOACs: Comparison &amp; FAQ</GuideLink></li>
@@ -437,9 +437,9 @@ export function ApixabanGuide() {
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="gray" />References</h3>
-              <ol className="asa-ref-list">
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
@@ -449,7 +449,7 @@ export function ApixabanGuide() {
         ) : null}
       </div>
 
-      <div className="asa-guide-footer">
+      <div className="rounded-xl border bg-muted/50 p-4 text-xs text-muted-foreground">
         <p>
           <strong>Apixaban (Eliquis)</strong> | Updated 5 February 2026 |
           Version 78

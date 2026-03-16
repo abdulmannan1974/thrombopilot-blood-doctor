@@ -88,29 +88,29 @@ export function RivaroxabanGuide() {
   const [tab, setTab] = useState("overview");
 
   return (
-    <section className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <div className="asa-guide-header-top">
-          <div className="asa-guide-header-copy">
-            <div className="asa-badge-row">
-              <span className="asa-badge asa-badge-blue">Clinical Guide</span>
-              <span className="asa-badge asa-badge-teal">Direct Oral Anticoagulant</span>
-              <span className="asa-badge asa-badge-gray">v54</span>
+    <section className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex-1 min-w-0">
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Clinical Guide</span>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-teal-100 text-teal-700">Direct Oral Anticoagulant</span>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600">v54</span>
             </div>
-            <h2 className="asa-guide-title">Rivaroxaban (Xarelto)</h2>
-            <div className="asa-guide-meta">
+            <h2 className="text-2xl font-bold leading-tight mt-1">Rivaroxaban (Xarelto)</h2>
+            <div className="flex flex-wrap gap-3 mt-3 text-xs text-muted-foreground">
               <span>Updated 6 February 2026</span>
               <span>Oral Factor Xa Inhibitor</span>
             </div>
           </div>
         </div>
 
-        <div className="asa-objective-strip">
+        <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-muted/60 text-sm text-muted-foreground border border-border/50">
           <strong>Objective:</strong> To provide an overview of the mechanism of action, approved indications, dosing regimens, and side effects of rivaroxaban.
         </div>
       </div>
 
-      <div className="asa-mechanism-card">
+      <div className="rounded-xl border bg-card shadow-sm p-5">
         <div>
           <h3>Mechanism of Action</h3>
           <p>
@@ -119,8 +119,8 @@ export function RivaroxabanGuide() {
         </div>
       </div>
 
-      <div className="asa-tabs">
-        <div className="asa-tabs-list" role="tablist" aria-label="Rivaroxaban guide sections">
+      <div className="grid gap-4">
+        <div className="flex gap-1 p-1 rounded-xl bg-muted" role="tablist" aria-label="Rivaroxaban guide sections">
           {tabs.map(([id, label]) => (
             <button
               key={id}
@@ -135,33 +135,33 @@ export function RivaroxabanGuide() {
 
         {/* ── OVERVIEW ── */}
         {tab === "overview" ? (
-          <div className="asa-tab-panel">
-            <div className="asa-alert asa-alert-danger">
+          <div className="grid gap-3.5">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <div>
                 <strong>Advisory (Dec 2018):</strong> Rivaroxaban is NOT indicated nor recommended for patients post transcatheter aortic valve replacement (TAVR). Increased all-cause mortality, thromboembolic events, and bleeding events have been observed.
               </div>
             </div>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Approved Indications</h3>
-              <div className="asa-ind-group">
-                <div className="asa-ind-group-label">Rivaroxaban 10 mg, 15 mg, 20 mg</div>
-                <ul className="asa-ind-list">
+              <div className="mb-3">
+                <div className="flex items-center gap-2 text-sm font-semibold mb-1.5">Rivaroxaban 10 mg, 15 mg, 20 mg</div>
+                <ul className="list-none p-0 space-y-1">
                   <li>Thromboprophylaxis after elective hip (THR) or knee (TKR) replacement surgery.</li>
                   <li>Treatment of DVT and/or PE, and prevention of recurrent DVT and PE.</li>
                   <li>Stroke and systemic embolism prevention in patients with non-valvular atrial fibrillation.</li>
                 </ul>
               </div>
-              <div className="asa-ind-group">
-                <div className="asa-ind-group-label">Rivaroxaban 2.5 mg + ASA 75-100 mg daily</div>
-                <ul className="asa-ind-list">
+              <div className="mb-3">
+                <div className="flex items-center gap-2 text-sm font-semibold mb-1.5">Rivaroxaban 2.5 mg + ASA 75-100 mg daily</div>
+                <ul className="list-none p-0 space-y-1">
                   <li>Prevention of stroke, MI, cardiovascular death, and acute limb ischaemia in patients with CAD with or without PAD.</li>
                   <li>Prevention of atherothrombotic events in symptomatic PAD at high risk of MALE or MACCE.</li>
                 </ul>
               </div>
-              <div className="asa-ind-group">
-                <div className="asa-ind-group-label">Rivaroxaban granules for oral suspension (1 mg/mL)</div>
-                <ul className="asa-ind-list">
+              <div className="mb-3">
+                <div className="flex items-center gap-2 text-sm font-semibold mb-1.5">Rivaroxaban granules for oral suspension (1 mg/mL)</div>
+                <ul className="list-none p-0 space-y-1">
                   <li>Treatment of VTE and prevention of VTE recurrence in patients aged less than 18 years, after at least 5 days of initial parenteral anticoagulation.</li>
                 </ul>
               </div>
@@ -171,10 +171,10 @@ export function RivaroxabanGuide() {
 
         {/* ── DOSING ── */}
         {tab === "dosing" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Dosing Summary</h3>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Indication</th>
@@ -186,7 +186,7 @@ export function RivaroxabanGuide() {
                   {dosingRows.map((row) => (
                     <tr key={row[0]}>
                       <td>{row[0]}</td>
-                      <td className="dose-highlight">{row[1]}</td>
+                      <td className="font-bold text-foreground">{row[1]}</td>
                       <td>{row[2]}</td>
                     </tr>
                   ))}
@@ -194,24 +194,24 @@ export function RivaroxabanGuide() {
               </table>
             </article>
 
-            <div className="asa-alert asa-alert-warn">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <div>
                 <strong>Food requirement:</strong> Rivaroxaban 15 mg and 20 mg tablets, and granules for oral suspension, MUST be taken with food (or feeding) for adequate absorption. The 2.5 mg and 10 mg tablets may be taken with or without food.
               </div>
             </div>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="purple" />Switching from Warfarin to Rivaroxaban</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>Stop <GuideLink to="warfarin">warfarin</GuideLink> and wait until INR falls below 2.5 before starting rivaroxaban (onset of action is rapid, 1&ndash;3 hours).</li>
                 <li>If INR testing is not readily available, wait 2&ndash;3 days after the last warfarin dose before starting rivaroxaban.</li>
                 <li>If INR is supratherapeutic, it will take longer for INR to fall to 2.5 or below.</li>
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="orange" />Administration</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>Tablets may be crushed and mixed with applesauce for immediate oral use.</li>
                 <li>May be administered via nasogastric tube: crush tablet in 50 mL water, flush with water, follow with food/NG feeds.</li>
               </ul>
@@ -221,19 +221,19 @@ export function RivaroxabanGuide() {
 
         {/* ── MONITORING & SAFETY ── */}
         {tab === "monitoring" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="teal" />Laboratory Monitoring</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>Routine laboratory monitoring is NOT necessary.</li>
                 <li>PT/INR is more responsive to rivaroxaban than aPTT, but neither provides a reliable measure for dosing adjustments.</li>
                 <li>Anti-factor Xa assays using rivaroxaban-specific calibrators, where available, can determine plasma rivaroxaban concentration. See the <GuideLink to="doacsCoagTests">DOACs: Coagulation Tests</GuideLink> guide.</li>
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Periodic Clinical Assessment</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>Compliance assessment and reinforcement at each visit.</li>
                 <li>Review comorbidities and medication changes, including potential interacting agents.</li>
                 <li>Patient education on signs of bleeding and when to seek care.</li>
@@ -241,20 +241,20 @@ export function RivaroxabanGuide() {
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="danger" />Adverse Effects</h3>
-              <div className="asa-ae-grid">
-                <div className="asa-ae-card serious">
-                  <div className="asa-ae-card-label">Major</div>
-                  <div className="asa-ae-card-text">Bleeding (risk increased with concomitant antiplatelets or strong CYP3A4/P-gp inhibitors)</div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="rounded-lg border border-red-200 bg-red-50 p-3">
+                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">Major</div>
+                  <div className="text-sm leading-relaxed">Bleeding (risk increased with concomitant antiplatelets or strong CYP3A4/P-gp inhibitors)</div>
                 </div>
-                <div className="asa-ae-card moderate">
-                  <div className="asa-ae-card-label">GI</div>
-                  <div className="asa-ae-card-text">Dyspepsia in some patients &mdash; take with food to reduce symptoms and improve absorption</div>
+                <div className="rounded-lg border border-amber-200 bg-amber-50 p-3">
+                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">GI</div>
+                  <div className="text-sm leading-relaxed">Dyspepsia in some patients &mdash; take with food to reduce symptoms and improve absorption</div>
                 </div>
-                <div className="asa-ae-card serious">
-                  <div className="asa-ae-card-label">Neuraxial</div>
-                  <div className="asa-ae-card-text">Avoid with indwelling epidural catheters or recent spinal puncture (risk of epidural haematoma)</div>
+                <div className="rounded-lg border border-red-200 bg-red-50 p-3">
+                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">Neuraxial</div>
+                  <div className="text-sm leading-relaxed">Avoid with indwelling epidural catheters or recent spinal puncture (risk of epidural haematoma)</div>
                 </div>
               </div>
             </article>
@@ -263,11 +263,11 @@ export function RivaroxabanGuide() {
 
         {/* ── DRUG INTERACTIONS ── */}
         {tab === "interactions" ? (
-          <div className="asa-tab-panel">
+          <div className="grid gap-3.5">
             {drugInteractions.map((section) => (
-              <article key={section.title} className="asa-section-card">
+              <article key={section.title} className="rounded-xl border bg-card shadow-sm p-5">
                 <h3><Dot tone={section.tone === "danger" ? "danger" : section.tone === "warn" ? "orange" : "teal"} />{section.title}</h3>
-                <ul className="asa-ind-list">
+                <ul className="list-none p-0 space-y-1">
                   {section.items.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
@@ -282,25 +282,25 @@ export function RivaroxabanGuide() {
 
         {/* ── SPECIAL POPULATIONS ── */}
         {tab === "special" ? (
-          <div className="asa-tab-panel">
-            <div className="asa-alert asa-alert-danger">
+          <div className="grid gap-3.5">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <div>
                 <strong>Pregnancy:</strong> Rivaroxaban crosses the placenta and is contraindicated in pregnancy. It passes into breast milk and should be avoided in breastfeeding mothers.
               </div>
             </div>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="orange" />Renal and Hepatic Impairment</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>CrCl &lt; 15 mL/min: rivaroxaban is NOT recommended.</li>
                 <li>CrCl 15&ndash;29 mL/min: use with caution across all indications.</li>
                 <li>Moderate or severe hepatic impairment (Child-Pugh B or C): avoid rivaroxaban.</li>
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="teal" />Pediatrics</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>Approved (January 2021) for VTE treatment and recurrence prevention in patients &lt; 18 years.</li>
                 <li>Weight-based dosing using oral suspension (1 mg/mL) based on EINSTEIN Jr phase III trial data.</li>
                 <li>Requires at least 5 days of initial parenteral anticoagulation (heparinization) before starting.</li>
@@ -309,9 +309,9 @@ export function RivaroxabanGuide() {
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="purple" />Cancer-Associated Thrombosis</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>No approved indication specifically for cancer-associated VTE.</li>
                 <li>SELECT-D trial: rivaroxaban may be a reasonable alternative to LMWH when GI bleeding risk is low and in non-GI solid tumours.</li>
                 <li>OSCAR-US observational study: rivaroxaban associated with significant reductions in composite of recurrent VTE or bleeding-related hospitalisation vs LMWH.</li>
@@ -320,29 +320,29 @@ export function RivaroxabanGuide() {
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Obesity</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>Observational studies support efficacy and safety of rivaroxaban in obese patients.</li>
                 <li>ISTH guidance supports standard dosing for patients &gt; 120 kg or BMI &gt; 40. See the <GuideLink to="doacsObesity">DOACs in Obesity</GuideLink> guide.</li>
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="danger" />Bleeding Reversal</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>Andexanet alfa: specific reversal agent for life-threatening or uncontrolled bleeding.</li>
                 <li>Prothrombin complex concentrate (PCC): indirect reversal option when andexanet alfa is unavailable.</li>
                 <li>Supportive measures: discontinue rivaroxaban, local haemostasis, fluid resuscitation, transfusion as needed.</li>
               </ul>
-              <div className="asa-alert asa-alert-info">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
                 <div>See the <GuideLink to="doacsBleeding">DOACs: Management of Bleeding</GuideLink> guide for detailed protocols.</div>
               </div>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Stable Cardiovascular Disease (COMPASS Trial)</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>Rivaroxaban 2.5 mg BID + ASA 100 mg OD: improved cardiovascular outcomes and lower mortality vs ASA alone, but more major bleeding. Net clinical benefit favoured combination therapy. See the <GuideLink to="pad">Peripheral Arterial Disease</GuideLink> guide.</li>
                 <li>Rivaroxaban 5 mg BID alone: did not improve outcomes vs ASA and was associated with more bleeding.</li>
               </ul>
@@ -352,10 +352,10 @@ export function RivaroxabanGuide() {
 
         {/* ── REFERENCES ── */}
         {tab === "references" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="gray" />Related Clinical Guides</h3>
-              <ul className="asa-related-list">
+              <ul className="list-none p-0 divide-y divide-border">
                 <li><GuideLink to="anticoagAntiplatelet">Anticoagulation + Antiplatelet Therapy</GuideLink></li>
                 <li><GuideLink to="cancer">Cancer &amp; Thrombosis</GuideLink></li>
                 <li><GuideLink to="dvtTreatment">DVT: Treatment</GuideLink></li>
@@ -370,9 +370,9 @@ export function RivaroxabanGuide() {
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="gray" />References</h3>
-              <ol className="asa-ref-list">
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((item) => <li key={item}>{item}</li>)}
               </ol>
             </article>
@@ -380,7 +380,7 @@ export function RivaroxabanGuide() {
         ) : null}
       </div>
 
-      <div className="asa-guide-footer">
+      <div className="rounded-xl border bg-muted/50 p-4 text-xs text-muted-foreground">
         <p><strong>Rivaroxaban (Xarelto)</strong> | Updated 6 February 2026 | Version 54</p>
         <p>The information here is not a substitute for clinical judgement. Always consult appropriate specialist input when needed.</p>
       </div>

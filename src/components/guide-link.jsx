@@ -153,7 +153,7 @@ export function GuideLink({ to, children }) {
     <a
       href="#"
       onClick={handleClick}
-      className="guide-cross-link"
+      className="text-blue-600 font-semibold no-underline border-b border-dashed border-blue-300 cursor-pointer hover:text-blue-700 hover:border-solid hover:border-blue-600"
       title={`Open: ${typeof label === "string" ? label : GUIDE_LABELS[to] || to}`}
     >
       {label}

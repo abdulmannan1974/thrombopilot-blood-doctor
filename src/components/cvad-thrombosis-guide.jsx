@@ -185,23 +185,23 @@ export function CvadThrombosisGuide() {
   const [activeTab, setActiveTab] = useState("overview");
 
   return (
-    <div className="asa-guide-shell">
+    <div className="grid gap-4">
       {/* Header */}
-      <div className="asa-guide-header">
-        <div className="asa-guide-header-body">
-          <div className="asa-guide-eyebrow">
-            <span className="asa-badge asa-badge-blue">Clinical Guide</span>
-            <span className="asa-badge">Updated Feb 2026</span>
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <div className="flex items-start gap-4">
+          <div className="flex flex-wrap gap-2 mb-2">
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Clinical Guide</span>
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary text-secondary-foreground">Updated Feb 2026</span>
           </div>
-          <h1 className="asa-guide-title">Central Venous Catheter-Related DVT</h1>
-          <p className="asa-guide-lead">
+          <h1 className="text-2xl font-bold leading-tight mt-1">Central Venous Catheter-Related DVT</h1>
+          <p className="text-sm text-muted-foreground leading-relaxed mt-2">
             Diagnosis, treatment, and prevention of catheter-associated upper extremity deep vein thrombosis — including cancer patients and pediatric populations.
           </p>
         </div>
       </div>
 
       {/* Tabs */}
-      <div className="asa-tab-bar">
+      <div className="flex gap-1 p-1 rounded-xl bg-muted overflow-x-auto">
         {tabs.map((t) => (
           <button
             key={t.id}
@@ -213,24 +213,24 @@ export function CvadThrombosisGuide() {
         ))}
       </div>
 
-      <div className="asa-tab-body">
+      <div className="grid gap-4">
         {/* OVERVIEW */}
         {activeTab === "overview" && (
-          <div className="asa-sections">
-            <div className="asa-section-card asa-alert asa-alert-blue">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border border-blue-200 bg-blue-50 text-blue-900 shadow-sm p-5">
               <strong>Key Principle:</strong> Catheter removal is <em>not</em> required if the CVAD is still needed, functioning, and not infected. Treat with anticoagulation and reassess.
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Background</h2>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Background</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Central venous catheters are widely used for chemotherapy, antibiotics, transfusion, dialysis, parenteral nutrition, and supportive care. Catheter-related DVT incidence ranges from <strong>2–70%</strong> across studies, driven by differences in screening criteria, patient populations, and follow-up duration.
               </p>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Risk Factors</h2>
-              <table className="asa-dose-table">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Risk Factors</h2>
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Risk Factor</th>
@@ -248,9 +248,9 @@ export function CvadThrombosisGuide() {
               </table>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Clinical Presentation</h2>
-              <div className="asa-ae-grid">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Clinical Presentation</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
                   { label: "Arm/hand swelling", detail: "Unilateral; ipsilateral to catheter insertion side" },
                   { label: "Neck/shoulder pain", detail: "Pain or swelling in the neck, shoulder, or supraclavicular fossa" },
@@ -259,24 +259,24 @@ export function CvadThrombosisGuide() {
                   { label: "Asymptomatic", detail: "Many cases detected incidentally on imaging" },
                   { label: "Embolism symptoms", detail: "Pulmonary embolism or paradoxical stroke should prompt DVT evaluation" },
                 ].map((s, i) => (
-                  <div key={i} className="asa-ae-card">
-                    <span className="asa-ae-label">{s.label}</span>
-                    <span className="asa-ae-value">{s.detail}</span>
+                  <div key={i} className="rounded-lg border p-3">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{s.label}</span>
+                    <span className="text-sm">{s.detail}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Outcomes at 3 Months (with treatment)</h2>
-              <div className="asa-ae-grid">
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Recurrent VTE risk</span>
-                  <span className="asa-ae-value" style={{ color: "#16a34a", fontWeight: 700 }}>0.6%</span>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Outcomes at 3 Months (with treatment)</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Recurrent VTE risk</span>
+                  <span className="text-sm" style={{ color: "#16a34a", fontWeight: 700 }}>0.6%</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Major bleeding risk</span>
-                  <span className="asa-ae-value" style={{ color: "#dc2626", fontWeight: 700 }}>2.3%</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Major bleeding risk</span>
+                  <span className="text-sm" style={{ color: "#dc2626", fontWeight: 700 }}>2.3%</span>
                 </div>
               </div>
             </div>
@@ -285,29 +285,29 @@ export function CvadThrombosisGuide() {
 
         {/* DIAGNOSIS */}
         {activeTab === "diagnosis" && (
-          <div className="asa-sections">
-            <div className="asa-section-card asa-alert asa-alert-amber">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border border-amber-200 bg-amber-50 text-amber-900 shadow-sm p-5">
               <strong>Important:</strong> Clinical decision rules combined with D-dimer are <strong>not recommended</strong> for ruling out catheter-related DVT — their efficiency is limited in this population.
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Imaging Strategy</h2>
-              <div className="asa-sections" style={{ gap: "0.75rem" }}>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Imaging Strategy</h2>
+              <div className="grid gap-3.5" style={{ gap: "0.75rem" }}>
                 {imagingOptions.map((img, i) => (
-                  <div key={i} className="asa-section-card" style={{ margin: 0 }}>
+                  <div key={i} className="rounded-xl border bg-card shadow-sm p-5" style={{ margin: 0 }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "0.4rem" }}>
                       <strong>{img.modality}</strong>
                       <span className={badgeClass(img.badge)}>{img.role}</span>
                     </div>
-                    <p className="asa-section-copy" style={{ margin: 0 }}>{img.notes}</p>
+                    <p className="text-sm text-foreground leading-relaxed mb-4" style={{ margin: 0 }}>{img.notes}</p>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Anatomical Challenge</h2>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Anatomical Challenge</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Isolated subclavian vein or more central venous thrombosis may not be visualized on ultrasonography due to obstruction by the clavicle and chest wall. In these cases, proceed to MRI or CT venography before concluding there is no thrombosis.
               </p>
             </div>
@@ -316,10 +316,10 @@ export function CvadThrombosisGuide() {
 
         {/* TREATMENT */}
         {activeTab === "treatment" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Anticoagulation Sequence</h2>
-              <table className="asa-dose-table">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Anticoagulation Sequence</h2>
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Phase</th>
@@ -339,9 +339,9 @@ export function CvadThrombosisGuide() {
               </table>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Treatment Duration by Thrombosis Location</h2>
-              <table className="asa-dose-table">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Treatment Duration by Thrombosis Location</h2>
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>DVT Location</th>
@@ -361,20 +361,20 @@ export function CvadThrombosisGuide() {
               </table>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Catheter Management Decision Tree</h2>
-              <div className="asa-sections" style={{ gap: "0.75rem" }}>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Catheter Management Decision Tree</h2>
+              <div className="grid gap-3.5" style={{ gap: "0.75rem" }}>
                 {catheterDecisionPoints.map((d, i) => (
-                  <div key={i} className="asa-section-card" style={{ margin: 0, borderLeft: "3px solid var(--primary)" }}>
+                  <div key={i} className="rounded-xl border bg-card shadow-sm p-5" style={{ margin: 0, borderLeft: "3px solid var(--primary)" }}>
                     <p style={{ margin: "0 0 0.3rem", fontWeight: 600, color: "var(--foreground)" }}>{d.scenario}</p>
-                    <p style={{ margin: "0 0 0.2rem" }}><span className="asa-badge asa-badge-blue">Action</span> {d.action}</p>
-                    <p className="asa-section-copy" style={{ margin: 0, fontSize: "0.85em" }}>{d.rationale}</p>
+                    <p style={{ margin: "0 0 0.2rem" }}><span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Action</span> {d.action}</p>
+                    <p className="text-sm text-foreground leading-relaxed mb-4" style={{ margin: 0, fontSize: "0.85em" }}>{d.rationale}</p>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="asa-section-card asa-alert asa-alert-blue">
+            <div className="rounded-xl border border-blue-200 bg-blue-50 text-blue-900 shadow-sm p-5">
               <strong>Catheter-directed thrombolysis:</strong> Limited data for extensive catheter-related DVT. Remains a case-by-case decision — consult thrombosis specialist and/or interventional radiology.
             </div>
           </div>
@@ -382,10 +382,10 @@ export function CvadThrombosisGuide() {
 
         {/* PREVENTION */}
         {activeTab === "prevention" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Non-pharmacological Prevention (Most Important)</h2>
-              <ul className="asa-ind-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Non-pharmacological Prevention (Most Important)</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>Use central venous catheters <strong>only when necessary</strong></li>
                 <li>Insert the <strong>smallest calibre</strong> catheter that satisfies clinical needs</li>
                 <li>Remove catheters <strong>promptly</strong> when no longer required</li>
@@ -395,12 +395,12 @@ export function CvadThrombosisGuide() {
               </ul>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Pharmacological Prophylaxis — Key Trials</h2>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Pharmacological Prophylaxis — Key Trials</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Routine anticoagulation prophylaxis is <strong>not recommended</strong> for all catheterized patients. However, it may be considered in cancer patients where thrombosis risk outweighs bleeding risk (e.g., prior VTE, high Khorana score).
               </p>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Agent</th>
@@ -422,13 +422,13 @@ export function CvadThrombosisGuide() {
               </table>
             </div>
 
-            <div className="asa-section-card asa-alert asa-alert-amber">
+            <div className="rounded-xl border border-amber-200 bg-amber-50 text-amber-900 shadow-sm p-5">
               <strong>Systematic review finding:</strong> Anticoagulation prophylaxis (DOACs, LMWH, warfarin) in cancer patients with CVADs reduces symptomatic catheter-related VTE by approximately <strong>40–50%</strong>, with no difference in major bleeding or mortality.
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">When to Consider Prophylaxis</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">When to Consider Prophylaxis</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>Cancer patients with <strong>prior VTE</strong> who require a new CVAD</li>
                 <li>High Khorana score (≥2) in ambulatory cancer patients</li>
                 <li>Weigh benefit vs. bleeding risk and anticoagulation burden individually</li>
@@ -439,17 +439,17 @@ export function CvadThrombosisGuide() {
 
         {/* PEDIATRICS */}
         {activeTab === "pediatrics" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Epidemiology</h2>
-              <p className="asa-section-copy">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Epidemiology</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Incidence of catheter-related DVT in children: <strong>3–34%</strong>, varying by patient population and diagnostic modality. CVADs are frequently necessary in children requiring supportive care (chemotherapy, parenteral nutrition, antibiotics, transfusions).
               </p>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Prophylaxis in Children</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Prophylaxis in Children</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li><strong>No prior VTE:</strong> Thromboprophylaxis not routinely recommended</li>
                 <li><strong>Long-term VTE risk factors</strong> (home TPN, haemodialysis): prophylaxis could be considered</li>
                 <li><strong>Cancer without prior VTE:</strong> CVAD alone is not an indication; consider if additional risk factors present (asparaginase, obesity, hormonal contraceptives, adolescence, surgical hospitalisation)</li>
@@ -457,9 +457,9 @@ export function CvadThrombosisGuide() {
               </ul>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Treatment Options in Children</h2>
-              <table className="asa-dose-table">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Treatment Options in Children</h2>
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Agent</th>
@@ -479,7 +479,7 @@ export function CvadThrombosisGuide() {
               </table>
             </div>
 
-            <div className="asa-section-card asa-alert asa-alert-blue">
+            <div className="rounded-xl border border-blue-200 bg-blue-50 text-blue-900 shadow-sm p-5">
               <strong>Specialist involvement:</strong> A paediatrician with thromboembolism expertise should be involved in decisions wherever possible. When unavailable, combine neonatologist/paediatrician + adult haematologist + remote consultation with a paediatric haematology expert.
             </div>
           </div>
@@ -487,10 +487,10 @@ export function CvadThrombosisGuide() {
 
         {/* REFERENCES */}
         {activeTab === "references" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">References</h2>
-              <ol className="asa-ref-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">References</h2>
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((ref, i) => (
                   <li key={i}>{ref}</li>
                 ))}

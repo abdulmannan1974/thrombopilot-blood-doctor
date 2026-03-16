@@ -124,16 +124,16 @@ export function ThrombophiliaFvlPgmGuide() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <p className="asa-guide-eyebrow">Clinical Guide</p>
-        <h1 className="asa-guide-title">Thrombophilia: Factor V Leiden &amp; Prothrombin Gene Mutation</h1>
-        <p className="asa-guide-lead">
+    <div className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <p className="flex flex-wrap gap-2 mb-2">Clinical Guide</p>
+        <h1 className="text-2xl font-bold leading-tight mt-1">Thrombophilia: Factor V Leiden &amp; Prothrombin Gene Mutation</h1>
+        <p className="text-sm text-muted-foreground leading-relaxed mt-2">
           The two most common inherited thrombophilias &mdash; modest risk in heterozygotes, but high risk in homozygotes and compound heterozygotes. Testing is only warranted when the result will change management.
         </p>
       </div>
 
-      <div className="asa-tab-bar">
+      <div className="flex gap-1 p-1 rounded-xl bg-muted overflow-x-auto">
         {tabs.map((t, i) => (
           <button
             key={t}
@@ -145,17 +145,17 @@ export function ThrombophiliaFvlPgmGuide() {
         ))}
       </div>
 
-      <div className="asa-tab-body">
+      <div className="grid gap-4">
         {/* OVERVIEW */}
         {activeTab === 0 && (
-          <div className="asa-sections">
-            <div className="asa-alert asa-alert-blue">
+          <div className="grid gap-3.5">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               FVL and PGM are the most common inherited thrombophilias but confer <strong>modest VTE risk in heterozygotes</strong>. They generally do NOT change treatment duration decisions. Heterozygous carriers have <strong>normal life expectancy</strong>.
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">FVL vs. PGM &mdash; Side-by-Side</h3>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">FVL vs. PGM &mdash; Side-by-Side</h3>
               <div style={{ overflowX: "auto" }}>
-                <table className="asa-dose-table">
+                <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr>
                       <th>Feature</th>
@@ -175,12 +175,12 @@ export function ThrombophiliaFvlPgmGuide() {
                 </table>
               </div>
             </div>
-            <div className="asa-alert asa-alert-amber">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <strong>Homozygous or compound heterozygous FVL/PGM:</strong> Much higher VTE and recurrence risk. These patients may be candidates for indefinite anticoagulation &mdash; specialist consultation warranted.
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Related Guides</h3>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Related Guides</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li><GuideLink to="naturalAnticoag">Natural Anticoagulant Deficiencies (PC, PS, AT)</GuideLink></li>
                 <li><GuideLink to="aps">Antiphospholipid Syndrome</GuideLink></li>
                 <li><GuideLink to="homocysteine">Homocysteinemia &amp; MTHFR</GuideLink></li>
@@ -193,14 +193,14 @@ export function ThrombophiliaFvlPgmGuide() {
 
         {/* RISK OF THROMBOSIS */}
         {activeTab === 1 && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Absolute Risk of VTE &mdash; Women of Childbearing Age</h3>
-              <p className="asa-section-copy" style={{ marginBottom: "0.75rem" }}>
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Absolute Risk of VTE &mdash; Women of Childbearing Age</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ marginBottom: "0.75rem" }}>
                 Communicating absolute risk (not relative risk) is more meaningful for patient counseling.
               </p>
               <div style={{ overflowX: "auto" }}>
-                <table className="asa-dose-table">
+                <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr>
                       <th>Clinical Scenario</th>
@@ -218,9 +218,9 @@ export function ThrombophiliaFvlPgmGuide() {
                 </table>
               </div>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Key Clinical Points</h3>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Key Clinical Points</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>Heterozygous FVL found in ~20% of unselected VTE patients; ~40% with strong family history</li>
                 <li>Heterozygous FVL or PGM are NOT strong predictors of recurrence (HR &lt;1.5, often non-significant)</li>
                 <li>Homozygous or compound heterozygous mutations: much higher recurrence risk &mdash; warrants specialist assessment for indefinite anticoagulation</li>
@@ -228,9 +228,9 @@ export function ThrombophiliaFvlPgmGuide() {
                 <li>Arterial thrombosis risk from FVL and PGM: small to insignificant &mdash; testing in arterial disease is not recommended</li>
               </ul>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Pregnancy Complications</h3>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Pregnancy Complications</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 The majority of data suggest women heterozygous for FVL or PGM are <strong>NOT at significantly increased risk</strong> of placental complications &mdash; including pregnancy loss, small-for-gestational-age, pre-eclampsia, or placental abruption. Routine testing in women with prior pregnancy complications is therefore not recommended.
               </p>
             </div>
@@ -239,8 +239,8 @@ export function ThrombophiliaFvlPgmGuide() {
 
         {/* WHEN TO TEST */}
         {activeTab === 2 && (
-          <div className="asa-sections">
-            <div className="asa-alert asa-alert-amber">
+          <div className="grid gap-3.5">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <strong>Core principle:</strong> Test only if the result will directly influence a treatment or preventive decision. Widespread testing causes harm &mdash; anxiety, insurance implications, inappropriate anticoagulation, denial of effective contraception.
             </div>
             {testingGuidance.map((g) => (
@@ -251,9 +251,9 @@ export function ThrombophiliaFvlPgmGuide() {
                 </ul>
               </div>
             ))}
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Diagnostic Methods</h3>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Diagnostic Methods</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li><strong>FVL detection:</strong> DNA testing (definitive) OR Activated Protein C Resistance (APC-R) ratio (functional screening test)</li>
                 <li><strong>PGM detection:</strong> DNA testing only &mdash; no functional test exists</li>
                 <li>Testing can be performed at any time (DNA-based &mdash; not affected by anticoagulants or acute thrombosis)</li>
@@ -264,20 +264,20 @@ export function ThrombophiliaFvlPgmGuide() {
 
         {/* TREATMENT & PREVENTION */}
         {activeTab === 3 && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Treatment of VTE in Heterozygous FVL or PGM</h3>
-              <ul className="asa-ind-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Treatment of VTE in Heterozygous FVL or PGM</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>Anticoagulant choice and duration are <strong>generally NOT affected</strong> by heterozygous FVL or PGM</li>
                 <li>DOACs are appropriate &mdash; no evidence they are less effective in FVL or PGM</li>
                 <li>Recurrence risk in heterozygotes is similar to the general VTE population</li>
                 <li>Homozygous FVL/PGM or compound heterozygotes: higher recurrence risk &mdash; specialist consultation; consider indefinite anticoagulation</li>
               </ul>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Prevention &mdash; OCP, Pregnancy, and Prophylaxis</h3>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Prevention &mdash; OCP, Pregnancy, and Prophylaxis</h3>
               <div style={{ overflowX: "auto" }}>
-                <table className="asa-dose-table">
+                <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr>
                       <th>Population</th>
@@ -299,7 +299,7 @@ export function ThrombophiliaFvlPgmGuide() {
                 </table>
               </div>
             </div>
-            <div className="asa-alert asa-alert-blue">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <strong>OCP use in carriers:</strong> In asymptomatic heterozygous FVL/PGM carriers with no other VTE risk factors who cannot tolerate alternative contraception, combined OCP can be considered case-by-case after careful discussion of absolute risks and patient preferences. See <GuideLink to="pregProphylaxis">Pregnancy: Thromboprophylaxis</GuideLink> for pregnancy-specific guidance.
             </div>
           </div>
@@ -307,27 +307,27 @@ export function ThrombophiliaFvlPgmGuide() {
 
         {/* SPECIAL POPULATIONS */}
         {activeTab === 4 && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Pediatrics</h3>
-              <ul className="asa-ind-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Pediatrics</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>Pediatric hematologist with thromboembolism expertise should manage where possible</li>
                 <li>When unavailable: neonatologist/pediatrician + adult hematologist + pediatric hematology consultation</li>
                 <li>Routine testing of asymptomatic children as newborn screening is not recommended</li>
               </ul>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Family History Counseling</h3>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Family History Counseling</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>First-degree relatives of heterozygous carriers have 50% chance of carrying the mutation (autosomal dominant)</li>
                 <li>A positive family history alone (without confirmed mutation in relative) increases VTE risk ~2-fold even without thrombophilia identified</li>
                 <li>Testing relatives: consider only if the result would change a management decision (e.g. pre-OCP, pre-pregnancy)</li>
                 <li>Pre-test counseling essential &mdash; a positive test result may cause anxiety and affect insurance eligibility</li>
               </ul>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Perioperative Management</h3>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Perioperative Management</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>Heterozygous FVL/PGM carriers should receive standard perioperative thromboprophylaxis &mdash; no additional measures required over standard risk assessment</li>
                 <li>Homozygous or compound heterozygous carriers: individualized thromboprophylaxis with specialist input</li>
               </ul>
@@ -337,10 +337,10 @@ export function ThrombophiliaFvlPgmGuide() {
 
         {/* REFERENCES */}
         {activeTab === 5 && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">References</h3>
-              <ol className="asa-ref-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">References</h3>
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((r) => (
                   <li key={r}>{r}</li>
                 ))}

@@ -50,62 +50,62 @@ export function ThromboprophylaxisOrthoGuide() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <p className="asa-guide-eyebrow">Clinical Guide</p>
-        <h1 className="asa-guide-title">Thromboprophylaxis: Orthopedic Surgery</h1>
-        <p className="asa-guide-lead">
+    <div className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <p className="flex flex-wrap gap-2 mb-2">Clinical Guide</p>
+        <h1 className="text-2xl font-bold leading-tight mt-1">Thromboprophylaxis: Orthopedic Surgery</h1>
+        <p className="text-sm text-muted-foreground leading-relaxed mt-2">
           Extended thromboprophylaxis (14–35 days) for hip/knee arthroplasty and hip fracture surgery. DOACs are well-evaluated in this setting. ASA alone is less effective than LMWH.
         </p>
       </div>
 
-      <div className="asa-tab-bar">
+      <div className="flex gap-1 p-1 rounded-xl bg-muted overflow-x-auto">
         {tabs.map((t, i) => (
           <button key={t} className={`asa-tab-btn${activeTab === i ? " active" : ""}`} onClick={() => setActiveTab(i)}>{t}</button>
         ))}
       </div>
 
-      <div className="asa-tab-body">
+      <div className="grid gap-4">
         {activeTab === 0 && (
-          <div className="asa-sections">
-            <div className="asa-alert asa-alert-blue">
+          <div className="grid gap-3.5">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <strong>Key difference from medical/non-ortho:</strong> Orthopedic surgery patients need <strong>extended prophylaxis (14–35 days post-op)</strong>, including post-discharge. Before prophylaxis was standard, DVT occurred in 40–60% and PE in 5–10%. DOACs (rivaroxaban, apixaban, dabigatran) are well-validated here, unlike in medical or non-ortho settings.
             </div>
-            <div className="asa-ae-grid">
-              <div className="asa-ae-card">
-                <span className="asa-ae-label">Historic DVT rate (no prophylaxis)</span>
-                <span className="asa-ae-value">40–60%</span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="rounded-lg border p-3">
+                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Historic DVT rate (no prophylaxis)</span>
+                <span className="text-sm">40–60%</span>
               </div>
-              <div className="asa-ae-card">
-                <span className="asa-ae-label">Prophylaxis duration</span>
-                <span className="asa-ae-value">14–35 days (extended post-discharge)</span>
+              <div className="rounded-lg border p-3">
+                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Prophylaxis duration</span>
+                <span className="text-sm">14–35 days (extended post-discharge)</span>
               </div>
-              <div className="asa-ae-card">
-                <span className="asa-ae-label">DOACs approved</span>
-                <span className="asa-ae-value">Yes — rivaroxaban, apixaban, dabigatran</span>
+              <div className="rounded-lg border p-3">
+                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">DOACs approved</span>
+                <span className="text-sm">Yes — rivaroxaban, apixaban, dabigatran</span>
               </div>
-              <div className="asa-ae-card">
-                <span className="asa-ae-label">ASA alone?</span>
-                <span className="asa-ae-value">Less effective than LMWH — avoid if additional VTE risk factors</span>
+              <div className="rounded-lg border p-3">
+                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">ASA alone?</span>
+                <span className="text-sm">Less effective than LMWH — avoid if additional VTE risk factors</span>
               </div>
-              <div className="asa-ae-card">
-                <span className="asa-ae-label">Start timing</span>
-                <span className="asa-ae-value">~12 hours post-op (morning after surgery)</span>
+              <div className="rounded-lg border p-3">
+                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Start timing</span>
+                <span className="text-sm">~12 hours post-op (morning after surgery)</span>
               </div>
-              <div className="asa-ae-card">
-                <span className="asa-ae-label">Pre-discharge USS screening</span>
-                <span className="asa-ae-value">NOT recommended (no benefit shown; bleeding with treatment of asymptomatic DVT)</span>
+              <div className="rounded-lg border p-3">
+                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Pre-discharge USS screening</span>
+                <span className="text-sm">NOT recommended (no benefit shown; bleeding with treatment of asymptomatic DVT)</span>
               </div>
             </div>
           </div>
         )}
 
         {activeTab === 1 && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Prophylaxis by Procedure Type</h3>
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Prophylaxis by Procedure Type</h3>
               <div style={{ overflowX: "auto" }}>
-                <table className="asa-dose-table">
+                <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr>
                       <th>Procedure</th>
@@ -129,18 +129,18 @@ export function ThromboprophylaxisOrthoGuide() {
                 </table>
               </div>
             </div>
-            <div className="asa-alert asa-alert-amber">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <strong>Longer duration (up to 35 days)</strong> for: bilateral arthroplasty, previous VTE history, substantially impaired mobility at discharge, or rehabilitation patients (continue until discharge from rehab).
             </div>
           </div>
         )}
 
         {activeTab === 2 && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">DOAC Options for Orthopedic Prophylaxis</h3>
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">DOAC Options for Orthopedic Prophylaxis</h3>
               <div style={{ overflowX: "auto" }}>
-                <table className="asa-dose-table">
+                <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr><th>Drug</th><th>Dose</th><th>Approved For</th><th>Notes</th></tr>
                   </thead>
@@ -157,18 +157,18 @@ export function ThromboprophylaxisOrthoGuide() {
                 </table>
               </div>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">LMWH Dosing — Same as Non-Ortho Guide</h3>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">LMWH Dosing — Same as Non-Ortho Guide</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>Dalteparin 5,000 U SC daily (standard weight)</li>
                 <li>Enoxaparin 40 mg SC daily (reduce to 30 mg if CrCl &lt;30)</li>
                 <li>Tinzaparin 4,500 U SC daily</li>
                 <li>Weight adjustments same as non-ortho guide</li>
               </ul>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Patients on Long-Term Anticoagulation</h3>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Patients on Long-Term Anticoagulation</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Use prophylactic doses post-operatively until safe to restart full-dose anticoagulation (usually 48–72 hours). See <GuideLink to="doacsPeriop">DOACs Perioperative Management</GuideLink>.
               </p>
             </div>
@@ -176,32 +176,32 @@ export function ThromboprophylaxisOrthoGuide() {
         )}
 
         {activeTab === 3 && (
-          <div className="asa-sections">
-            <div className="asa-alert asa-alert-amber">
+          <div className="grid gap-3.5">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <strong>Bottom line:</strong> ASA alone is less effective than enoxaparin for VTE prevention in orthopedic surgery. Mortality is similar, but VTE rates are higher with ASA. Avoid ASA alone in patients with additional VTE risk factors.
             </div>
             {asaEvidence.map((a) => (
-              <div key={a.trial} className="asa-section-card">
-                <h3 className="asa-section-title">{a.trial}</h3>
-                <div className="asa-ae-grid">
-                  <div className="asa-ae-card">
-                    <span className="asa-ae-label">Population</span>
-                    <span className="asa-ae-value">{a.population}</span>
+              <div key={a.trial} className="rounded-xl border bg-card shadow-sm p-5">
+                <h3 className="text-base font-semibold mb-2">{a.trial}</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="rounded-lg border p-3">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Population</span>
+                    <span className="text-sm">{a.population}</span>
                   </div>
-                  <div className="asa-ae-card">
-                    <span className="asa-ae-label">Comparison</span>
-                    <span className="asa-ae-value">{a.comparison}</span>
+                  <div className="rounded-lg border p-3">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Comparison</span>
+                    <span className="text-sm">{a.comparison}</span>
                   </div>
-                  <div className="asa-ae-card">
-                    <span className="asa-ae-label">Primary outcome</span>
-                    <span className="asa-ae-value">{a.primaryOutcome}</span>
+                  <div className="rounded-lg border p-3">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Primary outcome</span>
+                    <span className="text-sm">{a.primaryOutcome}</span>
                   </div>
-                  <div className="asa-ae-card">
-                    <span className="asa-ae-label">Result</span>
-                    <span className="asa-ae-value">{a.result}</span>
+                  <div className="rounded-lg border p-3">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Result</span>
+                    <span className="text-sm">{a.result}</span>
                   </div>
                 </div>
-                <p className="asa-section-copy" style={{ marginTop: "0.75rem", fontWeight: 600 }}>
+                <p className="text-sm text-foreground leading-relaxed mb-4" style={{ marginTop: "0.75rem", fontWeight: 600 }}>
                   Conclusion: {a.conclusion}
                 </p>
               </div>
@@ -210,10 +210,10 @@ export function ThromboprophylaxisOrthoGuide() {
         )}
 
         {activeTab === 4 && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">References</h3>
-              <ol className="asa-ref-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">References</h3>
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((r) => <li key={r}>{r}</li>)}
               </ol>
               <div style={{ marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }}>

@@ -159,33 +159,33 @@ export function AsaGuide() {
   const [tab, setTab] = useState("indications");
 
   return (
-    <section className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <div className="asa-guide-header-top">
-          <div className="asa-guide-header-copy">
-            <div className="asa-badge-row">
-              <span className="asa-badge asa-badge-blue">Clinical Guide</span>
-              <span className="asa-badge asa-badge-teal">Antiplatelet Therapy</span>
-              <span className="asa-badge asa-badge-gray">v105</span>
+    <section className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex-1 min-w-0">
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Clinical Guide</span>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-teal-100 text-teal-700">Antiplatelet Therapy</span>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600">v105</span>
             </div>
-            <h2 className="asa-guide-title">Acetylsalicylic Acid (ASA)</h2>
-            <div className="asa-guide-meta">
+            <h2 className="text-2xl font-bold leading-tight mt-1">Acetylsalicylic Acid (ASA)</h2>
+            <div className="flex flex-wrap gap-3 mt-3 text-xs text-muted-foreground">
               <span><Calendar size={13} /> Updated 5 February 2026</span>
               <span><FileText size={13} /> Enteric-coated ASA unless otherwise stated</span>
             </div>
           </div>
-          <div className="asa-guide-icon">
+          <div className="flex items-center justify-center w-12 h-12 rounded-xl border border-blue-200 bg-blue-50 text-blue-600 flex-shrink-0">
             <Heart size={24} />
           </div>
         </div>
 
-        <div className="asa-objective-strip">
+        <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-muted/60 text-sm text-muted-foreground border border-border/50">
           <strong>Objective:</strong> To provide information on the use of acetylsalicylic acid in the prevention of vascular thromboembolic events.
         </div>
       </div>
 
-      <div className="asa-mechanism-card">
-        <div className="asa-mechanism-icon">
+      <div className="rounded-xl border bg-card shadow-sm p-5">
+        <div className="flex items-center justify-center w-10 h-10 rounded-lg border border-blue-200 bg-blue-50 text-blue-600 mb-2">
           <Syringe size={18} />
         </div>
         <div>
@@ -194,8 +194,8 @@ export function AsaGuide() {
         </div>
       </div>
 
-      <div className="asa-tabs">
-        <div className="asa-tabs-list" role="tablist" aria-label="ASA guide sections">
+      <div className="grid gap-4">
+        <div className="flex gap-1 p-1 rounded-xl bg-muted" role="tablist" aria-label="ASA guide sections">
           {tabs.map(([id, label]) => (
             <button
               key={id}
@@ -209,23 +209,23 @@ export function AsaGuide() {
         </div>
 
         {tab === "indications" ? (
-          <div className="asa-tab-panel">
+          <div className="grid gap-3.5">
             {indicationSections.map((section) => {
               const Icon = section.icon;
               return (
-                <article key={section.title} className="asa-section-card">
+                <article key={section.title} className="rounded-xl border bg-card shadow-sm p-5">
                   <h3><Dot tone={section.tone} />{section.title}</h3>
                   {section.groups.map((group) => (
-                    <div key={group.title} className="asa-ind-group">
-                      <div className="asa-ind-group-label">
+                    <div key={group.title} className="mb-3">
+                      <div className="flex items-center gap-2 text-sm font-semibold mb-1.5">
                         <span className={`asa-ind-icon ${section.tone}`}><Icon size={14} /></span>
                         {group.title}
                       </div>
-                      <ul className="asa-ind-list">
+                      <ul className="list-none p-0 space-y-1">
                         {group.items.map((item) => <li key={item}>{item}</li>)}
                       </ul>
                       {group.subitems?.length ? (
-                        <ul className="asa-ind-list asa-sub-list">
+                        <ul className="list-none pl-4 mt-1 space-y-1 border-l-2 border-border">
                           {group.subitems.map((item) => <li key={item}>{item}</li>)}
                         </ul>
                       ) : null}
@@ -235,7 +235,7 @@ export function AsaGuide() {
               );
             })}
 
-            <div className="asa-alert asa-alert-warn">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <AlertCircle size={16} />
               <div>
                 <strong>Primary prevention:</strong> ASA is not routinely recommended for primary prevention of a first vascular event, whether or not vascular risk factors are present. The net benefit in asymptomatic atherosclerosis remains uncertain.
@@ -245,10 +245,10 @@ export function AsaGuide() {
         ) : null}
 
         {tab === "dosing" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Dosing Summary</h3>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Indication or situation</th>
@@ -260,7 +260,7 @@ export function AsaGuide() {
                   {dosingRows.map((row) => (
                     <tr key={row[0]}>
                       <td>{row[0]}</td>
-                      <td className="dose-highlight">{row[1]}</td>
+                      <td className="font-bold text-foreground">{row[1]}</td>
                       <td>{row[2]}</td>
                     </tr>
                   ))}
@@ -268,7 +268,7 @@ export function AsaGuide() {
               </table>
             </article>
 
-            <div className="asa-alert asa-alert-warn">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <AlertCircle size={16} />
               <div>
                 <strong>GI bleeding risk:</strong> For patients with prior or high-risk gastrointestinal bleeding, consider a proton pump inhibitor, an H2 antagonist, or an alternative antiplatelet agent such as <GuideLink to="clopidogrel">clopidogrel</GuideLink>.
@@ -278,27 +278,27 @@ export function AsaGuide() {
         ) : null}
 
         {tab === "adverse" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="danger" />Adverse Effects Profile</h3>
-              <div className="asa-ae-grid">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {adverseEffects.map((item) => (
                   <div key={`${item.label}-${item.text}`} className={`asa-ae-card ${item.tone}`}>
-                    <div className="asa-ae-card-label">{item.label}</div>
-                    <div className="asa-ae-card-text">{item.text}</div>
+                    <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">{item.label}</div>
+                    <div className="text-sm leading-relaxed">{item.text}</div>
                   </div>
                 ))}
               </div>
             </article>
 
-            <div className="asa-alert asa-alert-danger">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <ShieldAlert size={16} />
               <div>
                 <strong>Avoid or use with caution in:</strong> asthma or nasal polyps, high bleeding risk, recent major bleeding, severe thrombocytopenia, and familial or acquired bleeding disorders.
               </div>
             </div>
 
-            <div className="asa-alert asa-alert-warn">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <AlertCircle size={16} />
               <div>
                 <strong>NSAID interaction:</strong> Patients taking ASA for vascular protection should avoid traditional NSAIDs. If an anti-inflammatory is required, a COX-2 inhibitor is preferred.
@@ -308,29 +308,29 @@ export function AsaGuide() {
         ) : null}
 
         {tab === "periprocedural" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="purple" />Peri-procedural Management</h3>
-              <div className="asa-alert asa-alert-info">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
                 <Info size={16} />
                 <div>Balance thrombotic risk and bleeding risk for every procedure. Specialist input is advised for higher-risk patients, especially those on dual antiplatelet therapy.</div>
               </div>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 In general, ASA should be continued, especially in high thrombotic risk patients or when the procedure carries low bleeding risk. Interrupt only when bleeding risk is high and thrombotic risk is low.
               </p>
 
-              <div className="asa-timeline">
+              <div className="relative pl-6 space-y-4 border-l-2 border-border">
                 {timelineSteps.map((step) => (
-                  <div key={step[0]} className="asa-timeline-step">
+                  <div key={step[0]} className="relative">
                     <div className={`asa-timeline-dot ${step[2]}`} />
-                    <div className="asa-timeline-label">{step[0]}</div>
-                    <div className="asa-timeline-desc">{step[1]}</div>
+                    <div className="text-sm font-semibold">{step[0]}</div>
+                    <div className="text-sm text-muted-foreground">{step[1]}</div>
                   </div>
                 ))}
               </div>
             </article>
 
-            <div className="asa-alert asa-alert-teal">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-teal-200 bg-teal-50 text-teal-900">
               <CheckCircle2 size={16} />
               <div>See the <GuideLink to="periopAntiplatelet">Perioperative Antiplatelet Management</GuideLink> guide for detailed interruption, dual antiplatelet therapy, and restart decisions.</div>
             </div>
@@ -338,25 +338,25 @@ export function AsaGuide() {
         ) : null}
 
         {tab === "special" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="orange" />Concomitant Anticoagulation</h3>
-              <p className="asa-section-copy">Concomitant use of therapeutic anticoagulation and ASA is discouraged and should only be considered in carefully selected low-bleeding-risk patients.</p>
-              <ul className="asa-ind-list">
+              <p className="text-sm text-foreground leading-relaxed mb-4">Concomitant use of therapeutic anticoagulation and ASA is discouraged and should only be considered in carefully selected low-bleeding-risk patients.</p>
+              <ul className="list-none p-0 space-y-1">
                 <li>Very recent ACS or PCI with a coronary stent, for the shortest possible duration.</li>
                 <li>High-risk prosthetic heart valve scenarios.</li>
                 <li>Proven TIA or ischaemic stroke while on therapeutic anticoagulation alone.</li>
                 <li>High-risk thrombophilia with breakthrough thrombosis despite therapeutic anticoagulation.</li>
               </ul>
-              <div className="asa-alert asa-alert-danger">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
                 <ShieldAlert size={16} />
                 <div>In most other patients, stop ASA once anticoagulation is started. See the <GuideLink to="anticoagAntiplatelet">Anticoagulation + Antiplatelet Therapy</GuideLink> guide.</div>
               </div>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="danger" />Cautions and Contraindications</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>Asthma or nasal polyps.</li>
                 <li>High bleeding risk or recent major bleeding.</li>
                 <li>Severe thrombocytopenia.</li>
@@ -368,23 +368,23 @@ export function AsaGuide() {
         ) : null}
 
         {tab === "pediatrics" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="teal" />Pediatric Use</h3>
-              <div className="asa-alert asa-alert-teal">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-teal-200 bg-teal-50 text-teal-900">
                 <Users size={16} />
                 <div>When possible, involve a paediatrician with expertise in thromboembolism when considering ASA for antiplatelet therapy in children.</div>
               </div>
-              <p className="asa-section-copy">If a specialist paediatric thrombosis clinician is not available, combine local neonatology or paediatric care with adult haematology support and remote input from an experienced paediatric haematologist.</p>
+              <p className="text-sm text-foreground leading-relaxed mb-4">If a specialist paediatric thrombosis clinician is not available, combine local neonatology or paediatric care with adult haematology support and remote input from an experienced paediatric haematologist.</p>
             </article>
           </div>
         ) : null}
 
         {tab === "references" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="gray" />Related Clinical Guides</h3>
-              <ul className="asa-related-list">
+              <ul className="list-none p-0 divide-y divide-border">
                 <li><GuideLink to="periopAntiplatelet">Perioperative Antiplatelet Management</GuideLink></li>
                 <li><GuideLink to="pad">Peripheral Arterial Disease</GuideLink></li>
                 <li><GuideLink to="strokeSecondary">Ischemic Stroke: Secondary Prevention</GuideLink></li>
@@ -394,9 +394,9 @@ export function AsaGuide() {
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="gray" />References</h3>
-              <ol className="asa-ref-list">
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((item) => <li key={item}>{item}</li>)}
               </ol>
             </article>
@@ -404,7 +404,7 @@ export function AsaGuide() {
         ) : null}
       </div>
 
-      <div className="asa-guide-footer">
+      <div className="rounded-xl border bg-muted/50 p-4 text-xs text-muted-foreground">
         <p><strong>Acetylsalicylic Acid (ASA)</strong> | Updated 5 February 2026 | Version 105</p>
         <p>The information here is not a substitute for clinical judgement. Always seek appropriate specialist input when needed.</p>
       </div>

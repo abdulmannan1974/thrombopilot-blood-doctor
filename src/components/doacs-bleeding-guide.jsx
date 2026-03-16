@@ -43,16 +43,16 @@ export function DoacsBleedingGuide() {
   const [tab, setTab] = useState("overview");
 
   return (
-    <section className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <p className="asa-guide-eyebrow">Clinical Guide</p>
-        <h2 className="asa-guide-title">DOACs: Management of Bleeding</h2>
-        <p className="asa-guide-lead">
+    <section className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <p className="flex flex-wrap gap-2 mb-2">Clinical Guide</p>
+        <h2 className="text-2xl font-bold leading-tight mt-1">DOACs: Management of Bleeding</h2>
+        <p className="text-sm text-muted-foreground leading-relaxed mt-2">
           Guidance for clinicians on the management of bleeding in patients receiving a direct oral anticoagulant (DOAC).
         </p>
       </div>
 
-      <div className="asa-tab-bar" role="tablist">
+      <div className="flex gap-1 p-1 rounded-xl bg-muted overflow-x-auto" role="tablist">
         {tabs.map(([id, label]) => (
           <button
             key={id}
@@ -67,36 +67,36 @@ export function DoacsBleedingGuide() {
         ))}
       </div>
 
-      <div className="asa-tab-body">
+      <div className="grid gap-4">
         {/* ── Overview ── */}
         {tab === "overview" && (
-          <div className="asa-sections">
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Background</h3>
-              <p className="asa-section-copy">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Background</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Four DOACs are approved for clinical use in Canada: <strong>apixaban</strong>, <strong>edoxaban</strong>, <strong>rivaroxaban</strong>, and <strong>dabigatran</strong>. Like all anticoagulants, bleeding is the major complication of DOAC therapy.
               </p>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 DOACs have short half-lives (generally ~10-12 hours in the absence of renal or hepatic dysfunction) and significant drug clearance occurs within 24 hours of ingestion.
               </p>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Specific Reversal Agents</h3>
-              <ul className="asa-section-copy">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Specific Reversal Agents</h3>
+              <ul className="text-sm text-foreground leading-relaxed mb-4">
                 <li><strong>Idarucizumab (Praxbind)</strong> &mdash; specific reversal agent for <em>dabigatran</em>. Indicated for acute serious bleeding or emergency surgery.</li>
                 <li><strong>Andexanet alfa (Ondexxya)</strong> &mdash; specific antidote for factor Xa inhibitors <em>rivaroxaban</em> and <em>apixaban</em>. Indicated when rapid reversal is needed due to life-threatening or uncontrolled bleeding.</li>
               </ul>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Non-Specific Hemostatic Agents</h3>
-              <p className="asa-section-copy">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Non-Specific Hemostatic Agents</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 <strong>4-Factor PCC</strong> (Octaplex, Beriplex) or <strong>aPCC</strong> (FEIBA) may aid hemostasis by supplying coagulation factors to overcome anticoagulant effect, but they do <strong>not</strong> reverse the anticoagulant effect nor reduce the level of active drug.
               </p>
             </article>
 
-            <div className="asa-alert asa-alert-blue">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <strong>Systematic approach required:</strong> Appropriate management in all cases of bleeding requires assessment and management of the competing risks and consequences of both bleeding and thrombosis.
             </div>
           </div>
@@ -104,13 +104,13 @@ export function DoacsBleedingGuide() {
 
         {/* ── Minor & CRNM Bleeding ── */}
         {tab === "minor" && (
-          <div className="asa-sections">
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Minor Bleeding</h3>
-              <p className="asa-section-copy" style={{ fontStyle: "italic", opacity: 0.85 }}>
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Minor Bleeding</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ fontStyle: "italic", opacity: 0.85 }}>
                 Examples: extremity bruising, hemorrhoidal bleeding, subconjunctival bleed, self-limited epistaxis
               </p>
-              <ul className="asa-section-copy">
+              <ul className="text-sm text-foreground leading-relaxed mb-4">
                 <li>Continue DOAC and monitor</li>
                 <li>Confirm the patient is receiving the appropriate drug and dose based on indication, age, weight, creatinine clearance, and co-medications</li>
                 <li>Check hemoglobin, platelet count, creatinine, and liver function tests</li>
@@ -118,12 +118,12 @@ export function DoacsBleedingGuide() {
               </ul>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Clinically Relevant Non-Major (CRNM) Bleeding</h3>
-              <p className="asa-section-copy" style={{ fontStyle: "italic", opacity: 0.85 }}>
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Clinically Relevant Non-Major (CRNM) Bleeding</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ fontStyle: "italic", opacity: 0.85 }}>
                 Non-life-threatening bleeding requiring medical attention: hemodynamically stable GI bleed, epistaxis, hematuria, menstrual bleeding
               </p>
-              <ul className="asa-section-copy">
+              <ul className="text-sm text-foreground leading-relaxed mb-4">
                 <li><strong>Hold DOAC</strong></li>
                 <li>Apply local hemostatic measures (compression, packing, suturing)</li>
                 <li>Labs: hemoglobin, platelet count, PT/INR, aPTT, creatinine, LFTs, group &amp; screen</li>
@@ -131,17 +131,17 @@ export function DoacsBleedingGuide() {
                 <li>Consultation for investigation and definitive management of bleeding source (endoscopy, interventional radiology, surgery)</li>
               </ul>
 
-              <div className="asa-alert asa-alert-amber">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
                 <strong>Coagulation test interpretation:</strong> PT/INR and aPTT can &ldquo;rule in&rdquo; but are <strong>not sensitive enough</strong> to &ldquo;rule out&rdquo; clinically significant DOAC effect. Unexplained abnormalities suggest clinically significant DOAC levels are likely present. <strong>Exception:</strong> A normal thrombin time (TT) rules out the presence of dabigatran.
               </div>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Estimating Drug Clearance</h3>
-              <p className="asa-section-copy">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Estimating Drug Clearance</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Determine whether clinically significant DOAC levels are likely present using: <strong>timing of last dose</strong>, <strong>drug half-life</strong>, and <strong>creatinine clearance (CrCl)</strong>.
               </p>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>DOAC</th>
@@ -159,7 +159,7 @@ export function DoacsBleedingGuide() {
                   ))}
                 </tbody>
               </table>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 <strong>If available with timely results AND the results would change management</strong>, consider measuring plasma DOAC concentration using a specific validated assay that provides a quantitative DOAC level.
               </p>
             </article>
@@ -168,18 +168,18 @@ export function DoacsBleedingGuide() {
 
         {/* ── Major Bleeding ── */}
         {tab === "major" && (
-          <div className="asa-sections">
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Severe / Life-Threatening Bleeding</h3>
-              <p className="asa-section-copy" style={{ fontStyle: "italic", opacity: 0.85 }}>
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Severe / Life-Threatening Bleeding</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ fontStyle: "italic", opacity: 0.85 }}>
                 Bleeding in a critical area or organ: intracranial, intraspinal/epidural, retroperitoneal, intramuscular with compartment syndrome, pericardial, hemodynamically unstable GI bleeding
               </p>
 
-              <div className="asa-alert asa-alert-red">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
                 <strong>Consult expert URGENTLY</strong> &mdash; hematologist, internist, ER physician, or pharmacist &mdash; for advice regarding management of coagulopathy. Consult for definitive procedural intervention (GI, interventional radiology, surgery).
               </div>
 
-              <ul className="asa-section-copy">
+              <ul className="text-sm text-foreground leading-relaxed mb-4">
                 <li><strong>Hold DOAC</strong></li>
                 <li>Initiate resuscitation in a monitored setting</li>
                 <li>Apply local hemostatic measures (compression, packing, suturing)</li>
@@ -192,9 +192,9 @@ export function DoacsBleedingGuide() {
               </ul>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">When Bleeding Has Resolved</h3>
-              <ol className="asa-section-copy">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">When Bleeding Has Resolved</h3>
+              <ol className="text-sm text-foreground leading-relaxed mb-4">
                 <li>Assess for resumption of anticoagulation when hemostasis is achieved, with consideration of patient values and preferences. Confirm ongoing indication.</li>
                 <li>Estimate risks of recurrent bleeding and thrombosis with multidisciplinary input.</li>
                 <li>Assess baseline labs (hemoglobin, platelets, creatinine, LFTs) and patient weight.</li>
@@ -209,10 +209,10 @@ export function DoacsBleedingGuide() {
 
         {/* ── Reversal Agents ── */}
         {tab === "reversal" && (
-          <div className="asa-sections">
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Dabigatran Reversal</h3>
-              <ul className="asa-section-copy">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Dabigatran Reversal</h3>
+              <ul className="text-sm text-foreground leading-relaxed mb-4">
                 <li>
                   <strong>Idarucizumab (Praxbind)</strong>: 5 g IV (2 &times; 2.5 g vials). Complete reversal of anticoagulant effect expected within minutes.
                 </li>
@@ -228,9 +228,9 @@ export function DoacsBleedingGuide() {
               </ul>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Apixaban / Edoxaban / Rivaroxaban (Xa Inhibitors)</h3>
-              <ul className="asa-section-copy">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Apixaban / Edoxaban / Rivaroxaban (Xa Inhibitors)</h3>
+              <ul className="text-sm text-foreground leading-relaxed mb-4">
                 <li>
                   <strong>Andexanet alfa (Ondexxya)</strong>: specific antidote for factor Xa inhibitors rivaroxaban and apixaban. Indicated for adult patients when rapid reversal is needed due to life-threatening or uncontrolled bleeding.
                 </li>
@@ -247,14 +247,14 @@ export function DoacsBleedingGuide() {
                 <li>Consult local institutional protocols or hematology/thrombosis for advice.</li>
               </ul>
 
-              <div className="asa-alert asa-alert-amber">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
                 <strong>PCC/FEIBA are NOT antidotes.</strong> They do not affect the inhibitory effect of DOACs on factors IIa (thrombin) and Xa, and they do not affect DOAC drug levels. These agents may reduce bleeding by providing large amounts of exogenous factors II and X. They may be associated with a small increased prothrombotic risk.
               </div>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Non-Specific Therapies</h3>
-              <ul className="asa-section-copy">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Non-Specific Therapies</h3>
+              <ul className="text-sm text-foreground leading-relaxed mb-4">
                 <li>
                   <strong>Tranexamic acid (Cyclokapron)</strong>: No direct evidence of benefit in DOAC-associated bleeding, but early use has benefit in traumatic bleeding, postpartum bleeding, and cardiac surgery with a good safety profile. May be considered as an adjunct. <strong>Not recommended</strong> for genitourinary or gastrointestinal bleeding.
                 </li>
@@ -268,33 +268,33 @@ export function DoacsBleedingGuide() {
 
         {/* ── References ── */}
         {tab === "references" && (
-          <div className="asa-sections">
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Related Clinical Guides</h3>
-              <ul className="asa-section-copy">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Related Clinical Guides</h3>
+              <ul className="text-sm text-foreground leading-relaxed mb-4">
                 {relatedGuideLinks.map((g) => (
                   <li key={g.key}><GuideLink to={g.key}>{g.label}</GuideLink></li>
                 ))}
               </ul>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">References</h3>
-              <ol className="asa-ref-list">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">References</h3>
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((ref) => (
                   <li key={ref}>{ref}</li>
                 ))}
               </ol>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Special Considerations</h3>
-              <p className="asa-section-copy">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Special Considerations</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 <strong>Pediatrics:</strong> There are no studies evaluating the management of bleeding in children receiving DOACs.
               </p>
             </article>
 
-            <p className="asa-section-copy" style={{ opacity: 0.7, fontSize: "0.82rem", marginTop: "1rem" }}>
+            <p className="text-sm text-foreground leading-relaxed mb-4" style={{ opacity: 0.7, fontSize: "0.82rem", marginTop: "1rem" }}>
               Date of version: 16 October 2025 &middot; Updated 6 February 2026
             </p>
           </div>

@@ -155,21 +155,21 @@ export function HitGuide() {
   const [activeTab, setActiveTab] = useState("overview");
 
   return (
-    <div className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <div className="asa-guide-header-body">
-          <div className="asa-guide-eyebrow">
-            <span className="asa-badge asa-badge-red">Urgent Consideration</span>
-            <span className="asa-badge">Version 39</span>
+    <div className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <div className="flex items-start gap-4">
+          <div className="flex flex-wrap gap-2 mb-2">
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-700">Urgent Consideration</span>
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary text-secondary-foreground">Version 39</span>
           </div>
-          <h1 className="asa-guide-title">Heparin-Induced Thrombocytopenia (HIT)</h1>
-          <p className="asa-guide-lead">
+          <h1 className="text-2xl font-bold leading-tight mt-1">Heparin-Induced Thrombocytopenia (HIT)</h1>
+          <p className="text-sm text-muted-foreground leading-relaxed mt-2">
             Immune-mediated prothrombotic adverse drug reaction to heparin — diagnosis using 4Ts score and HIT assays, urgent management with non-heparin anticoagulants.
           </p>
         </div>
       </div>
 
-      <div className="asa-tab-bar">
+      <div className="flex gap-1 p-1 rounded-xl bg-muted overflow-x-auto">
         {tabs.map((t) => (
           <button
             key={t.id}
@@ -181,50 +181,50 @@ export function HitGuide() {
         ))}
       </div>
 
-      <div className="asa-tab-body">
+      <div className="grid gap-4">
         {/* OVERVIEW */}
         {activeTab === "overview" && (
-          <div className="asa-sections">
-            <div className="asa-section-card asa-alert asa-alert-red">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border border-red-200 bg-red-50 text-red-900 shadow-sm p-5">
               <strong>Clinical emergency:</strong> Suspected HIT requires immediate cessation of <em>all</em> heparin and commencement of a non-heparin anticoagulant — do not wait for lab results if intermediate or high pre-test probability.
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Pathophysiology</h2>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Pathophysiology</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 HIT is caused by IgG antibodies directed against <strong>platelet factor 4 (PF4) bound to heparin</strong>. These antibodies cause: intravascular platelet aggregation, intense activation of platelets, monocytes, and endothelial cells, and excessive thrombin generation — a highly prothrombotic state despite low platelet count.
               </p>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Epidemiology & Clinical Features</h2>
-              <div className="asa-ae-grid">
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Incidence with UFH &gt;4 days</span>
-                  <span className="asa-ae-value">Up to 5%</span>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Epidemiology & Clinical Features</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Incidence with UFH &gt;4 days</span>
+                  <span className="text-sm">Up to 5%</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Incidence with LMWH</span>
-                  <span className="asa-ae-value">&lt;1%</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Incidence with LMWH</span>
+                  <span className="text-sm">&lt;1%</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Platelet fall onset</span>
-                  <span className="asa-ae-value">Days 5–10 after heparin start (or &lt;24h if prior heparin in last 3 months)</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Platelet fall onset</span>
+                  <span className="text-sm">Days 5–10 after heparin start (or &lt;24h if prior heparin in last 3 months)</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Thrombosis risk</span>
-                  <span className="asa-ae-value" style={{ color: "#dc2626" }}>30–50% — venous AND arterial</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Thrombosis risk</span>
+                  <span className="text-sm" style={{ color: "#dc2626" }}>30–50% — venous AND arterial</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Bleeding</span>
-                  <span className="asa-ae-value">Very infrequent despite low platelet count</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Bleeding</span>
+                  <span className="text-sm">Very infrequent despite low platelet count</span>
                 </div>
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Less Common HIT Manifestations</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Less Common HIT Manifestations</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>Heparin-induced skin lesions (erythema, necrosis at injection sites)</li>
                 <li>Adrenal haemorrhagic infarction (bilateral adrenal vein thrombosis → haemodynamic collapse)</li>
                 <li>Transient global amnesia</li>
@@ -236,10 +236,10 @@ export function HitGuide() {
 
         {/* 4Ts SCORE */}
         {activeTab === "fourst" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">4Ts Pre-Test Probability Score</h2>
-              <table className="asa-dose-table">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">4Ts Pre-Test Probability Score</h2>
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Criterion</th>
@@ -261,20 +261,20 @@ export function HitGuide() {
               </table>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Score Interpretation</h2>
-              <div className="asa-ae-grid">
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label" style={{ color: "#16a34a" }}>Low (0–3)</span>
-                  <span className="asa-ae-value">HIT unlikely; lab testing often not required (high NPV); continue heparin cautiously</span>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Score Interpretation</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "#16a34a" }}>Low (0–3)</span>
+                  <span className="text-sm">HIT unlikely; lab testing often not required (high NPV); continue heparin cautiously</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label" style={{ color: "#d97706" }}>Intermediate (4–5)</span>
-                  <span className="asa-ae-value">HIT possible; stop heparin; start HIT-safe anticoagulant; send immunoassay</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "#d97706" }}>Intermediate (4–5)</span>
+                  <span className="text-sm">HIT possible; stop heparin; start HIT-safe anticoagulant; send immunoassay</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label" style={{ color: "#dc2626" }}>High (6–8)</span>
-                  <span className="asa-ae-value">HIT likely; stop heparin immediately; start HIT-safe anticoagulant; send both immunoassay AND functional assay</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "#dc2626" }}>High (6–8)</span>
+                  <span className="text-sm">HIT likely; stop heparin immediately; start HIT-safe anticoagulant; send both immunoassay AND functional assay</span>
                 </div>
               </div>
             </div>
@@ -283,19 +283,19 @@ export function HitGuide() {
 
         {/* DIAGNOSIS */}
         {activeTab === "diagnosis" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Diagnostic Criteria for HIT</h2>
-              <ul className="asa-ind-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Diagnostic Criteria for HIT</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>Patient is receiving or has had recent UFH or LMWH exposure (within the last 100 days)</li>
                 <li>At least one clinical feature: significant platelet count fall <strong>AND/OR</strong> new venous/arterial thrombosis</li>
                 <li>Laboratory evidence of HIT antibodies</li>
               </ul>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Laboratory Tests</h2>
-              <div className="asa-sections" style={{ gap: "0.75rem" }}>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Laboratory Tests</h2>
+              <div className="grid gap-3.5" style={{ gap: "0.75rem" }}>
                 {[
                   {
                     type: "Immunologic assay",
@@ -314,7 +314,7 @@ export function HitGuide() {
                     use: "Confirmatory; order if immunoassay positive or clinical/lab discordance",
                   },
                 ].map((t, i) => (
-                  <div key={i} className="asa-section-card" style={{ margin: 0, borderLeft: "3px solid var(--primary)" }}>
+                  <div key={i} className="rounded-xl border bg-card shadow-sm p-5" style={{ margin: 0, borderLeft: "3px solid var(--primary)" }}>
                     <strong>{t.type}</strong>
                     <p style={{ margin: "0.2rem 0", fontSize: "0.87em" }}><strong>Examples:</strong> {t.examples}</p>
                     <p style={{ margin: "0.2rem 0", fontSize: "0.87em" }}>
@@ -328,7 +328,7 @@ export function HitGuide() {
               </div>
             </div>
 
-            <div className="asa-section-card asa-alert asa-alert-amber">
+            <div className="rounded-xl border border-amber-200 bg-amber-50 text-amber-900 shadow-sm p-5">
               <strong>Positive immunoassay?</strong> Order a functional assay if available (locally or as send-out) — the majority of positive immunoassay patients do <em>not</em> have true HIT. If unavailable, diagnose based on 4Ts probability and immunoassay positivity degree. Consult thrombosis specialist.
             </div>
           </div>
@@ -336,16 +336,16 @@ export function HitGuide() {
 
         {/* MANAGEMENT */}
         {activeTab === "management" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Management Checklist</h2>
-              <div className="asa-timeline">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Management Checklist</h2>
+              <div className="relative pl-6 space-y-4 border-l-2 border-border">
                 {managementSteps.map((s, i) => (
-                  <div key={i} className="asa-timeline-step">
-                    <div className="asa-timeline-marker" style={{ background: s.urgency === "Immediate" || s.urgency === "Critical" ? "#dc2626" : undefined }}>
+                  <div key={i} className="relative">
+                    <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary" style={{ background: s.urgency === "Immediate" || s.urgency === "Critical" ? "#dc2626" : undefined }}>
                       {i + 1}
                     </div>
-                    <div className="asa-timeline-content">
+                    <div className="ml-2">
                       <strong>{s.step}</strong>
                       <span className={`asa-badge ${s.urgency === "Immediate" || s.urgency === "Critical" ? "asa-badge-red" : "asa-badge-amber"}`} style={{ marginLeft: "0.5rem" }}>{s.urgency}</span>
                       <p style={{ margin: "0.3rem 0 0", fontSize: "0.9em" }}>{s.detail}</p>
@@ -355,16 +355,16 @@ export function HitGuide() {
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Duration of Anticoagulation</h2>
-              <div className="asa-ae-grid">
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">HIT with thrombosis (HITT)</span>
-                  <span className="asa-ae-value">Minimum <strong>3 months</strong> (similar to provoked VTE)</span>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Duration of Anticoagulation</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">HIT with thrombosis (HITT)</span>
+                  <span className="text-sm">Minimum <strong>3 months</strong> (similar to provoked VTE)</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">HIT without thrombosis</span>
-                  <span className="asa-ae-value">Minimum <strong>4 weeks</strong> and until platelet count recovers to baseline</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">HIT without thrombosis</span>
+                  <span className="text-sm">Minimum <strong>4 weeks</strong> and until platelet count recovers to baseline</span>
                 </div>
               </div>
             </div>
@@ -373,11 +373,11 @@ export function HitGuide() {
 
         {/* HIT-SAFE AGENTS */}
         {activeTab === "agents" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Non-Heparin Anticoagulants for HIT</h2>
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Non-Heparin Anticoagulants for HIT</h2>
               {hitAgents.map((a, i) => (
-                <div key={i} className="asa-section-card" style={{ margin: "0 0 0.75rem", borderLeft: "3px solid var(--primary)" }}>
+                <div key={i} className="rounded-xl border bg-card shadow-sm p-5" style={{ margin: "0 0 0.75rem", borderLeft: "3px solid var(--primary)" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "0.3rem" }}>
                     <strong>{a.agent}</strong>
                     <span className={badgeClass(a.badge)}>{a.badge.replace("-", " ")}</span>
@@ -393,19 +393,19 @@ export function HitGuide() {
 
         {/* SPECIAL POPULATIONS */}
         {activeTab === "special" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Pediatrics</h2>
-              <ul className="asa-ind-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Pediatrics</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>HIT incidence is lower than in adults, but investigation and management approach is similar</li>
                 <li>Paediatrician with thromboembolism expertise should manage where possible</li>
                 <li>If unavailable: neonatologist/paediatrician + adult haematologist + remote consultation with paediatric haematology expert</li>
               </ul>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Pregnancy</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Pregnancy</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>HIT is infrequent in pregnancy; investigate as outlined above</li>
                 <li><strong>Danaparoid:</strong> Does not cross placenta — preferred in pregnancy where available (not available in Canada)</li>
                 <li><strong>Fondaparinux:</strong> Option where danaparoid unavailable; crosses placenta in small amounts; very limited first-trimester data</li>
@@ -414,9 +414,9 @@ export function HitGuide() {
               </ul>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Future Heparin Exposure</h2>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Future Heparin Exposure</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 <strong>Heparin or LMWH should not be given to any patient with previous HIT without prior consultation with a thrombosis specialist.</strong> In exceptional circumstances (e.g., cardiac surgery), short-term heparin may be considered — this requires specialist management.
               </p>
             </div>
@@ -425,10 +425,10 @@ export function HitGuide() {
 
         {/* REFERENCES */}
         {activeTab === "references" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">References</h2>
-              <ol className="asa-ref-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">References</h2>
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((ref, i) => <li key={i}>{ref}</li>)}
               </ol>
               <div style={{ marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }}>

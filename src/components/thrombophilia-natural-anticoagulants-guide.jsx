@@ -115,16 +115,16 @@ export function ThrombophiliaNaturalAnticoagulantsGuide() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <p className="asa-guide-eyebrow">Clinical Guide</p>
-        <h1 className="asa-guide-title">Thrombophilia: Protein C, Protein S &amp; Antithrombin Deficiency</h1>
-        <p className="asa-guide-lead">
+    <div className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <p className="flex flex-wrap gap-2 mb-2">Clinical Guide</p>
+        <h1 className="text-2xl font-bold leading-tight mt-1">Thrombophilia: Protein C, Protein S &amp; Antithrombin Deficiency</h1>
+        <p className="text-sm text-muted-foreground leading-relaxed mt-2">
           Diagnosis, testing pitfalls, and anticoagulant management in deficiencies of the three natural anticoagulant proteins &mdash; including heparin resistance in AT deficiency and warfarin skin necrosis risk in protein C deficiency.
         </p>
       </div>
 
-      <div className="asa-tab-bar">
+      <div className="flex gap-1 p-1 rounded-xl bg-muted overflow-x-auto">
         {tabs.map((t, i) => (
           <button
             key={t}
@@ -136,31 +136,31 @@ export function ThrombophiliaNaturalAnticoagulantsGuide() {
         ))}
       </div>
 
-      <div className="asa-tab-body">
+      <div className="grid gap-4">
         {/* OVERVIEW */}
         {activeTab === 0 && (
-          <div className="asa-sections">
-            <div className="asa-alert asa-alert-blue">
+          <div className="grid gap-3.5">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <strong>Core principle:</strong> These deficiencies are rare (&lt;5% of unprovoked VTE). Consult a thrombosis specialist before testing. Treatment duration follows the same 3-month minimum rule as other VTE &mdash; but many patients warrant indefinite therapy.
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Epidemiology</h3>
-              <div className="asa-ae-grid">
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Prevalence</span>
-                  <span className="asa-ae-value">~1 in 300 to 1 in 3000 (autosomal dominant)</span>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Epidemiology</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Prevalence</span>
+                  <span className="text-sm">~1 in 300 to 1 in 3000 (autosomal dominant)</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Found in unprovoked VTE</span>
-                  <span className="asa-ae-value">&lt; 5% of cases</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Found in unprovoked VTE</span>
+                  <span className="text-sm">&lt; 5% of cases</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Acquired deficiencies</span>
-                  <span className="asa-ae-value">More common than inherited (pregnancy, liver disease, nephrotic syndrome, L-ASP)</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Acquired deficiencies</span>
+                  <span className="text-sm">More common than inherited (pregnancy, liver disease, nephrotic syndrome, L-ASP)</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Arterial thrombosis link</span>
-                  <span className="asa-ae-value">Not definitively established &mdash; primarily venous events</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Arterial thrombosis link</span>
+                  <span className="text-sm">Not definitively established &mdash; primarily venous events</span>
                 </div>
               </div>
             </div>
@@ -177,9 +177,9 @@ export function ThrombophiliaNaturalAnticoagulantsGuide() {
                 <p style={{ fontSize: "0.85rem" }}><strong>Warfarin:</strong> {p.warfarinNote}</p>
               </div>
             ))}
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Related Guides</h3>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Related Guides</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li><GuideLink to="aps">Antiphospholipid Syndrome</GuideLink></li>
                 <li><GuideLink to="fvlPgm">Factor V Leiden &amp; Prothrombin Gene Mutation</GuideLink></li>
                 <li><GuideLink to="warfarin">Warfarin</GuideLink></li>
@@ -192,7 +192,7 @@ export function ThrombophiliaNaturalAnticoagulantsGuide() {
 
         {/* WHEN TO TEST */}
         {activeTab === 1 && (
-          <div className="asa-sections">
+          <div className="grid gap-3.5">
             {testingIndications.map((t) => (
               <div key={t.scenario} className={t.color} style={{ marginBottom: "1rem" }}>
                 <strong>{t.verdict}:</strong> {t.scenario}
@@ -201,13 +201,13 @@ export function ThrombophiliaNaturalAnticoagulantsGuide() {
                 </ul>
               </div>
             ))}
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Factors That Interfere with Accurate Testing</h3>
-              <p className="asa-section-copy" style={{ marginBottom: "0.75rem" }}>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Factors That Interfere with Accurate Testing</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ marginBottom: "0.75rem" }}>
                 Ideally test \u22653-6 weeks after an acute event and after stopping anticoagulation. Repeat testing is required to confirm an inherited deficiency.
               </p>
               <div style={{ overflowX: "auto" }}>
-                <table className="asa-dose-table">
+                <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr>
                       <th>Factor</th>
@@ -225,7 +225,7 @@ export function ThrombophiliaNaturalAnticoagulantsGuide() {
                 </table>
               </div>
             </div>
-            <div className="asa-alert asa-alert-amber">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <strong>Asymptomatic family members:</strong> Diagnosis in clinically unaffected relatives can negatively impact their perception of health and may affect life and disability insurance. Careful pre-test counseling is essential.
             </div>
           </div>
@@ -233,13 +233,13 @@ export function ThrombophiliaNaturalAnticoagulantsGuide() {
 
         {/* ACUTE VTE MANAGEMENT */}
         {activeTab === 2 && (
-          <div className="asa-sections">
-            <div className="asa-alert asa-alert-blue">
+          <div className="grid gap-3.5">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               Initial VTE treatment generally follows standard protocols. Duration: at least 3 months, and often indefinite. Specific caveats apply per protein &mdash; see below. For full VTE treatment details, see the <GuideLink to="dvtTreatment">DVT Treatment</GuideLink> and <GuideLink to="peTreatment">PE Treatment</GuideLink> guides.
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">AT Deficiency &mdash; Heparin Resistance</h3>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">AT Deficiency &mdash; Heparin Resistance</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>UFH and LMWH act via AT &mdash; may need higher doses to achieve therapeutic aPTT or anti-Xa targets</li>
                 <li>If subtherapeutic despite standard dosing: suspect AT deficiency &rarr; escalate dose guided by anti-Xa levels</li>
                 <li>AT concentrate can restore AT activity and normalize heparin responsiveness &mdash; use in high-risk settings (major surgery, peripartum)</li>
@@ -247,25 +247,25 @@ export function ThrombophiliaNaturalAnticoagulantsGuide() {
                 <li><strong>Do NOT use dose-reduced DOACs</strong> (e.g. 10 mg rivaroxaban or 2.5 mg apixaban BID) in the chronic prevention phase of AT deficiency</li>
               </ul>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Protein C Deficiency &mdash; Warfarin Skin Necrosis Risk</h3>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Protein C Deficiency &mdash; Warfarin Skin Necrosis Risk</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>Warfarin suppresses protein C rapidly (short half-life), before other clotting factors &rarr; transient hypercoagulable state &rarr; risk of skin necrosis (limbs, breast, penis)</li>
                 <li><strong>Mandatory bridging protocol:</strong> therapeutic LMWH/UFH for \u22655 days AND until INR \u22652.0 for \u226548 hours before stopping heparin</li>
                 <li>DOACs are the preferred alternative &mdash; safer initiation profile; no skin necrosis risk</li>
                 <li>Severe congenital PC deficiency: protein C concentrate for acute thrombotic events, surgery, or pregnancy</li>
               </ul>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Protein S Deficiency</h3>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Protein S Deficiency</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>Acute management mirrors protein C deficiency</li>
                 <li>No protein S concentrate &mdash; management relies entirely on anticoagulant therapy</li>
                 <li>DOACs can be used safely; no dose reduction in chronic phase</li>
                 <li>Warfarin bridging: same precautions as PC deficiency</li>
               </ul>
             </div>
-            <div className="asa-alert asa-alert-amber">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <strong>DOAC evidence:</strong> Data on DOACs in PC/PS/AT deficiency is limited to case reports, small series, and post-hoc trial analyses. Expert opinion supports their use in PC and PS deficiency. Evidence for AT deficiency is more limited. Avoid dose-reduced extended dosing for all three deficiencies.
             </div>
           </div>
@@ -273,22 +273,22 @@ export function ThrombophiliaNaturalAnticoagulantsGuide() {
 
         {/* PERIOPERATIVE */}
         {activeTab === 3 && (
-          <div className="asa-sections">
-            <div className="asa-alert asa-alert-blue">
+          <div className="grid gap-3.5">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               All three deficiencies confer increased perioperative VTE risk. Individualized thromboprophylaxis planning with specialist input is essential. See also <GuideLink to="warfarinPeriop">Warfarin: Perioperative Management</GuideLink> and <GuideLink to="doacsPeriop">DOACs: Perioperative Management</GuideLink>.
             </div>
             {surgeryManagement.map((s) => (
-              <div key={s.protein} className="asa-section-card">
+              <div key={s.protein} className="rounded-xl border bg-card shadow-sm p-5">
                 <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
-                  <h3 className="asa-section-title" style={{ margin: 0 }}>{s.protein}</h3>
+                  <h3 className="text-base font-semibold mb-2" style={{ margin: 0 }}>{s.protein}</h3>
                   <span className={s.badgeClass}>{s.badge}</span>
                 </div>
-                <p className="asa-section-copy">{s.plan}</p>
+                <p className="text-sm text-foreground leading-relaxed mb-4">{s.plan}</p>
               </div>
             ))}
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">AT Deficiency in Pregnancy</h3>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">AT Deficiency in Pregnancy</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>AT concentrate recommended peripartum to prevent maternal DVT/PE and improve fetal outcomes</li>
                 <li>Higher LMWH doses often required &mdash; monitor anti-Xa levels</li>
                 <li>Specialist (thrombosis + obstetrics) co-management essential</li>
@@ -299,18 +299,18 @@ export function ThrombophiliaNaturalAnticoagulantsGuide() {
 
         {/* SPECIAL POPULATIONS */}
         {activeTab === 4 && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Asymptomatic Carriers (No Thrombosis)</h3>
-              <ul className="asa-ind-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Asymptomatic Carriers (No Thrombosis)</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>Counsel about VTE symptoms and high-risk situations (pregnancy, OCP, surgery)</li>
                 <li>No prophylactic anticoagulation unless in a high-risk situation</li>
                 <li>Seek specialist advice for thromboprophylaxis before surgery, trauma, or pregnancy</li>
               </ul>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Pregnancy</h3>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Pregnancy</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>Protein S levels naturally lower in pregnancy &mdash; test is unreliable during pregnancy</li>
                 <li>AT deficiency: peripartum AT concentrate + LMWH prophylaxis</li>
                 <li>Protein C deficiency: LMWH thromboprophylaxis; severe cases may need protein C concentrate during delivery</li>
@@ -318,18 +318,18 @@ export function ThrombophiliaNaturalAnticoagulantsGuide() {
                 <li>See <GuideLink to="pregProphylaxis">Pregnancy: Thromboprophylaxis</GuideLink> and <GuideLink to="pregVte">Pregnancy: VTE Treatment</GuideLink> for full details</li>
               </ul>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Pediatrics</h3>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Pediatrics</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>Neonates have naturally low levels of all three proteins &mdash; misdiagnosis risk is high</li>
                 <li>Genetic testing may be necessary for diagnosis in children</li>
                 <li>Pediatric hematologist with thromboembolism experience should manage where possible</li>
               </ul>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Acquired Deficiencies &mdash; When to Suspect</h3>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Acquired Deficiencies &mdash; When to Suspect</h3>
               <div style={{ overflowX: "auto" }}>
-                <table className="asa-dose-table">
+                <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr>
                       <th>Condition</th>
@@ -352,10 +352,10 @@ export function ThrombophiliaNaturalAnticoagulantsGuide() {
 
         {/* REFERENCES */}
         {activeTab === 5 && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">References</h3>
-              <ol className="asa-ref-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">References</h3>
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((r) => (
                   <li key={r}>{r}</li>
                 ))}

@@ -103,33 +103,33 @@ export function TravelThrombosisGuide() {
   const [tab, setTab] = useState("overview");
 
   return (
-    <section className="asa-guide-shell travel-guide-shell">
-      <div className="asa-guide-header">
-        <div className="asa-guide-header-top">
-          <div className="asa-guide-header-copy">
-            <div className="asa-badge-row">
-              <span className="asa-badge asa-badge-blue">Clinical Guide</span>
-              <span className="asa-badge asa-badge-teal">Travel Medicine</span>
-              <span className="asa-badge asa-badge-green">VTE Prevention</span>
+    <section className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex-1 min-w-0">
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Clinical Guide</span>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-teal-100 text-teal-700">Travel Medicine</span>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700">VTE Prevention</span>
             </div>
-            <h2 className="asa-guide-title">Air Travel-related Thrombosis</h2>
-            <div className="asa-guide-meta">
+            <h2 className="text-2xl font-bold leading-tight mt-1">Air Travel-related Thrombosis</h2>
+            <div className="flex flex-wrap gap-3 mt-3 text-xs text-muted-foreground">
               <span><Calendar size={13} /> Updated 6 February 2026</span>
               <span><FileText size={13} /> Long-distance travel risk reduction guide</span>
             </div>
           </div>
-          <div className="asa-guide-icon travel-guide-icon">
+          <div className="flex items-center justify-center w-12 h-12 rounded-xl border border-teal-200 bg-teal-50 text-teal-600 flex-shrink-0">
             <Plane size={24} />
           </div>
         </div>
 
-        <div className="asa-objective-strip">
+        <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-muted/60 text-sm text-muted-foreground border border-border/50">
           <strong>Objective:</strong> To summarize the available literature on venous thromboembolism risk during air travel and provide preventive recommendations for long-distance journeys.
         </div>
       </div>
 
-      <div className="asa-mechanism-card travel-mechanism-card">
-        <div className="asa-mechanism-icon travel-mechanism-icon">
+      <div className="rounded-xl border bg-card shadow-sm p-5">
+        <div className="flex items-center justify-center w-10 h-10 rounded-lg border border-teal-200 bg-teal-50 text-teal-600 mb-2">
           <Waves size={18} />
         </div>
         <div>
@@ -138,8 +138,8 @@ export function TravelThrombosisGuide() {
         </div>
       </div>
 
-      <div className="asa-tabs">
-        <div className="asa-tabs-list" role="tablist" aria-label="Air travel thrombosis guide sections">
+      <div className="grid gap-4">
+        <div className="flex gap-1 p-1 rounded-xl bg-muted" role="tablist" aria-label="Air travel thrombosis guide sections">
           {tabs.map(([id, label]) => (
             <button
               key={id}
@@ -153,10 +153,10 @@ export function TravelThrombosisGuide() {
         </div>
 
         {tab === "overview" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Risk Overview</h3>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Measure</th>
@@ -166,7 +166,7 @@ export function TravelThrombosisGuide() {
                 <tbody>
                   {overviewStats.map((row) => (
                     <tr key={row[0]}>
-                      <td className="dose-highlight">{row[0]}</td>
+                      <td className="font-bold text-foreground">{row[0]}</td>
                       <td>{row[1]}</td>
                     </tr>
                   ))}
@@ -174,9 +174,9 @@ export function TravelThrombosisGuide() {
               </table>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="green" />Key Risk Factors</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 {riskFactors.map((item) => <li key={item}>{item}</li>)}
               </ul>
             </article>
@@ -184,20 +184,20 @@ export function TravelThrombosisGuide() {
         ) : null}
 
         {tab === "prevention" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="teal" />General Preventive Measures</h3>
               <div className="travel-card-grid">
                 {generalMeasures.map((item) => (
-                  <div key={item} className="travel-tip-card">
-                    <div className="travel-tip-icon"><CheckCircle2 size={16} /></div>
+                  <div key={item} className="grid grid-cols-[auto_minmax(0,1fr)] gap-3 items-start p-4">
+                    <div className="w-7 h-7 grid place-items-center rounded-full bg-teal-100 text-teal-600 flex-shrink-0"><CheckCircle2 size={16} /></div>
                     <p>{item}</p>
                   </div>
                 ))}
               </div>
             </article>
 
-            <div className="asa-alert asa-alert-info">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <Info size={16} />
               <div>General preventive measures are widely accepted despite limited direct interventional trial evidence.</div>
             </div>
@@ -205,15 +205,15 @@ export function TravelThrombosisGuide() {
         ) : null}
 
         {tab === "compression" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="purple" />Compression Stockings</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 {compressionPoints.map((item) => <li key={item}>{item}</li>)}
               </ul>
             </article>
 
-            <div className="asa-alert asa-alert-teal">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-teal-200 bg-teal-50 text-teal-900">
               <ShieldCheck size={16} />
               <div>For long-distance travellers at increased VTE risk, bilateral below-knee graduated compression stockings of 20 to 30 mmHg are recommended.</div>
             </div>
@@ -221,17 +221,17 @@ export function TravelThrombosisGuide() {
         ) : null}
 
         {tab === "medication" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="orange" />Aspirin and Anticoagulants</h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Routine use of aspirin or anticoagulants for travel-related prophylaxis is not recommended for most travellers. Evidence is limited, and the clinical significance of prevented asymptomatic DVT remains uncertain.
               </p>
-              <div className="asa-alert asa-alert-warn">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
                 <AlertCircle size={16} />
                 <div>A short course of prophylactic anticoagulation may be considered only in very high-risk travellers after individualized assessment. DOAC prophylaxis for this setting has not been adequately studied.</div>
               </div>
-              <div className="asa-alert asa-alert-danger">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
                 <Luggage size={16} />
                 <div>DOACs should not be used for short-term travel prophylaxis in pregnant or breastfeeding patients.</div>
               </div>
@@ -240,10 +240,10 @@ export function TravelThrombosisGuide() {
         ) : null}
 
         {tab === "recommendations" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="green" />Practical Recommendations</h3>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Traveller profile</th>
@@ -254,7 +254,7 @@ export function TravelThrombosisGuide() {
                 <tbody>
                   {recommendationRows.map((row) => (
                     <tr key={row[0]}>
-                      <td className="dose-highlight">{row[0]}</td>
+                      <td className="font-bold text-foreground">{row[0]}</td>
                       <td>{row[1]}</td>
                       <td>{row[2]}</td>
                     </tr>
@@ -263,7 +263,7 @@ export function TravelThrombosisGuide() {
               </table>
             </article>
 
-            <div className="asa-alert asa-alert-teal">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-teal-200 bg-teal-50 text-teal-900">
               <Users size={16} />
               <div>For travellers already receiving prophylactic or treatment-dose anticoagulation for another indication, no extra travel prophylaxis is required beyond usual dosing discipline.</div>
             </div>
@@ -271,10 +271,10 @@ export function TravelThrombosisGuide() {
         ) : null}
 
         {tab === "references" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="gray" />References</h3>
-              <ol className="asa-ref-list">
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((item) => <li key={item}>{item}</li>)}
               </ol>
               <div style={{ marginTop: "1rem", fontSize: "0.82em", color: "var(--muted)" }}>
@@ -285,7 +285,7 @@ export function TravelThrombosisGuide() {
         ) : null}
       </div>
 
-      <div className="asa-guide-footer">
+      <div className="rounded-xl border bg-muted/50 p-4 text-xs text-muted-foreground">
         <p><strong>Air Travel-related Thrombosis</strong> | Updated 6 February 2026</p>
         <p>Use these recommendations with clinical judgement and tailor advice to thrombosis risk, bleeding risk, and journey duration.</p>
       </div>

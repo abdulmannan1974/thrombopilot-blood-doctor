@@ -120,32 +120,32 @@ export function TicagrelorGuide() {
   const [tab, setTab] = useState("overview");
 
   return (
-    <section className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <div className="asa-guide-header-top">
-          <div className="asa-guide-header-copy">
-            <div className="asa-badge-row">
-              <span className="asa-badge asa-badge-blue">Clinical Guide</span>
-              <span className="asa-badge asa-badge-teal">Antiplatelet Therapy</span>
+    <section className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex-1 min-w-0">
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Clinical Guide</span>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-teal-100 text-teal-700">Antiplatelet Therapy</span>
             </div>
-            <h2 className="asa-guide-title">Ticagrelor (Brilinta&reg;)</h2>
-            <div className="asa-guide-meta">
+            <h2 className="text-2xl font-bold leading-tight mt-1">Ticagrelor (Brilinta&reg;)</h2>
+            <div className="flex flex-wrap gap-3 mt-3 text-xs text-muted-foreground">
               <span><Calendar size={13} /> Clinical Guide</span>
               <span><FileText size={13} /> P2Y12 receptor antagonist</span>
             </div>
           </div>
-          <div className="asa-guide-icon">
+          <div className="flex items-center justify-center w-12 h-12 rounded-xl border border-blue-200 bg-blue-50 text-blue-600 flex-shrink-0">
             <Heart size={24} />
           </div>
         </div>
 
-        <div className="asa-objective-strip">
+        <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-muted/60 text-sm text-muted-foreground border border-border/50">
           <strong>Objective:</strong> To provide clinical guidance on the use of ticagrelor in the prevention of atherothrombotic events in patients with acute coronary syndromes and prior myocardial infarction.
         </div>
       </div>
 
-      <div className="asa-mechanism-card">
-        <div className="asa-mechanism-icon">
+      <div className="rounded-xl border bg-card shadow-sm p-5">
+        <div className="flex items-center justify-center w-10 h-10 rounded-lg border border-blue-200 bg-blue-50 text-blue-600 mb-2">
           <Syringe size={18} />
         </div>
         <div>
@@ -156,8 +156,8 @@ export function TicagrelorGuide() {
         </div>
       </div>
 
-      <div className="asa-tabs">
-        <div className="asa-tabs-list" role="tablist" aria-label="Ticagrelor guide sections">
+      <div className="grid gap-4">
+        <div className="flex gap-1 p-1 rounded-xl bg-muted" role="tablist" aria-label="Ticagrelor guide sections">
           {tabs.map(([id, label]) => (
             <button
               key={id}
@@ -171,18 +171,18 @@ export function TicagrelorGuide() {
         </div>
 
         {tab === "overview" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="cardiac" />Approved Indications</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>Acute coronary syndromes (ACS) &mdash; medically managed, PCI, or CABG &mdash; in combination with <GuideLink to="asa">ASA</GuideLink>, for up to 1 year.</li>
                 <li>Prior MI &ge;1 year in patients at high risk, in combination with ASA, for up to 3 years (60 mg BID).</li>
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Key Trial Evidence</h3>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Trial</th>
@@ -194,7 +194,7 @@ export function TicagrelorGuide() {
                 <tbody>
                   {trialSummary.map((row) => (
                     <tr key={row.name}>
-                      <td className="dose-highlight">{row.name}</td>
+                      <td className="font-bold text-foreground">{row.name}</td>
                       <td>{row.population}</td>
                       <td>{row.comparator}</td>
                       <td>{row.result}</td>
@@ -204,7 +204,7 @@ export function TicagrelorGuide() {
               </table>
             </article>
 
-            <div className="asa-alert asa-alert-warn">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <AlertCircle size={16} />
               <div>
                 <strong>ASA dose matters:</strong> The efficacy benefit of ticagrelor may be lost when co-administered with ASA doses exceeding 150 mg/day. Use ASA 81 mg daily.
@@ -214,10 +214,10 @@ export function TicagrelorGuide() {
         ) : null}
 
         {tab === "dosing" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Dosing Summary</h3>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Indication</th>
@@ -229,7 +229,7 @@ export function TicagrelorGuide() {
                   {dosingRows.map((row) => (
                     <tr key={row[0]}>
                       <td>{row[0]}</td>
-                      <td className="dose-highlight">{row[1]}</td>
+                      <td className="font-bold text-foreground">{row[1]}</td>
                       <td>{row[2]}</td>
                     </tr>
                   ))}
@@ -237,18 +237,18 @@ export function TicagrelorGuide() {
               </table>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="default" />Pharmacokinetic Notes</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>No food effect on absorption.</li>
                 <li>No dose adjustment for renal impairment or mild hepatic impairment.</li>
                 <li>Always co-administer with ASA 81 mg daily.</li>
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="danger" />Contraindicated Drug Interactions</h3>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Category</th>
@@ -258,7 +258,7 @@ export function TicagrelorGuide() {
                 <tbody>
                   {contraindicatedDrugs.map((row) => (
                     <tr key={row.category}>
-                      <td className="dose-highlight">{row.category}</td>
+                      <td className="font-bold text-foreground">{row.category}</td>
                       <td>{row.examples}</td>
                     </tr>
                   ))}
@@ -266,7 +266,7 @@ export function TicagrelorGuide() {
               </table>
             </article>
 
-            <div className="asa-alert asa-alert-danger">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <ShieldAlert size={16} />
               <div>
                 <strong>CONTRAINDICATED</strong> with strong CYP3A4 inhibitors (ketoconazole, clarithromycin, ritonavir) and strong CYP3A4 inducers (phenytoin, carbamazepine, rifampin).
@@ -276,34 +276,34 @@ export function TicagrelorGuide() {
         ) : null}
 
         {tab === "adverse" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="danger" />Adverse Effects Profile</h3>
-              <div className="asa-ae-grid">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {adverseItems.map((item) => (
                   <div key={`${item.label}`} className={`asa-ae-card ${item.tone}`}>
-                    <div className="asa-ae-card-label">{item.label}</div>
-                    <div className="asa-ae-card-text">{item.text}</div>
+                    <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">{item.label}</div>
+                    <div className="text-sm leading-relaxed">{item.text}</div>
                   </div>
                 ))}
               </div>
             </article>
 
-            <div className="asa-alert asa-alert-danger">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <ShieldAlert size={16} />
               <div>
                 <strong>CONTRAINDICATED</strong> in patients with prior intracranial hemorrhage (ICH).
               </div>
             </div>
 
-            <div className="asa-alert asa-alert-info">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <Wind size={16} />
               <div>
                 <strong>Dyspnea (14&ndash;16%):</strong> Usually mild and often resolves spontaneously. The mechanism involves adenosine-mediated stimulation of vagal C fibers. It does not reflect heart failure or bronchospasm in most cases.
               </div>
             </div>
 
-            <div className="asa-alert asa-alert-warn">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <AlertCircle size={16} />
               <div>
                 <strong>Elderly patients (age &ge;70):</strong> The POPular AGE trial showed <GuideLink to="clopidogrel">clopidogrel</GuideLink> had less bleeding (18% vs 24%) with similar net clinical benefit. Clopidogrel may be preferred in this population.
@@ -313,49 +313,49 @@ export function TicagrelorGuide() {
         ) : null}
 
         {tab === "periprocedural" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="purple" />Periprocedural Management</h3>
-              <div className="asa-alert asa-alert-info">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
                 <Info size={16} />
                 <div>Balance thrombotic risk and procedural bleeding risk. Consult a specialist before stopping ticagrelor in stented patients.</div>
               </div>
 
-              <div className="asa-timeline">
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-dot blue" />
-                  <div className="asa-timeline-label">5 days before surgery</div>
-                  <div className="asa-timeline-desc">
+              <div className="relative pl-6 space-y-4 border-l-2 border-border">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-blue-500" />
+                  <div className="text-sm font-semibold">5 days before surgery</div>
+                  <div className="text-sm text-muted-foreground">
                     Stop ticagrelor 5 days before surgery when interruption is appropriate.
                   </div>
                 </div>
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-dot gray" />
-                  <div className="asa-timeline-label">Day of procedure</div>
-                  <div className="asa-timeline-desc">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-gray-400" />
+                  <div className="text-sm font-semibold">Day of procedure</div>
+                  <div className="text-sm text-muted-foreground">
                     Proceed with surgery. Confirm bleeding control plan.
                   </div>
                 </div>
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-dot green" />
-                  <div className="asa-timeline-label">Post-procedure</div>
-                  <div className="asa-timeline-desc">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-green-500" />
+                  <div className="text-sm font-semibold">Post-procedure</div>
+                  <div className="text-sm text-muted-foreground">
                     Restart ticagrelor as soon as hemostasis is secure.
                   </div>
                 </div>
               </div>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="cardiac" />DAPT Duration After ACS</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>After medically managed ACS: continue DAPT for at least 3 months, preferably 1 year.</li>
                 <li>Delay significant bleed-risk procedures beyond these timeframes when possible.</li>
                 <li>Minor procedures: no need to stop ticagrelor.</li>
               </ul>
             </article>
 
-            <div className="asa-alert asa-alert-teal">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-teal-200 bg-teal-50 text-teal-900">
               <CheckCircle2 size={16} />
               <div>See the <GuideLink to="periopAntiplatelet">Perioperative Antiplatelet Management</GuideLink> guide for detailed interruption, DAPT management, and restart decisions.</div>
             </div>
@@ -363,27 +363,27 @@ export function TicagrelorGuide() {
         ) : null}
 
         {tab === "special" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="orange" />Pharmacogenomic Advantage</h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Unlike <GuideLink to="clopidogrel">clopidogrel</GuideLink> and <GuideLink to="prasugrel">prasugrel</GuideLink>, ticagrelor does <strong>not</strong> require conversion to an active metabolite. Its efficacy is therefore:
               </p>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>Not affected by CYP2C19 loss-of-function alleles.</li>
                 <li>Not reduced by concomitant proton pump inhibitor (PPI) use.</li>
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="danger" />Pregnancy and Breastfeeding</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>Pregnancy safety has not been established.</li>
                 <li>Breastfeeding is not recommended during ticagrelor therapy.</li>
               </ul>
             </article>
 
-            <div className="asa-alert asa-alert-info">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <Info size={16} />
               <div>
                 <strong>Reversible inhibition:</strong> Because ticagrelor binds reversibly, platelet function recovers faster after discontinuation compared with the irreversible thienopyridines (<GuideLink to="clopidogrel">clopidogrel</GuideLink>, <GuideLink to="prasugrel">prasugrel</GuideLink>). This is relevant when planning urgent procedures.
@@ -393,10 +393,10 @@ export function TicagrelorGuide() {
         ) : null}
 
         {tab === "references" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="gray" />Related Clinical Guides</h3>
-              <ul className="asa-related-list">
+              <ul className="list-none p-0 divide-y divide-border">
                 <li><GuideLink to="asa">ASA (Acetylsalicylic Acid)</GuideLink></li>
                 <li><GuideLink to="clopidogrel">Clopidogrel (Plavix)</GuideLink></li>
                 <li><GuideLink to="prasugrel">Prasugrel</GuideLink></li>
@@ -406,9 +406,9 @@ export function TicagrelorGuide() {
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="gray" />References</h3>
-              <ol className="asa-ref-list">
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((item) => <li key={item}>{item}</li>)}
               </ol>
             </article>
@@ -416,7 +416,7 @@ export function TicagrelorGuide() {
         ) : null}
       </div>
 
-      <div className="asa-guide-footer">
+      <div className="rounded-xl border bg-muted/50 p-4 text-xs text-muted-foreground">
         <p><strong>Ticagrelor (Brilinta&reg;)</strong> | Clinical Guide</p>
         <p>The information here is not a substitute for clinical judgement. Always seek appropriate specialist input when needed.</p>
       </div>

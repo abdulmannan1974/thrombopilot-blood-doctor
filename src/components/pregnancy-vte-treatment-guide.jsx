@@ -27,21 +27,21 @@ export function PregnancyVteTreatmentGuide() {
   const [tab, setTab] = useState("overview");
 
   return (
-    <section className="asa-guide-shell">
+    <section className="grid gap-4">
       {/* ── Header ── */}
-      <header className="asa-guide-header">
-        <span className="asa-guide-eyebrow">Clinical Guide</span>
-        <h2 className="asa-guide-title">
+      <header className="rounded-xl border bg-card shadow-sm p-6">
+        <span className="flex flex-wrap gap-2 mb-2">Clinical Guide</span>
+        <h2 className="text-2xl font-bold leading-tight mt-1">
           Pregnancy: Venous Thromboembolism Treatment
         </h2>
-        <p className="asa-guide-lead">
+        <p className="text-sm text-muted-foreground leading-relaxed mt-2">
           Evidence-based approach to treatment of DVT and/or PE during pregnancy
           and the postpartum period.
         </p>
       </header>
 
       {/* ── Tabs ── */}
-      <nav className="asa-tab-bar" role="tablist">
+      <nav className="flex gap-1 p-1 rounded-xl bg-muted overflow-x-auto" role="tablist">
         {tabs.map(([id, label]) => (
           <button
             key={id}
@@ -57,13 +57,13 @@ export function PregnancyVteTreatmentGuide() {
       </nav>
 
       {/* ── Tab bodies ── */}
-      <div className="asa-tab-body">
+      <div className="grid gap-4">
         {/* ───────── OVERVIEW ───────── */}
         {tab === "overview" && (
-          <div className="asa-sections">
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Background</h3>
-              <p className="asa-section-copy">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Background</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Venous thromboembolism (VTE) complicates approximately{" "}
                 <strong>1.2 per 1,000 deliveries</strong>. Although the absolute
                 risk is low, pulmonary embolism (PE) remains a{" "}
@@ -74,9 +74,9 @@ export function PregnancyVteTreatmentGuide() {
               </p>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Cornerstone of Treatment</h3>
-              <p className="asa-section-copy">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Cornerstone of Treatment</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 The cornerstone of VTE treatment in pregnancy is anticoagulant
                 therapy with <strong>low-molecular-weight heparin (LMWH)</strong>.
                 Recommendations are largely based on observational data and expert
@@ -85,9 +85,9 @@ export function PregnancyVteTreatmentGuide() {
               </p>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Duration of Anticoagulation</h3>
-              <p className="asa-section-copy">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Duration of Anticoagulation</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 A <strong>minimum total duration of 3 months</strong> is
                 recommended. However, given the additional increase in risk during
                 pregnancy and the postpartum period, treatment is generally{" "}
@@ -99,7 +99,7 @@ export function PregnancyVteTreatmentGuide() {
               </p>
             </article>
 
-            <div className="asa-alert asa-alert-blue">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <strong>Key principle:</strong> Both maternal safety/efficacy and
               fetal risks of anticoagulant therapy must be considered when
               selecting treatment during pregnancy.
@@ -109,12 +109,12 @@ export function PregnancyVteTreatmentGuide() {
 
         {/* ───────── ANTICOAGULANTS ───────── */}
         {tab === "anticoagulants" && (
-          <div className="asa-sections">
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">
                 LMWH — Drug of Choice
               </h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 LMWH <strong>does not cross the placenta</strong> and is safe for
                 the fetus. Studies have confirmed its efficacy and safety in
                 pregnancy for VTE treatment. Preference over UFH is based on
@@ -122,7 +122,7 @@ export function PregnancyVteTreatmentGuide() {
                 is more effective, has more predictable pharmacokinetics, and a
                 more favorable risk profile.
               </p>
-              <ul className="asa-section-copy">
+              <ul className="text-sm text-foreground leading-relaxed mb-4">
                 <li>
                   Dosing based on <strong>actual body weight at diagnosis</strong>.
                 </li>
@@ -133,32 +133,32 @@ export function PregnancyVteTreatmentGuide() {
               </ul>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">
                 UFH — When LMWH Is Not Suitable
               </h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 UFH also does not cross the placenta and is safe for the fetus.
                 Indications for UFH over LMWH include:
               </p>
-              <ul className="asa-section-copy">
+              <ul className="text-sm text-foreground leading-relaxed mb-4">
                 <li>Severe renal dysfunction</li>
                 <li>When rapid anticoagulant reversal may be required</li>
                 <li>When thrombolytic treatment may be needed</li>
               </ul>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Dose adjustment is based on{" "}
                 <strong>activated partial thromboplastin time (aPTT)</strong>.
               </p>
             </article>
 
-            <div className="asa-alert asa-alert-red">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <strong>Warfarin CONTRAINDICATED in pregnancy.</strong> Crosses the
               placenta and may cause teratogenicity (warfarin embryopathy, CNS
               anomalies), pregnancy loss, and fetal bleeding.
             </div>
 
-            <div className="asa-alert asa-alert-red">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <strong>DOACs should NOT be used in pregnancy.</strong> Pregnant
               women were excluded from all DOAC clinical trials. DOACs are likely
               to cross the placenta and human reproductive risks are unknown.
@@ -166,9 +166,9 @@ export function PregnancyVteTreatmentGuide() {
               reassuring with relatively low embryopathy risk.
             </div>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Breastfeeding Safety</h3>
-              <table className="asa-dose-table">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Breastfeeding Safety</h3>
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Agent</th>
@@ -208,16 +208,16 @@ export function PregnancyVteTreatmentGuide() {
 
         {/* ───────── MONITORING ───────── */}
         {tab === "monitoring" && (
-          <div className="asa-sections">
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">LMWH Dose Adjustment Options</h3>
-              <p className="asa-section-copy">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">LMWH Dose Adjustment Options</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Maternal weight gain and increased renal clearance during pregnancy
                 have led to suggestions that LMWH dose should be adjusted; however,
                 this remains <strong>controversial</strong>. Several approaches can
                 be considered:
               </p>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Option</th>
@@ -250,25 +250,25 @@ export function PregnancyVteTreatmentGuide() {
               </table>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Anti-Xa Monitoring</h3>
-              <p className="asa-section-copy">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Anti-Xa Monitoring</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 <strong>Routine peak anti-Xa monitoring is NOT recommended</strong>{" "}
                 due to lack of benefit and lack of robust data on optimal reference
                 ranges. Consider only for:
               </p>
-              <ul className="asa-section-copy">
+              <ul className="text-sm text-foreground leading-relaxed mb-4">
                 <li>Extremes of body weight</li>
                 <li>Breakthrough thrombosis</li>
                 <li>Select cases with very high thrombosis risk</li>
               </ul>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 <strong>Trough anti-Xa levels</strong> are used for monitoring drug
                 accumulation in patients with <strong>severe renal dysfunction</strong>.
               </p>
             </article>
 
-            <div className="asa-alert asa-alert-blue">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <strong>HIT risk is low</strong> with LMWH in pregnant women.
               Routine platelet count monitoring is <strong>not suggested</strong>.
             </div>
@@ -277,10 +277,10 @@ export function PregnancyVteTreatmentGuide() {
 
         {/* ───────── LABOUR & DELIVERY ───────── */}
         {tab === "labour" && (
-          <div className="asa-sections">
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Planning for Delivery</h3>
-              <p className="asa-section-copy">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Planning for Delivery</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 The plan for delivery should account for{" "}
                 <strong>obstetric, hematological, and anesthetic</strong> issues.
                 Practices vary widely — familiarize yourself with institutional
@@ -288,14 +288,14 @@ export function PregnancyVteTreatmentGuide() {
               </p>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">
                 LMWH Timing Around Delivery
               </h3>
-              <div className="asa-timeline">
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker" />
-                  <div className="asa-timeline-content">
+              <div className="relative pl-6 space-y-4 border-l-2 border-border">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary" />
+                  <div className="ml-2">
                     <strong>Once-daily therapeutic LMWH:</strong> Last dose{" "}
                     <strong>&gt;24 hours</strong> before scheduled induction or
                     C-section. If C-section scheduled for early morning, give last
@@ -303,31 +303,31 @@ export function PregnancyVteTreatmentGuide() {
                     <strong>intermediate dose (50% of total daily dose)</strong>.
                   </div>
                 </div>
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker" />
-                  <div className="asa-timeline-content">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary" />
+                  <div className="ml-2">
                     <strong>Twice-daily therapeutic LMWH:</strong> Last dose{" "}
                     <strong>24 hours</strong> before induction or C-section.
                   </div>
                 </div>
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker" />
-                  <div className="asa-timeline-content">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary" />
+                  <div className="ml-2">
                     <strong>Spontaneous labor:</strong> Withhold injection if
                     patient believes she has entered labor.
                   </div>
                 </div>
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker" />
-                  <div className="asa-timeline-content">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary" />
+                  <div className="ml-2">
                     <strong>Neuraxial anesthesia:</strong> Should{" "}
                     <strong>NOT</strong> be used within 24 hours of a therapeutic
                     LMWH dose.
                   </div>
                 </div>
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker" />
-                  <div className="asa-timeline-content">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary" />
+                  <div className="ml-2">
                     <strong>Uncertain anticoagulation level:</strong> Rapid
                     assessment of heparin activity can guide anesthetic and
                     surgical management where laboratory support allows.
@@ -336,7 +336,7 @@ export function PregnancyVteTreatmentGuide() {
               </div>
             </article>
 
-            <div className="asa-alert asa-alert-amber">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <strong>Very high VTE risk</strong> (proximal DVT or PE within 2-4
               weeks): Switch to <strong>IV UFH</strong>, discontinue{" "}
               <strong>4-6 hours</strong> before delivery. Consider{" "}
@@ -347,10 +347,10 @@ export function PregnancyVteTreatmentGuide() {
 
         {/* ───────── SPECIAL SITUATIONS ───────── */}
         {tab === "special" && (
-          <div className="asa-sections">
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Postpartum Anticoagulation</h3>
-              <ul className="asa-section-copy">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Postpartum Anticoagulation</h3>
+              <ul className="text-sm text-foreground leading-relaxed mb-4">
                 <li>
                   Restart LMWH or UFH{" "}
                   <strong>12-24 hours after delivery</strong> depending on
@@ -377,23 +377,23 @@ export function PregnancyVteTreatmentGuide() {
               </ul>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Thrombolytic Therapy</h3>
-              <p className="asa-section-copy">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Thrombolytic Therapy</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Experience with thrombolysis during pregnancy is{" "}
                 <strong>limited</strong>. Available reports suggest a low risk of
                 maternal bleeding but highlight concerns about{" "}
                 <strong>fetal complications including fetal loss</strong>.
               </p>
-              <div className="asa-alert asa-alert-red">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
                 <strong>Reserve thrombolysis</strong> for women with{" "}
                 <strong>life- or limb-threatening VTE</strong> only.
               </div>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Inferior Vena Cava Filters</h3>
-              <p className="asa-section-copy">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Inferior Vena Cava Filters</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Use of IVC filters during pregnancy should be limited to those
                 with an <strong>absolute contraindication to anticoagulation</strong>{" "}
                 in the setting of acute VTE. This typically does not include
@@ -402,15 +402,15 @@ export function PregnancyVteTreatmentGuide() {
               </p>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">
                 HIT in Pregnancy
               </h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 In pregnant patients with HIT or a history of HIT, non-heparin
                 anticoagulants are required:
               </p>
-              <ul className="asa-section-copy">
+              <ul className="text-sm text-foreground leading-relaxed mb-4">
                 <li>
                   <strong>Danaparoid</strong> — first-line for acute or sub-acute
                   HIT in pregnancy.
@@ -426,10 +426,10 @@ export function PregnancyVteTreatmentGuide() {
 
         {/* ───────── REFERENCES ───────── */}
         {tab === "references" && (
-          <div className="asa-sections">
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Related Clinical Guides</h3>
-              <ul className="asa-section-copy">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Related Clinical Guides</h3>
+              <ul className="text-sm text-foreground leading-relaxed mb-4">
                 <li><GuideLink to="dvtTreatment">Deep Vein Thrombosis: Treatment</GuideLink></li>
                 <li><GuideLink to="pregDiagnosis">Pregnancy: Diagnosis of DVT and PE</GuideLink></li>
                 <li><GuideLink to="pregProphylaxis">Pregnancy: Thromboprophylaxis</GuideLink></li>
@@ -438,9 +438,9 @@ export function PregnancyVteTreatmentGuide() {
               </ul>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">References</h3>
-              <ol className="asa-ref-list">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">References</h3>
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((ref) => (
                   <li key={ref}>{ref}</li>
                 ))}
@@ -451,12 +451,12 @@ export function PregnancyVteTreatmentGuide() {
       </div>
 
       {/* ── Footer ── */}
-      <footer className="asa-guide-header" style={{ marginTop: "1rem" }}>
-        <p className="asa-section-copy">
+      <footer className="rounded-xl border bg-card shadow-sm p-6" style={{ marginTop: "1rem" }}>
+        <p className="text-sm text-foreground leading-relaxed mb-4">
           <strong>Pregnancy: Venous Thromboembolism Treatment</strong> | Updated
           1 May 2025 | Version 51
         </p>
-        <p className="asa-section-copy" style={{ fontSize: "0.8rem", opacity: 0.7 }}>
+        <p className="text-sm text-foreground leading-relaxed mb-4" style={{ fontSize: "0.8rem", opacity: 0.7 }}>
           This information is not a substitute for clinical judgement. Consult
           appropriate specialist input when needed.
         </p>

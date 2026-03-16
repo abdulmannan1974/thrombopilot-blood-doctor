@@ -64,28 +64,28 @@ export function StrokeThrombolysisGuide() {
   const [tab, setTab] = useState("overview");
 
   return (
-    <section className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <div className="asa-guide-header-top">
-          <div className="asa-guide-header-copy">
-            <div className="asa-badge-row">
-              <span className="asa-badge asa-badge-blue">Clinical Guide</span>
-              <span className="asa-badge asa-badge-teal">Acute Stroke</span>
+    <section className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex-1 min-w-0">
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Clinical Guide</span>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-teal-100 text-teal-700">Acute Stroke</span>
             </div>
-            <h2 className="asa-guide-title">Stroke: Thrombolysis and Endovascular Therapy</h2>
-            <div className="asa-guide-meta">
+            <h2 className="text-2xl font-bold leading-tight mt-1">Stroke: Thrombolysis and Endovascular Therapy</h2>
+            <div className="flex flex-wrap gap-3 mt-3 text-xs text-muted-foreground">
               <span>Acute ischemic stroke reperfusion strategies</span>
             </div>
           </div>
         </div>
 
-        <div className="asa-objective-strip">
+        <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-muted/60 text-sm text-muted-foreground border border-border/50">
           <strong>Objective:</strong> To provide guidance on the use of intravenous thrombolysis and endovascular therapy for acute ischemic stroke, including patient selection, dosing, and system requirements.
         </div>
       </div>
 
-      <div className="asa-tabs">
-        <div className="asa-tabs-list" role="tablist" aria-label="Stroke thrombolysis guide sections">
+      <div className="grid gap-4">
+        <div className="flex gap-1 p-1 rounded-xl bg-muted" role="tablist" aria-label="Stroke thrombolysis guide sections">
           {tabs.map(([id, label]) => (
             <button
               key={id}
@@ -99,10 +99,10 @@ export function StrokeThrombolysisGuide() {
         </div>
 
         {tab === "overview" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
-              <h3><span className="asa-dot blue" />IV Thrombolysis for Acute Ischemic Stroke</h3>
-              <ul className="asa-ind-list">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3><span className="w-2 h-2 rounded-full bg-blue-500 flex-shrink-0" />IV Thrombolysis for Acute Ischemic Stroke</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>Thrombolytic therapy is highly effective in acute ischemic stroke (AIS). Alteplase has been studied in 9 randomized controlled trials enrolling more than 6,700 patients.</li>
                 <li>IV alteplase improves functional outcomes despite a small increased risk of serious bleeding.</li>
                 <li>Treatment is time-sensitive: greatest benefit is achieved within 3 hours of symptom onset, with favorable outcomes observed up to 4.5 hours.</li>
@@ -110,41 +110,41 @@ export function StrokeThrombolysisGuide() {
               </ul>
             </article>
 
-            <article className="asa-section-card">
-              <h3><span className="asa-dot danger" />Risks of IV Thrombolysis</h3>
-              <div className="asa-ae-grid">
-                <div className="asa-ae-card serious">
-                  <div className="asa-ae-card-label">Intracranial hemorrhage</div>
-                  <div className="asa-ae-card-text">Approximately 6% of treated patients; roughly 2% of ICH cases are fatal.</div>
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3><span className="w-2 h-2 rounded-full bg-red-600 flex-shrink-0" />Risks of IV Thrombolysis</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="rounded-lg border border-red-200 bg-red-50 p-3">
+                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">Intracranial hemorrhage</div>
+                  <div className="text-sm leading-relaxed">Approximately 6% of treated patients; roughly 2% of ICH cases are fatal.</div>
                 </div>
-                <div className="asa-ae-card serious">
-                  <div className="asa-ae-card-label">Extracranial hemorrhage</div>
-                  <div className="asa-ae-card-text">Major extracranial bleeding is an uncommon but recognized complication.</div>
+                <div className="rounded-lg border border-red-200 bg-red-50 p-3">
+                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">Extracranial hemorrhage</div>
+                  <div className="text-sm leading-relaxed">Major extracranial bleeding is an uncommon but recognized complication.</div>
                 </div>
-                <div className="asa-ae-card moderate">
-                  <div className="asa-ae-card-label">Angioedema</div>
-                  <div className="asa-ae-card-text">Occurs in approximately 5% of patients. Prompt airway management may be required.</div>
+                <div className="rounded-lg border border-amber-200 bg-amber-50 p-3">
+                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">Angioedema</div>
+                  <div className="text-sm leading-relaxed">Occurs in approximately 5% of patients. Prompt airway management may be required.</div>
                 </div>
               </div>
             </article>
 
-            <article className="asa-section-card">
-              <h3><span className="asa-dot teal" />Tenecteplase</h3>
-              <ul className="asa-ind-list">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3><span className="w-2 h-2 rounded-full bg-teal-500 flex-shrink-0" />Tenecteplase</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>Tenecteplase 0.25 mg/kg (maximum 25 mg): five independent RCTs demonstrate comparable safety and efficacy to alteplase.</li>
                 <li>Administered as a single IV bolus, making it easier to administer than the alteplase infusion protocol.</li>
                 <li>Many stroke centers now use tenecteplase as their first-choice thrombolytic agent.</li>
               </ul>
             </article>
 
-            <article className="asa-section-card">
-              <h3><span className="asa-dot purple" />Advanced Imaging and Extended Window</h3>
-              <p className="asa-section-copy">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3><span className="w-2 h-2 rounded-full bg-purple-500 flex-shrink-0" />Advanced Imaging and Extended Window</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Advanced neuroimaging (CT perfusion, MRI with diffusion/perfusion mismatch) can identify patients who may benefit from thrombolysis beyond the 4.5-hour window or when symptom onset is unknown.
               </p>
             </article>
 
-            <div className="asa-alert asa-alert-info">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <div>
                 <strong>Time is brain:</strong> Target a door-to-needle time of less than 30 minutes. Every minute of delay reduces the probability of a good functional outcome.
               </div>
@@ -153,10 +153,10 @@ export function StrokeThrombolysisGuide() {
         ) : null}
 
         {tab === "selection" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
-              <h3><span className="asa-dot green" />Inclusion Criteria</h3>
-              <ul className="asa-ind-list">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3><span className="w-2 h-2 rounded-full bg-green-500 flex-shrink-0" />Inclusion Criteria</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>Age 18 years or older.</li>
                 <li>Clinically disabling acute ischemic stroke.</li>
                 <li>Symptom onset within 4.5 hours (or last known well within 4.5 hours).</li>
@@ -164,48 +164,48 @@ export function StrokeThrombolysisGuide() {
               </ul>
             </article>
 
-            <article className="asa-section-card">
-              <h3><span className="asa-dot danger" />Absolute Exclusions</h3>
-              <ul className="asa-ind-list">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3><span className="w-2 h-2 rounded-full bg-red-600 flex-shrink-0" />Absolute Exclusions</h3>
+              <ul className="list-none p-0 space-y-1">
                 {absoluteExclusions.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
             </article>
 
-            <article className="asa-section-card">
-              <h3><span className="asa-dot orange" />Relative Exclusions</h3>
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3><span className="w-2 h-2 rounded-full bg-orange-500 flex-shrink-0" />Relative Exclusions</h3>
 
-              <div className="asa-ind-group">
-                <div className="asa-ind-group-label">History</div>
-                <ul className="asa-ind-list">
+              <div className="mb-3">
+                <div className="flex items-center gap-2 text-sm font-semibold mb-1.5">History</div>
+                <ul className="list-none p-0 space-y-1">
                   {relativeExclusionsHistory.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
               </div>
 
-              <div className="asa-ind-group">
-                <div className="asa-ind-group-label">Clinical</div>
-                <ul className="asa-ind-list">
+              <div className="mb-3">
+                <div className="flex items-center gap-2 text-sm font-semibold mb-1.5">Clinical</div>
+                <ul className="list-none p-0 space-y-1">
                   {relativeExclusionsClinical.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
               </div>
 
-              <div className="asa-ind-group">
-                <div className="asa-ind-group-label">Laboratory</div>
-                <ul className="asa-ind-list">
+              <div className="mb-3">
+                <div className="flex items-center gap-2 text-sm font-semibold mb-1.5">Laboratory</div>
+                <ul className="list-none p-0 space-y-1">
                   {relativeExclusionsLab.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
               </div>
 
-              <div className="asa-ind-group">
-                <div className="asa-ind-group-label">Imaging</div>
-                <ul className="asa-ind-list">
+              <div className="mb-3">
+                <div className="flex items-center gap-2 text-sm font-semibold mb-1.5">Imaging</div>
+                <ul className="list-none p-0 space-y-1">
                   {relativeExclusionsImaging.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
@@ -213,7 +213,7 @@ export function StrokeThrombolysisGuide() {
               </div>
             </article>
 
-            <div className="asa-alert asa-alert-warn">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <div>
                 <strong>Clinical judgement required:</strong> Relative exclusions do not automatically preclude treatment. Weigh the expected benefit of thrombolysis against the individual patient's bleeding risk, and involve a stroke specialist when possible.
               </div>
@@ -222,10 +222,10 @@ export function StrokeThrombolysisGuide() {
         ) : null}
 
         {tab === "dosing" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
-              <h3><span className="asa-dot blue" />Thrombolytic Dosing</h3>
-              <table className="asa-dose-table">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3><span className="w-2 h-2 rounded-full bg-blue-500 flex-shrink-0" />Thrombolytic Dosing</h3>
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Agent</th>
@@ -236,21 +236,21 @@ export function StrokeThrombolysisGuide() {
                 <tbody>
                   <tr>
                     <td>Alteplase</td>
-                    <td className="dose-highlight">0.9 mg/kg (max 90 mg)</td>
+                    <td className="font-bold text-foreground">0.9 mg/kg (max 90 mg)</td>
                     <td>10% as IV bolus over 1 minute, remainder infused over 60 minutes</td>
                   </tr>
                   <tr>
                     <td>Tenecteplase</td>
-                    <td className="dose-highlight">0.25 mg/kg (max 25 mg)</td>
+                    <td className="font-bold text-foreground">0.25 mg/kg (max 25 mg)</td>
                     <td>Single IV bolus over 5 seconds</td>
                   </tr>
                 </tbody>
               </table>
             </article>
 
-            <article className="asa-section-card">
-              <h3><span className="asa-dot orange" />Post-Thrombolysis Monitoring</h3>
-              <ul className="asa-ind-list">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3><span className="w-2 h-2 rounded-full bg-orange-500 flex-shrink-0" />Post-Thrombolysis Monitoring</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>No anticoagulants or antiplatelet agents within 24 hours of thrombolysis.</li>
                 <li>Monitored setting with frequent neurological assessments and vital signs.</li>
                 <li>Continuous cardiac monitoring.</li>
@@ -258,19 +258,19 @@ export function StrokeThrombolysisGuide() {
               </ul>
             </article>
 
-            <article className="asa-section-card">
-              <h3><span className="asa-dot danger" />Complications and Management</h3>
-              <div className="asa-ae-grid">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3><span className="w-2 h-2 rounded-full bg-red-600 flex-shrink-0" />Complications and Management</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {complications.map((item) => (
                   <div key={item.label} className={`asa-ae-card ${item.tone}`}>
-                    <div className="asa-ae-card-label">{item.label}</div>
-                    <div className="asa-ae-card-text">{item.text}</div>
+                    <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">{item.label}</div>
+                    <div className="text-sm leading-relaxed">{item.text}</div>
                   </div>
                 ))}
               </div>
             </article>
 
-            <div className="asa-alert asa-alert-danger">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <div>
                 <strong>Suspected ICH:</strong> If intracranial hemorrhage is suspected, stop the thrombolytic infusion immediately, obtain urgent CT head, and administer cryoprecipitate and tranexamic acid. Consult neurosurgery.
               </div>
@@ -279,10 +279,10 @@ export function StrokeThrombolysisGuide() {
         ) : null}
 
         {tab === "evt" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
-              <h3><span className="asa-dot teal" />Endovascular Thrombectomy (EVT)</h3>
-              <ul className="asa-ind-list">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3><span className="w-2 h-2 rounded-full bg-teal-500 flex-shrink-0" />Endovascular Thrombectomy (EVT)</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>EVT is indicated for proximal intracranial artery occlusion: internal carotid artery (ICA), proximal middle cerebral artery (MCA M1), and vertebral or basilar artery.</li>
                 <li>Strong evidence from multiple randomized controlled trials supports EVT for patients with moderate-to-severe neurological deficits.</li>
                 <li>Most pivotal trials enrolled patients treated within 6 hours of symptom onset, but benefit extends up to 24 hours in patients selected by advanced imaging.</li>
@@ -290,9 +290,9 @@ export function StrokeThrombolysisGuide() {
               </ul>
             </article>
 
-            <article className="asa-section-card">
-              <h3><span className="asa-dot orange" />Important Considerations</h3>
-              <ul className="asa-ind-list">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3><span className="w-2 h-2 rounded-full bg-orange-500 flex-shrink-0" />Important Considerations</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>Two randomized trials found NO benefit for EVT in smaller intracranial vessel occlusions (e.g., M2, M3 segments).</li>
                 <li>IV thrombolysis SHOULD be administered before EVT in eligible patients. Non-inferiority of EVT alone (without prior IV thrombolysis) has NOT been established.</li>
                 <li>Pregnancy is not a contraindication for EVT.</li>
@@ -300,9 +300,9 @@ export function StrokeThrombolysisGuide() {
               </ul>
             </article>
 
-            <article className="asa-section-card">
-              <h3><span className="asa-dot purple" />System Requirements</h3>
-              <ul className="asa-ind-list">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3><span className="w-2 h-2 rounded-full bg-purple-500 flex-shrink-0" />System Requirements</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>Coordinated pre-hospital and in-hospital systems for rapid patient identification and transfer.</li>
                 <li>Rapid access to neurovascular imaging (CT angiography, CT perfusion, or MR angiography).</li>
                 <li>Neurointerventional expertise available around the clock.</li>
@@ -310,7 +310,7 @@ export function StrokeThrombolysisGuide() {
               </ul>
             </article>
 
-            <div className="asa-alert asa-alert-info">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <div>
                 <strong>Do not delay IV thrombolysis for EVT:</strong> Eligible patients should receive IV thrombolysis as soon as possible. Thrombolysis should not be withheld or delayed while arranging endovascular therapy.
               </div>
@@ -319,10 +319,10 @@ export function StrokeThrombolysisGuide() {
         ) : null}
 
         {tab === "references" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
-              <h3><span className="asa-dot gray" />References</h3>
-              <ol className="asa-ref-list">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3><span className="w-2 h-2 rounded-full bg-gray-400 flex-shrink-0" />References</h3>
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
@@ -332,7 +332,7 @@ export function StrokeThrombolysisGuide() {
         ) : null}
       </div>
 
-      <div className="asa-guide-footer">
+      <div className="rounded-xl border bg-muted/50 p-4 text-xs text-muted-foreground">
         <p><strong>Stroke: Thrombolysis and Endovascular Therapy</strong></p>
         <p>Related: <GuideLink to="strokeSecondary">Ischemic Stroke Secondary Prevention</GuideLink> | <GuideLink to="strokeAf">Stroke Prevention in AF</GuideLink> | <GuideLink to="doacsBleeding">DOACs Bleeding Management</GuideLink></p>
       </div>

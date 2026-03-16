@@ -26,6 +26,20 @@ import { clinicalContentByToolId } from "./data/markdownContent";
 import { guideLibrary, resolveMarkdownTarget } from "./data/library";
 import { AppSidebar } from "@/components/app-sidebar";
 import { SidebarProvider, SidebarTrigger, useSidebar } from "@/components/ui/sidebar";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
+import { Separator } from "@/components/ui/separator";
 import { AsaGuide } from "@/components/asa-guide";
 import { HeartValvesGuide } from "@/components/heart-valves-guide";
 import { TravelThrombosisGuide } from "@/components/travel-thrombosis-guide";
@@ -1610,13 +1624,10 @@ function AppLayout() {
   };
 
   return (
-    <div className="bd-shell">
-      <div className="bd-background bd-background-a" />
-      <div className="bd-background bd-background-b" />
-
+    <div className="min-h-screen grid grid-cols-1 lg:grid-cols-[384px_minmax(0,1fr)] bg-background">
       <button
         type="button"
-        className={sidebarOpen ? "mobile-backdrop open" : "mobile-backdrop"}
+        className={cn("hidden", sidebarOpen && "!fixed inset-0 z-30 !block bg-black/40 lg:!hidden")}
         onClick={() => setSidebarOpen(false)}
         aria-label="Close navigation"
       />
@@ -1649,25 +1660,25 @@ function AppLayout() {
         siteName={siteName}
       />
 
-      <div className="bd-main">
-        <header className="topbar">
-          <div className="topbar-left">
-            <SidebarTrigger className="mobile-only" />
+      <div className="relative px-4 py-4 pb-8 w-full max-w-[1440px] mx-auto">
+        <header className="flex items-center gap-4 mb-4">
+          <div className="flex items-center gap-3 min-w-0 flex-shrink-0">
+            <SidebarTrigger className="lg:hidden" />
 
-            <div>
-              <div className="breadcrumb-row">
+            <div className="min-w-0">
+              <div className="flex flex-wrap gap-1.5 text-muted-foreground text-xs">
                 <span>Blood Doctor</span>
                 <span>/</span>
                 <span>{currentPageMeta.label}</span>
               </div>
-              <h2>{siteName}</h2>
+              <h2 className="text-base font-semibold truncate m-0">{siteName}</h2>
             </div>
           </div>
 
-          <div className="search-group">
-            <label className="search-shell">
-              <Search size={16} />
-              <input
+          <div className="relative flex-1 max-w-md">
+            <div className="relative flex items-center">
+              <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
+              <Input
                 type="search"
                 value={searchTerm}
                 onChange={(event) => setSearchTerm(event.target.value)}
@@ -1678,29 +1689,30 @@ function AppLayout() {
                   }
                 }}
                 placeholder="Search calculators, guides, references, or vault entries..."
+                className="pl-9 h-9 w-full"
               />
-            </label>
+            </div>
 
             {toolSearch ? (
-              <div className="search-results-panel">
+              <div className="absolute top-full left-0 right-0 z-50 mt-1 rounded-lg border bg-popover shadow-lg max-h-80 overflow-y-auto">
                 {globalSearchResults.length ? (
                   globalSearchResults.map((item) => (
                     <button
                       key={item.id}
                       type="button"
-                      className="search-result-item"
+                      className="flex w-full items-center justify-between gap-3 px-4 py-2.5 text-left text-sm hover:bg-accent transition-colors"
                       onClick={() => handleSearchSelection(item)}
                     >
-                      <div>
-                        <span className="search-result-label">{item.label}</span>
-                        <strong>{item.title}</strong>
-                        <p>{item.subtitle}</p>
+                      <div className="min-w-0">
+                        <span className="text-xs text-muted-foreground">{item.label}</span>
+                        <strong className="block truncate">{item.title}</strong>
+                        <p className="text-xs text-muted-foreground truncate">{item.subtitle}</p>
                       </div>
-                      <span className="search-result-page">{item.pageLabel}</span>
+                      <Badge variant="secondary" className="shrink-0">{item.pageLabel}</Badge>
                     </button>
                   ))
                 ) : (
-                  <div className="search-empty-state">No results matched your search.</div>
+                  <div className="px-4 py-3 text-sm text-muted-foreground text-center">No results matched your search.</div>
                 )}
               </div>
             ) : null}
@@ -1708,40 +1720,43 @@ function AppLayout() {
 
         </header>
 
-        <main className="content-stack">
+        <main className="grid gap-4">
           {currentPage === "dashboard" ? (
             <>
-          <section className="hero-grid">
-            <div className="hero-panel">
-              <span className="eyebrow with-icon">Overview</span>
-              <h3>Anticoagulation operations dashboard</h3>
-              <p>
-                A unified workspace for bedside calculators, decision support content, and
-                markdown-first clinical reading with a cleaner Shadcn-style dashboard structure.
-              </p>
+          <section className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-4">
+            <Card>
+              <CardHeader>
+                <span className="inline-flex items-center gap-1 text-[0.7rem] font-bold uppercase tracking-wider text-muted-foreground mb-3">Overview</span>
+                <CardTitle className="text-lg">Anticoagulation operations dashboard</CardTitle>
+                <CardDescription>
+                  A unified workspace for bedside calculators, decision support content, and
+                  markdown-first clinical reading with a cleaner Shadcn-style dashboard structure.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  <Button onClick={() => navigateToPage("algorithms")}>
+                    Explore algorithms
+                  </Button>
+                  <Button variant="outline" onClick={() => navigateToPage("guides")}>
+                    Browse clinical guides
+                  </Button>
+                </div>
 
-              <div className="hero-actions">
-                <button type="button" className="primary-button" onClick={() => navigateToPage("algorithms")}>
-                  Explore algorithms
-                </button>
-                <button type="button" className="ghost-button" onClick={() => navigateToPage("guides")}>
-                  Browse clinical guides
-                </button>
-              </div>
+                <div className="flex flex-wrap gap-2">
+                  <Badge variant="secondary" className="gap-1.5">
+                    <Calculator size={14} />
+                    Calculator engine active
+                  </Badge>
+                  <Badge variant="secondary" className="gap-1.5">
+                    <Microscope size={14} />
+                    Markdown guide library
+                  </Badge>
+                </div>
+              </CardContent>
+            </Card>
 
-              <div className="hero-badges">
-                <span className="status-chip">
-                  <Calculator size={14} />
-                  Calculator engine active
-                </span>
-                <span className="status-chip">
-                  <Microscope size={14} />
-                  Markdown guide library
-                </span>
-              </div>
-            </div>
-
-            <div className="stat-grid">
+            <div className="grid grid-cols-2 gap-3.5">
               <MetricCard
                 icon={Calculator}
                 label="Clinical tools"
@@ -1763,47 +1778,41 @@ function AppLayout() {
             </div>
           </section>
 
-          <section className="dashboard-secondary-grid">
-            <section className="panel alert-panel">
-              <div className="section-card-header slim">
-                <div>
-                  <span className="eyebrow">Clinical alert</span>
-                  <h3>Decision support is live</h3>
-                </div>
-                <ShieldAlert size={17} />
-              </div>
-              <p>
+          <section className="grid grid-cols-[280px_minmax(0,1fr)] items-start gap-4">
+            <Alert>
+              <ShieldAlert size={17} />
+              <AlertTitle>Decision support is live</AlertTitle>
+              <AlertDescription>
                 All calculator logic remains active. Use the dashboard for structured support, then
                 confirm every recommendation against patient context and local policy.
-              </p>
-            </section>
+              </AlertDescription>
+            </Alert>
 
-            <section className="panel table-panel">
-              <div className="section-card-header slim">
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <div>
-                  <span className="eyebrow">Library table</span>
-                  <h3>Core workspace modules</h3>
+                  <span className="inline-flex items-center gap-1 text-[0.7rem] font-bold uppercase tracking-wider text-muted-foreground">Library table</span>
+                  <CardTitle className="text-lg">Core workspace modules</CardTitle>
                 </div>
-                <Activity size={17} />
-              </div>
-
-              <div className="dashboard-table-shell">
-                <table className="dashboard-table">
-                  <thead>
-                    <tr>
-                      <th>Module</th>
-                      <th>Type</th>
-                      <th>Inputs</th>
-                      <th>Reference tabs</th>
-                    </tr>
-                  </thead>
-                  <tbody>
+                <Activity size={17} className="text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Module</TableHead>
+                      <TableHead>Type</TableHead>
+                      <TableHead>Inputs</TableHead>
+                      <TableHead>Reference tabs</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
                     {workspaceRows.map((row) => (
-                      <tr key={row.id}>
-                        <td>
-                          <button
-                            type="button"
-                            className="table-link-button"
+                      <TableRow key={row.id}>
+                        <TableCell>
+                          <Button
+                            variant="link"
+                            className="p-0 h-auto font-medium"
                             onClick={() => {
                               setActiveToolId(row.id);
                               navigateToPage(
@@ -1814,19 +1823,19 @@ function AppLayout() {
                             }}
                           >
                             {row.name}
-                          </button>
-                        </td>
-                        <td>
-                          <span className="badge soft">{row.category}</span>
-                        </td>
-                        <td>{row.inputs}</td>
-                        <td>{row.references}</td>
-                      </tr>
+                          </Button>
+                        </TableCell>
+                        <TableCell>
+                          <Badge variant="secondary">{row.category}</Badge>
+                        </TableCell>
+                        <TableCell>{row.inputs}</TableCell>
+                        <TableCell>{row.references}</TableCell>
+                      </TableRow>
                     ))}
-                  </tbody>
-                </table>
-              </div>
-            </section>
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
           </section>
 
             </>
@@ -1834,19 +1843,18 @@ function AppLayout() {
 
           {currentPage === "algorithms" || currentPage === "scores" ? (
           <>
-          <section className="focus-layout focus-layout-tight">
-            <div className="studio-stack">
-              <section key={`tool-panel-${activeTool?.id ?? "empty"}`} className="panel active-tool-panel spotlight-panel">
+          <section className="grid gap-4 pt-0.5">
+            <div className="grid gap-4">
+              <section key={`tool-panel-${activeTool?.id ?? "empty"}`} className="relative min-w-0 bg-card border border-border rounded-[var(--radius-md)] shadow-sm p-4 border-blue-200 bg-gradient-to-b from-blue-50/70 via-teal-50/35 to-white overflow-hidden before:content-[''] before:absolute before:inset-y-0 before:left-0 before:w-1 before:bg-gradient-to-b before:from-primary before:to-teal-700">
                 {activeTool ? (
                   <>
-                    <div className="section-card-header">
+                    <div className="flex items-start justify-between gap-4 mb-4">
                       <div>
-                        <span className="eyebrow">Current calculator</span>
+                        <span className="inline-flex items-center gap-1 text-[0.7rem] font-bold uppercase tracking-wider text-muted-foreground">Current calculator</span>
                         <h3>{activeTool.title}</h3>
                       </div>
-                      <button
-                        type="button"
-                        className="ghost-button"
+                      <Button
+                        variant="outline"
                         onClick={() =>
                           setToolValues((current) => ({
                             ...current,
@@ -1855,34 +1863,34 @@ function AppLayout() {
                         }
                       >
                         Reset
-                      </button>
+                      </Button>
                     </div>
 
-                    <div className="tool-hero">
+                    <div className="grid grid-cols-[minmax(0,1fr)] gap-3.5 items-start">
                       <div>
                         <p>{activeTool.blurb}</p>
-                        <div className="tag-row">
+                        <div className="flex flex-wrap gap-1.5 mt-2">
                           {activeTool.tags.map((tag) => (
-                            <span key={tag} className="tag">
+                            <Badge key={tag} variant="outline">
                               {tag}
-                            </span>
+                            </Badge>
                           ))}
                         </div>
                       </div>
                     </div>
 
-                    <div className="tool-notes-grid">
+                    <div className="grid grid-cols-1 gap-3">
                       {activeTool.notes.map((note) => (
-                        <div key={note} className="note-chip">
-                          <span className="note-chip-icon">
+                        <div key={note} className="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-3 px-4 py-3 border border-blue-200 rounded-[14px] bg-blue-50">
+                          <span className="w-[1.9rem] h-[1.9rem] grid place-items-center rounded-full bg-primary/10 text-primary">
                             <Pill size={14} />
                           </span>
-                          <p>{note}</p>
+                          <p className="m-0 text-gray-700 leading-relaxed text-[0.95rem]">{note}</p>
                         </div>
                       ))}
                     </div>
 
-                    <div className="form-grid">
+                    <div className="grid grid-cols-2 gap-3.5">
                       {activeTool.inputs
                         .filter((input) => {
                           if (input.type === "hidden") return false;
@@ -1900,14 +1908,14 @@ function AppLayout() {
                     </div>
                   </>
                 ) : (
-                  <div className="empty-state left-aligned">
+                  <div className="py-6 text-left">
                     <CircleAlert size={24} />
                     <h4>No tools matched the current search.</h4>
                   </div>
                 )}
               </section>
 
-              <div className="insight-grid">
+              <div className="grid grid-cols-[minmax(0,1.2fr)_minmax(300px,0.8fr)] gap-4">
                 <ResultPanel result={result} />
               </div>
             </div>
@@ -1943,30 +1951,30 @@ function AppLayout() {
 
           {currentPage === "guides" ? (
           <>
-          <section className="focus-layout">
-            <div key={`guide-panel-${activeGuide?.id ?? "empty"}`} className="panel guide-detail-panel spotlight-panel">
+          <section className="grid gap-4">
+            <div key={`guide-panel-${activeGuide?.id ?? "empty"}`} className="relative min-w-0 grid gap-4 bg-card border border-border rounded-[var(--radius-md)] shadow-sm p-4 border-blue-200 bg-gradient-to-b from-blue-50/70 via-teal-50/35 to-white overflow-hidden before:content-[''] before:absolute before:inset-y-0 before:left-0 before:w-1 before:bg-gradient-to-b before:from-primary before:to-teal-700">
               {activeGuide ? (
                 <>
-                  <div className="section-card-header">
+                  <div className="flex items-start justify-between gap-4 mb-4">
                     <div>
-                      <span className="eyebrow">Selected guide</span>
+                      <span className="inline-flex items-center gap-1 text-[0.7rem] font-bold uppercase tracking-wider text-muted-foreground">Selected guide</span>
                       <h3>{activeGuide.title}</h3>
                     </div>
 
                   </div>
 
-                  <div className="guide-meta-row">
-                    <div className="mini-stat">
-                      <span>Category</span>
-                      <strong>{activeGuide.category}</strong>
+                  <div className="flex flex-wrap gap-4 py-3">
+                    <div className="flex flex-col gap-0.5">
+                      <span className="text-xs text-muted-foreground">Category</span>
+                      <Badge variant="outline">{activeGuide.category}</Badge>
                     </div>
-                    <div className="mini-stat">
-                      <span>Updated</span>
-                      <strong>{activeGuide.versionDate || activeGuide.updatedAt || "Current"}</strong>
+                    <div className="flex flex-col gap-0.5">
+                      <span className="text-xs text-muted-foreground">Updated</span>
+                      <strong className="text-sm">{activeGuide.versionDate || activeGuide.updatedAt || "Current"}</strong>
                     </div>
-                    <div className="mini-stat">
-                      <span>References</span>
-                      <strong>
+                    <div className="flex flex-col gap-0.5">
+                      <span className="text-xs text-muted-foreground">References</span>
+                      <strong className="text-sm">
                         {getReferenceItems(activeGuide?.content).length}
                       </strong>
                     </div>
@@ -2083,7 +2091,7 @@ function AppLayout() {
                     <WarfarinPeriopGuide />
                   ) : (
                     <>
-                      <div className="guide-summary-grid">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <ContentSummaryCard
                           eyebrow="Guide synopsis"
                           title="Overview"
@@ -2122,58 +2130,58 @@ function AppLayout() {
                   </GuideNavContext.Provider>
 
                   {activeGuide.linkedGuideIds.length || activeGuide.linkedToolIds.length ? (
-                    <div className="related-panel">
-                      <div className="section-card-header slim">
+                    <div className="border border-border rounded-[14px] bg-card-muted p-4">
+                      <div className="flex items-start justify-between gap-4 mb-3">
                         <div>
-                          <span className="eyebrow">Connected navigation</span>
+                          <span className="inline-flex items-center gap-1 text-[0.7rem] font-bold uppercase tracking-wider text-muted-foreground">Connected navigation</span>
                           <h4>Linked guides and calculators</h4>
                         </div>
                       </div>
 
-                      <div className="related-guide-list">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         {guideLibrary
                           .filter((guide) => activeGuide.linkedGuideIds.includes(guide.id))
                           .map((guide) => (
-                          <button
+                          <Button
                             key={`guide-link-${guide.id}`}
-                            type="button"
-                            className="related-guide-card"
+                            variant="outline"
+                            className="h-auto justify-between px-4 py-3 text-left"
                             onClick={() => {
                               setActiveGuideId(guide.id);
                             }}
                           >
                             <div>
-                              <strong>{guide.title}</strong>
-                              <p>{guide.category}</p>
+                              <strong className="block">{guide.title}</strong>
+                              <p className="text-xs text-muted-foreground">{guide.category}</p>
                             </div>
                             <ArrowUpRight size={15} />
-                          </button>
+                          </Button>
                         ))}
                         {tools
                           .filter((tool) => activeGuide.linkedToolIds.includes(tool.id))
                           .map((tool) => (
-                            <button
+                            <Button
                               key={`tool-link-${tool.id}`}
-                              type="button"
-                              className="related-guide-card"
+                              variant="outline"
+                              className="h-auto justify-between px-4 py-3 text-left"
                               onClick={() => {
                                 setActiveToolId(tool.id);
                                 navigateToPage(getPageForToolId(tool.id));
                               }}
                             >
                               <div>
-                                <strong>{tool.title}</strong>
-                                <p>{tool.badge}</p>
+                                <strong className="block">{tool.title}</strong>
+                                <p className="text-xs text-muted-foreground">{tool.badge}</p>
                               </div>
                               <ArrowUpRight size={15} />
-                            </button>
+                            </Button>
                           ))}
                       </div>
                     </div>
                   ) : null}
                 </>
               ) : (
-                <div className="empty-state left-aligned">
+                <div className="py-6 text-left">
                   <CircleAlert size={24} />
                   <h4>No guides matched the current search.</h4>
                 </div>
@@ -2185,8 +2193,8 @@ function AppLayout() {
 
         </main>
 
-        <footer className="footer">
-          <p>Dr Abdul Mannan FRCPath FCPS | Blood Doctor | blooddoctor.co@gmail.com</p>
+        <footer className="pt-3 text-muted-foreground">
+          <p className="m-0 text-center font-semibold text-[0.9rem]">Dr Abdul Mannan FRCPath FCPS | Blood Doctor | blooddoctor.co@gmail.com</p>
         </footer>
       </div>
     </div>
@@ -2197,36 +2205,36 @@ function DoacFollowupPage({ form, onChange, onReset, onPrint, onDownloadWord }) 
   const summaryRows = getDoacFollowupSummaryRows(form);
 
   return (
-    <section className="focus-layout">
-      <div className="panel doac-followup-panel spotlight-panel">
-        <div className="doac-followup-hero">
-          <div className="doac-followup-hero-bar">
-            <h3>DOAC Follow-up</h3>
+    <section className="grid gap-4">
+      <Card className="rounded-xl border bg-card shadow-sm p-0 overflow-hidden">
+        <div className="grid border-b border-border">
+          <div className="px-5 py-4 bg-[#23376b] text-white">
+            <h3 className="m-0 text-[clamp(1.7rem,2vw,2.15rem)] leading-tight tracking-tight">DOAC Follow-up</h3>
           </div>
-          <div className="doac-followup-toolbar">
+          <div className="flex items-start justify-between gap-4 px-5 py-4 bg-gradient-to-b from-white to-[#fbfcff]">
             <div>
-              <span className="eyebrow">Checklist workspace</span>
-              <p>Structured review template for outpatient DOAC follow-up, documentation, and counselling.</p>
+              <span className="text-[0.7rem] font-bold uppercase tracking-widest text-primary">Checklist workspace</span>
+              <p className="mt-1 mb-0 max-w-[62ch] text-muted-foreground leading-relaxed">Structured review template for outpatient DOAC follow-up, documentation, and counselling.</p>
             </div>
-            <div className="button-cluster">
-              <button type="button" className="ghost-button" onClick={onReset}>
+            <div className="flex flex-wrap gap-2">
+              <Button variant="outline" onClick={onReset}>
                 Reset
-              </button>
-              <button type="button" className="ghost-button" onClick={onPrint}>
+              </Button>
+              <Button variant="outline" onClick={onPrint}>
                 <Printer size={16} />
                 Print / Save PDF
-              </button>
-              <button type="button" className="primary-button" onClick={onDownloadWord}>
+              </Button>
+              <Button onClick={onDownloadWord}>
                 <FileText size={16} />
                 Download Word
-              </button>
+              </Button>
             </div>
           </div>
         </div>
 
-        <div className="doac-followup-body">
-          <section className="doac-section-card">
-            <div className="doac-field-grid">
+        <div className="grid gap-4 p-5 bg-slate-50">
+          <section className="grid gap-4 p-5 border border-border rounded-2xl bg-white shadow-sm">
+            <div className="grid grid-cols-2 gap-4">
               <DoacTextField
                 label="Patient name"
                 value={form.patientName}
@@ -2280,8 +2288,8 @@ function DoacFollowupPage({ form, onChange, onReset, onPrint, onDownloadWord }) 
           </section>
 
           <DoacSectionTitle title="Health status since last assessment" />
-          <section className="doac-section-card">
-            <p className="doac-section-lead">Please check all that apply to the patient:</p>
+          <section className="grid gap-4 p-5 border border-border rounded-2xl bg-white shadow-sm">
+            <p className="m-0 font-semibold leading-relaxed">Please check all that apply to the patient:</p>
             <DoacCheckboxList
               items={[
                 ["healthRelevantProblems", "Relevant medical problems, ED visits, or hospitalizations"],
@@ -2299,7 +2307,7 @@ function DoacFollowupPage({ form, onChange, onReset, onPrint, onDownloadWord }) 
           </section>
 
           <DoacSectionTitle title="Adherence with DOAC therapy" />
-          <section className="doac-section-card">
+          <section className="grid gap-4 p-5 border border-border rounded-2xl bg-white shadow-sm">
             <DoacRadioGroup
               label="How many doses has the patient missed in an average week?"
               value={form.missedDoses}
@@ -2327,14 +2335,14 @@ function DoacFollowupPage({ form, onChange, onReset, onPrint, onDownloadWord }) 
           </section>
 
           <DoacSectionTitle title="Bleeding risk assessment" />
-          <section className="doac-section-card">
+          <section className="grid gap-4 p-5 border border-border rounded-2xl bg-white shadow-sm">
             <DoacSelectField
               label="HAS-BLED"
               value={form.hasBled}
               onChange={(value) => onChange("hasBled", value)}
               options={["", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]}
             />
-            <p className="doac-section-lead">Please check all that apply. A positive response prompts individualized review and does not by itself mean the DOAC should be stopped.</p>
+            <p className="m-0 font-semibold leading-relaxed">Please check all that apply. A positive response prompts individualized review and does not by itself mean the DOAC should be stopped.</p>
             <DoacCheckboxList
               items={[
                 ["bleedGi", "Signs or symptoms of GI bleeding"],
@@ -2349,8 +2357,8 @@ function DoacFollowupPage({ form, onChange, onReset, onPrint, onDownloadWord }) 
           </section>
 
           <DoacSectionTitle title="Creatinine clearance / renal function" />
-          <section className="doac-section-card">
-            <div className="doac-field-grid">
+          <section className="grid gap-4 p-5 border border-border rounded-2xl bg-white shadow-sm">
+            <div className="grid grid-cols-2 gap-4">
               <DoacDateField
                 label="When was eGFR last measured?"
                 value={form.egfrDate}
@@ -2379,8 +2387,8 @@ function DoacFollowupPage({ form, onChange, onReset, onPrint, onDownloadWord }) 
           </section>
 
           <DoacSectionTitle title="Drug interactions (review all concomitant medications)" />
-          <section className="doac-section-card">
-            <p className="doac-section-lead">Please check all that apply:</p>
+          <section className="grid gap-4 p-5 border border-border rounded-2xl bg-white shadow-sm">
+            <p className="m-0 font-semibold leading-relaxed">Please check all that apply:</p>
             <DoacCheckboxList
               items={[
                 ["drugAsa", "ASA or other antiplatelets"],
@@ -2394,8 +2402,8 @@ function DoacFollowupPage({ form, onChange, onReset, onPrint, onDownloadWord }) 
           </section>
 
           <DoacSectionTitle title="Examination" />
-          <section className="doac-section-card">
-            <div className="doac-field-grid">
+          <section className="grid gap-4 p-5 border border-border rounded-2xl bg-white shadow-sm">
+            <div className="grid grid-cols-2 gap-4">
               <DoacTextField
                 label="Actual BP systolic"
                 value={form.bpSystolic}
@@ -2431,7 +2439,7 @@ function DoacFollowupPage({ form, onChange, onReset, onPrint, onDownloadWord }) 
           </section>
 
           <DoacSectionTitle title="Final assessment and recommendations" />
-          <section className="doac-section-card">
+          <section className="grid gap-4 p-5 border border-border rounded-2xl bg-white shadow-sm">
             <DoacBinaryMatrix
               rows={[
                 [
@@ -2454,7 +2462,7 @@ function DoacFollowupPage({ form, onChange, onReset, onPrint, onDownloadWord }) 
           </section>
 
           <DoacSectionTitle title="Patient education and counselling" />
-          <section className="doac-section-card">
+          <section className="grid gap-4 p-5 border border-border rounded-2xl bg-white shadow-sm">
             <DoacBinaryMatrix
               rows={[
                 [
@@ -2479,7 +2487,7 @@ function DoacFollowupPage({ form, onChange, onReset, onPrint, onDownloadWord }) 
                 ],
               ]}
             />
-            <div className="doac-field-grid">
+            <div className="grid grid-cols-2 gap-4">
               <DoacDateField
                 label="Next follow-up date"
                 value={form.nextFollowupDate}
@@ -2498,72 +2506,72 @@ function DoacFollowupPage({ form, onChange, onReset, onPrint, onDownloadWord }) 
             />
           </section>
 
-          <section className="doac-summary-sheet">
-            <div className="doac-summary-header">
-              <h4>Direct Oral Anticoagulant (DOAC) Follow-up Checklist</h4>
+          <section className="grid border-2 border-[#23376b] bg-white overflow-hidden">
+            <div className="px-5 py-4 bg-[#8ea0c9] border-b-2 border-[#23376b]">
+              <h4 className="m-0 text-[#1f3160] text-[clamp(1.55rem,2vw,2rem)] text-center leading-tight">Direct Oral Anticoagulant (DOAC) Follow-up Checklist</h4>
             </div>
-            <div className="doac-summary-date">
+            <div className="px-5 py-4 border-b border-[#23376b] text-center text-lg font-bold">
               Date: {new Intl.DateTimeFormat("en-GB", { day: "2-digit", month: "long", year: "numeric" }).format(new Date())}
             </div>
-            <div className="doac-summary-title">Summary of patient profile</div>
-            <div className="doac-summary-table">
+            <div className="px-5 py-4 border-b border-[#23376b] text-xl font-bold">Summary of patient profile</div>
+            <div className="grid">
               {summaryRows.map(([label, value]) => (
-                <div key={label} className="doac-summary-row">
-                  <strong>{label}</strong>
-                  <span>{value}</span>
+                <div key={label} className="grid grid-cols-[minmax(220px,0.42fr)_minmax(0,1fr)] [&+&]:border-t [&+&]:border-slate-300">
+                  <strong className="px-5 py-3.5 leading-relaxed bg-slate-50">{label}</strong>
+                  <span className="px-5 py-3.5 leading-relaxed">{value}</span>
                 </div>
               ))}
             </div>
-            <div className="doac-summary-disclaimer">
+            <div className="px-5 py-4 border-t-2 border-[#23376b] italic leading-relaxed">
               These general recommendations do not replace clinical judgement. Physicians must consider relative risks and benefits in each patient.
             </div>
           </section>
         </div>
-      </div>
+      </Card>
     </section>
   );
 }
 
 function DoacSectionTitle({ title }) {
   return (
-    <div className="doac-section-title">
-      <h4>{title}</h4>
+    <div className="px-0.5">
+      <h4 className="m-0 pb-3 border-b-2 border-orange-600/20 text-orange-600 text-base font-extrabold uppercase tracking-widest">{title}</h4>
     </div>
   );
 }
 
 function DoacTextField({ label, value, onChange, inputMode = "text" }) {
   return (
-    <label className="doac-input">
-      <span>{label}</span>
-      <input value={value} inputMode={inputMode} onChange={(event) => onChange(event.target.value)} />
+    <label className="grid gap-2.5">
+      <span className="text-gray-800 text-base font-extrabold">{label}</span>
+      <input className="w-full min-h-[3.3rem] px-3.5 py-3 border border-border rounded-[14px] bg-white text-foreground outline-none transition-all focus:border-[rgba(127,29,63,0.34)] focus:ring-4 focus:ring-[rgba(127,29,63,0.08)]" value={value} inputMode={inputMode} onChange={(event) => onChange(event.target.value)} />
     </label>
   );
 }
 
 function DoacDateField({ label, value, onChange }) {
   return (
-    <label className="doac-input">
-      <span>{label}</span>
-      <input type="date" value={value} onChange={(event) => onChange(event.target.value)} />
+    <label className="grid gap-2.5">
+      <span className="text-gray-800 text-base font-extrabold">{label}</span>
+      <input className="w-full min-h-[3.3rem] px-3.5 py-3 border border-border rounded-[14px] bg-white text-foreground outline-none transition-all focus:border-[rgba(127,29,63,0.34)] focus:ring-4 focus:ring-[rgba(127,29,63,0.08)]" type="date" value={value} onChange={(event) => onChange(event.target.value)} />
     </label>
   );
 }
 
 function DoacTextArea({ label, value, onChange }) {
   return (
-    <label className="doac-input doac-input-wide">
-      <span>{label}</span>
-      <textarea value={value} onChange={(event) => onChange(event.target.value)} />
+    <label className="grid gap-2.5 col-span-full">
+      <span className="text-gray-800 text-base font-extrabold">{label}</span>
+      <textarea className="w-full min-h-[8.5rem] resize-y p-3.5 border border-border rounded-[14px] bg-white text-foreground leading-relaxed outline-none transition-all focus:border-[rgba(127,29,63,0.34)] focus:ring-4 focus:ring-[rgba(127,29,63,0.08)]" value={value} onChange={(event) => onChange(event.target.value)} />
     </label>
   );
 }
 
 function DoacSelectField({ label, value, onChange, options }) {
   return (
-    <label className="doac-input">
-      <span>{label}</span>
-      <select value={value} onChange={(event) => onChange(event.target.value)}>
+    <label className="grid gap-2.5">
+      <span className="text-gray-800 text-base font-extrabold">{label}</span>
+      <select className="w-full min-h-[3.3rem] px-3.5 py-3 border border-border rounded-[14px] bg-white text-foreground outline-none transition-all focus:border-[rgba(127,29,63,0.34)] focus:ring-4 focus:ring-[rgba(127,29,63,0.08)]" value={value} onChange={(event) => onChange(event.target.value)}>
         {options.map((option) => (
           <option key={option || "empty"} value={option}>
             {option || "Select"}
@@ -2576,17 +2584,29 @@ function DoacSelectField({ label, value, onChange, options }) {
 
 function DoacRadioGroup({ label, value, onChange, options }) {
   return (
-    <div className="doac-input doac-input-wide">
-      <span>{label}</span>
-      <div className="doac-radio-list">
+    <div className="grid gap-2.5 col-span-full">
+      <span className="text-gray-800 text-base font-extrabold">{label}</span>
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(190px,1fr))] gap-3">
         {options.map((option) => (
-          <label key={option.value} className={value === option.value ? "doac-choice active" : "doac-choice"}>
+          <label key={option.value} className={cn(
+            "flex items-center gap-3 min-h-[3.35rem] px-4 py-3.5 border rounded-2xl bg-white font-bold leading-snug cursor-pointer transition-colors",
+            value === option.value
+              ? "border-[rgba(127,29,63,0.3)] bg-[#fcf7f9] text-[#4a1428]"
+              : "border-border text-foreground"
+          )}>
             <input
               type="radio"
+              className="absolute opacity-0 pointer-events-none"
               checked={value === option.value}
               onChange={() => onChange(option.value)}
             />
-            <span>{option.label}</span>
+            <span className={cn(
+              "w-[1.15rem] h-[1.15rem] flex-none rounded-full border-2",
+              value === option.value
+                ? "border-[#7f1d3f] bg-[#7f1d3f] shadow-[inset_0_0_0_3px_#ffffff]"
+                : "border-gray-400 bg-white"
+            )} />
+            <span className="block">{option.label}</span>
           </label>
         ))}
       </div>
@@ -2596,15 +2616,27 @@ function DoacRadioGroup({ label, value, onChange, options }) {
 
 function DoacCheckboxList({ items, form, onChange }) {
   return (
-    <div className="doac-checkbox-list">
+    <div className="grid gap-3">
       {items.map(([field, label]) => (
-        <label key={field} className={form[field] ? "doac-choice checkbox active" : "doac-choice checkbox"}>
+        <label key={field} className={cn(
+          "flex items-center gap-3 min-h-[3.35rem] px-4 py-3.5 border rounded-2xl bg-white font-bold leading-snug cursor-pointer transition-colors",
+          form[field]
+            ? "border-[rgba(127,29,63,0.3)] bg-[#fcf7f9] text-[#4a1428]"
+            : "border-border text-foreground"
+        )}>
           <input
             type="checkbox"
+            className="absolute opacity-0 pointer-events-none"
             checked={Boolean(form[field])}
             onChange={(event) => onChange(field, event.target.checked)}
           />
-          <span>{label}</span>
+          <span className={cn(
+            "w-[1.15rem] h-[1.15rem] flex-none border-2",
+            form[field]
+              ? "rounded border-[#7f1d3f] bg-[#7f1d3f] shadow-[inset_0_0_0_3px_#ffffff]"
+              : "rounded border-gray-400 bg-white"
+          )} />
+          <span className="block">{label}</span>
         </label>
       ))}
     </div>
@@ -2613,22 +2645,38 @@ function DoacCheckboxList({ items, form, onChange }) {
 
 function DoacBinaryMatrix({ rows }) {
   return (
-    <div className="doac-matrix">
-      <div className="doac-matrix-head">
-        <span />
-        <strong>Yes</strong>
-        <strong>No</strong>
+    <div className="grid border border-border rounded-2xl overflow-hidden">
+      <div className="grid grid-cols-[minmax(0,1fr)_120px_120px] items-stretch bg-slate-50 border-b border-border">
+        <span className="px-4 py-3.5" />
+        <strong className="px-4 py-3.5 text-center text-muted-foreground text-[0.95rem]">Yes</strong>
+        <strong className="px-4 py-3.5 text-center text-muted-foreground text-[0.95rem]">No</strong>
       </div>
-      {rows.map(([label, value, onChange]) => (
-        <div key={label} className="doac-matrix-row">
-          <div className="doac-matrix-label">{label}</div>
-          <label className={value === "yes" ? "doac-matrix-choice active" : "doac-matrix-choice"}>
-            <input type="radio" checked={value === "yes"} onChange={() => onChange("yes")} />
-            <span />
+      {rows.map(([label, value, onChange], idx) => (
+        <div key={label} className={cn("grid grid-cols-[minmax(0,1fr)_120px_120px] items-stretch", idx > 0 && "border-t border-border")}>
+          <div className="p-4 leading-relaxed font-semibold text-foreground">{label}</div>
+          <label className={cn(
+            "grid place-items-center p-3 border-l border-border cursor-pointer",
+            value === "yes" ? "bg-[#fcf7f9]" : "bg-white"
+          )}>
+            <input type="radio" className="absolute opacity-0 pointer-events-none" checked={value === "yes"} onChange={() => onChange("yes")} />
+            <span className={cn(
+              "w-6 h-6 rounded-full border-2",
+              value === "yes"
+                ? "border-[#7f1d3f] bg-[#7f1d3f] shadow-[inset_0_0_0_4px_#ffffff]"
+                : "border-gray-400 bg-white"
+            )} />
           </label>
-          <label className={value === "no" ? "doac-matrix-choice active" : "doac-matrix-choice"}>
-            <input type="radio" checked={value === "no"} onChange={() => onChange("no")} />
-            <span />
+          <label className={cn(
+            "grid place-items-center p-3 border-l border-border cursor-pointer",
+            value === "no" ? "bg-[#fcf7f9]" : "bg-white"
+          )}>
+            <input type="radio" className="absolute opacity-0 pointer-events-none" checked={value === "no"} onChange={() => onChange("no")} />
+            <span className={cn(
+              "w-6 h-6 rounded-full border-2",
+              value === "no"
+                ? "border-[#7f1d3f] bg-[#7f1d3f] shadow-[inset_0_0_0_4px_#ffffff]"
+                : "border-gray-400 bg-white"
+            )} />
           </label>
         </div>
       ))}
@@ -2663,9 +2711,9 @@ function AcuteManagementPage({
 
   if (!activeAcuteItem) {
     return (
-      <section className="focus-layout">
-        <div className="panel acute-embed-shell">
-          <div className="empty-state left-aligned">
+      <section className="grid gap-4">
+        <div className="rounded-xl border bg-card shadow-sm grid gap-4 p-5">
+          <div className="py-6 text-left">
             <CircleAlert size={24} />
             <h4>No acute-management items matched the current search.</h4>
           </div>
@@ -2675,29 +2723,28 @@ function AcuteManagementPage({
   }
 
   return (
-    <section className="focus-layout">
-      <div className="panel acute-embed-shell spotlight-panel">
-        <div className="acute-toolbar">
+    <section className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm grid gap-4 p-5">
+        <div className="flex items-start justify-between gap-4">
           <div>
-            <span className="eyebrow">Acute management</span>
+            <span className="text-[0.7rem] font-bold uppercase tracking-widest text-primary">Acute management</span>
             <h3>{activeAcuteItem.title}</h3>
             <p>{activeAcuteItem.summary}</p>
           </div>
-          <div className="button-cluster">
-            <button
-              type="button"
-              className="ghost-button"
+          <div className="flex flex-wrap gap-2">
+            <Button
+              variant="outline"
               onClick={() => {
                 onResetTool(getAcuteToolKey(activeAcuteId));
                 setFrameKey((value) => value + 1);
               }}
             >
               Reset
-            </button>
+            </Button>
           </div>
         </div>
 
-        <div className="acute-embed-note">
+        <div className="flex items-center gap-3 p-4 border border-border rounded-xl bg-rose-50/50 text-foreground">
           <CircleCheckBig size={18} />
           <span>Interactive acute pathways are now aligned to the generated acute-management build and open directly to the selected tool.</span>
         </div>
@@ -2705,7 +2752,7 @@ function AcuteManagementPage({
         <iframe
           key={`${activeAcuteId}-${frameKey}`}
           title={`${activeAcuteItem.title} acute management`}
-          className="acute-embed-frame"
+          className="w-full min-h-[1200px] border-0 rounded-2xl bg-transparent"
           srcDoc={frameDoc}
           style={{ height: `${frameHeight}px` }}
         />
@@ -2724,9 +2771,9 @@ function getAcuteToolKey(activeAcuteId) {
 
 function AcuteQuestionCard({ title, children, note }) {
   return (
-    <section className="acute-question-card">
+    <section className="grid gap-3.5 p-5 border border-border rounded-2xl bg-white shadow-sm">
       <h4>{title}</h4>
-      {note ? <p className="acute-question-note">{note}</p> : null}
+      {note ? <p className="m-0 text-muted-foreground leading-relaxed text-sm">{note}</p> : null}
       {children}
     </section>
   );
@@ -2734,7 +2781,7 @@ function AcuteQuestionCard({ title, children, note }) {
 
 function AcuteChoiceGrid({ options, value, onChange, multi = false }) {
   return (
-    <div className="acute-choice-grid">
+    <div className="grid gap-3">
       {options.map((option) => {
         const active = multi ? value.includes(option.value) : value === option.value;
         return (
@@ -2744,7 +2791,7 @@ function AcuteChoiceGrid({ options, value, onChange, multi = false }) {
             className={active ? "acute-choice active" : "acute-choice"}
             onClick={() => onChange(option.value)}
           >
-            <span className="acute-choice-indicator" />
+            <span className="w-4.5 h-4.5 mt-0.5 border-2 border-slate-400 rounded-full bg-white flex-shrink-0" />
             <span>
               <strong>{option.label}</strong>
               {option.detail ? <small>{option.detail}</small> : null}
@@ -2781,7 +2828,7 @@ function AcuteAFPanel({ state, onFieldChange }) {
     (state.duration === "lt12h" || (state.duration === "12to48h" && state.recentStrokeTia === "no"));
 
   return (
-    <div className="acute-tool-body">
+    <div className="grid gap-4">
       <AcuteQuestionCard title="Hemodynamic status">
         <AcuteChoiceGrid
           value={state.stability}
@@ -2867,10 +2914,10 @@ function AcuteAFPanel({ state, onFieldChange }) {
         </AcuteQuestionCard>
       ) : null}
 
-      <div className="acute-rec-grid">
+      <div className="grid gap-4">
         {showUnstableRec ? (
           <AcuteRecommendationBox tone="danger" title="Urgent cardioversion pathway">
-            <ul className="content-list compact">
+            <ul className="grid gap-3 pl-4 text-muted-foreground leading-relaxed">
               <li>Initiate an oral anticoagulant as soon as possible, ideally before cardioversion.</li>
               <li>Proceed with urgent synchronized cardioversion.</li>
               <li>Continue anticoagulation for 4 weeks after cardioversion.</li>
@@ -2881,7 +2928,7 @@ function AcuteAFPanel({ state, onFieldChange }) {
 
         {showValvularRec ? (
           <AcuteRecommendationBox tone="warning" title="Anticoagulate before delayed cardioversion">
-            <ul className="content-list compact">
+            <ul className="grid gap-3 pl-4 text-muted-foreground leading-relaxed">
               <li>Provide therapeutic oral anticoagulation for at least 3 weeks before cardioversion, or perform TEE to exclude left atrial thrombus.</li>
               <li>Proceed with cardioversion once safe.</li>
               <li>Continue anticoagulation for 4 weeks after cardioversion.</li>
@@ -2892,7 +2939,7 @@ function AcuteAFPanel({ state, onFieldChange }) {
 
         {showEarlyRec ? (
           <AcuteRecommendationBox tone="action" title="Early AF cardioversion strategy">
-            <ul className="content-list compact">
+            <ul className="grid gap-3 pl-4 text-muted-foreground leading-relaxed">
               <li>Start oral anticoagulation as soon as possible, preferably before cardioversion.</li>
               <li>Proceed with cardioversion once rate and symptoms are appropriately managed.</li>
               <li>Continue anticoagulation for at least 4 weeks after cardioversion.</li>
@@ -2919,7 +2966,7 @@ function AcuteBleedPanel({ state, onFieldChange }) {
   const showHeparinRec = state.severity === "major" && state.drug === "heparin";
 
   return (
-    <div className="acute-tool-body">
+    <div className="grid gap-4">
       <AcuteQuestionCard title="Bleeding severity">
         <AcuteChoiceGrid
           value={state.severity}
@@ -2960,11 +3007,11 @@ function AcuteBleedPanel({ state, onFieldChange }) {
 
       {showInr ? (
         <AcuteQuestionCard title="Warfarin INR">
-          <div className="acute-inline-form">
-            <label className="acute-inline-label">
+          <div className="grid grid-cols-[minmax(180px,220px)_minmax(220px,1fr)] gap-4 items-end">
+            <label className="grid gap-2">
               <span>INR value</span>
               <input
-                className="acute-inline-input"
+                className="min-h-12 px-3.5 py-3 border border-border rounded-xl"
                 type="number"
                 step="0.1"
                 min="0.5"
@@ -2986,17 +3033,17 @@ function AcuteBleedPanel({ state, onFieldChange }) {
                 }
               }}
             >
-              <span className="acute-choice-indicator" />
+              <span className="w-4.5 h-4.5 mt-0.5 border-2 border-slate-400 rounded-full bg-white flex-shrink-0" />
               <span><strong>Unknown or pending</strong></span>
             </button>
           </div>
         </AcuteQuestionCard>
       ) : null}
 
-      <div className="acute-rec-grid">
+      <div className="grid gap-4">
         {showMinorRec ? (
           <AcuteRecommendationBox tone="action" title="Minor bleeding management">
-            <ul className="content-list compact">
+            <ul className="grid gap-3 pl-4 text-muted-foreground leading-relaxed">
               <li>Continue anticoagulant therapy and monitor.</li>
               <li>Confirm the drug and dose remain appropriate for age, weight, indication, and renal function.</li>
               <li>Review CBC, creatinine, liver function, and interacting medicines when clinically needed.</li>
@@ -3007,7 +3054,7 @@ function AcuteBleedPanel({ state, onFieldChange }) {
 
         {showClinicalRec ? (
           <AcuteRecommendationBox tone="warning" title="Clinically relevant non-major bleeding">
-            <ul className="content-list compact">
+            <ul className="grid gap-3 pl-4 text-muted-foreground leading-relaxed">
               <li>Consider temporary interruption of anticoagulation depending on site and severity.</li>
               <li>Apply local hemostatic measures and refer for procedural control if needed.</li>
               <li>Check CBC, PT/INR, aPTT, creatinine, liver tests, and group and screen when relevant.</li>
@@ -3018,7 +3065,7 @@ function AcuteBleedPanel({ state, onFieldChange }) {
 
         {showMajorInitial ? (
           <AcuteRecommendationBox tone="danger" title="Initial management of major bleeding">
-            <ul className="content-list compact">
+            <ul className="grid gap-3 pl-4 text-muted-foreground leading-relaxed">
               <li>Interrupt anticoagulant therapy immediately and begin monitored resuscitation.</li>
               <li>Apply local hemostatic measures and refer for procedural or surgical control where appropriate.</li>
               <li>Check CBC, coagulation tests, creatinine, liver function, and blood bank testing urgently.</li>
@@ -3029,7 +3076,7 @@ function AcuteBleedPanel({ state, onFieldChange }) {
 
         {showWarfarinLow ? (
           <AcuteRecommendationBox tone="info" title="Warfarin: INR 1.5 or lower">
-            <ul className="content-list compact">
+            <ul className="grid gap-3 pl-4 text-muted-foreground leading-relaxed">
               <li>No reversal is usually required.</li>
               <li>Consider interrupting warfarin based on bleeding site and severity.</li>
               <li>Continue local measures, monitoring, and investigation of the bleeding source.</li>
@@ -3039,7 +3086,7 @@ function AcuteBleedPanel({ state, onFieldChange }) {
 
         {showWarfarinReverse ? (
           <AcuteRecommendationBox tone="danger" title="Warfarin: reversal required">
-            <ul className="content-list compact">
+            <ul className="grid gap-3 pl-4 text-muted-foreground leading-relaxed">
               <li>Use 4-factor PCC for immediate reversal, guided by INR and weight where available.</li>
               <li>Give vitamin K 10 mg IV to sustain reversal.</li>
               <li>Use FFP only if PCC is unavailable.</li>
@@ -3050,7 +3097,7 @@ function AcuteBleedPanel({ state, onFieldChange }) {
 
         {showDabigatranRec ? (
           <AcuteRecommendationBox tone="danger" title="Dabigatran reversal">
-            <ul className="content-list compact">
+            <ul className="grid gap-3 pl-4 text-muted-foreground leading-relaxed">
               <li>Use idarucizumab 5 g IV as the preferred specific reversal agent.</li>
               <li>If unavailable, consider PCC 50 units/kg or FEIBA 50 units/kg with specialist input.</li>
               <li>Hemodialysis can be considered if feasible.</li>
@@ -3060,7 +3107,7 @@ function AcuteBleedPanel({ state, onFieldChange }) {
 
         {showXaRec ? (
           <AcuteRecommendationBox tone="danger" title="Factor Xa inhibitor reversal">
-            <ul className="content-list compact">
+            <ul className="grid gap-3 pl-4 text-muted-foreground leading-relaxed">
               <li>Use andexanet alfa where available and appropriate.</li>
               <li>If unavailable, consider 4-factor PCC 50 units/kg as pro-hemostatic therapy.</li>
               <li>Use calibrated anti-Xa testing where available to estimate residual drug effect.</li>
@@ -3070,7 +3117,7 @@ function AcuteBleedPanel({ state, onFieldChange }) {
 
         {showHeparinRec ? (
           <AcuteRecommendationBox tone="danger" title="Heparin or LMWH reversal">
-            <ul className="content-list compact">
+            <ul className="grid gap-3 pl-4 text-muted-foreground leading-relaxed">
               <li>Stop heparin immediately.</li>
               <li>Use protamine sulfate according to the heparin preparation and timing of the last dose.</li>
               <li>Monitor aPTT or anti-Xa level where appropriate.</li>
@@ -3090,7 +3137,7 @@ function AcuteDvtPanel({ state, onToggleModifier, onFieldChange }) {
   const showContra = showModifiers && hasContra;
 
   return (
-    <div className="acute-tool-body">
+    <div className="grid gap-4">
       <AcuteQuestionCard title="Massive iliofemoral DVT">
         <AcuteChoiceGrid
           value={state.massiveIliofemoral}
@@ -3123,10 +3170,10 @@ function AcuteDvtPanel({ state, onToggleModifier, onFieldChange }) {
         </AcuteQuestionCard>
       ) : null}
 
-      <div className="acute-rec-grid">
+      <div className="grid gap-4">
         {state.massiveIliofemoral === "yes" ? (
           <AcuteRecommendationBox tone="danger" title="Massive iliofemoral DVT">
-            <ul className="content-list compact">
+            <ul className="grid gap-3 pl-4 text-muted-foreground leading-relaxed">
               <li>Seek immediate vascular surgery and interventional radiology input for urgent pharmacomechanical treatment.</li>
               <li>Continue anticoagulation with UFH or LMWH after initial intervention is arranged.</li>
             </ul>
@@ -3135,7 +3182,7 @@ function AcuteDvtPanel({ state, onToggleModifier, onFieldChange }) {
 
         {showStandard ? (
           <AcuteRecommendationBox tone="action" title="Standard anticoagulation options">
-            <ul className="content-list compact">
+            <ul className="grid gap-3 pl-4 text-muted-foreground leading-relaxed">
               <li>LMWH for at least 5 days with warfarin bridging until INR is therapeutic.</li>
               <li>LMWH lead-in followed by dabigatran where appropriate.</li>
               <li>Apixaban 10 mg twice daily for 7 days, then 5 mg twice daily.</li>
@@ -3146,7 +3193,7 @@ function AcuteDvtPanel({ state, onToggleModifier, onFieldChange }) {
 
         {showContra ? (
           <AcuteRecommendationBox tone="warning" title="DVT treatment with modifiers present">
-            <ul className="content-list compact">
+            <ul className="grid gap-3 pl-4 text-muted-foreground leading-relaxed">
               <li>Active cancer: consider LMWH monotherapy.</li>
               <li>Hepatic dysfunction, pregnancy, or CrCl below 15: use warfarin with heparin support or LMWH with specialist input.</li>
               <li>Important DOAC interactions: favor warfarin and LMWH or specialist consultation.</li>
@@ -3166,7 +3213,7 @@ function AcutePePanel({ state, onToggleModifier, onFieldChange }) {
   const showContra = showModifiers && hasContra;
 
   return (
-    <div className="acute-tool-body">
+    <div className="grid gap-4">
       <AcuteQuestionCard title="Hemodynamic stability" note="High-risk PE includes persistent hemodynamic instability, shock, or acute deterioration.">
         <AcuteChoiceGrid
           value={state.stability}
@@ -3199,10 +3246,10 @@ function AcutePePanel({ state, onToggleModifier, onFieldChange }) {
         </AcuteQuestionCard>
       ) : null}
 
-      <div className="acute-rec-grid">
+      <div className="grid gap-4">
         {state.stability === "unstable" ? (
           <AcuteRecommendationBox tone="danger" title="Unstable pulmonary embolism">
-            <ul className="content-list compact">
+            <ul className="grid gap-3 pl-4 text-muted-foreground leading-relaxed">
               <li>Consider immediate IV thrombolysis.</li>
               <li>Consult ICU urgently.</li>
               <li>Consider pharmacomechanical therapy when bleeding risk is high.</li>
@@ -3213,7 +3260,7 @@ function AcutePePanel({ state, onToggleModifier, onFieldChange }) {
 
         {showStandard ? (
           <AcuteRecommendationBox tone="action" title="Standard PE anticoagulation">
-            <ul className="content-list compact">
+            <ul className="grid gap-3 pl-4 text-muted-foreground leading-relaxed">
               <li>LMWH for at least 5 days with warfarin until INR is 2 to 3.</li>
               <li>LMWH lead-in followed by dabigatran where appropriate.</li>
               <li>Apixaban 10 mg twice daily for 7 days, then 5 mg twice daily.</li>
@@ -3224,7 +3271,7 @@ function AcutePePanel({ state, onToggleModifier, onFieldChange }) {
 
         {showContra ? (
           <AcuteRecommendationBox tone="warning" title="PE treatment with modifiers present">
-            <ul className="content-list compact">
+            <ul className="grid gap-3 pl-4 text-muted-foreground leading-relaxed">
               <li>Active cancer: consider LMWH monotherapy.</li>
               <li>Hepatic dysfunction, pregnancy, or CrCl below 15: use warfarin with heparin support or LMWH with specialist input.</li>
               <li>Important DOAC interactions: favor warfarin and LMWH or specialist consultation.</li>
@@ -3238,53 +3285,55 @@ function AcutePePanel({ state, onToggleModifier, onFieldChange }) {
 
 function MetricCard({ icon: Icon, label, value, meta }) {
   return (
-    <article className="metric-card">
-      <div className="metric-icon">
-        <Icon size={18} />
-      </div>
-      <span>{label}</span>
-      <strong>{value}</strong>
-      <p>{meta}</p>
-    </article>
+    <Card className="p-4 flex flex-col gap-1">
+      <CardContent className="p-0 flex flex-col gap-1">
+        <div className="flex items-center justify-center w-8 h-8 rounded-md bg-primary/10 text-primary">
+          <Icon size={18} />
+        </div>
+        <span className="text-xs text-muted-foreground">{label}</span>
+        <strong className="text-lg font-semibold">{value}</strong>
+        <p className="text-xs text-muted-foreground">{meta}</p>
+      </CardContent>
+    </Card>
   );
 }
 
 function ContentSummaryCard({ eyebrow, title, description }) {
   return (
-    <article className="guide-story-card">
-      <div className="section-card-header slim">
-        <div>
-          <span className="eyebrow">{eyebrow}</span>
-          <h4>{title}</h4>
-        </div>
-      </div>
-      <p className="guide-story-copy">{description || "No structured summary is available yet."}</p>
-    </article>
+    <Card>
+      <CardHeader className="pb-2">
+        <span className="text-xs font-medium uppercase tracking-wider text-primary">{eyebrow}</span>
+        <CardTitle className="text-base">{title}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p className="text-sm text-muted-foreground">{description || "No structured summary is available yet."}</p>
+      </CardContent>
+    </Card>
   );
 }
 
 function ContentOutlinePreview({ eyebrow, title, items }) {
   return (
-    <article className="guide-story-card">
-      <div className="section-card-header slim">
-        <div>
-          <span className="eyebrow">{eyebrow}</span>
-          <h4>{title}</h4>
-        </div>
-      </div>
-      {items?.length ? (
-        <ul className="guide-outline-list">
-          {items.map((item) => (
-            <li key={item}>
-              <ArrowUpRight size={14} />
-              <span>{sanitizeDisplayText(item)}</span>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p className="guide-story-copy">Section headings will appear here when available.</p>
-      )}
-    </article>
+    <Card>
+      <CardHeader className="pb-2">
+        <span className="text-xs font-medium uppercase tracking-wider text-primary">{eyebrow}</span>
+        <CardTitle className="text-base">{title}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        {items?.length ? (
+          <ul className="space-y-1.5">
+            {items.map((item) => (
+              <li key={item} className="flex items-start gap-2 text-sm">
+                <ArrowUpRight size={14} className="mt-0.5 shrink-0 text-primary" />
+                <span>{sanitizeDisplayText(item)}</span>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-sm text-muted-foreground">Section headings will appear here when available.</p>
+        )}
+      </CardContent>
+    </Card>
   );
 }
 
@@ -3292,135 +3341,155 @@ function ContentListPreview({ eyebrow, title, items, ordered = false, emptyLabel
   const ListTag = ordered ? "ol" : "ul";
 
   return (
-    <article className="guide-story-card">
-      <div className="section-card-header slim">
-        <div>
-          <span className="eyebrow">{eyebrow}</span>
-          <h4>{title}</h4>
-        </div>
-      </div>
-      {items?.length ? (
-        <ListTag className={ordered ? "content-list compact ordered" : "content-list compact"}>
-          {items.map((item) => (
-            <li key={item}>{renderInlineContent(item)}</li>
-          ))}
-        </ListTag>
-      ) : (
-        <p className="guide-story-copy">{emptyLabel}</p>
-      )}
-    </article>
+    <Card>
+      <CardHeader className="pb-2">
+        <span className="text-xs font-medium uppercase tracking-wider text-primary">{eyebrow}</span>
+        <CardTitle className="text-base">{title}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        {items?.length ? (
+          <ListTag className={cn("space-y-1 text-sm pl-5", ordered ? "list-decimal" : "list-disc")}>
+            {items.map((item) => (
+              <li key={item}>{renderInlineContent(item)}</li>
+            ))}
+          </ListTag>
+        ) : (
+          <p className="text-sm text-muted-foreground">{emptyLabel}</p>
+        )}
+      </CardContent>
+    </Card>
   );
 }
 
 function ContentTablePreview({ eyebrow, title, table }) {
   return (
-    <article className="guide-story-card wide">
-      <div className="section-card-header slim">
-        <div>
-          <span className="eyebrow">{eyebrow}</span>
-          <h4>{title}</h4>
-        </div>
-      </div>
-      {table?.headers?.length && table?.rows?.length ? (
-        <div className="content-table-shell compact">
-          <table className="content-table compact">
-            <thead>
-              <tr>
+    <Card className="col-span-full">
+      <CardHeader className="pb-2">
+        <span className="text-xs font-medium uppercase tracking-wider text-primary">{eyebrow}</span>
+        <CardTitle className="text-base">{title}</CardTitle>
+      </CardHeader>
+      <CardContent className="px-0 pb-0">
+        {table?.headers?.length && table?.rows?.length ? (
+          <Table>
+            <TableHeader>
+              <TableRow>
                 {table.headers.map((header) => (
-                  <th key={header}>{renderInlineContent(header)}</th>
+                  <TableHead key={header}>{renderInlineContent(header)}</TableHead>
                 ))}
-              </tr>
-            </thead>
-            <tbody>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
               {table.rows.slice(0, 5).map((row, rowIndex) => (
-                <tr key={`${row.join("-")}-${rowIndex}`}>
+                <TableRow key={`${row.join("-")}-${rowIndex}`}>
                   {row.map((cell, cellIndex) => (
-                    <td key={`${cell}-${cellIndex}`}>{renderInlineContent(cell)}</td>
+                    <TableCell key={`${cell}-${cellIndex}`}>{renderInlineContent(cell)}</TableCell>
                   ))}
-                </tr>
+                </TableRow>
               ))}
-            </tbody>
-          </table>
-        </div>
-      ) : (
-        <p className="guide-story-copy">A structured comparison table will appear here when available.</p>
-      )}
-    </article>
+            </TableBody>
+          </Table>
+        ) : (
+          <p className="text-sm text-muted-foreground px-6 pb-6">A structured comparison table will appear here when available.</p>
+        )}
+      </CardContent>
+    </Card>
   );
 }
 
 function PageLead({ eyebrow, title, description }) {
   return (
-    <section className="page-lead panel">
-      <span className="eyebrow">{eyebrow}</span>
-      <div className="page-lead-grid">
-        <div>
-          <h3>{title}</h3>
-          <p>{description}</p>
+    <Card className="p-6">
+      <CardContent className="p-0">
+        <span className="text-xs font-medium uppercase tracking-wider text-primary">{eyebrow}</span>
+        <div className="mt-2">
+          <h3 className="text-xl font-semibold tracking-tight">{title}</h3>
+          <p className="mt-1 text-sm text-muted-foreground">{description}</p>
         </div>
-      </div>
-    </section>
+      </CardContent>
+    </Card>
   );
 }
 
 function FieldRenderer({ input, value, onChange }) {
   if (input.type === "checkbox") {
     return (
-      <label className={value ? "field-card checkbox-card active" : "field-card checkbox-card"}>
-        <input
-          type="checkbox"
+      <div
+        className={cn(
+          "flex items-center gap-3 rounded-lg border p-3 cursor-pointer transition-colors",
+          value ? "border-primary bg-primary/5" : "border-border"
+        )}
+        onClick={() => onChange(!value)}
+      >
+        <Checkbox
+          id={input.id}
           checked={Boolean(value)}
-          onChange={(event) => onChange(event.target.checked)}
+          onCheckedChange={(checked) => onChange(checked)}
         />
-        <span>{input.label}</span>
-      </label>
+        <Label htmlFor={input.id} className="cursor-pointer font-normal">
+          {input.label}
+        </Label>
+      </div>
     );
   }
 
   if (input.type === "radio") {
     return (
-      <fieldset className="field-card">
-        <legend>{input.label}</legend>
-        <div className="segmented-control">
+      <fieldset className="rounded-lg border p-3 space-y-2">
+        <legend className="text-sm font-medium px-1">{input.label}</legend>
+        <RadioGroup
+          value={String(value)}
+          onValueChange={(val) => onChange(val)}
+          className="flex flex-wrap gap-1"
+        >
           {input.options.map((option) => (
-            <label
+            <Label
               key={option.value}
-              className={value === option.value ? "segment active" : "segment"}
+              htmlFor={`${input.id}-${option.value}`}
+              className={cn(
+                "flex items-center gap-2 rounded-md px-3 py-1.5 text-sm cursor-pointer border transition-colors",
+                String(value) === String(option.value)
+                  ? "border-primary bg-primary text-primary-foreground"
+                  : "border-transparent hover:bg-muted"
+              )}
             >
-              <input
-                type="radio"
-                name={input.id}
-                value={option.value}
-                checked={value === option.value}
-                onChange={(event) => onChange(event.target.value)}
+              <RadioGroupItem
+                value={String(option.value)}
+                id={`${input.id}-${option.value}`}
+                className="sr-only"
               />
-              <span>{option.label}</span>
-            </label>
+              {option.label}
+            </Label>
           ))}
-        </div>
+        </RadioGroup>
       </fieldset>
     );
   }
 
   if (input.type === "select") {
     return (
-      <label className="field-card">
-        <span>{input.label}</span>
-        <select value={value} onChange={(event) => onChange(event.target.value)}>
-          {input.options.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-      </label>
+      <div className="rounded-lg border p-3 space-y-1.5">
+        <Label htmlFor={input.id}>{input.label}</Label>
+        <Select value={String(value)} onValueChange={(val) => onChange(val)}>
+          <SelectTrigger id={input.id}>
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {input.options.map((option) => (
+              <SelectItem key={option.value} value={String(option.value)}>
+                {option.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
     );
   }
 
   return (
-    <label className="field-card">
-      <span>{input.label}</span>
-      <input
+    <div className="rounded-lg border p-3 space-y-1.5">
+      <Label htmlFor={input.id}>{input.label}</Label>
+      <Input
+        id={input.id}
         type="number"
         min={input.min}
         max={input.max}
@@ -3428,26 +3497,28 @@ function FieldRenderer({ input, value, onChange }) {
         value={value}
         onChange={(event) => onChange(event.target.value)}
       />
-    </label>
+    </div>
   );
 }
 
 function ResultPanel({ result }) {
   if (!result) {
     return (
-      <section className="panel result-panel neutral">
-        <div className="section-card-header">
+      <Card className="border-muted">
+        <CardHeader className="flex flex-row items-center justify-between pb-2">
           <div>
-            <span className="eyebrow">Outcome</span>
-            <h3>Live interpretation</h3>
+            <span className="text-xs font-medium uppercase tracking-wider text-primary">Outcome</span>
+            <CardTitle className="text-lg">Live interpretation</CardTitle>
           </div>
-          <Calculator size={17} />
-        </div>
-        <div className="empty-state left-aligned">
-          <CircleAlert size={24} />
-          <h4>Complete the inputs to generate an actionable recommendation.</h4>
-        </div>
-      </section>
+          <Calculator size={17} className="text-muted-foreground" />
+        </CardHeader>
+        <CardContent>
+          <Alert>
+            <CircleAlert className="h-5 w-5" />
+            <AlertTitle>Complete the inputs to generate an actionable recommendation.</AlertTitle>
+          </Alert>
+        </CardContent>
+      </Card>
     );
   }
 
@@ -3456,32 +3527,32 @@ function ResultPanel({ result }) {
   const ToneIcon = meta.icon;
 
   return (
-    <section className={`panel result-panel ${tone}`}>
-      <div className="section-card-header">
+    <Card className={cn("space-y-0", tone === "success" ? "border-green-500/30" : tone === "warning" ? "border-yellow-500/30" : tone === "danger" ? "border-red-500/30" : "")}>
+      <CardHeader className="flex flex-row items-center justify-between pb-2">
         <div>
-          <span className="eyebrow">Outcome</span>
-          <h3>Live interpretation</h3>
+          <span className="text-xs font-medium uppercase tracking-wider text-primary">Outcome</span>
+          <CardTitle className="text-lg">Live interpretation</CardTitle>
         </div>
-        <ToneIcon size={18} />
-      </div>
+        <ToneIcon size={18} className="text-muted-foreground" />
+      </CardHeader>
 
-      <div className="result-callout">
-        <span className="badge status">{meta.label}</span>
+      <div className="grid gap-2 p-4 rounded-2xl border border-border bg-muted/40">
+        <Badge variant="secondary">{meta.label}</Badge>
         <h4>{result.headline}</h4>
         {result.summary ? <p>{result.summary}</p> : null}
       </div>
 
       {result.action ? (
-        <div className="action-card">
-          <span className="eyebrow">Recommended move</span>
+        <div className="border border-border rounded-xl bg-muted/50 p-4">
+          <span className="text-[0.7rem] font-bold uppercase tracking-widest text-primary">Recommended move</span>
           <p>{result.action}</p>
         </div>
       ) : null}
 
       {result.metrics?.length ? (
-        <div className="mini-stat-grid">
+        <div className="grid grid-cols-3 gap-3 my-4">
           {result.metrics.map((metric) => (
-            <div key={`${metric.label}-${metric.value}`} className="mini-stat">
+            <div key={`${metric.label}-${metric.value}`} className="p-3.5 border border-border rounded-xl bg-card">
               <span>{metric.label}</span>
               <strong>{metric.value}</strong>
             </div>
@@ -3490,9 +3561,9 @@ function ResultPanel({ result }) {
       ) : null}
 
       {result.recommendations?.length ? (
-        <div className="result-list">
+        <div className="grid gap-3">
           {result.recommendations.map((item) => (
-            <div key={`${item.label}-${item.value}`} className="result-list-item">
+            <div key={`${item.label}-${item.value}`} className="p-3.5 border border-border rounded-xl bg-card">
               <span>{item.label}</span>
               <strong>{item.value}</strong>
             </div>
@@ -3501,12 +3572,12 @@ function ResultPanel({ result }) {
       ) : null}
 
       {result.tables?.length ? (
-        <div className="result-table-stack">
+        <div className="grid gap-3.5 mt-4">
           {result.tables.map((table) => (
-            <div key={table.title} className="action-card result-table-card">
-              <span className="eyebrow">{table.title}</span>
-              <div className="content-table-shell compact">
-                <table className="content-table compact">
+            <div key={table.title} className="grid gap-3 border border-border rounded-xl bg-muted/50 p-4">
+              <span className="text-[0.7rem] font-bold uppercase tracking-widest text-primary">{table.title}</span>
+              <div className="overflow-x-auto border border-border rounded-xl bg-card">
+                <table className="w-full border-collapse text-sm [&_th]:p-3 [&_th]:text-left [&_th]:border-b [&_th]:border-border [&_th]:bg-muted [&_th]:text-xs [&_th]:uppercase [&_th]:tracking-wide [&_th]:text-muted-foreground [&_td]:p-3 [&_td]:text-left [&_td]:border-b [&_td]:border-border [&_td]:leading-relaxed [&_tbody_tr:nth-child(even)]:bg-muted/30">
                   <thead>
                     <tr>
                       {table.headers.map((header) => (
@@ -3533,19 +3604,19 @@ function ResultPanel({ result }) {
       ) : null}
 
       {result.supporting?.length ? (
-        <ul className="support-list">
+        <ul className="m-0 pl-4">
           {result.supporting.map((item) => (
             <li key={item}>{item}</li>
           ))}
         </ul>
       ) : null}
 
-      <div className="tool-disclaimer">
-        <span className="eyebrow">Clinical disclaimer</span>
+      <div className="grid gap-2 mt-4 p-4 border border-rose-200/40 rounded-xl bg-rose-50/40 text-sm">
+        <span className="text-[0.7rem] font-bold uppercase tracking-widest text-primary">Clinical disclaimer</span>
         <p>{globalToolDisclaimer.text}</p>
         {globalToolDisclaimer.source ? <small>{globalToolDisclaimer.source}</small> : null}
       </div>
-    </section>
+    </Card>
   );
 }
 
@@ -3572,10 +3643,10 @@ function ClinicalReference({
   const TabIcon = referenceTabIconById[visibleTab?.id] ?? BookOpenText;
 
   return (
-    <section className="panel reference-panel">
-      <div className="section-card-header">
+    <section className="rounded-xl border bg-card shadow-sm">
+      <div className="flex items-start justify-between gap-4 mb-4">
         <div>
-          <span className="eyebrow">{eyebrow}</span>
+          <span className="text-[0.7rem] font-bold uppercase tracking-widest text-primary">{eyebrow}</span>
           <h3>{title || "Clinical reference"}</h3>
         </div>
         <BookOpenText size={17} />
@@ -3583,7 +3654,7 @@ function ClinicalReference({
 
       {content.tabs.length ? (
         <>
-          <div className="tab-row" role="tablist" aria-label="Clinical reference sections">
+          <div className="flex flex-wrap gap-3 mb-4" role="tablist" aria-label="Clinical reference sections">
             {content.tabs.map((tab) => (
               <button
                 key={tab.id}
@@ -3599,8 +3670,8 @@ function ClinicalReference({
           </div>
 
           {visibleTab ? (
-            <div className="reference-panel-body">
-              <div className="accordion-list">
+            <div className="grid gap-4">
+              <div className="grid gap-3">
                 {visibleTab.cards.map((card) => {
                   const cardId = `${visibleTab.id}-${card.title}`;
                   const isOpen = openCardId === cardId;
@@ -3609,12 +3680,12 @@ function ClinicalReference({
                     <article key={cardId} className={isOpen ? "accordion-card open" : "accordion-card"}>
                       <button
                         type="button"
-                        className="accordion-toggle"
+                        className="w-full flex items-start justify-between gap-4 p-4 text-left bg-transparent border-0 cursor-pointer"
                         onClick={() => setOpenCardId(isOpen ? "" : cardId)}
                         aria-expanded={isOpen}
                       >
-                        <span className="accordion-toggle-copy">
-                          <span className="accordion-toggle-icon">
+                        <span className="min-w-0 grid grid-cols-[auto_minmax(0,1fr)] gap-3.5 items-start">
+                          <span className="w-8 h-8 grid place-items-center rounded-full bg-primary/10 text-primary flex-shrink-0">
                             <TabIcon size={16} />
                           </span>
                           <span>
@@ -3626,7 +3697,7 @@ function ClinicalReference({
                       </button>
 
                       {isOpen ? (
-                        <div className="accordion-content">
+                        <div className="grid gap-4 p-4 pt-0 border-t border-border bg-muted/30">
                           {card.blocks.map((block, index) => (
                             <ContentBlock key={`${card.title}-${block.type}-${index}`} block={block} />
                           ))}
@@ -3640,7 +3711,7 @@ function ClinicalReference({
           ) : null}
         </>
       ) : (
-        <div className="empty-state left-aligned">
+        <div className="py-6 text-left">
           <CircleAlert size={24} />
           <h4>{emptyMessage}</h4>
         </div>
@@ -3651,16 +3722,16 @@ function ClinicalReference({
 
 function ContentBlock({ block }) {
   if (block.type === "paragraph") {
-    return <p className="content-paragraph">{renderInlineContent(block.text)}</p>;
+    return <p className="text-muted-foreground leading-relaxed">{renderInlineContent(block.text)}</p>;
   }
 
   if (block.type === "subheading") {
-    return <h5 className="content-subheading">{renderInlineContent(block.text)}</h5>;
+    return <h5 className="text-base font-semibold leading-snug mt-1">{renderInlineContent(block.text)}</h5>;
   }
 
   if (block.type === "fact") {
     return (
-      <div className="fact-row">
+      <div className="grid grid-cols-[minmax(0,1.35fr)_minmax(140px,0.65fr)] items-start gap-3 p-4 rounded-xl border border-border bg-card">
         <span>{renderInlineContent(block.label)}</span>
         <strong>{renderInlineContent(block.value)}</strong>
       </div>
@@ -3671,7 +3742,7 @@ function ContentBlock({ block }) {
     const Icon = block.tone === "warning" ? CircleAlert : BadgeCheck;
     return (
       <div className={`content-callout ${block.tone === "warning" ? "warning" : "note"}`}>
-        <div className="content-callout-icon">
+        <div className="w-8 h-8 grid place-items-center rounded-full bg-white/70 flex-shrink-0">
           <Icon size={16} />
         </div>
         <div>
@@ -3684,9 +3755,9 @@ function ContentBlock({ block }) {
 
   if (block.type === "reference-list") {
     return (
-      <ol className="reference-list">
+      <ol className="m-0 pl-6 grid gap-3.5">
         {block.items.map((item) => (
-          <li key={item} className="reference-item">
+          <li key={item} className="p-0 pl-1 m-0 border-0 bg-transparent leading-relaxed text-muted-foreground">
             {renderInlineContent(item)}
           </li>
         ))}
@@ -3697,7 +3768,7 @@ function ContentBlock({ block }) {
   if (block.type === "bullet-list" || block.type === "ordered-list") {
     const ListTag = block.type === "ordered-list" ? "ol" : "ul";
     return (
-      <ListTag className="content-list">
+      <ListTag className="m-0 pl-4 text-muted-foreground leading-relaxed">
         {block.items.map((item) => (
           <li key={item}>{renderInlineContent(item)}</li>
         ))}
@@ -3707,8 +3778,8 @@ function ContentBlock({ block }) {
 
   if (block.type === "table") {
     return (
-      <div className="content-table-shell">
-        <table className="content-table">
+      <div className="overflow-x-auto border border-border rounded-xl bg-card">
+        <table className="w-full border-collapse [&_th]:p-4 [&_th]:text-left [&_th]:border-b [&_th]:border-border [&_th]:bg-muted [&_th]:text-xs [&_th]:uppercase [&_th]:tracking-wide [&_th]:text-muted-foreground [&_td]:p-4 [&_td]:text-left [&_td]:border-b [&_td]:border-border [&_td]:leading-relaxed [&_tbody_tr:nth-child(even)]:bg-muted/30">
           <thead>
             <tr>
               {block.headers.map((header) => (
@@ -3732,7 +3803,7 @@ function ContentBlock({ block }) {
 
   if (block.type === "code") {
     return (
-      <pre className="content-code">
+      <pre className="m-0 p-3.5 rounded-lg bg-muted font-mono text-sm text-muted-foreground">
         <code>{block.content}</code>
       </pre>
     );
@@ -3761,7 +3832,7 @@ function renderInlineContent(text) {
           <a
             key={`${match[2]}-${match.index}`}
             href={buildGuideHref(resolvedTarget.id)}
-            className="content-link"
+            className="text-primary underline underline-offset-2 decoration-primary/30 hover:decoration-primary"
           >
             {match[2]}
           </a>
@@ -3771,7 +3842,7 @@ function renderInlineContent(text) {
           <a
             key={`${match[2]}-${match.index}`}
             href={buildToolHref(resolvedTarget.id)}
-            className="content-link"
+            className="text-primary underline underline-offset-2 decoration-primary/30 hover:decoration-primary"
           >
             {match[2]}
           </a>
@@ -3786,7 +3857,7 @@ function renderInlineContent(text) {
             href={resolvedTarget.href}
             target="_blank"
             rel="noreferrer"
-            className="content-link"
+            className="text-primary underline underline-offset-2 decoration-primary/30 hover:decoration-primary"
           >
             {match[2]}
           </a>

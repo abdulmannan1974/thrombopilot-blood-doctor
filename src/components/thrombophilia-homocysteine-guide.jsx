@@ -39,16 +39,16 @@ export function ThrombophiliaHomocysteineGuide() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <p className="asa-guide-eyebrow">Clinical Guide</p>
-        <h1 className="asa-guide-title">Thrombophilia: Homocysteinemia &amp; MTHFR</h1>
-        <p className="asa-guide-lead">
+    <div className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <p className="flex flex-wrap gap-2 mb-2">Clinical Guide</p>
+        <h1 className="text-2xl font-bold leading-tight mt-1">Thrombophilia: Homocysteinemia &amp; MTHFR</h1>
+        <p className="text-sm text-muted-foreground leading-relaxed mt-2">
           Bottom line: Do NOT test for MTHFR mutations. Homocysteine testing in VTE is not useful because lowering it does not reduce recurrent VTE, MI, or cardiovascular death.
         </p>
       </div>
 
-      <div className="asa-tab-bar">
+      <div className="flex gap-1 p-1 rounded-xl bg-muted overflow-x-auto">
         {tabs.map((t, i) => (
           <button
             key={t}
@@ -60,28 +60,28 @@ export function ThrombophiliaHomocysteineGuide() {
         ))}
       </div>
 
-      <div className="asa-tab-body">
+      <div className="grid gap-4">
         {/* OVERVIEW */}
         {activeTab === 0 && (
-          <div className="asa-sections">
-            <div className="asa-alert asa-alert-red">
+          <div className="grid gap-3.5">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <strong>Key message:</strong> Routine testing for homocysteinemia and MTHFR mutations in patients with VTE is <strong>NOT recommended</strong>. Lowering homocysteine does NOT reduce recurrent VTE.
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">MTHFR at a Glance</h3>
-              <div className="asa-ae-grid">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">MTHFR at a Glance</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {mthfrFacts.map((f) => (
-                  <div key={f.label} className="asa-ae-card">
-                    <span className="asa-ae-label">{f.label}</span>
-                    <span className="asa-ae-value">{f.value}</span>
+                  <div key={f.label} className="rounded-lg border p-3">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{f.label}</span>
+                    <span className="text-sm">{f.value}</span>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Homocysteine Levels and Clinical Significance</h3>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Homocysteine Levels and Clinical Significance</h3>
               <div style={{ overflowX: "auto" }}>
-                <table className="asa-dose-table">
+                <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr>
                       <th>Level</th>
@@ -101,9 +101,9 @@ export function ThrombophiliaHomocysteineGuide() {
                 </table>
               </div>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Causes of Mild-Moderate Elevation</h3>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Causes of Mild-Moderate Elevation</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>Vitamin B12 or folic acid deficiency</li>
                 <li>Renal insufficiency</li>
                 <li>Hypothyroidism</li>
@@ -112,9 +112,9 @@ export function ThrombophiliaHomocysteineGuide() {
                 <li>MTHFR C677T homozygosity (10% of population)</li>
               </ul>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Related Guides</h3>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Related Guides</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li><GuideLink to="fvlPgm">Factor V Leiden &amp; Prothrombin Gene Mutation</GuideLink></li>
                 <li><GuideLink to="naturalAnticoag">Natural Anticoagulant Deficiencies (PC, PS, AT)</GuideLink></li>
                 <li><GuideLink to="aps">Antiphospholipid Syndrome</GuideLink></li>
@@ -125,17 +125,17 @@ export function ThrombophiliaHomocysteineGuide() {
 
         {/* TESTING RECOMMENDATIONS */}
         {activeTab === 1 && (
-          <div className="asa-sections">
+          <div className="grid gap-3.5">
             {keyMessages.map((k) => (
-              <div key={k.message} className="asa-section-card">
+              <div key={k.message} className="rounded-xl border bg-card shadow-sm p-5">
                 <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
-                  <h3 className="asa-section-title" style={{ margin: 0 }}>{k.message}</h3>
+                  <h3 className="text-base font-semibold mb-2" style={{ margin: 0 }}>{k.message}</h3>
                   <span className={k.badgeClass}>{k.badge}</span>
                 </div>
-                <p className="asa-section-copy">{k.detail}</p>
+                <p className="text-sm text-foreground leading-relaxed mb-4">{k.detail}</p>
               </div>
             ))}
-            <div className="asa-alert asa-alert-amber">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <strong>Why MTHFR testing is particularly problematic:</strong> ~40% of the population is heterozygous and ~10% is homozygous. Testing identifies a huge number of &quot;positive&quot; results that have no clear clinical significance (especially in the absence of elevated homocysteine) and cause unnecessary anxiety. The ASH 2023 thrombophilia guidelines explicitly recommend against MTHFR testing.
             </div>
           </div>
@@ -143,27 +143,27 @@ export function ThrombophiliaHomocysteineGuide() {
 
         {/* MANAGEMENT */}
         {activeTab === 2 && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">B Vitamin Supplementation &mdash; The Evidence</h3>
-              <div className="asa-timeline">
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker" style={{ background: "var(--danger)" }}>{"\u2717"}</div>
-                  <div className="asa-timeline-content">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">B Vitamin Supplementation &mdash; The Evidence</h3>
+              <div className="relative pl-6 space-y-4 border-l-2 border-border">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary" style={{ background: "var(--danger)" }}>{"\u2717"}</div>
+                  <div className="ml-2">
                     <strong>VTE prevention: No benefit</strong>
                     <p>Clinical trials show NO reduction in recurrent VTE with B vitamin supplementation, even in patients with high baseline homocysteine levels.</p>
                   </div>
                 </div>
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker" style={{ background: "var(--danger)" }}>{"\u2717"}</div>
-                  <div className="asa-timeline-content">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary" style={{ background: "var(--danger)" }}>{"\u2717"}</div>
+                  <div className="ml-2">
                     <strong>MI / cardiovascular death: No benefit</strong>
                     <p>Cochrane meta-analysis confirms no reduction in MI or total cardiovascular death with homocysteine-lowering therapy.</p>
                   </div>
                 </div>
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker" style={{ background: "#f59e0b" }}>?</div>
-                  <div className="asa-timeline-content">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary" style={{ background: "#f59e0b" }}>?</div>
+                  <div className="ml-2">
                     <strong>Stroke: Possible benefit &mdash; limited and context-specific</strong>
                     <p>Some evidence of stroke reduction with folic acid, particularly in:</p>
                     <ul style={{ marginTop: "0.5rem", paddingLeft: "1.5rem" }}>
@@ -174,18 +174,18 @@ export function ThrombophiliaHomocysteineGuide() {
                     <p style={{ marginTop: "0.5rem", fontSize: "0.85rem", color: "var(--muted)" }}>In countries with folate fortification of grains (Canada, USA), benefit is unlikely and supplementation for primary CV prevention is not recommended.</p>
                   </div>
                 </div>
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker" style={{ background: "#6b7280" }}>&mdash;</div>
-                  <div className="asa-timeline-content">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary" style={{ background: "#6b7280" }}>&mdash;</div>
+                  <div className="ml-2">
                     <strong>Obstetric complications: Unknown</strong>
                     <p>Hyperhomocysteinemia has been associated with obstetric complications, but optimal management is unknown.</p>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Pediatrics</h3>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Pediatrics</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 MTHFR mutation combined with hyperhomocysteinemia is reported to be associated with stroke in children. Pediatric hematologist with thromboembolism expertise should manage where possible.
               </p>
             </div>
@@ -194,10 +194,10 @@ export function ThrombophiliaHomocysteineGuide() {
 
         {/* REFERENCES */}
         {activeTab === 3 && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">References</h3>
-              <ol className="asa-ref-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">References</h3>
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((r) => (
                   <li key={r}>{r}</li>
                 ))}

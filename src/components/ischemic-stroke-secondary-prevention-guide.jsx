@@ -27,17 +27,17 @@ export function IschemicStrokeSecondaryPreventionGuide() {
   const [activeTab, setActiveTab] = useState("overview");
 
   return (
-    <div className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <div className="asa-guide-header-body">
-          <div className="asa-guide-eyebrow">
-            <span className="asa-badge asa-badge-blue">Clinical Guide</span>
-            <span className="asa-badge">Version 60 · May 2025</span>
+    <div className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <div className="flex items-start gap-4">
+          <div className="flex flex-wrap gap-2 mb-2">
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Clinical Guide</span>
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary text-secondary-foreground">Version 60 · May 2025</span>
           </div>
-          <h1 className="asa-guide-title">
+          <h1 className="text-2xl font-bold leading-tight mt-1">
             Ischemic Stroke or TIA: Secondary Prevention
           </h1>
-          <p className="asa-guide-lead">
+          <p className="text-sm text-muted-foreground leading-relaxed mt-2">
             Evidence-based strategies to reduce recurrent vascular events after
             ischemic stroke or transient ischemic attack — integrating risk
             factor control, antithrombotic therapy, and aetiology-specific
@@ -46,7 +46,7 @@ export function IschemicStrokeSecondaryPreventionGuide() {
         </div>
       </div>
 
-      <div className="asa-tab-bar">
+      <div className="flex gap-1 p-1 rounded-xl bg-muted overflow-x-auto">
         {tabs.map((t) => (
           <button
             key={t.id}
@@ -58,15 +58,15 @@ export function IschemicStrokeSecondaryPreventionGuide() {
         ))}
       </div>
 
-      <div className="asa-tab-body">
+      <div className="grid gap-4">
         {/* ── OVERVIEW ── */}
         {activeTab === "overview" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">
                 Principles of Secondary Prevention
               </h2>
-              <div className="asa-section-copy">
+              <div className="text-sm text-foreground leading-relaxed mb-4">
                 <p>
                   Secondary prevention after ischemic stroke or TIA aims to
                   reduce the risk of recurrent stroke, myocardial infarction,
@@ -92,11 +92,11 @@ export function IschemicStrokeSecondaryPreventionGuide() {
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">
                 Canadian Stroke Best Practices Alignment
               </h2>
-              <div className="asa-section-copy">
+              <div className="text-sm text-foreground leading-relaxed mb-4">
                 <p>
                   Recommendations in this guide are aligned with the Canadian
                   Stroke Best Practice Recommendations for Secondary Prevention
@@ -107,9 +107,9 @@ export function IschemicStrokeSecondaryPreventionGuide() {
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Patient Education</h2>
-              <div className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Patient Education</h2>
+              <div className="text-sm text-foreground leading-relaxed mb-4">
                 <p>
                   All patients and their families should receive individualized
                   education regarding stroke warning signs, modifiable risk
@@ -124,10 +124,10 @@ export function IschemicStrokeSecondaryPreventionGuide() {
 
         {/* ── RISK FACTOR CONTROL ── */}
         {activeTab === "riskfactors" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Lifestyle Modifications</h2>
-              <div className="asa-section-copy">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Lifestyle Modifications</h2>
+              <div className="text-sm text-foreground leading-relaxed mb-4">
                 <ul>
                   <li>
                     <strong>Diet:</strong> Mediterranean or DASH dietary pattern;
@@ -159,14 +159,14 @@ export function IschemicStrokeSecondaryPreventionGuide() {
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Hypertension</h2>
-              <div className="asa-section-copy">
-                <div className="asa-alert asa-alert-red">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Hypertension</h2>
+              <div className="text-sm text-foreground leading-relaxed mb-4">
+                <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
                   Hypertension is the single most important modifiable risk
                   factor for recurrent stroke.
                 </div>
-                <table className="asa-dose-table">
+                <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr>
                       <th>Population</th>
@@ -196,9 +196,9 @@ export function IschemicStrokeSecondaryPreventionGuide() {
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Dyslipidemia</h2>
-              <div className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Dyslipidemia</h2>
+              <div className="text-sm text-foreground leading-relaxed mb-4">
                 <p>
                   Initiate high-intensity statin therapy to achieve{" "}
                   <strong>LDL ≤1.8 mmol/L</strong>.
@@ -219,9 +219,9 @@ export function IschemicStrokeSecondaryPreventionGuide() {
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Diabetes</h2>
-              <div className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Diabetes</h2>
+              <div className="text-sm text-foreground leading-relaxed mb-4">
                 <p>
                   Target <strong>A1C ≤7.0%</strong> for most patients.
                 </p>
@@ -246,10 +246,10 @@ export function IschemicStrokeSecondaryPreventionGuide() {
 
         {/* ── ANTIPLATELET THERAPY ── */}
         {activeTab === "antiplatelet" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Acute Phase</h2>
-              <div className="asa-section-copy">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Acute Phase</h2>
+              <div className="text-sm text-foreground leading-relaxed mb-4">
                 <p>
                   Start antiplatelet therapy as soon as possible after ischemic
                   stroke or TIA, once intracerebral hemorrhage has been excluded
@@ -266,7 +266,7 @@ export function IschemicStrokeSecondaryPreventionGuide() {
                   </li>
                 </ul>
 
-                <div className="asa-alert asa-alert-blue">
+                <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
                   <strong>Short-course DAPT for minor stroke or TIA:</strong>
                   <br />
                   For non-cardioembolic minor non-disabling stroke (NIHSS &lt;4)
@@ -289,14 +289,14 @@ export function IschemicStrokeSecondaryPreventionGuide() {
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Long-term Antiplatelet Therapy</h2>
-              <div className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Long-term Antiplatelet Therapy</h2>
+              <div className="text-sm text-foreground leading-relaxed mb-4">
                 <p>
                   After the acute phase, long-term single antiplatelet therapy is
                   recommended:
                 </p>
-                <table className="asa-dose-table">
+                <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr>
                       <th>Agent</th>
@@ -321,11 +321,11 @@ export function IschemicStrokeSecondaryPreventionGuide() {
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">
                 Symptomatic Intracranial Stenosis
               </h2>
-              <div className="asa-section-copy">
+              <div className="text-sm text-foreground leading-relaxed mb-4">
                 <p>
                   For patients with symptomatic intracranial stenosis of{" "}
                   <strong>70–99%</strong>: dual antiplatelet therapy with ASA +
@@ -335,11 +335,11 @@ export function IschemicStrokeSecondaryPreventionGuide() {
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">
                 Rivaroxaban Vascular Dose
               </h2>
-              <div className="asa-section-copy">
+              <div className="text-sm text-foreground leading-relaxed mb-4">
                 <p>
                   <strong>Rivaroxaban 2.5 mg BID + ASA 80 mg daily</strong> may
                   be considered for patients with concomitant coronary or
@@ -362,12 +362,12 @@ export function IschemicStrokeSecondaryPreventionGuide() {
 
         {/* ── ANTICOAGULATION FOR AF ── */}
         {activeTab === "anticoag-af" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">
                 Oral Anticoagulation After Stroke With AF
               </h2>
-              <div className="asa-section-copy">
+              <div className="text-sm text-foreground leading-relaxed mb-4">
                 <p>
                   After the acute phase of ischemic stroke in patients with
                   atrial fibrillation, oral anticoagulation is{" "}
@@ -381,19 +381,19 @@ export function IschemicStrokeSecondaryPreventionGuide() {
                   post-PCI with coronary stent may require concurrent
                   antiplatelet therapy.
                 </p>
-                <div className="asa-alert asa-alert-amber">
+                <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
                   No heparin bridging is recommended when transitioning from
                   antiplatelet to oral anticoagulant therapy.
                 </div>
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">
                 Timing: ASA to Anticoagulant Transition
               </h2>
-              <div className="asa-section-copy">
-                <table className="asa-dose-table">
+              <div className="text-sm text-foreground leading-relaxed mb-4">
+                <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr>
                       <th>Stroke Severity</th>
@@ -429,9 +429,9 @@ export function IschemicStrokeSecondaryPreventionGuide() {
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">TIA With Atrial Fibrillation</h2>
-              <div className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">TIA With Atrial Fibrillation</h2>
+              <div className="text-sm text-foreground leading-relaxed mb-4">
                 <p>
                   For patients with TIA and no residual neurological symptoms or
                   infarct on imaging: start oral anticoagulation within{" "}
@@ -440,18 +440,18 @@ export function IschemicStrokeSecondaryPreventionGuide() {
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">
                 Embolic Stroke of Undetermined Source (ESUS)
               </h2>
-              <div className="asa-section-copy">
+              <div className="text-sm text-foreground leading-relaxed mb-4">
                 <p>
                   If initial Holter monitoring is negative, pursue{" "}
                   <strong>prolonged cardiac monitoring for ≥2 weeks</strong>{" "}
                   (e.g., implantable loop recorder or extended Holter) to detect
                   occult atrial fibrillation.
                 </p>
-                <div className="asa-alert asa-alert-blue">
+                <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
                   There is currently no evidence to support empiric
                   anticoagulation in patients with ESUS. Treat with antiplatelet
                   therapy unless AF is detected on prolonged monitoring.
@@ -463,10 +463,10 @@ export function IschemicStrokeSecondaryPreventionGuide() {
 
         {/* ── AETIOLOGY-SPECIFIC ── */}
         {activeTab === "aetiology" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Carotid Atherosclerosis</h2>
-              <div className="asa-section-copy">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Carotid Atherosclerosis</h2>
+              <div className="text-sm text-foreground leading-relaxed mb-4">
                 <p>
                   Patients with symptomatic{" "}
                   <strong>50–99% internal carotid artery (ICA) stenosis</strong>{" "}
@@ -483,11 +483,11 @@ export function IschemicStrokeSecondaryPreventionGuide() {
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">
                 Cervicocephalic Arterial Dissection
               </h2>
-              <div className="asa-section-copy">
+              <div className="text-sm text-foreground leading-relaxed mb-4">
                 <p>
                   Both antiplatelet therapy and anticoagulation are reasonable
                   options. The choice should be individualized based on:
@@ -508,9 +508,9 @@ export function IschemicStrokeSecondaryPreventionGuide() {
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Fibromuscular Dysplasia</h2>
-              <div className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Fibromuscular Dysplasia</h2>
+              <div className="text-sm text-foreground leading-relaxed mb-4">
                 <p>
                   Antiplatelet therapy is recommended for secondary prevention.
                   There is no evidence to support statin therapy unless there is
@@ -520,9 +520,9 @@ export function IschemicStrokeSecondaryPreventionGuide() {
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Moyamoya Disease</h2>
-              <div className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Moyamoya Disease</h2>
+              <div className="text-sm text-foreground leading-relaxed mb-4">
                 <p>
                   Refer to a specialized neurovascular center. Antiplatelet
                   therapy is recommended for patients presenting with
@@ -532,11 +532,11 @@ export function IschemicStrokeSecondaryPreventionGuide() {
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">
                 Patent Foramen Ovale (PFO)
               </h2>
-              <div className="asa-section-copy">
+              <div className="text-sm text-foreground leading-relaxed mb-4">
                 <p>
                   For patients aged <strong>18–60 years</strong> with a recent
                   non-lacunar ischemic stroke attributed to PFO:
@@ -566,10 +566,10 @@ export function IschemicStrokeSecondaryPreventionGuide() {
 
         {/* ── REFERENCES ── */}
         {activeTab === "references" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Key References</h2>
-              <ol className="asa-ref-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Key References</h2>
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((ref, i) => (
                   <li key={i}>{ref}</li>
                 ))}

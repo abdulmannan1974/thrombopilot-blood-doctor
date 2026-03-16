@@ -30,31 +30,31 @@ export function HmbAnticoagulationGuide() {
   const [tab, setTab] = useState("overview");
 
   return (
-    <section className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <div className="asa-guide-header-top">
-          <div className="asa-guide-header-copy">
-            <div className="asa-badge-row">
-              <span className="asa-badge asa-badge-blue">Clinical Guide</span>
-              <span className="asa-badge asa-badge-teal">Anticoagulation Management</span>
+    <section className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex-1 min-w-0">
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Clinical Guide</span>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-teal-100 text-teal-700">Anticoagulation Management</span>
             </div>
-            <h2 className="asa-guide-title">
+            <h2 className="text-2xl font-bold leading-tight mt-1">
               Management of Heavy Menstrual Bleeding for Patients on Anticoagulation
             </h2>
-            <div className="asa-guide-meta">
+            <div className="flex flex-wrap gap-3 mt-3 text-xs text-muted-foreground">
             </div>
           </div>
         </div>
 
-        <div className="asa-objective-strip">
+        <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-muted/60 text-sm text-muted-foreground border border-border/50">
           <strong>Objective:</strong> To guide the assessment and management of heavy
           menstrual bleeding (HMB) in individuals receiving anticoagulant therapy,
           including hormonal and non-hormonal strategies and anticoagulation considerations.
         </div>
       </div>
 
-      <div className="asa-tabs">
-        <div className="asa-tabs-list" role="tablist" aria-label="HMB guide sections">
+      <div className="grid gap-4">
+        <div className="flex gap-1 p-1 rounded-xl bg-muted" role="tablist" aria-label="HMB guide sections">
           {tabs.map(([id, label]) => (
             <button
               key={id}
@@ -69,10 +69,10 @@ export function HmbAnticoagulationGuide() {
 
         {/* ── Overview ── */}
         {tab === "overview" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Heavy Menstrual Bleeding and Anticoagulation</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>
                   HMB is defined as excessive menstrual blood loss that interferes with
                   quality of life. It is a distinct and clinically important complication
@@ -92,7 +92,7 @@ export function HmbAnticoagulationGuide() {
               </ul>
             </article>
 
-            <div className="asa-alert asa-alert-info">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <div>
                 <strong>Key principle:</strong> A systematic approach to the assessment
                 and management of HMB is essential in all menstruating patients
@@ -104,25 +104,25 @@ export function HmbAnticoagulationGuide() {
 
         {/* ── Evaluation ── */}
         {tab === "evaluation" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="teal" />Screening and Baseline Assessment</h3>
-              <div className="asa-ind-group">
-                <div className="asa-ind-group-label">
+              <div className="mb-3">
+                <div className="flex items-center gap-2 text-sm font-semibold mb-1.5">
                   "7-2-1" Screening Rule
                 </div>
-                <ul className="asa-ind-list">
+                <ul className="list-none p-0 space-y-1">
                   <li>Periods lasting longer than 7 days</li>
                   <li>Needing to change menstrual product every 2 hours or less</li>
                   <li>Passing clots larger than 1 inch in diameter</li>
                 </ul>
               </div>
 
-              <div className="asa-ind-group">
-                <div className="asa-ind-group-label">
+              <div className="mb-3">
+                <div className="flex items-center gap-2 text-sm font-semibold mb-1.5">
                   At Anticoagulation Initiation — Assess:
                 </div>
-                <ul className="asa-ind-list">
+                <ul className="list-none p-0 space-y-1">
                   <li>Menstrual history (frequency, duration, volume)</li>
                   <li>Current contraception method</li>
                   <li>History of iron deficiency</li>
@@ -134,9 +134,9 @@ export function HmbAnticoagulationGuide() {
               </div>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="teal" />Ongoing Evaluation</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>
                   Use the ISTH-BAT (Bleeding Assessment Tool) for patients with
                   additional bleeding symptoms to evaluate for an underlying bleeding
@@ -167,11 +167,11 @@ export function HmbAnticoagulationGuide() {
 
         {/* ── Treatment ── */}
         {tab === "treatment" ? (
-          <div className="asa-tab-panel">
+          <div className="grid gap-3.5">
             {/* Choice of anticoagulant */}
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Choice of Anticoagulant</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>
                   Apixaban and edoxaban carry a similar risk of HMB compared with
                   warfarin.
@@ -181,7 +181,7 @@ export function HmbAnticoagulationGuide() {
                   arm had a higher baseline rate of HMB.
                 </li>
               </ul>
-              <div className="asa-alert asa-alert-warn">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
                 <div>
                   <strong>Rivaroxaban:</strong> Associated with approximately 2-fold
                   increased risk of HMB compared with warfarin. Some experts avoid
@@ -192,14 +192,14 @@ export function HmbAnticoagulationGuide() {
             </article>
 
             {/* Hormonal therapies */}
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="teal" />Hormonal Therapies (First-Line)</h3>
 
-              <div className="asa-ind-group">
-                <div className="asa-ind-group-label">
+              <div className="mb-3">
+                <div className="flex items-center gap-2 text-sm font-semibold mb-1.5">
                   LNG-IUD (Mirena) — Preferred
                 </div>
-                <ul className="asa-ind-list">
+                <ul className="list-none p-0 space-y-1">
                   <li>
                     Approximately 80% reduction in menstrual blood loss by 4 months.
                   </li>
@@ -209,11 +209,11 @@ export function HmbAnticoagulationGuide() {
                 </ul>
               </div>
 
-              <div className="asa-ind-group">
-                <div className="asa-ind-group-label">
+              <div className="mb-3">
+                <div className="flex items-center gap-2 text-sm font-semibold mb-1.5">
                   Etonogestrel Implant
                 </div>
-                <ul className="asa-ind-list">
+                <ul className="list-none p-0 space-y-1">
                   <li>
                     Effective for HMB reduction, but breakthrough bleeding and spotting
                     are common.
@@ -221,11 +221,11 @@ export function HmbAnticoagulationGuide() {
                 </ul>
               </div>
 
-              <div className="asa-ind-group">
-                <div className="asa-ind-group-label">
+              <div className="mb-3">
+                <div className="flex items-center gap-2 text-sm font-semibold mb-1.5">
                   Progesterone-Only Pill
                 </div>
-                <ul className="asa-ind-list">
+                <ul className="list-none p-0 space-y-1">
                   <li>
                     Effective for HMB management but must be taken at the same time daily
                     for optimal efficacy.
@@ -233,11 +233,11 @@ export function HmbAnticoagulationGuide() {
                 </ul>
               </div>
 
-              <div className="asa-ind-group">
-                <div className="asa-ind-group-label">
+              <div className="mb-3">
+                <div className="flex items-center gap-2 text-sm font-semibold mb-1.5">
                   DMPA (Depot Medroxyprogesterone Acetate)
                 </div>
-                <ul className="asa-ind-list">
+                <ul className="list-none p-0 space-y-1">
                   <li>
                     Highest amenorrhea rate among hormonal options, but associated with
                     VTE risk.
@@ -252,11 +252,11 @@ export function HmbAnticoagulationGuide() {
                 </ul>
               </div>
 
-              <div className="asa-ind-group">
-                <div className="asa-ind-group-label">
+              <div className="mb-3">
+                <div className="flex items-center gap-2 text-sm font-semibold mb-1.5">
                   CHC (Combined Hormonal Contraceptives — Pills, Patches, Rings)
                 </div>
-                <ul className="asa-ind-list">
+                <ul className="list-none p-0 space-y-1">
                   <li>
                     Can induce amenorrhea, especially with continuous-cycle use.
                   </li>
@@ -271,7 +271,7 @@ export function HmbAnticoagulationGuide() {
                 </ul>
               </div>
 
-              <div className="asa-alert asa-alert-info">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
                 <div>
                   <strong>Note:</strong> Progesterone-only options (LNG-IUD, implant,
                   POP) do NOT increase VTE risk and are preferred when feasible.
@@ -280,15 +280,15 @@ export function HmbAnticoagulationGuide() {
             </article>
 
             {/* Antifibrinolytics */}
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="purple" />Antifibrinolytics (Tranexamic Acid)</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>
                   Tranexamic acid produces a 40 to 50% reduction in menstrual blood loss
                   when taken three times daily during heavy flow days.
                 </li>
               </ul>
-              <div className="asa-alert asa-alert-warn">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
                 <div>
                   <strong>Timing caution:</strong> Avoid tranexamic acid during the first
                   month of VTE treatment to allow fibrinolysis of the index thrombus.
@@ -300,9 +300,9 @@ export function HmbAnticoagulationGuide() {
             </article>
 
             {/* Gynecology referral */}
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="orange" />Gynecology Referral</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>
                   Refer for investigation of underlying structural causes of HMB
                   (fibroids, polyps, adenomyosis).
@@ -315,9 +315,9 @@ export function HmbAnticoagulationGuide() {
             </article>
 
             {/* Anticoagulation modification */}
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="danger" />Anticoagulation Modification</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>
                   Dose reduction or temporary discontinuation of anticoagulation is NOT
                   recommended during acute VTE treatment (first 3 to 6 months).
@@ -333,10 +333,10 @@ export function HmbAnticoagulationGuide() {
 
         {/* ── Special Considerations ── */}
         {tab === "special" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="orange" />Iron Deficiency and Anemia</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>
                   Assess CBC and ferritin in all patients with HMB or symptoms of iron
                   deficiency.
@@ -348,9 +348,9 @@ export function HmbAnticoagulationGuide() {
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="teal" />Transitioning Hormonal Therapies</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>
                   If stopping CHC or DMPA, transition promptly to a progestin-based
                   alternative (LNG-IUD, implant, or progesterone-only pill) to maintain
@@ -368,10 +368,10 @@ export function HmbAnticoagulationGuide() {
 
         {/* ── References ── */}
         {tab === "references" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="gray" />References</h3>
-              <ol className="asa-ref-list">
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
@@ -384,7 +384,7 @@ export function HmbAnticoagulationGuide() {
         ) : null}
       </div>
 
-      <div className="asa-guide-footer">
+      <div className="rounded-xl border bg-muted/50 p-4 text-xs text-muted-foreground">
         <p>
           <strong>Management of Heavy Menstrual Bleeding for Patients on Anticoagulation</strong>
         </p>

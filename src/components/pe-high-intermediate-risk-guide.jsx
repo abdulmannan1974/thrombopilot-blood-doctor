@@ -73,31 +73,31 @@ export function PeHighIntermediateRiskGuide() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <p className="asa-guide-eyebrow">Clinical Guide</p>
-        <h1 className="asa-guide-title">Pulmonary Embolism: High- & Intermediate-Risk</h1>
-        <p className="asa-guide-lead">
+    <div className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <p className="flex flex-wrap gap-2 mb-2">Clinical Guide</p>
+        <h1 className="text-2xl font-bold leading-tight mt-1">Pulmonary Embolism: High- & Intermediate-Risk</h1>
+        <p className="text-sm text-muted-foreground leading-relaxed mt-2">
           Risk stratification, systemic thrombolysis, catheter-directed therapies, and ECMO for the most dangerous spectrum of acute PE — from intermediate-high risk to cardiac arrest.
         </p>
       </div>
 
-      <div className="asa-tab-bar">
+      <div className="flex gap-1 p-1 rounded-xl bg-muted overflow-x-auto">
         {tabs.map((t, i) => (
           <button key={t} className={`asa-tab-btn${activeTab === i ? " active" : ""}`} onClick={() => setActiveTab(i)}>{t}</button>
         ))}
       </div>
 
-      <div className="asa-tab-body">
+      <div className="grid gap-4">
         {activeTab === 0 && (
-          <div className="asa-sections">
-            <div className="asa-alert asa-alert-red">
+          <div className="grid gap-3.5">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <strong>High-risk PE is a medical emergency.</strong> Mortality ~30% in-hospital; ~80% if cardiac arrest. Systemic thrombolysis is first-line for high-risk PE. For intermediate-high risk PE, full-dose thrombolysis is NOT recommended (PEITHO: 10× ↑ ICH, no mortality benefit).
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">ESC Risk Stratification Overview</h3>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">ESC Risk Stratification Overview</h3>
               <div style={{ overflowX: "auto" }}>
-                <table className="asa-dose-table">
+                <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr><th>Tier</th><th>Proportion</th><th>Mortality</th><th>Key Features</th><th>Management</th></tr>
                   </thead>
@@ -115,67 +115,67 @@ export function PeHighIntermediateRiskGuide() {
                 </table>
               </div>
             </div>
-            <div className="asa-alert asa-alert-amber">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <strong>PERT (PE Response Team):</strong> Multidisciplinary teams (ICU, thrombosis, IR, CT surgery, respirology, EM) are recommended for intermediate-high and high-risk PE to enable shared decision-making and rapid access to advanced therapies.
             </div>
           </div>
         )}
 
         {activeTab === 1 && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">RV Assessment Methods</h3>
-              <div className="asa-ae-grid">
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">CTPA signs of RV strain</span>
-                  <span className="asa-ae-value">RV/LV ratio &gt;1.0, interventricular septum bowing, IVC reflux of contrast, pulmonary trunk dilation</span>
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">RV Assessment Methods</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">CTPA signs of RV strain</span>
+                  <span className="text-sm">RV/LV ratio &gt;1.0, interventricular septum bowing, IVC reflux of contrast, pulmonary trunk dilation</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Echo signs</span>
-                  <span className="asa-ae-value">RV dilation (RV:LV &gt;1), McConnell's sign, TAPSE &lt;16mm, TR velocity ↑, 60/60 sign</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Echo signs</span>
+                  <span className="text-sm">RV dilation (RV:LV &gt;1), McConnell's sign, TAPSE &lt;16mm, TR velocity ↑, 60/60 sign</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Biomarkers</span>
-                  <span className="asa-ae-value">Elevated troponin (myocardial injury); elevated BNP/NT-proBNP (RV strain)</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Biomarkers</span>
+                  <span className="text-sm">Elevated troponin (myocardial injury); elevated BNP/NT-proBNP (RV strain)</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">RV dilation mortality impact</span>
-                  <span className="asa-ae-value">OR 4.19 for all-cause death vs no RV dilation</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">RV dilation mortality impact</span>
+                  <span className="text-sm">OR 4.19 for all-cause death vs no RV dilation</span>
                 </div>
               </div>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Red Flags in Intermediate-High Risk PE — Signs of Imminent Deterioration</h3>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Red Flags in Intermediate-High Risk PE — Signs of Imminent Deterioration</h3>
+              <ul className="list-none p-0 space-y-1">
                 {deteriorationSigns.map((s) => <li key={s}>{s}</li>)}
               </ul>
-              <p className="asa-section-copy" style={{ marginTop: "0.5rem", fontSize: "0.85rem" }}>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ marginTop: "0.5rem", fontSize: "0.85rem" }}>
                 If any of these are present along with RV dysfunction + elevated troponin, consider advanced reperfusion therapies in addition to anticoagulation.
               </p>
             </div>
-            <div className="asa-alert asa-alert-blue">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <strong>Timing:</strong> Most adverse events in intermediate-risk PE occur within 96 hours (4 days). Continuous reassessment is essential — categories are NOT static.
             </div>
           </div>
         )}
 
         {activeTab === 2 && (
-          <div className="asa-sections">
-            <div className="asa-alert asa-alert-blue">
+          <div className="grid gap-3.5">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <strong>All PE patients should receive therapeutic anticoagulation upon diagnosis</strong> — regardless of other planned interventions. Do NOT delay anticoagulation for advanced therapies.
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">LMWH Preferred Over UFH</h3>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">LMWH Preferred Over UFH</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>PERT analysis: only 26.3% of patients on UFH were therapeutic at 24 hours; 28.4% at 48 hours</li>
                 <li>Observational study (n=2610): UFH associated with 5-fold increased risk of moderate-severe bleeding vs LMWH</li>
                 <li>LMWH can be given BID for rapid onset (e.g., dalteparin 100 U/kg BID, enoxaparin 1 mg/kg BID, tinzaparin 175 U/kg split BID)</li>
                 <li>UFH may still be preferred if urgent surgery or thrombolysis is planned (reversibility)</li>
               </ul>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Post-Thrombolysis Anticoagulation</h3>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Post-Thrombolysis Anticoagulation</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>Stop heparin infusion during ST administration</li>
                 <li>Check aPTT 2 hours after ST completion</li>
                 <li>Resume IV heparin (without bolus) if aPTT &lt; 2× upper limit of normal</li>
@@ -186,11 +186,11 @@ export function PeHighIntermediateRiskGuide() {
         )}
 
         {activeTab === 3 && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Systemic Thrombolysis — Regimens</h3>
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Systemic Thrombolysis — Regimens</h3>
               <div style={{ overflowX: "auto" }}>
-                <table className="asa-dose-table">
+                <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr><th>Regimen</th><th>Protocol</th><th>Setting</th></tr>
                   </thead>
@@ -205,29 +205,29 @@ export function PeHighIntermediateRiskGuide() {
                   </tbody>
                 </table>
               </div>
-              <p className="asa-section-copy" style={{ marginTop: "0.5rem", fontSize: "0.85rem", color: "var(--muted)" }}>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ marginTop: "0.5rem", fontSize: "0.85rem", color: "var(--muted)" }}>
                 Major bleeding with ST: ~9.9%. Intracranial hemorrhage: ~1.7%. Both significantly higher than anticoagulation alone.
               </p>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Contraindications to Systemic Thrombolysis</h3>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Contraindications to Systemic Thrombolysis</h3>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
                 <div style={{ padding: "0.75rem", background: "var(--surface)", borderRadius: "8px", borderLeft: "3px solid var(--danger)" }}>
                   <strong style={{ color: "var(--danger)" }}>Absolute</strong>
-                  <ul className="asa-ind-list" style={{ marginTop: "0.5rem" }}>
+                  <ul className="list-none p-0 space-y-1" style={{ marginTop: "0.5rem" }}>
                     {stContraindications.absolute.map((c) => <li key={c}>{c}</li>)}
                   </ul>
                 </div>
                 <div style={{ padding: "0.75rem", background: "var(--surface)", borderRadius: "8px", borderLeft: "3px solid #f59e0b" }}>
                   <strong style={{ color: "#f59e0b" }}>Relative</strong>
-                  <ul className="asa-ind-list" style={{ marginTop: "0.5rem" }}>
+                  <ul className="list-none p-0 space-y-1" style={{ marginTop: "0.5rem" }}>
                     {stContraindications.relative.map((c) => <li key={c}>{c}</li>)}
                   </ul>
                 </div>
               </div>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Catheter-Based & Surgical Options</h3>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Catheter-Based & Surgical Options</h3>
               {catheterOptions.map((c) => (
                 <div key={c.method} style={{ marginBottom: "1rem", padding: "0.75rem", background: "var(--surface)", borderRadius: "8px", borderLeft: "3px solid var(--primary)" }}>
                   <strong>{c.method}</strong>
@@ -241,18 +241,18 @@ export function PeHighIntermediateRiskGuide() {
         )}
 
         {activeTab === 4 && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">IVC Filters</h3>
-              <ul className="asa-ind-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">IVC Filters</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>Indicated for PE + DVT with contraindication to anticoagulation. See <GuideLink to="vcFilter">Vena Cava Filters</GuideLink>.</li>
                 <li>PE without DVT: serial ultrasound may be appropriate instead</li>
                 <li>Schedule removal as soon as anticoagulation is possible (within 4 weeks preferred; can remove up to 6–12 months)</li>
               </ul>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Pregnancy</h3>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Pregnancy</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>LMWH is treatment of choice for all pregnant patients with PE, including intermediate risk. See <GuideLink to="pregVte">Pregnancy: VTE Treatment</GuideLink>.</li>
                 <li>ST is safe in pregnancy but carries increased risk of placental bleeding, peripartum bleeding, and fetal loss</li>
                 <li>Catheter-based therapies can be considered — involve obstetrics and anesthesia</li>
@@ -263,13 +263,13 @@ export function PeHighIntermediateRiskGuide() {
         )}
 
         {activeTab === 5 && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">References</h3>
-              <ol className="asa-ref-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">References</h3>
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((r) => <li key={r}>{r}</li>)}
               </ol>
-              <p className="asa-section-copy" style={{ marginTop: "1rem", fontSize: "0.8rem", color: "var(--muted)" }}>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ marginTop: "1rem", fontSize: "0.8rem", color: "var(--muted)" }}>
                 Version 8 | Updated: 2026-02-06
               </p>
             </div>

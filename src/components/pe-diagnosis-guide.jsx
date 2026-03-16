@@ -83,21 +83,21 @@ export function PeDiagnosisGuide() {
   const [activeTab, setActiveTab] = useState("overview");
 
   return (
-    <div className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <div className="asa-guide-header-body">
-          <div className="asa-guide-eyebrow">
-            <span className="asa-badge asa-badge-blue">Clinical Guide</span>
-            <span className="asa-badge">Version 84 · Feb 2026</span>
+    <div className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <div className="flex items-start gap-4">
+          <div className="flex flex-wrap gap-2 mb-2">
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Clinical Guide</span>
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary text-secondary-foreground">Version 84 · Feb 2026</span>
           </div>
-          <h1 className="asa-guide-title">Pulmonary Embolism: Diagnosis</h1>
-          <p className="asa-guide-lead">
+          <h1 className="text-2xl font-bold leading-tight mt-1">Pulmonary Embolism: Diagnosis</h1>
+          <p className="text-sm text-muted-foreground leading-relaxed mt-2">
             Structured approach to suspected PE — pre-test probability, PERC rule, D-dimer thresholds (standard, age-adjusted, YEARS, PeGeD), CTPA vs. V/Q, and haemodynamically unstable PE.
           </p>
         </div>
       </div>
 
-      <div className="asa-tab-bar">
+      <div className="flex gap-1 p-1 rounded-xl bg-muted overflow-x-auto">
         {tabs.map((t) => (
           <button
             key={t.id}
@@ -109,35 +109,35 @@ export function PeDiagnosisGuide() {
         ))}
       </div>
 
-      <div className="asa-tab-body">
+      <div className="grid gap-4">
         {/* OVERVIEW */}
         {activeTab === "overview" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Epidemiology</h2>
-              <div className="asa-ae-grid">
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">VTE incidence</span>
-                  <span className="asa-ae-value">1–2 per 1,000 adults/year</span>
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Epidemiology</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">VTE incidence</span>
+                  <span className="text-sm">1–2 per 1,000 adults/year</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">DVT at time of PE diagnosis</span>
-                  <span className="asa-ae-value">Clinically evident in only 25–50%</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">DVT at time of PE diagnosis</span>
+                  <span className="text-sm">Clinically evident in only 25–50%</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Fatal within 1st hour of symptoms</span>
-                  <span className="asa-ae-value" style={{ color: "#dc2626" }}>5–10% of symptomatic PEs</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Fatal within 1st hour of symptoms</span>
+                  <span className="text-sm" style={{ color: "#dc2626" }}>5–10% of symptomatic PEs</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Unprovoked first-time PE</span>
-                  <span className="asa-ae-value">~50%</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Unprovoked first-time PE</span>
+                  <span className="text-sm">~50%</span>
                 </div>
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Clinical Presentation</h2>
-              <div className="asa-ae-grid">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Clinical Presentation</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
                   { label: "Sudden dyspnoea", detail: "Most common presenting symptom" },
                   { label: "Pleuritic chest pain", detail: "Sharp, worsens with breathing" },
@@ -146,25 +146,25 @@ export function PeDiagnosisGuide() {
                   { label: "Tachycardia / tachypnoea", detail: "Signs of cardiorespiratory compromise" },
                   { label: "Hypotension / shock", detail: "Haemodynamic instability — urgent evaluation" },
                 ].map((s, i) => (
-                  <div key={i} className="asa-ae-card">
-                    <span className="asa-ae-label">{s.label}</span>
-                    <span className="asa-ae-value">{s.detail}</span>
+                  <div key={i} className="rounded-lg border p-3">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{s.label}</span>
+                    <span className="text-sm">{s.detail}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Risk Stratification After Diagnosis</h2>
-              <p className="asa-section-copy">After PE is confirmed, risk stratification guides site of care:</p>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Risk Stratification After Diagnosis</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">After PE is confirmed, risk stratification guides site of care:</p>
+              <ul className="list-none p-0 space-y-1">
                 <li><strong>Haemodynamic instability</strong> (cardiac arrest, shock, SBP &lt;90 mmHg) → High-risk / massive PE → ICU</li>
                 <li><strong>RV dilatation on CTPA/echo + positive troponin/BNP</strong> → Intermediate-risk → hospitalisation</li>
                 <li><strong>Stable, no RV dysfunction, no elevated biomarkers</strong> → Low-risk → consider outpatient treatment</li>
               </ul>
             </div>
 
-            <div className="asa-section-card asa-alert asa-alert-amber">
+            <div className="rounded-xl border border-amber-200 bg-amber-50 text-amber-900 shadow-sm p-5">
               <strong>Overdiagnosis concern:</strong> CTPA has led to detection of small subsegmental PE of uncertain clinical significance. Use validated algorithms to avoid unnecessary imaging and limit overdiagnosis.
             </div>
           </div>
@@ -172,10 +172,10 @@ export function PeDiagnosisGuide() {
 
         {/* WELLS / PERC */}
         {activeTab === "wellsscore" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Wells Score for PE</h2>
-              <table className="asa-dose-table">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Wells Score for PE</h2>
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Clinical Criterion</th>
@@ -191,27 +191,27 @@ export function PeDiagnosisGuide() {
                   ))}
                 </tbody>
               </table>
-              <div className="asa-ae-grid" style={{ marginTop: "0.75rem" }}>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label" style={{ color: "#16a34a" }}>PE Unlikely (2-level)</span>
-                  <span className="asa-ae-value">Score ≤4 → D-dimer</span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3" style={{ marginTop: "0.75rem" }}>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "#16a34a" }}>PE Unlikely (2-level)</span>
+                  <span className="text-sm">Score ≤4 → D-dimer</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label" style={{ color: "#dc2626" }}>PE Likely (2-level)</span>
-                  <span className="asa-ae-value">Score &gt;4 → CTPA directly</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "#dc2626" }}>PE Likely (2-level)</span>
+                  <span className="text-sm">Score &gt;4 → CTPA directly</span>
                 </div>
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">PERC Rule (PE Rule-out Criteria)</h2>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">PERC Rule (PE Rule-out Criteria)</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 In patients with <strong>low empiric pre-test probability</strong>, if <strong>ALL 8 criteria below are met</strong>, no further testing is required — not even D-dimer.
               </p>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 {percItems.map((p, i) => <li key={i}>{p}</li>)}
               </ul>
-              <div className="asa-section-card asa-alert asa-alert-blue" style={{ margin: "0.75rem 0 0" }}>
+              <div className="rounded-xl border border-blue-200 bg-blue-50 text-blue-900 shadow-sm p-5" style={{ margin: "0.75rem 0 0" }}>
                 <strong>PERC criteria must ALL be present</strong> in a patient with low empiric PTP to safely exclude PE without further workup.
               </div>
             </div>
@@ -220,14 +220,14 @@ export function PeDiagnosisGuide() {
 
         {/* D-DIMER */}
         {activeTab === "ddimer" && (
-          <div className="asa-sections">
-            <div className="asa-section-card asa-alert asa-alert-amber">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border border-amber-200 bg-amber-50 text-amber-900 shadow-sm p-5">
               <strong>D-dimer is sensitive but non-specific:</strong> Elevated in malignancy, surgery, hospitalisation, pregnancy, and advanced age. Useful to rule out PE when negative, not to confirm it.
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">D-dimer Threshold Strategies</h2>
-              <table className="asa-dose-table">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">D-dimer Threshold Strategies</h2>
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Strategy</th>
@@ -252,14 +252,14 @@ export function PeDiagnosisGuide() {
               </table>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">YEARS Algorithm (3 Criteria)</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">YEARS Algorithm (3 Criteria)</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>Signs of DVT</li>
                 <li>Haemoptysis</li>
                 <li>PE is the most likely diagnosis</li>
               </ul>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 <strong>No criteria:</strong> D-dimer threshold = 1000 µg/L<br />
                 <strong>≥1 criterion:</strong> D-dimer threshold = 500 µg/L<br />
                 Negative D-dimer (at respective threshold) excludes PE without imaging.
@@ -270,11 +270,11 @@ export function PeDiagnosisGuide() {
 
         {/* IMAGING */}
         {activeTab === "imaging" && (
-          <div className="asa-sections">
+          <div className="grid gap-3.5">
             {imagingComparison.map((img, i) => (
-              <div key={i} className="asa-section-card">
-                <h2 className="asa-section-title">{img.modality}</h2>
-                <p style={{ marginBottom: "0.3rem" }}><span className="asa-badge asa-badge-blue">When to use</span> {img.when}</p>
+              <div key={i} className="rounded-xl border bg-card shadow-sm p-5">
+                <h2 className="text-base font-semibold mb-2">{img.modality}</h2>
+                <p style={{ marginBottom: "0.3rem" }}><span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">When to use</span> {img.when}</p>
                 <p style={{ margin: "0.4rem 0", fontSize: "0.9em" }}>
                   <span style={{ color: "#16a34a", fontWeight: 600 }}>Advantages:</span> {img.advantages}
                 </p>
@@ -284,16 +284,16 @@ export function PeDiagnosisGuide() {
               </div>
             ))}
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Imaging in Pregnancy</h2>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Imaging in Pregnancy</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Both CTPA and V/Q scan are safe in pregnancy (risks of undiagnosed PE outweigh fetal radiation risk). V/Q scan preferred when normal CXR. See the <GuideLink to="pregDiagnosis">Pregnancy: DVT &amp; PE Diagnosis</GuideLink> guide.
               </p>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">When CTPA is Negative but Suspicion Remains High</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">When CTPA is Negative but Suspicion Remains High</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>Proceed to V/Q scan — normal V/Q excludes PE</li>
                 <li>And/or bilateral proximal CUS of the lower extremities</li>
                 <li>Proximal DVT on CUS → treat as PE equivalent</li>
@@ -304,36 +304,36 @@ export function PeDiagnosisGuide() {
 
         {/* ALGORITHM */}
         {activeTab === "algorithm" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Suggested Diagnostic Strategy</h2>
-              <div className="asa-timeline">
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker">1</div>
-                  <div className="asa-timeline-content">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Suggested Diagnostic Strategy</h2>
+              <div className="relative pl-6 space-y-4 border-l-2 border-border">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary">1</div>
+                  <div className="ml-2">
                     <strong>Low empiric PTP?</strong>
                     <p>Check all 8 PERC criteria. If all met → PE excluded, no further testing.</p>
                     <p>If any PERC criterion absent → proceed to D-dimer.</p>
                   </div>
                 </div>
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker">2</div>
-                  <div className="asa-timeline-content">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary">2</div>
+                  <div className="ml-2">
                     <strong>Calculate Wells Score for PE</strong>
                     <p><strong>≤4 (PE Unlikely):</strong> D-dimer using appropriate threshold</p>
                     <p><strong>&gt;4 (PE Likely):</strong> Proceed directly to CTPA</p>
                   </div>
                 </div>
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker">3A</div>
-                  <div className="asa-timeline-content">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary">3A</div>
+                  <div className="ml-2">
                     <strong>PE Unlikely + D-dimer negative:</strong>
                     <p>PE excluded — no imaging required</p>
                   </div>
                 </div>
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker">3B</div>
-                  <div className="asa-timeline-content">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary">3B</div>
+                  <div className="ml-2">
                     <strong>PE Unlikely + D-dimer positive, OR PE Likely → CTPA</strong>
                     <p>Positive CTPA → PE confirmed → anticoagulate</p>
                     <p>Negative CTPA + low/moderate PTP → PE excluded</p>
@@ -343,14 +343,14 @@ export function PeDiagnosisGuide() {
               </div>
             </div>
 
-            <div className="asa-section-card asa-alert asa-alert-amber">
+            <div className="rounded-xl border border-amber-200 bg-amber-50 text-amber-900 shadow-sm p-5">
               <strong>Timing:</strong> If diagnostic workup will be delayed &gt;4 hours in patients with moderate/high PTP, start an immediate-acting anticoagulant (LMWH or DOAC) unless high bleed risk — hold until testing is done.
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Algorithm Variants</h2>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Algorithm Variants</h2>
               {algorithmVariants.map((a, i) => (
-                <div key={i} className="asa-section-card" style={{ margin: "0 0 0.75rem", borderLeft: "3px solid var(--primary)" }}>
+                <div key={i} className="rounded-xl border bg-card shadow-sm p-5" style={{ margin: "0 0 0.75rem", borderLeft: "3px solid var(--primary)" }}>
                   <strong>{a.name}</strong>
                   <p style={{ margin: "0.3rem 0", fontSize: "0.88em" }}>{a.steps}</p>
                   <p style={{ margin: 0, fontSize: "0.85em", fontStyle: "italic", color: "#4b5563" }}>{a.detail}</p>
@@ -362,31 +362,31 @@ export function PeDiagnosisGuide() {
 
         {/* HAEMODYNAMIC INSTABILITY */}
         {activeTab === "unstable" && (
-          <div className="asa-sections">
-            <div className="asa-section-card asa-alert asa-alert-red">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border border-red-200 bg-red-50 text-red-900 shadow-sm p-5">
               <strong>Haemodynamic instability (cardiac arrest, shock, SBP &lt;90 mmHg):</strong> Patient may be too unstable for CTPA. Urgent bedside echocardiography is the immediate next step.
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Echocardiographic Assessment</h2>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Echocardiographic Assessment</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Obtain urgent echo if patient too unstable to go to CTPA, or while awaiting imaging. Features suggestive of high-risk PE:
               </p>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>Severe right ventricular (RV) dysfunction</li>
                 <li>RV size &gt; LV size</li>
                 <li>Interventricular septal shift (D-sign)</li>
                 <li>Embolus visible in RV or main pulmonary arteries</li>
               </ul>
-              <p className="asa-section-copy" style={{ marginTop: "0.75rem" }}>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ marginTop: "0.75rem" }}>
                 <strong>If RV features of high-risk PE present + no alternative diagnosis:</strong> Initiate treatment for PE (thrombolysis or surgical embolectomy).<br />
                 <strong>If RV features absent in hypotensive patient:</strong> High-risk PE unlikely (though smaller PE not excluded).
               </p>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">After Stabilisation</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">After Stabilisation</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>Confirmatory imaging with CTPA or V/Q should be sought when feasible</li>
                 <li>Lower extremity CUS is an alternative confirmatory approach (proximal DVT = VTE confirmed)</li>
                 <li>RV dysfunction on echo alone is insufficient to confirm PE diagnosis — additional confirmation always preferable</li>
@@ -397,13 +397,13 @@ export function PeDiagnosisGuide() {
 
         {/* REFERENCES */}
         {activeTab === "references" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">References</h2>
-              <ol className="asa-ref-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">References</h2>
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((ref, i) => <li key={i}>{ref}</li>)}
               </ol>
-              <p className="asa-section-copy" style={{ marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }}>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }}>
                 Version 84, updated 2026-02-06.
               </p>
             </div>

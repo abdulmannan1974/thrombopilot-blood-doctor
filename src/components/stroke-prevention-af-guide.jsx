@@ -77,21 +77,21 @@ export function StrokePreventionAfGuide() {
   const [activeTab, setActiveTab] = useState("overview");
 
   return (
-    <div className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <div className="asa-guide-header-body">
-          <div className="asa-guide-eyebrow">
-            <span className="asa-badge asa-badge-blue">Clinical Guide</span>
-            <span className="asa-badge">Version 68 · Jan 2024</span>
+    <div className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <div className="flex items-start gap-4">
+          <div className="flex flex-wrap gap-2 mb-2">
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Clinical Guide</span>
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary text-secondary-foreground">Version 68 · Jan 2024</span>
           </div>
-          <h1 className="asa-guide-title">Stroke Prevention in Atrial Fibrillation</h1>
-          <p className="asa-guide-lead">
+          <h1 className="text-2xl font-bold leading-tight mt-1">Stroke Prevention in Atrial Fibrillation</h1>
+          <p className="text-sm text-muted-foreground leading-relaxed mt-2">
             Antithrombotic therapy selection for prevention of ischaemic stroke and arterial thromboembolism in AF — CHADS2/CHADS-65 framework, DOAC dosing, and special considerations.
           </p>
         </div>
       </div>
 
-      <div className="asa-tab-bar">
+      <div className="flex gap-1 p-1 rounded-xl bg-muted overflow-x-auto">
         {tabs.map((t) => (
           <button
             key={t.id}
@@ -103,39 +103,39 @@ export function StrokePreventionAfGuide() {
         ))}
       </div>
 
-      <div className="asa-tab-body">
+      <div className="grid gap-4">
         {/* OVERVIEW */}
         {activeTab === "overview" && (
-          <div className="asa-sections">
-            <div className="asa-section-card asa-alert asa-alert-blue">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border border-blue-200 bg-blue-50 text-blue-900 shadow-sm p-5">
               <strong>CCS recommendation:</strong> DOACs are preferred over warfarin for stroke prevention in non-valvular AF. No head-to-head trials comparing DOACs — no evidence one is superior to another.
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Why AF Strokes Are Devastating</h2>
-              <div className="asa-ae-grid">
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">AF prevalence (age ≥80)</span>
-                  <span className="asa-ae-value">10–15%</span>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Why AF Strokes Are Devastating</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">AF prevalence (age ≥80)</span>
+                  <span className="text-sm">10–15%</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Stroke/embolism risk increase</span>
-                  <span className="asa-ae-value" style={{ color: "#dc2626" }}>3–6 fold vs. non-AF</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Stroke/embolism risk increase</span>
+                  <span className="text-sm" style={{ color: "#dc2626" }}>3–6 fold vs. non-AF</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">AF strokes vs non-AF strokes</span>
-                  <span className="asa-ae-value">Larger, more frequently fatal/disabling</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">AF strokes vs non-AF strokes</span>
+                  <span className="text-sm">Larger, more frequently fatal/disabling</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Risk reduction with anticoagulation</span>
-                  <span className="asa-ae-value" style={{ color: "#16a34a" }}>Significant — outweighs bleeding risk in most patients</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Risk reduction with anticoagulation</span>
+                  <span className="text-sm" style={{ color: "#16a34a" }}>Significant — outweighs bleeding risk in most patients</span>
                 </div>
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Key Principle: Bleeding Risk Rarely Precludes Anticoagulation</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Key Principle: Bleeding Risk Rarely Precludes Anticoagulation</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>In most cases, the risk-benefit ratio <strong>favours anticoagulation</strong> even when bleeding risk is elevated</li>
                 <li>Patients at increased bleeding risk often have the highest stroke risk — they benefit most from anticoagulation</li>
                 <li>Identify and modify reversible bleeding risk factors first:
@@ -155,11 +155,11 @@ export function StrokePreventionAfGuide() {
 
         {/* RISK SCORES */}
         {activeTab === "riskscores" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">CHADS₂ Score</h2>
-              <p className="asa-section-copy">For non-valvular AF (excludes mechanical heart valves and rheumatic mitral stenosis/regurgitation).</p>
-              <table className="asa-dose-table">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">CHADS₂ Score</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">For non-valvular AF (excludes mechanical heart valves and rheumatic mitral stenosis/regurgitation).</p>
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Letter</th>
@@ -179,10 +179,10 @@ export function StrokePreventionAfGuide() {
               </table>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">CHA₂DS₂-VASc Additional Items</h2>
-              <p className="asa-section-copy">The CHA₂DS₂-VASc adds the following to the CHADS₂ structure (note: CHADS₂ age ≥75 = 1 pt; CHA₂DS₂-VASc age ≥75 = 2 pts):</p>
-              <table className="asa-dose-table">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">CHA₂DS₂-VASc Additional Items</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">The CHA₂DS₂-VASc adds the following to the CHADS₂ structure (note: CHADS₂ age ≥75 = 1 pt; CHA₂DS₂-VASc age ≥75 = 2 pts):</p>
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Letter</th>
@@ -202,24 +202,24 @@ export function StrokePreventionAfGuide() {
               </table>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">CHADS-65 Framework (CCS Preferred)</h2>
-              <div className="asa-ae-grid">
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Age &lt;65, CHADS₂ = 0, no additional risk factors</span>
-                  <span className="asa-ae-value">No antithrombotic therapy needed</span>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">CHADS-65 Framework (CCS Preferred)</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Age &lt;65, CHADS₂ = 0, no additional risk factors</span>
+                  <span className="text-sm">No antithrombotic therapy needed</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Age &lt;65 with coronary/vascular disease (CHADS₂ = 0)</span>
-                  <span className="asa-ae-value">ASA 81 mg/day only</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Age &lt;65 with coronary/vascular disease (CHADS₂ = 0)</span>
+                  <span className="text-sm">ASA 81 mg/day only</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label" style={{ color: "#dc2626" }}>Age ≥65 OR any CHADS₂ risk factor in age &lt;65</span>
-                  <span className="asa-ae-value"><strong>DOAC or warfarin (INR 2–3) — DOAC preferred by CCS</strong></span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "#dc2626" }}>Age ≥65 OR any CHADS₂ risk factor in age &lt;65</span>
+                  <span className="text-sm"><strong>DOAC or warfarin (INR 2–3) — DOAC preferred by CCS</strong></span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Unsuitable for or declines anticoagulation</span>
-                  <span className="asa-ae-value">ASA 81 mg/day as alternative (less effective)</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Unsuitable for or declines anticoagulation</span>
+                  <span className="text-sm">ASA 81 mg/day as alternative (less effective)</span>
                 </div>
               </div>
             </div>
@@ -228,13 +228,13 @@ export function StrokePreventionAfGuide() {
 
         {/* DOACS */}
         {activeTab === "doacs" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">DOAC Dosing in AF</h2>
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">DOAC Dosing in AF</h2>
               {doacRows.map((d, i) => (
-                <div key={i} className="asa-section-card" style={{ margin: "0 0 0.75rem", borderLeft: "3px solid var(--primary)" }}>
+                <div key={i} className="rounded-xl border bg-card shadow-sm p-5" style={{ margin: "0 0 0.75rem", borderLeft: "3px solid var(--primary)" }}>
                   <strong style={{ fontSize: "1.05em" }}>{d.drug}</strong>
-                  <table className="asa-dose-table" style={{ marginTop: "0.4rem" }}>
+                  <table className="w-full border-collapse text-sm" style={{ marginTop: "0.4rem" }}>
                     <tbody>
                       <tr><td style={{ width: "35%" }}>Standard dose</td><td><strong>{d.standardDose}</strong></td></tr>
                       <tr><td>Reduced dose</td><td>{d.reducedDose}</td></tr>
@@ -247,32 +247,32 @@ export function StrokePreventionAfGuide() {
               ))}
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">DOACs vs. Warfarin: Key Differences</h2>
-              <div className="asa-ae-grid">
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Efficacy</span>
-                  <span className="asa-ae-value">Non-inferior or superior to warfarin in large phase 3 RCTs</span>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">DOACs vs. Warfarin: Key Differences</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Efficacy</span>
+                  <span className="text-sm">Non-inferior or superior to warfarin in large phase 3 RCTs</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Intracranial bleeding</span>
-                  <span className="asa-ae-value" style={{ color: "#16a34a" }}>Lower risk with all DOACs vs. warfarin</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Intracranial bleeding</span>
+                  <span className="text-sm" style={{ color: "#16a34a" }}>Lower risk with all DOACs vs. warfarin</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">INR monitoring</span>
-                  <span className="asa-ae-value">Not required for DOACs</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">INR monitoring</span>
+                  <span className="text-sm">Not required for DOACs</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Food interactions</span>
-                  <span className="asa-ae-value">None known for DOACs</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Food interactions</span>
+                  <span className="text-sm">None known for DOACs</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Renal monitoring</span>
-                  <span className="asa-ae-value">Required periodically for all DOACs</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Renal monitoring</span>
+                  <span className="text-sm">Required periodically for all DOACs</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Valvular AF</span>
-                  <span className="asa-ae-value">Warfarin required — DOACs not approved</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Valvular AF</span>
+                  <span className="text-sm">Warfarin required — DOACs not approved</span>
                 </div>
               </div>
             </div>
@@ -281,43 +281,43 @@ export function StrokePreventionAfGuide() {
 
         {/* RECOMMENDATIONS */}
         {activeTab === "recommendations" && (
-          <div className="asa-sections">
-            <div className="asa-timeline">
-              <div className="asa-timeline-step">
-                <div className="asa-timeline-marker">1</div>
-                <div className="asa-timeline-content">
+          <div className="grid gap-3.5">
+            <div className="relative pl-6 space-y-4 border-l-2 border-border">
+              <div className="relative">
+                <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary">1</div>
+                <div className="ml-2">
                   <strong>Assess stroke risk (CHADS-65 framework)</strong>
                   <p>Age ≥65 OR any CHADS₂ risk factor → anticoagulate</p>
                   <p>Age &lt;65, CHADS₂ = 0 → no anticoagulation needed</p>
                 </div>
               </div>
-              <div className="asa-timeline-step">
-                <div className="asa-timeline-marker">2</div>
-                <div className="asa-timeline-content">
+              <div className="relative">
+                <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary">2</div>
+                <div className="ml-2">
                   <strong>Assess bleeding risk</strong>
                   <p>Use HAS-BLED score to identify modifiable risk factors. Rarely precludes anticoagulation.</p>
                 </div>
               </div>
-              <div className="asa-timeline-step">
-                <div className="asa-timeline-marker">3</div>
-                <div className="asa-timeline-content">
+              <div className="relative">
+                <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary">3</div>
+                <div className="ml-2">
                   <strong>Identify contraindications to DOACs</strong>
                   <p>Mechanical heart valve → warfarin only</p>
                   <p>Severe mitral stenosis / rheumatic valvular AF → warfarin only</p>
                   <p>APLAS → warfarin only</p>
                 </div>
               </div>
-              <div className="asa-timeline-step">
-                <div className="asa-timeline-marker">4</div>
-                <div className="asa-timeline-content">
+              <div className="relative">
+                <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary">4</div>
+                <div className="ml-2">
                   <strong>Select anticoagulant</strong>
                   <p><strong>Non-valvular AF:</strong> DOAC preferred (CCS recommendation). Choose based on renal function, dosing frequency preference, cost, and reversal agent availability.</p>
                   <p><strong>Valvular AF / mechanical valve:</strong> Warfarin (INR 2–3)</p>
                 </div>
               </div>
-              <div className="asa-timeline-step">
-                <div className="asa-timeline-marker">5</div>
-                <div className="asa-timeline-content">
+              <div className="relative">
+                <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary">5</div>
+                <div className="ml-2">
                   <strong>Patient declines / unsuitable for anticoagulation</strong>
                   <p>ASA 81 mg/day as alternative — less effective than anticoagulation at stroke prevention</p>
                 </div>
@@ -328,35 +328,35 @@ export function StrokePreventionAfGuide() {
 
         {/* SPECIAL SITUATIONS */}
         {activeTab === "special" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Valvular AF</h2>
-              <div className="asa-alert asa-alert-red" style={{ padding: "0.75rem 1rem", borderRadius: "8px", marginBottom: "0.75rem" }}>
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Valvular AF</h2>
+              <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900" style={{ padding: "0.75rem 1rem", borderRadius: "8px", marginBottom: "0.75rem" }}>
                 <strong>Mechanical heart valve or rheumatic mitral stenosis:</strong> DOACs not recommended — significantly increased stroke risk requires warfarin (INR 2–3).
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">AF with Coronary Artery Disease</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">AF with Coronary Artery Disease</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>Antithrombotic management must be individualised</li>
                 <li>Balance risk of AF-related stroke + ischaemic coronary events vs. clinically relevant bleeding from combination therapy</li>
                 <li>Dual pathway therapy (anticoagulant + antiplatelet) significantly increases bleeding risk — limit duration and indications</li>
               </ul>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Subclinical AF (Device-Detected)</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Subclinical AF (Device-Detected)</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>Atrial high-rate episodes detected by pacemakers/loop recorders</li>
                 <li>ARTESiA trial (apixaban): lower stroke/SE risk vs. aspirin but higher major bleeding — shared decision-making recommended (AHA)</li>
                 <li>NOAH-AFNET trial (edoxaban): no reduction in stroke/SE vs. aspirin with increased bleeding</li>
               </ul>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">AF and Dialysis</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">AF and Dialysis</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>Dabigatran is contraindicated on dialysis</li>
                 <li>Apixaban 2.5 mg BID: studied in RCTs (AXADIA/RENAL-AF); reasonable option with shared decision-making</li>
                 <li>Rivaroxaban and edoxaban: insufficient safety data on dialysis</li>
@@ -367,10 +367,10 @@ export function StrokePreventionAfGuide() {
 
         {/* REFERENCES */}
         {activeTab === "references" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">References</h2>
-              <ol className="asa-ref-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">References</h2>
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((ref, i) => <li key={i}>{ref}</li>)}
               </ol>
               <div style={{ marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }}>

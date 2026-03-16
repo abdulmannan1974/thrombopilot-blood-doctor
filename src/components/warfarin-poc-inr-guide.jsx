@@ -32,21 +32,21 @@ export function WarfarinPocInrGuide() {
   const [activeTab, setActiveTab] = useState("overview");
 
   return (
-    <div className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <div className="asa-guide-header-body">
-          <div className="asa-guide-eyebrow">
-            <span className="asa-badge asa-badge-blue">Anticoagulation</span>
-            <span className="asa-badge">Clinical Guide</span>
+    <div className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <div className="flex items-start gap-4">
+          <div className="flex flex-wrap gap-2 mb-2">
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Anticoagulation</span>
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary text-secondary-foreground">Clinical Guide</span>
           </div>
-          <h1 className="asa-guide-title">Warfarin: Point-of-Care INR Monitoring</h1>
-          <p className="asa-guide-lead">
+          <h1 className="text-2xl font-bold leading-tight mt-1">Warfarin: Point-of-Care INR Monitoring</h1>
+          <p className="text-sm text-muted-foreground leading-relaxed mt-2">
             Point-of-care (POC) INR testing devices, self-testing and self-management approaches, and patient suitability criteria for home INR monitoring.
           </p>
         </div>
       </div>
 
-      <div className="asa-tab-bar">
+      <div className="flex gap-1 p-1 rounded-xl bg-muted overflow-x-auto">
         {tabs.map((t) => (
           <button
             key={t.id}
@@ -58,38 +58,38 @@ export function WarfarinPocInrGuide() {
         ))}
       </div>
 
-      <div className="asa-tab-body">
+      <div className="grid gap-4">
         {/* OVERVIEW */}
         {activeTab === "overview" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">What Is POC INR Testing?</h2>
-              <p className="asa-section-copy">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">What Is POC INR Testing?</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 A point-of-care (POC) INR device is a <strong>small, portable instrument</strong> that measures blood clotting from a <strong>fingerstick capillary sample</strong>. It reports the result as an INR value within approximately <strong>one minute</strong>, enabling timely warfarin dose adjustments without the need for venipuncture or laboratory processing.
               </p>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Evidence for Improved Outcomes</h2>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Evidence for Improved Outcomes</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 In randomized controlled trials, POC testing with <strong>weekly INR measurement</strong> has been shown to improve <strong>time in therapeutic range (TTR)</strong> compared with standard laboratory-based monitoring. Higher TTR is directly associated with <strong>fewer thromboembolic events</strong> and <strong>fewer bleeding events</strong>.
               </p>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Accuracy</h2>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Accuracy</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 POC INR results compared with laboratory INR values are generally <strong>within 15%</strong> of each other, which is similar to inter-laboratory variability between different hospital labs. These differences <strong>do not result in different dosing instructions</strong> in the vast majority of cases.
               </p>
             </div>
 
-            <div className="asa-section-card asa-alert asa-alert-amber">
+            <div className="rounded-xl border border-amber-200 bg-amber-50 text-amber-900 shadow-sm p-5">
               <strong>Accuracy limitations:</strong> POC devices are <strong>less accurate when INR &gt;3.5</strong>. Results may be <strong>inaccurate</strong> in patients with severe anaemia or polycythaemia (haematocrit &lt;15% or &gt;55%), co-administration of other anticoagulants (e.g., heparin, DOACs), or the presence of <strong>antiphospholipid antibodies</strong> (see <GuideLink to="aps">APS Guide</GuideLink>). In these situations, laboratory INR testing should be used.
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Related Guides</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Related Guides</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li><GuideLink to="warfarin">Warfarin: General Guide</GuideLink></li>
                 <li><GuideLink to="warfarinInr">Warfarin: Management of Out-of-Range INRs</GuideLink></li>
                 <li><GuideLink to="warfarinPeriop">Warfarin: Perioperative Management</GuideLink></li>
@@ -100,30 +100,30 @@ export function WarfarinPocInrGuide() {
 
         {/* POC TESTING APPROACHES */}
         {activeTab === "approaches" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">1. Clinic / Pharmacy / Office-Based Testing</h2>
-              <p className="asa-section-copy">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">1. Clinic / Pharmacy / Office-Based Testing</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 The patient attends a clinic, pharmacy, or physician's office where a POC device is used. The patient receives an <strong>immediate INR result</strong> and <strong>dosing adjustment from the clinician</strong> at the same visit, eliminating the delay associated with laboratory processing.
               </p>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">2. Patient Self-Management</h2>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">2. Patient Self-Management</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 The patient performs the POC INR test at home <strong>and</strong> self-adjusts the warfarin dose using <strong>predetermined dosing instructions</strong> combined with personal experience. The patient maintains their own records and contacts their health professional only when results fall outside the expected range.
               </p>
-              <div className="asa-alert asa-alert-blue" style={{ marginTop: "0.75rem" }}>
+              <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900" style={{ marginTop: "0.75rem" }}>
                 <strong>Advantages of self-management:</strong> Empowers the patient in a manner similar to glucose self-monitoring in diabetes. Associated with <strong>cost savings</strong>, <strong>moderate improvements in TTR</strong>, and <strong>quality-of-life improvements</strong> including greater autonomy and confidence.
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">3. Patient Self-Testing</h2>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">3. Patient Self-Testing</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 The patient performs the POC INR test at home but <strong>calls the clinician</strong> to report the result and receive dose adjustment advice. The patient does not self-adjust the dose.
               </p>
-              <div className="asa-alert asa-alert-blue" style={{ marginTop: "0.75rem" }}>
+              <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900" style={{ marginTop: "0.75rem" }}>
                 <strong>Advantages of self-testing:</strong> Particularly beneficial when access to laboratory INR testing is <strong>difficult</strong> (e.g., rural or remote locations, mobility limitations, frequent travel).
               </div>
             </div>
@@ -132,10 +132,10 @@ export function WarfarinPocInrGuide() {
 
         {/* PATIENT SUITABILITY */}
         {activeTab === "suitability" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Suitability Criteria for Self-Testing / Self-Management</h2>
-              <p className="asa-section-copy">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Suitability Criteria for Self-Testing / Self-Management</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 All of the following criteria should be met before a patient is considered suitable for POC INR self-testing or self-management:
               </p>
               <ol style={{ margin: "0.75rem 0 0 1.25rem", lineHeight: 1.7 }}>
@@ -147,7 +147,7 @@ export function WarfarinPocInrGuide() {
               </ol>
             </div>
 
-            <div className="asa-section-card asa-alert asa-alert-blue">
+            <div className="rounded-xl border border-blue-200 bg-blue-50 text-blue-900 shadow-sm p-5">
               <strong>Children:</strong> Paediatric patients particularly benefit from POC INR self-testing due to the <strong>convenience</strong> and <strong>avoidance of venipuncture</strong>. Parental education and training is essential to ensure reliable testing and appropriate dose management.
             </div>
           </div>
@@ -155,10 +155,10 @@ export function WarfarinPocInrGuide() {
 
         {/* REFERENCES */}
         {activeTab === "references" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">References</h2>
-              <ol className="asa-ref-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">References</h2>
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((ref, i) => (
                   <li key={i}>{ref}</li>
                 ))}

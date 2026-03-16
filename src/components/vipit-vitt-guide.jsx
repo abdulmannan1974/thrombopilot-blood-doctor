@@ -74,33 +74,33 @@ export function VipitVittGuide() {
   const [tab, setTab] = useState("overview");
 
   return (
-    <section className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <div className="asa-guide-header-top">
-          <div className="asa-guide-header-copy">
-            <div className="asa-badge-row">
-              <span className="asa-badge asa-badge-blue">Clinical Guide</span>
-              <span className="asa-badge asa-badge-teal">Vaccine-Induced Thrombocytopenia</span>
-              <span className="asa-badge asa-badge-gray">v21</span>
+    <section className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex-1 min-w-0">
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Clinical Guide</span>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-teal-100 text-teal-700">Vaccine-Induced Thrombocytopenia</span>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600">v21</span>
             </div>
-            <h2 className="asa-guide-title">Vaccine-Induced Prothrombotic Immune Thrombocytopenia (VIPIT/VITT)</h2>
-            <div className="asa-guide-meta">
+            <h2 className="text-2xl font-bold leading-tight mt-1">Vaccine-Induced Prothrombotic Immune Thrombocytopenia (VIPIT/VITT)</h2>
+            <div className="flex flex-wrap gap-3 mt-3 text-xs text-muted-foreground">
               <span><Calendar size={13} /> Updated 6 February 2026</span>
               <span><FileText size={13} /> Associated with adenoviral vector COVID-19 vaccines</span>
             </div>
           </div>
-          <div className="asa-guide-icon">
+          <div className="flex items-center justify-center w-12 h-12 rounded-xl border border-blue-200 bg-blue-50 text-blue-600 flex-shrink-0">
             <Syringe size={24} />
           </div>
         </div>
 
-        <div className="asa-objective-strip">
+        <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-muted/60 text-sm text-muted-foreground border border-border/50">
           <strong>Objective:</strong> To guide the recognition, diagnosis, and acute management of vaccine-induced prothrombotic immune thrombocytopenia (VIPIT/VITT), a rare thrombotic syndrome clinically resembling heparin-induced thrombocytopenia (HIT).
         </div>
       </div>
 
-      <div className="asa-mechanism-card">
-        <div className="asa-mechanism-icon">
+      <div className="rounded-xl border bg-card shadow-sm p-5">
+        <div className="flex items-center justify-center w-10 h-10 rounded-lg border border-blue-200 bg-blue-50 text-blue-600 mb-2">
           <ShieldAlert size={18} />
         </div>
         <div>
@@ -109,8 +109,8 @@ export function VipitVittGuide() {
         </div>
       </div>
 
-      <div className="asa-tabs">
-        <div className="asa-tabs-list" role="tablist" aria-label="VIPIT/VITT guide sections">
+      <div className="grid gap-4">
+        <div className="flex gap-1 p-1 rounded-xl bg-muted" role="tablist" aria-label="VIPIT/VITT guide sections">
           {tabs.map(([id, label]) => (
             <button
               key={id}
@@ -124,13 +124,13 @@ export function VipitVittGuide() {
         </div>
 
         {tab === "overview" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="danger" />Key Clinical Features</h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 VIPIT/VITT typically presents 4 to 28 days after vaccination with an adenoviral vector COVID-19 vaccine. The clinical picture resembles HIT but occurs without prior heparin exposure. Thrombosis at unusual sites (cerebral venous sinuses, splanchnic veins) is characteristic.
               </p>
-              <div className="asa-alert asa-alert-danger">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
                 <AlertTriangle size={16} />
                 <div>
                   <strong>Diagnostic window:</strong> Symptoms arising 4 to 28 days post-vaccination should trigger immediate investigation for VIPIT/VITT.
@@ -138,14 +138,14 @@ export function VipitVittGuide() {
               </div>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="orange" />Presenting Symptoms</h3>
-              <p className="asa-section-copy">Patients may present with any of the following symptoms within the 4 to 28 day post-vaccination window:</p>
-              <div className="asa-ae-grid">
+              <p className="text-sm text-foreground leading-relaxed mb-4">Patients may present with any of the following symptoms within the 4 to 28 day post-vaccination window:</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {symptoms.map((group) => (
-                  <div key={group.label} className="asa-ae-card default">
-                    <div className="asa-ae-card-label">{group.label}</div>
-                    <ul className="asa-ind-list" style={{ marginTop: "0.25rem" }}>
+                  <div key={group.label} className="rounded-lg border border-gray-200 bg-gray-50 p-3">
+                    <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">{group.label}</div>
+                    <ul className="list-none p-0 space-y-1" style={{ marginTop: "0.25rem" }}>
                       {group.items.map((item) => <li key={item}>{item}</li>)}
                     </ul>
                   </div>
@@ -153,9 +153,9 @@ export function VipitVittGuide() {
               </div>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Key Decision Point</h3>
-              <div className="asa-alert asa-alert-danger">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
                 <AlertCircle size={16} />
                 <div>
                   <strong>If platelet count {"<"} 150 {"\u00d7"} 10{"\u2079"}/L within the 4 to 28 day post-vaccination window:</strong> evaluate the patient in the Emergency Department for suspected VIPIT/VITT. Do not delay assessment.
@@ -166,11 +166,11 @@ export function VipitVittGuide() {
         ) : null}
 
         {tab === "diagnosis" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Initial Laboratory Workup</h3>
-              <p className="asa-section-copy">Order the following investigations promptly in all patients with suspected VIPIT/VITT:</p>
-              <table className="asa-dose-table">
+              <p className="text-sm text-foreground leading-relaxed mb-4">Order the following investigations promptly in all patients with suspected VIPIT/VITT:</p>
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Test</th>
@@ -180,7 +180,7 @@ export function VipitVittGuide() {
                 <tbody>
                   {workupSteps.map((row) => (
                     <tr key={row.test}>
-                      <td className="dose-highlight">{row.test}</td>
+                      <td className="font-bold text-foreground">{row.test}</td>
                       <td>{row.detail}</td>
                     </tr>
                   ))}
@@ -188,10 +188,10 @@ export function VipitVittGuide() {
               </table>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="purple" />Diagnostic Imaging</h3>
-              <p className="asa-section-copy">If clinical suspicion is strong, proceed with diagnostic imaging based on the presenting symptoms. Thrombosis at unusual sites is characteristic of VIPIT/VITT.</p>
-              <table className="asa-dose-table">
+              <p className="text-sm text-foreground leading-relaxed mb-4">If clinical suspicion is strong, proceed with diagnostic imaging based on the presenting symptoms. Thrombosis at unusual sites is characteristic of VIPIT/VITT.</p>
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Thrombosis Site</th>
@@ -203,13 +203,13 @@ export function VipitVittGuide() {
                   {imagingGuidance.map((row) => (
                     <tr key={row.site}>
                       <td>{row.site}</td>
-                      <td className="dose-highlight">{row.modality}</td>
+                      <td className="font-bold text-foreground">{row.modality}</td>
                       <td>{row.urgency}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
-              <div className="asa-alert asa-alert-danger" style={{ marginTop: "1rem" }}>
+              <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900" style={{ marginTop: "1rem" }}>
                 <AlertTriangle size={16} />
                 <div>
                   <strong>CVST imaging:</strong> Same-day neuroimaging is mandatory when cerebral venous sinus thrombosis is suspected. Do not defer to outpatient follow-up.
@@ -217,16 +217,16 @@ export function VipitVittGuide() {
               </div>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="teal" />Presumptive Diagnosis</h3>
-              <p className="asa-section-copy">A presumptive diagnosis of VIPIT/VITT is made when the following constellation of findings is present:</p>
-              <ul className="asa-ind-list">
+              <p className="text-sm text-foreground leading-relaxed mb-4">A presumptive diagnosis of VIPIT/VITT is made when the following constellation of findings is present:</p>
+              <ul className="list-none p-0 space-y-1">
                 <li>Low platelet count ({"<"} 150 {"\u00d7"} 10{"\u2079"}/L)</li>
                 <li>Abnormal coagulation parameters (elevated D-dimer, low fibrinogen, abnormal PT/aPTT)</li>
                 <li>Normal blood film (except for thrombocytopenia)</li>
                 <li>With or without thrombosis demonstrated on imaging</li>
               </ul>
-              <div className="asa-alert asa-alert-info" style={{ marginTop: "1rem" }}>
+              <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900" style={{ marginTop: "1rem" }}>
                 <Info size={16} />
                 <div>
                   <strong>Confirmatory testing:</strong> Send HIT testing (PF4 antibody assays) in all suspected cases. However, do not delay treatment while awaiting confirmatory results.
@@ -237,27 +237,27 @@ export function VipitVittGuide() {
         ) : null}
 
         {tab === "management" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="danger" />Acute Management</h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Treat VIPIT/VITT like HIT. The cornerstone of management is immediate non-heparin anticoagulation, haematology consultation, and supportive care.
               </p>
-              <div className="asa-timeline">
+              <div className="relative pl-6 space-y-4 border-l-2 border-border">
                 {managementSteps.map((step) => (
-                  <div key={step[0]} className="asa-timeline-step">
+                  <div key={step[0]} className="relative">
                     <div className={`asa-timeline-dot ${step[2]}`} />
-                    <div className="asa-timeline-label">{step[0]}</div>
-                    <div className="asa-timeline-desc">{step[1]}</div>
+                    <div className="text-sm font-semibold">{step[0]}</div>
+                    <div className="text-sm text-muted-foreground">{step[1]}</div>
                   </div>
                 ))}
               </div>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="orange" />Anticoagulation Options</h3>
-              <p className="asa-section-copy">Non-heparin anticoagulants should be used per HIT treatment guidelines:</p>
-              <table className="asa-dose-table">
+              <p className="text-sm text-foreground leading-relaxed mb-4">Non-heparin anticoagulants should be used per HIT treatment guidelines:</p>
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Agent</th>
@@ -267,23 +267,23 @@ export function VipitVittGuide() {
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="dose-highlight">Argatroban</td>
+                    <td className="font-bold text-foreground">Argatroban</td>
                     <td>IV infusion</td>
                     <td>Preferred in critically ill patients or those with hepatic impairment considerations. Dose-adjusted by aPTT.</td>
                   </tr>
                   <tr>
-                    <td className="dose-highlight">Fondaparinux</td>
+                    <td className="font-bold text-foreground">Fondaparinux</td>
                     <td>Subcutaneous</td>
                     <td>Suitable for stable patients. Fixed or weight-based dosing.</td>
                   </tr>
                   <tr>
-                    <td className="dose-highlight">DOACs (e.g., rivaroxaban, apixaban)</td>
+                    <td className="font-bold text-foreground">DOACs (e.g., rivaroxaban, apixaban)</td>
                     <td>Oral</td>
                     <td>May be used once platelet count is recovering and patient is clinically stable. Follow HIT transition guidance.</td>
                   </tr>
                 </tbody>
               </table>
-              <div className="asa-alert asa-alert-danger" style={{ marginTop: "1rem" }}>
+              <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900" style={{ marginTop: "1rem" }}>
                 <ShieldAlert size={16} />
                 <div>
                   <strong>AVOID all heparin products:</strong> Unfractionated heparin, low molecular weight heparin, and heparin flushes must all be strictly avoided in suspected or confirmed VIPIT/VITT.
@@ -291,16 +291,16 @@ export function VipitVittGuide() {
               </div>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />IVIG</h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Intravenous immunoglobulin (IVIG) at a dose of 1 g/kg daily for 2 days may be beneficial by inhibiting Fc-receptor-mediated platelet activation. Discuss with haematology.
               </p>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="green" />Reporting</h3>
-              <div className="asa-alert asa-alert-teal">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-teal-200 bg-teal-50 text-teal-900">
                 <ClipboardList size={16} />
                 <div>
                   <strong>Mandatory reporting:</strong> All suspected cases of VIPIT/VITT must be reported as adverse events following immunisation (AEFI) to the local Public Health Unit.
@@ -311,19 +311,19 @@ export function VipitVittGuide() {
         ) : null}
 
         {tab === "references" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="gray" />Related Clinical Guides</h3>
-              <ul className="asa-related-list">
+              <ul className="list-none p-0 divide-y divide-border">
                 {relatedGuideKeys.map((item) => (
                   <li key={item.to}><Link2 size={14} /><GuideLink to={item.to}>{item.label}</GuideLink></li>
                 ))}
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="gray" />References</h3>
-              <ol className="asa-ref-list">
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((item) => <li key={item}>{item}</li>)}
               </ol>
             </article>
@@ -331,7 +331,7 @@ export function VipitVittGuide() {
         ) : null}
       </div>
 
-      <div className="asa-guide-footer">
+      <div className="rounded-xl border bg-muted/50 p-4 text-xs text-muted-foreground">
         <p><strong>Vaccine-Induced Prothrombotic Immune Thrombocytopenia (VIPIT/VITT)</strong> | Updated 6 February 2026 | Version 21</p>
         <p>The information here is not a substitute for clinical judgement. Always seek appropriate specialist input when needed.</p>
       </div>

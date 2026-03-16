@@ -87,21 +87,21 @@ export function DvtDiagnosisGuide() {
   const [activeTab, setActiveTab] = useState("overview");
 
   return (
-    <div className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <div className="asa-guide-header-body">
-          <div className="asa-guide-eyebrow">
-            <span className="asa-badge asa-badge-blue">Clinical Guide</span>
-            <span className="asa-badge">Version 60 · May 2025</span>
+    <div className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <div className="flex items-start gap-4">
+          <div className="flex flex-wrap gap-2 mb-2">
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Clinical Guide</span>
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary text-secondary-foreground">Version 60 · May 2025</span>
           </div>
-          <h1 className="asa-guide-title">DVT: Diagnosis</h1>
-          <p className="asa-guide-lead">
+          <h1 className="text-2xl font-bold leading-tight mt-1">DVT: Diagnosis</h1>
+          <p className="text-sm text-muted-foreground leading-relaxed mt-2">
             Evidence-based approach to evaluating patients with suspected acute deep vein thrombosis — using pre-test probability, D-dimer, and compression ultrasound.
           </p>
         </div>
       </div>
 
-      <div className="asa-tab-bar">
+      <div className="flex gap-1 p-1 rounded-xl bg-muted overflow-x-auto">
         {tabs.map((t) => (
           <button
             key={t.id}
@@ -113,63 +113,63 @@ export function DvtDiagnosisGuide() {
         ))}
       </div>
 
-      <div className="asa-tab-body">
+      <div className="grid gap-4">
         {/* OVERVIEW */}
         {activeTab === "overview" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Epidemiology</h2>
-              <div className="asa-ae-grid">
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Annual DVT cases (estimated)</span>
-                  <span className="asa-ae-value">~45,000</span>
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Epidemiology</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Annual DVT cases (estimated)</span>
+                  <span className="text-sm">~45,000</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Population incidence</span>
-                  <span className="asa-ae-value">1–2 per 1,000/year</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Population incidence</span>
+                  <span className="text-sm">1–2 per 1,000/year</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">DVTs per solo family practice/year</span>
-                  <span className="asa-ae-value">2–4</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">DVTs per solo family practice/year</span>
+                  <span className="text-sm">2–4</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">% suspected DVT that is confirmed</span>
-                  <span className="asa-ae-value">Only 10–20%</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">% suspected DVT that is confirmed</span>
+                  <span className="text-sm">Only 10–20%</span>
                 </div>
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Anatomy: Proximal vs. Distal DVT</h2>
-              <div className="asa-ae-grid">
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Proximal veins</span>
-                  <span className="asa-ae-value">Popliteal, femoral, common femoral, external iliac — higher PE risk; anticoagulation indicated</span>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Anatomy: Proximal vs. Distal DVT</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Proximal veins</span>
+                  <span className="text-sm">Popliteal, femoral, common femoral, external iliac — higher PE risk; anticoagulation indicated</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Distal (calf) veins</span>
-                  <span className="asa-ae-value">Posterior/anterior tibial, peroneal — lower PE risk; ~20% extend proximally; treatment is case-by-case</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Distal (calf) veins</span>
+                  <span className="text-sm">Posterior/anterior tibial, peroneal — lower PE risk; ~20% extend proximally; treatment is case-by-case</span>
                 </div>
               </div>
-              <p className="asa-section-copy" style={{ marginTop: "0.75rem" }}>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ marginTop: "0.75rem" }}>
                 <strong>Important:</strong> The <em>superficial femoral vein</em> (also called the femoral vein) is a <strong>deep vein</strong> — not superficial. This has critical therapeutic implications.
               </p>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Diagnostic Triad</h2>
-              <div className="asa-ae-grid">
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Step 1</span>
-                  <span className="asa-ae-value">Pre-test probability (Wells Score — 2-level preferred)</span>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Diagnostic Triad</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Step 1</span>
+                  <span className="text-sm">Pre-test probability (Wells Score — 2-level preferred)</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Step 2</span>
-                  <span className="asa-ae-value">D-dimer (high-sensitivity assay)</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Step 2</span>
+                  <span className="text-sm">D-dimer (high-sensitivity assay)</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Step 3</span>
-                  <span className="asa-ae-value">Compression Ultrasound (proximal or whole-leg)</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Step 3</span>
+                  <span className="text-sm">Compression Ultrasound (proximal or whole-leg)</span>
                 </div>
               </div>
             </div>
@@ -178,10 +178,10 @@ export function DvtDiagnosisGuide() {
 
         {/* WELLS SCORE */}
         {activeTab === "wellsscore" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Two-Level Wells Score Criteria</h2>
-              <table className="asa-dose-table">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Two-Level Wells Score Criteria</h2>
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Clinical Finding</th>
@@ -201,21 +201,21 @@ export function DvtDiagnosisGuide() {
               </table>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Score Interpretation (2-Level)</h2>
-              <div className="asa-ae-grid">
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label" style={{ color: "#16a34a" }}>DVT Unlikely</span>
-                  <span className="asa-ae-value">Score ≤1 → proceed to D-dimer</span>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Score Interpretation (2-Level)</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "#16a34a" }}>DVT Unlikely</span>
+                  <span className="text-sm">Score ≤1 → proceed to D-dimer</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label" style={{ color: "#dc2626" }}>DVT Likely</span>
-                  <span className="asa-ae-value">Score ≥2 → proceed directly to CUS</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "#dc2626" }}>DVT Likely</span>
+                  <span className="text-sm">Score ≥2 → proceed directly to CUS</span>
                 </div>
               </div>
             </div>
 
-            <div className="asa-section-card asa-alert asa-alert-blue">
+            <div className="rounded-xl border border-blue-200 bg-blue-50 text-blue-900 shadow-sm p-5">
               <strong>Clinical decision rule mandate:</strong> A validated clinical decision rule (Wells Score or equivalent) <em>must</em> be used in every DVT assessment. Clinical gestalt alone is insufficient.
             </div>
           </div>
@@ -223,14 +223,14 @@ export function DvtDiagnosisGuide() {
 
         {/* D-DIMER */}
         {activeTab === "ddimer" && (
-          <div className="asa-sections">
-            <div className="asa-section-card asa-alert asa-alert-amber">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border border-amber-200 bg-amber-50 text-amber-900 shadow-sm p-5">
               <strong>D-dimer is sensitive but not specific:</strong> Elevated in DVT but also in inflammation, malignancy, pregnancy, surgery, hospitalisation, trauma, and advanced age. Useful to <em>rule out</em> DVT, not to confirm it.
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">D-dimer Threshold Options</h2>
-              <table className="asa-dose-table">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">D-dimer Threshold Options</h2>
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Threshold Type</th>
@@ -252,9 +252,9 @@ export function DvtDiagnosisGuide() {
               </table>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Community Practice Note</h2>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Community Practice Note</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Community physicians may not receive D-dimer results promptly from outside labs. In these settings, a direct-to-CUS approach for all suspected DVT patients is a reasonable (if more costly) alternative. If CUS is performed without D-dimer: negative proximal CUS + unlikely PTP excludes DVT; negative proximal CUS + likely PTP requires repeat CUS at 5–7 days.
               </p>
             </div>
@@ -263,26 +263,26 @@ export function DvtDiagnosisGuide() {
 
         {/* ULTRASOUND */}
         {activeTab === "imaging" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Compression Ultrasound (CUS) Options</h2>
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Compression Ultrasound (CUS) Options</h2>
               {cusRows.map((c, i) => (
-                <div key={i} className="asa-section-card" style={{ marginBottom: "0.75rem", borderLeft: "3px solid var(--primary)" }}>
+                <div key={i} className="rounded-xl border bg-card shadow-sm p-5" style={{ marginBottom: "0.75rem", borderLeft: "3px solid var(--primary)" }}>
                   <strong>{c.type}</strong>
                   <p style={{ margin: "0.3rem 0", fontSize: "0.88em" }}><span style={{ color: "#16a34a", fontWeight: 600 }}>✓ Advantage:</span> {c.advantage}</p>
                   <p style={{ margin: "0.3rem 0", fontSize: "0.88em" }}><span style={{ color: "#dc2626", fontWeight: 600 }}>✗ Disadvantage:</span> {c.disadvantage}</p>
-                  <p style={{ margin: 0 }}><span className="asa-badge asa-badge-blue">{c.recommendation}</span></p>
+                  <p style={{ margin: 0 }}><span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">{c.recommendation}</span></p>
                 </div>
               ))}
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Isolated Distal DVT: Risk Factors for Proximal Extension</h2>
-              <p className="asa-section-copy">~20% of distal DVTs extend proximally. Consider treatment (rather than serial CUS) if any of the following are present:</p>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Isolated Distal DVT: Risk Factors for Proximal Extension</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">~20% of distal DVTs extend proximally. Consider treatment (rather than serial CUS) if any of the following are present:</p>
+              <ul className="list-none p-0 space-y-1">
                 {distalExtensionRisk.map((r, i) => <li key={i}>{r}</li>)}
               </ul>
-              <p className="asa-section-copy" style={{ marginTop: "0.75rem" }}>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ marginTop: "0.75rem" }}>
                 Patients unlikely or unable to return for follow-up serial CUS should generally be treated.
               </p>
             </div>
@@ -291,53 +291,53 @@ export function DvtDiagnosisGuide() {
 
         {/* ALGORITHM */}
         {activeTab === "algorithm" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Suggested Diagnostic Strategy</h2>
-              <div className="asa-timeline">
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker">1</div>
-                  <div className="asa-timeline-content">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Suggested Diagnostic Strategy</h2>
+              <div className="relative pl-6 space-y-4 border-l-2 border-border">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary">1</div>
+                  <div className="ml-2">
                     <strong>History & Physical Exam</strong>
                     <p>Assess all Wells Score components. Also evaluate for PE symptoms.</p>
                   </div>
                 </div>
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker">2</div>
-                  <div className="asa-timeline-content">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary">2</div>
+                  <div className="ml-2">
                     <strong>Calculate Wells Score</strong>
-                    <div className="asa-ae-grid" style={{ marginTop: "0.5rem" }}>
-                      <div className="asa-ae-card">
-                        <span className="asa-ae-label">Score ≤1 (Unlikely)</span>
-                        <span className="asa-ae-value">→ Send D-dimer</span>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3" style={{ marginTop: "0.5rem" }}>
+                      <div className="rounded-lg border p-3">
+                        <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Score ≤1 (Unlikely)</span>
+                        <span className="text-sm">→ Send D-dimer</span>
                       </div>
-                      <div className="asa-ae-card">
-                        <span className="asa-ae-label">Score ≥2 (Likely)</span>
-                        <span className="asa-ae-value">→ Proceed directly to CUS</span>
+                      <div className="rounded-lg border p-3">
+                        <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Score ≥2 (Likely)</span>
+                        <span className="text-sm">→ Proceed directly to CUS</span>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker">3A</div>
-                  <div className="asa-timeline-content">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary">3A</div>
+                  <div className="ml-2">
                     <strong>Unlikely PTP + D-dimer</strong>
                     <p><strong>Negative D-dimer:</strong> DVT excluded — no further testing needed</p>
                     <p><strong>Positive D-dimer:</strong> → Proximal or whole-leg CUS</p>
                   </div>
                 </div>
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker">3B</div>
-                  <div className="asa-timeline-content">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary">3B</div>
+                  <div className="ml-2">
                     <strong>Likely PTP → CUS</strong>
                     <p><strong>Negative proximal CUS:</strong> → D-dimer; if positive or no D-dimer available, repeat CUS in 5–7 days</p>
                     <p><strong>Negative whole-leg CUS:</strong> DVT excluded — no repeat needed</p>
                     <p><strong>Positive CUS (proximal):</strong> DVT confirmed — initiate anticoagulation</p>
                   </div>
                 </div>
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker">4</div>
-                  <div className="asa-timeline-content">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary">4</div>
+                  <div className="ml-2">
                     <strong>Isolated Distal DVT on Whole-Leg CUS</strong>
                     <p>Offer anticoagulation if severe symptoms or high proximal extension risk; alternatively, serial CUS over 1–2 weeks.</p>
                   </div>
@@ -345,7 +345,7 @@ export function DvtDiagnosisGuide() {
               </div>
             </div>
 
-            <div className="asa-section-card asa-alert asa-alert-amber">
+            <div className="rounded-xl border border-amber-200 bg-amber-50 text-amber-900 shadow-sm p-5">
               <strong>Timing:</strong> If diagnostic testing will be delayed &gt;4 hours in patients with moderate/high or likely PTP, initiate a rapidly-acting anticoagulant (LMWH or DOAC) unless bleeding contraindication exists — while awaiting confirmatory testing.
             </div>
           </div>
@@ -353,10 +353,10 @@ export function DvtDiagnosisGuide() {
 
         {/* SPECIAL SITUATIONS */}
         {activeTab === "special" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Suspected Recurrent DVT (Ipsilateral)</h2>
-              <ul className="asa-ind-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Suspected Recurrent DVT (Ipsilateral)</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>CUS is problematic — residual compression abnormalities often persist from prior DVT</li>
                 <li><strong>Always compare</strong> new CUS to prior studies if available</li>
                 <li>Recurrent DVT only definitively diagnosed by: new non-compressibility in previously normal segments, or ≥4 mm increase in compression diameter</li>
@@ -365,26 +365,26 @@ export function DvtDiagnosisGuide() {
               </ul>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Upper Extremity DVT (UEDVT)</h2>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Upper Extremity DVT (UEDVT)</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Annual incidence ~3/100,000. Most patients have risk factors: CVAD, pacemaker, malignancy. Spontaneous UEDVT often relates to sudden physical effort + thoracic outlet narrowing (Paget-Schroetter / thoracic outlet syndrome).
               </p>
-              <div className="asa-ae-grid" style={{ marginTop: "0.75rem" }}>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Low/Unlikely PTP</span>
-                  <span className="asa-ae-value">D-dimer first → duplex US if positive; duplex US alone acceptable if D-dimer unavailable</span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3" style={{ marginTop: "0.75rem" }}>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Low/Unlikely PTP</span>
+                  <span className="text-sm">D-dimer first → duplex US if positive; duplex US alone acceptable if D-dimer unavailable</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">High/Likely PTP</span>
-                  <span className="asa-ae-value">Duplex ultrasound first-line; if negative but suspicion remains → D-dimer, repeat US, or CT/MRI venography</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">High/Likely PTP</span>
+                  <span className="text-sm">Duplex ultrasound first-line; if negative but suspicion remains → D-dimer, repeat US, or CT/MRI venography</span>
                 </div>
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Pediatric DVT</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Pediatric DVT</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>Incidence: 0.7–0.14 per 10,000 children — lower than adults</li>
                 <li>Usually associated with CVAD, cancer, congenital heart disease, or post-intervention</li>
                 <li>Clinical decision rules and D-dimer testing <strong>not validated</strong> in children</li>
@@ -393,9 +393,9 @@ export function DvtDiagnosisGuide() {
               </ul>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">DVT in Pregnancy</h2>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">DVT in Pregnancy</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 See the <GuideLink to="pregDiagnosis">Pregnancy: DVT &amp; PE Diagnosis</GuideLink> guide — special algorithms apply due to altered physiology and D-dimer thresholds during pregnancy.
               </p>
             </div>
@@ -404,15 +404,15 @@ export function DvtDiagnosisGuide() {
 
         {/* REFERENCES */}
         {activeTab === "references" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">References</h2>
-              <ol className="asa-ref-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">References</h2>
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((ref, i) => (
                   <li key={i}>{ref}</li>
                 ))}
               </ol>
-              <p className="asa-section-copy" style={{ marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }}>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }}>
                 Version 60, updated 2025-05-07.
               </p>
             </div>

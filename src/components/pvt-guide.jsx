@@ -197,33 +197,33 @@ export function PvtGuide() {
   const [tab, setTab] = useState("overview");
 
   return (
-    <section className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <div className="asa-guide-header-top">
-          <div className="asa-guide-header-copy">
-            <div className="asa-badge-row">
-              <span className="asa-badge asa-badge-blue">Clinical Guide</span>
-              <span className="asa-badge asa-badge-teal">Venous Thrombosis</span>
-              <span className="asa-badge asa-badge-gray">v24</span>
+    <section className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex-1 min-w-0">
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Clinical Guide</span>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-teal-100 text-teal-700">Venous Thrombosis</span>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600">v24</span>
             </div>
-            <h2 className="asa-guide-title">Portal Vein Thrombosis (PVT)</h2>
-            <div className="asa-guide-meta">
+            <h2 className="text-2xl font-bold leading-tight mt-1">Portal Vein Thrombosis (PVT)</h2>
+            <div className="flex flex-wrap gap-3 mt-3 text-xs text-muted-foreground">
               <span><Calendar size={13} /> Updated 6 February 2026</span>
               <span><FileText size={13} /> Incidence ~4 per 100,000</span>
             </div>
           </div>
-          <div className="asa-guide-icon">
+          <div className="flex items-center justify-center w-12 h-12 rounded-xl border border-blue-200 bg-blue-50 text-blue-600 flex-shrink-0">
             <Activity size={24} />
           </div>
         </div>
 
-        <div className="asa-objective-strip">
+        <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-muted/60 text-sm text-muted-foreground border border-border/50">
           <strong>Objective:</strong> To guide the diagnosis and anticoagulant management of portal vein thrombosis in cirrhotic and non-cirrhotic patients.
         </div>
       </div>
 
-      <div className="asa-mechanism-card">
-        <div className="asa-mechanism-icon">
+      <div className="rounded-xl border bg-card shadow-sm p-5">
+        <div className="flex items-center justify-center w-10 h-10 rounded-lg border border-blue-200 bg-blue-50 text-blue-600 mb-2">
           <Info size={18} />
         </div>
         <div>
@@ -232,8 +232,8 @@ export function PvtGuide() {
         </div>
       </div>
 
-      <div className="asa-tabs">
-        <div className="asa-tabs-list" role="tablist" aria-label="PVT guide sections">
+      <div className="grid gap-4">
+        <div className="flex gap-1 p-1 rounded-xl bg-muted" role="tablist" aria-label="PVT guide sections">
           {tabs.map(([id, label]) => (
             <button
               key={id}
@@ -247,18 +247,18 @@ export function PvtGuide() {
         </div>
 
         {tab === "overview" ? (
-          <div className="asa-tab-panel">
+          <div className="grid gap-3.5">
             {riskFactors.map((section) => {
               const Icon = section.icon;
               return (
-                <article key={section.title} className="asa-section-card">
+                <article key={section.title} className="rounded-xl border bg-card shadow-sm p-5">
                   <h3><Dot tone={section.tone} />{section.title}</h3>
-                  <div className="asa-ind-group">
-                    <div className="asa-ind-group-label">
+                  <div className="mb-3">
+                    <div className="flex items-center gap-2 text-sm font-semibold mb-1.5">
                       <span className={`asa-ind-icon ${section.tone}`}><Icon size={14} /></span>
                       Risk Factors
                     </div>
-                    <ul className="asa-ind-list">
+                    <ul className="list-none p-0 space-y-1">
                       {section.items.map((item) => <li key={item}>{item}</li>)}
                     </ul>
                   </div>
@@ -266,9 +266,9 @@ export function PvtGuide() {
               );
             })}
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Diagnosis</h3>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Modality</th>
@@ -279,7 +279,7 @@ export function PvtGuide() {
                 <tbody>
                   {diagnosticApproach.map((row) => (
                     <tr key={row.modality}>
-                      <td className="dose-highlight">{row.modality}</td>
+                      <td className="font-bold text-foreground">{row.modality}</td>
                       <td>{row.finding}</td>
                       <td>{row.notes}</td>
                     </tr>
@@ -288,14 +288,14 @@ export function PvtGuide() {
               </table>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="purple" />Recommended Work-up</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 {workupItems.map((item) => <li key={item}>{item}</li>)}
               </ul>
             </article>
 
-            <div className="asa-alert asa-alert-info">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <Info size={16} />
               <div>
                 <strong>MPN screening:</strong> Up to 30% of non-cirrhotic, non-malignant PVT have an underlying MPN. JAK2 V617F testing should be performed in all patients without an obvious provoking factor.
@@ -305,18 +305,18 @@ export function PvtGuide() {
         ) : null}
 
         {tab === "anticoagulate" ? (
-          <div className="asa-tab-panel">
+          <div className="grid gap-3.5">
             {anticoagulateIndications.map((section) => {
               const Icon = section.icon;
               return (
-                <article key={section.title} className="asa-section-card">
+                <article key={section.title} className="rounded-xl border bg-card shadow-sm p-5">
                   <h3><Dot tone={section.tone} />{section.title}</h3>
-                  <div className="asa-ind-group">
-                    <div className="asa-ind-group-label">
+                  <div className="mb-3">
+                    <div className="flex items-center gap-2 text-sm font-semibold mb-1.5">
                       <span className={`asa-ind-icon ${section.tone}`}><Icon size={14} /></span>
                       {section.title}
                     </div>
-                    <ul className="asa-ind-list">
+                    <ul className="list-none p-0 space-y-1">
                       {section.items.map((item) => <li key={item}>{item}</li>)}
                     </ul>
                   </div>
@@ -324,25 +324,25 @@ export function PvtGuide() {
               );
             })}
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="danger" />Bleeding Risk Considerations</h3>
-              <div className="asa-ae-grid">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {bleedingNotes.map((note) => (
-                  <div key={note} className="asa-ae-card default">
-                    <div className="asa-ae-card-text">{note}</div>
+                  <div key={note} className="rounded-lg border border-gray-200 bg-gray-50 p-3">
+                    <div className="text-sm leading-relaxed">{note}</div>
                   </div>
                 ))}
               </div>
             </article>
 
-            <div className="asa-alert asa-alert-danger">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <ShieldAlert size={16} />
               <div>
                 <strong>Active bleeding</strong> is an absolute contraindication to anticoagulation. However, previous variceal bleeding or the presence of varices alone is NOT a contraindication.
               </div>
             </div>
 
-            <div className="asa-alert asa-alert-teal">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-teal-200 bg-teal-50 text-teal-900">
               <CheckCircle2 size={16} />
               <div>
                 <strong>Variceal management:</strong> Attempt variceal banding before initiating anticoagulation if feasible. Screen all cirrhotic patients for varices prior to starting therapy.
@@ -352,34 +352,34 @@ export function PvtGuide() {
         ) : null}
 
         {tab === "options" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Acute Anticoagulant Options</h3>
-              <div className="asa-ae-grid">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {acuteOptions.map((opt) => (
                   <div key={opt.agent} className={`asa-ae-card ${opt.tone}`}>
-                    <div className="asa-ae-card-label">{opt.agent}</div>
-                    <div className="asa-ae-card-text">{opt.detail}</div>
+                    <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">{opt.agent}</div>
+                    <div className="text-sm leading-relaxed">{opt.detail}</div>
                   </div>
                 ))}
               </div>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="orange" />{doacNote.title}</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 {doacNote.points.map((point) => <li key={point}>{point}</li>)}
               </ul>
             </article>
 
-            <div className="asa-alert asa-alert-warn">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <AlertCircle size={16} />
               <div>
                 <strong>DOACs in cirrhosis:</strong> Use with caution. Safety data are limited, especially in Child-Pugh B and C. LMWH or warfarin may be more appropriate in advanced liver disease.
               </div>
             </div>
 
-            <div className="asa-alert asa-alert-info">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <Info size={16} />
               <div>
                 <strong>Sub-therapeutic dosing:</strong> Sub-therapeutic LMWH may be considered as a compromise in patients with high bleeding risk or localised, non-extensive PVT.
@@ -389,10 +389,10 @@ export function PvtGuide() {
         ) : null}
 
         {tab === "duration" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Duration of Anticoagulation</h3>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Clinical Scenario</th>
@@ -404,7 +404,7 @@ export function PvtGuide() {
                   {durationRows.map((row) => (
                     <tr key={row[0]}>
                       <td>{row[0]}</td>
-                      <td className="dose-highlight">{row[1]}</td>
+                      <td className="font-bold text-foreground">{row[1]}</td>
                       <td>{row[2]}</td>
                     </tr>
                   ))}
@@ -413,13 +413,13 @@ export function PvtGuide() {
             </article>
 
             {specialCases.map((sc) => (
-              <article key={sc.title} className="asa-section-card">
+              <article key={sc.title} className="rounded-xl border bg-card shadow-sm p-5">
                 <h3><Dot tone={sc.tone} />{sc.title}</h3>
-                <p className="asa-section-copy">{sc.text}</p>
+                <p className="text-sm text-foreground leading-relaxed mb-4">{sc.text}</p>
               </article>
             ))}
 
-            <div className="asa-alert asa-alert-warn">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <AlertCircle size={16} />
               <div>
                 <strong>Periodic reassessment:</strong> Patients on long-term anticoagulation should be reassessed periodically for ongoing indication, bleeding risk, and imaging to evaluate thrombus status.
@@ -429,19 +429,19 @@ export function PvtGuide() {
         ) : null}
 
         {tab === "references" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="gray" />Related Clinical Guides</h3>
-              <ul className="asa-related-list">
+              <ul className="list-none p-0 divide-y divide-border">
                 {relatedGuideKeys.map((item) => (
                   <li key={item.to}><Link2 size={14} /><GuideLink to={item.to}>{item.label}</GuideLink></li>
                 ))}
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="gray" />References</h3>
-              <ol className="asa-ref-list">
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((item) => <li key={item}>{item}</li>)}
               </ol>
             </article>
@@ -449,7 +449,7 @@ export function PvtGuide() {
         ) : null}
       </div>
 
-      <div className="asa-guide-footer">
+      <div className="rounded-xl border bg-muted/50 p-4 text-xs text-muted-foreground">
         <p><strong>Portal Vein Thrombosis (PVT)</strong> | Updated 6 February 2026 | Version 24</p>
         <p>The information here is not a substitute for clinical judgement. Always seek appropriate specialist input when needed.</p>
       </div>

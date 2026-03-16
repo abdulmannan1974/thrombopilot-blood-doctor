@@ -160,20 +160,20 @@ export function DoacsComparisonGuide() {
   const [activeTab, setActiveTab] = useState("overview");
 
   return (
-    <div className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <div className="asa-guide-header-body">
-          <div className="asa-guide-eyebrow">
-            <span className="asa-badge asa-badge-blue">Clinical Guide</span>
+    <div className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <div className="flex items-start gap-4">
+          <div className="flex flex-wrap gap-2 mb-2">
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Clinical Guide</span>
           </div>
-          <h1 className="asa-guide-title">DOACs: Comparison and Frequently-Asked Questions</h1>
-          <p className="asa-guide-lead">
+          <h1 className="text-2xl font-bold leading-tight mt-1">DOACs: Comparison and Frequently-Asked Questions</h1>
+          <p className="text-sm text-muted-foreground leading-relaxed mt-2">
             Practical comparison of apixaban, dabigatran, edoxaban, and rivaroxaban — dosing, drug interactions, monitoring, renal adjustments, and emergency management.
           </p>
         </div>
       </div>
 
-      <div className="asa-tab-bar">
+      <div className="flex gap-1 p-1 rounded-xl bg-muted overflow-x-auto">
         {tabs.map((t) => (
           <button
             key={t.id}
@@ -185,20 +185,20 @@ export function DoacsComparisonGuide() {
         ))}
       </div>
 
-      <div className="asa-tab-body">
+      <div className="grid gap-4">
         {/* OVERVIEW */}
         {activeTab === "overview" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Background</h2>
-              <p className="asa-section-copy">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Background</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Direct oral anticoagulants (DOACs) — <strong>apixaban</strong>, <strong>dabigatran</strong>, <strong>edoxaban</strong>, and <strong>rivaroxaban</strong> — are used for prevention and treatment of venous thromboembolism (VTE) and stroke prevention in atrial fibrillation (AF).
               </p>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Advantages Over Warfarin</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Advantages Over Warfarin</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>Fixed dosing — no dose titration required</li>
                 <li>No routine coagulation monitoring needed</li>
                 <li>Fewer drug interactions than warfarin</li>
@@ -207,21 +207,21 @@ export function DoacsComparisonGuide() {
               </ul>
             </div>
 
-            <div className="asa-section-card asa-alert asa-alert-amber">
+            <div className="rounded-xl border border-amber-200 bg-amber-50 text-amber-900 shadow-sm p-5">
               <strong>Important:</strong> Like warfarin, all DOACs increase bleeding risk and require close clinical monitoring. There are no head-to-head randomised controlled trials comparing one DOAC to another — all have been compared to warfarin.
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Observational Data</h2>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Observational Data</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Large observational studies suggest lower rates of major bleeding with <strong>apixaban</strong> compared to <strong>rivaroxaban</strong>. However, this has not been confirmed in randomised controlled trials, and selection bias cannot be excluded.
               </p>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">DOAC Properties Comparison</h2>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">DOAC Properties Comparison</h2>
               <div style={{ overflowX: "auto" }}>
-                <table className="asa-dose-table">
+                <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr>
                       <th>Property</th>
@@ -250,21 +250,21 @@ export function DoacsComparisonGuide() {
 
         {/* PRACTICAL ISSUES */}
         {activeTab === "practical" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Meals</h2>
-              <p className="asa-section-copy">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Meals</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 <strong>Rivaroxaban 15 mg and 20 mg MUST be taken with meals</strong> to ensure adequate absorption. All other DOACs can be taken with or without food. Taking dabigatran with meals may reduce dyspepsia.
               </p>
             </div>
 
-            <div className="asa-section-card asa-alert asa-alert-red">
+            <div className="rounded-xl border border-red-200 bg-red-50 text-red-900 shadow-sm p-5">
               <strong>Dabigatran capsules:</strong> Must NOT be opened, crushed, or chewed. Dabigatran must remain in its original blister packaging (moisture sensitive) and CANNOT be placed in dosette boxes or administered through enteral feeding tubes.
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Crushing and Administration</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Crushing and Administration</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li><strong>Apixaban:</strong> Can be crushed. Can be administered through enteral feeding tubes (crushed in D5W).</li>
                 <li><strong>Rivaroxaban:</strong> Can be crushed. Can be administered through enteral feeding tubes (if tube tip is in the stomach).</li>
                 <li><strong>Edoxaban:</strong> Can be crushed. Can be administered through enteral feeding tubes.</li>
@@ -272,37 +272,37 @@ export function DoacsComparisonGuide() {
               </ul>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Dosette / Pill Organiser</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Dosette / Pill Organiser</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>Apixaban, edoxaban, and rivaroxaban can be placed in a dosette box.</li>
                 <li><strong>Dabigatran must stay in its original blister pack</strong> due to moisture sensitivity.</li>
               </ul>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Missed Doses</h2>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Missed Doses</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 <strong>General rule:</strong> Do not double the next dose. Take the missed dose as soon as remembered if there is enough time before the next scheduled dose.
               </p>
-              <div className="asa-alert asa-alert-blue">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
                 <strong>Exception:</strong> For <strong>rivaroxaban 15 mg BID</strong> (first 3 weeks of VTE treatment) and <strong>apixaban 10 mg BID</strong> (first 7 days of VTE treatment), the missed dose may be taken the same day to maintain adequate initial anticoagulation intensity.
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Prosthetic Heart Valves</h2>
-              <div className="asa-alert asa-alert-red">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Prosthetic Heart Valves</h2>
+              <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
                 <strong>DOACs are CONTRAINDICATED with mechanical heart valves.</strong>
               </div>
-              <p className="asa-section-copy" style={{ marginTop: "0.75rem" }}>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ marginTop: "0.75rem" }}>
                 DOACs may be used in patients with <strong>bioprosthetic heart valves</strong> who require anticoagulation for VTE or AF, once the high-risk period post-implantation has passed.
               </p>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Dental Procedures</h2>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Dental Procedures</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 For <strong>minor dental work</strong>, it is probably safe to continue the DOAC. Consider prescribing <strong>tranexamic acid mouthwash</strong> for local haemostasis. For major dental surgery or high bleeding-risk procedures, see the <GuideLink to="doacsPeriop">DOACs: Perioperative Management</GuideLink> guide.
               </p>
             </div>
@@ -311,18 +311,18 @@ export function DoacsComparisonGuide() {
 
         {/* DRUG INTERACTIONS */}
         {activeTab === "interactions" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Key Drug Interactions</h2>
-              <p className="asa-section-copy">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Key Drug Interactions</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 DOAC interactions vary by <strong>P-glycoprotein (P-gp)</strong> and <strong>CYP3A4</strong> metabolic pathways. Dabigatran is primarily a P-gp substrate. Apixaban and rivaroxaban are metabolised by both P-gp and CYP3A4. Edoxaban is primarily a P-gp substrate.
               </p>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Interaction Summary</h2>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Interaction Summary</h2>
               <div style={{ overflowX: "auto" }}>
-                <table className="asa-dose-table">
+                <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr>
                       <th>Drug / Class</th>
@@ -336,13 +336,13 @@ export function DoacsComparisonGuide() {
                         <td>
                           <strong>{row.drug}</strong>
                           {row.severity === "red" && (
-                            <span className="asa-badge asa-badge-red" style={{ marginLeft: "0.5rem", fontSize: "0.7em" }}>Avoid</span>
+                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-700" style={{ marginLeft: "0.5rem", fontSize: "0.7em" }}>Avoid</span>
                           )}
                           {row.severity === "amber" && (
-                            <span className="asa-badge asa-badge-amber" style={{ marginLeft: "0.5rem", fontSize: "0.7em" }}>Caution</span>
+                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-700" style={{ marginLeft: "0.5rem", fontSize: "0.7em" }}>Caution</span>
                           )}
                           {row.severity === "green" && (
-                            <span className="asa-badge asa-badge-blue" style={{ marginLeft: "0.5rem", fontSize: "0.7em" }}>Safe</span>
+                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700" style={{ marginLeft: "0.5rem", fontSize: "0.7em" }}>Safe</span>
                           )}
                         </td>
                         <td style={{ fontSize: "0.87em" }}>{row.effect}</td>
@@ -354,7 +354,7 @@ export function DoacsComparisonGuide() {
               </div>
             </div>
 
-            <div className="asa-section-card asa-alert asa-alert-amber">
+            <div className="rounded-xl border border-amber-200 bg-amber-50 text-amber-900 shadow-sm p-5">
               <strong>Always check:</strong> Before prescribing or modifying a DOAC, review the patient's full medication list for P-gp and CYP3A4 interactions. Consult the product monograph for drug-specific guidance.
             </div>
           </div>
@@ -362,13 +362,13 @@ export function DoacsComparisonGuide() {
 
         {/* MONITORING */}
         {activeTab === "monitoring" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Routine Follow-Up</h2>
-              <p className="asa-section-copy">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Routine Follow-Up</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Patients on DOACs should be reviewed <strong>every 6 to 12 months</strong>. At each visit:
               </p>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>Confirm ongoing indication for anticoagulation</li>
                 <li>Check for bleeding complications and assess bleeding risk</li>
                 <li>Order CBC and creatinine (renal function may change DOAC dose requirements)</li>
@@ -377,21 +377,21 @@ export function DoacsComparisonGuide() {
               </ul>
             </div>
 
-            <div className="asa-section-card asa-alert asa-alert-blue">
+            <div className="rounded-xl border border-blue-200 bg-blue-50 text-blue-900 shadow-sm p-5">
               <strong>No routine coagulation testing:</strong> DOACs do not require routine INR, aPTT, or anti-Xa monitoring. Coagulation tests are variably affected by DOACs and must be interpreted with caution.
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Effect on Coagulation Tests</h2>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Effect on Coagulation Tests</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 DOACs variably affect PT/INR and aPTT. A <strong>normal PT/INR or aPTT does NOT reliably exclude therapeutic DOAC levels</strong>. Cautious interpretation is required — these tests should not be used to guide DOAC dosing.
               </p>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Switching from Warfarin to a DOAC</h2>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Switching from Warfarin to a DOAC</h2>
               <div style={{ overflowX: "auto" }}>
-                <table className="asa-dose-table">
+                <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr>
                       <th>DOAC</th>
@@ -414,14 +414,14 @@ export function DoacsComparisonGuide() {
 
         {/* EMERGENCIES */}
         {activeTab === "emergencies" && (
-          <div className="asa-sections">
-            <div className="asa-section-card asa-alert asa-alert-red">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border border-red-200 bg-red-50 text-red-900 shadow-sm p-5">
               <strong>Emergency situations on DOACs require prompt multidisciplinary consultation.</strong> The clinical history of the last DOAC dose is the single most important piece of information.
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Acute Ischaemic Stroke on a DOAC</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Acute Ischaemic Stroke on a DOAC</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>Assess compliance and timing of the last DOAC dose</li>
                 <li>Consider thrombolysis if sufficient time has elapsed since the last dose</li>
                 <li><strong>A normal aPTT or INR is NOT reliable</strong> to clear a patient for thrombolysis — clinical history of the last DOAC dose is the best tool</li>
@@ -429,24 +429,24 @@ export function DoacsComparisonGuide() {
               </ul>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Acute Coronary Syndrome on a DOAC</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Acute Coronary Syndrome on a DOAC</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>Manage as for other ACS patients</li>
                 <li>Consult cardiology regarding anticoagulation management during ACS treatment</li>
                 <li>Consider DOAC timing and bleeding risk when planning invasive procedures</li>
               </ul>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Major Trauma or Serious Bleeding</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Major Trauma or Serious Bleeding</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>Provide supportive care and treat the underlying cause of bleeding</li>
                 <li><strong>Dabigatran:</strong> Idarucizumab (Praxbind) — specific reversal agent</li>
                 <li><strong>Factor Xa inhibitors (apixaban, rivaroxaban, edoxaban):</strong> Prothrombin complex concentrate (PCC)</li>
                 <li>Consult haematology for guidance on reversal and ongoing management</li>
               </ul>
-              <div className="asa-alert asa-alert-amber" style={{ marginTop: "0.75rem" }}>
+              <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900" style={{ marginTop: "0.75rem" }}>
                 <strong>Andexanet alfa:</strong> Approved for reversal of apixaban and rivaroxaban in some jurisdictions but not widely available. PCC remains the most accessible option for factor Xa inhibitor reversal.
               </div>
             </div>
@@ -455,18 +455,18 @@ export function DoacsComparisonGuide() {
 
         {/* RENAL DOSING */}
         {activeTab === "renal" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Importance of Renal Function</h2>
-              <p className="asa-section-copy">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Importance of Renal Function</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 All DOACs have some degree of renal elimination. Dose adjustments are critical to avoid drug accumulation and increased bleeding risk. <strong>Renal function should be monitored at least annually</strong>, and more frequently in patients with CrCl 30-60 mL/min or declining renal function.
               </p>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">AF Dosing by Creatinine Clearance</h2>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">AF Dosing by Creatinine Clearance</h2>
               <div style={{ overflowX: "auto" }}>
-                <table className="asa-dose-table">
+                <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr>
                       <th>DOAC</th>
@@ -489,15 +489,15 @@ export function DoacsComparisonGuide() {
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">VTE Treatment — Renal Considerations</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">VTE Treatment — Renal Considerations</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li><strong>Edoxaban:</strong> Reduce to 30 mg daily if CrCl 30–50 mL/min</li>
                 <li><strong>Apixaban, rivaroxaban, dabigatran:</strong> No dose reduction for VTE treatment based on renal function alone (standard contraindication thresholds still apply)</li>
               </ul>
             </div>
 
-            <div className="asa-section-card asa-alert asa-alert-blue">
+            <div className="rounded-xl border border-blue-200 bg-blue-50 text-blue-900 shadow-sm p-5">
               <strong>When uncertain:</strong> Consult a thrombosis specialist or clinical pharmacist for guidance on DOAC selection and dosing in patients with impaired or changing renal function.
             </div>
           </div>
@@ -505,13 +505,13 @@ export function DoacsComparisonGuide() {
 
         {/* REFERENCES */}
         {activeTab === "references" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">References</h2>
-              <ol className="asa-ref-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">References</h2>
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((ref, i) => <li key={i}>{ref}</li>)}
               </ol>
-              <p className="asa-section-copy" style={{ marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }}>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }}>
                 Not a substitute for individual clinical judgment.
               </p>
             </div>

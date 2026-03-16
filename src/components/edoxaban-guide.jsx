@@ -129,29 +129,29 @@ export function EdoxabanGuide() {
   const [tab, setTab] = useState("overview");
 
   return (
-    <section className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <div className="asa-guide-header-top">
-          <div className="asa-guide-header-copy">
-            <div className="asa-badge-row">
-              <span className="asa-badge asa-badge-blue">Clinical Guide</span>
-              <span className="asa-badge asa-badge-teal">Direct Oral Anticoagulant</span>
-              <span className="asa-badge asa-badge-gray">Factor Xa Inhibitor</span>
+    <section className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex-1 min-w-0">
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Clinical Guide</span>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-teal-100 text-teal-700">Direct Oral Anticoagulant</span>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600">Factor Xa Inhibitor</span>
             </div>
-            <h2 className="asa-guide-title">Edoxaban (Lixiana&reg;)</h2>
-            <div className="asa-guide-meta">
+            <h2 className="text-2xl font-bold leading-tight mt-1">Edoxaban (Lixiana&reg;)</h2>
+            <div className="flex flex-wrap gap-3 mt-3 text-xs text-muted-foreground">
               <span>Clinical Guide</span>
               <span>Oral direct factor Xa inhibitor</span>
             </div>
           </div>
         </div>
 
-        <div className="asa-objective-strip">
+        <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-muted/60 text-sm text-muted-foreground border border-border/50">
           <strong>Objective:</strong> To provide guidance on the use of edoxaban for stroke prevention in non-valvular atrial fibrillation and treatment/prevention of venous thromboembolism.
         </div>
       </div>
 
-      <div className="asa-mechanism-card">
+      <div className="rounded-xl border bg-card shadow-sm p-5">
         <div>
           <h3>Mechanism of Action</h3>
           <p>
@@ -162,8 +162,8 @@ export function EdoxabanGuide() {
         </div>
       </div>
 
-      <div className="asa-tabs">
-        <div className="asa-tab-bar" role="tablist" aria-label="Edoxaban guide sections">
+      <div className="grid gap-4">
+        <div className="flex gap-1 p-1 rounded-xl bg-muted overflow-x-auto" role="tablist" aria-label="Edoxaban guide sections">
           {tabs.map(([id, label]) => (
             <button
               key={id}
@@ -178,19 +178,19 @@ export function EdoxabanGuide() {
 
         {/* ── Overview ── */}
         {tab === "overview" && (
-          <div className="asa-tab-body">
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Pharmacology</h3>
-              <p className="asa-section-copy">
+          <div className="grid gap-4">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Pharmacology</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Edoxaban is a selective, reversible, direct factor Xa inhibitor that binds to the
                 active site of factor Xa in both free and prothrombinase-bound forms. By inhibiting
                 factor Xa, edoxaban reduces thrombin generation, thereby inhibiting thrombus formation.
               </p>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Approved Indications</h3>
-              <ul className="asa-sections">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Approved Indications</h3>
+              <ul className="grid gap-3.5">
                 <li>
                   <strong>Stroke and systemic embolism prevention</strong> in patients with
                   non-valvular atrial fibrillation (NVAF) with one or more risk factors.
@@ -205,9 +205,9 @@ export function EdoxabanGuide() {
               </ul>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Key Pharmacokinetic Properties</h3>
-              <table className="asa-dose-table">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Key Pharmacokinetic Properties</h3>
+              <table className="w-full border-collapse text-sm">
                 <tbody>
                   <tr><td>Bioavailability</td><td>~62%</td></tr>
                   <tr><td>Peak plasma level</td><td>1&ndash;2 hours</td></tr>
@@ -219,7 +219,7 @@ export function EdoxabanGuide() {
               </table>
             </article>
 
-            <div className="asa-alert">
+            <div className="flex gap-3 p-3.5 rounded-lg border">
               <strong>Important:</strong> Do not use in patients with CrCl &lt;15 mL/min, in
               pregnancy or breastfeeding, or in severe hepatic disease associated with coagulopathy.
             </div>
@@ -228,34 +228,34 @@ export function EdoxabanGuide() {
 
         {/* ── Dosing ── */}
         {tab === "dosing" && (
-          <div className="asa-tab-body">
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Atrial Fibrillation</h3>
-              <p className="asa-section-copy">
+          <div className="grid gap-4">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Atrial Fibrillation</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Standard dose: <strong>60 mg once daily</strong>.
               </p>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Reduce to <strong>30 mg once daily</strong> if any of the following are present:
               </p>
-              <ul className="asa-sections">
+              <ul className="grid gap-3.5">
                 {afDosingReductions.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 No dose adjustment is required for concomitant amiodarone or verapamil. Avoid
                 concomitant use with strong CYP3A4 and P-gp inducers (e.g. rifampin, phenytoin,
                 carbamazepine, St. John&rsquo;s wort).
               </p>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Venous Thromboembolism Treatment</h3>
-              <p className="asa-section-copy">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Venous Thromboembolism Treatment</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Initiate edoxaban <strong>after at least 5 days</strong> of parenteral anticoagulation
                 (e.g. <GuideLink to="ufhLmwh">LMWH or unfractionated heparin</GuideLink>).
               </p>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Phase</th>
@@ -266,21 +266,21 @@ export function EdoxabanGuide() {
                 <tbody>
                   <tr>
                     <td>Acute treatment (after &ge;5 days parenteral)</td>
-                    <td className="dose-highlight">60 mg OD</td>
+                    <td className="font-bold text-foreground">60 mg OD</td>
                     <td>Reduce to 30 mg OD if dose-reduction criteria met</td>
                   </tr>
                   <tr>
                     <td>Extended prevention</td>
-                    <td className="dose-highlight">60 mg OD</td>
+                    <td className="font-bold text-foreground">60 mg OD</td>
                     <td>Same dose; same reduction criteria apply</td>
                   </tr>
                 </tbody>
               </table>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Dose Reduction Criteria (All Indications)</h3>
-              <table className="asa-dose-table">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Dose Reduction Criteria (All Indications)</h3>
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Criterion</th>
@@ -291,28 +291,28 @@ export function EdoxabanGuide() {
                 <tbody>
                   <tr>
                     <td>CrCl &gt;50 mL/min, weight &gt;60 kg, no P-gp inhibitors</td>
-                    <td className="dose-highlight">60 mg OD</td>
+                    <td className="font-bold text-foreground">60 mg OD</td>
                     <td>&mdash;</td>
                   </tr>
                   <tr>
                     <td>CrCl 30&ndash;50 mL/min</td>
                     <td>&mdash;</td>
-                    <td className="dose-highlight">30 mg OD</td>
+                    <td className="font-bold text-foreground">30 mg OD</td>
                   </tr>
                   <tr>
                     <td>CrCl 15&ndash;29 mL/min</td>
                     <td>&mdash;</td>
-                    <td className="dose-highlight">30 mg OD</td>
+                    <td className="font-bold text-foreground">30 mg OD</td>
                   </tr>
                   <tr>
                     <td>Weight &le;60 kg</td>
                     <td>&mdash;</td>
-                    <td className="dose-highlight">30 mg OD</td>
+                    <td className="font-bold text-foreground">30 mg OD</td>
                   </tr>
                   <tr>
                     <td>Potent P-gp inhibitors</td>
                     <td>&mdash;</td>
-                    <td className="dose-highlight">30 mg OD</td>
+                    <td className="font-bold text-foreground">30 mg OD</td>
                   </tr>
                   <tr>
                     <td>CrCl &lt;15 mL/min</td>
@@ -322,7 +322,7 @@ export function EdoxabanGuide() {
               </table>
             </article>
 
-            <div className="asa-alert">
+            <div className="flex gap-3 p-3.5 rounded-lg border">
               <strong>Contraindications:</strong> CrCl &lt;15 mL/min, pregnancy, breastfeeding,
               severe hepatic disease with coagulopathy.
             </div>
@@ -331,17 +331,17 @@ export function EdoxabanGuide() {
 
         {/* ── Monitoring ── */}
         {tab === "monitoring" && (
-          <div className="asa-tab-body">
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Routine Monitoring</h3>
-              <p className="asa-section-copy">
+          <div className="grid gap-4">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Routine Monitoring</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Edoxaban does <strong>not require routine coagulation monitoring</strong>.
               </p>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Coagulation Tests</h3>
-              <p className="asa-section-copy">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Coagulation Tests</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 PT/INR and aPTT may be normal at therapeutic doses and are <strong>not reliable</strong>{" "}
                 for assessing edoxaban activity. Anti-Xa assays calibrated with edoxaban-specific
                 calibrators are available in some specialized laboratories but are not widely validated
@@ -349,9 +349,9 @@ export function EdoxabanGuide() {
               </p>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Recommended Follow-Up</h3>
-              <ul className="asa-sections">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Recommended Follow-Up</h3>
+              <ul className="grid gap-3.5">
                 <li>Periodic clinical assessment for bleeding and thromboembolic events.</li>
                 <li>Annual renal function (CrCl) measurement, or more frequently if CrCl is borderline or declining.</li>
                 <li>Assess hepatic function at baseline and as clinically indicated.</li>
@@ -360,7 +360,7 @@ export function EdoxabanGuide() {
               </ul>
             </article>
 
-            <div className="asa-alert">
+            <div className="flex gap-3 p-3.5 rounded-lg border">
               <strong>Note:</strong> Standard coagulation tests (PT, aPTT) cannot be used to reliably
               measure edoxaban levels. Do not adjust doses based on these results.
             </div>
@@ -369,35 +369,35 @@ export function EdoxabanGuide() {
 
         {/* ── Adverse Effects ── */}
         {tab === "adverse" && (
-          <div className="asa-tab-body">
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Bleeding</h3>
-              <p className="asa-section-copy">
+          <div className="grid gap-4">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Bleeding</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Bleeding is the principal adverse effect of edoxaban, as with all anticoagulants.
                 Risk is increased by concomitant antiplatelet agents, NSAIDs, SSRIs, and other
                 drugs that affect haemostasis. See the <GuideLink to="doacsBleeding">DOACs: Bleeding Management</GuideLink> guide for detailed protocols.
               </p>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Neuraxial Anaesthesia / Epidural Catheters</h3>
-              <p className="asa-section-copy">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Neuraxial Anaesthesia / Epidural Catheters</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Avoid edoxaban in patients with indwelling epidural catheters. There is a risk of
                 spinal or epidural haematoma that can result in long-term or permanent paralysis.
                 Follow the <GuideLink to="doacsPeriop">DOACs: Perioperative Management</GuideLink> guide for timing of catheter removal relative to dosing.
               </p>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Drug-Level Effects</h3>
-              <p className="asa-section-copy">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Drug-Level Effects</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Edoxaban plasma levels may be significantly affected by concomitant medications.
                 P-gp inhibitors increase edoxaban exposure (dose reduction required for potent
                 inhibitors). Strong P-gp and CYP3A4 inducers decrease exposure and should be avoided.
               </p>
             </article>
 
-            <div className="asa-alert">
+            <div className="flex gap-3 p-3.5 rounded-lg border">
               <strong>Warning:</strong> Premature discontinuation of edoxaban increases the risk of
               thrombotic events. If anticoagulation must be stopped for reasons other than pathological
               bleeding, consider bridging with an alternative anticoagulant.
@@ -407,22 +407,22 @@ export function EdoxabanGuide() {
 
         {/* ── Special Considerations ── */}
         {tab === "special" && (
-          <div className="asa-tab-body">
+          <div className="grid gap-4">
             {specialTopics.map((topic) => (
-              <article key={topic.title} className="asa-section-card">
-                <h3 className="asa-section-title">{topic.title}</h3>
-                <p className="asa-section-copy">{topic.content}</p>
+              <article key={topic.title} className="rounded-xl border bg-card shadow-sm p-5">
+                <h3 className="text-base font-semibold mb-2">{topic.title}</h3>
+                <p className="text-sm text-foreground leading-relaxed mb-4">{topic.content}</p>
                 {topic.alert && (
-                  <div className="asa-alert">
+                  <div className="flex gap-3 p-3.5 rounded-lg border">
                     <strong>Clinical Pearl:</strong> {topic.alert}
                   </div>
                 )}
               </article>
             ))}
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Drug Interactions Summary</h3>
-              <table className="asa-dose-table">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Drug Interactions Summary</h3>
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Drug / Class</th>
@@ -444,19 +444,19 @@ export function EdoxabanGuide() {
 
         {/* ── References ── */}
         {tab === "references" && (
-          <div className="asa-tab-body">
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Related Clinical Guides</h3>
-              <ul className="asa-sections">
+          <div className="grid gap-4">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Related Clinical Guides</h3>
+              <ul className="grid gap-3.5">
                 {relatedGuideLinks.map((item) => (
                   <li key={item.key}><GuideLink to={item.key}>{item.label}</GuideLink></li>
                 ))}
               </ul>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">References</h3>
-              <ol className="asa-ref-list">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">References</h3>
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
@@ -466,7 +466,7 @@ export function EdoxabanGuide() {
         )}
       </div>
 
-      <div className="asa-guide-footer">
+      <div className="rounded-xl border bg-muted/50 p-4 text-xs text-muted-foreground">
         <p>
           <strong>Edoxaban (Lixiana&reg;)</strong> | Clinical Guide
         </p>

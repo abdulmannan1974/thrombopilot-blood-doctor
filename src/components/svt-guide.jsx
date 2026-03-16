@@ -148,33 +148,33 @@ export function SvtGuide() {
   const [tab, setTab] = useState("overview");
 
   return (
-    <section className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <div className="asa-guide-header-top">
-          <div className="asa-guide-header-copy">
-            <div className="asa-badge-row">
-              <span className="asa-badge asa-badge-blue">Clinical Guide</span>
-              <span className="asa-badge asa-badge-teal">Venous Thrombosis</span>
-              <span className="asa-badge asa-badge-gray">v35</span>
+    <section className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex-1 min-w-0">
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Clinical Guide</span>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-teal-100 text-teal-700">Venous Thrombosis</span>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600">v35</span>
             </div>
-            <h2 className="asa-guide-title">Superficial Vein Thrombosis (SVT)</h2>
-            <div className="asa-guide-meta">
+            <h2 className="text-2xl font-bold leading-tight mt-1">Superficial Vein Thrombosis (SVT)</h2>
+            <div className="flex flex-wrap gap-3 mt-3 text-xs text-muted-foreground">
               <span><Calendar size={13} /> Updated 5 February 2026</span>
               <span><FileText size={13} /> Superficial Thrombophlebitis / Superficial Vein Thrombosis</span>
             </div>
           </div>
-          <div className="asa-guide-icon">
+          <div className="flex items-center justify-center w-12 h-12 rounded-xl border border-blue-200 bg-blue-50 text-blue-600 flex-shrink-0">
             <Stethoscope size={24} />
           </div>
         </div>
 
-        <div className="asa-objective-strip">
+        <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-muted/60 text-sm text-muted-foreground border border-border/50">
           <strong>Objective:</strong> To provide an evidence-based approach to diagnosis and management of superficial vein thrombosis, including identification of patients at risk for deep vein extension or pulmonary embolism.
         </div>
       </div>
 
-      <div className="asa-mechanism-card">
-        <div className="asa-mechanism-icon">
+      <div className="rounded-xl border bg-card shadow-sm p-5">
+        <div className="flex items-center justify-center w-10 h-10 rounded-lg border border-blue-200 bg-blue-50 text-blue-600 mb-2">
           <Info size={18} />
         </div>
         <div>
@@ -183,8 +183,8 @@ export function SvtGuide() {
         </div>
       </div>
 
-      <div className="asa-tabs">
-        <div className="asa-tabs-list" role="tablist" aria-label="SVT guide sections">
+      <div className="grid gap-4">
+        <div className="flex gap-1 p-1 rounded-xl bg-muted" role="tablist" aria-label="SVT guide sections">
           {tabs.map(([id, label]) => (
             <button
               key={id}
@@ -198,8 +198,8 @@ export function SvtGuide() {
         </div>
 
         {tab === "overview" ? (
-          <div className="asa-tab-panel">
-            <div className="asa-alert asa-alert-danger">
+          <div className="grid gap-3.5">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <ShieldAlert size={16} />
               <div>
                 <strong>Critical reminder:</strong> The superficial femoral vein is a DEEP vein despite its name. Thrombosis of the superficial femoral vein must be managed as a deep vein thrombosis, not as SVT.
@@ -207,24 +207,24 @@ export function SvtGuide() {
             </div>
 
             {riskFactors.map((section) => (
-              <article key={section.title} className="asa-section-card">
+              <article key={section.title} className="rounded-xl border bg-card shadow-sm p-5">
                 <h3><Dot tone="blue" />{section.title}</h3>
-                <ul className="asa-ind-list">
+                <ul className="list-none p-0 space-y-1">
                   {section.items.map((item) => <li key={item}>{item}</li>)}
                 </ul>
               </article>
             ))}
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="orange" />Concomitant VTE Risk</h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 At initial diagnosis, approximately 25% of patients with SVT have concomitant deep vein thrombosis, and approximately 4% have concomitant pulmonary embolism. This underscores the importance of performing compression ultrasonography at presentation to rule out DVT and assess the proximity of the thrombus to the saphenofemoral or saphenopopliteal junctions.
               </p>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="teal" />Cancer Screening Consideration</h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 In patients aged over 40 with SVT, no varicose veins, and no other obvious risk factors, age- and gender-appropriate cancer screening should be considered. Migratory SVT (Trousseau syndrome) should further increase suspicion for occult malignancy.
               </p>
             </article>
@@ -232,10 +232,10 @@ export function SvtGuide() {
         ) : null}
 
         {tab === "diagnosis" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Clinical Presentation</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>Erythema along the course of a superficial vein</li>
                 <li>Warmth overlying the affected area</li>
                 <li>Tender, palpable cord</li>
@@ -243,21 +243,21 @@ export function SvtGuide() {
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="teal" />Compression Ultrasonography (CUS)</h3>
-              <div className="asa-alert asa-alert-info">
+              <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
                 <Search size={16} />
                 <div>All patients with clinically suspected SVT should undergo compression ultrasonography of the affected and contralateral limbs.</div>
               </div>
-              <p className="asa-section-copy">The goals of ultrasonography are to:</p>
-              <ul className="asa-ind-list">
+              <p className="text-sm text-foreground leading-relaxed mb-4">The goals of ultrasonography are to:</p>
+              <ul className="list-none p-0 space-y-1">
                 <li>Confirm the diagnosis of SVT and determine the extent and length of thrombus</li>
                 <li>Rule out concomitant deep vein thrombosis</li>
                 <li>Assess the proximity of the thrombus to the saphenofemoral junction (SFJ) or saphenopopliteal junction (SPJ)</li>
               </ul>
             </article>
 
-            <div className="asa-alert asa-alert-warn">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <AlertTriangle size={16} />
               <div>
                 <strong>Ultrasound monitoring:</strong> Follow-up ultrasonography is used to rule out deep extension of the thrombus. It is NOT intended to confirm thrombus resolution. Repeat imaging should be guided by clinical progression, new symptoms, or treatment decisions.
@@ -267,10 +267,10 @@ export function SvtGuide() {
         ) : null}
 
         {tab === "treatment" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Treatment Algorithm by Location and Extent</h3>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Step</th>
@@ -288,7 +288,7 @@ export function SvtGuide() {
                         </span>
                       </td>
                       <td>{row.scenario}</td>
-                      <td className="dose-highlight">{row.treatment}</td>
+                      <td className="font-bold text-foreground">{row.treatment}</td>
                       <td>{row.duration}</td>
                     </tr>
                   ))}
@@ -296,16 +296,16 @@ export function SvtGuide() {
               </table>
             </article>
 
-            <div className="asa-alert asa-alert-danger">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <ShieldAlert size={16} />
               <div>
                 <strong>Concomitant DVT:</strong> If DVT is identified at any point, escalate immediately to full therapeutic anticoagulation and manage per DVT treatment guidelines.
               </div>
             </div>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="teal" />Key Treatment Notes</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>Fondaparinux 2.5 mg SC daily is the best-studied agent for SVT ≥5 cm (CALISTO trial).</li>
                 <li>Rivaroxaban 10 mg PO daily is an alternative with comparable efficacy (SURPRISE trial).</li>
                 <li>Prophylactic or intermediate-dose LMWH is a reasonable option when fondaparinux or rivaroxaban are unavailable or contraindicated.</li>
@@ -314,7 +314,7 @@ export function SvtGuide() {
               </ul>
             </article>
 
-            <div className="asa-alert asa-alert-info">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <Info size={16} />
               <div>
                 <strong>Supportive measures for all patients:</strong> Encourage ambulation, apply warm or cold compresses for symptom relief, and consider oral NSAIDs for pain and inflammation in patients not receiving anticoagulation.
@@ -324,23 +324,23 @@ export function SvtGuide() {
         ) : null}
 
         {tab === "special" ? (
-          <div className="asa-tab-panel">
+          <div className="grid gap-3.5">
             {specialPopulations.map((section) => {
               const Icon = section.icon;
               return (
-                <article key={section.title} className="asa-section-card">
+                <article key={section.title} className="rounded-xl border bg-card shadow-sm p-5">
                   <h3>
                     <span className={`asa-ind-icon ${section.tone}`}><Icon size={14} /></span>
                     {section.title}
                   </h3>
-                  <ul className="asa-ind-list">
+                  <ul className="list-none p-0 space-y-1">
                     {section.points.map((point) => <li key={point}>{point}</li>)}
                   </ul>
                 </article>
               );
             })}
 
-            <div className="asa-alert asa-alert-warn">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <AlertCircle size={16} />
               <div>
                 <strong>Pregnancy warning:</strong> DOACs and warfarin are contraindicated in pregnancy. Use LMWH as the anticoagulant of choice. Untreated antepartum SVT carries a 10.4% risk of VTE in the same pregnancy.
@@ -350,19 +350,19 @@ export function SvtGuide() {
         ) : null}
 
         {tab === "references" ? (
-          <div className="asa-tab-panel">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="gray" />Related Clinical Guides</h3>
-              <ul className="asa-related-list">
+              <ul className="list-none p-0 divide-y divide-border">
                 {relatedGuideKeys.map((item) => (
                   <li key={item.to}><Link2 size={14} /><GuideLink to={item.to}>{item.label}</GuideLink></li>
                 ))}
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="gray" />References</h3>
-              <ol className="asa-ref-list">
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((item) => <li key={item}>{item}</li>)}
               </ol>
             </article>
@@ -370,7 +370,7 @@ export function SvtGuide() {
         ) : null}
       </div>
 
-      <div className="asa-guide-footer">
+      <div className="rounded-xl border bg-muted/50 p-4 text-xs text-muted-foreground">
         <p><strong>Superficial Vein Thrombosis (SVT)</strong> | Updated 5 February 2026 | Version 35</p>
         <p>The information here is not a substitute for clinical judgement. Always seek appropriate specialist input when needed.</p>
       </div>

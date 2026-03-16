@@ -158,16 +158,16 @@ export function VteDurationGuide() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <p className="asa-guide-eyebrow">Clinical Guide</p>
-        <h1 className="asa-guide-title">VTE: Duration of Treatment</h1>
-        <p className="asa-guide-lead">
+    <div className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <p className="flex flex-wrap gap-2 mb-2">Clinical Guide</p>
+        <h1 className="text-2xl font-bold leading-tight mt-1">VTE: Duration of Treatment</h1>
+        <p className="text-sm text-muted-foreground leading-relaxed mt-2">
           Evidence-based guidance on how long to anticoagulate after DVT or PE — balancing recurrence risk, bleeding risk, and patient preference.
         </p>
       </div>
 
-      <div className="asa-tab-bar">
+      <div className="flex gap-1 p-1 rounded-xl bg-muted overflow-x-auto">
         {tabs.map((t, i) => (
           <button
             key={t}
@@ -179,71 +179,71 @@ export function VteDurationGuide() {
         ))}
       </div>
 
-      <div className="asa-tab-body">
+      <div className="grid gap-4">
         {/* OVERVIEW */}
         {activeTab === 0 && (
-          <div className="asa-sections">
-            <div className="asa-alert asa-alert-blue">
+          <div className="grid gap-3.5">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <strong>Core principle:</strong> Minimum 3 months for all proximal DVT or PE. After 3 months, reassess — decision to continue depends on recurrence risk, bleeding risk, and patient preference.
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">The 3-Month Minimum</h3>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">The 3-Month Minimum</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Shortening anticoagulation from 3 months to 4–6 weeks doubles the frequency of recurrent VTE in the first 6 months. The risk of recurrence after stopping is similar whether treatment was given for 3 months or 6–24 months — so 3 months is sufficient to treat the acute episode if long-term therapy is not indicated.
               </p>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Key Decision Framework</h3>
-              <div className="asa-timeline">
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker">1</div>
-                  <div className="asa-timeline-content">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Key Decision Framework</h3>
+              <div className="relative pl-6 space-y-4 border-l-2 border-border">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary">1</div>
+                  <div className="ml-2">
                     <strong>Treat acute VTE for minimum 3 months</strong>
                     <p>All proximal DVT or PE require at least 3 months of anticoagulation.</p>
                   </div>
                 </div>
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker">2</div>
-                  <div className="asa-timeline-content">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary">2</div>
+                  <div className="ml-2">
                     <strong>Classify provoking factors</strong>
                     <p>Was the VTE provoked by a transient factor (now resolved), unprovoked, or associated with a persistent risk factor?</p>
                   </div>
                 </div>
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker">3</div>
-                  <div className="asa-timeline-content">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary">3</div>
+                  <div className="ml-2">
                     <strong>Estimate recurrence risk</strong>
                     <p>Use patient sex, provocation category, and prognostic models (HERDOO2, DASH, Vienna) in unprovoked cases.</p>
                   </div>
                 </div>
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker">4</div>
-                  <div className="asa-timeline-content">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary">4</div>
+                  <div className="ml-2">
                     <strong>Estimate bleeding risk</strong>
                     <p>No validated tool for VTE patients; use clinical risk factor assessment (age, prior bleed, renal function, etc.).</p>
                   </div>
                 </div>
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker">5</div>
-                  <div className="asa-timeline-content">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary">5</div>
+                  <div className="ml-2">
                     <strong>Shared decision making</strong>
                     <p>Involve the patient — balance their preferences, values, and quality of life concerns with quantified risk estimates.</p>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Bleeding Risk Factors</h3>
-              <p className="asa-section-copy" style={{ marginBottom: "0.75rem" }}>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Bleeding Risk Factors</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ marginBottom: "0.75rem" }}>
                 ≥2 factors = at least moderate bleeding risk. Carefully weigh extended therapy against this risk.
               </p>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 {bleedingRiskFactors.map((f) => (
                   <li key={f}>{f}</li>
                 ))}
               </ul>
             </div>
-            <div className="asa-alert asa-alert-amber">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <strong>Extended therapy dose reduction:</strong> For patients continuing rivaroxaban or apixaban beyond 6 months, dose reduction can be considered — rivaroxaban 10 mg OD or apixaban 2.5 mg BID (EINSTEIN CHOICE and AMPLIFY EXT trials; as effective and safe as standard dosing).
             </div>
           </div>
@@ -251,14 +251,14 @@ export function VteDurationGuide() {
 
         {/* PROVOKED VTE */}
         {activeTab === 1 && (
-          <div className="asa-sections">
-            <div className="asa-alert asa-alert-blue">
+          <div className="grid gap-3.5">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               VTE provoked by a <strong>transient risk factor</strong> that has resolved → generally <strong>3 months only</strong>. Stronger the provoking factor, the lower the recurrence risk.
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Transient Risk Factors and Estimated Recurrence</h3>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Transient Risk Factors and Estimated Recurrence</h3>
               <div style={{ overflowX: "auto" }}>
-                <table className="asa-dose-table">
+                <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr>
                       <th>Provoking Factor</th>
@@ -277,14 +277,14 @@ export function VteDurationGuide() {
                   </tbody>
                 </table>
               </div>
-              <p className="asa-section-copy" style={{ fontSize: "0.8rem", marginTop: "0.5rem" }}>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ fontSize: "0.8rem", marginTop: "0.5rem" }}>
                 *Estrogen-related VTE: ~4% by 5 years, lower than other minor provoking factors.
               </p>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Recurrence Risk by Category</h3>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Recurrence Risk by Category</h3>
               <div style={{ overflowX: "auto" }}>
-                <table className="asa-dose-table">
+                <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr>
                       <th>Category</th>
@@ -306,9 +306,9 @@ export function VteDurationGuide() {
                 </table>
               </div>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Special Cases in Provoked VTE</h3>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Special Cases in Provoked VTE</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li><strong>Two strong provoking factors (e.g. separate surgeries):</strong> 3 months is typically recommended.</li>
                 <li><strong>Two weak provoking factors (e.g. travel + hospitalization):</strong> extended therapy may be more appropriate.</li>
                 <li><strong>CVC-associated VTE:</strong> treat as provoked VTE; see <GuideLink to="cvad">Catheter-Related DVT</GuideLink>.</li>
@@ -321,13 +321,13 @@ export function VteDurationGuide() {
 
         {/* UNPROVOKED VTE */}
         {activeTab === 2 && (
-          <div className="asa-sections">
-            <div className="asa-alert asa-alert-blue">
+          <div className="grid gap-3.5">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               First unprovoked proximal DVT or PE: average recurrence ~10% at 1 year, ~25% at 5 years, ~36% at 10 years after stopping anticoagulation. <strong>Patient sex substantially modifies risk.</strong>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Recommendations for Unprovoked VTE</h3>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Recommendations for Unprovoked VTE</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>Minimum 3 months of anticoagulation for all cases</li>
                 <li>After 3 months: reassess recurrence risk vs. bleeding risk — consider indefinite therapy in suitable patients</li>
                 <li>In <strong>men</strong> with first unprovoked proximal DVT/PE: extended therapy generally recommended (high recurrence risk)</li>
@@ -336,8 +336,8 @@ export function VteDurationGuide() {
                 <li><strong>Patient preference is essential</strong> — stop anticoagulation when benefits no longer clearly outweigh risks, or when an informed patient chooses to stop</li>
               </ul>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Prognostic Models for Recurrence Risk</h3>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Prognostic Models for Recurrence Risk</h3>
               {prognosticModels.map((m) => (
                 <div key={m.name} style={{ marginBottom: "1.5rem", padding: "1rem", background: "var(--surface)", borderRadius: "8px", borderLeft: "3px solid var(--primary)" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
@@ -345,14 +345,14 @@ export function VteDurationGuide() {
                     <span className={m.badgeClass}>{m.badge}</span>
                   </div>
                   <p style={{ fontSize: "0.85rem", color: "var(--muted)", marginBottom: "0.5rem" }}>Population: {m.population}</p>
-                  <ul className="asa-ind-list" style={{ marginBottom: "0.5rem" }}>
+                  <ul className="list-none p-0 space-y-1" style={{ marginBottom: "0.5rem" }}>
                     {m.criteria.map((c) => <li key={c}>{c}</li>)}
                   </ul>
                   <p style={{ fontSize: "0.85rem" }}>{m.interpretation}</p>
                 </div>
               ))}
             </div>
-            <div className="asa-alert asa-alert-amber">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <strong>Limitations of prognostic models:</strong> HERDOO2 requires VIDAS D-dimer assay (not interchangeable with other assays); limited data in women ≥ 50 years. DASH shows &gt;5% recurrence in patients &gt;65 years even at the lowest score. Vienna model lacks a clinical impact study. Use in conjunction with clinical judgment and patient preference.
             </div>
           </div>
@@ -360,23 +360,23 @@ export function VteDurationGuide() {
 
         {/* PERSISTENT RISK FACTORS */}
         {activeTab === 3 && (
-          <div className="asa-sections">
-            <div className="asa-alert asa-alert-red">
+          <div className="grid gap-3.5">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <strong>Strong persistent risk factors (active cancer, high-risk thrombophilia, APS):</strong> indefinite anticoagulation is generally recommended if bleeding risk is acceptable.
             </div>
             {persistentFactors.map((pf) => (
-              <div key={pf.factor} className="asa-section-card">
+              <div key={pf.factor} className="rounded-xl border bg-card shadow-sm p-5">
                 <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
-                  <h3 className="asa-section-title" style={{ margin: 0 }}>{pf.factor}</h3>
+                  <h3 className="text-base font-semibold mb-2" style={{ margin: 0 }}>{pf.factor}</h3>
                   <span className={pf.badgeClass}>{pf.badge}</span>
                 </div>
-                <p className="asa-section-copy" style={{ fontWeight: 600, marginBottom: "0.25rem" }}>{pf.recommendation}</p>
-                <p className="asa-section-copy">{pf.detail}</p>
+                <p className="text-sm text-foreground leading-relaxed mb-4" style={{ fontWeight: 600, marginBottom: "0.25rem" }}>{pf.recommendation}</p>
+                <p className="text-sm text-foreground leading-relaxed mb-4">{pf.detail}</p>
               </div>
             ))}
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Periodic Reassessment</h3>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Periodic Reassessment</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Patients recommended indefinite anticoagulation should be reassessed at least annually to re-estimate the VTE vs. bleeding risk balance and to review patient preferences. Active cancer remission, resolution of APS antibodies (if confirmed on repeat testing), or new bleeding complications may prompt reassessment.
               </p>
             </div>
@@ -385,11 +385,11 @@ export function VteDurationGuide() {
 
         {/* SUMMARY TABLE */}
         {activeTab === 4 && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Summary Recommendations: Duration of Anticoagulation</h3>
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Summary Recommendations: Duration of Anticoagulation</h3>
               <div style={{ overflowX: "auto" }}>
-                <table className="asa-dose-table">
+                <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr>
                       <th>Clinical Scenario</th>
@@ -411,10 +411,10 @@ export function VteDurationGuide() {
                 </table>
               </div>
             </div>
-            <div className="asa-alert asa-alert-blue">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <strong>Dose reduction after 6 months:</strong> Rivaroxaban 10 mg OD or apixaban 2.5 mg BID are as effective and safe as standard doses for extended VTE prevention (EINSTEIN CHOICE and AMPLIFY EXT trials).
             </div>
-            <div className="asa-alert asa-alert-amber">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <strong>Special notes:</strong><br />
               • Isolated distal DVT + cancer: consider ≥ 12 months (ONCO DVT study: edoxaban 12 vs 3 months).<br />
               • Two strong provoking factors → 3 months typical. Two weak provoking factors → consider extended therapy.<br />
@@ -425,10 +425,10 @@ export function VteDurationGuide() {
 
         {/* REFERENCES */}
         {activeTab === 5 && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">References</h3>
-              <ol className="asa-ref-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">References</h3>
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((r) => (
                   <li key={r}>{r}</li>
                 ))}

@@ -68,22 +68,22 @@ export function PerioperativeAntiplateletGuide() {
   const [activeTab, setActiveTab] = useState("overview");
 
   return (
-    <div className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <div className="asa-guide-header-body">
-          <div className="asa-guide-eyebrow">
-            <span className="asa-badge asa-badge-orange">Perioperative</span>
-            <span className="asa-badge asa-badge-blue">Antiplatelet Therapy</span>
-            <span className="asa-badge">Clinical Guide</span>
+    <div className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <div className="flex items-start gap-4">
+          <div className="flex flex-wrap gap-2 mb-2">
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-700">Perioperative</span>
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Antiplatelet Therapy</span>
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary text-secondary-foreground">Clinical Guide</span>
           </div>
-          <h1 className="asa-guide-title">Perioperative Management of Antiplatelet Therapy</h1>
-          <p className="asa-guide-lead">
+          <h1 className="text-2xl font-bold leading-tight mt-1">Perioperative Management of Antiplatelet Therapy</h1>
+          <p className="text-sm text-muted-foreground leading-relaxed mt-2">
             Balancing the risk of major adverse cardiovascular events (MACE) from interrupting antiplatelet therapy against the risk of perioperative bleeding from continuing therapy.
           </p>
         </div>
       </div>
 
-      <div className="asa-tab-bar">
+      <div className="flex gap-1 p-1 rounded-xl bg-muted overflow-x-auto">
         {tabs.map((t) => (
           <button
             key={t.id}
@@ -95,34 +95,34 @@ export function PerioperativeAntiplateletGuide() {
         ))}
       </div>
 
-      <div className="asa-tab-body">
+      <div className="grid gap-4">
         {/* OVERVIEW */}
         {activeTab === "overview" && (
-          <div className="asa-sections">
-            <div className="asa-section-card asa-alert asa-alert-amber">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border border-amber-200 bg-amber-50 text-amber-900 shadow-sm p-5">
               <strong>Key principle:</strong> Risk stratification for perioperative antiplatelet management is largely empiric. Individual patient decisions require balancing thrombotic risk from interruption against bleeding risk from continuation.
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Risk Stratification</h2>
-              <div className="asa-ae-grid">
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label" style={{ color: "#dc2626" }}>High Thrombotic Risk</span>
-                  <span className="asa-ae-value">Recent coronary stent (&lt;1 year), recent MI, recent arterial embolism, recent ischaemic stroke</span>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Risk Stratification</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "#dc2626" }}>High Thrombotic Risk</span>
+                  <span className="text-sm">Recent coronary stent (&lt;1 year), recent MI, recent arterial embolism, recent ischaemic stroke</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label" style={{ color: "#16a34a" }}>Low Thrombotic Risk</span>
-                  <span className="asa-ae-value">Antiplatelet therapy for primary prevention of cardiovascular events</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "#16a34a" }}>Low Thrombotic Risk</span>
+                  <span className="text-sm">Antiplatelet therapy for primary prevention of cardiovascular events</span>
                 </div>
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">P2Y12 Inhibitor Interruption Timing</h2>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">P2Y12 Inhibitor Interruption Timing</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 When P2Y12 inhibitor interruption is required before surgery, the recommended pre-operative hold times vary by agent:
               </p>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>P2Y12 Inhibitor</th>
@@ -133,7 +133,7 @@ export function PerioperativeAntiplateletGuide() {
                   {p2y12Timing.map((row) => (
                     <tr key={row.agent}>
                       <td><strong>{row.agent}</strong></td>
-                      <td className="dose-highlight">{row.timing}</td>
+                      <td className="font-bold text-foreground">{row.timing}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -144,10 +144,10 @@ export function PerioperativeAntiplateletGuide() {
 
         {/* WITHOUT STENTS */}
         {activeTab === "without-stents" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">POISE-2 Trial Evidence</h2>
-              <div className="asa-section-card" style={{ margin: 0, borderLeft: "3px solid var(--primary)" }}>
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">POISE-2 Trial Evidence</h2>
+              <div className="rounded-xl border bg-card shadow-sm p-5" style={{ margin: 0, borderLeft: "3px solid var(--primary)" }}>
                 <strong>POISE-2 (N = 10,010)</strong>
                 <p style={{ margin: "0.3rem 0 0", fontSize: "0.9em" }}>
                   Continuing or initiating ASA perioperatively in patients undergoing non-cardiac surgery did <strong>not</strong> reduce the rate of major adverse cardiovascular events (MACE), but <strong>did increase</strong> major bleeding (4.6% vs 3.8%).
@@ -155,9 +155,9 @@ export function PerioperativeAntiplateletGuide() {
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">When to Continue ASA</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">When to Continue ASA</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>Carotid endarterectomy</li>
                 <li>Recent acute coronary syndrome or ischaemic stroke</li>
                 <li>Low-to-moderate surgical bleeding risk procedures</li>
@@ -165,19 +165,19 @@ export function PerioperativeAntiplateletGuide() {
               </ul>
             </div>
 
-            <div className="asa-section-card asa-alert asa-alert-red">
+            <div className="rounded-xl border border-red-200 bg-red-50 text-red-900 shadow-sm p-5">
               <strong>Do NOT initiate ASA</strong> in patients not already taking ASA to reduce perioperative cardiovascular events. POISE-2 showed no benefit and increased bleeding.
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">High Bleeding Risk Surgery</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">High Bleeding Risk Surgery</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>Stop ASA <strong>7 days</strong> before surgery</li>
                 <li>Resume ASA within <strong>24 hours</strong> post-operatively once haemostasis is secure</li>
               </ul>
             </div>
 
-            <div className="asa-section-card asa-alert asa-alert-amber">
+            <div className="rounded-xl border border-amber-200 bg-amber-50 text-amber-900 shadow-sm p-5">
               <strong>P2Y12 monotherapy (without stent):</strong> Limited data available to guide perioperative management. Consider specialist consultation for patients on P2Y12 monotherapy who require surgery.
             </div>
           </div>
@@ -185,50 +185,50 @@ export function PerioperativeAntiplateletGuide() {
 
         {/* WITH STENTS */}
         {activeTab === "with-stents" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">POISE-2 PCI Sub-study</h2>
-              <div className="asa-ae-grid">
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Study Population</span>
-                  <span className="asa-ae-value">470 patients with prior PCI</span>
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">POISE-2 PCI Sub-study</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Study Population</span>
+                  <span className="text-sm">470 patients with prior PCI</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label" style={{ color: "#16a34a" }}>MIs Prevented</span>
-                  <span className="asa-ae-value"><strong>59</strong> per 1,000 patients with perioperative ASA</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "#16a34a" }}>MIs Prevented</span>
+                  <span className="text-sm"><strong>59</strong> per 1,000 patients with perioperative ASA</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label" style={{ color: "#dc2626" }}>Major Bleeds Caused</span>
-                  <span className="asa-ae-value"><strong>8</strong> per 1,000 patients with perioperative ASA</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "#dc2626" }}>Major Bleeds Caused</span>
+                  <span className="text-sm"><strong>8</strong> per 1,000 patients with perioperative ASA</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Conclusion</span>
-                  <span className="asa-ae-value">Benefit of perioperative ASA likely outweighs harm in patients with prior PCI</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Stent Thrombosis Risk Over Time</h2>
-              <div className="asa-ae-grid">
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label" style={{ color: "#dc2626" }}>First 6 weeks post-stent</span>
-                  <span className="asa-ae-value">Highest risk: <strong>8\u201310%</strong> stent thrombosis if DAPT interrupted</span>
-                </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label" style={{ color: "#d97706" }}>6 weeks to 6 months</span>
-                  <span className="asa-ae-value">Risk gradually declines</span>
-                </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label" style={{ color: "#16a34a" }}>Beyond 6 months</span>
-                  <span className="asa-ae-value">Plateaus at <strong>1\u20132%</strong></span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Conclusion</span>
+                  <span className="text-sm">Benefit of perioperative ASA likely outweighs harm in patients with prior PCI</span>
                 </div>
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Management by PCI Timing and Indication</h2>
-              <table className="asa-dose-table">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Stent Thrombosis Risk Over Time</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "#dc2626" }}>First 6 weeks post-stent</span>
+                  <span className="text-sm">Highest risk: <strong>8\u201310%</strong> stent thrombosis if DAPT interrupted</span>
+                </div>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "#d97706" }}>6 weeks to 6 months</span>
+                  <span className="text-sm">Risk gradually declines</span>
+                </div>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "#16a34a" }}>Beyond 6 months</span>
+                  <span className="text-sm">Plateaus at <strong>1\u20132%</strong></span>
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Management by PCI Timing and Indication</h2>
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Clinical Scenario</th>
@@ -254,39 +254,39 @@ export function PerioperativeAntiplateletGuide() {
 
         {/* CABG MANAGEMENT */}
         {activeTab === "cabg" && (
-          <div className="asa-sections">
-            <div className="asa-section-card asa-alert asa-alert-red">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border border-red-200 bg-red-50 text-red-900 shadow-sm p-5">
               <strong>High bleeding risk:</strong> CABG surgery carries a high risk of perioperative bleeding, including the life-threatening complication of cardiac tamponade. Decisions about antiplatelet management must carefully weigh coronary thrombotic complications against perioperative bleeding risk.
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Interdisciplinary Assessment Required</h2>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Interdisciplinary Assessment Required</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Perioperative antiplatelet management for CABG requires interdisciplinary assessment and shared decision-making involving:
               </p>
-              <div className="asa-ae-grid">
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Cardiac Surgeon</span>
-                  <span className="asa-ae-value">Assesses surgical bleeding risk and timing considerations</span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Cardiac Surgeon</span>
+                  <span className="text-sm">Assesses surgical bleeding risk and timing considerations</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Interventional Cardiologist</span>
-                  <span className="asa-ae-value">Evaluates coronary anatomy, stent characteristics, thrombotic risk</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Interventional Cardiologist</span>
+                  <span className="text-sm">Evaluates coronary anatomy, stent characteristics, thrombotic risk</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Attending Physician</span>
-                  <span className="asa-ae-value">Coordinates overall care and comorbidity management</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Attending Physician</span>
+                  <span className="text-sm">Coordinates overall care and comorbidity management</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Patient</span>
-                  <span className="asa-ae-value">Informed consent and shared decision-making about risks and benefits</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Patient</span>
+                  <span className="text-sm">Informed consent and shared decision-making about risks and benefits</span>
                 </div>
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">P2Y12 Inhibitor Management for CABG</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">P2Y12 Inhibitor Management for CABG</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>Interrupt P2Y12 inhibitors before CABG according to standard hold times (prasugrel 7 days, clopidogrel 5 days, ticagrelor 3\u20135 days)</li>
                 <li>ASA is generally continued through CABG surgery</li>
                 <li>Urgent or emergent CABG may require proceeding despite recent P2Y12 inhibitor use, accepting increased bleeding risk</li>
@@ -294,7 +294,7 @@ export function PerioperativeAntiplateletGuide() {
               </ul>
             </div>
 
-            <div className="asa-section-card asa-alert asa-alert-red">
+            <div className="rounded-xl border border-red-200 bg-red-50 text-red-900 shadow-sm p-5">
               <strong>Alert:</strong> Balance coronary thrombotic complications against perioperative bleeding. The consequence of CABG-related major bleeding (cardiac tamponade, death) mandates careful, individualized assessment in all cases.
             </div>
           </div>
@@ -302,10 +302,10 @@ export function PerioperativeAntiplateletGuide() {
 
         {/* REFERENCES */}
         {activeTab === "references" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">References</h2>
-              <ol className="asa-ref-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">References</h2>
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((ref, i) => (
                   <li key={i}>{ref}</li>
                 ))}

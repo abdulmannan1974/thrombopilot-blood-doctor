@@ -150,16 +150,16 @@ export function ApsThrombophiliaGuide() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <p className="asa-guide-eyebrow">Clinical Guide</p>
-        <h1 className="asa-guide-title">Thrombophilia: Antiphospholipid Syndrome</h1>
-        <p className="asa-guide-lead">
+    <div className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <p className="flex flex-wrap gap-2 mb-2">Clinical Guide</p>
+        <h1 className="text-2xl font-bold leading-tight mt-1">Thrombophilia: Antiphospholipid Syndrome</h1>
+        <p className="text-sm text-muted-foreground leading-relaxed mt-2">
           APS diagnosis, risk stratification, and antithrombotic therapy &mdash; including why DOACs are inferior to warfarin in high-risk APS.
         </p>
       </div>
 
-      <div className="asa-tab-bar">
+      <div className="flex gap-1 p-1 rounded-xl bg-muted overflow-x-auto">
         {tabs.map((t, i) => (
           <button
             key={t}
@@ -171,51 +171,51 @@ export function ApsThrombophiliaGuide() {
         ))}
       </div>
 
-      <div className="asa-tab-body">
+      <div className="grid gap-4">
         {/* OVERVIEW */}
         {activeTab === 0 && (
-          <div className="asa-sections">
-            <div className="asa-alert asa-alert-red">
+          <div className="grid gap-3.5">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <strong>Key point:</strong> In high-risk APS (triple positivity or arterial thrombosis), DOACs are inferior to warfarin &mdash; more strokes and MI. <GuideLink to="warfarin">Warfarin</GuideLink> with INR 2.0-3.0 is the standard of care.
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">What is APS?</h3>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">What is APS?</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 APS is an acquired hypercoagulable state driven by autoantibodies against phospholipid-binding proteins. It causes venous thrombosis, arterial thrombosis, microvascular thrombosis, and/or pregnancy complications (recurrent miscarriage, fetal loss, severe preeclampsia). May be primary (isolated) or secondary (with SLE or other autoimmune disease).
               </p>
             </div>
-            <div className="asa-ae-grid">
-              <div className="asa-ae-card">
-                <span className="asa-ae-label">Key antibodies</span>
-                <span className="asa-ae-value">LA, aCL (IgG/IgM), anti-\u03b22GPI (IgG/IgM)</span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="rounded-lg border p-3">
+                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Key antibodies</span>
+                <span className="text-sm">LA, aCL (IgG/IgM), anti-\u03b22GPI (IgG/IgM)</span>
               </div>
-              <div className="asa-ae-card">
-                <span className="asa-ae-label">Confirmation</span>
-                <span className="asa-ae-value">\u22652 positive tests, \u226512 weeks apart</span>
+              <div className="rounded-lg border p-3">
+                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Confirmation</span>
+                <span className="text-sm">\u22652 positive tests, \u226512 weeks apart</span>
               </div>
-              <div className="asa-ae-card">
-                <span className="asa-ae-label">High-risk profile</span>
-                <span className="asa-ae-value">Triple positivity or arterial thrombosis</span>
+              <div className="rounded-lg border p-3">
+                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">High-risk profile</span>
+                <span className="text-sm">Triple positivity or arterial thrombosis</span>
               </div>
-              <div className="asa-ae-card">
-                <span className="asa-ae-label">DOAC evidence</span>
-                <span className="asa-ae-value">Inferior to warfarin in high-risk APS (TRAPS, ASTRO-APS)</span>
+              <div className="rounded-lg border p-3">
+                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">DOAC evidence</span>
+                <span className="text-sm">Inferior to warfarin in high-risk APS (TRAPS, ASTRO-APS)</span>
               </div>
-              <div className="asa-ae-card">
-                <span className="asa-ae-label">Target INR</span>
-                <span className="asa-ae-value">2.0-3.0 (warfarin)</span>
+              <div className="rounded-lg border p-3">
+                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Target INR</span>
+                <span className="text-sm">2.0-3.0 (warfarin)</span>
               </div>
-              <div className="asa-ae-card">
-                <span className="asa-ae-label">Duration</span>
-                <span className="asa-ae-value">Indefinite (high recurrence risk)</span>
+              <div className="rounded-lg border p-3">
+                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Duration</span>
+                <span className="text-sm">Indefinite (high recurrence risk)</span>
               </div>
             </div>
-            <div className="asa-alert asa-alert-amber">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <strong>Specialist consultation:</strong> Diagnosis and management of APS should be undertaken in consultation with a hematologist or thrombosis specialist given complexity, treatment implications, and laboratory interpretation challenges.
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Related Guides</h3>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Related Guides</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li><GuideLink to="warfarin">Warfarin</GuideLink></li>
                 <li><GuideLink to="warfarinInr">Warfarin: Out-of-Range INR Management</GuideLink></li>
                 <li><GuideLink to="warfarinPoc">Warfarin: Point-of-Care INR Monitoring</GuideLink></li>
@@ -228,25 +228,25 @@ export function ApsThrombophiliaGuide() {
 
         {/* DIAGNOSIS */}
         {activeTab === 1 && (
-          <div className="asa-sections">
-            <div className="asa-alert asa-alert-blue">
+          <div className="grid gap-3.5">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
               <strong>2023 ACR/EULAR Criteria:</strong> Higher specificity than 2006 Sapporo criteria, but reduced sensitivity. The British Society of Haematology (2024) recommends the 2006 criteria for routine clinical use to avoid underdiagnosis.
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">How to Diagnose APS</h3>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">How to Diagnose APS</h3>
               {diagnosisCriteria.map((d) => (
                 <div key={d.domain} style={{ marginBottom: "1.25rem", padding: "0.75rem", background: "var(--surface)", borderRadius: "8px", borderLeft: "3px solid var(--primary)" }}>
                   <strong style={{ display: "block", marginBottom: "0.5rem" }}>{d.domain}</strong>
-                  <ul className="asa-ind-list">
+                  <ul className="list-none p-0 space-y-1">
                     {d.items.map((item) => <li key={item}>{item}</li>)}
                   </ul>
                   {d.note && <p style={{ fontSize: "0.8rem", color: "var(--muted)", marginTop: "0.5rem" }}>{d.note}</p>}
                 </div>
               ))}
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Key Laboratory Notes</h3>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Key Laboratory Notes</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>ELISA results for aCL/anti-\u03b22GPI are not equivalent to chemiluminescent immunoassay (CLIA) results</li>
                 <li>Moderate positive: 40-79 Units; High positive: \u226580 Units (ELISA)</li>
                 <li>LA may prolong aPTT &mdash; do NOT use aPTT to monitor UFH in LA-positive patients (use anti-Xa instead)</li>
@@ -254,8 +254,8 @@ export function ApsThrombophiliaGuide() {
                 <li>Single positive result: do not diagnose APS &mdash; retest in \u226512 weeks</li>
               </ul>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">APS Risk Stratification</h3>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">APS Risk Stratification</h3>
               {riskProfiles.map((r) => (
                 <div key={r.profile} style={{ marginBottom: "1rem", padding: "1rem", background: "var(--surface)", borderRadius: "8px" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.4rem" }}>
@@ -273,17 +273,17 @@ export function ApsThrombophiliaGuide() {
 
         {/* ANTITHROMBOTIC THERAPY */}
         {activeTab === 2 && (
-          <div className="asa-sections">
-            <div className="asa-alert asa-alert-red">
+          <div className="grid gap-3.5">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <strong>DOACs are NOT recommended in high-risk APS.</strong> Multiple RCTs (TRAPS, ASTRO-APS) and a 2023 meta-analysis (Khairani et al.) consistently show more arterial events with DOACs vs. warfarin.
             </div>
             {acuteManagement.map((a) => (
-              <div key={a.phase} className="asa-section-card">
+              <div key={a.phase} className="rounded-xl border bg-card shadow-sm p-5">
                 <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
-                  <h3 className="asa-section-title" style={{ margin: 0 }}>{a.phase}</h3>
+                  <h3 className="text-base font-semibold mb-2" style={{ margin: 0 }}>{a.phase}</h3>
                   <span className={a.badgeClass}>{a.badge}</span>
                 </div>
-                <p className="asa-section-copy">
+                <p className="text-sm text-foreground leading-relaxed mb-4">
                   {a.phase === "Acute venous thrombosis" ? (
                     <>LMWH preferred over UFH if baseline aPTT is prolonged by lupus anticoagulant (LA interferes with aPTT monitoring of UFH). See the <GuideLink to="ufhLmwh">UFH, LMWH &amp; Fondaparinux</GuideLink> guide for dosing.</>
                   ) : (
@@ -292,10 +292,10 @@ export function ApsThrombophiliaGuide() {
                 </p>
               </div>
             ))}
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">DOAC vs. Warfarin &mdash; Key Trial Evidence</h3>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">DOAC vs. Warfarin &mdash; Key Trial Evidence</h3>
               <div style={{ overflowX: "auto" }}>
-                <table className="asa-dose-table">
+                <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr>
                       <th>Trial</th>
@@ -321,18 +321,18 @@ export function ApsThrombophiliaGuide() {
                 </table>
               </div>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">When a Patient Declines Warfarin</h3>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">When a Patient Declines Warfarin</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li>Inform patient about reduced benefit of DOACs relative to warfarin in high-risk APS</li>
                 <li>Refer to hematologist or thrombosis specialist</li>
                 <li>Document informed discussion in the medical record</li>
                 <li>If DOAC used: <GuideLink to="rivaroxaban">rivaroxaban</GuideLink> or <GuideLink to="apixaban">apixaban</GuideLink>, with close monitoring</li>
               </ul>
             </div>
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Adjunctive Treatments</h3>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Adjunctive Treatments</h3>
+              <ul className="list-none p-0 space-y-1">
                 <li><strong>Hydroxychloroquine:</strong> add in APS + SLE; possible thromboprophylactic effect</li>
                 <li><strong>Low-dose ASA:</strong> may reduce arterial recurrence risk; role not well defined outside of obstetric APS or concurrent cardiovascular risk reduction</li>
                 <li><strong>Cardiovascular risk factor reduction:</strong> essential for all APS patients (BP control, lipid management, smoking cessation)</li>
@@ -344,14 +344,14 @@ export function ApsThrombophiliaGuide() {
 
         {/* SPECIAL SITUATIONS */}
         {activeTab === 3 && (
-          <div className="asa-sections">
+          <div className="grid gap-3.5">
             {specialSituations.map((s) => (
-              <div key={s.title} className="asa-section-card">
+              <div key={s.title} className="rounded-xl border bg-card shadow-sm p-5">
                 <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
-                  <h3 className="asa-section-title" style={{ margin: 0 }}>{s.title}</h3>
+                  <h3 className="text-base font-semibold mb-2" style={{ margin: 0 }}>{s.title}</h3>
                   <span className={s.badgeClass}>{s.badge}</span>
                 </div>
-                <p className="asa-section-copy">{s.content}</p>
+                <p className="text-sm text-foreground leading-relaxed mb-4">{s.content}</p>
               </div>
             ))}
           </div>
@@ -359,10 +359,10 @@ export function ApsThrombophiliaGuide() {
 
         {/* REFERENCES */}
         {activeTab === 4 && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">References</h3>
-              <ol className="asa-ref-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">References</h3>
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((r) => (
                   <li key={r}>{r}</li>
                 ))}

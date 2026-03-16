@@ -51,19 +51,19 @@ export function DoacsCoagulationTestsGuide() {
   const [tab, setTab] = useState("overview");
 
   return (
-    <section className="asa-guide-shell">
+    <section className="grid gap-4">
       {/* ── Header ── */}
-      <div className="asa-guide-header">
-        <p className="asa-guide-eyebrow">Clinical Guide</p>
-        <h2 className="asa-guide-title">DOACs: Coagulation Tests</h2>
-        <p className="asa-guide-lead">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <p className="flex flex-wrap gap-2 mb-2">Clinical Guide</p>
+        <h2 className="text-2xl font-bold leading-tight mt-1">DOACs: Coagulation Tests</h2>
+        <p className="text-sm text-muted-foreground leading-relaxed mt-2">
           Laboratory assessment of coagulation in patients receiving direct oral
           anticoagulants (DOACs), including routine and specific assays.
         </p>
       </div>
 
       {/* ── Tabs ── */}
-      <nav className="asa-tab-bar">
+      <nav className="flex gap-1 p-1 rounded-xl bg-muted overflow-x-auto">
         {tabs.map(([key, label]) => (
           <button
             key={key}
@@ -75,13 +75,13 @@ export function DoacsCoagulationTestsGuide() {
         ))}
       </nav>
 
-      <div className="asa-tab-body">
+      <div className="grid gap-4">
         {/* ═══════════════ OVERVIEW ═══════════════ */}
         {tab === "overview" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Four Approved DOACs</h3>
-              <div className="asa-section-copy">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Four Approved DOACs</h3>
+              <div className="text-sm text-foreground leading-relaxed mb-4">
                 <ul>
                   <li>
                     <strong>Dabigatran (Pradaxa)</strong> &mdash; direct thrombin
@@ -103,7 +103,7 @@ export function DoacsCoagulationTestsGuide() {
               </div>
             </div>
 
-            <div className="asa-alert asa-alert-red">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <strong>Critical Limitation:</strong> There is NO routinely available
               laboratory test that reliably assesses the anticoagulant effect of
               DOACs in the way that INR monitors warfarin or aPTT monitors
@@ -111,9 +111,9 @@ export function DoacsCoagulationTestsGuide() {
               monitor DOAC therapeutic effect.
             </div>
 
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">INR and PT Considerations</h3>
-              <div className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">INR and PT Considerations</h3>
+              <div className="text-sm text-foreground leading-relaxed mb-4">
                 <p>
                   The INR/ISI calculation system was developed based on vitamin K
                   antagonist (VKA) sensitivity and is not validated for DOACs. The
@@ -125,12 +125,12 @@ export function DoacsCoagulationTestsGuide() {
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">
                 Summary: DOAC Effects on Routine Coagulation Tests
               </h3>
-              <div className="asa-section-copy">
-                <table className="asa-dose-table">
+              <div className="text-sm text-foreground leading-relaxed mb-4">
+                <table className="w-full border-collapse text-sm">
                   <thead>
                     <tr>
                       <th>Drug</th>
@@ -159,12 +159,12 @@ export function DoacsCoagulationTestsGuide() {
 
         {/* ═══════════════ DABIGATRAN ═══════════════ */}
         {tab === "dabigatran" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">
                 Dabigatran &mdash; Direct Thrombin Inhibitor
               </h3>
-              <div className="asa-section-copy">
+              <div className="text-sm text-foreground leading-relaxed mb-4">
                 <p>
                   Dabigatran is a direct thrombin (Factor IIa) inhibitor with peak
                   plasma effect occurring <strong>1 to 3 hours</strong> after oral
@@ -190,17 +190,17 @@ export function DoacsCoagulationTestsGuide() {
               </div>
             </div>
 
-            <div className="asa-alert asa-alert-amber">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <strong>Caution:</strong> A normal PT/INR or aPTT CANNOT reliably
               exclude residual anticoagulant effect of dabigatran, particularly at
               trough levels. Only a normal TCT can provide this assurance.
             </div>
 
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">
                 Specific Quantitative Assays for Dabigatran
               </h3>
-              <div className="asa-section-copy">
+              <div className="text-sm text-foreground leading-relaxed mb-4">
                 <ul>
                   <li>
                     <strong>Dilute thrombin time (dTT)</strong> &mdash; quantitative,
@@ -228,10 +228,10 @@ export function DoacsCoagulationTestsGuide() {
 
         {/* ═══════════════ FACTOR Xa INHIBITORS ═══════════════ */}
         {tab === "fxa" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Apixaban</h3>
-              <div className="asa-section-copy">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Apixaban</h3>
+              <div className="text-sm text-foreground leading-relaxed mb-4">
                 <ul>
                   <li>
                     Peak plasma effect approximately <strong>3 hours</strong>{" "}
@@ -252,9 +252,9 @@ export function DoacsCoagulationTestsGuide() {
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Rivaroxaban</h3>
-              <div className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Rivaroxaban</h3>
+              <div className="text-sm text-foreground leading-relaxed mb-4">
                 <ul>
                   <li>
                     Peak plasma effect <strong>1 to 3 hours</strong> post-dose.
@@ -272,9 +272,9 @@ export function DoacsCoagulationTestsGuide() {
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Edoxaban</h3>
-              <div className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Edoxaban</h3>
+              <div className="text-sm text-foreground leading-relaxed mb-4">
                 <ul>
                   <li>
                     Peak plasma effect <strong>1 to 2 hours</strong> post-dose.
@@ -292,18 +292,18 @@ export function DoacsCoagulationTestsGuide() {
               </div>
             </div>
 
-            <div className="asa-alert asa-alert-red">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <strong>For all Factor Xa inhibitors:</strong> Normal PT/INR and aPTT
               may be found despite therapeutic drug levels. No routine coagulation
               test can reliably exclude residual anticoagulant effect of apixaban,
               rivaroxaban, or edoxaban.
             </div>
 
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">
                 Specific Assay: Anti-Xa with Drug-Specific Calibrators
               </h3>
-              <div className="asa-section-copy">
+              <div className="text-sm text-foreground leading-relaxed mb-4">
                 <p>
                   The anti-Xa assay can quantitatively measure Factor Xa inhibitor
                   levels, but it <strong>must</strong> be calibrated with{" "}
@@ -329,12 +329,12 @@ export function DoacsCoagulationTestsGuide() {
 
         {/* ═══════════════ CLINICAL USE ═══════════════ */}
         {tab === "clinical" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">
                 Assessment in the Bleeding Patient
               </h3>
-              <div className="asa-section-copy">
+              <div className="text-sm text-foreground leading-relaxed mb-4">
                 <p>
                   In patients presenting with bleeding on a DOAC, the{" "}
                   <strong>timing of the last dose</strong> and{" "}
@@ -344,9 +344,9 @@ export function DoacsCoagulationTestsGuide() {
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Dabigatran Bleeding</h3>
-              <div className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Dabigatran Bleeding</h3>
+              <div className="text-sm text-foreground leading-relaxed mb-4">
                 <ul>
                   <li>
                     A highly elevated aPTT (&gt;80 seconds) and/or elevated TCT
@@ -365,11 +365,11 @@ export function DoacsCoagulationTestsGuide() {
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">
                 Factor Xa Inhibitor Bleeding
               </h3>
-              <div className="asa-section-copy">
+              <div className="text-sm text-foreground leading-relaxed mb-4">
                 <p>
                   A normal PT/INR or aPTT should <strong>NOT</strong> be used to
                   suggest the absence of a significant residual anticoagulant
@@ -378,9 +378,9 @@ export function DoacsCoagulationTestsGuide() {
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">Baseline and Ongoing Monitoring</h3>
-              <div className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Baseline and Ongoing Monitoring</h3>
+              <div className="text-sm text-foreground leading-relaxed mb-4">
                 <ul>
                   <li>
                     <strong>Baseline and at least yearly:</strong> serum creatinine
@@ -395,11 +395,11 @@ export function DoacsCoagulationTestsGuide() {
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">
                 Emerging Tests and Point-of-Care Devices
               </h3>
-              <div className="asa-section-copy">
+              <div className="text-sm text-foreground leading-relaxed mb-4">
                 <p>
                   Newer coagulation assessment tools including thromboelastography
                   (TEG), rotational thromboelastometry (ROTEM), and point-of-care
@@ -418,10 +418,10 @@ export function DoacsCoagulationTestsGuide() {
 
         {/* ═══════════════ REFERENCES ═══════════════ */}
         {tab === "references" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h3 className="asa-section-title">References</h3>
-              <ol className="asa-ref-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">References</h3>
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((ref, i) => (
                   <li key={i}>{ref}</li>
                 ))}

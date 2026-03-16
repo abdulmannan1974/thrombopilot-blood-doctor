@@ -32,25 +32,25 @@ export function PrasugrelGuide() {
   const [tab, setTab] = useState("overview");
 
   return (
-    <section className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <div className="asa-guide-header-top">
-          <div className="asa-guide-header-copy">
-            <div className="asa-badge-row">
-              <span className="asa-badge asa-badge-blue">Clinical Guide</span>
-              <span className="asa-badge asa-badge-teal">Antiplatelet Therapy</span>
+    <section className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex-1 min-w-0">
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Clinical Guide</span>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-teal-100 text-teal-700">Antiplatelet Therapy</span>
             </div>
-            <h2 className="asa-guide-title">Prasugrel</h2>
+            <h2 className="text-2xl font-bold leading-tight mt-1">Prasugrel</h2>
           </div>
         </div>
 
-        <div className="asa-objective-strip">
+        <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-muted/60 text-sm text-muted-foreground border border-border/50">
           <strong>Objective:</strong> To provide guidance on the use of prasugrel for secondary prevention of ischemic cardiac events in patients with acute coronary syndromes managed with percutaneous coronary intervention.
         </div>
       </div>
 
-      <div className="asa-tabs">
-        <div className="asa-tab-bar" role="tablist" aria-label="Prasugrel guide sections">
+      <div className="grid gap-4">
+        <div className="flex gap-1 p-1 rounded-xl bg-muted overflow-x-auto" role="tablist" aria-label="Prasugrel guide sections">
           {tabs.map(([id, label]) => (
             <button
               key={id}
@@ -64,24 +64,24 @@ export function PrasugrelGuide() {
         </div>
 
         {tab === "overview" ? (
-          <div className="asa-tab-body">
-            <article className="asa-section-card">
+          <div className="grid gap-4">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3>Mechanism of Action</h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Prasugrel is an irreversible P2Y12 ADP receptor inhibitor. It is a thienopyridine prodrug that, after hepatic bioactivation, binds irreversibly to the platelet P2Y12 receptor, blocking ADP-mediated platelet activation and aggregation for the lifetime of the platelet.
               </p>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3>Clinical Role</h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Prasugrel is co-administered with <GuideLink to="asa">ASA</GuideLink> for secondary prevention of ischemic cardiac events in patients with acute coronary syndromes (ACS) managed with percutaneous coronary intervention (PCI). See the <GuideLink to="daptDuration">DAPT Duration in CAD</GuideLink> guide for duration considerations.
               </p>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3>Key Evidence</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>
                   In the Phase 3 TRITON-TIMI 38 trial, prasugrel demonstrated a 2.2% absolute risk reduction (NNT = 46) for the composite of cardiovascular death, non-fatal myocardial infarction, and non-fatal stroke compared with <GuideLink to="clopidogrel">clopidogrel</GuideLink>.
                 </li>
@@ -100,10 +100,10 @@ export function PrasugrelGuide() {
         ) : null}
 
         {tab === "dosing" ? (
-          <div className="asa-tab-body">
-            <article className="asa-section-card">
+          <div className="grid gap-4">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3>Dosing Summary</h3>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Indication or situation</th>
@@ -115,7 +115,7 @@ export function PrasugrelGuide() {
                   {dosingRows.map((row) => (
                     <tr key={row[0]}>
                       <td>{row[0]}</td>
-                      <td className="dose-highlight">{row[1]}</td>
+                      <td className="font-bold text-foreground">{row[1]}</td>
                       <td>{row[2]}</td>
                     </tr>
                   ))}
@@ -123,15 +123,15 @@ export function PrasugrelGuide() {
               </table>
             </article>
 
-            <div className="asa-alert asa-alert-red">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <div>
                 <strong>Not recommended:</strong> Prasugrel is not recommended in patients weighing less than 60 kg or aged over 75 years due to increased bleeding risk. A 5 mg daily dose has been evaluated in post-hoc analyses of patients over 75, but there is no approval for the 5 mg dose.
               </div>
             </div>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3>Pharmacokinetic Notes</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>No food effect on absorption.</li>
                 <li>No dose adjustment required for renal impairment or mild-to-moderate hepatic impairment.</li>
                 <li>No significant pharmacokinetic drug interactions.</li>
@@ -142,10 +142,10 @@ export function PrasugrelGuide() {
         ) : null}
 
         {tab === "adverse" ? (
-          <div className="asa-tab-body">
-            <article className="asa-section-card">
+          <div className="grid gap-4">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3>Bleeding Risk</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>Major bleeding, including intracranial hemorrhage, is the principal adverse effect.</li>
                 <li>
                   CABG-related bleeding occurred in 13.4% of prasugrel-treated patients (NNH = 10 versus clopidogrel).
@@ -156,7 +156,7 @@ export function PrasugrelGuide() {
               </ul>
             </article>
 
-            <div className="asa-alert asa-alert-red">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <div>
                 <strong>Net clinical benefit lost:</strong> The net benefit of prasugrel over <GuideLink to="clopidogrel">clopidogrel</GuideLink> is lost in patients aged over 75 years or weighing less than 60 kg due to the higher bleeding risk in these populations.
               </div>
@@ -165,19 +165,19 @@ export function PrasugrelGuide() {
         ) : null}
 
         {tab === "periprocedural" ? (
-          <div className="asa-tab-body">
-            <article className="asa-section-card">
+          <div className="grid gap-4">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3>Periprocedural Management</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>Discontinue prasugrel at least 7 days before elective surgery, if it is safe to do so.</li>
                 <li>Delay elective procedures beyond 1 year after stent placement if possible, when dual antiplatelet therapy can be safely completed.</li>
                 <li>Consultation with cardiology or thrombosis specialist is advised before stopping prasugrel in stented patients, particularly within the first year.</li>
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3>Minor Procedures</h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 For minor procedures such as dental work, skin procedures, and cataract surgery, there is generally no need to discontinue prasugrel. See the <GuideLink to="periopAntiplatelet">Perioperative Antiplatelet Management</GuideLink> guide for details.
               </p>
             </article>
@@ -185,23 +185,23 @@ export function PrasugrelGuide() {
         ) : null}
 
         {tab === "special" ? (
-          <div className="asa-tab-body">
-            <div className="asa-alert asa-alert-red">
+          <div className="grid gap-4">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-red-200 bg-red-50 text-red-900">
               <div>
                 <strong>Contraindicated in prior stroke or TIA:</strong> Prasugrel must be avoided in patients with a history of stroke or transient ischemic attack due to significantly increased risk of fatal and intracranial hemorrhagic bleeding.
               </div>
             </div>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3>Hepatic Impairment</h3>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Avoid prasugrel in patients with severe liver disease.
               </p>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3>Pregnancy and Lactation</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li>No adequate studies in pregnant women. Use only if the potential benefit justifies the potential risk to the fetus.</li>
                 <li>Prasugrel is excreted in rat milk. Breastfeeding is not recommended during treatment.</li>
               </ul>
@@ -210,10 +210,10 @@ export function PrasugrelGuide() {
         ) : null}
 
         {tab === "references" ? (
-          <div className="asa-tab-body">
-            <article className="asa-section-card">
+          <div className="grid gap-4">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3>Related Clinical Guides</h3>
-              <ul className="asa-related-list">
+              <ul className="list-none p-0 divide-y divide-border">
                 <li><GuideLink to="asa">ASA (Acetylsalicylic Acid)</GuideLink></li>
                 <li><GuideLink to="clopidogrel">Clopidogrel (Plavix)</GuideLink></li>
                 <li><GuideLink to="ticagrelor">Ticagrelor (Brilinta)</GuideLink></li>
@@ -222,9 +222,9 @@ export function PrasugrelGuide() {
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3>References</h3>
-              <ol className="asa-ref-list">
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
@@ -234,7 +234,7 @@ export function PrasugrelGuide() {
         ) : null}
       </div>
 
-      <div className="asa-guide-footer">
+      <div className="rounded-xl border bg-muted/50 p-4 text-xs text-muted-foreground">
         <p><strong>Prasugrel</strong> | Clinical Guide</p>
         <p>The information here is not a substitute for clinical judgement. Always seek appropriate specialist input when needed.</p>
       </div>

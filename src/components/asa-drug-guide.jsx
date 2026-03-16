@@ -93,13 +93,13 @@ export function AsaDrugGuide() {
   const [activeTab, setActiveTab] = useState("Overview");
 
   return (
-    <section className="asa-guide-shell">
-      <header className="asa-guide-header">
+    <section className="grid gap-4">
+      <header className="rounded-xl border bg-card shadow-sm p-6">
         <h2>Acetylsalicylic Acid (ASA) — Drug Monograph</h2>
         <p>Antiplatelet Therapy Clinical Guide</p>
       </header>
 
-      <nav className="asa-tab-bar" role="tablist" aria-label="ASA drug guide sections">
+      <nav className="flex gap-1 p-1 rounded-xl bg-muted overflow-x-auto" role="tablist" aria-label="ASA drug guide sections">
         {TABS.map((t) => (
           <button
             key={t}
@@ -114,11 +114,11 @@ export function AsaDrugGuide() {
         ))}
       </nav>
 
-      <div className="asa-tab-body">
+      <div className="grid gap-4">
         {/* ── Overview ── */}
         {activeTab === "Overview" && (
-          <div className="asa-sections">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3>Background</h3>
               <p>
                 Acetylsalicylic acid (ASA) is well established in the acute management of myocardial
@@ -129,7 +129,7 @@ export function AsaDrugGuide() {
               </p>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3>Expanding Role</h3>
               <p>
                 ASA may also be considered for the secondary prevention of recurrent venous
@@ -138,9 +138,9 @@ export function AsaDrugGuide() {
               </p>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3>Primary Prevention</h3>
-              <div className="asa-alert">
+              <div className="flex gap-3 p-3.5 rounded-lg border">
                 ASA is <strong>not routinely recommended</strong> for primary prevention of a first
                 vascular event. The net clinical benefit depends on weighing the reduction in
                 cardiovascular events against the risk of gastrointestinal and intracranial bleeding.
@@ -151,62 +151,62 @@ export function AsaDrugGuide() {
 
         {/* ── Indications ── */}
         {activeTab === "Indications" && (
-          <div className="asa-sections">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3>Cardiac Indications</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 {indicationItems.cardiac.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3>Cerebrovascular Indications</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 {indicationItems.cerebrovascular.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3>Peripheral Arterial Disease</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 {indicationItems.pad.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3>Primary Prevention</h3>
-              <div className="asa-alert">
+              <div className="flex gap-3 p-3.5 rounded-lg border">
                 {indicationItems.primaryPrevention[0]}
               </div>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3>VTE Secondary Prevention</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 {indicationItems.vteSecondary.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3>Thromboprophylaxis After Joint Arthroplasty</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 {indicationItems.arthroplasty.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3>Prevention of Pre-eclampsia</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 {indicationItems.preeclampsia.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
@@ -217,10 +217,10 @@ export function AsaDrugGuide() {
 
         {/* ── Dosing ── */}
         {activeTab === "Dosing" && (
-          <div className="asa-sections">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3>Dosing Summary</h3>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Indication</th>
@@ -240,7 +240,7 @@ export function AsaDrugGuide() {
               </table>
             </article>
 
-            <div className="asa-alert">
+            <div className="flex gap-3 p-3.5 rounded-lg border">
               <strong>GI bleeding risk:</strong> For patients at elevated gastrointestinal bleeding
               risk, co-administer a proton pump inhibitor (PPI) or H2-receptor antagonist.
               Alternatively, clopidogrel may be used as a substitute antiplatelet agent.
@@ -250,10 +250,10 @@ export function AsaDrugGuide() {
 
         {/* ── Adverse Effects ── */}
         {activeTab === "Adverse Effects" && (
-          <div className="asa-sections">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3>Adverse Effects Profile</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 {adverseEffectItems.map((item) => (
                   <li key={item.text}>
                     <strong>{item.severity}:</strong> {item.text}
@@ -262,7 +262,7 @@ export function AsaDrugGuide() {
               </ul>
             </article>
 
-            <div className="asa-alert">
+            <div className="flex gap-3 p-3.5 rounded-lg border">
               <strong>Key point:</strong> Gastrointestinal bleeding risk is dose-related. Use the
               lowest effective dose (81 mg daily for most indications). Higher doses do not improve
               antithrombotic efficacy but significantly increase bleeding.
@@ -272,25 +272,25 @@ export function AsaDrugGuide() {
 
         {/* ── Special Considerations ── */}
         {activeTab === "Special Considerations" && (
-          <div className="asa-sections">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3>Concomitant Oral Anticoagulation and ASA</h3>
               <p>
                 Combined use of therapeutic-dose anticoagulation and ASA is discouraged and should
                 only be considered in carefully selected patients at low bleeding risk:
               </p>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 {concomitantOacExceptions.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
-              <div className="asa-alert">
+              <div className="flex gap-3 p-3.5 rounded-lg border">
                 In <strong>most</strong> patients, ASA should be stopped when oral anticoagulation
                 is started.
               </div>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3>NSAID Interaction</h3>
               <p>
                 Avoid traditional NSAIDs in patients taking ASA for vascular protection. If an
@@ -298,27 +298,27 @@ export function AsaDrugGuide() {
               </p>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3>Cautions</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 {cautions.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3>Perioperative Management</h3>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 {perioperativePoints.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
             </article>
 
-            <article className="asa-section-card">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3>Pediatric Use</h3>
-              <div className="asa-alert">
+              <div className="flex gap-3 p-3.5 rounded-lg border">
                 When possible, obtain specialist paediatric thrombosis consultation before
                 prescribing ASA for antiplatelet therapy in children.
               </div>
@@ -328,10 +328,10 @@ export function AsaDrugGuide() {
 
         {/* ── References ── */}
         {activeTab === "References" && (
-          <div className="asa-sections">
-            <article className="asa-section-card">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3>References</h3>
-              <ol className="asa-ref-list">
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((ref) => (
                   <li key={ref}>{ref}</li>
                 ))}

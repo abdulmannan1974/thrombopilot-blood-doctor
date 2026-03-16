@@ -105,21 +105,21 @@ export function CerebralVenousThrombosisGuide() {
   const [activeTab, setActiveTab] = useState("overview");
 
   return (
-    <div className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <div className="asa-guide-header-body">
-          <div className="asa-guide-eyebrow">
-            <span className="asa-badge asa-badge-blue">Clinical Guide</span>
-            <span className="asa-badge">Version 33 · Feb 2026</span>
+    <div className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <div className="flex items-start gap-4">
+          <div className="flex flex-wrap gap-2 mb-2">
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Clinical Guide</span>
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary text-secondary-foreground">Version 33 · Feb 2026</span>
           </div>
-          <h1 className="asa-guide-title">Cerebral Venous Thrombosis</h1>
-          <p className="asa-guide-lead">
+          <h1 className="text-2xl font-bold leading-tight mt-1">Cerebral Venous Thrombosis</h1>
+          <p className="text-sm text-muted-foreground leading-relaxed mt-2">
             Management of CVT: anticoagulation (including in the presence of intracranial bleeding), ICP management, seizures, headache, and duration of therapy.
           </p>
         </div>
       </div>
 
-      <div className="asa-tab-bar">
+      <div className="flex gap-1 p-1 rounded-xl bg-muted overflow-x-auto">
         {tabs.map((t) => (
           <button
             key={t.id}
@@ -131,47 +131,47 @@ export function CerebralVenousThrombosisGuide() {
         ))}
       </div>
 
-      <div className="asa-tab-body">
+      <div className="grid gap-4">
         {/* OVERVIEW */}
         {activeTab === "overview" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Epidemiology</h2>
-              <div className="asa-ae-grid">
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Incidence</span>
-                  <span className="asa-ae-value">~10 per million/year</span>
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Epidemiology</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Incidence</span>
+                  <span className="text-sm">~10 per million/year</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">% of all strokes</span>
-                  <span className="asa-ae-value">~1%</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">% of all strokes</span>
+                  <span className="text-sm">~1%</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Age group</span>
-                  <span className="asa-ae-value">80% under age 55</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Age group</span>
+                  <span className="text-sm">80% under age 55</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Sex</span>
-                  <span className="asa-ae-value">75% female; OCP/puerperium in &gt;50%</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Sex</span>
+                  <span className="text-sm">75% female; OCP/puerperium in &gt;50%</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Functional independence</span>
-                  <span className="asa-ae-value" style={{ color: "#16a34a" }}>~85% of survivors</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Functional independence</span>
+                  <span className="text-sm" style={{ color: "#16a34a" }}>~85% of survivors</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Mortality</span>
-                  <span className="asa-ae-value" style={{ color: "#dc2626" }}>5–10%</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Mortality</span>
+                  <span className="text-sm" style={{ color: "#dc2626" }}>5–10%</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Recurrent VTE/year</span>
-                  <span className="asa-ae-value">~2–4% (higher with thrombophilia/malignancy)</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Recurrent VTE/year</span>
+                  <span className="text-sm">~2–4% (higher with thrombophilia/malignancy)</span>
                 </div>
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Presenting Symptoms</h2>
-              <table className="asa-dose-table">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Presenting Symptoms</h2>
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Symptom</th>
@@ -191,9 +191,9 @@ export function CerebralVenousThrombosisGuide() {
               </table>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Risk Factors</h2>
-              <table className="asa-dose-table">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Risk Factors</h2>
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Category</th>
@@ -215,14 +215,14 @@ export function CerebralVenousThrombosisGuide() {
 
         {/* DIAGNOSIS */}
         {activeTab === "diagnosis" && (
-          <div className="asa-sections">
-            <div className="asa-section-card asa-alert asa-alert-red">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border border-red-200 bg-red-50 text-red-900 shadow-sm p-5">
               <strong>Critical:</strong> Non-contrast CT or MRI brain are <strong>not sensitive enough</strong> to diagnose CVT. CT venography or contrast-enhanced MR venography is required.
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Imaging Strategy</h2>
-              <div className="asa-sections" style={{ gap: "0.75rem" }}>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Imaging Strategy</h2>
+              <div className="grid gap-3.5" style={{ gap: "0.75rem" }}>
                 {[
                   {
                     title: "Non-contrast CT / MRI Brain",
@@ -243,20 +243,20 @@ export function CerebralVenousThrombosisGuide() {
                     badge: "preferred",
                   },
                 ].map((img, i) => (
-                  <div key={i} className="asa-section-card" style={{ margin: 0 }}>
+                  <div key={i} className="rounded-xl border bg-card shadow-sm p-5" style={{ margin: 0 }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "0.4rem" }}>
                       <strong>{img.title}</strong>
                       <span className={`asa-badge ${img.badge === "preferred" ? "asa-badge-blue" : img.badge === "limited" ? "asa-badge-amber" : "asa-badge-red"}`}>{img.role}</span>
                     </div>
-                    <p className="asa-section-copy" style={{ margin: 0 }}>{img.detail}</p>
+                    <p className="text-sm text-foreground leading-relaxed mb-4" style={{ margin: 0 }}>{img.detail}</p>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">VITT-associated CVT</h2>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">VITT-associated CVT</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 For CVT in the context of Vaccine-induced Immune Thrombocytopenia and Thrombosis (VITT), see the <GuideLink to="vipitVitt">VIPIT / VITT guide</GuideLink>. Management differs significantly from non-VITT CVT (avoid heparin, use IVIG and non-heparin anticoagulants).
               </p>
             </div>
@@ -265,14 +265,14 @@ export function CerebralVenousThrombosisGuide() {
 
         {/* ANTICOAGULATION */}
         {activeTab === "anticoagulation" && (
-          <div className="asa-sections">
-            <div className="asa-section-card asa-alert asa-alert-blue">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border border-blue-200 bg-blue-50 text-blue-900 shadow-sm p-5">
               <strong>Key principle:</strong> Anticoagulation is standard-of-care for CVT <em>even in the presence of intracranial bleeding</em>. In CVT, bleeding is driven by venous hypertension — improving venous obstruction reduces the bleeding stimulus.
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Acute Phase: Parenteral Anticoagulation</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Acute Phase: Parenteral Anticoagulation</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li><strong>LMWH preferred over UFH</strong> — more predictable anticoagulant effect</li>
                 <li>Parenteral anticoagulation especially indicated when intracranial haemorrhage or mass effect is present</li>
                 <li>Transition to oral anticoagulation once patient is clinically stable</li>
@@ -280,17 +280,17 @@ export function CerebralVenousThrombosisGuide() {
               </ul>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Oral Anticoagulation Choices</h2>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Oral Anticoagulation Choices</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Current guidelines recommend VKA (warfarin, INR 2.0–3.0) as the standard oral option. Emerging evidence supports DOACs as an alternative. Key trials:
               </p>
-              <div className="asa-sections" style={{ gap: "0.75rem" }}>
+              <div className="grid gap-3.5" style={{ gap: "0.75rem" }}>
                 {doacTrials.map((t, i) => (
-                  <div key={i} className="asa-section-card" style={{ margin: 0, borderLeft: "3px solid var(--primary)" }}>
+                  <div key={i} className="rounded-xl border bg-card shadow-sm p-5" style={{ margin: 0, borderLeft: "3px solid var(--primary)" }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "0.3rem" }}>
                       <strong>{t.trial}</strong>
-                      {t.population && <span className="asa-badge asa-badge-amber">{t.population}</span>}
+                      {t.population && <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-700">{t.population}</span>}
                     </div>
                     <p style={{ margin: "0.2rem 0", fontSize: "0.88em" }}><strong>Agent:</strong> {t.agent} | <strong>n =</strong> {t.n} | <strong>Duration:</strong> {t.duration}</p>
                     <p style={{ margin: "0.2rem 0", fontSize: "0.88em" }}>{t.result}</p>
@@ -300,7 +300,7 @@ export function CerebralVenousThrombosisGuide() {
               </div>
             </div>
 
-            <div className="asa-section-card asa-alert asa-alert-red">
+            <div className="rounded-xl border border-red-200 bg-red-50 text-red-900 shadow-sm p-5">
               <strong>Antiphospholipid syndrome (APS):</strong> DOACs should not be used in APS. Use <GuideLink to="warfarin">warfarin</GuideLink> with a target INR of 2.0–3.0 instead. See <GuideLink to="aps">Antiphospholipid Syndrome</GuideLink>.
             </div>
           </div>
@@ -308,23 +308,23 @@ export function CerebralVenousThrombosisGuide() {
 
         {/* OTHER MANAGEMENT */}
         {activeTab === "management" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Neurological Deterioration Despite Anticoagulation</h2>
-              <div className="asa-sections" style={{ gap: "0.75rem" }}>
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Neurological Deterioration Despite Anticoagulation</h2>
+              <div className="grid gap-3.5" style={{ gap: "0.75rem" }}>
                 {deteriorationOptions.map((d, i) => (
-                  <div key={i} className="asa-section-card" style={{ margin: 0, borderLeft: "3px solid #dc2626" }}>
+                  <div key={i} className="rounded-xl border bg-card shadow-sm p-5" style={{ margin: 0, borderLeft: "3px solid #dc2626" }}>
                     <p style={{ margin: "0 0 0.3rem", fontWeight: 600 }}>{d.cause}</p>
-                    <p style={{ margin: "0 0 0.3rem" }}><span className="asa-badge asa-badge-red">Intervention</span> {d.intervention}</p>
-                    <p className="asa-section-copy" style={{ margin: 0, fontSize: "0.85em" }}>{d.evidence}</p>
+                    <p style={{ margin: "0 0 0.3rem" }}><span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-700">Intervention</span> {d.intervention}</p>
+                    <p className="text-sm text-foreground leading-relaxed mb-4" style={{ margin: 0, fontSize: "0.85em" }}>{d.evidence}</p>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Seizure Management</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Seizure Management</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>30–40% of CVT patients experience seizures; &gt;10% have late post-acute seizures</li>
                 <li><strong>Referral to neurology</strong> is indicated for all patients with seizures</li>
                 <li>No evidence for prophylactic antiseizure therapy in patients <em>without</em> seizures</li>
@@ -332,9 +332,9 @@ export function CerebralVenousThrombosisGuide() {
               </ul>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Headache Management</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Headache Management</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>Headache present in ~90%; can be severe</li>
                 <li>Adequate analgesia important — severe pain and vomiting worsen ICP</li>
                 <li>Headache generally improves with anticoagulation and ICP management</li>
@@ -342,9 +342,9 @@ export function CerebralVenousThrombosisGuide() {
               </ul>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Risk Factor Management</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Risk Factor Management</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>Correct local structural factors that obstruct venous outflow</li>
                 <li><strong>Discontinue provoking factors:</strong> hormonal therapies (OCPs), etc.</li>
                 <li>Smoking cessation and lifestyle modification</li>
@@ -353,9 +353,9 @@ export function CerebralVenousThrombosisGuide() {
               </ul>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Acute Setting Considerations</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Acute Setting Considerations</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>Assess need for <strong>ICU/high-acuity setting</strong> early — patients may deteriorate from ICH, raised ICP, or seizures</li>
                 <li>Involve <strong>Neurology and Haematology/Thrombosis</strong> early in all cases</li>
               </ul>
@@ -365,28 +365,28 @@ export function CerebralVenousThrombosisGuide() {
 
         {/* DURATION & FOLLOW-UP */}
         {activeTab === "duration" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Duration of Anticoagulation</h2>
-              <div className="asa-ae-grid">
-                <div className="asa-ae-card" style={{ gridColumn: "1 / -1" }}>
-                  <span className="asa-ae-label">No ongoing structural/provoking risk factors; no APS</span>
-                  <span className="asa-ae-value"><strong>3–6 months</strong> — equally effective vs 12 months (ESCOA-CVT: 460 patients, no difference in recurrent VTE, bleeding, or death at 12 months)</span>
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Duration of Anticoagulation</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="rounded-lg border p-3" style={{ gridColumn: "1 / -1" }}>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">No ongoing structural/provoking risk factors; no APS</span>
+                  <span className="text-sm"><strong>3–6 months</strong> — equally effective vs 12 months (ESCOA-CVT: 460 patients, no difference in recurrent VTE, bleeding, or death at 12 months)</span>
                 </div>
-                <div className="asa-ae-card" style={{ gridColumn: "1 / -1" }}>
-                  <span className="asa-ae-label">Recurrent CVT, prior VTE, or ongoing provoking factor</span>
-                  <span className="asa-ae-value"><strong>Extended anticoagulation</strong> — periodic reassessment of bleeding risk</span>
+                <div className="rounded-lg border p-3" style={{ gridColumn: "1 / -1" }}>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Recurrent CVT, prior VTE, or ongoing provoking factor</span>
+                  <span className="text-sm"><strong>Extended anticoagulation</strong> — periodic reassessment of bleeding risk</span>
                 </div>
-                <div className="asa-ae-card" style={{ gridColumn: "1 / -1" }}>
-                  <span className="asa-ae-label">No high bleeding risk + patient uncomfortable with recurrence risk</span>
-                  <span className="asa-ae-value">Consider extended anticoagulation after shared decision-making</span>
+                <div className="rounded-lg border p-3" style={{ gridColumn: "1 / -1" }}>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">No high bleeding risk + patient uncomfortable with recurrence risk</span>
+                  <span className="text-sm">Consider extended anticoagulation after shared decision-making</span>
                 </div>
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">CVT and Pregnancy</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">CVT and Pregnancy</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>Women with prior CVT: relative risk of non-cerebral VTE during pregnancy is <strong>16-fold</strong> above baseline</li>
                 <li>Risk of recurrent CVT during pregnancy: <strong>80-fold</strong> above baseline (systematic review data)</li>
                 <li>Recommendation: prescribe <strong>antepartum and postpartum thromboprophylaxis</strong> to pregnant women with prior CVT and no anticoagulation contraindication</li>
@@ -394,9 +394,9 @@ export function CerebralVenousThrombosisGuide() {
               </ul>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Long-term Quality of Life</h2>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Long-term Quality of Life</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Over half of CVT survivors may experience persistent headache, fatigue, mood disturbance, or cognitive impairment affecting quality of life — even in those who are functionally independent. Ongoing monitoring and referral for specialist support (neurology, pain, psychology) should be individualised.
               </p>
             </div>
@@ -405,15 +405,15 @@ export function CerebralVenousThrombosisGuide() {
 
         {/* REFERENCES */}
         {activeTab === "references" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">References</h2>
-              <ol className="asa-ref-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">References</h2>
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((ref, i) => (
                   <li key={i}>{ref}</li>
                 ))}
               </ol>
-              <p className="asa-section-copy" style={{ marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }}>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }}>
                 Version 33, updated 2026-02-06.
               </p>
             </div>

@@ -45,21 +45,21 @@ export function WarfarinInrManagementGuide() {
   const [activeTab, setActiveTab] = useState("overview");
 
   return (
-    <div className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <div className="asa-guide-header-body">
-          <div className="asa-guide-eyebrow">
-            <span className="asa-badge asa-badge-blue">Anticoagulation</span>
-            <span className="asa-badge">Clinical Guide</span>
+    <div className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <div className="flex items-start gap-4">
+          <div className="flex flex-wrap gap-2 mb-2">
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Anticoagulation</span>
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary text-secondary-foreground">Clinical Guide</span>
           </div>
-          <h1 className="asa-guide-title">Warfarin: Management of Out-of-Range INRs</h1>
-          <p className="asa-guide-lead">
+          <h1 className="text-2xl font-bold leading-tight mt-1">Warfarin: Management of Out-of-Range INRs</h1>
+          <p className="text-sm text-muted-foreground leading-relaxed mt-2">
             Systematic approach to investigating and managing supratherapeutic and subtherapeutic INR values in patients on warfarin therapy.
           </p>
         </div>
       </div>
 
-      <div className="asa-tab-bar">
+      <div className="flex gap-1 p-1 rounded-xl bg-muted overflow-x-auto">
         {tabs.map((t) => (
           <button
             key={t.id}
@@ -71,27 +71,27 @@ export function WarfarinInrManagementGuide() {
         ))}
       </div>
 
-      <div className="asa-tab-body">
+      <div className="grid gap-4">
         {/* OVERVIEW */}
         {activeTab === "overview" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Therapeutic Range and TTR</h2>
-              <p className="asa-section-copy">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Therapeutic Range and TTR</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Warfarin has a <strong>narrow therapeutic range</strong> and a highly <strong>variable dose-response</strong> between patients. Maintaining INR within the target range is critical for both efficacy and safety.
               </p>
-              <p className="asa-section-copy">
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 <strong>Time in Therapeutic Range (TTR)</strong> strongly correlates with clinical outcomes — both thromboembolic events and bleeding complications are directly related to TTR. Target TTR should be <strong>&gt;60%</strong> for optimal outcomes.
               </p>
             </div>
 
-            <div className="asa-section-card asa-alert asa-alert-amber">
+            <div className="rounded-xl border border-amber-200 bg-amber-50 text-amber-900 shadow-sm p-5">
               <strong>Clinician alert:</strong> Clinicians may underdose warfarin due to perceived bleeding risk. However, maintaining a subtherapeutic INR significantly increases the risk of thromboembolism without meaningfully reducing bleeding risk. Both over- and under-anticoagulation are harmful.
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Achieving Good INR Control</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Achieving Good INR Control</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>Use a <strong>consistent, systematic approach</strong> to dose adjustments</li>
                 <li>Paper-based dosing nomograms provide structured guidance</li>
                 <li>Computerized decision support systems can improve TTR</li>
@@ -100,9 +100,9 @@ export function WarfarinInrManagementGuide() {
               </ul>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Key Principles</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Key Principles</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>Thromboembolic events relate to time spent below the therapeutic range</li>
                 <li>Bleeding events relate to time spent above the therapeutic range</li>
                 <li>Both outcomes are minimized when TTR is maximized</li>
@@ -111,9 +111,9 @@ export function WarfarinInrManagementGuide() {
               </ul>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Related Guides</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Related Guides</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li><GuideLink to="warfarin">Warfarin: General Guide</GuideLink></li>
                 <li><GuideLink to="warfarinPoc">Warfarin: Point-of-Care INR Monitoring</GuideLink></li>
                 <li><GuideLink to="warfarinPeriop">Warfarin: Perioperative Management</GuideLink></li>
@@ -124,13 +124,13 @@ export function WarfarinInrManagementGuide() {
 
         {/* APPROACH TO OUT-OF-RANGE INR */}
         {activeTab === "approach" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Questions to Ask the Patient</h2>
-              <p className="asa-section-copy">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Questions to Ask the Patient</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Every out-of-range INR should prompt a structured history to identify the cause:
               </p>
-              <ul className="asa-ind-list">
+              <ul className="list-none p-0 space-y-1">
                 <li><strong>Doses taken in the past 2 weeks</strong> — were all doses taken correctly?</li>
                 <li><strong>Missed doses</strong> — any forgotten or skipped doses?</li>
                 <li><strong>New or stopped medications</strong> — especially <em>antibiotics</em>, which are the most common drug interaction</li>
@@ -141,12 +141,12 @@ export function WarfarinInrManagementGuide() {
               </ul>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Deciding on Dose Adjustment</h2>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Deciding on Dose Adjustment</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Determine whether the patient needs a <strong>one-time dose change</strong>, a <strong>maintenance dose change</strong>, or <strong>both</strong>.
               </p>
-              <table className="asa-dose-table">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Scenario</th>
@@ -170,13 +170,13 @@ export function WarfarinInrManagementGuide() {
               </table>
             </div>
 
-            <div className="asa-section-card asa-alert asa-alert-blue">
+            <div className="rounded-xl border border-blue-200 bg-blue-50 text-blue-900 shadow-sm p-5">
               <strong>ASH 2018 / Nomogram approach:</strong> When a maintenance dose change is needed, adjust as a percentage of the total weekly dose. Typical adjustments are 5-20% of the weekly dose. Avoid making large dose changes (&gt;20%) as the INR may overshoot in the opposite direction.
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Significantly Elevated INR Without Bleeding</h2>
-              <table className="asa-dose-table">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Significantly Elevated INR Without Bleeding</h2>
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>INR Level</th>
@@ -196,7 +196,7 @@ export function WarfarinInrManagementGuide() {
               </table>
             </div>
 
-            <div className="asa-section-card asa-alert asa-alert-red">
+            <div className="rounded-xl border border-red-200 bg-red-50 text-red-900 shadow-sm p-5">
               <strong>Active bleeding at any INR level:</strong> This is a medical emergency. Refer to bleeding management protocols. Major bleeding requires IV vitamin K + prothrombin complex concentrate (PCC). See also the <GuideLink to="doacsBleeding">DOAC Bleeding Management</GuideLink> guide for comparison.
             </div>
           </div>
@@ -204,14 +204,14 @@ export function WarfarinInrManagementGuide() {
 
         {/* CAUSES OF LOW INR */}
         {activeTab === "low-inr" && (
-          <div className="asa-sections">
-            <div className="asa-section-card asa-alert asa-alert-amber">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border border-amber-200 bg-amber-50 text-amber-900 shadow-sm p-5">
               <strong>Low INR = Increased thromboembolism risk.</strong> A subtherapeutic INR exposes the patient to the risk of stroke (in AF) or recurrent VTE. Promptly investigate and correct the cause.
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Common Causes of Low INR</h2>
-              <table className="asa-dose-table">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Common Causes of Low INR</h2>
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Cause</th>
@@ -229,9 +229,9 @@ export function WarfarinInrManagementGuide() {
               </table>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Management of Low INR</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Management of Low INR</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li><strong>Step 1:</strong> Investigate the cause using the structured questions (see Approach tab)</li>
                 <li><strong>Step 2:</strong> If a transient cause is identified (e.g., missed doses, short course of an interacting drug), give a one-time dose increase and resume usual maintenance</li>
                 <li><strong>Step 3:</strong> If no transient cause and &ge;2 consecutive low INRs, increase the maintenance dose by 5-20% of the total weekly dose</li>
@@ -239,7 +239,7 @@ export function WarfarinInrManagementGuide() {
               </ul>
             </div>
 
-            <div className="asa-section-card asa-alert asa-alert-blue">
+            <div className="rounded-xl border border-blue-200 bg-blue-50 text-blue-900 shadow-sm p-5">
               <strong>Vitamin K intake counselling:</strong> Patients should not restrict green leafy vegetables. Instead, advise a <em>consistent</em> diet. Sudden increases in vitamin K-rich foods will lower the INR; the goal is consistency, not avoidance.
             </div>
           </div>
@@ -247,14 +247,14 @@ export function WarfarinInrManagementGuide() {
 
         {/* CAUSES OF HIGH INR */}
         {activeTab === "high-inr" && (
-          <div className="asa-sections">
-            <div className="asa-section-card asa-alert asa-alert-red">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border border-red-200 bg-red-50 text-red-900 shadow-sm p-5">
               <strong>High INR = Increased bleeding risk.</strong> The risk of major hemorrhage rises sharply with INR values above 4.0. Promptly identify the cause and manage accordingly.
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Drugs That Commonly Increase INR</h2>
-              <table className="asa-dose-table">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Drugs That Commonly Increase INR</h2>
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Drug Category</th>
@@ -272,18 +272,18 @@ export function WarfarinInrManagementGuide() {
               </table>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Other Causes of High INR</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Other Causes of High INR</h2>
+              <ul className="list-none p-0 space-y-1">
                 {highInrOtherCauses.map((c, i) => (
                   <li key={i}>{c}</li>
                 ))}
               </ul>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Management of High INR</h2>
-              <table className="asa-dose-table">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Management of High INR</h2>
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>INR Level</th>
@@ -307,7 +307,7 @@ export function WarfarinInrManagementGuide() {
               </table>
             </div>
 
-            <div className="asa-section-card asa-alert asa-alert-blue">
+            <div className="rounded-xl border border-blue-200 bg-blue-50 text-blue-900 shadow-sm p-5">
               <strong>Antibiotics are the #1 drug interaction cause of elevated INR.</strong> Always check INR 3-4 days after starting any antibiotic. Consider empiric warfarin dose reduction (10-25%) when starting TMP-SMX, metronidazole, or fluconazole.
             </div>
           </div>
@@ -315,10 +315,10 @@ export function WarfarinInrManagementGuide() {
 
         {/* REFERENCES */}
         {activeTab === "references" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">References</h2>
-              <ol className="asa-ref-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">References</h2>
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((ref, i) => (
                   <li key={i}>{ref}</li>
                 ))}

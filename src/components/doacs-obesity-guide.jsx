@@ -26,16 +26,16 @@ export function DoacsObesityGuide() {
   const [tab, setTab] = useState("overview");
 
   return (
-    <section className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <span className="asa-guide-eyebrow">Clinical Guide</span>
-        <h2 className="asa-guide-title">DOACs in Patients with Obesity</h2>
-        <p className="asa-guide-lead">
+    <section className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <span className="flex flex-wrap gap-2 mb-2">Clinical Guide</span>
+        <h2 className="text-2xl font-bold leading-tight mt-1">DOACs in Patients with Obesity</h2>
+        <p className="text-sm text-muted-foreground leading-relaxed mt-2">
           Guidance on the management of direct oral anticoagulants (DOACs) in patients with obesity, including Class III obesity (BMI &gt;40 kg/m&#178; or weight &gt;120 kg).
         </p>
       </div>
 
-      <div className="asa-tab-bar">
+      <div className="flex gap-1 p-1 rounded-xl bg-muted overflow-x-auto">
         {tabs.map(([id, label]) => (
           <button
             key={id}
@@ -48,37 +48,37 @@ export function DoacsObesityGuide() {
         ))}
       </div>
 
-      <div className="asa-tab-body">
+      <div className="grid gap-4">
         {/* ── Overview ── */}
         {tab === "overview" ? (
-          <div className="asa-sections">
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Definition</h3>
-              <p className="asa-section-copy">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Definition</h3>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 According to Health Canada, obesity is defined as a body mass index (BMI) &gt;30 kg/m&#178;.
               </p>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Pharmacokinetics in Obesity</h3>
-              <ul className="asa-section-copy">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Pharmacokinetics in Obesity</h3>
+              <ul className="text-sm text-foreground leading-relaxed mb-4">
                 <li>Obesity variably affects pharmacokinetic parameters (absorption, distribution, metabolism, elimination), which could influence overall DOAC exposure.</li>
                 <li>Product monographs for apixaban, dabigatran, and rivaroxaban report that weights &gt;120 kg are associated with a 20&ndash;30% decrease in overall drug exposure. This difference is <strong>not</strong> considered clinically significant.</li>
               </ul>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Clinical Trial Data</h3>
-              <ul className="asa-section-copy">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Clinical Trial Data</h3>
+              <ul className="text-sm text-foreground leading-relaxed mb-4">
                 <li>No randomized controlled trials have specifically examined DOACs in patients with obesity.</li>
                 <li>In most DOAC trials, fewer than 20% of patients weighed &gt;90&ndash;100 kg or had a BMI &gt;30.</li>
                 <li>Published subgroup analyses consistently show similar efficacy and safety compared with warfarin in obese populations.</li>
               </ul>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">DOAC Drug Level Monitoring</h3>
-              <div className="asa-alert asa-alert-blue">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">DOAC Drug Level Monitoring</h3>
+              <div className="flex gap-3 p-3.5 rounded-lg border border-blue-200 bg-blue-50 text-blue-900">
                 <strong>Routine monitoring not recommended.</strong> There is insufficient clinical data to recommend routine DOAC level monitoring in obesity. No accepted evidence-based therapeutic targets exist, and there can be significant inter- and intra-patient variability. Availability of DOAC drug level testing is also significantly limited.
               </div>
             </article>
@@ -87,10 +87,10 @@ export function DoacsObesityGuide() {
 
         {/* ── Evidence by Indication ── */}
         {tab === "evidence" ? (
-          <div className="asa-sections">
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Venous Thromboembolism (VTE) Treatment</h3>
-              <ul className="asa-section-copy">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Venous Thromboembolism (VTE) Treatment</h3>
+              <ul className="text-sm text-foreground leading-relaxed mb-4">
                 <li>Systematic review and meta-analysis (apixaban, dabigatran, rivaroxaban): similar efficacy in patients &lt;100 kg vs &ge;100 kg.</li>
                 <li>No association found between BMI and risk of VTE recurrence or bleeding events in rivaroxaban-treated patients.</li>
                 <li>Retrospective study of over 43,000 patients: apixaban vs warfarin in obese and morbidly obese patients showed no significant difference in recurrent VTE or major bleeding (slightly lower risk for both outcomes in the apixaban arm).</li>
@@ -99,22 +99,22 @@ export function DoacsObesityGuide() {
               </ul>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Atrial Fibrillation</h3>
-              <ul className="asa-section-copy">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Atrial Fibrillation</h3>
+              <ul className="text-sm text-foreground leading-relaxed mb-4">
                 <li>Systematic review and post-hoc subgroup analyses of large RCTs: all four DOACs (apixaban, dabigatran, edoxaban, rivaroxaban) are equivalent to vitamin K antagonists in terms of efficacy and safety in patients with obesity.</li>
                 <li>Retrospective multi-site study across all BMI categories: no differences in stroke rates or risk of intracranial haemorrhage between normal BMI and category 1 or higher obesity.</li>
               </ul>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Orthopedic Surgery Thromboprophylaxis</h3>
-              <ul className="asa-section-copy">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Orthopedic Surgery Thromboprophylaxis</h3>
+              <ul className="text-sm text-foreground leading-relaxed mb-4">
                 <li><strong><GuideLink to="dabigatran">Dabigatran</GuideLink> vs enoxaparin:</strong> No significant difference in patients with BMI &gt;30.</li>
                 <li><strong><GuideLink to="rivaroxaban">Rivaroxaban</GuideLink> vs enoxaparin:</strong> No difference in patients &gt;90 kg compared with lower weights.</li>
                 <li><strong><GuideLink to="apixaban">Apixaban</GuideLink> vs enoxaparin:</strong> Pooled data showed no differences in VTE or bleeding events when BMI &lt;30 was compared with BMI &gt;30.</li>
               </ul>
-              <p className="asa-section-copy" style={{ marginTop: "0.5rem" }}>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ marginTop: "0.5rem" }}>
                 For detailed guidance, see the <GuideLink to="prophylaxisOrtho">Thromboprophylaxis: Orthopedic Surgery</GuideLink> guide.
               </p>
             </article>
@@ -123,22 +123,22 @@ export function DoacsObesityGuide() {
 
         {/* ── Class III Obesity ── */}
         {tab === "class3" ? (
-          <div className="asa-sections">
-            <div className="asa-alert asa-alert-amber">
+          <div className="grid gap-3.5">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <strong>Limited but encouraging data.</strong> Data supporting DOAC use in patients with BMI &gt;40 kg/m&#178; or weight &gt;120 kg remain limited to retrospective and observational studies. However, clinical efficacy and safety results are encouraging. Randomized controlled trials are needed to validate these findings.
             </div>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">VTE in Class III Obesity</h3>
-              <ul className="asa-section-copy">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">VTE in Class III Obesity</h3>
+              <ul className="text-sm text-foreground leading-relaxed mb-4">
                 <li>Three retrospective studies (BMI &ge;40): similar rates of recurrent VTE and major bleeding for rivaroxaban vs warfarin. One study also found similar results with apixaban vs warfarin.</li>
                 <li>Systematic review of 5 observational studies (n=6,585; weight &gt;120 kg or BMI &gt;40): rivaroxaban and apixaban were non-inferior to warfarin for VTE recurrence (OR 1.07, 95% CI 0.93&ndash;1.23) and major bleeding (OR 0.80, 95% CI 0.54&ndash;1.17).</li>
               </ul>
             </article>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Atrial Fibrillation in Class III Obesity</h3>
-              <ul className="asa-section-copy">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Atrial Fibrillation in Class III Obesity</h3>
+              <ul className="text-sm text-foreground leading-relaxed mb-4">
                 <li>Meta-analysis of 10 studies (89,494 very obese NVAF patients): DOACs vs warfarin showed <strong>significantly lower</strong> stroke/systemic embolism (OR 0.71, 95% CI 0.62&ndash;0.81, P&lt;0.0001) and <strong>significantly lower</strong> major bleeding (OR 0.60, 95% CI 0.46&ndash;0.78, P&lt;0.0001).</li>
                 <li><strong>ARISTOTLE post-hoc</strong> (apixaban; 5.4% of patients were &gt;120 kg): similar efficacy across all weight categories, with lower major bleeding in the apixaban arm.</li>
                 <li><strong>ENGAGE AF-TIMI 48 post-hoc</strong> (edoxaban; 5.5% had BMI &ge;40): similar efficacy and safety across all BMI categories.</li>
@@ -149,36 +149,36 @@ export function DoacsObesityGuide() {
 
         {/* ── Recommendations ── */}
         {tab === "recommendations" ? (
-          <div className="asa-sections">
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Weight-Based Guidance</h3>
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Weight-Based Guidance</h3>
 
               <div style={{ marginBottom: "1rem" }}>
-                <span className="asa-badge asa-badge-blue">Up to 120 kg / BMI &le;40</span>
-                <p className="asa-section-copy" style={{ marginTop: "0.5rem" }}>
+                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Up to 120 kg / BMI &le;40</span>
+                <p className="text-sm text-foreground leading-relaxed mb-4" style={{ marginTop: "0.5rem" }}>
                   Sufficient evidence is available demonstrating that DOACs can be used safely in this patient population.
                 </p>
               </div>
 
               <div style={{ marginBottom: "1rem" }}>
-                <span className="asa-badge asa-badge-amber">Over 120 kg / BMI &gt;40</span>
-                <p className="asa-section-copy" style={{ marginTop: "0.5rem" }}>
+                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-700">Over 120 kg / BMI &gt;40</span>
+                <p className="text-sm text-foreground leading-relaxed mb-4" style={{ marginTop: "0.5rem" }}>
                   The ISTH recommends standard-dose <strong><GuideLink to="rivaroxaban">rivaroxaban</GuideLink></strong> or <strong><GuideLink to="apixaban">apixaban</GuideLink></strong> as appropriate options for treatment of VTE (less data supporting apixaban than rivaroxaban).
                 </p>
-                <ul className="asa-section-copy">
+                <ul className="text-sm text-foreground leading-relaxed mb-4">
                   <li><strong>Dabigatran:</strong> NOT recommended (unconvincing data).</li>
                   <li><strong>Edoxaban:</strong> NOT recommended (lack of pharmacokinetic/pharmacodynamic data).</li>
                 </ul>
               </div>
             </article>
 
-            <div className="asa-alert asa-alert-amber">
+            <div className="flex gap-3 p-3.5 rounded-lg border border-amber-200 bg-amber-50 text-amber-900">
               <strong>No absolute weight limit.</strong> There is no widely accepted weight or BMI limit above which DOACs should not be considered. With increasing weight and BMI, evidence becomes more limited. In patients with extremely elevated weights and BMIs, decisions should be evaluated on a case-by-case basis, taking into account individual thrombotic risk. Patients should be informed of the limitations of available evidence and the potential risk of underdosing.
             </div>
 
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Special Considerations</h3>
-              <ul className="asa-section-copy">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Special Considerations</h3>
+              <ul className="text-sm text-foreground leading-relaxed mb-4">
                 <li>DOACs are <strong>contraindicated</strong> in pregnancy and while breastfeeding.</li>
                 <li>Data regarding safety and efficacy of DOACs in the pediatric population are very limited.</li>
               </ul>
@@ -188,10 +188,10 @@ export function DoacsObesityGuide() {
 
         {/* ── References ── */}
         {tab === "references" ? (
-          <div className="asa-sections">
-            <article className="asa-section-card">
-              <h3 className="asa-section-title">Key References</h3>
-              <ol className="asa-ref-list">
+          <div className="grid gap-3.5">
+            <article className="rounded-xl border bg-card shadow-sm p-5">
+              <h3 className="text-base font-semibold mb-2">Key References</h3>
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((ref) => (
                   <li key={ref}>{ref}</li>
                 ))}
@@ -201,7 +201,7 @@ export function DoacsObesityGuide() {
         ) : null}
       </div>
 
-      <div className="asa-guide-footer">
+      <div className="rounded-xl border bg-muted/50 p-4 text-xs text-muted-foreground">
         <p><strong>DOACs in Patients with Obesity</strong> | Updated 6 February 2026 | Version 39</p>
         <p>The information here is not a substitute for clinical judgement. Always seek appropriate specialist input when needed.</p>
       </div>

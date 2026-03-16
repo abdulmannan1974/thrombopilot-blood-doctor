@@ -62,21 +62,21 @@ export function WarfarinGuide() {
   const [activeTab, setActiveTab] = useState("overview");
 
   return (
-    <div className="asa-guide-shell">
-      <div className="asa-guide-header">
-        <div className="asa-guide-header-body">
-          <div className="asa-guide-eyebrow">
-            <span className="asa-badge asa-badge-blue">Clinical Guide</span>
-            <span className="asa-badge">Version 44 &middot; May 2025</span>
+    <div className="grid gap-4">
+      <div className="rounded-xl border bg-card shadow-sm p-6">
+        <div className="flex items-start gap-4">
+          <div className="flex flex-wrap gap-2 mb-2">
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">Clinical Guide</span>
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary text-secondary-foreground">Version 44 &middot; May 2025</span>
           </div>
-          <h1 className="asa-guide-title">Warfarin</h1>
-          <p className="asa-guide-lead">
+          <h1 className="text-2xl font-bold leading-tight mt-1">Warfarin</h1>
+          <p className="text-sm text-muted-foreground leading-relaxed mt-2">
             Mechanism, dosing, INR monitoring, drug interactions, and special situations for warfarin (vitamin K antagonist) therapy.
           </p>
         </div>
       </div>
 
-      <div className="asa-tab-bar">
+      <div className="flex gap-1 p-1 rounded-xl bg-muted overflow-x-auto">
         {tabs.map((t) => (
           <button
             key={t.id}
@@ -88,24 +88,24 @@ export function WarfarinGuide() {
         ))}
       </div>
 
-      <div className="asa-tab-body">
+      <div className="grid gap-4">
         {/* OVERVIEW */}
         {activeTab === "overview" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Mechanism of Action</h2>
-              <p className="asa-section-copy">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Mechanism of Action</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Warfarin inhibits hepatic production of <strong>vitamin K-dependent clotting factors II, VII, IX, and X</strong>, and also inhibits the natural anticoagulants <strong>protein C and protein S</strong>. The onset is delayed (3&ndash;7 days) as it depends on depletion of pre-existing clotting factors.
               </p>
             </div>
 
-            <div className="asa-section-card asa-alert asa-alert-amber">
+            <div className="rounded-xl border border-amber-200 bg-amber-50 text-amber-900 shadow-sm p-5">
               <strong>DOACs are generally preferred over warfarin</strong> for most VTE and AF patients &mdash; they require less monitoring, are equally effective, and carry similar or less bleeding risk. Warfarin remains indicated in specific circumstances (see Indications below).
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Indications</h2>
-              <table className="asa-dose-table">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Indications</h2>
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Indication</th>
@@ -123,20 +123,20 @@ export function WarfarinGuide() {
               </table>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Adverse Effects</h2>
-              <div className="asa-ae-grid">
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Annual major bleeding</span>
-                  <span className="asa-ae-value" style={{ color: "#dc2626" }}>1&ndash;2% of chronic warfarin users</span>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Adverse Effects</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Annual major bleeding</span>
+                  <span className="text-sm" style={{ color: "#dc2626" }}>1&ndash;2% of chronic warfarin users</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Annual minor bleeding</span>
-                  <span className="asa-ae-value">10&ndash;20% of warfarin users</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Annual minor bleeding</span>
+                  <span className="text-sm">10&ndash;20% of warfarin users</span>
                 </div>
-                <div className="asa-ae-card">
-                  <span className="asa-ae-label">Other side effects</span>
-                  <span className="asa-ae-value">Hair loss, skin rash (uncommon)</span>
+                <div className="rounded-lg border p-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Other side effects</span>
+                  <span className="text-sm">Hair loss, skin rash (uncommon)</span>
                 </div>
               </div>
             </div>
@@ -145,10 +145,10 @@ export function WarfarinGuide() {
 
         {/* DOSING */}
         {activeTab === "dosing" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Starting Dose</h2>
-              <ul className="asa-ind-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Starting Dose</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li><strong>Standard starting dose:</strong> 5 mg OD (for most adults)</li>
                 <li><strong>Lower starting dose (1&ndash;2 mg OD):</strong> frail, underweight, or Asian descent patients</li>
                 <li>Use standardised dosing nomograms to guide initial and subsequent dose adjustments</li>
@@ -156,16 +156,16 @@ export function WarfarinGuide() {
               </ul>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Factors Affecting Maintenance Dose</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Factors Affecting Maintenance Dose</h2>
+              <ul className="list-none p-0 space-y-1">
                 {dosageFactors.map((f, i) => <li key={i}>{f}</li>)}
               </ul>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">INR Targets</h2>
-              <table className="asa-dose-table">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">INR Targets</h2>
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr>
                     <th>Indication</th>
@@ -185,9 +185,9 @@ export function WarfarinGuide() {
               </table>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Acute VTE Initiation</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Acute VTE Initiation</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>Warfarin must be combined with a parenteral anticoagulant (<GuideLink to="ufhLmwh">LMWH or UFH</GuideLink>) for <strong>&ge;5 days AND until INR &ge;2.0 for 2 consecutive days</strong></li>
                 <li>Warfarin monotherapy is not acceptable as initial VTE treatment</li>
               </ul>
@@ -197,34 +197,34 @@ export function WarfarinGuide() {
 
         {/* MONITORING */}
         {activeTab === "monitoring" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">INR Monitoring Frequency</h2>
-              <div className="asa-timeline">
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker">1</div>
-                  <div className="asa-timeline-content">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">INR Monitoring Frequency</h2>
+              <div className="relative pl-6 space-y-4 border-l-2 border-border">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary">1</div>
+                  <div className="ml-2">
                     <strong>Initiation</strong>
                     <p>INR after 2&ndash;3 days of first dose. Do not monitor earlier &mdash; INR change takes 3&ndash;7 days to equilibrate.</p>
                   </div>
                 </div>
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker">2</div>
-                  <div className="asa-timeline-content">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary">2</div>
+                  <div className="ml-2">
                     <strong>Early phase</strong>
                     <p>Frequent monitoring until stable, therapeutic INR achieved.</p>
                   </div>
                 </div>
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker">3</div>
-                  <div className="asa-timeline-content">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary">3</div>
+                  <div className="ml-2">
                     <strong>Stable phase</strong>
                     <p>Every 2&ndash;6 weeks in most patients. Very stable patients may extend to every 12 weeks.</p>
                   </div>
                 </div>
-                <div className="asa-timeline-step">
-                  <div className="asa-timeline-marker">!</div>
-                  <div className="asa-timeline-content">
+                <div className="relative">
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary">!</div>
+                  <div className="ml-2">
                     <strong>Increase monitoring when:</strong>
                     <p>New medication added or stopped, acute illness, diet change, travel, hospitalization, bleeding event</p>
                   </div>
@@ -232,9 +232,9 @@ export function WarfarinGuide() {
               </div>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Common Causes of Unstable INR</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Common Causes of Unstable INR</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>Overly frequent monitoring with dose changes before INR equilibrates</li>
                 <li>Excessively large dose adjustments</li>
                 <li>Variable vitamin K intake (low intake leads to labile INR; encourage <em>consistent</em> diet)</li>
@@ -243,13 +243,13 @@ export function WarfarinGuide() {
               </ul>
             </div>
 
-            <div className="asa-section-card asa-alert asa-alert-blue">
+            <div className="rounded-xl border border-blue-200 bg-blue-50 text-blue-900 shadow-sm p-5">
               <strong>Diet key message:</strong> Patients should NOT restrict foods high in vitamin K &mdash; they should maintain a <em>regular, consistent</em> diet. Dietary restriction causes more labile INR control.
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Reversal of Warfarin</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Reversal of Warfarin</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li><strong>Emergency reversal:</strong> IV vitamin K + 4-factor prothrombin complex concentrate (Octaplex&reg;, Beriplex&reg;)</li>
                 <li><strong>Very elevated INR without bleeding:</strong> Oral vitamin K &mdash; see the <GuideLink to="warfarinInr">Warfarin: Out-of-Range INR Management</GuideLink> guide</li>
                 <li><strong>No role for subcutaneous vitamin K</strong> (erratic absorption)</li>
@@ -260,15 +260,15 @@ export function WarfarinGuide() {
 
         {/* DRUG INTERACTIONS */}
         {activeTab === "interactions" && (
-          <div className="asa-sections">
-            <div className="asa-section-card asa-alert asa-alert-amber">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border border-amber-200 bg-amber-50 text-amber-900 shadow-sm p-5">
               <strong>Simplest approach to new drug interactions:</strong> Check INR 3&ndash;4 days after adding a new drug and adjust dose as needed. Very few drugs need to be avoided using this approach.
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Key Drug Interactions</h2>
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Key Drug Interactions</h2>
               {drugInteractions.map((d, i) => (
-                <div key={i} className="asa-section-card" style={{ margin: "0 0 0.75rem", borderLeft: "3px solid var(--primary)" }}>
+                <div key={i} className="rounded-xl border bg-card shadow-sm p-5" style={{ margin: "0 0 0.75rem", borderLeft: "3px solid var(--primary)" }}>
                   <strong>{d.drug}</strong>
                   <p style={{ margin: "0.2rem 0", fontSize: "0.88em" }}>
                     <span style={{ color: "#dc2626" }}>Effect: </span>{d.effect}
@@ -284,34 +284,34 @@ export function WarfarinGuide() {
 
         {/* SPECIAL SITUATIONS */}
         {activeTab === "special" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Pregnancy</h2>
-              <p className="asa-section-copy">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Pregnancy</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Warfarin crosses the placenta and is <strong>teratogenic</strong> &mdash; causes fetal bleeding and increased spontaneous abortion. <strong>Generally avoided in pregnancy.</strong> Exception: some women with high-risk mechanical heart valves under co-care of thrombosis specialist and high-risk obstetrics.
               </p>
-              <p className="asa-section-copy"><strong>Breastfeeding:</strong> Warfarin is safe &mdash; does not pass to breast milk in significant amounts.</p>
+              <p className="text-sm text-foreground leading-relaxed mb-4"><strong>Breastfeeding:</strong> Warfarin is safe &mdash; does not pass to breast milk in significant amounts.</p>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Pediatrics</h2>
-              <ul className="asa-ind-list">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Pediatrics</h2>
+              <ul className="list-none p-0 space-y-1">
                 <li>Warfarin can be used for treatment and prevention of thrombosis in children</li>
                 <li>Regular blood work can be difficult in small children &mdash; point-of-care INR devices are helpful</li>
                 <li>Paediatric thromboembolism expertise should be involved where possible</li>
               </ul>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Acenocoumarol (Sintrom&reg;)</h2>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Acenocoumarol (Sintrom&reg;)</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Alternative VKA &mdash; was occasionally used for patients with non-bleeding warfarin side effects. <strong>Currently no longer available in Canada</strong> (manufacturer discontinued) but available in some other countries.
               </p>
             </div>
 
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">Antiplatelet Combination Therapy</h2>
-              <p className="asa-section-copy">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">Antiplatelet Combination Therapy</h2>
+              <p className="text-sm text-foreground leading-relaxed mb-4">
                 Adding an antiplatelet agent to warfarin <strong>doubles bleeding risk</strong> and rarely adds thrombotic protection. Only combine when there is a specific indication (ACS, recent coronary stent, mechanical valve, stroke/TIA despite therapeutic anticoagulation). Re-assess and document the risk-benefit frequently. See the <GuideLink to="anticoagAntiplatelet">Anticoagulation + Antiplatelet Therapy</GuideLink> guide.
               </p>
             </div>
@@ -320,13 +320,13 @@ export function WarfarinGuide() {
 
         {/* REFERENCES */}
         {activeTab === "references" && (
-          <div className="asa-sections">
-            <div className="asa-section-card">
-              <h2 className="asa-section-title">References</h2>
-              <ol className="asa-ref-list">
+          <div className="grid gap-3.5">
+            <div className="rounded-xl border bg-card shadow-sm p-5">
+              <h2 className="text-base font-semibold mb-2">References</h2>
+              <ol className="list-none p-0 divide-y divide-border text-sm">
                 {references.map((ref, i) => <li key={i}>{ref}</li>)}
               </ol>
-              <p className="asa-section-copy" style={{ marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }}>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ marginTop: "1.5rem", fontSize: "0.82em", color: "var(--muted-foreground)" }}>
                 Version 44, updated 2025-05-01. Not a substitute for individual clinical judgment.
               </p>
             </div>
