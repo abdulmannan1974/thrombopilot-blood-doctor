@@ -1685,7 +1685,7 @@ function AppLayout() {
     <div className="min-h-screen grid grid-cols-1 lg:grid-cols-[384px_minmax(0,1fr)] bg-background">
       <button
         type="button"
-        className={cn("hidden", sidebarOpen && "!fixed inset-0 z-30 !block bg-black/40 lg:!hidden")}
+        className={cn("hidden", sidebarOpen && "!fixed inset-0 z-30 !block bg-black/60 lg:!hidden")}
         onClick={() => setSidebarOpen(false)}
         aria-label="Close navigation"
       />
@@ -1718,9 +1718,9 @@ function AppLayout() {
         siteName={siteName}
       />
 
-      <div className="relative px-3 sm:px-4 md:px-6 py-3 sm:py-4 pb-8 w-full max-w-[1440px] mx-auto">
-        <header className="flex items-center gap-4 mb-4">
-          <div className="flex items-center gap-3 min-w-0 flex-shrink-0">
+      <div className="relative px-3 sm:px-4 md:px-6 py-3 sm:py-4 pb-8 w-full max-w-[1440px] mx-auto overflow-x-hidden">
+        <header className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 mb-4">
+          <div className="flex items-center gap-3 min-w-0">
             <SidebarTrigger className="lg:hidden" />
 
             <div className="min-w-0">
@@ -1731,9 +1731,11 @@ function AppLayout() {
               </div>
               <h2 className="text-base font-semibold truncate m-0">{siteName}</h2>
             </div>
+
+            <span className="md:hidden ml-auto"><ThemeToggle theme={theme} setTheme={setTheme} /></span>
           </div>
 
-          <div className="relative flex-1 max-w-md">
+          <div className="relative flex-1 min-w-0 max-w-md">
             <div className="relative flex items-center">
               <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
               <Input
@@ -1746,7 +1748,7 @@ function AppLayout() {
                     handleSearchSelection(globalSearchResults[0]);
                   }
                 }}
-                placeholder="Search calculators, guides, references, or vault entries..."
+                placeholder="Search calculators, guides, references..."
                 className="pl-9 h-9 w-full"
               />
             </div>
@@ -1776,7 +1778,7 @@ function AppLayout() {
             ) : null}
           </div>
 
-          <ThemeToggle theme={theme} setTheme={setTheme} />
+          <span className="hidden md:flex flex-shrink-0"><ThemeToggle theme={theme} setTheme={setTheme} /></span>
         </header>
 
         <main className="grid gap-4">
@@ -1837,7 +1839,7 @@ function AppLayout() {
             </div>
           </section>
 
-          <section className="grid grid-cols-[280px_minmax(0,1fr)] items-start gap-4">
+          <section className="grid grid-cols-1 md:grid-cols-[280px_minmax(0,1fr)] items-start gap-4">
             <Alert>
               <ShieldAlert size={17} />
               <AlertTitle>Decision support is live</AlertTitle>
@@ -1855,14 +1857,14 @@ function AppLayout() {
                 </div>
                 <Activity size={17} className="text-muted-foreground" />
               </CardHeader>
-              <CardContent>
+              <CardContent className="overflow-x-auto">
                 <Table>
                   <TableHeader>
                     <TableRow>
                       <TableHead>Module</TableHead>
                       <TableHead>Type</TableHead>
-                      <TableHead>Inputs</TableHead>
-                      <TableHead>Reference tabs</TableHead>
+                      <TableHead className="hidden sm:table-cell">Inputs</TableHead>
+                      <TableHead className="hidden sm:table-cell">Reference tabs</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -1887,8 +1889,8 @@ function AppLayout() {
                         <TableCell>
                           <Badge variant="secondary">{row.category}</Badge>
                         </TableCell>
-                        <TableCell>{row.inputs}</TableCell>
-                        <TableCell>{row.references}</TableCell>
+                        <TableCell className="hidden sm:table-cell">{row.inputs}</TableCell>
+                        <TableCell className="hidden sm:table-cell">{row.references}</TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
@@ -1949,7 +1951,7 @@ function AppLayout() {
                       ))}
                     </div>
 
-                    <div className="grid grid-cols-2 gap-3.5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                       {activeTool.inputs
                         .filter((input) => {
                           if (input.type === "hidden") return false;
@@ -1974,7 +1976,7 @@ function AppLayout() {
                 )}
               </section>
 
-              <div className="grid grid-cols-[minmax(0,1.2fr)_minmax(300px,0.8fr)] gap-4">
+              <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.2fr)_minmax(300px,0.8fr)] gap-4">
                 <ResultPanel result={result} />
               </div>
             </div>
@@ -2575,7 +2577,7 @@ function DoacFollowupPage({ form, onChange, onReset, onPrint, onDownloadWord }) 
             <div className="px-5 py-4 border-b border-[#23376b] text-xl font-bold">Summary of patient profile</div>
             <div className="grid">
               {summaryRows.map(([label, value]) => (
-                <div key={label} className="grid grid-cols-[minmax(220px,0.42fr)_minmax(0,1fr)] [&+&]:border-t [&+&]:border-slate-300">
+                <div key={label} className="grid grid-cols-1 sm:grid-cols-[minmax(220px,0.42fr)_minmax(0,1fr)] [&+&]:border-t [&+&]:border-slate-300">
                   <strong className="px-5 py-3.5 leading-relaxed bg-muted">{label}</strong>
                   <span className="px-5 py-3.5 leading-relaxed">{value}</span>
                 </div>
@@ -2705,13 +2707,13 @@ function DoacCheckboxList({ items, form, onChange }) {
 function DoacBinaryMatrix({ rows }) {
   return (
     <div className="grid border border-border rounded-2xl overflow-hidden">
-      <div className="grid grid-cols-[minmax(0,1fr)_120px_120px] items-stretch bg-muted border-b border-border">
+      <div className="grid grid-cols-[minmax(0,1fr)_72px_72px] sm:grid-cols-[minmax(0,1fr)_120px_120px] items-stretch bg-muted border-b border-border">
         <span className="px-4 py-3.5" />
         <strong className="px-4 py-3.5 text-center text-muted-foreground text-[0.95rem]">Yes</strong>
         <strong className="px-4 py-3.5 text-center text-muted-foreground text-[0.95rem]">No</strong>
       </div>
       {rows.map(([label, value, onChange], idx) => (
-        <div key={label} className={cn("grid grid-cols-[minmax(0,1fr)_120px_120px] items-stretch", idx > 0 && "border-t border-border")}>
+        <div key={label} className={cn("grid grid-cols-[minmax(0,1fr)_72px_72px] sm:grid-cols-[minmax(0,1fr)_120px_120px] items-stretch", idx > 0 && "border-t border-border")}>
           <div className="p-4 leading-relaxed font-semibold text-foreground">{label}</div>
           <label className={cn(
             "grid place-items-center p-3 border-l border-border cursor-pointer",
@@ -3066,7 +3068,7 @@ function AcuteBleedPanel({ state, onFieldChange }) {
 
       {showInr ? (
         <AcuteQuestionCard title="Warfarin INR">
-          <div className="grid grid-cols-[minmax(180px,220px)_minmax(220px,1fr)] gap-4 items-end">
+          <div className="grid grid-cols-1 sm:grid-cols-[minmax(180px,220px)_minmax(220px,1fr)] gap-4 items-end">
             <label className="grid gap-2">
               <span>INR value</span>
               <input
@@ -3793,7 +3795,7 @@ function ContentBlock({ block }) {
 
   if (block.type === "fact") {
     return (
-      <div className="grid grid-cols-[minmax(0,1.35fr)_minmax(140px,0.65fr)] items-start gap-3 p-4 rounded-xl border border-border bg-card">
+      <div className="grid grid-cols-1 sm:grid-cols-[minmax(0,1.35fr)_minmax(140px,0.65fr)] items-start gap-1 sm:gap-3 p-4 rounded-xl border border-border bg-card">
         <span>{renderInlineContent(block.label)}</span>
         <strong>{renderInlineContent(block.value)}</strong>
       </div>

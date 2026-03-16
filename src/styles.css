@@ -206,3 +206,27 @@ a {
 .dark .border-red-100 { border-color: rgba(127, 29, 29, 0.4) !important; }
 .dark .border-green-100 { border-color: rgba(22, 101, 52, 0.4) !important; }
 .dark .border-yellow-100 { border-color: rgba(146, 64, 14, 0.4) !important; }
+
+/* ─── Mobile guide & content overflow fixes ──── */
+main section > div {
+  min-width: 0;
+}
+
+/* Make guide tab bars horizontally scrollable on small screens */
+[role="tablist"] {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+[role="tablist"]::-webkit-scrollbar {
+  display: none;
+}
+
+/* Prevent text overflow in guide cards */
+main p,
+main li,
+main h2,
+main h3 {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
