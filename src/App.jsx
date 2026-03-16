@@ -1944,7 +1944,7 @@ function AppLayout() {
                           <span className="w-[1.9rem] h-[1.9rem] grid place-items-center rounded-full bg-primary/10 text-primary">
                             <Pill size={14} />
                           </span>
-                          <p className="m-0 text-gray-700 leading-relaxed text-[0.95rem]">{note}</p>
+                          <p className="m-0 text-foreground leading-relaxed text-[0.95rem]">{note}</p>
                         </div>
                       ))}
                     </div>
@@ -2291,8 +2291,8 @@ function DoacFollowupPage({ form, onChange, onReset, onPrint, onDownloadWord }) 
           </div>
         </div>
 
-        <div className="grid gap-4 p-5 bg-slate-50">
-          <section className="grid gap-4 p-5 border border-border rounded-2xl bg-white shadow-sm">
+        <div className="grid gap-4 p-5 bg-muted">
+          <section className="grid gap-4 p-5 border border-border rounded-2xl bg-card shadow-sm">
             <div className="grid grid-cols-2 gap-4">
               <DoacTextField
                 label="Patient name"
@@ -2347,7 +2347,7 @@ function DoacFollowupPage({ form, onChange, onReset, onPrint, onDownloadWord }) 
           </section>
 
           <DoacSectionTitle title="Health status since last assessment" />
-          <section className="grid gap-4 p-5 border border-border rounded-2xl bg-white shadow-sm">
+          <section className="grid gap-4 p-5 border border-border rounded-2xl bg-card shadow-sm">
             <p className="m-0 font-semibold leading-relaxed">Please check all that apply to the patient:</p>
             <DoacCheckboxList
               items={[
@@ -2366,7 +2366,7 @@ function DoacFollowupPage({ form, onChange, onReset, onPrint, onDownloadWord }) 
           </section>
 
           <DoacSectionTitle title="Adherence with DOAC therapy" />
-          <section className="grid gap-4 p-5 border border-border rounded-2xl bg-white shadow-sm">
+          <section className="grid gap-4 p-5 border border-border rounded-2xl bg-card shadow-sm">
             <DoacRadioGroup
               label="How many doses has the patient missed in an average week?"
               value={form.missedDoses}
@@ -2394,7 +2394,7 @@ function DoacFollowupPage({ form, onChange, onReset, onPrint, onDownloadWord }) 
           </section>
 
           <DoacSectionTitle title="Bleeding risk assessment" />
-          <section className="grid gap-4 p-5 border border-border rounded-2xl bg-white shadow-sm">
+          <section className="grid gap-4 p-5 border border-border rounded-2xl bg-card shadow-sm">
             <DoacSelectField
               label="HAS-BLED"
               value={form.hasBled}
@@ -2416,7 +2416,7 @@ function DoacFollowupPage({ form, onChange, onReset, onPrint, onDownloadWord }) 
           </section>
 
           <DoacSectionTitle title="Creatinine clearance / renal function" />
-          <section className="grid gap-4 p-5 border border-border rounded-2xl bg-white shadow-sm">
+          <section className="grid gap-4 p-5 border border-border rounded-2xl bg-card shadow-sm">
             <div className="grid grid-cols-2 gap-4">
               <DoacDateField
                 label="When was eGFR last measured?"
@@ -2446,7 +2446,7 @@ function DoacFollowupPage({ form, onChange, onReset, onPrint, onDownloadWord }) 
           </section>
 
           <DoacSectionTitle title="Drug interactions (review all concomitant medications)" />
-          <section className="grid gap-4 p-5 border border-border rounded-2xl bg-white shadow-sm">
+          <section className="grid gap-4 p-5 border border-border rounded-2xl bg-card shadow-sm">
             <p className="m-0 font-semibold leading-relaxed">Please check all that apply:</p>
             <DoacCheckboxList
               items={[
@@ -2461,7 +2461,7 @@ function DoacFollowupPage({ form, onChange, onReset, onPrint, onDownloadWord }) 
           </section>
 
           <DoacSectionTitle title="Examination" />
-          <section className="grid gap-4 p-5 border border-border rounded-2xl bg-white shadow-sm">
+          <section className="grid gap-4 p-5 border border-border rounded-2xl bg-card shadow-sm">
             <div className="grid grid-cols-2 gap-4">
               <DoacTextField
                 label="Actual BP systolic"
@@ -2498,7 +2498,7 @@ function DoacFollowupPage({ form, onChange, onReset, onPrint, onDownloadWord }) 
           </section>
 
           <DoacSectionTitle title="Final assessment and recommendations" />
-          <section className="grid gap-4 p-5 border border-border rounded-2xl bg-white shadow-sm">
+          <section className="grid gap-4 p-5 border border-border rounded-2xl bg-card shadow-sm">
             <DoacBinaryMatrix
               rows={[
                 [
@@ -2521,7 +2521,7 @@ function DoacFollowupPage({ form, onChange, onReset, onPrint, onDownloadWord }) 
           </section>
 
           <DoacSectionTitle title="Patient education and counselling" />
-          <section className="grid gap-4 p-5 border border-border rounded-2xl bg-white shadow-sm">
+          <section className="grid gap-4 p-5 border border-border rounded-2xl bg-card shadow-sm">
             <DoacBinaryMatrix
               rows={[
                 [
@@ -2565,9 +2565,9 @@ function DoacFollowupPage({ form, onChange, onReset, onPrint, onDownloadWord }) 
             />
           </section>
 
-          <section className="grid border-2 border-[#23376b] bg-white overflow-hidden">
+          <section className="grid border-2 border-[#23376b] bg-card dark:border-[#4a6fa5] overflow-hidden">
             <div className="px-5 py-4 bg-[#8ea0c9] border-b-2 border-[#23376b]">
-              <h4 className="m-0 text-[#1f3160] text-[clamp(1.55rem,2vw,2rem)] text-center leading-tight">Direct Oral Anticoagulant (DOAC) Follow-up Checklist</h4>
+              <h4 className="m-0 text-[#1f3160] dark:text-foreground text-[clamp(1.55rem,2vw,2rem)] text-center leading-tight">Direct Oral Anticoagulant (DOAC) Follow-up Checklist</h4>
             </div>
             <div className="px-5 py-4 border-b border-[#23376b] text-center text-lg font-bold">
               Date: {new Intl.DateTimeFormat("en-GB", { day: "2-digit", month: "long", year: "numeric" }).format(new Date())}
@@ -2576,7 +2576,7 @@ function DoacFollowupPage({ form, onChange, onReset, onPrint, onDownloadWord }) 
             <div className="grid">
               {summaryRows.map(([label, value]) => (
                 <div key={label} className="grid grid-cols-[minmax(220px,0.42fr)_minmax(0,1fr)] [&+&]:border-t [&+&]:border-slate-300">
-                  <strong className="px-5 py-3.5 leading-relaxed bg-slate-50">{label}</strong>
+                  <strong className="px-5 py-3.5 leading-relaxed bg-muted">{label}</strong>
                   <span className="px-5 py-3.5 leading-relaxed">{value}</span>
                 </div>
               ))}
@@ -2602,8 +2602,8 @@ function DoacSectionTitle({ title }) {
 function DoacTextField({ label, value, onChange, inputMode = "text" }) {
   return (
     <label className="grid gap-2.5">
-      <span className="text-gray-800 text-base font-extrabold">{label}</span>
-      <input className="w-full min-h-[3.3rem] px-3.5 py-3 border border-border rounded-[14px] bg-white text-foreground outline-none transition-all focus:border-[rgba(127,29,63,0.34)] focus:ring-4 focus:ring-[rgba(127,29,63,0.08)]" value={value} inputMode={inputMode} onChange={(event) => onChange(event.target.value)} />
+      <span className="text-foreground text-base font-extrabold">{label}</span>
+      <input className="w-full min-h-[3.3rem] px-3.5 py-3 border border-border rounded-[14px] bg-card text-foreground outline-none transition-all focus:border-[rgba(127,29,63,0.34)] focus:ring-4 focus:ring-[rgba(127,29,63,0.08)]" value={value} inputMode={inputMode} onChange={(event) => onChange(event.target.value)} />
     </label>
   );
 }
@@ -2611,8 +2611,8 @@ function DoacTextField({ label, value, onChange, inputMode = "text" }) {
 function DoacDateField({ label, value, onChange }) {
   return (
     <label className="grid gap-2.5">
-      <span className="text-gray-800 text-base font-extrabold">{label}</span>
-      <input className="w-full min-h-[3.3rem] px-3.5 py-3 border border-border rounded-[14px] bg-white text-foreground outline-none transition-all focus:border-[rgba(127,29,63,0.34)] focus:ring-4 focus:ring-[rgba(127,29,63,0.08)]" type="date" value={value} onChange={(event) => onChange(event.target.value)} />
+      <span className="text-foreground text-base font-extrabold">{label}</span>
+      <input className="w-full min-h-[3.3rem] px-3.5 py-3 border border-border rounded-[14px] bg-card text-foreground outline-none transition-all focus:border-[rgba(127,29,63,0.34)] focus:ring-4 focus:ring-[rgba(127,29,63,0.08)]" type="date" value={value} onChange={(event) => onChange(event.target.value)} />
     </label>
   );
 }
@@ -2620,8 +2620,8 @@ function DoacDateField({ label, value, onChange }) {
 function DoacTextArea({ label, value, onChange }) {
   return (
     <label className="grid gap-2.5 col-span-full">
-      <span className="text-gray-800 text-base font-extrabold">{label}</span>
-      <textarea className="w-full min-h-[8.5rem] resize-y p-3.5 border border-border rounded-[14px] bg-white text-foreground leading-relaxed outline-none transition-all focus:border-[rgba(127,29,63,0.34)] focus:ring-4 focus:ring-[rgba(127,29,63,0.08)]" value={value} onChange={(event) => onChange(event.target.value)} />
+      <span className="text-foreground text-base font-extrabold">{label}</span>
+      <textarea className="w-full min-h-[8.5rem] resize-y p-3.5 border border-border rounded-[14px] bg-card text-foreground leading-relaxed outline-none transition-all focus:border-[rgba(127,29,63,0.34)] focus:ring-4 focus:ring-[rgba(127,29,63,0.08)]" value={value} onChange={(event) => onChange(event.target.value)} />
     </label>
   );
 }
@@ -2629,8 +2629,8 @@ function DoacTextArea({ label, value, onChange }) {
 function DoacSelectField({ label, value, onChange, options }) {
   return (
     <label className="grid gap-2.5">
-      <span className="text-gray-800 text-base font-extrabold">{label}</span>
-      <select className="w-full min-h-[3.3rem] px-3.5 py-3 border border-border rounded-[14px] bg-white text-foreground outline-none transition-all focus:border-[rgba(127,29,63,0.34)] focus:ring-4 focus:ring-[rgba(127,29,63,0.08)]" value={value} onChange={(event) => onChange(event.target.value)}>
+      <span className="text-foreground text-base font-extrabold">{label}</span>
+      <select className="w-full min-h-[3.3rem] px-3.5 py-3 border border-border rounded-[14px] bg-card text-foreground outline-none transition-all focus:border-[rgba(127,29,63,0.34)] focus:ring-4 focus:ring-[rgba(127,29,63,0.08)]" value={value} onChange={(event) => onChange(event.target.value)}>
         {options.map((option) => (
           <option key={option || "empty"} value={option}>
             {option || "Select"}
@@ -2644,14 +2644,14 @@ function DoacSelectField({ label, value, onChange, options }) {
 function DoacRadioGroup({ label, value, onChange, options }) {
   return (
     <div className="grid gap-2.5 col-span-full">
-      <span className="text-gray-800 text-base font-extrabold">{label}</span>
+      <span className="text-foreground text-base font-extrabold">{label}</span>
       <div className="grid grid-cols-[repeat(auto-fit,minmax(190px,1fr))] gap-3">
         {options.map((option) => (
           <label key={option.value} className={cn(
-            "flex items-center gap-3 min-h-[3.35rem] px-4 py-3.5 border rounded-2xl bg-white font-bold leading-snug cursor-pointer transition-colors",
+            "flex items-center gap-3 min-h-[3.35rem] px-4 py-3.5 border rounded-2xl font-bold leading-snug cursor-pointer transition-colors",
             value === option.value
-              ? "border-[rgba(127,29,63,0.3)] bg-[#fcf7f9] text-[#4a1428]"
-              : "border-border text-foreground"
+              ? "border-[rgba(127,29,63,0.3)] bg-[#fcf7f9] text-[#4a1428] dark:bg-[rgba(127,29,63,0.15)] dark:text-foreground dark:border-[rgba(127,29,63,0.4)]"
+              : "border-border bg-card text-foreground"
           )}>
             <input
               type="radio"
@@ -2662,8 +2662,8 @@ function DoacRadioGroup({ label, value, onChange, options }) {
             <span className={cn(
               "w-[1.15rem] h-[1.15rem] flex-none rounded-full border-2",
               value === option.value
-                ? "border-[#7f1d3f] bg-[#7f1d3f] shadow-[inset_0_0_0_3px_#ffffff]"
-                : "border-gray-400 bg-white"
+                ? "border-[#7f1d3f] bg-[#7f1d3f] shadow-[inset_0_0_0_3px_#ffffff] dark:border-[#e05a8d] dark:bg-[#e05a8d]"
+                : "border-muted-foreground bg-card"
             )} />
             <span className="block">{option.label}</span>
           </label>
@@ -2678,10 +2678,10 @@ function DoacCheckboxList({ items, form, onChange }) {
     <div className="grid gap-3">
       {items.map(([field, label]) => (
         <label key={field} className={cn(
-          "flex items-center gap-3 min-h-[3.35rem] px-4 py-3.5 border rounded-2xl bg-white font-bold leading-snug cursor-pointer transition-colors",
+          "flex items-center gap-3 min-h-[3.35rem] px-4 py-3.5 border rounded-2xl font-bold leading-snug cursor-pointer transition-colors",
           form[field]
-            ? "border-[rgba(127,29,63,0.3)] bg-[#fcf7f9] text-[#4a1428]"
-            : "border-border text-foreground"
+            ? "border-[rgba(127,29,63,0.3)] bg-[#fcf7f9] text-[#4a1428] dark:bg-[rgba(127,29,63,0.15)] dark:text-foreground dark:border-[rgba(127,29,63,0.4)]"
+            : "border-border bg-card text-foreground"
         )}>
           <input
             type="checkbox"
@@ -2692,8 +2692,8 @@ function DoacCheckboxList({ items, form, onChange }) {
           <span className={cn(
             "w-[1.15rem] h-[1.15rem] flex-none border-2",
             form[field]
-              ? "rounded border-[#7f1d3f] bg-[#7f1d3f] shadow-[inset_0_0_0_3px_#ffffff]"
-              : "rounded border-gray-400 bg-white"
+              ? "rounded border-[#7f1d3f] bg-[#7f1d3f] shadow-[inset_0_0_0_3px_#ffffff] dark:border-[#e05a8d] dark:bg-[#e05a8d]"
+              : "rounded border-muted-foreground bg-card"
           )} />
           <span className="block">{label}</span>
         </label>
@@ -2705,7 +2705,7 @@ function DoacCheckboxList({ items, form, onChange }) {
 function DoacBinaryMatrix({ rows }) {
   return (
     <div className="grid border border-border rounded-2xl overflow-hidden">
-      <div className="grid grid-cols-[minmax(0,1fr)_120px_120px] items-stretch bg-slate-50 border-b border-border">
+      <div className="grid grid-cols-[minmax(0,1fr)_120px_120px] items-stretch bg-muted border-b border-border">
         <span className="px-4 py-3.5" />
         <strong className="px-4 py-3.5 text-center text-muted-foreground text-[0.95rem]">Yes</strong>
         <strong className="px-4 py-3.5 text-center text-muted-foreground text-[0.95rem]">No</strong>
@@ -2715,26 +2715,26 @@ function DoacBinaryMatrix({ rows }) {
           <div className="p-4 leading-relaxed font-semibold text-foreground">{label}</div>
           <label className={cn(
             "grid place-items-center p-3 border-l border-border cursor-pointer",
-            value === "yes" ? "bg-[#fcf7f9]" : "bg-white"
+            value === "yes" ? "bg-[#fcf7f9] dark:bg-[rgba(127,29,63,0.15)]" : "bg-card"
           )}>
             <input type="radio" className="absolute opacity-0 pointer-events-none" checked={value === "yes"} onChange={() => onChange("yes")} />
             <span className={cn(
               "w-6 h-6 rounded-full border-2",
               value === "yes"
-                ? "border-[#7f1d3f] bg-[#7f1d3f] shadow-[inset_0_0_0_4px_#ffffff]"
-                : "border-gray-400 bg-white"
+                ? "border-[#7f1d3f] bg-[#7f1d3f] shadow-[inset_0_0_0_4px_#ffffff] dark:border-[#e05a8d] dark:bg-[#e05a8d]"
+                : "border-muted-foreground bg-card"
             )} />
           </label>
           <label className={cn(
             "grid place-items-center p-3 border-l border-border cursor-pointer",
-            value === "no" ? "bg-[#fcf7f9]" : "bg-white"
+            value === "no" ? "bg-[#fcf7f9] dark:bg-[rgba(127,29,63,0.15)]" : "bg-card"
           )}>
             <input type="radio" className="absolute opacity-0 pointer-events-none" checked={value === "no"} onChange={() => onChange("no")} />
             <span className={cn(
               "w-6 h-6 rounded-full border-2",
               value === "no"
-                ? "border-[#7f1d3f] bg-[#7f1d3f] shadow-[inset_0_0_0_4px_#ffffff]"
-                : "border-gray-400 bg-white"
+                ? "border-[#7f1d3f] bg-[#7f1d3f] shadow-[inset_0_0_0_4px_#ffffff] dark:border-[#e05a8d] dark:bg-[#e05a8d]"
+                : "border-muted-foreground bg-card"
             )} />
           </label>
         </div>
@@ -2803,7 +2803,7 @@ function AcuteManagementPage({
           </div>
         </div>
 
-        <div className="flex items-center gap-3 p-4 border border-border rounded-xl bg-rose-50/50 text-foreground">
+        <div className="flex items-center gap-3 p-4 border border-border rounded-xl bg-muted/30 text-foreground">
           <CircleCheckBig size={18} />
           <span>Interactive acute pathways are now aligned to the generated acute-management build and open directly to the selected tool.</span>
         </div>
@@ -2830,7 +2830,7 @@ function getAcuteToolKey(activeAcuteId) {
 
 function AcuteQuestionCard({ title, children, note }) {
   return (
-    <section className="grid gap-3.5 p-5 border border-border rounded-2xl bg-white shadow-sm">
+    <section className="grid gap-3.5 p-5 border border-border rounded-2xl bg-card shadow-sm">
       <h4>{title}</h4>
       {note ? <p className="m-0 text-muted-foreground leading-relaxed text-sm">{note}</p> : null}
       {children}
@@ -2850,7 +2850,7 @@ function AcuteChoiceGrid({ options, value, onChange, multi = false }) {
             className={active ? "acute-choice active" : "acute-choice"}
             onClick={() => onChange(option.value)}
           >
-            <span className="w-4.5 h-4.5 mt-0.5 border-2 border-slate-400 rounded-full bg-white flex-shrink-0" />
+            <span className="w-4.5 h-4.5 mt-0.5 border-2 border-muted-foreground rounded-full bg-card flex-shrink-0" />
             <span>
               <strong>{option.label}</strong>
               {option.detail ? <small>{option.detail}</small> : null}
@@ -3092,7 +3092,7 @@ function AcuteBleedPanel({ state, onFieldChange }) {
                 }
               }}
             >
-              <span className="w-4.5 h-4.5 mt-0.5 border-2 border-slate-400 rounded-full bg-white flex-shrink-0" />
+              <span className="w-4.5 h-4.5 mt-0.5 border-2 border-muted-foreground rounded-full bg-card flex-shrink-0" />
               <span><strong>Unknown or pending</strong></span>
             </button>
           </div>
@@ -3586,7 +3586,7 @@ function ResultPanel({ result }) {
   const ToneIcon = meta.icon;
 
   return (
-    <Card className={cn("space-y-0", tone === "success" ? "border-green-500/30" : tone === "warning" ? "border-yellow-500/30" : tone === "danger" ? "border-red-500/30" : "")}>
+    <Card className={cn("space-y-4", tone === "success" ? "border-green-500/30" : tone === "warning" ? "border-yellow-500/30" : tone === "danger" ? "border-red-500/30" : "")}>
       <CardHeader className="flex flex-row items-center justify-between pb-2">
         <div>
           <span className="text-xs font-medium uppercase tracking-wider text-primary">Outcome</span>
@@ -3595,25 +3595,25 @@ function ResultPanel({ result }) {
         <ToneIcon size={18} className="text-muted-foreground" />
       </CardHeader>
 
-      <div className="grid gap-2 p-4 rounded-2xl border border-border bg-muted/40">
+      <div className="grid gap-3 p-5 rounded-2xl border border-border bg-muted/40">
         <Badge variant="secondary">{meta.label}</Badge>
-        <h4>{result.headline}</h4>
-        {result.summary ? <p>{result.summary}</p> : null}
+        <h4 className="text-base font-semibold leading-snug">{result.headline}</h4>
+        {result.summary ? <p className="text-sm leading-relaxed text-muted-foreground">{result.summary}</p> : null}
       </div>
 
       {result.action ? (
-        <div className="border border-border rounded-xl bg-muted/50 p-4">
+        <div className="border border-border rounded-xl bg-muted/50 p-5">
           <span className="text-[0.7rem] font-bold uppercase tracking-widest text-primary">Recommended move</span>
-          <p>{result.action}</p>
+          <p className="mt-2 text-sm leading-relaxed">{result.action}</p>
         </div>
       ) : null}
 
       {result.metrics?.length ? (
-        <div className="grid grid-cols-3 gap-3 my-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
           {result.metrics.map((metric) => (
-            <div key={`${metric.label}-${metric.value}`} className="p-3.5 border border-border rounded-xl bg-card">
-              <span>{metric.label}</span>
-              <strong>{metric.value}</strong>
+            <div key={`${metric.label}-${metric.value}`} className="flex flex-col gap-1.5 p-4 border border-border rounded-xl bg-card">
+              <span className="text-xs font-medium text-muted-foreground">{metric.label}</span>
+              <strong className="text-sm font-semibold leading-snug text-foreground">{metric.value}</strong>
             </div>
           ))}
         </div>
@@ -3622,16 +3622,16 @@ function ResultPanel({ result }) {
       {result.recommendations?.length ? (
         <div className="grid gap-3">
           {result.recommendations.map((item) => (
-            <div key={`${item.label}-${item.value}`} className="p-3.5 border border-border rounded-xl bg-card">
-              <span>{item.label}</span>
-              <strong>{item.value}</strong>
+            <div key={`${item.label}-${item.value}`} className="flex flex-col gap-1.5 p-4 border border-border rounded-xl bg-card">
+              <span className="text-xs font-medium text-muted-foreground">{item.label}</span>
+              <strong className="text-sm font-semibold leading-snug text-foreground">{item.value}</strong>
             </div>
           ))}
         </div>
       ) : null}
 
       {result.tables?.length ? (
-        <div className="grid gap-3.5 mt-4">
+        <div className="grid gap-3.5">
           {result.tables.map((table) => (
             <div key={table.title} className="grid gap-3 border border-border rounded-xl bg-muted/50 p-4">
               <span className="text-[0.7rem] font-bold uppercase tracking-widest text-primary">{table.title}</span>
@@ -3663,17 +3663,20 @@ function ResultPanel({ result }) {
       ) : null}
 
       {result.supporting?.length ? (
-        <ul className="m-0 pl-4">
-          {result.supporting.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
+        <div className="grid gap-2 p-4 border border-border rounded-xl bg-muted/30">
+          <span className="text-[0.7rem] font-bold uppercase tracking-widest text-primary">Supporting evidence</span>
+          <ul className="m-0 pl-4 space-y-1.5 text-sm leading-relaxed text-muted-foreground">
+            {result.supporting.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
       ) : null}
 
-      <div className="grid gap-2 mt-4 p-4 border border-rose-200/40 rounded-xl bg-rose-50/40 text-sm">
+      <div className="grid gap-2 p-4 border border-border rounded-xl bg-muted/30 text-sm">
         <span className="text-[0.7rem] font-bold uppercase tracking-widest text-primary">Clinical disclaimer</span>
-        <p>{globalToolDisclaimer.text}</p>
-        {globalToolDisclaimer.source ? <small>{globalToolDisclaimer.source}</small> : null}
+        <p className="text-muted-foreground leading-relaxed">{globalToolDisclaimer.text}</p>
+        {globalToolDisclaimer.source ? <small className="text-muted-foreground">{globalToolDisclaimer.source}</small> : null}
       </div>
     </Card>
   );
@@ -3801,7 +3804,7 @@ function ContentBlock({ block }) {
     const Icon = block.tone === "warning" ? CircleAlert : BadgeCheck;
     return (
       <div className={`content-callout ${block.tone === "warning" ? "warning" : "note"}`}>
-        <div className="w-8 h-8 grid place-items-center rounded-full bg-white/70 flex-shrink-0">
+        <div className="w-8 h-8 grid place-items-center rounded-full bg-card/70 flex-shrink-0">
           <Icon size={16} />
         </div>
         <div>
