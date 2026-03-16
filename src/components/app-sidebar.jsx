@@ -236,16 +236,20 @@ export function AppSidebar({
     ]
   );
 
+  // Reset folder accordion when user switches page section
   useEffect(() => {
-    const currentNodes = sidebarSections[currentPage] ?? [];
-    const firstFolderId = currentNodes.find((n) => n.children?.length)?.id;
-
-    if (firstFolderId) {
-      setExpandedFolders({ [firstFolderId]: true });
-    } else {
-      setExpandedFolders({});
-    }
-  }, [currentPage, sidebarSections]);
+    setExpandedFolders({});
+    // After state clears, open the first folder in the new section
+    const timer = requestAnimationFrame(() => {
+      const currentNodes = sidebarSections[currentPage] ?? [];
+      const firstFolderId = currentNodes.find((n) => n.children?.length)?.id;
+      if (firstFolderId) {
+        setExpandedFolders({ [firstFolderId]: true });
+      }
+    });
+    return () => cancelAnimationFrame(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPage]);
 
   const handlePagePress = (pageId) => {
     setExpandedSection(pageId);
@@ -272,7 +276,7 @@ export function AppSidebar({
 
     return nodes.map((node) => {
       const isFolder = Array.isArray(node.children) && node.children.length > 0;
-      const isExpanded = expandedFolders[node.id] ?? depth === 0;
+      const isExpanded = !!expandedFolders[node.id];
 
       if (isFolder) {
         return (
@@ -297,14 +301,11 @@ export function AppSidebar({
                 <ChevronRight size={14} className="flex-shrink-0 text-muted-foreground" />
               )}
             </SidebarSubmenuButton>
-            <SidebarSubmenu
-              className={cn(
-                "overflow-hidden transition-all duration-200",
-                isExpanded ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
-              )}
-            >
-              {renderSidebarNodes(pageId, node.children, depth + 1)}
-            </SidebarSubmenu>
+            {isExpanded && (
+              <SidebarSubmenu>
+                {renderSidebarNodes(pageId, node.children, depth + 1)}
+              </SidebarSubmenu>
+            )}
           </div>
         );
       }
@@ -405,14 +406,11 @@ export function AppSidebar({
                           </span>
                         </SidebarMenuMeta>
                       </SidebarMenuButton>
-                      <SidebarSubmenu
-                        className={cn(
-                          "overflow-hidden transition-all duration-200",
-                          isExpanded ? "max-h-[5000px] opacity-100" : "max-h-0 opacity-0"
-                        )}
-                      >
-                        {renderSidebarNodes(page.id, children)}
-                      </SidebarSubmenu>
+                      {isExpanded && (
+                        <SidebarSubmenu>
+                          {renderSidebarNodes(page.id, children)}
+                        </SidebarSubmenu>
+                      )}
                     </SidebarMenuItem>
                   );
                 })}
