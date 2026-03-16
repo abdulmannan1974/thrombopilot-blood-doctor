@@ -156,11 +156,11 @@ export function CerebralVenousThrombosisGuide() {
                 </div>
                 <div className="rounded-lg border p-3">
                   <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Functional independence</span>
-                  <span className="text-sm" style={{ color: "#16a34a" }}>~85% of survivors</span>
+                  <span className="text-sm" style={{ color: "var(--tone-green-text)" }}>~85% of survivors</span>
                 </div>
                 <div className="rounded-lg border p-3">
                   <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Mortality</span>
-                  <span className="text-sm" style={{ color: "#dc2626" }}>5–10%</span>
+                  <span className="text-sm" style={{ color: "var(--tone-danger-text)" }}>5–10%</span>
                 </div>
                 <div className="rounded-lg border p-3">
                   <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Recurrent VTE/year</span>
@@ -294,7 +294,7 @@ export function CerebralVenousThrombosisGuide() {
                     </div>
                     <p style={{ margin: "0.2rem 0", fontSize: "0.88em" }}><strong>Agent:</strong> {t.agent} | <strong>n =</strong> {t.n} | <strong>Duration:</strong> {t.duration}</p>
                     <p style={{ margin: "0.2rem 0", fontSize: "0.88em" }}>{t.result}</p>
-                    <p style={{ margin: "0.2rem 0", fontSize: "0.85em", color: "#1d4ed8", fontWeight: 600 }}>{t.takeaway}</p>
+                    <p style={{ margin: "0.2rem 0", fontSize: "0.85em", color: "var(--tone-blue-text)", fontWeight: 600 }}>{t.takeaway}</p>
                   </div>
                 ))}
               </div>

@@ -243,7 +243,7 @@ export function DvtTreatmentGuide() {
                     <strong style={{ fontSize: "1.05em" }}>{d.drug}</strong>
                     <span className={badgeClass(d.badge)}>{d.leadIn.startsWith("No") ? "No lead-in needed" : "Requires LMWH lead-in"}</span>
                   </div>
-                  <p style={{ margin: "0 0 0.2rem", fontSize: "0.88em" }}><span style={{ color: "#6b7280" }}>Mechanism:</span> {d.mechanism}</p>
+                  <p style={{ margin: "0 0 0.2rem", fontSize: "0.88em" }}><span style={{ color: "var(--tone-gray-text)" }}>Mechanism:</span> {d.mechanism}</p>
                   <table className="w-full border-collapse text-sm" style={{ marginTop: "0.4rem" }}>
                     <thead>
                       <tr>
@@ -255,7 +255,7 @@ export function DvtTreatmentGuide() {
                       <tr><td>Acute (initial)</td><td><strong>{d.acuteDose}</strong></td></tr>
                       <tr><td>Maintenance</td><td>{d.maintenanceDose}</td></tr>
                       <tr><td>Extended (&gt;6 months)</td><td>{d.extendedDose}</td></tr>
-                      <tr><td>Renal note</td><td style={{ fontSize: "0.87em", color: "#4b5563" }}>{d.renalNote}</td></tr>
+                      <tr><td>Renal note</td><td style={{ fontSize: "0.87em", color: "var(--tone-gray-text)" }}>{d.renalNote}</td></tr>
                     </tbody>
                   </table>
                 </div>
@@ -348,7 +348,7 @@ export function DvtTreatmentGuide() {
               <div key={i} className="rounded-xl border bg-card shadow-sm p-5" style={{ borderLeft: "3px solid var(--primary)" }}>
                 <h3 style={{ margin: "0 0 0.4rem", color: "var(--foreground)", fontSize: "1em" }}>{s.situation}</h3>
                 <p className="text-sm text-foreground leading-relaxed mb-4" style={{ margin: "0 0 0.3rem" }}>{s.management}</p>
-                <p style={{ margin: 0, fontSize: "0.84em", color: "#1d4ed8", fontWeight: 500 }}>
+                <p style={{ margin: 0, fontSize: "0.84em", color: "var(--tone-blue-text)", fontWeight: 500 }}>
                   {["cvad","cancer","pregVte","vcFilter","aps"].includes(s.key) ? <>See <GuideLink to={s.key} /></> : s.key}
                 </p>
               </div>

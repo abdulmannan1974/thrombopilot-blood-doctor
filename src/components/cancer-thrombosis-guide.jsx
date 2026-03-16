@@ -266,9 +266,9 @@ function Dot({ tone }) {
 }
 
 function ToneChip({ label, tone }) {
-  const bg = { green: "#f0fdf4", teal: "#f0fdfa", orange: "#fffbeb", danger: "#fef2f2", blue: "#eff6ff", gray: "#f9fafb" };
-  const color = { green: "#15803d", teal: "#0f766e", orange: "#b45309", danger: "#b91c1c", blue: "#1d4ed8", gray: "#6b7280" };
-  const border = { green: "#bbf7d0", teal: "#99f6e4", orange: "#fde68a", danger: "#fecaca", blue: "#bfdbfe", gray: "#e5e7eb" };
+  const bg = { green: "var(--tone-green-bg)", teal: "var(--tone-teal-bg)", orange: "var(--tone-orange-bg)", danger: "var(--tone-danger-bg)", blue: "var(--tone-blue-bg)", gray: "var(--card-muted)" };
+  const color = { green: "var(--tone-green-text)", teal: "var(--tone-teal-text)", orange: "var(--tone-orange-text)", danger: "var(--tone-danger-text)", blue: "var(--tone-blue-text)", gray: "var(--tone-gray-text)" };
+  const border = { green: "var(--tone-green-border)", teal: "var(--tone-teal-border)", orange: "var(--tone-orange-border)", danger: "var(--tone-danger-border)", blue: "var(--tone-blue-border)", gray: "var(--border)" };
   return (
     <span style={{
       display: "inline-flex",
@@ -309,7 +309,7 @@ export function CancerThrombosisGuide() {
               <span><FileText size={13} /> DVT · PE · LMWH · DOACs · Cancer-Associated Thrombosis</span>
             </div>
           </div>
-          <div className="flex items-center justify-center w-12 h-12 rounded-xl border border-blue-200 bg-blue-50 text-blue-600 flex-shrink-0" style={{ background: "#fef2f2", borderColor: "#fecaca", color: "#b91c1c" }}>
+          <div className="flex items-center justify-center w-12 h-12 rounded-xl border border-blue-200 bg-blue-50 text-blue-600 flex-shrink-0" style={{ background: "var(--tone-danger-bg)", borderColor: "var(--tone-danger-border)", color: "var(--tone-danger-text)" }}>
             <Activity size={24} />
           </div>
         </div>
@@ -320,12 +320,12 @@ export function CancerThrombosisGuide() {
 
       {/* Background strip */}
       <div className="rounded-xl border bg-card shadow-sm p-5">
-        <div className="flex items-center justify-center w-10 h-10 rounded-lg border border-blue-200 bg-blue-50 text-blue-600 mb-2" style={{ background: "#fef2f2", color: "#b91c1c" }}>
+        <div className="flex items-center justify-center w-10 h-10 rounded-lg border border-blue-200 bg-blue-50 text-blue-600 mb-2" style={{ background: "var(--tone-danger-bg)", color: "var(--tone-danger-text)" }}>
           <FlaskConical size={18} />
         </div>
         <div>
           <h3>Clinical Background</h3>
-          <p style={{ margin: 0, color: "#374151", lineHeight: 1.65, fontSize: "0.94rem" }}>
+          <p style={{ margin: 0, color: "var(--tone-body-text)", lineHeight: 1.65, fontSize: "0.94rem" }}>
             LMWH and anti-Xa DOACs (apixaban, edoxaban, rivaroxaban) are the recommended treatments for CAT.
             Both are superior to warfarin in efficacy, bleeding risk, and quality of life. LMWH is preferred in specific high-risk scenarios (GI malignancy, thrombocytopenia, pregnancy). Dabigatran has not been studied in CAT randomised trials.
           </p>
@@ -404,9 +404,9 @@ export function CancerThrombosisGuide() {
               <h3><Dot tone="blue" />LMWH Dosing in Cancer-Associated Thrombosis</h3>
               <div style={{ display: "grid", gap: "0.75rem" }}>
                 {lmwhDoses.map((lmwh) => {
-                  const bg = { blue: "#eff6ff", teal: "#f0fdfa", green: "#f0fdf4" };
-                  const bc = { blue: "#bfdbfe", teal: "#99f6e4", green: "#bbf7d0" };
-                  const col = { blue: "#1e40af", teal: "#0f766e", green: "#166534" };
+                  const bg = { blue: "var(--tone-blue-bg)", teal: "var(--tone-teal-bg)", green: "var(--tone-green-bg)" };
+                  const bc = { blue: "var(--tone-blue-border)", teal: "var(--tone-teal-border)", green: "var(--tone-green-border)" };
+                  const col = { blue: "var(--tone-blue-text)", teal: "var(--tone-teal-text)", green: "var(--tone-green-text)" };
                   return (
                     <div
                       key={lmwh.drug}
@@ -446,9 +446,9 @@ export function CancerThrombosisGuide() {
               <h3><Dot tone="orange" />Renal Impairment (CrCl &lt;30 mL/min) — LMWH Options</h3>
               <div style={{ display: "grid", gap: "0.65rem" }}>
                 {renalOptions.map((opt) => {
-                  const bg = { green: "#f0fdf4", orange: "#fffbeb", gray: "#f9fafb" };
-                  const bc = { green: "#bbf7d0", orange: "#fde68a", gray: "#e5e7eb" };
-                  const col = { green: "#166534", orange: "#92400e", gray: "#374151" };
+                  const bg = { green: "var(--tone-green-bg)", orange: "var(--tone-orange-bg)", gray: "var(--card-muted)" };
+                  const bc = { green: "var(--tone-green-border)", orange: "var(--tone-orange-border)", gray: "var(--border)" };
+                  const col = { green: "var(--tone-green-text)", orange: "var(--tone-orange-text)", gray: "var(--tone-body-text)" };
                   return (
                     <div key={opt.option} style={{ border: `1px solid ${bc[opt.tone]}`, background: bg[opt.tone], borderRadius: "8px", padding: "0.75rem 1rem" }}>
                       <div style={{ fontWeight: 700, color: col[opt.tone], marginBottom: "0.2rem", fontSize: "0.88rem" }}>{opt.option}</div>
@@ -494,16 +494,16 @@ export function CancerThrombosisGuide() {
                   </thead>
                   <tbody>
                     {doacTrials.map((row) => (
-                      <tr key={row.drug} style={{ background: row.highlight ? "#f0fdf4" : undefined }}>
+                      <tr key={row.drug} style={{ background: row.highlight ? "var(--tone-green-bg)" : undefined }}>
                         <td className="font-bold text-foreground" style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
                           {row.highlight && <ToneChip label="Preferred" tone="green" />}
                           {row.drug}
                         </td>
                         <td>{row.trial} (n={row.n})</td>
                         <td>{row.vtePrimary}</td>
-                        <td style={{ color: "#15803d", fontWeight: 600, fontSize: "0.85rem" }}>{row.vteRate}</td>
-                        <td style={{ color: row.tone === "green" ? "#15803d" : "#b45309", fontSize: "0.85rem" }}>{row.majorBleed}</td>
-                        <td style={{ color: row.tone === "green" ? "#6b7280" : "#b91c1c", fontSize: "0.83rem" }}>{row.giBleed}</td>
+                        <td style={{ color: "var(--tone-green-text)", fontWeight: 600, fontSize: "0.85rem" }}>{row.vteRate}</td>
+                        <td style={{ color: row.tone === "green" ? "var(--tone-green-text)" : "var(--tone-orange-text)", fontSize: "0.85rem" }}>{row.majorBleed}</td>
+                        <td style={{ color: row.tone === "green" ? "var(--tone-gray-text)" : "var(--tone-danger-text)", fontSize: "0.83rem" }}>{row.giBleed}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -515,9 +515,9 @@ export function CancerThrombosisGuide() {
               <h3><Dot tone="blue" />DOAC Dosing in CAT</h3>
               <div style={{ display: "grid", gap: "0.75rem" }}>
                 {doacDosingRows.map((d) => {
-                  const bg = { green: "#f0fdf4", teal: "#f0fdfa", orange: "#fffbeb" };
-                  const bc = { green: "#bbf7d0", teal: "#99f6e4", orange: "#fde68a" };
-                  const col = { green: "#166534", teal: "#0f766e", orange: "#92400e" };
+                  const bg = { green: "var(--tone-green-bg)", teal: "var(--tone-teal-bg)", orange: "var(--tone-orange-bg)" };
+                  const bc = { green: "var(--tone-green-border)", teal: "var(--tone-teal-border)", orange: "var(--tone-orange-border)" };
+                  const col = { green: "var(--tone-green-text)", teal: "var(--tone-teal-text)", orange: "var(--tone-orange-text)" };
                   return (
                     <div key={d.drug} style={{ border: `1px solid ${bc[d.tone]}`, background: bg[d.tone], borderRadius: "10px", padding: "1rem 1.1rem" }}>
                       <div style={{ fontWeight: 800, color: col[d.tone], marginBottom: "0.5rem" }}>{d.drug}</div>
@@ -573,9 +573,9 @@ export function CancerThrombosisGuide() {
               </p>
               <div style={{ display: "grid", gap: "0.55rem" }}>
                 {durationCriteria.map((item) => {
-                  const bg = { blue: "#eff6ff", orange: "#fffbeb", teal: "#f0fdfa", green: "#f0fdf4" };
-                  const bc = { blue: "#bfdbfe", orange: "#fde68a", teal: "#99f6e4", green: "#bbf7d0" };
-                  const col = { blue: "#1e40af", orange: "#92400e", teal: "#0f766e", green: "#166534" };
+                  const bg = { blue: "var(--tone-blue-bg)", orange: "var(--tone-orange-bg)", teal: "var(--tone-teal-bg)", green: "var(--tone-green-bg)" };
+                  const bc = { blue: "var(--tone-blue-border)", orange: "var(--tone-orange-border)", teal: "var(--tone-teal-border)", green: "var(--tone-green-border)" };
+                  const col = { blue: "var(--tone-blue-text)", orange: "var(--tone-orange-text)", teal: "var(--tone-teal-text)", green: "var(--tone-green-text)" };
                   return (
                     <div key={item.trigger} style={{ border: `1px solid ${bc[item.tone]}`, background: bg[item.tone], borderRadius: "8px", padding: "0.7rem 0.9rem", display: "flex", alignItems: "flex-start", gap: "0.75rem" }}>
                       <CheckCircle2 size={15} style={{ color: col[item.tone], marginTop: "0.1rem", flexShrink: 0 }} />
@@ -636,7 +636,7 @@ export function CancerThrombosisGuide() {
                     <tr key={count}>
                       <td className="font-bold text-foreground">{count}</td>
                       <td>{approach}</td>
-                      <td style={{ color: "#6b7280", fontSize: "0.88rem" }}>{note}</td>
+                      <td style={{ color: "var(--tone-gray-text)", fontSize: "0.88rem" }}>{note}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -678,7 +678,7 @@ export function CancerThrombosisGuide() {
                     <tr key={site}>
                       <td className="font-bold text-foreground">{site}</td>
                       <td>{mgmt}</td>
-                      <td style={{ color: "#6b7280", fontSize: "0.88rem" }}>{evidence}</td>
+                      <td style={{ color: "var(--tone-gray-text)", fontSize: "0.88rem" }}>{evidence}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -707,7 +707,7 @@ export function CancerThrombosisGuide() {
                     <tr key={scenario}>
                       <td className="font-bold text-foreground">{scenario}</td>
                       <td>{action}</td>
-                      <td style={{ color: "#b91c1c", fontSize: "0.88rem" }}>{qualifier}</td>
+                      <td style={{ color: "var(--tone-danger-text)", fontSize: "0.88rem" }}>{qualifier}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -734,9 +734,9 @@ export function CancerThrombosisGuide() {
         {tab === "prevention" && (
           <div className="grid gap-3.5">
             {primaryPrevention.map((group) => {
-              const bg = { blue: "#eff6ff", teal: "#f0fdfa", gray: "#f9fafb" };
-              const bc = { blue: "#bfdbfe", teal: "#99f6e4", gray: "#e5e7eb" };
-              const col = { blue: "#1e40af", teal: "#0f766e", gray: "#374151" };
+              const bg = { blue: "var(--tone-blue-bg)", teal: "var(--tone-teal-bg)", gray: "var(--card-muted)" };
+              const bc = { blue: "var(--tone-blue-border)", teal: "var(--tone-teal-border)", gray: "var(--border)" };
+              const col = { blue: "var(--tone-blue-text)", teal: "var(--tone-teal-text)", gray: "var(--tone-body-text)" };
               return (
                 <article key={group.setting} className="rounded-xl border bg-card shadow-sm p-5">
                   <h3><Dot tone={group.tone === "gray" ? "gray" : group.tone} />{group.setting}</h3>
@@ -783,7 +783,7 @@ export function CancerThrombosisGuide() {
               <h3><Dot tone="gray" />References</h3>
               <ol style={{ paddingLeft: "1.2rem", listStyle: "decimal" }}>
                 {references.map((item, i) => (
-                  <li key={i} style={{ padding: "0.35rem 0", color: "#374151", lineHeight: 1.6, fontSize: "0.87rem" }}>
+                  <li key={i} style={{ padding: "0.35rem 0", color: "var(--tone-body-text)", lineHeight: 1.6, fontSize: "0.87rem" }}>
                     {item}
                   </li>
                 ))}
@@ -795,8 +795,8 @@ export function CancerThrombosisGuide() {
 
       {/* Footer */}
       <div className="rounded-xl border bg-muted/50 p-4 text-xs text-muted-foreground" style={{ padding: "1rem 1.35rem" }}>
-        <p style={{ margin: 0, fontWeight: 700, color: "#374151" }}>Cancer and Thrombosis</p>
-        <p style={{ margin: "0.3rem 0 0", color: "#6b7280", fontSize: "0.85rem" }}>
+        <p style={{ margin: 0, fontWeight: 700, color: "var(--tone-body-text)" }}>Cancer and Thrombosis</p>
+        <p style={{ margin: "0.3rem 0 0", color: "var(--tone-gray-text)", fontSize: "0.85rem" }}>
           Clinical Guide · Updated 10 September 2024 · Individualise anticoagulant choice based on cancer type, bleeding risk, renal function, and patient preference.
         </p>
       </div>

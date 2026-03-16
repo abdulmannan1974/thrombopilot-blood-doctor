@@ -128,7 +128,7 @@ export function WarfarinGuide() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="rounded-lg border p-3">
                   <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Annual major bleeding</span>
-                  <span className="text-sm" style={{ color: "#dc2626" }}>1&ndash;2% of chronic warfarin users</span>
+                  <span className="text-sm" style={{ color: "var(--tone-danger-text)" }}>1&ndash;2% of chronic warfarin users</span>
                 </div>
                 <div className="rounded-lg border p-3">
                   <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Annual minor bleeding</span>
@@ -271,10 +271,10 @@ export function WarfarinGuide() {
                 <div key={i} className="rounded-xl border bg-card shadow-sm p-5" style={{ margin: "0 0 0.75rem", borderLeft: "3px solid var(--primary)" }}>
                   <strong>{d.drug}</strong>
                   <p style={{ margin: "0.2rem 0", fontSize: "0.88em" }}>
-                    <span style={{ color: "#dc2626" }}>Effect: </span>{d.effect}
+                    <span style={{ color: "var(--tone-danger-text)" }}>Effect: </span>{d.effect}
                   </p>
                   <p style={{ margin: 0, fontSize: "0.88em" }}>
-                    <span style={{ color: "#16a34a" }}>Management: </span>{d.management}
+                    <span style={{ color: "var(--tone-green-text)" }}>Management: </span>{d.management}
                   </p>
                 </div>
               ))}

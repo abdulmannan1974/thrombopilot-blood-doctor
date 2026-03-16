@@ -162,7 +162,7 @@ export function ThrombophiliaHomocysteineGuide() {
                   </div>
                 </div>
                 <div className="relative">
-                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary" style={{ background: "#f59e0b" }}>?</div>
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary" style={{ background: "var(--tone-orange-text)" }}>?</div>
                   <div className="ml-2">
                     <strong>Stroke: Possible benefit &mdash; limited and context-specific</strong>
                     <p>Some evidence of stroke reduction with folic acid, particularly in:</p>
@@ -175,7 +175,7 @@ export function ThrombophiliaHomocysteineGuide() {
                   </div>
                 </div>
                 <div className="relative">
-                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary" style={{ background: "#6b7280" }}>&mdash;</div>
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary" style={{ background: "var(--tone-gray-text)" }}>&mdash;</div>
                   <div className="ml-2">
                     <strong>Obstetric complications: Unknown</strong>
                     <p>Hyperhomocysteinemia has been associated with obstetric complications, but optimal management is unknown.</p>

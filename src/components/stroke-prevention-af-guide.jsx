@@ -120,7 +120,7 @@ export function StrokePreventionAfGuide() {
                 </div>
                 <div className="rounded-lg border p-3">
                   <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Stroke/embolism risk increase</span>
-                  <span className="text-sm" style={{ color: "#dc2626" }}>3–6 fold vs. non-AF</span>
+                  <span className="text-sm" style={{ color: "var(--tone-danger-text)" }}>3–6 fold vs. non-AF</span>
                 </div>
                 <div className="rounded-lg border p-3">
                   <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">AF strokes vs non-AF strokes</span>
@@ -128,7 +128,7 @@ export function StrokePreventionAfGuide() {
                 </div>
                 <div className="rounded-lg border p-3">
                   <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Risk reduction with anticoagulation</span>
-                  <span className="text-sm" style={{ color: "#16a34a" }}>Significant — outweighs bleeding risk in most patients</span>
+                  <span className="text-sm" style={{ color: "var(--tone-green-text)" }}>Significant — outweighs bleeding risk in most patients</span>
                 </div>
               </div>
             </div>
@@ -214,7 +214,7 @@ export function StrokePreventionAfGuide() {
                   <span className="text-sm">ASA 81 mg/day only</span>
                 </div>
                 <div className="rounded-lg border p-3">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "#dc2626" }}>Age ≥65 OR any CHADS₂ risk factor in age &lt;65</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "var(--tone-danger-text)" }}>Age ≥65 OR any CHADS₂ risk factor in age &lt;65</span>
                   <span className="text-sm"><strong>DOAC or warfarin (INR 2–3) — DOAC preferred by CCS</strong></span>
                 </div>
                 <div className="rounded-lg border p-3">
@@ -256,7 +256,7 @@ export function StrokePreventionAfGuide() {
                 </div>
                 <div className="rounded-lg border p-3">
                   <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Intracranial bleeding</span>
-                  <span className="text-sm" style={{ color: "#16a34a" }}>Lower risk with all DOACs vs. warfarin</span>
+                  <span className="text-sm" style={{ color: "var(--tone-green-text)" }}>Lower risk with all DOACs vs. warfarin</span>
                 </div>
                 <div className="rounded-lg border p-3">
                   <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">INR monitoring</span>

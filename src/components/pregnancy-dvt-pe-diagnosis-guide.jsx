@@ -193,9 +193,9 @@ export function PregnancyDvtPeDiagnosisGuide() {
                   <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary">3</div>
                   <div className="ml-2">
                     <strong>Interpret Results</strong>
-                    <p><strong>NO YEARS criteria</strong> AND D-dimer &lt;1000 ng/mL → <span style={{ color: "#16a34a", fontWeight: 600 }}>PE excluded</span></p>
-                    <p><strong>1 or more YEARS criteria</strong> AND D-dimer &lt;500 ng/mL → <span style={{ color: "#16a34a", fontWeight: 600 }}>PE excluded</span></p>
-                    <p><strong>Otherwise</strong> → Proceed to <span style={{ color: "#dc2626", fontWeight: 600 }}>CTPA</span></p>
+                    <p><strong>NO YEARS criteria</strong> AND D-dimer &lt;1000 ng/mL → <span style={{ color: "var(--tone-green-text)", fontWeight: 600 }}>PE excluded</span></p>
+                    <p><strong>1 or more YEARS criteria</strong> AND D-dimer &lt;500 ng/mL → <span style={{ color: "var(--tone-green-text)", fontWeight: 600 }}>PE excluded</span></p>
+                    <p><strong>Otherwise</strong> → Proceed to <span style={{ color: "var(--tone-danger-text)", fontWeight: 600 }}>CTPA</span></p>
                   </div>
                 </div>
               </div>
@@ -218,14 +218,14 @@ export function PregnancyDvtPeDiagnosisGuide() {
                 <tbody>
                   <tr>
                     <td><strong>CTPA</strong></td>
-                    <td style={{ color: "#dc2626" }}>Higher</td>
-                    <td style={{ color: "#16a34a" }}>Lower</td>
+                    <td style={{ color: "var(--tone-danger-text)" }}>Higher</td>
+                    <td style={{ color: "var(--tone-green-text)" }}>Lower</td>
                     <td>Preferred if high clinical suspicion; widely available; rapid results</td>
                   </tr>
                   <tr>
                     <td><strong>V/Q Scan</strong></td>
-                    <td style={{ color: "#16a34a" }}>Lower</td>
-                    <td style={{ color: "#dc2626" }}>Higher</td>
+                    <td style={{ color: "var(--tone-green-text)" }}>Lower</td>
+                    <td style={{ color: "var(--tone-danger-text)" }}>Higher</td>
                     <td>Lower breast dose; may contaminate breastmilk for 24-48h (radioisotopes)</td>
                   </tr>
                 </tbody>
@@ -261,11 +261,11 @@ export function PregnancyDvtPeDiagnosisGuide() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="rounded-lg border p-3">
                   <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">CT scan (CTPA)</span>
-                  <span className="text-sm" style={{ color: "#16a34a" }}>Safe in breastfeeding — no interruption needed</span>
+                  <span className="text-sm" style={{ color: "var(--tone-green-text)" }}>Safe in breastfeeding — no interruption needed</span>
                 </div>
                 <div className="rounded-lg border p-3">
                   <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">V/Q scan</span>
-                  <span className="text-sm" style={{ color: "#f59e0b" }}>Radioisotopes may contaminate breastmilk for 24-48 hours — pump and discard during this period</span>
+                  <span className="text-sm" style={{ color: "var(--tone-orange-text)" }}>Radioisotopes may contaminate breastmilk for 24-48 hours — pump and discard during this period</span>
                 </div>
               </div>
             </div>

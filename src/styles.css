@@ -206,6 +206,216 @@ a {
 .dark .border-red-100 { border-color: rgba(127, 29, 29, 0.4) !important; }
 .dark .border-green-100 { border-color: rgba(22, 101, 52, 0.4) !important; }
 .dark .border-yellow-100 { border-color: rgba(146, 64, 14, 0.4) !important; }
+.dark .border-orange-100 { border-color: rgba(194, 65, 12, 0.4) !important; }
+.dark .border-amber-100 { border-color: rgba(146, 64, 14, 0.4) !important; }
+
+/* Dark mode text-*-900 overrides (critical for callout visibility) */
+.dark .text-blue-900 { color: #93c5fd !important; }
+.dark .text-red-900 { color: #fca5a5 !important; }
+.dark .text-green-900 { color: #86efac !important; }
+.dark .text-yellow-900 { color: #fde68a !important; }
+.dark .text-amber-900 { color: #fbbf24 !important; }
+.dark .text-orange-900 { color: #fed7aa !important; }
+.dark .text-purple-900 { color: #c4b5fd !important; }
+.dark .text-teal-900 { color: #99f6e4 !important; }
+.dark .text-indigo-900 { color: #a5b4fc !important; }
+
+/* Dark mode text-*-700 overrides */
+.dark .text-blue-700 { color: #93c5fd !important; }
+.dark .text-red-700 { color: #fca5a5 !important; }
+.dark .text-green-700 { color: #86efac !important; }
+.dark .text-teal-700 { color: #99f6e4 !important; }
+.dark .text-amber-700 { color: #fbbf24 !important; }
+
+/* Dark mode bg-*-50 additions */
+.dark .bg-amber-50 { background-color: rgba(146, 64, 14, 0.15) !important; }
+.dark .border-amber-200 { border-color: rgba(146, 64, 14, 0.5) !important; }
+
+/* ─── Tone CSS variables for guide inline styles ─ */
+:root {
+  --tone-blue-bg: #eff6ff;
+  --tone-blue-border: #bfdbfe;
+  --tone-blue-text: #1d4ed8;
+  --tone-green-bg: #f0fdf4;
+  --tone-green-border: #bbf7d0;
+  --tone-green-text: #166534;
+  --tone-orange-bg: #fffbeb;
+  --tone-orange-border: #fde68a;
+  --tone-orange-text: #92400e;
+  --tone-danger-bg: #fef2f2;
+  --tone-danger-border: #fecaca;
+  --tone-danger-text: #b91c1c;
+  --tone-purple-bg: #faf5ff;
+  --tone-purple-border: #e9d5ff;
+  --tone-purple-text: #7c3aed;
+  --tone-teal-bg: #f0fdfa;
+  --tone-teal-border: #99f6e4;
+  --tone-teal-text: #0f766e;
+  --tone-gray-text: #6b7280;
+  --tone-body-text: #374151;
+  --guide-panel-from: rgba(239, 246, 255, 0.7);
+  --guide-panel-via: rgba(240, 253, 250, 0.35);
+  --guide-panel-to: #ffffff;
+}
+.dark {
+  --tone-blue-bg: rgba(30, 58, 95, 0.35);
+  --tone-blue-border: #1e3a5f;
+  --tone-blue-text: #93c5fd;
+  --tone-green-bg: rgba(22, 101, 52, 0.2);
+  --tone-green-border: rgba(22, 101, 52, 0.5);
+  --tone-green-text: #86efac;
+  --tone-orange-bg: rgba(146, 64, 14, 0.2);
+  --tone-orange-border: rgba(146, 64, 14, 0.5);
+  --tone-orange-text: #fbbf24;
+  --tone-danger-bg: rgba(127, 29, 29, 0.2);
+  --tone-danger-border: rgba(127, 29, 29, 0.5);
+  --tone-danger-text: #fca5a5;
+  --tone-purple-bg: rgba(76, 29, 149, 0.2);
+  --tone-purple-border: rgba(76, 29, 149, 0.5);
+  --tone-purple-text: #c4b5fd;
+  --tone-teal-bg: rgba(13, 148, 136, 0.15);
+  --tone-teal-border: rgba(13, 148, 136, 0.4);
+  --tone-teal-text: #2dd4bf;
+  --tone-gray-text: #94a3b8;
+  --tone-body-text: #cbd5e1;
+  --guide-panel-from: rgba(30, 39, 68, 0.5);
+  --guide-panel-via: rgba(13, 148, 136, 0.08);
+  --guide-panel-to: var(--card);
+}
+
+/* ─── Tab button & accordion card ────────────── */
+.tab-button,
+.asa-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 150ms;
+  white-space: nowrap;
+}
+.tab-button:hover,
+.asa-tab-btn:hover {
+  background: var(--accent);
+  color: var(--foreground);
+  border-color: var(--accent-strong);
+}
+.tab-button.active,
+.asa-tab-btn.active {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  border-color: var(--primary);
+}
+
+.accordion-card {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--card);
+  overflow: hidden;
+  transition: box-shadow 150ms;
+}
+.accordion-card:hover {
+  box-shadow: var(--shadow-sm);
+}
+.accordion-card.open {
+  border-color: var(--accent-strong);
+  box-shadow: var(--shadow-md);
+}
+
+/* ─── Guide component asa-* classes ──────────── */
+.asa-dot {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+.asa-dot.blue { background: var(--tone-blue-text); }
+.asa-dot.green { background: var(--tone-green-text); }
+.asa-dot.danger, .asa-dot.red { background: var(--tone-danger-text); }
+.asa-dot.orange, .asa-dot.amber { background: var(--tone-orange-text); }
+.asa-dot.teal { background: var(--tone-teal-text); }
+.asa-dot.purple { background: var(--tone-purple-text); }
+
+.asa-ind-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 0.375rem;
+  flex-shrink: 0;
+}
+.asa-ind-icon.blue { background: var(--tone-blue-bg); color: var(--tone-blue-text); }
+.asa-ind-icon.green { background: var(--tone-green-bg); color: var(--tone-green-text); }
+.asa-ind-icon.danger, .asa-ind-icon.red { background: var(--tone-danger-bg); color: var(--tone-danger-text); }
+.asa-ind-icon.orange, .asa-ind-icon.amber { background: var(--tone-orange-bg); color: var(--tone-orange-text); }
+.asa-ind-icon.teal { background: var(--tone-teal-bg); color: var(--tone-teal-text); }
+.asa-ind-icon.purple { background: var(--tone-purple-bg); color: var(--tone-purple-text); }
+
+.asa-ae-card {
+  padding: 0.875rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  background: var(--card-muted);
+}
+.asa-ae-card.blue { background: var(--tone-blue-bg); border-color: var(--tone-blue-border); }
+.asa-ae-card.green { background: var(--tone-green-bg); border-color: var(--tone-green-border); }
+.asa-ae-card.danger, .asa-ae-card.red { background: var(--tone-danger-bg); border-color: var(--tone-danger-border); }
+.asa-ae-card.orange, .asa-ae-card.amber { background: var(--tone-orange-bg); border-color: var(--tone-orange-border); }
+.asa-ae-card.teal { background: var(--tone-teal-bg); border-color: var(--tone-teal-border); }
+.asa-ae-card.purple { background: var(--tone-purple-bg); border-color: var(--tone-purple-border); }
+
+.asa-timeline-dot {
+  position: absolute;
+  left: -0.9375rem;
+  top: 0.25rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 9999px;
+  border: 2px solid var(--card);
+}
+.asa-timeline-dot.blue { background: var(--tone-blue-text); }
+.asa-timeline-dot.green { background: var(--tone-green-text); }
+.asa-timeline-dot.danger, .asa-timeline-dot.red { background: var(--tone-danger-text); }
+.asa-timeline-dot.orange, .asa-timeline-dot.amber { background: var(--tone-orange-text); }
+.asa-timeline-dot.teal { background: var(--tone-teal-text); }
+.asa-timeline-dot.purple { background: var(--tone-purple-text); }
+
+.asa-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.625rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  background: var(--card-muted);
+  color: var(--foreground);
+}
+.asa-badge-blue { background: var(--tone-blue-bg); border-color: var(--tone-blue-border); color: var(--tone-blue-text); }
+.asa-badge-red { background: var(--tone-danger-bg); border-color: var(--tone-danger-border); color: var(--tone-danger-text); }
+.asa-badge-amber, .asa-badge-orange { background: var(--tone-orange-bg); border-color: var(--tone-orange-border); color: var(--tone-orange-text); }
+
+.asa-alert {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.875rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+  background: var(--card-muted);
+  color: var(--foreground);
+}
+.asa-alert-blue, .asa-alert.blue { background: var(--tone-blue-bg); border-color: var(--tone-blue-border); color: var(--tone-blue-text); }
+.asa-alert-red, .asa-alert.red { background: var(--tone-danger-bg); border-color: var(--tone-danger-border); color: var(--tone-danger-text); }
 
 /* ─── Mobile guide & content overflow fixes ──── */
 main section > div {

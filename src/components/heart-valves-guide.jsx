@@ -316,7 +316,7 @@ function Dot({ tone }) {
 }
 
 function ToneStripe({ tone }) {
-  const map = { green: "#16a34a", teal: "#0f766e", blue: "#2563eb", orange: "#d97706", danger: "#dc2626", gray: "#9ca3af" };
+  const map = { green: "var(--tone-green-text)", teal: "var(--tone-teal-text)", blue: "var(--tone-blue-text)", orange: "var(--tone-orange-text)", danger: "var(--tone-danger-text)", gray: "var(--tone-gray-text)" };
   return (
     <span
       style={{
@@ -334,9 +334,9 @@ function ToneStripe({ tone }) {
 }
 
 function INRBadge({ value, tone }) {
-  const bg = { green: "#f0fdf4", teal: "#f0fdfa", orange: "#fffbeb", danger: "#fef2f2", blue: "#eff6ff", gray: "#f9fafb" };
-  const color = { green: "#15803d", teal: "#0f766e", orange: "#b45309", danger: "#b91c1c", blue: "#1d4ed8", gray: "#6b7280" };
-  const border = { green: "#bbf7d0", teal: "#99f6e4", orange: "#fde68a", danger: "#fecaca", blue: "#bfdbfe", gray: "#e5e7eb" };
+  const bg = { green: "var(--tone-green-bg)", teal: "var(--tone-teal-bg)", orange: "var(--tone-orange-bg)", danger: "var(--tone-danger-bg)", blue: "var(--tone-blue-bg)", gray: "var(--card-muted)" };
+  const color = { green: "var(--tone-green-text)", teal: "var(--tone-teal-text)", orange: "var(--tone-orange-text)", danger: "var(--tone-danger-text)", blue: "var(--tone-blue-text)", gray: "var(--tone-gray-text)" };
+  const border = { green: "var(--tone-green-border)", teal: "var(--tone-teal-border)", orange: "var(--tone-orange-border)", danger: "var(--tone-danger-border)", blue: "var(--tone-blue-border)", gray: "var(--border)" };
   return (
     <span
       style={{
@@ -396,7 +396,7 @@ export function HeartValvesGuide() {
         </div>
         <div>
           <h3>Clinical Background</h3>
-          <p style={{ margin: 0, color: "#374151", lineHeight: 1.65, fontSize: "0.94rem" }}>
+          <p style={{ margin: 0, color: "var(--tone-body-text)", lineHeight: 1.65, fontSize: "0.94rem" }}>
             Valve thrombosis and thromboembolism risk is shaped by prosthesis type, valve position, surgical versus transcatheter approach, coexisting atrial fibrillation, and patient-specific bleeding risk. Two questions should anchor every decision: <strong>(1) Does the patient have another indication for anticoagulation?</strong> and <strong>(2) What type of valve or repair was performed?</strong>
           </p>
         </div>
@@ -433,21 +433,21 @@ export function HeartValvesGuide() {
 
             {/* Decision framework grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))" }}>
-              <div className="rounded-lg border p-3" style={{ borderColor: "#bfdbfe", background: "#eff6ff" }}>
-                <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1" style={{ color: "#1d4ed8" }}>Step 1 — Valve type</div>
-                <div className="text-sm leading-relaxed" style={{ color: "#1e40af", fontSize: "0.88rem", marginTop: "0.3rem", fontWeight: 500 }}>Bioprosthetic · Mechanical · Repaired · Transcatheter</div>
+              <div className="rounded-lg border p-3" style={{ borderColor: "var(--tone-blue-border)", background: "var(--tone-blue-bg)" }}>
+                <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1" style={{ color: "var(--tone-blue-text)" }}>Step 1 — Valve type</div>
+                <div className="text-sm leading-relaxed" style={{ color: "var(--tone-blue-text)", fontSize: "0.88rem", marginTop: "0.3rem", fontWeight: 500 }}>Bioprosthetic · Mechanical · Repaired · Transcatheter</div>
               </div>
-              <div className="rounded-lg border p-3" style={{ borderColor: "#bbf7d0", background: "#f0fdf4" }}>
-                <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1" style={{ color: "#166534" }}>Step 2 — Valve position</div>
-                <div className="text-sm leading-relaxed" style={{ color: "#15803d", fontSize: "0.88rem", marginTop: "0.3rem", fontWeight: 500 }}>Aortic (lower risk) · Mitral (higher risk) · Tricuspid / Pulmonic</div>
+              <div className="rounded-lg border p-3" style={{ borderColor: "var(--tone-green-border)", background: "var(--tone-green-bg)" }}>
+                <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1" style={{ color: "var(--tone-green-text)" }}>Step 2 — Valve position</div>
+                <div className="text-sm leading-relaxed" style={{ color: "var(--tone-green-text)", fontSize: "0.88rem", marginTop: "0.3rem", fontWeight: 500 }}>Aortic (lower risk) · Mitral (higher risk) · Tricuspid / Pulmonic</div>
               </div>
-              <div className="rounded-lg border p-3" style={{ borderColor: "#fde68a", background: "#fffbeb" }}>
-                <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1" style={{ color: "#92400e" }}>Step 3 — Additional indication?</div>
-                <div className="text-sm leading-relaxed" style={{ color: "#b45309", fontSize: "0.88rem", marginTop: "0.3rem", fontWeight: 500 }}>AF · Prior stroke/TE · Hypercoagulable state</div>
+              <div className="rounded-lg border p-3" style={{ borderColor: "var(--tone-orange-border)", background: "var(--tone-orange-bg)" }}>
+                <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1" style={{ color: "var(--tone-orange-text)" }}>Step 3 — Additional indication?</div>
+                <div className="text-sm leading-relaxed" style={{ color: "var(--tone-orange-text)", fontSize: "0.88rem", marginTop: "0.3rem", fontWeight: 500 }}>AF · Prior stroke/TE · Hypercoagulable state</div>
               </div>
-              <div className="rounded-lg border p-3" style={{ borderColor: "#fecaca", background: "#fef2f2" }}>
-                <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1" style={{ color: "#b91c1c" }}>Step 4 — Bleeding risk</div>
-                <div className="text-sm leading-relaxed" style={{ color: "#991b1b", fontSize: "0.88rem", marginTop: "0.3rem", fontWeight: 500 }}>GI bleed history · High-fall risk · Renal/hepatic impairment</div>
+              <div className="rounded-lg border p-3" style={{ borderColor: "var(--tone-danger-border)", background: "var(--tone-danger-bg)" }}>
+                <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1" style={{ color: "var(--tone-danger-text)" }}>Step 4 — Bleeding risk</div>
+                <div className="text-sm leading-relaxed" style={{ color: "var(--tone-danger-text)", fontSize: "0.88rem", marginTop: "0.3rem", fontWeight: 500 }}>GI bleed history · High-fall risk · Renal/hepatic impairment</div>
               </div>
             </div>
 
@@ -463,7 +463,7 @@ export function HeartValvesGuide() {
           <div className="grid gap-3.5">
             <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="green" />Surgical Bioprosthetic Valves and Valve Repair</h3>
-              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ fontSize: "0.9rem", color: "#6b7280" }}>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ fontSize: "0.9rem", color: "var(--tone-gray-text)" }}>
                 Without a separate indication for anticoagulation. Guidelines from ACC/AHA, ESC, and ACCP differ in emphasis; choices below reflect consensus where alignment exists.
               </p>
               <table className="w-full border-collapse text-sm">
@@ -481,7 +481,7 @@ export function HeartValvesGuide() {
                         <ToneStripe tone={row[3]} />{row[0]}
                       </td>
                       <td>{row[1]}</td>
-                      <td style={{ color: "#6b7280", fontSize: "0.88rem" }}>{row[2]}</td>
+                      <td style={{ color: "var(--tone-gray-text)", fontSize: "0.88rem" }}>{row[2]}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -519,7 +519,7 @@ export function HeartValvesGuide() {
           <div className="grid gap-3.5">
             <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="teal" />Transcatheter Valve Antithrombotic Strategies</h3>
-              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ fontSize: "0.9rem", color: "#6b7280" }}>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ fontSize: "0.9rem", color: "var(--tone-gray-text)" }}>
                 Randomised data are limited except for TAVR. For non-aortic transcatheter devices, antithrombotic decisions should be individualised by comorbidity burden as much as by device type.
               </p>
               <table className="w-full border-collapse text-sm">
@@ -537,7 +537,7 @@ export function HeartValvesGuide() {
                         <ToneStripe tone={row[3]} />{row[0]}
                       </td>
                       <td>{row[1]}</td>
-                      <td style={{ color: "#6b7280", fontSize: "0.88rem" }}>{row[2]}</td>
+                      <td style={{ color: "var(--tone-gray-text)", fontSize: "0.88rem" }}>{row[2]}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -569,9 +569,9 @@ export function HeartValvesGuide() {
               <h3><Dot tone="blue" />Mechanical Valve Types</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(170px, 1fr))" }}>
                 {valveTypes.map((v) => {
-                  const bg = { blue: "#eff6ff", orange: "#fffbeb", danger: "#fef2f2" };
-                  const bc = { blue: "#bfdbfe", orange: "#fde68a", danger: "#fecaca" };
-                  const col = { blue: "#1d4ed8", orange: "#b45309", danger: "#b91c1c" };
+                  const bg = { blue: "var(--tone-blue-bg)", orange: "var(--tone-orange-bg)", danger: "var(--tone-danger-bg)" };
+                  const bc = { blue: "var(--tone-blue-border)", orange: "var(--tone-orange-border)", danger: "var(--tone-danger-border)" };
+                  const col = { blue: "var(--tone-blue-text)", orange: "var(--tone-orange-text)", danger: "var(--tone-danger-text)" };
                   return (
                     <div
                       key={v.name}
@@ -592,9 +592,9 @@ export function HeartValvesGuide() {
               <h3><Dot tone="danger" />Annual Stroke / Valve Thrombosis Risk Despite Anticoagulation</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))" }}>
                 {mechanicalRiskFacts.map((f) => {
-                  const bg = { green: "#f0fdf4", orange: "#fffbeb", danger: "#fef2f2" };
-                  const bc = { green: "#bbf7d0", orange: "#fde68a", danger: "#fecaca" };
-                  const col = { green: "#166534", orange: "#92400e", danger: "#b91c1c" };
+                  const bg = { green: "var(--tone-green-bg)", orange: "var(--tone-orange-bg)", danger: "var(--tone-danger-bg)" };
+                  const bc = { green: "var(--tone-green-border)", orange: "var(--tone-orange-border)", danger: "var(--tone-danger-border)" };
+                  const col = { green: "var(--tone-green-text)", orange: "var(--tone-orange-text)", danger: "var(--tone-danger-text)" };
                   return (
                     <div
                       key={f.label}
@@ -607,7 +607,7 @@ export function HeartValvesGuide() {
                   );
                 })}
               </div>
-              <p style={{ margin: "0.85rem 0 0", fontSize: "0.85rem", color: "#6b7280", lineHeight: 1.6 }}>
+              <p style={{ margin: "0.85rem 0 0", fontSize: "0.85rem", color: "var(--tone-gray-text)", lineHeight: 1.6 }}>
                 Mitral valves are more thrombogenic than aortic valves because they are exposed to passive, low-pressure blood flow from the left atrium to the left ventricle.
               </p>
             </article>
@@ -628,7 +628,7 @@ export function HeartValvesGuide() {
                     <tr key={row.drug}>
                       <td className="font-bold text-foreground">{row.drug}</td>
                       <td>{row.trial}</td>
-                      <td style={{ color: "#b91c1c", fontSize: "0.88rem" }}>{row.finding}</td>
+                      <td style={{ color: "var(--tone-danger-text)", fontSize: "0.88rem" }}>{row.finding}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -656,14 +656,14 @@ export function HeartValvesGuide() {
           <div className="grid gap-3.5">
             <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="blue" />Warfarin INR Target Ranges by Valve Type and Position</h3>
-              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ fontSize: "0.9rem", color: "#6b7280" }}>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ fontSize: "0.9rem", color: "var(--tone-gray-text)" }}>
                 Target INR depends on valve design, manufacturer, position, and patient stroke risk factors. All patients receive warfarin for the first 3 months post-implantation at standard intensity regardless of valve design.
               </p>
               <div style={{ display: "grid", gap: "0.65rem" }}>
                 {inrCards.map((card) => {
-                  const bg = { green: "#f0fdf4", teal: "#f0fdfa", orange: "#fffbeb", danger: "#fef2f2", blue: "#eff6ff", gray: "#f9fafb" };
-                  const bc = { green: "#bbf7d0", teal: "#99f6e4", orange: "#fde68a", danger: "#fecaca", blue: "#bfdbfe", gray: "#e5e7eb" };
-                  const col = { green: "#166534", teal: "#0f766e", orange: "#92400e", danger: "#b91c1c", blue: "#1e40af", gray: "#6b7280" };
+                  const bg = { green: "var(--tone-green-bg)", teal: "var(--tone-teal-bg)", orange: "var(--tone-orange-bg)", danger: "var(--tone-danger-bg)", blue: "var(--tone-blue-bg)", gray: "var(--card-muted)" };
+                  const bc = { green: "var(--tone-green-border)", teal: "var(--tone-teal-border)", orange: "var(--tone-orange-border)", danger: "var(--tone-danger-border)", blue: "var(--tone-blue-border)", gray: "var(--border)" };
+                  const col = { green: "var(--tone-green-text)", teal: "var(--tone-teal-text)", orange: "var(--tone-orange-text)", danger: "var(--tone-danger-text)", blue: "var(--tone-blue-text)", gray: "var(--tone-gray-text)" };
                   return (
                     <div
                       key={card.valve}
@@ -695,7 +695,7 @@ export function HeartValvesGuide() {
             {/* On-X timeline */}
             <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="teal" />On-X Aortic Valve — Treatment Phase Summary</h3>
-              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ fontSize: "0.9rem", color: "#6b7280" }}>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ fontSize: "0.9rem", color: "var(--tone-gray-text)" }}>
                 PROACT trial demonstrated non-inferiority of lower INR (1.5–2.0) vs standard (2.0–3.0) for composite of bleeding and thromboembolism, driven by reduced bleeding. However, numerically higher stroke and TIA rates were observed in the lower-target group.
               </p>
               <div className="relative pl-6 space-y-4 border-l-2 border-border">
@@ -703,8 +703,8 @@ export function HeartValvesGuide() {
                   <div key={step.phase} className="relative">
                     <div className={`asa-timeline-dot ${step.tone}`} />
                     <div>
-                      <div className="text-sm font-semibold" style={{ fontWeight: 700, fontSize: "0.85rem", color: "#111827" }}>{step.phase}</div>
-                      <div className="text-sm text-muted-foreground" style={{ fontSize: "0.84rem", color: "#6b7280", marginTop: "0.2rem", lineHeight: 1.55 }}>
+                      <div className="text-sm font-semibold" style={{ fontWeight: 700, fontSize: "0.85rem", color: "var(--foreground)" }}>{step.phase}</div>
+                      <div className="text-sm text-muted-foreground" style={{ fontSize: "0.84rem", color: "var(--tone-gray-text)", marginTop: "0.2rem", lineHeight: 1.55 }}>
                         <INRBadge value={step.inr} tone={step.tone} />
                         <span style={{ marginLeft: "0.5rem" }}>{step.note}</span>
                       </div>
@@ -739,17 +739,17 @@ export function HeartValvesGuide() {
                 Subclinical valve leaflet thrombosis is defined by <strong>hypoattenuated leaflet thickening</strong> on CT with reduced leaflet motion in the absence of clinical symptoms. Initially identified in TAVR patients, it has also been recognised in surgical aortic valve replacement patients. It is associated with an <strong>increased risk of clinical stroke</strong>.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))" }}>
-                <div className="rounded-lg border p-3" style={{ borderColor: "#fde68a", background: "#fffbeb" }}>
-                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1" style={{ color: "#92400e" }}>CT feature</div>
-                  <div className="text-sm leading-relaxed" style={{ color: "#78350f", fontSize: "0.85rem", marginTop: "0.25rem", fontWeight: 500 }}>Hypoattenuated leaflet thickening (HALT) with reduced leaflet motion on 4D CT</div>
+                <div className="rounded-lg border p-3" style={{ borderColor: "var(--tone-orange-border)", background: "var(--tone-orange-bg)" }}>
+                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1" style={{ color: "var(--tone-orange-text)" }}>CT feature</div>
+                  <div className="text-sm leading-relaxed" style={{ color: "var(--tone-orange-text)", fontSize: "0.85rem", marginTop: "0.25rem", fontWeight: 500 }}>Hypoattenuated leaflet thickening (HALT) with reduced leaflet motion on 4D CT</div>
                 </div>
-                <div className="rounded-lg border p-3" style={{ borderColor: "#bfdbfe", background: "#eff6ff" }}>
-                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1" style={{ color: "#1d4ed8" }}>Clinical impact</div>
-                  <div className="text-sm leading-relaxed" style={{ color: "#1e40af", fontSize: "0.85rem", marginTop: "0.25rem", fontWeight: 500 }}>Associated with increased clinical stroke risk; also seen after surgical AVR</div>
+                <div className="rounded-lg border p-3" style={{ borderColor: "var(--tone-blue-border)", background: "var(--tone-blue-bg)" }}>
+                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1" style={{ color: "var(--tone-blue-text)" }}>Clinical impact</div>
+                  <div className="text-sm leading-relaxed" style={{ color: "var(--tone-blue-text)", fontSize: "0.85rem", marginTop: "0.25rem", fontWeight: 500 }}>Associated with increased clinical stroke risk; also seen after surgical AVR</div>
                 </div>
-                <div className="rounded-lg border p-3" style={{ borderColor: "#99f6e4", background: "#f0fdfa" }}>
-                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1" style={{ color: "#0f766e" }}>Effect of anticoagulation</div>
-                  <div className="text-sm leading-relaxed" style={{ color: "#0f766e", fontSize: "0.85rem", marginTop: "0.25rem", fontWeight: 500 }}>Anticoagulation reduces subclinical leaflet thrombosis compared to DAPT</div>
+                <div className="rounded-lg border p-3" style={{ borderColor: "var(--tone-teal-border)", background: "var(--tone-teal-bg)" }}>
+                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1" style={{ color: "var(--tone-teal-text)" }}>Effect of anticoagulation</div>
+                  <div className="text-sm leading-relaxed" style={{ color: "var(--tone-teal-text)", fontSize: "0.85rem", marginTop: "0.25rem", fontWeight: 500 }}>Anticoagulation reduces subclinical leaflet thrombosis compared to DAPT</div>
                 </div>
               </div>
             </article>
@@ -766,12 +766,12 @@ export function HeartValvesGuide() {
                 </thead>
                 <tbody>
                   {subclinicalTrials.map((row) => {
-                    const col = { danger: "#b91c1c", orange: "#92400e", teal: "#0f766e" };
+                    const col = { danger: "var(--tone-danger-text)", orange: "var(--tone-orange-text)", teal: "var(--tone-teal-text)" };
                     return (
                       <tr key={row.name}>
                         <td className="font-bold text-foreground">{row.name}</td>
                         <td>{row.drug}</td>
-                        <td style={{ color: col[row.tone] || "#4b5563", fontSize: "0.88rem" }}>{row.result}</td>
+                        <td style={{ color: col[row.tone] || "var(--tone-gray-text)", fontSize: "0.88rem" }}>{row.result}</td>
                       </tr>
                     );
                   })}
@@ -813,7 +813,7 @@ export function HeartValvesGuide() {
                     <tr key={row[0]}>
                       <td className="font-bold text-foreground"><ToneStripe tone={row[3]} />{row[0]}</td>
                       <td>{row[1]}</td>
-                      <td style={{ color: "#6b7280", fontSize: "0.88rem" }}>{row[2]}</td>
+                      <td style={{ color: "var(--tone-gray-text)", fontSize: "0.88rem" }}>{row[2]}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -823,7 +823,7 @@ export function HeartValvesGuide() {
             {/* Pregnancy timeline */}
             <article className="rounded-xl border bg-card shadow-sm p-5">
               <h3><Dot tone="purple" />Pregnancy — Anticoagulation Pathway</h3>
-              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ fontSize: "0.9rem", color: "#6b7280" }}>
+              <p className="text-sm text-foreground leading-relaxed mb-4" style={{ fontSize: "0.9rem", color: "var(--tone-gray-text)" }}>
                 Pregnant women with mechanical valves are at especially high risk of thrombotic complications. Management requires a <strong>multidisciplinary team</strong> with expertise in maternal cardiac care and thrombosis.
               </p>
               <div className="relative pl-6 space-y-4 border-l-2 border-border">
@@ -831,8 +831,8 @@ export function HeartValvesGuide() {
                   <div key={step.phase} className="relative">
                     <div className={`asa-timeline-dot ${step.tone}`} />
                     <div>
-                      <div className="text-sm font-semibold" style={{ fontWeight: 700, fontSize: "0.85rem", color: "#111827" }}>{step.phase}</div>
-                      <div className="text-sm text-muted-foreground" style={{ fontSize: "0.84rem", color: "#6b7280", marginTop: "0.2rem", lineHeight: 1.55 }}>
+                      <div className="text-sm font-semibold" style={{ fontWeight: 700, fontSize: "0.85rem", color: "var(--foreground)" }}>{step.phase}</div>
+                      <div className="text-sm text-muted-foreground" style={{ fontSize: "0.84rem", color: "var(--tone-gray-text)", marginTop: "0.2rem", lineHeight: 1.55 }}>
                         {step.action}
                       </div>
                     </div>
@@ -864,7 +864,7 @@ export function HeartValvesGuide() {
               <h3><Dot tone="gray" />References</h3>
               <ol className="list-none p-0 divide-y divide-border text-sm" style={{ paddingLeft: "1.2rem", listStyle: "decimal" }}>
                 {references.map((item, i) => (
-                  <li key={i} style={{ padding: "0.35rem 0", color: "#4b5563", lineHeight: 1.6, fontSize: "0.87rem" }}>
+                  <li key={i} style={{ padding: "0.35rem 0", color: "var(--tone-gray-text)", lineHeight: 1.6, fontSize: "0.87rem" }}>
                     {item}
                   </li>
                 ))}
@@ -879,10 +879,10 @@ export function HeartValvesGuide() {
 
       {/* ── Footer ── */}
       <div className="rounded-xl border bg-muted/50 p-4 text-xs text-muted-foreground" style={{ padding: "1rem 1.35rem" }}>
-        <p style={{ margin: 0, fontWeight: 700, color: "#374151" }}>
+        <p style={{ margin: 0, fontWeight: 700, color: "var(--tone-body-text)" }}>
           Bioprosthetic and Mechanical Heart Valves: Antithrombotic Therapy
         </p>
-        <p style={{ margin: "0.3rem 0 0", color: "#6b7280", fontSize: "0.85rem" }}>
+        <p style={{ margin: "0.3rem 0 0", color: "var(--tone-gray-text)", fontSize: "0.85rem" }}>
           Updated 6 February 2026. Use alongside valve-specific cardiology input and individualised bleeding-risk assessment.
         </p>
       </div>

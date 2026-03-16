@@ -126,7 +126,7 @@ export function PeDiagnosisGuide() {
                 </div>
                 <div className="rounded-lg border p-3">
                   <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Fatal within 1st hour of symptoms</span>
-                  <span className="text-sm" style={{ color: "#dc2626" }}>5–10% of symptomatic PEs</span>
+                  <span className="text-sm" style={{ color: "var(--tone-danger-text)" }}>5–10% of symptomatic PEs</span>
                 </div>
                 <div className="rounded-lg border p-3">
                   <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Unprovoked first-time PE</span>
@@ -186,18 +186,18 @@ export function PeDiagnosisGuide() {
                   {wellsPeItems.map((w, i) => (
                     <tr key={i}>
                       <td>{w.criterion}</td>
-                      <td style={{ textAlign: "center", fontWeight: 700, color: "#1d4ed8" }}>{w.points}</td>
+                      <td style={{ textAlign: "center", fontWeight: 700, color: "var(--tone-blue-text)" }}>{w.points}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3" style={{ marginTop: "0.75rem" }}>
                 <div className="rounded-lg border p-3">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "#16a34a" }}>PE Unlikely (2-level)</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "var(--tone-green-text)" }}>PE Unlikely (2-level)</span>
                   <span className="text-sm">Score ≤4 → D-dimer</span>
                 </div>
                 <div className="rounded-lg border p-3">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "#dc2626" }}>PE Likely (2-level)</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "var(--tone-danger-text)" }}>PE Likely (2-level)</span>
                   <span className="text-sm">Score &gt;4 → CTPA directly</span>
                 </div>
               </div>
@@ -276,10 +276,10 @@ export function PeDiagnosisGuide() {
                 <h2 className="text-base font-semibold mb-2">{img.modality}</h2>
                 <p style={{ marginBottom: "0.3rem" }}><span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">When to use</span> {img.when}</p>
                 <p style={{ margin: "0.4rem 0", fontSize: "0.9em" }}>
-                  <span style={{ color: "#16a34a", fontWeight: 600 }}>Advantages:</span> {img.advantages}
+                  <span style={{ color: "var(--tone-green-text)", fontWeight: 600 }}>Advantages:</span> {img.advantages}
                 </p>
                 <p style={{ margin: "0.4rem 0", fontSize: "0.9em" }}>
-                  <span style={{ color: "#dc2626", fontWeight: 600 }}>Disadvantages:</span> {img.disadvantages}
+                  <span style={{ color: "var(--tone-danger-text)", fontWeight: 600 }}>Disadvantages:</span> {img.disadvantages}
                 </p>
               </div>
             ))}
@@ -353,7 +353,7 @@ export function PeDiagnosisGuide() {
                 <div key={i} className="rounded-xl border bg-card shadow-sm p-5" style={{ margin: "0 0 0.75rem", borderLeft: "3px solid var(--primary)" }}>
                   <strong>{a.name}</strong>
                   <p style={{ margin: "0.3rem 0", fontSize: "0.88em" }}>{a.steps}</p>
-                  <p style={{ margin: 0, fontSize: "0.85em", fontStyle: "italic", color: "#4b5563" }}>{a.detail}</p>
+                  <p style={{ margin: 0, fontSize: "0.85em", fontStyle: "italic", color: "var(--tone-gray-text)" }}>{a.detail}</p>
                 </div>
               ))}
             </div>

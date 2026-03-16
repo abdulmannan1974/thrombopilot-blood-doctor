@@ -272,11 +272,11 @@ export function CvadThrombosisGuide() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="rounded-lg border p-3">
                   <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Recurrent VTE risk</span>
-                  <span className="text-sm" style={{ color: "#16a34a", fontWeight: 700 }}>0.6%</span>
+                  <span className="text-sm" style={{ color: "var(--tone-green-text)", fontWeight: 700 }}>0.6%</span>
                 </div>
                 <div className="rounded-lg border p-3">
                   <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Major bleeding risk</span>
-                  <span className="text-sm" style={{ color: "#dc2626", fontWeight: 700 }}>2.3%</span>
+                  <span className="text-sm" style={{ color: "var(--tone-danger-text)", fontWeight: 700 }}>2.3%</span>
                 </div>
               </div>
             </div>
@@ -354,7 +354,7 @@ export function CvadThrombosisGuide() {
                     <tr key={i}>
                       <td><strong>{r.location}</strong></td>
                       <td>{r.duration}</td>
-                      <td style={{ color: "#6b7280", fontSize: "0.85em" }}>{r.evidence}</td>
+                      <td style={{ color: "var(--tone-gray-text)", fontSize: "0.85em" }}>{r.evidence}</td>
                     </tr>
                   ))}
                 </tbody>

@@ -190,9 +190,9 @@ export function DvtDiagnosisGuide() {
                 </thead>
                 <tbody>
                   {wellsItems.map((w, i) => (
-                    <tr key={i} style={w.points === "–2" ? { background: "#fff7ed" } : {}}>
+                    <tr key={i} style={w.points === "–2" ? { background: "var(--tone-orange-bg)" } : {}}>
                       <td>{w.criterion}</td>
-                      <td style={{ textAlign: "center", fontWeight: 700, color: w.points === "–2" ? "#dc2626" : "#1d4ed8" }}>
+                      <td style={{ textAlign: "center", fontWeight: 700, color: w.points === "–2" ? "var(--tone-danger-text)" : "var(--tone-blue-text)" }}>
                         {w.points}
                       </td>
                     </tr>
@@ -205,11 +205,11 @@ export function DvtDiagnosisGuide() {
               <h2 className="text-base font-semibold mb-2">Score Interpretation (2-Level)</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="rounded-lg border p-3">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "#16a34a" }}>DVT Unlikely</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "var(--tone-green-text)" }}>DVT Unlikely</span>
                   <span className="text-sm">Score ≤1 → proceed to D-dimer</span>
                 </div>
                 <div className="rounded-lg border p-3">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "#dc2626" }}>DVT Likely</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "var(--tone-danger-text)" }}>DVT Likely</span>
                   <span className="text-sm">Score ≥2 → proceed directly to CUS</span>
                 </div>
               </div>
@@ -269,8 +269,8 @@ export function DvtDiagnosisGuide() {
               {cusRows.map((c, i) => (
                 <div key={i} className="rounded-xl border bg-card shadow-sm p-5" style={{ marginBottom: "0.75rem", borderLeft: "3px solid var(--primary)" }}>
                   <strong>{c.type}</strong>
-                  <p style={{ margin: "0.3rem 0", fontSize: "0.88em" }}><span style={{ color: "#16a34a", fontWeight: 600 }}>✓ Advantage:</span> {c.advantage}</p>
-                  <p style={{ margin: "0.3rem 0", fontSize: "0.88em" }}><span style={{ color: "#dc2626", fontWeight: 600 }}>✗ Disadvantage:</span> {c.disadvantage}</p>
+                  <p style={{ margin: "0.3rem 0", fontSize: "0.88em" }}><span style={{ color: "var(--tone-green-text)", fontWeight: 600 }}>✓ Advantage:</span> {c.advantage}</p>
+                  <p style={{ margin: "0.3rem 0", fontSize: "0.88em" }}><span style={{ color: "var(--tone-danger-text)", fontWeight: 600 }}>✗ Disadvantage:</span> {c.disadvantage}</p>
                   <p style={{ margin: 0 }}><span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">{c.recommendation}</span></p>
                 </div>
               ))}

@@ -1904,7 +1904,7 @@ function AppLayout() {
           <>
           <section className="grid gap-4 pt-0.5">
             <div className="grid gap-4">
-              <section key={`tool-panel-${activeTool?.id ?? "empty"}`} className="relative min-w-0 bg-card border border-border rounded-[var(--radius-md)] shadow-sm p-4 border-blue-200 bg-gradient-to-b from-blue-50/70 via-teal-50/35 to-white overflow-hidden before:content-[''] before:absolute before:inset-y-0 before:left-0 before:w-1 before:bg-gradient-to-b before:from-primary before:to-teal-700">
+              <section key={`tool-panel-${activeTool?.id ?? "empty"}`} className="relative min-w-0 bg-card border border-border rounded-[var(--radius-md)] shadow-sm p-4 border-blue-200 overflow-hidden before:content-[''] before:absolute before:inset-y-0 before:left-0 before:w-1 before:bg-gradient-to-b before:from-primary before:to-teal-700" style={{ backgroundImage: "linear-gradient(to bottom, var(--guide-panel-from), var(--guide-panel-via), var(--guide-panel-to))" }}>
                 {activeTool ? (
                   <>
                     <div className="flex items-start justify-between gap-4 mb-4">
@@ -2011,7 +2011,7 @@ function AppLayout() {
           {currentPage === "guides" ? (
           <>
           <section className="grid gap-4">
-            <div key={`guide-panel-${activeGuide?.id ?? "empty"}`} className="relative min-w-0 grid gap-4 bg-card border border-border rounded-[var(--radius-md)] shadow-sm p-4 border-blue-200 bg-gradient-to-b from-blue-50/70 via-teal-50/35 to-white overflow-hidden before:content-[''] before:absolute before:inset-y-0 before:left-0 before:w-1 before:bg-gradient-to-b before:from-primary before:to-teal-700">
+            <div key={`guide-panel-${activeGuide?.id ?? "empty"}`} className="relative min-w-0 grid gap-4 bg-card border border-border rounded-[var(--radius-md)] shadow-sm p-4 border-blue-200 overflow-hidden before:content-[''] before:absolute before:inset-y-0 before:left-0 before:w-1 before:bg-gradient-to-b before:from-primary before:to-teal-700" style={{ backgroundImage: "linear-gradient(to bottom, var(--guide-panel-from), var(--guide-panel-via), var(--guide-panel-to))" }}>
               {activeGuide ? (
                 <>
                   <div className="flex items-start justify-between gap-4 mb-4">
@@ -2270,7 +2270,7 @@ function DoacFollowupPage({ form, onChange, onReset, onPrint, onDownloadWord }) 
           <div className="px-5 py-4 bg-[#23376b] text-white">
             <h3 className="m-0 text-[clamp(1.7rem,2vw,2.15rem)] leading-tight tracking-tight">DOAC Follow-up</h3>
           </div>
-          <div className="flex items-start justify-between gap-4 px-5 py-4 bg-gradient-to-b from-white to-[#fbfcff]">
+          <div className="flex items-start justify-between gap-4 px-5 py-4 bg-gradient-to-b from-card to-card-muted">
             <div>
               <span className="text-[0.7rem] font-bold uppercase tracking-widest text-primary">Checklist workspace</span>
               <p className="mt-1 mb-0 max-w-[62ch] text-muted-foreground leading-relaxed">Structured review template for outpatient DOAC follow-up, documentation, and counselling.</p>

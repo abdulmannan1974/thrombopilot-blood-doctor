@@ -219,7 +219,7 @@ export function PeHighIntermediateRiskGuide() {
                   </ul>
                 </div>
                 <div style={{ padding: "0.75rem", background: "var(--surface)", borderRadius: "8px", borderLeft: "3px solid #f59e0b" }}>
-                  <strong style={{ color: "#f59e0b" }}>Relative</strong>
+                  <strong style={{ color: "var(--tone-orange-text)" }}>Relative</strong>
                   <ul className="list-none p-0 space-y-1" style={{ marginTop: "0.5rem" }}>
                     {stContraindications.relative.map((c) => <li key={c}>{c}</li>)}
                   </ul>

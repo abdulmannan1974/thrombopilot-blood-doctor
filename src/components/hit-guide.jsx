@@ -213,7 +213,7 @@ export function HitGuide() {
                 </div>
                 <div className="rounded-lg border p-3">
                   <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Thrombosis risk</span>
-                  <span className="text-sm" style={{ color: "#dc2626" }}>30–50% — venous AND arterial</span>
+                  <span className="text-sm" style={{ color: "var(--tone-danger-text)" }}>30–50% — venous AND arterial</span>
                 </div>
                 <div className="rounded-lg border p-3">
                   <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Bleeding</span>
@@ -265,15 +265,15 @@ export function HitGuide() {
               <h2 className="text-base font-semibold mb-2">Score Interpretation</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="rounded-lg border p-3">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "#16a34a" }}>Low (0–3)</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "var(--tone-green-text)" }}>Low (0–3)</span>
                   <span className="text-sm">HIT unlikely; lab testing often not required (high NPV); continue heparin cautiously</span>
                 </div>
                 <div className="rounded-lg border p-3">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "#d97706" }}>Intermediate (4–5)</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "var(--tone-orange-text)" }}>Intermediate (4–5)</span>
                   <span className="text-sm">HIT possible; stop heparin; start HIT-safe anticoagulant; send immunoassay</span>
                 </div>
                 <div className="rounded-lg border p-3">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "#dc2626" }}>High (6–8)</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "var(--tone-danger-text)" }}>High (6–8)</span>
                   <span className="text-sm">HIT likely; stop heparin immediately; start HIT-safe anticoagulant; send both immunoassay AND functional assay</span>
                 </div>
               </div>
@@ -318,8 +318,8 @@ export function HitGuide() {
                     <strong>{t.type}</strong>
                     <p style={{ margin: "0.2rem 0", fontSize: "0.87em" }}><strong>Examples:</strong> {t.examples}</p>
                     <p style={{ margin: "0.2rem 0", fontSize: "0.87em" }}>
-                      <span style={{ color: "#16a34a" }}>Sensitivity: {t.sensitivity}</span> |
-                      <span style={{ color: "#dc2626" }}> Specificity: {t.specificity}</span>
+                      <span style={{ color: "var(--tone-green-text)" }}>Sensitivity: {t.sensitivity}</span> |
+                      <span style={{ color: "var(--tone-danger-text)" }}> Specificity: {t.specificity}</span>
                     </p>
                     <p style={{ margin: "0.2rem 0", fontSize: "0.87em" }}><strong>Availability:</strong> {t.availability}</p>
                     <p style={{ margin: "0.2rem 0", fontSize: "0.87em", fontStyle: "italic" }}>{t.use}</p>
@@ -342,7 +342,7 @@ export function HitGuide() {
               <div className="relative pl-6 space-y-4 border-l-2 border-border">
                 {managementSteps.map((s, i) => (
                   <div key={i} className="relative">
-                    <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary" style={{ background: s.urgency === "Immediate" || s.urgency === "Critical" ? "#dc2626" : undefined }}>
+                    <div className="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-white bg-primary" style={{ background: s.urgency === "Immediate" || s.urgency === "Critical" ? "var(--tone-danger-text)" : undefined }}>
                       {i + 1}
                     </div>
                     <div className="ml-2">
@@ -382,7 +382,7 @@ export function HitGuide() {
                     <strong>{a.agent}</strong>
                     <span className={badgeClass(a.badge)}>{a.badge.replace("-", " ")}</span>
                   </div>
-                  <p style={{ margin: "0 0 0.2rem", fontSize: "0.87em", color: "#6b7280" }}>{a.class} | {a.availability}</p>
+                  <p style={{ margin: "0 0 0.2rem", fontSize: "0.87em", color: "var(--tone-gray-text)" }}>{a.class} | {a.availability}</p>
                   <p style={{ margin: "0 0 0.2rem", fontSize: "0.87em" }}><strong>Dose:</strong> {a.dose}</p>
                   <p style={{ margin: 0, fontSize: "0.87em" }}>{a.notes}</p>
                 </div>

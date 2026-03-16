@@ -156,19 +156,19 @@ export function PeTreatmentGuide() {
                     tier: "High-risk (Massive) PE",
                     features: "Persistent hypotension (SBP <90 mmHg or 40 mmHg drop from baseline), vasopressor requirement, or cardiac arrest",
                     management: "IV UFH + urgent consideration of systemic thrombolysis (or surgical embolectomy). Short-term mortality >15%.",
-                    color: "#dc2626",
+                    color: "var(--tone-danger-text)",
                   },
                   {
                     tier: "Intermediate-risk (Sub-massive) PE",
                     features: "Haemodynamically stable + RV dysfunction on imaging (CTPA or echo) OR elevated troponin/BNP",
                     management: "LMWH or DOAC anticoagulation. Careful monitoring. Thrombolysis NOT routinely indicated — may be considered in select patients with severe symptoms and cardiopulmonary deterioration who are low bleed risk.",
-                    color: "#d97706",
+                    color: "var(--tone-orange-text)",
                   },
                   {
                     tier: "Low-risk PE",
                     features: "Haemodynamically stable, no RV dysfunction, no elevated biomarkers",
                     management: "DOAC (preferred). Assess PESI/HESTIA for outpatient eligibility — ~40% can be safely discharged.",
-                    color: "#16a34a",
+                    color: "var(--tone-green-text)",
                   },
                 ].map((r, i) => (
                   <div key={i} className="rounded-xl border bg-card shadow-sm p-5" style={{ margin: 0, borderLeft: `3px solid ${r.color}` }}>

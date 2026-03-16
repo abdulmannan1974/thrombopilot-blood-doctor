@@ -59,9 +59,9 @@ const references = [
 ];
 
 const urgencyColor = (u) => {
-  if (u === "danger") return "#dc2626";
-  if (u === "caution") return "#d97706";
-  return "#16a34a";
+  if (u === "danger") return "var(--tone-danger-text)";
+  if (u === "caution") return "var(--tone-orange-text)";
+  return "var(--tone-green-text)";
 };
 
 export function PerioperativeAntiplateletGuide() {
@@ -107,11 +107,11 @@ export function PerioperativeAntiplateletGuide() {
               <h2 className="text-base font-semibold mb-2">Risk Stratification</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="rounded-lg border p-3">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "#dc2626" }}>High Thrombotic Risk</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "var(--tone-danger-text)" }}>High Thrombotic Risk</span>
                   <span className="text-sm">Recent coronary stent (&lt;1 year), recent MI, recent arterial embolism, recent ischaemic stroke</span>
                 </div>
                 <div className="rounded-lg border p-3">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "#16a34a" }}>Low Thrombotic Risk</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "var(--tone-green-text)" }}>Low Thrombotic Risk</span>
                   <span className="text-sm">Antiplatelet therapy for primary prevention of cardiovascular events</span>
                 </div>
               </div>
@@ -194,11 +194,11 @@ export function PerioperativeAntiplateletGuide() {
                   <span className="text-sm">470 patients with prior PCI</span>
                 </div>
                 <div className="rounded-lg border p-3">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "#16a34a" }}>MIs Prevented</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "var(--tone-green-text)" }}>MIs Prevented</span>
                   <span className="text-sm"><strong>59</strong> per 1,000 patients with perioperative ASA</span>
                 </div>
                 <div className="rounded-lg border p-3">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "#dc2626" }}>Major Bleeds Caused</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "var(--tone-danger-text)" }}>Major Bleeds Caused</span>
                   <span className="text-sm"><strong>8</strong> per 1,000 patients with perioperative ASA</span>
                 </div>
                 <div className="rounded-lg border p-3">
@@ -212,15 +212,15 @@ export function PerioperativeAntiplateletGuide() {
               <h2 className="text-base font-semibold mb-2">Stent Thrombosis Risk Over Time</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="rounded-lg border p-3">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "#dc2626" }}>First 6 weeks post-stent</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "var(--tone-danger-text)" }}>First 6 weeks post-stent</span>
                   <span className="text-sm">Highest risk: <strong>8\u201310%</strong> stent thrombosis if DAPT interrupted</span>
                 </div>
                 <div className="rounded-lg border p-3">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "#d97706" }}>6 weeks to 6 months</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "var(--tone-orange-text)" }}>6 weeks to 6 months</span>
                   <span className="text-sm">Risk gradually declines</span>
                 </div>
                 <div className="rounded-lg border p-3">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "#16a34a" }}>Beyond 6 months</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style={{ color: "var(--tone-green-text)" }}>Beyond 6 months</span>
                   <span className="text-sm">Plateaus at <strong>1\u20132%</strong></span>
                 </div>
               </div>
