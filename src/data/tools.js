@@ -2304,32 +2304,118 @@ export const tools = [
     },
   },
   {
+    id: "vte-bleed",
+    title: "VTE-BLEED Score",
+    shortTitle: "VTE-BLEED",
+    type: "calculator",
+    category: "score",
+    badge: "Bleeding",
+    blurb: "Predict major bleeding risk during stable anticoagulation for VTE. Guides decision on extended vs. time-limited therapy.",
+    tags: ["VTE", "bleeding", "anticoagulation", "duration"],
+    notes: [
+      "Validated for the chronic phase of anticoagulation (after day 30), not for the acute treatment period.",
+      "Use alongside recurrence risk assessment to determine optimal treatment duration.",
+    ],
+    inputs: [
+      { id: "activeCancer", label: "Active cancer", type: "checkbox" },
+      { id: "maleSex", label: "Male sex with uncontrolled arterial hypertension", type: "checkbox" },
+      { id: "anemia", label: "Anemia (Hb < 130 g/L men, < 120 g/L women)", type: "checkbox" },
+      { id: "bleedingHistory", label: "History of bleeding", type: "checkbox" },
+      { id: "ageOver60", label: "Age ≥ 60 years", type: "checkbox" },
+      { id: "renalImpairment", label: "Renal impairment (eGFR 30–60 mL/min/1.73m²)", type: "checkbox" },
+    ],
+    calculate: (values) => {
+      const score = sum([
+        values.activeCancer ? 2 : 0,
+        values.maleSex ? 1 : 0,
+        values.anemia ? 1.5 : 0,
+        values.bleedingHistory ? 1.5 : 0,
+        values.ageOver60 ? 1.5 : 0,
+        values.renalImpairment ? 1.5 : 0,
+      ]);
+
+      const isHighRisk = score >= 2;
+
+      const breakdownParts = [];
+      if (values.activeCancer) breakdownParts.push("Active cancer (+2)");
+      if (values.maleSex) breakdownParts.push("Male + uncontrolled HTN (+1)");
+      if (values.anemia) breakdownParts.push("Anemia (+1.5)");
+      if (values.bleedingHistory) breakdownParts.push("Bleeding history (+1.5)");
+      if (values.ageOver60) breakdownParts.push("Age ≥60 (+1.5)");
+      if (values.renalImpairment) breakdownParts.push("Renal impairment (+1.5)");
+
+      return {
+        tone: isHighRisk ? tone.warning : tone.success,
+        headline: isHighRisk
+          ? "Elevated bleeding risk during extended anticoagulation"
+          : "Low bleeding risk — extended anticoagulation may be safe",
+        summary: isHighRisk
+          ? `Score ${score} (≥2 points). Bleeding rate ~2.0% during stable anticoagulation. Patients had a 4-fold increased risk of major bleeding in Hokusai-VTE validation (OR 4.04; 95% CI 2.51–6.48).`
+          : `Score ${score} (<2 points). Bleeding rate ~0.5% during stable anticoagulation. Low-risk patients can be reassured when considering extended therapy.`,
+        action: isHighRisk
+          ? "Consider time-limited anticoagulation (3–6 months). If extended therapy is needed, use reduced-dose regimens and monitor closely."
+          : "Extended anticoagulation is likely safe from a bleeding standpoint. Weigh against recurrence risk to decide duration.",
+        metrics: buildMetrics([
+          { label: "Total score", value: score % 1 === 0 ? `${score}` : score.toFixed(1) },
+          { label: "Risk group", value: isHighRisk ? "High (≥2)" : "Low (<2)" },
+          { label: "Major bleeding rate", value: isHighRisk ? "~2.0% (stable phase)" : "~0.5% (stable phase)" },
+          { label: "Score components", value: breakdownParts.length > 0 ? breakdownParts.join("; ") : "None selected" },
+        ]),
+        recommendations: isHighRisk
+          ? [
+              { label: "Duration strategy", value: "Favour time-limited anticoagulation (3–6 months) unless recurrence risk is very high (unprovoked PE, persistent risk factor)." },
+              { label: "If extending therapy", value: "Consider reduced-intensity regimens: apixaban 2.5 mg BD or rivaroxaban 10 mg OD (AMPLIFY-EXT / EINSTEIN-CHOICE evidence)." },
+              { label: "Monitoring", value: "Reassess bleeding risk factors at each clinic visit. Check renal function, haemoglobin, and blood pressure every 3–6 months." },
+              { label: "Modifiable factors", value: "Optimise blood pressure control, treat anaemia, avoid concomitant antiplatelet agents where possible, gastroprotection if indicated." },
+            ]
+          : [
+              { label: "Duration strategy", value: "If VTE was unprovoked or has persistent risk factors, extended anticoagulation is supported — the bleeding risk is acceptably low." },
+              { label: "Standard dosing", value: "Full-dose or reduced-dose extended regimens are both appropriate depending on individual recurrence risk." },
+              { label: "Monitoring", value: "Annual reassessment of bleeding risk factors. Repeat VTE-BLEED if clinical status changes (new renal impairment, anaemia, cancer diagnosis)." },
+              { label: "Patient communication", value: "Inform the patient that their bleeding risk is low and that the benefit of preventing recurrent VTE likely outweighs the risk of bleeding." },
+            ],
+        supporting: [
+          "Klok FA, et al. Prediction of bleeding events in patients with VTE on stable anticoagulation treatment. Eur Respir J. 2016;48(5):1369–1376. Derivation c-statistic 0.75 (dabigatran), 0.78 (warfarin). DOI: 10.1183/13993003.00280-2016",
+          "Klok FA, et al. External validation of the VTE-BLEED score in the Hokusai-VTE study. Thromb Haemost. 2017;117(6):1164–1170. OR 4.04 (95% CI 2.51–6.48) for high vs low risk. DOI: 10.1160/TH16-10-0810",
+          "Klok FA, et al. VTE-BLEED does not predict recurrent VTE — supporting its use for duration decisions. Res Pract Thromb Haemost. 2019;3(3):364–371. DOI: 10.1002/rth2.12214",
+          "Badescu MC, et al. Prediction of bleeding events using VTE-BLEED (Review). Exp Ther Med. 2021;22(5):1344. Most validated bleeding risk score in VTE settings. DOI: 10.3892/etm.2021.10779",
+          "Nopp S, Ay C. Bleeding risk assessment in VTE. Hamostaseologie. 2021;41(4):267–274. VTE-BLEED best identifies low-risk patients for safe extended anticoagulation. DOI: 10.1055/a-1339-9987",
+        ],
+      };
+    },
+  },
+  {
     id: "khorana",
-    title: "Khorana VTE Score",
+    title: "Khorana VTE Risk Score",
     shortTitle: "Khorana",
     type: "calculator",
     category: "score",
     badge: "Cancer",
-    blurb: "Estimate ambulatory chemotherapy-associated VTE risk and identify patients who may benefit from thromboprophylaxis.",
-    tags: ["cancer", "VTE", "thromboprophylaxis"],
-    notes: ["Always balance prophylaxis decisions against bleeding risk and tumour site."],
+    blurb: "Predict chemotherapy-associated VTE risk in ambulatory cancer patients. C-statistic 0.7 in derivation/validation cohorts. Guides primary thromboprophylaxis decisions.",
+    tags: ["cancer", "VTE", "thromboprophylaxis", "CASSINI", "AVERT"],
+    notes: [
+      "Derived from 2,701 and validated in 1,365 cancer outpatients starting chemotherapy (Blood 2008).",
+      "C-statistic: 0.7 in derivation and validation cohorts — moderate discrimination.",
+      "Score performs best for solid tumours; weaker for lymphoid malignancies (C-statistic 0.51).",
+      "RIETE registry (n=7,948): C-statistic only 0.53 for recurrent VTE in patients with established cancer-associated thrombosis — score is designed for PRIMARY prevention, not recurrence prediction.",
+    ],
     inputs: [
       {
         id: "cancerSite",
         label: "Cancer site",
         type: "select",
         options: [
-          { value: "other", label: "Other site" },
-          { value: "high", label: "High risk: lung, lymphoma, gynecologic, bladder, testicular" },
-          { value: "veryHigh", label: "Very high risk: stomach or pancreas" },
+          { value: "other", label: "Other site (0 points)" },
+          { value: "high", label: "High risk: lung, lymphoma, gynecologic, bladder, testicular (+1)" },
+          { value: "veryHigh", label: "Very high risk: stomach or pancreas (+2)" },
         ],
         defaultValue: "other",
       },
-      { id: "platelets", label: "Platelet count (x10^9/L)", type: "number", min: 1, step: 1 },
+      { id: "platelets", label: "Pre-chemotherapy platelet count (×10⁹/L)", type: "number", min: 1, step: 1 },
       { id: "hemoglobin", label: "Hemoglobin (g/L)", type: "number", min: 1, step: 1 },
-      { id: "esa", label: "Receiving erythropoiesis-stimulating agent", type: "checkbox" },
-      { id: "leukocytes", label: "Leukocyte count (x10^9/L)", type: "number", min: 0, step: 0.1 },
-      { id: "bmi", label: "BMI (kg/m^2)", type: "number", min: 1, step: 0.1 },
+      { id: "esa", label: "Receiving erythropoiesis-stimulating agent (ESA)", type: "checkbox" },
+      { id: "leukocytes", label: "Leukocyte count (×10⁹/L)", type: "number", min: 0, step: 0.1 },
+      { id: "bmi", label: "BMI (kg/m²)", type: "number", min: 1, step: 0.1 },
     ],
     calculate: (values) => {
       const platelets = asNumber(values.platelets) ?? 0;
@@ -2350,49 +2436,66 @@ export const tools = [
       const risk =
         score === 0 ? "Low" : score <= 2 ? "Intermediate" : "High";
 
+      const breakdownParts = [];
+      if (siteScore === 2) breakdownParts.push("Very high-risk site (+2)");
+      else if (siteScore === 1) breakdownParts.push("High-risk site (+1)");
+      if (platelets >= 350) breakdownParts.push(`Platelets ≥350 (+1): ${platelets}`);
+      if (hemoglobin < 100) breakdownParts.push(`Hb <100 g/L (+1): ${hemoglobin}`);
+      else if (values.esa) breakdownParts.push("ESA use (+1)");
+      if (leukocytes > 11) breakdownParts.push(`WBC >11 (+1): ${leukocytes}`);
+      if (bmi >= 35) breakdownParts.push(`BMI ≥35 (+1): ${bmi}`);
+
       return {
-        tone: score >= 3 ? tone.warning : tone.success,
+        tone: score >= 3 ? tone.warning : score >= 1 ? tone.neutral : tone.success,
         headline:
           score >= 3
-            ? "High ambulatory cancer-associated VTE risk"
+            ? "High cancer-associated VTE risk — consider thromboprophylaxis"
             : score >= 1
-              ? "Intermediate VTE risk"
-              : "Low VTE risk",
+              ? "Intermediate VTE risk — individualise prophylaxis"
+              : "Low VTE risk — routine prophylaxis not indicated",
         summary:
           score === 0
-            ? "Observed short-term VTE rate is roughly 0.3 to 0.8%."
+            ? "2.5-month VTE rate: 0.3–0.8%. C-statistic 0.7 in original derivation (n=2,701) and validation (n=1,365) cohorts."
             : score <= 2
-              ? "Observed short-term VTE rate is roughly 1.8 to 2.0%."
-              : "Observed short-term VTE rate is roughly 6.7 to 7.1%.",
+              ? "2.5-month VTE rate: 1.8–2.0%. Most cancer VTE events occur in this intermediate group. Novel EHR-based scores (c-statistic 0.71) may improve stratification."
+              : "2.5-month VTE rate: 6.7–7.1%. CASSINI and AVERT trials enrolled patients at this risk level and demonstrated benefit of DOAC thromboprophylaxis.",
         action:
           score >= 3
-            ? "If bleeding risk is acceptable, discuss thromboprophylaxis."
+            ? "Start thromboprophylaxis if bleeding risk is acceptable. CASSINI (rivaroxaban) and AVERT (apixaban) provide Grade 1B evidence."
             : score >= 1
-              ? "Individualize prophylaxis after reviewing tumour bleeding risk and drug interactions."
-              : "Routine prophylaxis is usually not needed in the ambulatory setting.",
+              ? "Individualise: consider additional risk factors (prior VTE, immobility, cisplatin, central line). Newer scores may reclassify ~20% of intermediate patients to high-risk."
+              : "Routine ambulatory prophylaxis is not recommended. Reassess if treatment or clinical status changes.",
         metrics: buildMetrics([
-          { label: "Score", value: `${score}` },
+          { label: "Score", value: `${score} / 6` },
           { label: "Risk tier", value: risk },
+          { label: "2.5-month VTE rate", value: score === 0 ? "0.3–0.8%" : score <= 2 ? "1.8–2.0%" : "6.7–7.1%" },
+          { label: "C-statistic", value: "0.7 (derivation & validation)" },
+          { label: "Score breakdown", value: breakdownParts.length > 0 ? breakdownParts.join("; ") : "No risk factors present" },
         ]),
         recommendations: score >= 3
           ? [
-              { label: "Thromboprophylaxis", value: "Consider primary thromboprophylaxis with LMWH or a DOAC (rivaroxaban 10 mg daily or apixaban 2.5 mg twice daily) if bleeding risk is acceptable." },
-              { label: "Duration", value: "Continue for the duration of chemotherapy or up to 6 months. Reassess periodically." },
-              { label: "Bleeding assessment", value: "Weigh tumour-related bleeding risk (GI or GU primary) and thrombocytopenia before starting prophylaxis." },
+              { label: "Thromboprophylaxis", value: "Rivaroxaban 10 mg OD (CASSINI: HR 0.66, 95% CI 0.40–1.09 ITT; HR 0.40 on-treatment) or apixaban 2.5 mg BD (AVERT: HR 0.41, 95% CI 0.26–0.65; NNT ~14)." },
+              { label: "Duration", value: "Continue for duration of chemotherapy or up to 6 months. Reassess at each cycle." },
+              { label: "Bleeding check", value: "Weigh tumour-related bleeding risk — GI/GU primaries, thrombocytopenia <50, concurrent antiplatelet therapy, recent surgery." },
+              { label: "LMWH alternative", value: "If DOAC unsuitable (drug interactions, GI absorption concerns): dalteparin or enoxaparin at prophylactic dose." },
             ]
           : score >= 1
             ? [
-                { label: "Thromboprophylaxis", value: "Individualize decision. Prophylaxis may be considered for selected intermediate-risk patients, especially with additional risk factors." },
-                { label: "Patient education", value: "Counsel on VTE symptoms and when to seek urgent medical attention." },
+                { label: "Individualise", value: "Additional risk factors not captured by Khorana (prior VTE, central line, cisplatin, immunomodulatory drugs, prolonged immobility) may shift the balance toward prophylaxis." },
+                { label: "Novel scores", value: "EHR-derived scores (Li et al., AJH 2023, c-statistic 0.71) reclassified 20% of Khorana-intermediate patients upward. Consider if available at your centre." },
+                { label: "Patient education", value: "Counsel on VTE symptoms: leg swelling, chest pain, dyspnoea. Advise early presentation." },
               ]
             : [
-                { label: "Thromboprophylaxis", value: "Routine ambulatory thromboprophylaxis is generally not recommended at this risk level." },
-                { label: "Reassessment", value: "Reassess if cancer stage, treatment, or clinical status changes." },
+                { label: "Routine prophylaxis", value: "Not recommended at this risk level in ambulatory patients. NNT would be prohibitively high." },
+                { label: "Reassessment", value: "Re-score if cancer stage changes, new chemotherapy line, or hospitalisation." },
               ],
         supporting: [
-          "Khorana AA, Kuderer NM, Culakova E, et al. Development and validation of a predictive model for chemotherapy-associated thrombosis. Blood. 2008;111(10):4902-4907.",
-          "The CASSINI and AVERT trials support DOAC thromboprophylaxis in high-risk ambulatory cancer patients (Khorana \u22652).",
-          "Rivaroxaban 10 mg daily and apixaban 2.5 mg twice daily have the strongest evidence for cancer-associated VTE prophylaxis.",
+          "Khorana AA, et al. Development and validation of a predictive model for chemotherapy-associated thrombosis. Blood. 2008;111(10):4902–4907. C-statistic 0.7. DOI: 10.1182/blood-2007-10-116327",
+          "Tafur AJ, et al. RIETE experience: Khorana score in cancer-associated thrombosis (n=7,948). C-statistic 0.53 for recurrence — poor for secondary prediction. Thromb Haemost. 2017;117(6):1192–1198. DOI: 10.1160/TH16-11-0840",
+          "Rupa-Matysek J, et al. Khorana validation in lymphoid malignancies: C-statistic 0.51 — score performs poorly in haematological cancers. Med Oncol. 2017;35(1):5. DOI: 10.1007/s12032-017-1065-4",
+          "Li A, et al. Novel EHR VTE risk score: c-statistic 0.71 vs Khorana 0.64, reclassified 20% of patients. AJH. 2023;98(7):1052–1057. DOI: 10.1002/ajh.26928",
+          "CASSINI trial: Khorana ≥2 patients randomised to rivaroxaban 10 mg OD vs placebo. On-treatment HR 0.40 for VTE.",
+          "AVERT trial: Khorana ≥2 patients randomised to apixaban 2.5 mg BD vs placebo. HR 0.41 (95% CI 0.26–0.65); NNT ~14 over 6 months.",
         ],
       };
     },
