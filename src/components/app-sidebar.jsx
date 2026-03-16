@@ -237,19 +237,14 @@ export function AppSidebar({
   );
 
   useEffect(() => {
-    const nextExpandedFolders = {};
     const currentNodes = sidebarSections[currentPage] ?? [];
+    const firstFolderId = currentNodes.find((n) => n.children?.length)?.id;
 
-    currentNodes.forEach((node) => {
-      if (node.children?.length) {
-        nextExpandedFolders[node.id] = true;
-      }
-    });
-
-    setExpandedFolders((current) => ({
-      ...current,
-      ...nextExpandedFolders,
-    }));
+    if (firstFolderId) {
+      setExpandedFolders({ [firstFolderId]: true });
+    } else {
+      setExpandedFolders({});
+    }
   }, [currentPage, sidebarSections]);
 
   const handlePagePress = (pageId) => {
@@ -257,15 +252,25 @@ export function AppSidebar({
     onNavigate(pageId);
   };
 
-  const toggleFolder = (folderId) => {
-    setExpandedFolders((current) => ({
-      ...current,
-      [folderId]: !current[folderId],
-    }));
+  const toggleFolder = (folderId, siblingIds = []) => {
+    setExpandedFolders((current) => {
+      const isOpening = !current[folderId];
+      const next = { ...current, [folderId]: isOpening };
+      if (isOpening) {
+        siblingIds.forEach((id) => {
+          if (id !== folderId) next[id] = false;
+        });
+      }
+      return next;
+    });
   };
 
-  const renderSidebarNodes = (pageId, nodes, depth = 0) =>
-    nodes.map((node) => {
+  const renderSidebarNodes = (pageId, nodes, depth = 0) => {
+    const siblingFolderIds = nodes
+      .filter((n) => Array.isArray(n.children) && n.children.length > 0)
+      .map((n) => n.id);
+
+    return nodes.map((node) => {
       const isFolder = Array.isArray(node.children) && node.children.length > 0;
       const isExpanded = expandedFolders[node.id] ?? depth === 0;
 
@@ -278,7 +283,7 @@ export function AppSidebar({
                 depth > 0 && "pl-6"
               )}
               active={node.children.some((child) => child.active)}
-              onClick={() => toggleFolder(node.id)}
+              onClick={() => toggleFolder(node.id, siblingFolderIds)}
             >
               <span className="flex items-center gap-2 min-w-0">
                 <span className="truncate">{node.label}</span>
@@ -318,6 +323,7 @@ export function AppSidebar({
         </SidebarSubmenuButton>
       );
     });
+  };
 
   return (
     <Sidebar>
