@@ -328,7 +328,7 @@ export function AppSidebar({
           </div>
           <div className="min-w-0">
             <span className="text-[10px] font-bold uppercase tracking-widest text-blue-600">
-              Blood Doctor
+              Blood🩸Doctor
             </span>
             <h1 className="text-sm font-semibold leading-tight text-foreground">{siteName}</h1>
             <p className="mt-1 text-xs leading-relaxed text-muted-foreground">

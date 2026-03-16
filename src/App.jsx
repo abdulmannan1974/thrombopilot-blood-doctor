@@ -97,7 +97,7 @@ import { WarfarinPeriopGuide } from "@/components/warfarin-periop-guide";
 import { GuideNavContext } from "@/components/guide-link";
 import acuteGuidanceHtmlRaw from "../Thrombosis_Canada_Acute_Management_App (2).html?raw";
 
-const siteName = "Blood Doctor CoagVision";
+const siteName = "Blood\u{1FA78}Doctor CoagVision";
 
 const toneMeta = {
   success: {
@@ -412,8 +412,8 @@ const sanitizeAcuteGuidanceHtml = (html, activeTool) => {
   if (!html) return "";
 
   const brandingCleaned = html
-    .replaceAll("Thrombosis Canada — Acute Management Clinical Tools", "Blood Doctor Acute Management")
-    .replaceAll("Thrombosis Canada", "Blood Doctor")
+    .replaceAll("Thrombosis Canada — Acute Management Clinical Tools", "Blood\u{1FA78}Doctor Acute Management")
+    .replaceAll("Thrombosis Canada", "Blood\u{1FA78}Doctor")
     .replaceAll("Clinical Decision Support", "Acute Management")
     .replaceAll("Visit the Blood\u{1FA78}Doctor website at www.blood\u{1FA78}doctor.ca", "")
     .replaceAll("powered by Vivomap®", "")
@@ -443,7 +443,7 @@ const sanitizeAcuteGuidanceHtml = (html, activeTool) => {
       }
       var logo = document.querySelector('header .logo');
       if (logo) {
-        logo.innerHTML = 'Blood Doctor<span>Acute Management</span>';
+        logo.innerHTML = 'Blood\u{1FA78}Doctor<span>Acute Management</span>';
       }
       var subtitle = document.querySelector('header .subtitle');
       if (subtitle) {
@@ -536,7 +536,7 @@ const sanitizeAcuteGuidanceHtml = (html, activeTool) => {
         + '  <div class="acute-report-header">'
         + '    <span class="acute-report-eyebrow">Printable acute care plan</span>'
         + '    <h4>' + title + '</h4>'
-        + '    <p>Generated ' + new Date().toLocaleString() + ' | Blood Doctor Acute Management</p>'
+        + '    <p>Generated ' + new Date().toLocaleString() + ' | Blood\u{1FA78}Doctor Acute Management</p>'
         + '  </div>'
         + '  <div class="acute-report-grid">'
         + '    <section class="acute-report-card">'
@@ -740,7 +740,7 @@ const pageCopy = {
     eyebrow: "Clinical guides index",
     title: "Guide library",
     description:
-      "A reading-focused guide browser built from the local markdown corpus, with authentic references preserved and searchable clinical content.",
+      "A reading-focused guide browser with authentic references preserved and searchable clinical content.",
   },
 };
 
@@ -1667,7 +1667,7 @@ function AppLayout() {
 
             <div className="min-w-0">
               <div className="flex flex-wrap gap-1.5 text-muted-foreground text-xs">
-                <span>Blood Doctor</span>
+                <span>Blood🩸Doctor</span>
                 <span>/</span>
                 <span>{currentPageMeta.label}</span>
               </div>
@@ -1730,7 +1730,7 @@ function AppLayout() {
                 <CardTitle className="text-lg">Anticoagulation operations dashboard</CardTitle>
                 <CardDescription>
                   A unified workspace for bedside calculators, decision support content, and
-                  markdown-first clinical reading with a cleaner Shadcn-style dashboard structure.
+                  evidence-based clinical reading with structured guide library.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -1750,7 +1750,7 @@ function AppLayout() {
                   </Badge>
                   <Badge variant="secondary" className="gap-1.5">
                     <Microscope size={14} />
-                    Markdown guide library
+                    Evidence-based guide library
                   </Badge>
                 </div>
               </CardContent>
@@ -1767,7 +1767,7 @@ function AppLayout() {
                 icon={BookOpenText}
                 label="Guides in library"
                 value={stats.guides}
-                meta="Local markdown corpus surfaced as a searchable knowledge layer"
+                meta="Evidence-based clinical guides with searchable content"
               />
               <MetricCard
                 icon={BrainCircuit}
@@ -2194,7 +2194,7 @@ function AppLayout() {
         </main>
 
         <footer className="pt-3 text-muted-foreground">
-          <p className="m-0 text-center font-semibold text-[0.9rem]">Dr Abdul Mannan FRCPath FCPS | Blood Doctor | blooddoctor.co@gmail.com</p>
+          <p className="m-0 text-center font-semibold text-[0.9rem]">Dr Abdul Mannan FRCPath FCPS | Blood🩸Doctor | blooddoctor.co@gmail.com</p>
         </footer>
       </div>
     </div>
